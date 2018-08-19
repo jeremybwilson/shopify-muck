@@ -1,0 +1,165 @@
+<div class="footer-section" data-section-id="{{ section.id }}" data-section-type="footer-section">
+<footer>
+  <div class="row">
+    {% case section.blocks.size %}
+    {% when 0 %}
+    {% when 1 %}
+    {% assign column_width = 'desktop-12 tablet-6 mobile-3' %}
+    {% when 2 %}
+    {% assign column_width = 'desktop-6 tablet-3 mobile-3' %}
+    {% when 3 %}
+    {% assign column_width = 'desktop-4 tablet-3 mobile-3' %}
+    {% when 4 %}
+    {% assign column_width = 'desktop-3 tablet-3 mobile-3' %}
+    {% endcase %}
+    {% for block in section.blocks %}
+    {% case block.type %}
+    {% when 'menu' %}
+    <div class="{{ column_width }}">
+      <div class="section-title">
+        <h4>{{ block.settings.heading | escape }}</h4>
+      </div>
+      <ul {{ block.shopify_attributes }}>
+        {% for link in linklists[block.settings.footer_nav].links %}
+        <li>{{ link.title | link_to: link.url }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% when 'blog' %}
+    <div class="{{ column_width }}">
+      <div class="section-title">
+        <h4>{{ block.settings.heading | escape }}</h4>
+      </div>
+      <ul>
+        {% for article in blogs[block.settings.footer_blog].articles limit: block.settings.post_limit %}
+        <li><a href="{{ article.url }}">{{ article.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% when 'text' %}
+    <div class="{{ column_width }}">
+      <div class="section-title">
+        <h4>{{ block.settings.heading | escape }}</h4>
+      </div>
+      {{ block.settings.footer_text }}
+    </div>
+    {% endcase %}
+    {% endfor %}
+  </div>
+  <div class="clear"></div>
+  <div class="sub-footer row">
+    <div class="desktop-6 tablet-3 mobile-3 left-side">
+      Copyright &copy; {{ 'now' | date: "%Y" }} {{ shop.name | link_to: '/' }}
+      <a href="//www.weareunderground.com/" target="_blank" title="Shopify themes">Shopify Theme</a> by Underground
+      {{ powered_by_link | replace: '" target', '/?ref=undergroundmedia" target' }}
+    </div>
+    <div id="payment" class="desktop-6 tablet-3 mobile-3 right-side">
+      {% if section.settings.show_credit_cards %}
+        <div class="payment-methods">
+          {% for type in shop.enabled_payment_types %}
+            {{ type | payment_type_svg_tag: class:'payment-icon' }}
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+</footer>
+
+</div>
+
+{% schema %}
+{
+  "name": "Footer",
+  "max_blocks": 4,
+  "settings": [
+   {
+     "type": "checkbox",
+     "id": "show_credit_cards",
+     "label": "Show credit card icons",
+     "default": true,
+     "info": "The icons that show are determined by your store's payment settings."
+   }
+  ],
+  "blocks":[
+    {
+      "type":"menu",
+      "name":"Menu",
+      "settings":[
+        {
+          "type": "link_list",
+          "id": "footer_nav",
+          "label": "Choose a menu",
+          "info":"This menu won't show dropdown items"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Menu title",
+          "default": "Explore"
+        }
+      ]
+    },
+    {
+      "type":"blog",
+      "name":"Blog",
+      "limit": 1,
+      "settings":[
+        {
+          "id": "footer_blog",
+          "type": "blog",
+          "label": "Blog"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Blog title",
+          "default": "Recent posts"
+        },
+        {
+          "type": "select",
+          "id": "post_limit",
+          "label": "Posts",
+          "default": "3",
+          "options": [
+            {
+              "value": "3",
+              "label": "3"
+            },
+            {
+              "value": "6",
+              "label": "6"
+            },
+            {
+              "value": "9",
+              "label": "9"
+            },
+            {
+              "value": "12",
+              "label": "12"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Text",
+      "settings":[
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Text title",
+          "default": "About"
+        },
+      {
+          "id": "footer_text",
+          "type": "richtext",
+          "label": "Text",
+          "default": "<p>Add some text to your footer.</p>"
+       }
+      ]
+    }
+  ]
+}
+{% endschema %}
