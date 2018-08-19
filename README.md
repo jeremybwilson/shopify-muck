@@ -51,7 +51,11 @@ development:
 
 Now you can start the project and make new changes:
 
-### Sart!
+### Start!
 ```
 npm run start   (runs 'slate deploy && slate watch' )
+
+or 
+
+npm run watch    ( runs 'slate watch' - use if you a deploy isn't needed before beginning to watch for changes)
 ```
