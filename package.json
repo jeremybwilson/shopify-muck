@@ -1,0 +1,12 @@
+{
+  "name": "theme",
+  "version": "0.0.1",
+  "devDependencies": {
+    "@shopify/slate-tools": "0.14.0",
+    "gulp-react": "~3.1.0"
+  },
+  "dependencies": {
+    "react": "~16.4.2",
+    "react-dom": "~16.4.2"
+  }
+}
