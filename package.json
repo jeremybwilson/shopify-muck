@@ -8,5 +8,11 @@
   "dependencies": {
     "react": "~16.4.2",
     "react-dom": "~16.4.2"
+  },
+  "scripts": {
+    "bootstrap": "npm i && bash slate_build_react_shim.sh",
+    "build": "slate build",
+    "start": "slate deploy && slate watch",
+    "watch": "slate watch"
   }
 }
