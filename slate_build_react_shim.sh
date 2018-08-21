@@ -6,11 +6,12 @@ SHIMMING...
   Target: $(pwd)
   
 UPDATED:"
-sed -i '' 's/.pipe(include()).pipe(gulp.dest(config.dist.assets))/.pipe(include()).pipe(react()).pipe(gulp.dest(config.dist.assets))/' build-js.js
+sed -i '' "s/.pipe(include()).pipe(gulp.dest(config.dist.assets))/.pipe(babel({presets:['env','react']})).pipe(include()).pipe(browserify({transform: ['reactify']})).pipe(gulp.dest(config.dist.assets))/" build-js.js
 sed -n '15p' build-js.js
 sed -i '' "s/var gulp = require('gulp');/var gulp = require('gulp');\\
-var react = require('gulp-react')/" build-js.js
+var browserify = require('gulp-browserify');\\
+var babel = require('gulp-babel');/" build-js.js
 echo " 
 DONE: 
-  Slate now supports react components!
+  Slate now supports react components + proper require statements!
 __________________________________________________________________"
