@@ -1,0 +1,42 @@
+// Styles for React-Swatches component
+.react-swatch-title,
+.react-swatch-list {
+	display: inline-flex;
+}
+
+.swatch-list {
+	position: relative;
+	display: inline-flex;
+	width: auto;
+	height: 40px;
+	border-radius: 25px;
+	margin: 10px 0;
+	background: #333333;
+	justify-content: center;
+	align-items: center;
+
+    .swatch-item {
+		position: relative;
+		background: #999999;
+		width: 30px;
+		height: 30px;
+		border-radius: 15px;
+		margin: 0 5px;
+		cursor: pointer;
+		border: 2px solid #000000;
+		transition: 0.25s all ease-in-out;
+
+		&.Red 		{ background: #e80076; }
+		&.Orange 	{ background: #e88000; }
+		&.Yellow 	{ background: #fff707; }
+		&.Green 	{ background: #07ff5f; }
+		&.Blue 		{ background: #0ff0ff; }
+		&.Indigo 	{ background: #5b07ff; }
+		&.Violet 	{ background: #ab07ff; }
+
+		&:hover,
+		&.active {
+			border: 3px solid #C1C1C1;
+		}
+    }
+}
