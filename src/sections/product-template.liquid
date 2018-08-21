@@ -49,6 +49,14 @@
       <h1 itemprop="name">
         {{ product.title }}
       </h1>
+      
+      {% comment %}
+        REACT EXAMPLE #2:
+            Here, we use our snippet to include the DOM Node we'll need to render our 
+            react-swatches component setup in theme.js's theme.product block. 
+      {% endcomment %}
+      {% include 'component-react-swatches' %}
+
 
       <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
         <meta itemprop="priceCurrency" content="{{ shop.currency }}">
