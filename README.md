@@ -8,9 +8,18 @@ For the initial setup, you'll want Node.js installed globally on your machine as
 
 ### Bootstrap Project: 
 ```
-*** Don't have Node?  https://nodejs.org/en/download ***
+*** Ensure you have Slate (v0.14~) and NPM installed by entering the line below in a terminal window: ***
+	> npm -v && slate -v
 
-npm run bootstrap
+*** Don't have Node? 
+	> Download and Install : https://nodejs.org/en/download ***
+
+*** Don't have slate? 
+	> npm i -g @shopify/slate (in terminal window)
+
+
+*** READY TO BOOTSTRAP PROJECT:
+	> npm run bootstrap
 ```
 
 
@@ -36,14 +45,14 @@ Next, you'll need to make a config.yml file so that slate knows where to push yo
 development:
   password: 123456789012345678901234567890ab
   theme_id: "PUT YOUR THEME ID HERE"
-  store: YOUR_STORE_NAME.myshopify.com
+  store: muckboot-usa.myshopify.com
   ignore_files:
     - settings_data.json # Uncomment this line to avoid resetting theme settings
 
-# production:
-#   password:
+# production: # KEEP THIS COMMENTED OUT FOR NOW!
+#   password: 123456789012345678901234567890ab
 #   theme_id: "live"
-#   store: YOUR_STORE_NAME.myshopify.com
+#   store: muckboot-usa.myshopify.com
 #   ignore_files:
 #    - settings_data.json # Uncomment this line to avoid resetting theme settings -->
 ```
