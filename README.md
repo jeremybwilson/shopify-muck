@@ -65,9 +65,9 @@ Now you can start the project and make new changes:
 ```
 > npm run start   ( runs 'slate deploy && slate watch' )
 
-or 
+        or 
 
-> npm run watch   ( runs 'slate watch' - use if you a deploy isn't needed before beginning to watch for changes )
+> npm run watch   ( runs 'slate watch' - use if you haven't changed any files since last deploying, saves a few mins of time. )
 ```
 
 
@@ -75,27 +75,27 @@ or
 ### Package.json NPM Command List:
 ```
 USAGE :
-	> npm run ___________ (in a terminal window in the projects root directory)
+  > npm run ___________ (in a terminal window in the projects root directory)
 
 
     "bootstrap":
-    	> Installs node modules (npm i)
-    	> Bootstraps slate tool to handle ES6 / React with Shim
+    	1. Installs node modules (npm i)
+    	2. Bootstraps slate tool to handle ES6 / React with Shim
 
     "build": 
-    	> Complies theme files by running "slate build" under the hood
+    	1. Complies theme files by running "slate build" under the hood
 
     "deploy":
-    	> Compiles theme files
-    	> Deploys theme to Theme ID Configured in the Config.yml file in the project root.
+    	1. Compiles theme files
+    	2. Deploys theme to Theme ID Configured in the Config.yml file in the project root.
 
     "start": 
-    	> Compiles theme file
-    	> Deploys theme to Configured Theme ID
-    	> Begins slate watch task and spawns fresh browser window to test changes with.
+    	1. Compiles theme file
+    	2. Deploys theme to Configured Theme ID
+    	3. Begins slate watch task and spawns fresh browser window to test changes with.
 
     "watch": 
-    	> Begins watch task without triggering a fresh compile of the theme files
-    	> Any new changes will trigger the necessary theme files to re-compile and deploy to the configured theme ID 
+    	1. Begins watch task without triggering a fresh compile of the theme files
+    	2. Any new changes will trigger the necessary theme files to re-compile and deploy to the configured theme ID 
 
 ```
