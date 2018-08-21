@@ -68,3 +68,33 @@ or
 
 npm run watch    ( runs 'slate watch' - use if you a deploy isn't needed before beginning to watch for changes)
 ```
+
+
+
+### Package.json NPM Command List:
+```
+USAGE :
+	> npm run ___________ (in a terminal window in the projects root directory)
+
+
+    "bootstrap":
+    	> Installs node modules (npm i)
+    	> Bootstraps slate tool to handle ES6 / React with Shim
+
+    "build": 
+    	> Complies theme files by running "slate build" under the hood
+
+    "deploy":
+    	> Compiles theme files
+    	> Deploys theme to Theme ID Configured in the Config.yml file in the project root.
+
+    "start": 
+    	> Compiles theme file
+    	> Deploys theme to Configured Theme ID
+    	> Begins slate watch task and spawns fresh browser window to test changes with.
+
+    "watch": 
+    	> Begins watch task without triggering a fresh compile of the theme files
+    	> Any new changes will trigger the necessary theme files to re-compile and deploy to the configured theme ID 
+
+```
