@@ -1,4 +1,4 @@
-class ExampleReactComponent extends React.Component {
+module.exports = class ExampleReactComponent extends React.Component {
   render() {
     const data = JSON.parse(this.props.data);
     const {name} = data;
@@ -10,7 +10,3 @@ class ExampleReactComponent extends React.Component {
     );
   }
 }
-
-ExampleReactComponent.propTypes = {
-  data: PropTypes.string.isRequired
-};
