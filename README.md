@@ -165,7 +165,6 @@ _There are two examples of React component usage in the theme.js, on the branch 
 ```liquid
 // FILE : /src/layout/theme.liquid
 
-
     ... (content before this)
     {% endif %}
   {% endif %}
