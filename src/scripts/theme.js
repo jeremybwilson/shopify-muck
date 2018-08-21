@@ -1,32 +1,53 @@
-// REACT : REQUIRED : Modules needed to render and process react modules
-// NOTE : ERROR DEBUGGING : remove '.min' on js files to get better error handling messages for react
-// =require react-modules/react.min.js
-// =require react-modules/react-dom.min.js
-// =require react-modules/prop-types.js
-
-// REACT : COMPONENTS : Declare components here that are to be globally visible, or declare
-//  them in the component you are using them in like this below. 
-// =require react-components/Example.js
-
-/*
- * RENDER : REACT
- *
- *  This initalizes the react component 'WelcomeMessage' into the div
- *  we've supplied in our congruently named file in the /src/sections folder
- *  (Note: NOT the 'sections' folder in scripts just to be clear)
+/* IMPORT STATEMENTS - Proof of Concept
+ * 
+ * With our build tool tweak, we can use top-level imports even, but 
+ * due to the limitations of them needing to be just that - top-level, 
+ * you'll find that require('thing') is much more effective and can 
+ * go where you need it to in the conditional logic. 
  *****************************************************************************/
-$(document).ready(function(){
-  const rootEl = document.getElementById('example-section-react');
+// import PropTypes from 'prop-types'; // Example, check compiled theme.js in dist to see
 
-  // Ensure element is present, since we've got this in the whole theme file
-  if ( rootEl ) {
 
-    ReactDOM.render(
-      <ExampleReactComponent data={ rootEl.dataset.passedinfotoreact } />,
-      rootEl
-    );
-  }
-});
+
+/* REACT - FOREWORD
+ *
+ *   You probably notice that "React" and "ReactDOM" are not imported in the 
+ *   top of this theme file. They are included as libraries globally in our
+ *   <HEAD> tag of "theme.liquid" so we don't need to continually write
+ *   the "var React = require('react')" statements into every component!
+ * 
+ *   The goal is to make each component self contained, and embedded into its
+ *   respective template or section by invoking them directly on that 
+ *   section's JS Portion of the Theme.SectionName blocks. (See "Product" for
+ *   a good example of what we mean.) Global components can be invoked in a
+ *   ready block anywhere in theme otherwise.
+ *
+ *   Lastly, React Components in Shopify are meant to help, but not replace,
+ *   common liquid and JS architecture in the theme. React will excel at 
+ *   global components like "Compare Tool" and feel cumbersome on other things.
+ *   State-heavy features are where you will find it most useful. 
+ *   
+ *****************************************************************************/
+
+
+
+/* REACT - EXAMPLE #1
+ *
+ * GLOBAL-COMPONENT : 
+ *     Simple React-Component Rendered into our "Theme.Liquid" template's
+ *     DOM Node with ID "example-global-react"
+ *
+ * RELATED FILES :
+ *    / scripts / react-components / ExampleParent.js <-- Parent Component, Renders example.js into DOM Node
+ *    / scripts / react-components / Example.js <-------- React Component we want to show
+ *    / layout / theme.liquid <-------------------------- Dom node to render into setup here
+ *
+ *  Here, we are requiring in the parent component for our "Example" feature.
+ *  React components will always have a single root parent built via invoking
+ *  ReactDOM.render() into a DOM Node. Open 'ExploreParent.js' to learn more. 
+ *****************************************************************************/
+require('./react-components/example/ExampleParent.js');
+
 
 
 
@@ -231,7 +252,7 @@ if (window.NodeList && !NodeList.prototype.forEach) {
  * @license MIT (https://github.com/pixelcog/parallax.js/blob/master/LICENSE)
  */
 
-;(function ( $, window, document, undefined ) {
+(function ( $, window, document, undefined ) {
 
   // Polyfill for requestAnimationFrame
   // via: https://gist.github.com/paulirish/1579671
@@ -775,7 +796,7 @@ a.prototype[n]=function(){var n=arguments;return e&&!this.__chain__?t.apply(this
  * Dual licensed under the MIT and GPL licenses.
  * http://benalman.com/about/license/
  */
-(function(b,c){var $=b.jQuery||b.Cowboy||(b.Cowboy={}),a;$.throttle=a=function(e,f,j,i){var h,d=0;if(typeof f!=="boolean"){i=j;j=f;f=c}function g(){var o=this,m=+new Date()-d,n=arguments;function l(){d=+new Date();j.apply(o,n)}function k(){h=c}if(i&&!h){l()}h&&clearTimeout(h);if(i===c&&m>e){l()}else{if(f!==true){h=setTimeout(i?k:l,i===c?e-m:e)}}}if($.guid){g.guid=j.guid=j.guid||$.guid++}return g};$.debounce=function(d,e,f){return f===c?a(d,e,false):a(d,f,e!==false)}})(this);
+// (function(b,c){var $=b.jQuery||b.Cowboy||(b.Cowboy={}),a;$.throttle=a=function(e,f,j,i){var h,d=0;if(typeof f!=="boolean"){i=j;j=f;f=c}function g(){var o=this,m=+new Date()-d,n=arguments;function l(){d=+new Date();j.apply(o,n)}function k(){h=c}if(i&&!h){l()}h&&clearTimeout(h);if(i===c&&m>e){l()}else{if(f!==true){h=setTimeout(i?k:l,i===c?e-m:e)}}}if($.guid){g.guid=j.guid=j.guid||$.guid++}return g};$.debounce=function(d,e,f){return f===c?a(d,e,false):a(d,f,e!==false)}})(this);
 
 /*============================================================================
   Sections
@@ -2013,6 +2034,9 @@ theme.ProductMobileGallery = function (events) {
   };
 };
 
+
+// THOUGHT : We should split the "theme._____" blocks into individual files for sanity!
+//            They can be required in here very easily :D
 theme.Product = (function () {
   function Product(container) {
     var events = new EventEmitter3();
@@ -2027,6 +2051,28 @@ theme.Product = (function () {
     container.querySelectorAll("[data-product-form]").forEach(function (context) {
       theme.ProductForm(context, events);
     });
+
+
+    /* REACT - EXAMPLE #2
+     *
+     * PAGE-SPECIFIC COMPONENT : 
+     *     Swatch-Picker react component that appears only on the product template
+     *     if given the proper DOM Nodes to render into ( see 'SwatchParent.js' for
+     *     the node name being rendered into)
+     *
+     * RELATED FILES :
+     *    / scripts / react-components / swatches / SwatchParent.js <-- Parent, renders React component root into DOM Node
+     *    / scripts / react-components / swatches / SwatchList.js <---- List Container for Swatch Circles
+     *    / scripts / react-components / swatches / SwatchItem.js <---- Actual swatch circle single template
+     *    / snippets / component-react-swatches.liquid <-- DOM Node 'include'-able snippet
+     *    / sections / product-template.liquid <---------- Template we include snippet into
+     *
+     *  Here, we require in the parent component for our "React-Swatches" feature.
+     *  React components will always have a single root parent built via invoking
+     *  ReactDOM.render() into a DOM Node. Open 'SwatchParent.js' to learn more. 
+     *****************************************************************************/
+    require('./react-components/swatches/SwatchParent.js');
+
   }
 
   Product.prototype = _.assignIn({}, Product.prototype, {});
@@ -2039,9 +2085,9 @@ Events.on("quickview:load", function (container) {
 });
 
 
-  Events.on("quickview:load", function (container) {
-    Currency.convertAll( defaultCurrency, Currency.currentCurrency );
-  });
+Events.on("quickview:load", function (container) {
+  Currency.convertAll( defaultCurrency, Currency.currentCurrency );
+});
 
 
 /*============================================================================
