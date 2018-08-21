@@ -1,12 +1,12 @@
 # shopify-muck
-Theme repo for the Muck Boot Shopify store. 
+Theme repo for the Muck Boot Shopify store. This theme features the ability to use react components as well as ES6, and was built using the Fashionopolism theme as a base!
 
 
 # How Do I Turn This On?
 
-For the initial setup, you'll want Node.js installed globally on your machine as well as the old slate tool v0.14. To simplify this you can run the command below to bootstrap the project for you. 
+For the initial setup, you'll want Node.js installed globally on your machine as well as the old slate tool v0.14 (not v1.x). To simplify this you can run the command below to bootstrap the project for you. 
 
-### Bootstrap Project: 
+### BOOTSTRAP PROJECT: 
 ```
 *** Ensure you have Slate (v0.14~) and NPM installed by entering the line below in a terminal window: ***
 	> npm -v && slate -v
@@ -25,26 +25,25 @@ For the initial setup, you'll want Node.js installed globally on your machine as
 
 Next, you'll need to make a config.yml file so that slate knows where to push your theme edits. This is a sample file and you'll need to have someone give you an actual password key. 
 
-### config.yml: 
+### CONFIG: Copy this into new file, update fields and save as "config.yml"
 ```
 # This file contains the information needed for Shopify to authenticate
 # requests and edit/update your remote theme files.
 #
-# 1. Set up a private app (https://help.shopify.com/api/guides/api-credentials#generate-private-app-credentials)
-#    with "Read and write" permissions for "Theme templates and theme assets".
-# 2. Replace the required variables for each environment below.
+# 1. In the Shopify Store's Admin panel, click the "Apps" link on the left, then in the bottom of the page select "Manage Private Apps". From there, open or create a new token called "BOL-Development" and copy its Password key.
+# 2. Replace the required variables for each environment below into a new file and save it with the name "config.yml" in the project root.
 #
-# password, theme_id, and store variables are required.
+# NOTE : password, theme_id, and store variables are required!
 #
 # For more information on this config file:
 #   Configuration variables | http://shopify.github.io/themekit/configuration/
 #   Ignore patterns | http://shopify.github.io/themekit/ignores/
 
----
+
 
 development:
   password: 123456789012345678901234567890ab
-  theme_id: "PUT YOUR THEME ID HERE"
+  theme_id: "PUT YOUR THEME ID HERE" #Needs the quotes around the ID value
   store: muckboot-usa.myshopify.com
   ignore_files:
     - settings_data.json # Uncomment this line to avoid resetting theme settings
@@ -54,13 +53,13 @@ development:
 #   theme_id: "live"
 #   store: muckboot-usa.myshopify.com
 #   ignore_files:
-#    - settings_data.json # Uncomment this line to avoid resetting theme settings -->
+#    - settings_data.json # Uncomment this line to avoid resetting theme settings
 ```
 
 
 Now you can start the project and make new changes:
 
-### Start!
+### START!
 ```
 npm run start   (runs 'slate deploy && slate watch' )
 
