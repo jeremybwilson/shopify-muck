@@ -1,17 +1,24 @@
 {
-  "name": "theme",
+  "name": "Shopify-Muck",
   "version": "0.0.1",
   "devDependencies": {
     "@shopify/slate-tools": "0.14.0",
-    "gulp-react": "~3.1.0"
+    "babel-core": "~6.26.3",
+    "babel-preset-env": "~1.7.0",
+    "babel-preset-react": "~6.24.1",
+    "gulp-babel": "~7.0.1",
+    "gulp-browserify": "~0.5.1",
+    "reactify": "^1.1.1"
   },
   "dependencies": {
+    "prop-types": "~15.6.2",
     "react": "~16.4.2",
     "react-dom": "~16.4.2"
   },
   "scripts": {
     "bootstrap": "npm i && bash slate_build_react_shim.sh",
     "build": "slate build",
+    "deploy": "slate deploy",
     "start": "slate deploy && slate watch",
     "watch": "slate watch"
   }
