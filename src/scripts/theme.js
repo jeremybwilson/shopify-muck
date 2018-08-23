@@ -46,7 +46,7 @@
  *  React components will always have a single root parent built via invoking
  *  ReactDOM.render() into a DOM Node. Open 'ExploreParent.js' to learn more. 
  *****************************************************************************/
-require('./react-components/example/ExampleParent.js');
+// require('./react-components/example/ExampleParent.js');
 
 
 
@@ -2071,7 +2071,7 @@ theme.Product = (function () {
      *  React components will always have a single root parent built via invoking
      *  ReactDOM.render() into a DOM Node. Open 'SwatchParent.js' to learn more. 
      *****************************************************************************/
-    require('./react-components/swatches/SwatchParent.js');
+    // require('./react-components/swatches/SwatchParent.js');
 
   }
 
