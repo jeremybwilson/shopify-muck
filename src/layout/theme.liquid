@@ -88,7 +88,10 @@
         {% endif %}
       {% endif %}
 
-      <div id="example-global-react" data-info-passed-to-react='{ "name": "greg" }'></div>
+      {% comment %}
+        REACT : EXAMPLE #1
+        <div id="example-global-react" data-info-passed-to-react='{ "name": "greg" }'></div>
+      {% endcomment %}
 
       {% if template == 'index' or template contains 'blog' or template contains 'list-collections' %}
       {{ content_for_layout }}
