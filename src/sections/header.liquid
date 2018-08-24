@@ -1,134 +1,196 @@
-<div class="header-section" data-section-id="{{ section.id }}" data-section-type="header-section">
-    {%- if section.settings.show_announcement_text -%}
-      <div id="top-bar"{% if section.settings.full_width_header %} class="gridlock-fluid"{% endif %}>
-        {% if section.settings.full_width_header %}<div class="row">{% endif %}
-        <div class="row">
-          <div class="desktop-12 tablet-6 mobile-3">
-            {%- if section.settings.announcement_link -%}
-              <a href="{{ section.settings.announcement_link }}">
-                {{ section.settings.announcement_text }}
-              </a>
-            {%- else -%}
-              {{ section.settings.announcement_text }}
-            {%- endif -%}
-          </div>
-        </div>
-        {% if section.settings.full_width_header %}</div>{% endif %}
-      </div>
-    {%- endif -%}
+<div class="header-section" 
+  data-section-id="{{ section.id }}" 
+  data-section-type="header-section" 
+  data-swap-rate="{{ section.settings.announcement_swap_rate }}">
+    
+  {%- if section.settings.show_announcement_text -%}
+    <div id="top-bar-bg" {% if section.settings.num_of_promo_banners == "2" %} class="double-promo"{% endif %}>
+      <div id="bg-1"></div>
+      <div id="bg-2"></div>
+    </div>
 
-    <header{% if section.settings.full_width_header %} class="gridlock-fluid"{% endif %}>
+    <div id="top-bar" {% if section.settings.full_width_header %} class="gridlock-fluid"{% endif %}>
       {% if section.settings.full_width_header %}<div class="row">{% endif %}
-      <div id="identity" class="row">
-        <div id="logo" class="{% if section.settings.logo_center %}desktop-4 desktop-push-4 tablet-6{% else %}desktop-8 tablet-3{% endif %} mobile-3">
-          {% if section.settings.logo != blank %}
-          {%- assign image_size = '600x' -%}
-          <a href="/">
-            <img src="{{ section.settings.logo | img_url: image_size }}" alt="{{ section.settings.logo.alt | default: shop.name }}" itemprop="logo">
-          </a>
-          {% else %}
-          <a href="/">{{ shop.name }}</a>
-          {% endif %}
-        </div>
+      <div class="row">
 
-        <div class="desktop-4 {% if section.settings.logo_center %}tablet-6{% else %}tablet-3{% endif %} mobile-3">
-          <ul id="cart"{% if section.settings.logo_center %} class="tablet-3"{% endif %}>
-            {% if shop.customer_accounts_enabled %}
-            <li>
-              {% if customer  %}
-              <a href="/account">{{ 'layout.customer.my_account' | t }} <i class="fa fa-user"></i></a>
-              <a href="/account/logout">{{ 'layout.customer.log_out' | t }}</a>
-              {% else %}
-              <a href="/account/login">{{ 'layout.customer.my_account' | t }}  <i class="fa fa-user"></i></a>
-              {% endif %}
-            </li>
-            {% endif %}
-            {% if settings.show_multiple_currencies %}
-            <li>{% include 'currencies-switcher' %}</li>
-            {% endif %}
-            <li class="cart-overview">
-              <a href="/cart" {% if settings.ajax_cart_method == 'drawer' %}class="site-header__cart-toggle js-drawer-open-right" aria-controls="CartDrawer" aria-expanded="false"{% endif %}>
-                <span class="cart-words">{{ 'cart.general.title' | t }}</span>
-                &nbsp; {% if section.settings.cart_icon == 'cart' %}<i class="fa fa-shopping-cart" aria-hidden="true"></i>{% elsif section.settings.cart_icon == 'bag' %}<i class="fa fa-shopping-bag" aria-hidden="true"></i>{% endif %}
-                <span class="CartCount">{{ cart.item_count }}</span>
-              </a>
-            </li>
-            <li class="shifter-handle"><i class="fa fa-bars" aria-hidden="true"></i></li>
-          </ul>
+        {% comment %} ..:: ONE PROMO BANNER ::.. {% endcomment %}
+        {%- if section.settings.num_of_promo_banners == "1" -%}
+          <div id="single-promo-wrapper" class="desktop-12 tablet-6 mobile-3">
+            
+            {%- if section.settings.announcement_link_one -%}
+              <a href="{{ section.settings.announcement_link_one }}">{{ section.settings.announcement_text_one }}</a>
+            {%- else -%}
+              {{ section.settings.announcement_text_one }}
+            {%- endif -%}
 
-          <ul id="social-links"{% if section.settings.logo_center %} class="tablet-3"{% endif %}>
-            {% if section.settings.show_social_icons %}
-              {% include 'social-icons' %}
-            {% endif %}
-            {% if section.settings.show_search %}
-              <li class="searchbox">
-                <form action="/search" method="get">
-                  <input type="text" name="q" id="q" placeholder="{{ 'general.search.placeholder' | t }}" />
-                </form>
-              </li>
-            {% endif %}
-          </ul>
-        </div>
+          </div>
+        {%- endif -%}
+
+        {% comment %} ..:: TWO PROMO BANNER ::.. {% endcomment %}
+        {%- if section.settings.num_of_promo_banners == "2" -%}
+          <div id="double-promo-wrapper">
+
+            {% comment %} MOBILE : LEFT ARROW {% endcomment %}
+            <div id="promo-arrow-left">
+              {% include 'svg-icon-caret-left' %}
+            </div>
+
+            <div class="promo-banner one">
+              {%- if section.settings.announcement_link_one -%}
+                <a href="{{ section.settings.announcement_link_one }}">{{ section.settings.announcement_text_one }}</a>
+              {%- else -%}
+                {{ section.settings.announcement_text_one }}
+              {%- endif -%}
+            </div>
+
+            <div class="promo-banner two">
+              {%- if section.settings.announcement_link_two -%}
+                <a href="{{ section.settings.announcement_link_two }}">{{ section.settings.announcement_text_two }}</a>
+              {%- else -%}
+                {{ section.settings.announcement_text_two }}
+              {%- endif -%}
+            </div>
+
+            {% comment %} MOBILE : RIGHT ARROW {% endcomment %}
+            <div id="promo-arrow-right">
+              {% include 'svg-icon-caret-right' %}
+            </div>
+
+          </div>
+        {%- endif -%}
+
       </div>
       {% if section.settings.full_width_header %}</div>{% endif %}
-    </header>
+    </div>
+  {%- endif -%}
 
-    {% include 'navigation' %}
 
-<style>
-  {% if section.settings.logo != blank %}
-  #logo img { max-width: {{ section.settings.logo_max_width }}px; }
-  {% endif %}
-  #logo {
-    {% if section.settings.logo_center %}text-align: center;{% endif %}
-  }
 
-  #top-bar, #top-bar p {
-    font-size: {{ section.settings.announcement_text_size }}px;
-    font-weight: {{ section.settings.announcement_text_weight }};
-  }
+  {% comment %} ..:: HEADER PORTION ::.. {% endcomment %}
+  <header {% if section.settings.full_width_header %} class="gridlock-fluid"{% endif %}>
+    {% if section.settings.full_width_header %}<div class="row">{% endif %}
+    <div id="identity" class="row">
+      <div id="logo" class="{% if section.settings.logo_center %}desktop-4 desktop-push-4 tablet-6{% else %}desktop-8 tablet-3{% endif %} mobile-3">
+        {% if section.settings.logo != blank %}
+        {%- assign image_size = '600x' -%}
+        <a href="/">
+          <img src="{{ section.settings.logo | img_url: image_size }}" alt="{{ section.settings.logo.alt | default: shop.name }}" itemprop="logo">
+        </a>
+        {% else %}
+        <a href="/">{{ shop.name }}</a>
+        {% endif %}
+      </div>
 
-  header #q {
-    font-size: {{ section.settings.cart_links_size }}px;
-  }
+      <div class="desktop-4 {% if section.settings.logo_center %}tablet-6{% else %}tablet-3{% endif %} mobile-3">
+        <ul id="cart"{% if section.settings.logo_center %} class="tablet-3"{% endif %}>
+          {% if shop.customer_accounts_enabled %}
+          <li>
+            {% if customer  %}
+            <a href="/account">{{ 'layout.customer.my_account' | t }} <i class="fa fa-user"></i></a>
+            <a href="/account/logout">{{ 'layout.customer.log_out' | t }}</a>
+            {% else %}
+            <a href="/account/login">{{ 'layout.customer.my_account' | t }}  <i class="fa fa-user"></i></a>
+            {% endif %}
+          </li>
+          {% endif %}
+          {% if settings.show_multiple_currencies %}
+          <li>{% include 'currencies-switcher' %}</li>
+          {% endif %}
+          <li class="cart-overview">
+            <a href="/cart" {% if settings.ajax_cart_method == 'drawer' %}class="site-header__cart-toggle js-drawer-open-right" aria-controls="CartDrawer" aria-expanded="false"{% endif %}>
+              <span class="cart-words">{{ 'cart.general.title' | t }}</span>
+              &nbsp; {% if section.settings.cart_icon == 'cart' %}<i class="fa fa-shopping-cart" aria-hidden="true"></i>{% elsif section.settings.cart_icon == 'bag' %}<i class="fa fa-shopping-bag" aria-hidden="true"></i>{% endif %}
+              <span class="CartCount">{{ cart.item_count }}</span>
+            </a>
+          </li>
+          <li class="shifter-handle"><i class="fa fa-bars" aria-hidden="true"></i></li>
+        </ul>
 
-  ul#cart li a {
-    font-size: {{ section.settings.cart_links_size }}px;
-    font-weight: {{ section.settings.cart_weight }};
-  }
+        <ul id="social-links"{% if section.settings.logo_center %} class="tablet-3"{% endif %}>
+          {% if section.settings.show_social_icons %}
+            {% include 'social-icons' %}
+          {% endif %}
+          {% if section.settings.show_search %}
+            <li class="searchbox">
+              <form action="/search" method="get">
+                <input type="text" name="q" id="q" placeholder="{{ 'general.search.placeholder' | t }}" />
+              </form>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+    {% if section.settings.full_width_header %}</div>{% endif %}
+  </header>
 
-  select.currency-picker {
-    font-size: {{ section.settings.cart_links_size }}px;
-    font-weight: {{ section.settings.cart_weight }};
-  }
+  {% include 'navigation' %}
 
-  #logo {
-    font-weight: {{ section.settings.logo_weight }};
-    font-size: {{ section.settings.logo_size }}px;
-    text-transform: {{ section.settings.logo_transform }};
-  }
-
-  #logo a {
-    {% if section.settings.use_logo_image %}line-height: 0; {% endif %}
-  }
-
-  nav {
-    {% if section.settings.nav_center %}text-align: center;{% endif %}
-     line-height: {{ section.settings.nav_height }}px;
-  }
-
-  {% if section.settings.logo_center %}
-  @media screen and ( min-width: 740px ) and ( max-width: 980px ) {
-    ul#social-links {
-      text-align: left;
-      float: left;
+  <style>
+    #top-bar, #top-bar-bg {
+      height: {{ section.settings.announcement_height }}px;
     }
-  }
-  {% endif %}
 
-</style>
+    #bg-1 {
+      background: {{ section.settings.announcement_bg_one }};
+    }
+    #bg-2 {
+      background: {{ section.settings.announcement_bg_two }};
+    }
+
+
+    /* NAV BAR PANE */
+    {% if section.settings.logo != blank %}
+    #logo img { max-width: {{ section.settings.logo_max_width }}px; }
+    {% endif %}
+    
+    #logo {
+      {% if section.settings.logo_center %}text-align: center;{% endif %}
+    }
+
+    header #q {
+      font-size: {{ section.settings.cart_links_size }}px;
+    }
+
+    ul#cart li a {
+      font-size: {{ section.settings.cart_links_size }}px;
+      font-weight: {{ section.settings.cart_weight }};
+    }
+
+    select.currency-picker {
+      font-size: {{ section.settings.cart_links_size }}px;
+      font-weight: {{ section.settings.cart_weight }};
+    }
+
+    #logo {
+      font-weight: {{ section.settings.logo_weight }};
+      font-size: {{ section.settings.logo_size }}px;
+      text-transform: {{ section.settings.logo_transform }};
+    }
+
+    #logo a {
+      {% if section.settings.use_logo_image %}line-height: 0; {% endif %}
+    }
+
+    nav {
+      {% if section.settings.nav_center %}text-align: center;{% endif %}
+       line-height: {{ section.settings.nav_height }}px;
+    }
+
+    {% if section.settings.logo_center %}
+    @media screen and ( min-width: 740px ) and ( max-width: 980px ) {
+      ul#social-links {
+        text-align: left;
+        float: left;
+      }
+    }
+    {% endif %}
+  </style>
 
 </div>
+
+
+
+
 {% schema %}
 {
     "name": "Header",
@@ -149,40 +211,73 @@
         "label": "Show announcement text"
       },
       {
-        "type": "text",
-        "id": "announcement_text",
-        "label": "Announcement text",
-        "default": "Share a shop announcement or message"
-      },
-      {
-        "type":      "range",
-        "id":        "announcement_text_size",
-        "min":       12,
-        "max":        36,
-        "step":       1,
-        "unit":       "px",
-        "label":     "Text size",
-        "default":   13
-      },
-      {
         "type": "select",
-        "id": "announcement_text_weight",
-        "label": "Text weight",
+        "id": "num_of_promo_banners",
+        "label": "# of Announcement Slots",
         "options": [
           {
-            "value": "normal",
-            "label": "Normal"
+            "label": "2",
+            "value": "2"
           },
           {
-            "value": "bold",
-            "label": "Bold"
+            "label": "1",
+            "value": "1"
           }
         ]
       },
       {
+        "type": "text",
+        "id": "announcement_text_one",
+        "label": "Announcement Text - #1",
+        "default": "<div class='bold'>FREE SHIPPING</div> ON ORDERS $50 OR MORE"
+      },
+      {
         "type": "url",
-        "id": "announcement_link",
-        "label": "Announcement link"
+        "id": "announcement_link_one",
+        "label": "Announcement Link - #1"
+      },
+      {
+        "type": "color",
+        "id": "announcement_bg_one",
+        "label": "Announcement BG - #1",
+        "default": "#124431"
+      },
+      {
+        "type": "text",
+        "id": "announcement_text_two",
+        "label": "Announcement Text - #2",
+        "default": "<div class='bold'>40% OFF YOUR PURCHASE.</div>NO CODE NEEDED."
+      },
+      {
+        "type": "url",
+        "id": "announcement_link_two",
+        "label": "Announcement Link - #2"
+      },
+      {
+        "type": "color",
+        "id": "announcement_bg_two",
+        "label": "Announcement BG - #2",
+        "default": "#073322"
+      },
+      {
+        "type":      "range",
+        "id":        "announcement_height",
+        "min":       40,
+        "max":       60,
+        "step":      1,
+        "unit":      "px",
+        "label":     "Announcement Height",
+        "default":   60
+      },
+      {
+        "type":      "range",
+        "id":        "announcement_swap_rate",
+        "min":       3,
+        "max":       30,
+        "step":      1,
+        "unit":      "sec",
+        "label":     "Mobile Banner Change Rate (2 must be enabled)",
+        "default":   5
       },
       {
         "type": "header",

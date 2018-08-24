@@ -46,7 +46,7 @@
  *  React components will always have a single root parent built via invoking
  *  ReactDOM.render() into a DOM Node. Open 'ExploreParent.js' to learn more. 
  *****************************************************************************/
-require('./react-components/example/ExampleParent.js');
+// require('./react-components/example/ExampleParent.js');
 
 
 
@@ -910,6 +910,73 @@ theme.Sections.prototype = _.assignIn({}, theme.Sections.prototype, {
     }.bind(this));
   }
 });
+
+
+/*============================================================================
+  Header on Index
+==============================================================================*/
+theme.Header = (function() {
+  function Header(container) {
+    const $container = this.$container = $(container);
+    const ui = {
+      containerId: $container.attr('data-section-id'),
+      swapRate: $container.attr('data-swap-rate'),
+      promoWrap: $( '#double-promo-wrapper' ),
+      arrows: $( '#promo-arrow-left, #promo-arrow-right' )
+    }
+    const self = this;
+
+
+    // PROMO BANNER : If 2+ Promos enabled, connect swapping and arrow functionality
+    if ( ui.promoWrap && ui.arrows && ui.swapRate ) {
+
+      // METHOD : SWAP : Swap promo functionality
+      const swapPromos = () => {
+        ui.promoWrap.toggleClass( 'show-promo-two' );
+      }
+
+      // METHOD : TOGGLE : Swap promos every 5 seconds
+      var start = () => {
+        this.autoToggle = setInterval( function() {
+          swapPromos();
+        }, ui.swapRate * 1000 );
+      };
+      
+      // METHOD : RESUME : Resume toggle after 25 secs of no user activity
+      const resume = () => {
+        if ( this.resumeTimer ) {
+          clearTimeout( this.resumeTimer );
+        }
+        this.resumeTimer = setTimeout( function() {
+          start();
+        }, 25000 );
+      };
+
+
+      // EVENT : CLICK : User clicks either arrow, banner toggles and pauses swapping for ~30 secs
+      ui.arrows.on( 'click', () => {
+        swapPromos();
+        
+        // DISABLE : Pause auto-toggle, user is focusing on banner
+        if ( this.autoToggle ) {
+          clearInterval( this.autoToggle );
+        }
+
+        // RESUME : Begin 30 sec countdown timer to resume swapping (25 + 'ui.swapToggle' in sec )
+        resume();
+      });
+
+
+      // START : Begin auto-toggle until user interaction
+      start();
+    }
+
+
+  }
+  Header.prototype = _.assignIn({}, Header.prototype, {});
+  return Header;
+})();
+
 
 /*============================================================================
   Instagram on index
@@ -2071,7 +2138,7 @@ theme.Product = (function () {
      *  React components will always have a single root parent built via invoking
      *  ReactDOM.render() into a DOM Node. Open 'SwatchParent.js' to learn more. 
      *****************************************************************************/
-    require('./react-components/swatches/SwatchParent.js');
+    // require('./react-components/swatches/SwatchParent.js');
 
   }
 
@@ -2132,6 +2199,7 @@ theme.Collection = (function() {
 ==============================================================================*/
 $(document).ready(function() {
   var sections = new theme.Sections();
+  sections.register('header-section', theme.Header);
   sections.register('instagram', theme.Instagram);
   sections.register('featured-collections', theme.FeaturedCollections);
   sections.register('homepage-products', theme.FeaturedProducts);
