@@ -125,33 +125,7 @@
 
   {% include 'navigation' %}
 
-
   <style>
-
-    /* ANNOUNCEMENT BANNER (PROMO) PANE */
-    #top-bar, #top-bar p {
-      font-size: {{ section.settings.announcement_text_size }}px;
-      line-height: calc( {{ section.settings.announcement_text_size }}px + 4px );
-    }
-
-    /* TABLET : Adjust tablet portrait font to fit prettier in space */
-    {%- if section.settings.num_of_promo_banners == "2" -%}
-      @media screen and ( min-width: 768px ) {
-        #top-bar, #top-bar p {
-          font-size: calc( {{ section.settings.announcement_text_size }}px - 4px );
-          line-height: calc( {{ section.settings.announcement_text_size }}px - 4px );
-        }
-      }
-    {%- endif -%}
-
-    /* DESKTOP : Adjust tablet portrait font to fit prettier in space */
-    @media screen and ( min-width: 1024px ) {
-      #top-bar, #top-bar p {
-        font-size: {{ section.settings.announcement_text_size }}px;
-        line-height: {{ section.settings.announcement_text_size }}px;
-      }
-    }
-
     #top-bar, #top-bar-bg {
       height: {{ section.settings.announcement_height }}px;
     }
@@ -294,16 +268,6 @@
         "unit":      "px",
         "label":     "Announcement Height",
         "default":   60
-      },
-      {
-        "type":      "range",
-        "id":        "announcement_text_size",
-        "min":       12,
-        "max":       24,
-        "step":      1,
-        "unit":      "px",
-        "label":     "Announcement Text size",
-        "default":   18
       },
       {
         "type":      "range",
