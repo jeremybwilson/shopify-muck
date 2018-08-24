@@ -5,10 +5,13 @@
 - You cannot use native CSS/Sass @imports in this file without a build script
 ==============================================================================*/
 
-
 /*================ VARIABLES ================*/
 @import url('variables.scss.liquid');
 
+/*================ Sections ================*/
 
-/*================ SECTIONS =================*/
+// please refer to global for any notes re:styling
+@import url('global.scss.liquid');
 @import url('sections/header.scss.liquid');
+@import url('./sections/newsletter.scss.liquid');
+@import url('./sections/footer.scss.liquid');
