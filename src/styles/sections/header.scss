@@ -10,43 +10,43 @@
 
     #bg-1,
     #bg-2 {
-    	width: 100%;
-    	height: 100%;
+        width: 100%;
+        height: 100%;
     }
 
     #bg-2 {
-    	display: none;
+        display: none;
     }
 
     @include mq( 'tablet-and-up' ) {
-		&.double-promo {
-			#bg-1,
-			#bg-2 {
-				display: inline-block;
-				width: 50%;
-			}
-		}
+        &.double-promo {
+            #bg-1,
+            #bg-2 {
+                display: inline-block;
+                width: 50%;
+            }
+        }
     }
 }
 
 
 #top-bar {
-	font-family: $sans;
+    font-family: $sans;
     font-weight: $font-weight--book;
     position: relative;
     z-index: 20;
 
     .row {
-    	height: 100%;
-    	width: 100%;
-    	max-width: 1400px;
-    	position: relative;
+        height: 100%;
+        width: 100%;
+        max-width: 1400px;
+        position: relative;
     }
 
     a {
-    	text-decoration: none;
-    	cursor: pointer;
-    	width: 100%;
+        text-decoration: none;
+        cursor: pointer;
+        width: 100%;
     }
 
     .bold { font-weight: $font-weight--bold; }
@@ -57,7 +57,7 @@
 
 // PROMO : ONE : Single, full-bar promo is displayed
 #single-promo-wrapper {
-	@include flexbox;
+    @include flexbox;
     @include align-items( center );
     @include justify-content( center );
     height: 100%;
@@ -65,9 +65,9 @@
     font-size: {{ settings.announcement_text_size }}px;
     line-height: calc( {{ settings.announcement_text_size }}px + 4px );
 
-	div { 
-		display: inline-block; 
-	}
+    div { 
+        display: inline-block; 
+    }
 }
 
 
@@ -86,107 +86,107 @@
 
     /* TABLET : Adjust tablet portrait font to fit prettier in space */
     @include mq( 'tablet-and-up' ) {
-		font-size: calc( {{ settings.announcement_text_size }}px - 4px );
-		line-height: calc( {{ settings.announcement_text_size }}px - 4px );
+        font-size: calc( {{ settings.announcement_text_size }}px - 4px );
+        line-height: calc( {{ settings.announcement_text_size }}px - 4px );
     }
 
     /* DESKTOP : Adjust tablet portrait font to fit prettier in space */
-	@include mq( 'lap-and-up' ) {
-		font-size: {{ settings.announcement_text_size }}px;
-		line-height: {{ settings.announcement_text_size }}px;
-	}
+    @include mq( 'lap-and-up' ) {
+        font-size: {{ settings.announcement_text_size }}px;
+        line-height: {{ settings.announcement_text_size }}px;
+    }
 
     .promo-banner {
-    	opacity: 0;
-    	width: 100%;
-    	position: absolute;	
-    	transition: 0.5s all ease-in-out;
-    	padding: 0 36px;
+        opacity: 0;
+        width: 100%;
+        position: absolute; 
+        transition: 0.5s all ease-in-out;
+        padding: 0 36px;
 
-    	&.one { opacity: 1; }
+        &.one { opacity: 1; }
 
-    	div { display: inline-block; }//So any "bold" sections sit inline with the rest of unbolded text
+        div { display: inline-block; }//So any "bold" sections sit inline with the rest of unbolded text
     }
 
     #promo-arrow-left,
     #promo-arrow-right {
-    	position: absolute;
-		@include flexbox;
-		@include align-items( center );
-		cursor: pointer;
-		height: 100%;
-		width: 23px;
-		top: 50%;
-		transform: translateY( -50% );
+        position: absolute;
+        @include flexbox;
+        @include align-items( center );
+        cursor: pointer;
+        height: 100%;
+        width: 23px;
+        top: 50%;
+        transform: translateY( -50% );
 
-		svg {
-			width: 10px;
-			height: 10px;
-		}
+        svg {
+            width: 10px;
+            height: 10px;
+        }
     }
     #promo-arrow-left {
-    	left: 0;
-    	@include justify-content( flex-end );
+        left: 0;
+        @include justify-content( flex-end );
     }
     #promo-arrow-right {
-    	right: 0;
-    	@include justify-content( flex-start );
+        right: 0;
+        @include justify-content( flex-start );
     }
 
 
     // ALTERNATIVE : Animation class for mobile banner swaps, if they want to hide arrows and it just auto-rotates
-	&.auto-swap {
-		.one { animation: 10s promoFade1 0s linear infinite; }
-		.two { animation: 10s promoFade2 5s linear infinite; }
-	}
+    &.auto-swap {
+        .one { animation: 10s promoFade1 0s linear infinite; }
+        .two { animation: 10s promoFade2 5s linear infinite; }
+    }
 
-	// Static Classes so user can manually swap the banners using arrows. (Arrow click removes auto-swap class)
-	&.show-promo-two .promo-banner {
-		&.one { opacity: 0; }
-		&.two { opacity: 1; }
-	}
+    // Static Classes so user can manually swap the banners using arrows. (Arrow click removes auto-swap class)
+    &.show-promo-two .promo-banner {
+        &.one { opacity: 0; }
+        &.two { opacity: 1; }
+    }
 
     // TABLET + HIGHER
     @include mq( 'tablet-and-up' ) {
-    	@include flex-flow( row nowrap );
+        @include flex-flow( row nowrap );
 
-    	// DISABLE : Animation on Tablet + since both are displayed at same time
-		&.auto-swap {
-			.one { animation: none; }
-			.two { animation: none; }
-		}
+        // DISABLE : Animation on Tablet + since both are displayed at same time
+        &.auto-swap {
+            .one { animation: none; }
+            .two { animation: none; }
+        }
 
-		// DISABLE : Arrows on Tablet & Greater
-		#promo-arrow-left,
-    	#promo-arrow-right {
-    		display: none;
-    	}
+        // DISABLE : Arrows on Tablet & Greater
+        #promo-arrow-left,
+        #promo-arrow-right {
+            display: none;
+        }
 
-		.promo-banner.one,
-		.promo-banner.two {
-			opacity: 1;
-			width: 50%;
-			padding: 0;
-			position: relative;
-		}
-		&.show-promo-two .promo-banner {
-			&.one { opacity: 1; }
-			&.two { opacity: 1; }
-		}
-	}
+        .promo-banner.one,
+        .promo-banner.two {
+            opacity: 1;
+            width: 50%;
+            padding: 0;
+            position: relative;
+        }
+        &.show-promo-two .promo-banner {
+            &.one { opacity: 1; }
+            &.two { opacity: 1; }
+        }
+    }
 }
 
 // MOBILE : Fade animation for promo banners when 2 are displayed
 @keyframes promoFade1 {
-	0%  { opacity: 0; }
-	5%  { opacity: 1; }
-	50% { opacity: 1; }
-	55% { opacity: 0; }
+    0%  { opacity: 0; }
+    5%  { opacity: 1; }
+    50% { opacity: 1; }
+    55% { opacity: 0; }
 }
 // MOBILE : Fade animation for promo banners when 2 are displayed
 @keyframes promoFade2 {
-	5%  { opacity: 0; }
-	10% { opacity: 1; }
-	45% { opacity: 1; }
-	50% { opacity: 0; }
+    5%  { opacity: 0; }
+    10% { opacity: 1; }
+    45% { opacity: 1; }
+    50% { opacity: 0; }
 }
