@@ -45,22 +45,24 @@ $font-weight--black: 800;
 
 // flexbox
 
+// BJ - Note: Pls uncomment fallbacks when we go live!
+
 @mixin flexbox {
-  display: -webkit-box;
+/*   display: -webkit-box;
   display: -moz-box;
   display: -webkit-flex;
-  display: -ms-flexbox;
+  display: -ms-flexbox; */
   display: flex;
 }
 @mixin inline-flex {
-  display: -webkit-inline-box;
+/*   display: -webkit-inline-box;
   display: -moz-inline-box;
   display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
+  display: -ms-inline-flexbox; */
   display: inline-flex;
 }
 @mixin flex-direction($value: row) {
-  @if $value == row-reverse {
+/*   @if $value == row-reverse {
     -webkit-box-direction: reverse;
     -webkit-box-orient: horizontal;
     -moz-box-direction: reverse;
@@ -82,47 +84,47 @@ $font-weight--black: 800;
     -moz-box-orient: horizontal;
   }
   -webkit-flex-direction: $value;
-  -ms-flex-direction: $value;
+  -ms-flex-direction: $value; */
   flex-direction: $value;
 }
 @mixin flex-wrap($value: nowrap) {
   // No Webkit/FF Box fallback.
-  -webkit-flex-wrap: $value;
+  /* -webkit-flex-wrap: $value;
   @if $value == nowrap {
     -ms-flex-wrap: none;
   } @else {
     -ms-flex-wrap: $value;
-  }
+  } */
   flex-wrap: $value;
 }
 @mixin flex-flow($values: (row nowrap)) {
   // No Webkit/FF Box fallback.
-  -webkit-flex-flow: $values;
-  -ms-flex-flow: $values;
+  /* -webkit-flex-flow: $values;
+  -ms-flex-flow: $values; */
   flex-flow: $values;
 }
 @mixin order($int: 0) {
-  -webkit-box-ordinal-group: $int + 1;
+  /* -webkit-box-ordinal-group: $int + 1;
   -moz-box-ordinal-group: $int + 1;
   -webkit-order: $int;
-  -ms-flex-order: $int;
+  -ms-flex-order: $int; */
   order: $int;
 }
 @mixin flex-grow($int: 1) {
-  -webkit-box-flex: $int;
+  /* -webkit-box-flex: $int;
   -moz-box-flex: $int;
   -webkit-flex-grow: $int;
-  -ms-flex: $int;
+  -ms-flex: $int; */
   flex-grow: $int;
 }
 @mixin flex-shrink($int: 0) {
-  -webkit-flex-shrink: $int;
+  /* -webkit-flex-shrink: $int;
   -moz-flex-shrink: $int;
-  -ms-flex: $int;
+  -ms-flex: $int; */
   flex-shrink: $int;
 }
 @mixin flex-basis($value: auto) {
-  -webkit-flex-basis: $value;
+  /* -webkit-flex-basis: $value; */
   flex-basis: $value;
 }
 @mixin flex($fg: 1, $fs: 0, $fb: auto) {
@@ -136,15 +138,15 @@ $font-weight--black: 800;
     $fg-boxflex: nth($fg, 1);
   }
 
-  -webkit-box: $fg-boxflex;
+  /* -webkit-box: $fg-boxflex;
   -moz-box: $fg-boxflex;
   -webkit-flex: $fg $fs $fb;
-  -ms-flexbox: $fg $fs $fb;
+  -ms-flexbox: $fg $fs $fb; */
   flex: $fg $fs $fb;
 }
 
 @mixin justify-content($value: flex-start) {
-  @if $value == flex-start {
+  /* @if $value == flex-start {
     -webkit-box-pack: start;
     -moz-box-pack: start;
     -ms-flex-pack: start;
@@ -163,11 +165,11 @@ $font-weight--black: 800;
     -moz-box-pack: $value;
     -ms-flex-pack: $value;
   }
-  -webkit-justify-content: $value;
+  -webkit-justify-content: $value; */
   justify-content: $value;
 }
 @mixin align-items($value: stretch) {
-  @if $value == flex-start {
+  /* @if $value == flex-start {
     -webkit-box-align: start;
     -moz-box-align: start;
     -ms-flex-align: start;
@@ -180,31 +182,31 @@ $font-weight--black: 800;
     -moz-box-align: $value;
     -ms-flex-align: $value;
   }
-  -webkit-align-items: $value;
+  -webkit-align-items: $value; */
   align-items: $value;
 }
 @mixin align-self($value: auto) {
   // No Webkit Box Fallback.
-  -webkit-align-self: $value;
+  /* -webkit-align-self: $value;
   @if $value == flex-start {
     -ms-flex-item-align: start;
   } @else if $value == flex-end {
     -ms-flex-item-align: end;
   } @else {
     -ms-flex-item-align: $value;
-  }
+  } */
   align-self: $value;
 }
 @mixin align-content($value: stretch) {
   // No Webkit Box Fallback.
-  -webkit-align-content: $value;
+  /* -webkit-align-content: $value;
   @if $value == flex-start {
     -ms-flex-line-pack: start;
   } @else if $value == flex-end {
     -ms-flex-line-pack: end;
   } @else {
     -ms-flex-line-pack: $value;
-  }
+  } */
   align-content: $value;
 }
 
@@ -214,12 +216,12 @@ $font-weight--black: 800;
 
 /*! Avalanche | MIT License | @colourgarden */
 
-$phone:            "screen and (max-width: 640px)";
-$tablet:           "screen and (min-width: 641px) and (max-width: 1007px)";
-$tablet-and-up:    "screen and (min-width: 641px)";
-$pocket:           "screen and (max-width: 1007px)";
-$lap:              "screen and (min-width: 1008px) and (max-width: 1239px)";
-$lap-and-up:       "screen and (min-width: 1008px)";
+$phone:            "screen and (max-width: 767px)";
+$tablet:           "screen and (min-width: 768px) and (max-width: 1007px)";
+$tablet-and-up:    "screen and (min-width: 768px)";
+$pocket:           "screen and (max-width: 1023px)";
+$lap:              "screen and (min-width: 1024px) and (max-width: 1239px)";
+$lap-and-up:       "screen and (min-width: 1024px)";
 $desk:             "screen and (min-width: 1240px)";
 $widescreen:       "screen and (min-width: 1500px)";
 $retina:           "(-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi)";

@@ -1,7 +1,23 @@
 {% if settings.facebook_url != blank %}
   <li>
     <a href="{{ settings.facebook_url }}" target="_blank">
-      <i class="fa fa-facebook fa-2x"></i>
+      {% include 'svg-icon-facebook' %}
+    </a>
+  </li>
+{% endif %}
+
+{% if settings.instagram_id != blank %}
+    <li>
+      <a href="//instagram.com/{{ settings.instagram_id }}" target="_blank">
+        {% include 'svg-icon-instagram' %}
+      </a>
+    </li>
+{% endif %}
+
+{% if settings.youtube_url != blank %}
+  <li>
+    <a href="{{ settings.youtube_url }}" target="_blank">
+      {% include 'svg-icon-youtube' %}
     </a>
   </li>
 {% endif %}
@@ -30,14 +46,6 @@
   </li>
 {% endif %}
 
-{% if settings.youtube_url != blank %}
-  <li>
-    <a href="{{ settings.youtube_url }}" target="_blank">
-      <i class="fa fa-youtube fa-2x"></i>
-    </a>
-  </li>
-{% endif %}
-
 {% if settings.googleplus_url != blank %}
   <li>
     <a href="{{ settings.googleplus_url }}" target="_blank">
@@ -46,10 +54,3 @@
   </li>
 {% endif %}
 
-{% if settings.instagram_id != blank %}
-    <li>
-      <a href="//instagram.com/{{ settings.instagram_id }}" target="_blank">
-        <i class="fa fa-instagram fa-2x"></i>
-      </a>
-    </li>
-{% endif %}
