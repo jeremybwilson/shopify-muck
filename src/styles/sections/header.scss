@@ -5,7 +5,7 @@
     width: 100%;
     height: 40px;
     position: absolute;
-    display: inline-flex;
+    @include inline-flex;
     z-index: 10;
 
     #bg-1,
@@ -18,7 +18,7 @@
     	display: none;
     }
 
-    @media only screen and ( min-width: 768px ) {
+    @include mq( 'tablet-and-up' ) {
 		&.double-promo {
 			#bg-1,
 			#bg-2 {
@@ -28,6 +28,7 @@
 		}
     }
 }
+
 
 #top-bar {
 	font-family: $sans;
@@ -51,24 +52,31 @@
     .bold { font-weight: $font-weight--bold; }
 }
 
+
+
+
 // PROMO : ONE : Single, full-bar promo is displayed
 #single-promo-wrapper {
-	display: flex;
+	@include flexbox;
+    @include align-items( center );
+    @include justify-content( center );
     height: 100%;
     width: 100%;
-    align-items: center;
-    justify-content: center;
 
-	div { display: inline-block; }
+	div { 
+		display: inline-block; 
+	}
 }
+
+
 
 
 // PROMOS : TWO : Two promos displayed side by side with animation on mobile sizes
 #double-promo-wrapper {
-    display: inline-flex;
-    flex-flow: row wrap;
-    justify-content: space-evenly; //Horizontally
-    align-items: center; //Vertically
+    @include inline-flex;
+    @include flex-flow( row wrap );
+    @include justify-content( space-evenly ); //Horizontally
+    @include align-items( center ); //Vertically
     width: 100%;
     height: 100%;
 
@@ -87,8 +95,8 @@
     #promo-arrow-left,
     #promo-arrow-right {
     	position: absolute;
-		display: flex;
-		align-items: center;
+		@include flexbox;
+		@include align-items( center );
 		cursor: pointer;
 		height: 100%;
 		width: 23px;
@@ -102,11 +110,11 @@
     }
     #promo-arrow-left {
     	left: 0;
-    	justify-content: flex-end;
+    	@include justify-content( flex-end );
     }
     #promo-arrow-right {
     	right: 0;
-    	justify-content: flex-start;
+    	@include justify-content( flex-start );
     }
 
 
@@ -123,8 +131,8 @@
 	}
 
     // TABLET + HIGHER
-    @media only screen and ( min-width: 768px ) {
-    	flex-flow: row nowrap;
+    @include mq( 'tablet-and-up' ) {
+    	@include flex-flow( row nowrap );
 
     	// DISABLE : Animation on Tablet + since both are displayed at same time
 		&.auto-swap {
