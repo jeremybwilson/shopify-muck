@@ -245,40 +245,83 @@
         "label": "Show announcement text"
       },
       {
+        "type": "select",
+        "id": "num_of_promo_banners",
+        "label": "# of Announcement Slots",
+        "options": [
+          {
+            "label": "2",
+            "value": "2"
+          },
+          {
+            "label": "1",
+            "value": "1"
+          }
+        ]
+      },
+      {
         "type": "text",
-        "id": "announcement_text",
-        "label": "Announcement text",
-        "default": "Share a shop announcement or message"
+        "id": "announcement_text_one",
+        "label": "Announcement Text - #1",
+        "default": "<div class='bold'>FREE SHIPPING</div> ON ORDERS $50 OR MORE"
+      },
+      {
+        "type": "url",
+        "id": "announcement_link_one",
+        "label": "Announcement Link - #1"
+      },
+      {
+        "type": "color",
+        "id": "announcement_bg_one",
+        "label": "Announcement BG - #1",
+        "default": "#124431"
+      },
+      {
+        "type": "text",
+        "id": "announcement_text_two",
+        "label": "Announcement Text - #2",
+        "default": "<div class='bold'>40% OFF YOUR PURCHASE.</div>NO CODE NEEDED."
+      },
+      {
+        "type": "url",
+        "id": "announcement_link_two",
+        "label": "Announcement Link - #2"
+      },
+      {
+        "type": "color",
+        "id": "announcement_bg_two",
+        "label": "Announcement BG - #2",
+        "default": "#073322"
+      },
+      {
+        "type":      "range",
+        "id":        "announcement_height",
+        "min":       40,
+        "max":       60,
+        "step":      1,
+        "unit":      "px",
+        "label":     "Announcement Height",
+        "default":   60
       },
       {
         "type":      "range",
         "id":        "announcement_text_size",
         "min":       12,
-        "max":        36,
-        "step":       1,
-        "unit":       "px",
-        "label":     "Text size",
-        "default":   13
+        "max":       24,
+        "step":      1,
+        "unit":      "px",
+        "label":     "Announcement Text size",
+        "default":   18
       },
       {
-        "type": "select",
-        "id": "announcement_text_weight",
-        "label": "Text weight",
-        "options": [
-          {
-            "value": "normal",
-            "label": "Normal"
-          },
-          {
-            "value": "bold",
-            "label": "Bold"
-          }
-        ]
-      },
-      {
-        "type": "url",
-        "id": "announcement_link",
-        "label": "Announcement link"
+        "type":      "range",
+        "id":        "announcement_swap_rate",
+        "min":       3,
+        "max":       30,
+        "step":      1,
+        "unit":      "sec",
+        "label":     "Mobile Banner Change Rate (2 must be enabled)",
+        "default":   5
       },
       {
         "type": "header",
