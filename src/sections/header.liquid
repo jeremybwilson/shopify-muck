@@ -171,9 +171,60 @@
       background: {{ section.settings.announcement_bg_two }};
     }
 
-</style>
+
+    /* NAV BAR PANE */
+    {% if section.settings.logo != blank %}
+    #logo img { max-width: {{ section.settings.logo_max_width }}px; }
+    {% endif %}
+    
+    #logo {
+      {% if section.settings.logo_center %}text-align: center;{% endif %}
+    }
+
+    header #q {
+      font-size: {{ section.settings.cart_links_size }}px;
+    }
+
+    ul#cart li a {
+      font-size: {{ section.settings.cart_links_size }}px;
+      font-weight: {{ section.settings.cart_weight }};
+    }
+
+    select.currency-picker {
+      font-size: {{ section.settings.cart_links_size }}px;
+      font-weight: {{ section.settings.cart_weight }};
+    }
+
+    #logo {
+      font-weight: {{ section.settings.logo_weight }};
+      font-size: {{ section.settings.logo_size }}px;
+      text-transform: {{ section.settings.logo_transform }};
+    }
+
+    #logo a {
+      {% if section.settings.use_logo_image %}line-height: 0; {% endif %}
+    }
+
+    nav {
+      {% if section.settings.nav_center %}text-align: center;{% endif %}
+       line-height: {{ section.settings.nav_height }}px;
+    }
+
+    {% if section.settings.logo_center %}
+    @media screen and ( min-width: 740px ) and ( max-width: 980px ) {
+      ul#social-links {
+        text-align: left;
+        float: left;
+      }
+    }
+    {% endif %}
+  </style>
 
 </div>
+
+
+
+
 {% schema %}
 {
     "name": "Header",
