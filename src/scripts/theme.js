@@ -1612,11 +1612,10 @@ $(document).ready(function() {
   });
 
   /*============================================================================
-   Sticky Navigation (not on mobile)
+   Sticky Navigation
   ==============================================================================*/
     $(document).ready( function() {
-      //enabling stickUp on the '.navbar-wrapper' class
-      $('#nav').stickUp();
+      $('#nav-bar-wrapper').stickUp();
     });
 
 });
