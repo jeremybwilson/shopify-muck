@@ -1,4 +1,4 @@
-<div class="header-section" 
+<div id="header-section" 
   data-section-id="{{ section.id }}" 
   data-section-type="header-section" 
   data-swap-rate="{{ section.settings.announcement_swap_rate }}">
@@ -8,86 +8,42 @@
     {% include 'header-announcement-bar' %}
   {%- endif -%}
 
-    <div id="top-bar" {% if section.settings.full_width_header %} class="gridlock-fluid"{% endif %}>
-      {% if section.settings.full_width_header %}<div class="row">{% endif %}
-      <div class="row">
+  {% comment %}
+    REMOVED THINGS :
 
-        {% comment %} ..:: ONE PROMO BANNER ::.. {% endcomment %}
-        {%- if section.settings.num_of_promo_banners == "1" -%}
-          <div id="single-promo-wrapper" class="desktop-12 tablet-6 mobile-3">
-            
-            {%- if section.settings.announcement_link_one -%}
-              <a href="{{ section.settings.announcement_link_one }}">{{ section.settings.announcement_text_one }}</a>
-            {%- else -%}
-              {{ section.settings.announcement_text_one }}
-            {%- endif -%}
-
-          </div>
-        {%- endif -%}
-
-
-        {% comment %} ..:: TWO PROMO BANNER ::.. {% endcomment %}
-        {%- if section.settings.num_of_promo_banners == "2" -%}
-          <div id="double-promo-wrapper">
-
-            {% comment %} MOBILE : LEFT ARROW {% endcomment %}
-            <div id="promo-arrow-left">
-              {% include 'svg-icon-caret-left' %}
-            </div>
-
-            <div class="promo-banner one">
-              {%- if section.settings.announcement_link_one -%}
-                <a href="{{ section.settings.announcement_link_one }}">{{ section.settings.announcement_text_one }}</a>
-              {%- else -%}
-                {{ section.settings.announcement_text_one }}
-              {%- endif -%}
-            </div>
-
-            <div class="promo-banner two">
-              {%- if section.settings.announcement_link_two -%}
-                <a href="{{ section.settings.announcement_link_two }}">{{ section.settings.announcement_text_two }}</a>
-              {%- else -%}
-                {{ section.settings.announcement_text_two }}
-              {%- endif -%}
-            </div>
-
-            {% comment %} MOBILE : RIGHT ARROW {% endcomment %}
-            <div id="promo-arrow-right">
-              {% include 'svg-icon-caret-right' %}
-            </div>
-
-          </div>
-        {%- endif -%}
-
-      </div>
-      {% if section.settings.full_width_header %}</div>{% endif %}
-    </div>
-  {%- endif -%}
+      - section.settings.logo_center
+      - section.settings.logo (hard set to svg snippet since logo was given as svg)
+        * alt="{{ section.settings.logo.alt | default: shop.name }}
+  {% endcomment %}
 
 
 
-  {% comment %} ..:: NAV PORTION ::.. {% endcomment %}
-  <header {% if section.settings.full_width_header %} class="gridlock-fluid"{% endif %}>
+  {% comment %} ..:: NAVIGATION PORTION ::.. {% endcomment %}
+  <header id="nav-bar-wrapper" {% if section.settings.full_width_header %} class="gridlock-fluid"{% endif %}>
     {% if section.settings.full_width_header %}<div class="row">{% endif %}
-    
-    <div id="identity" class="row">
-      <div id="logo" class="{% if section.settings.logo_center %}desktop-4 desktop-push-4 tablet-6{% else %}desktop-8 tablet-3{% endif %} mobile-3">
-        {% if section.settings.logo != blank %}
-          {%- assign image_size = '600x' -%}
-          <a href="/">
-            <img src="{{ section.settings.logo | img_url: image_size }}" alt="{{ section.settings.logo.alt | default: shop.name }}" itemprop="logo">
-          </a>
-        {% else %}
-          <a href="/">{{ shop.name }}</a>
-        {% endif %}
-      </div>
 
-      {% comment %} ..:: NAV : ACCOUNT + CART + SEARCH (Right Elements) ::.. {% endcomment %}
+    {% comment %} ..:: NAV-BAR : BG ::.. {% endcomment %}
+    <div id="nav-bar-bg"></div>
+    
+    {% comment %} ..:: NAV-BAR : ELEMENTS ::.. {% endcomment %}
+    <div id="nav-bar" class="row">
+
+
+      {% comment %} ..:: NAV : BRAND LOGO ::.. {% endcomment %}
+      <div id="nav-logo">
+          <a href="/">
+            {% include 'svg-icon-header-logo' %}
+          </a>
+      </div>
+      <div id="nav-logo-backing"></div>
+
+
+      {% comment %} ..:: NAV : ACCOUNT + CART + SEARCH (Right Elements) ::.. 
       <div id="nav-user" class="desktop-4 {% if section.settings.logo_center %}tablet-6{% else %}tablet-3{% endif %} mobile-3">
         <ul id="cart"{% if section.settings.logo_center %} class="tablet-3"{% endif %}>  
           {% if shop.customer_accounts_enabled %}
             <li>
-              {% if customer  %}
+              {% if customer %}
                 <a href="/account">{{ 'layout.customer.my_account' | t }} <i class="fa fa-user"></i></a>
                 <a href="/account/logout">{{ 'layout.customer.log_out' | t }}</a>
               {% else %}
@@ -111,13 +67,16 @@
           <li class="shifter-handle"><i class="fa fa-bars" aria-hidden="true"></i></li>
         </ul>
       </div>
+      {% endcomment %}
 
-      {% comment %} ..:: NAV : SITE-COLLECTIONS (Left Elements) ::.. {% endcomment %}
+      {% comment %} ..:: NAV : SITE-COLLECTIONS (Left Elements) ::.. 
       <div id="nav-collections">
         {% include 'navigation' %}
       </div>
+      {% endcomment %}
 
     </div>
+
     {% if section.settings.full_width_header %}</div>{% endif %}
   </header>
 
