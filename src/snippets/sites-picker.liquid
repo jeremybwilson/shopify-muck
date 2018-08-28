@@ -7,10 +7,28 @@
 			{%- assign siteData = item | split: '|' -%}
 			{%- assign flag = 'svg-icon-flag-' | append:siteData[0] -%}
 			<li class="site-picker-item">
-				<a href="{{ siteData[1] }}">
-					<div class="site-flag">{% include flag %}</div>
-					<div class="site-name">{{ siteData[0] }}</div>
-				</a>
+
+
+				{% comment %} ..:: FIRST SLOT ITEM ::.. {% endcomment %}
+				{% if item == sites[0] %}
+					<div class="inner-center">
+						<div class="site-flag">{% include flag %}</div>
+						<div class="site-name">{{ siteData[0] }}</div>
+
+					{% comment %} Add arrow indicator to first item in list only {% endcomment %}
+						<div class="site-arrow">{% include 'svg-icon-caret-down' %}</div>
+					</div>
+
+
+				{% comment %} ..:: ALL SUBSEQUENT SLOTS ::.. {% endcomment %}
+				{% else %}
+					<a class="inner-center" href="{{ siteData[1] }}">
+						<div class="site-flag">{% include flag %}</div>
+						<div class="site-name">{{ siteData[0] }}</div>
+					</a>
+				{% endif %}
+
+				
 			</li>
 
 		{% endfor %}
