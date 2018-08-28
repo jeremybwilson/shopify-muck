@@ -210,13 +210,31 @@
 
 /*  NAV : OVERALL NAV STYLES
  * ---------------------------------------------- */
+$navBoxShadow: 0px 1px 9px #8d8d8d; //TODO : VARIBALIZE in SETTINGS
+$navShadowAni: box-shadow 0.25s ease-in-out;
+$navMobileGutter: 15px;
+
 #nav-bar-wrapper {
     position: relative;
     z-index: 1000;
     height: 50px;
     width: 100%;
     padding: 0;
-    box-shadow: 0px 1px 9px #8d8d8d; //TODO : VARIBALIZE in SETTINGS
+    z-index: 50;
+    transition: $navShadowAni;
+
+    // SHADOW : When stick nav is active
+    &.isStuck {
+        box-shadow: $navBoxShadow; 
+
+        #nav-logo-backing {
+            box-shadow: $navBoxShadow;
+        }
+    }
+
+    @include mq( 'lap-and-up' ){
+        height: 80px;
+    }
     
     /* NAV BG :
      * 
@@ -255,24 +273,36 @@
         background: {{ settings.header_background }};
         top: 15px;
 
-        a {
-            transform: rotateZ( -45deg );
-        }
+        a { transform: rotateZ( -45deg ); }
 
-        a,
-        svg {
+        a, svg {
             width: 120%;
             height: 120%;
             position: relative;
             left: -5px;
             top: -3px;
         }
+
+        // DESKTOP ( 1024+ )
+        @include mq( 'lap-and-up' ) {
+            top: 19px;
+            left: 200px;
+            width: 119px;
+            height: 119px;
+
+            a, svg {
+                width: 115%;
+                height: 115%;
+                left: -7px;
+                top: -3px;
+            }
+        }
     }
 
     // SHADOW : This gives the sticky nav a box shadow on the logo point
     #nav-logo-backing {
+        transition: $navShadowAni;
         transform: translateX( -50% ) rotateZ( 45deg );
-        box-shadow: 0px 1px 9px #8d8d8d; //TODO : VARIBALIZE in SETTINGS
         background: {{ settings.header_background }};
         z-index: -1; //Relative to #nav-bar-wrapper, so its -1 on the 1000 layer.
     }
