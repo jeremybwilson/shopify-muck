@@ -1483,13 +1483,9 @@ ul#cart {
 
 ul#cart li {
   display: inline-block;
-  margin-left: 8px;
   vertical-align: middle;
 }
 
-ul#cart li i {
-  margin-left: 8px;
-}
 
 ul#cart li a {
   display: inline-block;

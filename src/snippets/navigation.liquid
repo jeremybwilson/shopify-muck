@@ -1,5 +1,5 @@
 <nav id="nav" {% if section.settings.full_width_header %} class="gridlock-fluid"{% endif %}>
-  {% if section.settings.full_width_header %}<div class="row">{% endif %}
+  
   <div id="navigation" class="row">
     <ul id="nav" class="desktop-12 mobile-3">
       {% assign menu = linklists[section.settings.main_nav] %}
@@ -107,5 +107,4 @@
       {% endfor %}
     </ul>
   </div>
-  {% if section.settings.full_width_header %}</div>{% endif %}
 </nav>

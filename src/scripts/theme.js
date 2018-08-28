@@ -1472,9 +1472,10 @@ $(document).ready(function() {
       $('.load-wait').addClass('hide');
 
       // Responsive Navigation
-      $.shifter({
-        maxWidth: "980px"
-      });
+      // JQUERY SHIFTER OVERRIDES THE ABILITY TO SET POSITION FIXED TO ANYTHING AND IS 4+ YEARS OUT OF DATE
+      // $.shifter({
+      //   maxWidth: "980px"
+      // });
 
       /* Ensure that sub nav menus open to the left if any chance of offscreen overflow */
       $("ul.submenu li").on('mouseenter mouseleave', function (e) {
@@ -1506,9 +1507,9 @@ $(document).ready(function() {
   /*============================================================================
   Shifter side navigation for mobile
   ==============================================================================*/
-  $.shifter({
-    maxWidth: "980px"
-  });
+  // $.shifter({
+  //   maxWidth: "980px"
+  // });
 
   /*============================================================================
   Use Fancybox to Ajax in product quick view template
@@ -1611,11 +1612,10 @@ $(document).ready(function() {
   });
 
   /*============================================================================
-   Sticky Navigation (not on mobile)
+   Sticky Navigation
   ==============================================================================*/
     $(document).ready( function() {
-      //enabling stickUp on the '.navbar-wrapper' class
-      $('#nav').stickUp();
+      $('#nav-bar-wrapper').stickUp();
     });
 
 });

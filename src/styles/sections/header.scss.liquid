@@ -1,12 +1,23 @@
 // HEADER.SCSS
 // -- sections/header.liquid
 
+/*  HEADER : Core Styles
+ * ---------------------------------------------- */
+#header-section {
+    position: relative;
+    margin-top: 0 !important; //The sticky nav plugin adds margin to the parent but isn't necessary, this prevents it. 
+}
+
+
+
+/*  ANNOUNCEMENT TOP BAR (Promos on top of nav)
+ * ---------------------------------------------- */
 #top-bar-bg {
     width: 100%;
     height: 40px;
+    z-index: 100;
     position: absolute;
     @include inline-flex;
-    z-index: 10;
 
     #bg-1,
     #bg-2 {
@@ -34,7 +45,7 @@
     font-family: $sans;
     font-weight: $font-weight--book;
     position: relative;
-    z-index: 20;
+    z-index: 200;
 
     .row {
         height: 100%;
@@ -81,8 +92,8 @@
     @include align-items( center ); //Vertically
     width: 100%;
     height: 100%;
-    font-size: {{ settings.announcement_text_size }}px;
-    line-height: calc( {{ settings.announcement_text_size }}px + 4px );
+    font-size: calc( {{ settings.announcement_text_size }}px - 3px );
+    line-height: calc( {{ settings.announcement_text_size }}px + 4px ); // Aligns the lines cleaner
 
     /* TABLET : Adjust tablet portrait font to fit prettier in space */
     @include mq( 'tablet-and-up' ) {
@@ -190,3 +201,223 @@
     45% { opacity: 1; }
     50% { opacity: 0; }
 }
+
+
+
+
+
+
+
+/*  NAV : OVERALL NAV STYLES
+ * ---------------------------------------------- */
+$navBoxShadow: 0px 1px 9px #8d8d8d; //TODO : VARIBALIZE in SETTINGS
+$navShadowAni: box-shadow 0.25s ease-in-out;
+$navMobileGutter: 15px;
+
+#nav-bar-wrapper {
+    position: relative;
+    z-index: 1000;
+    height: 50px;
+    width: 100%;
+    padding: 0;
+    z-index: 50;
+    transition: $navShadowAni;
+
+    // SHADOW : When stick nav is active
+    &.isStuck {
+        box-shadow: $navBoxShadow; 
+
+        #nav-logo-backing {
+            box-shadow: $navBoxShadow;
+        }
+    }
+
+    @include mq( 'lap-and-up' ){
+        height: 80px;
+    }
+    
+    /* NAV BG :
+     * 
+     * Why? Because it lets use use rotated, box-shadows on logo
+     * to make a mobile sticky nav with a nice minor box shadow
+     * ---------------------------------------------- */
+    #nav-bar-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: {{ settings.header_background }};
+    }
+
+    #nav-bar {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        max-width: 1400px;
+    }
+
+
+    /*  NAV : LOGO :
+     * ---------------------------------------------- */
+    #nav-logo,
+    #nav-logo-backing {
+        position: absolute;
+        @include flexbox;
+        @include justify-content( center );
+        @include align-items( center );
+        width: 70px;
+        height: 70px;
+        left: 50%;
+        transform: translateX( -50% ) rotateZ( 45deg );
+        background: {{ settings.header_background }};
+        top: 15px;
+
+        a { transform: rotateZ( -45deg ); }
+
+        a, svg {
+            width: 120%;
+            height: 120%;
+            position: relative;
+            left: -5px;
+            top: -3px;
+        }
+
+        // DESKTOP ( 1024+ )
+        @include mq( 'lap-and-up' ) {
+            top: 19px;
+            left: 200px;
+            width: 119px;
+            height: 119px;
+
+            a, svg {
+                width: 115%;
+                height: 115%;
+                left: -7px;
+                top: -3px;
+            }
+        }
+    }
+
+    // SHADOW : This gives the sticky nav a box shadow on the logo point
+    #nav-logo-backing {
+        transition: $navShadowAni;
+        transform: translateX( -50% ) rotateZ( 45deg );
+        background: {{ settings.header_background }};
+        z-index: -1; //Relative to #nav-bar-wrapper, so its -1 on the 1000 layer.
+    }
+
+
+
+
+    /*  NAV : ACCOUNT + CART + SEARCH + SITE PICKER (Right Elements)
+     * ---------------------------------------------- */
+    #nav-user {
+
+        // Account / Cart / Site Picker List
+        ul#nav-user-list {
+            @include inline-flex;
+            @include justify-content( flex-end );
+            position: absolute;
+            right: $navMobileGutter;
+            height: 100%;
+            list-style: none;
+            text-align: right;
+
+            .nav-item {
+                @include inline-flex;
+                @include align-items( center );
+                @include justify-content( center );
+
+                a {
+                    @include inline-flex;
+                    @include align-items( center );
+                    @include justify-content( center );
+                    width: 100%;
+                    height: 100%;
+                    padding: 0 7px;
+                    text-decoration: none;
+                }
+
+                svg {
+                    width: 19px;
+                    height: 17px;
+                }
+
+                i {
+                    @include inline-flex;
+                    @include align-items( center );
+                    font-size: 20px;
+                    height: 100%;
+                }
+            }
+
+
+            // INTERNATIONAL : Sites Picker
+            .nav-sites,
+            .nav-currency {
+                display: none;
+
+                @include mq( 'tablet-and-up' ) {
+                    display: inline-block;
+                }
+            }
+
+
+            // ACCOUNT : User account item
+            .nav-account {
+                width: 46px;
+            }
+
+
+            // CART 
+            .nav-cart {
+                color: $color--dark-green-1;
+
+                i.fa, // Support bag font-icon for now..
+                .icon-cart {
+                    margin-right: 8px; // Space icon from cart #
+                }
+
+                .cart-count {
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+
+
+
+    /*  NAV : SITE-COLLECTIONS (Left Elements)
+     * ---------------------------------------------- */
+    #nav-collections {
+        .icon-nav-mobile-menu {
+            position: absolute;
+            left: $navMobileGutter;
+            width: 30px;
+            height: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+
+            .bar {
+                position: absolute;
+                background: $color--dark-green-1;
+                width: 100%;
+                height: 2px;
+
+                &.one   { top: 0; }
+                &.two   { 
+                    top: 50%;  
+                    transform: translateY( -50% ) 
+                }
+                &.three { 
+                    width: 70%;
+                    top: 100%; 
+                    transform: translateY( -50% ) 
+                }
+            }
+        }
+    }
+}
+
+
