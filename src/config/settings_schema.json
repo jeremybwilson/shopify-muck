@@ -743,7 +743,7 @@
         "type": "checkbox",
         "id": "show_multiple_currencies",
         "label": "Enable currency conversion",
-        "default": true,
+        "default": false,
         "info": "Even though prices are displayed in different currencies, orders will still be processed in your store's currency."
       },
       {
