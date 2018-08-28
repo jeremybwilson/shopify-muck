@@ -1,0 +1,19 @@
+<ul class="site-picker" name="International Sites">
+
+	{% if section.settings.site_picker_manifest != blank %}
+		{%- assign sites = section.settings.site_picker_manifest | split: ',' -%}
+		{% for item in sites %}
+			
+			{%- assign siteData = item | split: '|' -%}
+			{%- assign flag = 'svg-icon-flag-' | append:siteData[0] -%}
+			<li class="site-picker-item">
+				<a href="{{ siteData[1] }}">
+					<div class="site-flag">{% include flag %}</div>
+					<div class="site-name">{{ siteData[0] }}</div>
+				</a>
+			</li>
+
+		{% endfor %}
+  {% endif %}
+
+</ul>
