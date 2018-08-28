@@ -217,13 +217,14 @@ $font-weight--black: 800;
 /*! Avalanche | MIT License | @colourgarden */
 
 $phone:            "screen and (max-width: 767px)";
-$tablet:           "screen and (min-width: 768px) and (max-width: 1007px)";
+$tablet:           "screen and (min-width: 768px) and (max-width: 1023px)";
 $tablet-and-up:    "screen and (min-width: 768px)";
-$pocket:           "screen and (max-width: 1023px)";
+$tablet-portrait:  "screen and (min-width: 768px) and (max-width: 959px)";
+$tablet-landscape: "screen and (min-width: 960px) and (max-width: 1023px)";
 $lap:              "screen and (min-width: 1024px) and (max-width: 1239px)";
 $lap-and-up:       "screen and (min-width: 1024px)";
-$desk:             "screen and (min-width: 1240px)";
-$widescreen:       "screen and (min-width: 1500px)";
+$desk-and-up:      "screen and (min-width: 1240px)";
+$wide-and-up:      "screen and (min-width: 1500px)";
 $retina:           "(-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi)";
 
 @mixin mq($alias) {
@@ -239,10 +240,14 @@ $retina:           "(-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi)
     @media #{$tablet-and-up} {
       @content;
     }
-  } @else if $alias == "pocket" {
-    @media #{$pocket} {
+  } @else if $alias == "tablet-portrait" {
+    @media #{$tablet-portrait} {
       @content;
-    }
+    }    
+  } @else if $alias == "tablet-landscape" {
+    @media #{$tablet-landscape} {
+      @content;
+    }        
   } @else if $alias == "lap" {
     @media #{$lap} {
       @content;
@@ -251,11 +256,11 @@ $retina:           "(-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi)
     @media #{$lap-and-up} {
       @content;
     }
-  } @else if $alias == "desk" {
-    @media #{$desk} {
+  } @else if $alias == "desk-and-up" {
+    @media #{$desk-and-up} {
       @content;
     }
-  } @else if $alias == "widescreen" {
+  } @else if $alias == "wide-and-up" {
     @media #{$widescreen} {
       @content;
     }
