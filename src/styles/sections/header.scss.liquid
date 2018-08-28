@@ -15,9 +15,9 @@
 #top-bar-bg {
     width: 100%;
     height: 40px;
+    z-index: 100;
     position: absolute;
     @include inline-flex;
-    z-index: 10;
 
     #bg-1,
     #bg-2 {
@@ -45,7 +45,7 @@
     font-family: $sans;
     font-weight: $font-weight--book;
     position: relative;
-    z-index: 20;
+    z-index: 200;
 
     .row {
         height: 100%;
@@ -92,8 +92,8 @@
     @include align-items( center ); //Vertically
     width: 100%;
     height: 100%;
-    font-size: {{ settings.announcement_text_size }}px;
-    line-height: calc( {{ settings.announcement_text_size }}px + 4px );
+    font-size: calc( {{ settings.announcement_text_size }}px - 3px );
+    line-height: calc( {{ settings.announcement_text_size }}px + 4px ); // Aligns the lines cleaner
 
     /* TABLET : Adjust tablet portrait font to fit prettier in space */
     @include mq( 'tablet-and-up' ) {
@@ -236,10 +236,11 @@
         position: relative;
         width: 100%;
         height: 100%;
+        max-width: 1400px;
     }
 
 
-    /*  NAV : LOGO : Z = 10
+    /*  NAV : LOGO :
      * ---------------------------------------------- */
     #nav-logo,
     #nav-logo-backing {
@@ -277,13 +278,116 @@
     }
 
 
-    /*  NAV : ACCOUNT + CART + SEARCH (Right Elements)
+
+
+    /*  NAV : ACCOUNT + CART + SEARCH + SITE PICKER (Right Elements)
      * ---------------------------------------------- */
-     
+    #nav-user {
+
+        // Account / Cart / Site Picker List
+        ul#nav-user-list {
+            @include inline-flex;
+            @include justify-content( flex-end );
+            position: absolute;
+            right: $navMobileGutter;
+            height: 100%;
+            list-style: none;
+            text-align: right;
+
+            .nav-item {
+                @include inline-flex;
+                @include align-items( center );
+                @include justify-content( center );
+
+                a {
+                    @include inline-flex;
+                    @include align-items( center );
+                    @include justify-content( center );
+                    width: 100%;
+                    height: 100%;
+                    padding: 0 7px;
+                    text-decoration: none;
+                }
+
+                svg {
+                    width: 19px;
+                    height: 17px;
+                }
+
+                i {
+                    @include inline-flex;
+                    @include align-items( center );
+                    font-size: 20px;
+                    height: 100%;
+                }
+            }
+
+
+            // INTERNATIONAL : Sites Picker
+            .nav-sites,
+            .nav-currency {
+                display: none;
+
+                @include mq( 'tablet-and-up' ) {
+                    display: inline-block;
+                }
+            }
+
+
+            // ACCOUNT : User account item
+            .nav-account {
+                width: 46px;
+            }
+
+
+            // CART 
+            .nav-cart {
+                color: $color--dark-green-1;
+
+                i.fa, // Support bag font-icon for now..
+                .icon-cart {
+                    margin-right: 8px; // Space icon from cart #
+                }
+
+                .cart-count {
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+
+
 
     /*  NAV : SITE-COLLECTIONS (Left Elements)
      * ---------------------------------------------- */
- 
+    #nav-collections {
+        .icon-nav-mobile-menu {
+            position: absolute;
+            left: $navMobileGutter;
+            width: 30px;
+            height: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+
+            .bar {
+                position: absolute;
+                background: $color--dark-green-1;
+                width: 100%;
+                height: 2px;
+
+                &.one   { top: 0; }
+                &.two   { 
+                    top: 50%;  
+                    transform: translateY( -50% ) 
+                }
+                &.three { 
+                    width: 70%;
+                    top: 100%; 
+                    transform: translateY( -50% ) 
+                }
+            }
+        }
+    }
 }
 
 
