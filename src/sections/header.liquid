@@ -22,10 +22,8 @@
   <header id="nav-bar-wrapper" {% if section.settings.full_width_header %} class="gridlock-fluid"{% endif %}>
     {% if section.settings.full_width_header %}<div class="row">{% endif %}
 
-    {% comment %} ..:: NAV-BAR : BG ::.. {% endcomment %}
+    {% comment %} ..:: NAV-BAR : BG + NAV-ITEMS WRAPPER ::.. {% endcomment %}
     <div id="nav-bar-bg"></div>
-    
-    {% comment %} ..:: NAV-BAR : ELEMENTS ::.. {% endcomment %}
     <div id="nav-bar" class="row">
 
 
@@ -42,16 +40,21 @@
       <div id="nav-user">
         <ul id="nav-user-list"> 
 
-          {% comment %} ..:: SEARCH ::.. 
+          {% comment %} ..:: SEARCH ::.. {% endcomment %}
           {% if section.settings.show_search %}
-            <li class="nav-item nav-search searchbox">
+            <li id="nav-search-form" class="nav-item nav-search searchbox">
               <form action="/search" method="get">
-                <input type="text" name="q" id="q" placeholder="{{ 'general.search.placeholder' | t }}" />
-                <div class="search-icon-wrap">{% include 'svg-icon-search' %}</div>
+                <input class="nav-search-input" type="text" name="q" id="q" placeholder="{{ 'general.search.placeholder' | t }}" />
+                <input type="hidden" name="type" value="product" />
+                <div class="nav-search-icon-wrap">
+                  <input class="nav-search-submit" type="submit" value=""/>
+                  {% include 'svg-icon-search' %}
+                </div>
+                
               </form>           
             </li>
           {% endif %}
-          {% endcomment %}
+          
 
           {% comment %} ..:: CURRENCY PICKER (DISABLED) ::.. {% endcomment %}
           {% if settings.show_multiple_currencies %}
@@ -59,14 +62,14 @@
           {% endif %}
 
 
-          {% comment %} ..:: SITE PICKER : (US, UK, EU, CAN) ::.. 
+          {% comment %} ..:: SITE PICKER : (US, UK, EU, CAN) ::.. {% endcomment %}
           {% if section.settings.show_site_picker %}
             <li class="nav-item nav-sites">{% include 'sites-picker' %}</li>
           {% endif %}
-{% endcomment %}
+
 
           {% comment %} ..:: ACCOUNT ::.. {% endcomment %}
-          <!-- checks for settings if { if shop.customer_accounts_enabled } -->
+          {{ if shop.customer_accounts_enabled }}
             <li class="nav-item nav-account">
               {% if customer %}
                 <a href="/account">{% include 'svg-icon-account' %}</a>
@@ -74,7 +77,7 @@
                 <a href="/account/login">{% include 'svg-icon-account' %}</a>
               {% endif %}
             </li>
-          {% comment %} {% endif %} {% endcomment %}
+          {% endif %}
 
 
           {% comment %} ..:: CART ::.. {% endcomment %}
