@@ -1393,11 +1393,6 @@ header {
   text-align: center;
   line-height: 30px;
   padding: 5px;
-  color: {{ settings.top_bar_color }};
-}
-
-#top-bar a {
-  color: {{ settings.top_bar_color }};
 }
 
 #top-bar p {
@@ -1413,25 +1408,25 @@ header #q {
   border: 1px solid {{ settings.dotted_color }};
   border-radius: 0;
   background: transparent;
-  color: {{ settings.cart_links }};
+  color: {{ settings.nav_links }};
   text-indent: 0;
   padding: 0 0 0 5px;
 }
 
 header #q::-webkit-input-placeholder {
-  color: {{ settings.cart_links }};
+  color: {{ settings.nav_links }};
 }
 
 header #q:-moz-placeholder { /* Firefox 18- */
-  color: {{ settings.cart_links }};
+  color: {{ settings.nav_links }};
 }
 
 header #q::-moz-placeholder {  /* Firefox 19+ */
-  color: {{ settings.cart_links }};
+  color: {{ settings.nav_links }};
 }
 
 header #q:-ms-input-placeholder {
-  color: {{ settings.cart_links }};
+  color: {{ settings.nav_links }};
 }
 
 #identity {
@@ -1453,12 +1448,12 @@ ul#cart li a {
   padding: 0;
   margin-left: 10px;
   text-transform: uppercase;
-  color: {{ settings.cart_links }};
+  color: {{ settings.nav_links }};
 }
 
 ul#cart li a:hover {
   text-decoration: none;
-  color: {{ settings.cart_links_hover }};
+  color: {{ settings.nav_links_hover }};
 }
 
 ul#cart li.cart-overview {
@@ -1474,7 +1469,7 @@ select.currency-picker {
   background: url({{ 'select-arrow.png' | asset_url }}) no-repeat right;
   border: 0;
   margin: 0;
-  color: {{ settings.cart_links }};
+  color: {{ settings.nav_links }};
   padding: 0 0 0 5px;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -4608,7 +4603,7 @@ footer img {
 .shifter-enabled .shifter-handle {
   border: 0;
   cursor: pointer;
-  color: {{ settings.cart_links }};
+  color: {{ settings.nav_links }};
   font-size: 20px;
 }
 
