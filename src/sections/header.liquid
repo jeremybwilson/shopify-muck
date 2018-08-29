@@ -117,24 +117,8 @@
       height: {{ section.settings.announcement_height }}px;
     }
 
-    #bg-1 {
-      background: {{ section.settings.announcement_bg_one }};
-    }
-    #bg-2 {
-      background: {{ section.settings.announcement_bg_two }};
-    }
-
-
     /* NAV BAR PANE */
-    {% if section.settings.logo != blank %}
-      #logo img { max-width: {{ section.settings.logo_max_width }}px; }
-    {% endif %}
-    
-    #logo {
-      {% if section.settings.logo_center %}text-align: center;{% endif %}
-    }
-
-    header #q {
+    header #q { /* search panel */
       font-size: {{ section.settings.cart_links_size }}px;
     }
 
@@ -148,29 +132,10 @@
       font-weight: {{ section.settings.cart_weight }};
     }
 
-    #logo {
-      font-weight: {{ section.settings.logo_weight }};
-      font-size: {{ section.settings.logo_size }}px;
-      text-transform: {{ section.settings.logo_transform }};
-    }
-
-    #logo a {
-      {% if section.settings.use_logo_image %}line-height: 0; {% endif %}
-    }
-
     nav {
       {% if section.settings.nav_center %}text-align: center;{% endif %}
        line-height: {{ section.settings.nav_height }}px;
     }
-
-    {% if section.settings.logo_center %}
-      @media screen and ( min-width: 740px ) and ( max-width: 980px ) {
-        ul#social-links {
-          text-align: left;
-          float: left;
-        }
-      }
-    {% endif %}
   </style>
 </div>
 
@@ -186,6 +151,8 @@
         "id": "full_width_header",
         "label": "Enable full width"
       },
+
+
       {
         "type": "header",
         "content": "Announcement Bar"
@@ -223,12 +190,6 @@
         "label": "Announcement Link - #1"
       },
       {
-        "type": "color",
-        "id": "announcement_bg_one",
-        "label": "Announcement BG - #1",
-        "default": "#124431"
-      },
-      {
         "type": "text",
         "id": "announcement_text_two",
         "label": "Announcement Text - #2",
@@ -238,12 +199,6 @@
         "type": "url",
         "id": "announcement_link_two",
         "label": "Announcement Link - #2"
-      },
-      {
-        "type": "color",
-        "id": "announcement_bg_two",
-        "label": "Announcement BG - #2",
-        "default": "#073322"
       },
       {
         "type":      "range",
@@ -265,29 +220,11 @@
         "label":     "Mobile Banner Change Rate (2 must be enabled)",
         "default":   5
       },
+
+
       {
         "type": "header",
         "content": "Logo"
-      },
-      {
-        "type": "checkbox",
-        "id": "logo_center",
-        "label": "Center logo"
-      },
-      {
-        "type": "image_picker",
-        "id": "logo",
-        "label": "Logo image"
-      },
-      {
-        "type": "range",
-        "id": "logo_max_width",
-        "min": 100,
-        "max": 500,
-        "step": 5,
-        "unit": "px",
-        "label": "Custom logo width",
-        "default": 200
       },
       {
         "type": "range",
@@ -329,36 +266,13 @@
           }
         ]
       },
+
+
       {
         "type": "header",
-        "content": "Cart links"
+        "content": "Cart Link"
       },
-      {
-        "type": "range",
-        "id": "cart_links_size",
-        "min": 12,
-        "max": 18,
-        "step": 1,
-        "unit": "px",
-        "label": "Cart and account links size",
-        "default": 13
-      },
-      {
-        "type": "select",
-        "id": "cart_weight",
-        "label": "Cart links weight",
-        "options": [
-          {
-            "value": "normal",
-            "label": "Normal"
-          },
-          {
-            "value": "bold",
-            "label": "Bold"
-          }
-        ]
-      },
-	   {
+	    {
         "type": "select",
         "id": "cart_icon",
         "label": "Cart icon",
@@ -374,6 +288,12 @@
         ],
 	      "info":"You can change the text in your edit language section"
       },
+
+
+      {
+        "type": "header",
+        "content": "Multi-Site Picker"
+      },
       {
         "type": "checkbox",
         "id": "show_site_picker",
@@ -386,16 +306,24 @@
         "label": "List of Sites to Include in Site Picker",
         "default": "US|http://mysite.com,EU|http://eu.mysite.com,UK|http://uk.mysite.com,FR|http://fr.mysite.com"
       },
+
+
+      {
+        "type": "header",
+        "content": "Nav Search"
+      },
       {
         "type": "checkbox",
         "id": "show_search",
         "label": "Show search bar",
         "default": true
       },
-     {
-  		"type":"header",
-		  "content": "navigation"
-		},
+
+
+      {
+        "type":"header",
+        "content": "navigation"
+      },
       {
         "type": "link_list",
         "id": "main_nav",
