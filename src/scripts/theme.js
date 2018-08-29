@@ -1019,12 +1019,22 @@ theme.Slideshow = (function() {
       animation: 'fade',
       slideshowSpeed: speed,
       animationSpeed: 600,
-      directionNav: true,
       controlNav: false,
       pauseOnHover: true,
       pauseOnAction: true,
       nextText: '',
-      prevText: ''
+      prevText: '',
+      customDirectionNav: $('.slider--nav > a'),
+
+      /* adds a custom pagination */
+
+      start: function(slider) {
+        $('.flexslider--current-slide').text(slider.currentSlide+1);
+        $('.flexslider--total-slides').text(slider.count);
+      },
+      before: function(slider) {
+        $('.flexslider--curent-slide').text(slider.animatingTo+1);
+      }
     });
   }
 

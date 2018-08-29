@@ -32,24 +32,69 @@
             data-block-id="{{ block.id }}"
             class="slide--{{ block.id }} slide_image"
             data-flexslider-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+  
+            {% comment %} :: IMAGES - MOBILE AND DESKTOP :: {% endcomment %}
+
             {% if block.settings.image != blank %}
-              {% assign image_box_ratio = block.settings.image.height | append: ".0" | times: 1 | divided_by: block.settings.image.width | times: 100 | append: "%" %}
-              {% assign img_url = block.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
 
               {% if block.settings.link != blank %}<a href="{{ block.settings.link }}">{% endif %}
-              <div class="box-ratio" style="padding-bottom: {{ image_box_ratio }};">
-                <img class="slideshow__image slideshow__image--{{ block.id }} lazyload lazyload-fade"
-                data-src="{{ img_url }}"
-                data-sizes="auto"
-                data-parent-fit="cover"
-                alt="{{ block.settings.image.alt | escape }}">
-              </div>
 
-              <noscript>
-                <img src="{{ block.settings.image | img_url: '1024x' }}" alt="{{ block.settings.image.alt | escape }}" class="slideshow__image slideshow__image--{{ block.id }}">
-              </noscript>
+              <div class="box-ratio">
+                <picture>
+                  
+                  {% comment %} :: MOBILE IMAGE :: {% endcomment %}
+
+                  {% if block.settings.mobile_image != blank %}
+                    {% assign mobile_img_url = block.settings.mobile_image | img_url: '767x' %}
+
+                    <source srcset="{{ mobile_img_url }}" media="(max-width: 767px)">
+
+                  {% endif %}
+
+                  {% assign desktop_img_url = block.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+
+                  <img class="slideshow__image slideshow__image__{{ block.id }} lazyload lazyload-fade" 
+                    data-src="{{ desktop_img_url }}" 
+                    data-sizes="auto"
+                    data-parent-fit="cover"
+                    alt="{{ block.settings.image.alt | escape }}">
+                </picture>
+
+                <noscript>
+                  <img src="{{ block.settings.image | img_url: '1024x' }}" alt="{{ block.settings.image.alt | escape }}" class="slideshow__image slideshow__image--{{ block.id }}">
+                </noscript>
+
+              </div><!-- .box-ratio -->
+
               {% if block.settings.link != blank %}</a>{% endif %}
+
             {% endif %}
+
+            {% comment %} Styling to accommodate the box ratio for lazy-loaded images {% endcomment %}
+
+            <style>
+
+              {% if block.settings.mobile_image != blank %}
+                {% assign mobile_image_box_ratio = block.settings.mobile_image.height | append: ".0" | times: 1 | divided_by: block.settings.mobile_image.width | times: 100 | append: "%" %}
+
+                #slide--{{ block.id }} .box-ratio {
+                  padding-bottom: {{ mobile_image_box_ratio }};
+                }
+              {% endif %}
+
+              {% if block.settings.image != blank %}
+                {% assign image_box_ratio = block.settings.image.height | append: ".0" | times: 1 | divided_by: block.settings.image.width | times: 100 | append: "%" %}
+
+                @media screen and (min-width: 768px) {
+                  #slide--{{ block.id }} .box-ratio {
+                    padding-bottom: {{ image_box_ratio }};
+                  }
+                }
+
+              {% endif %}
+            </style>
+
+            {% comment %} :: NO IMAGE - PLACEHOLDER :: {% endcomment %}
 
             {% if block.settings.image == blank %}
               {% capture current %}{% cycle 1, 2 %}{% endcapture %}
@@ -57,7 +102,9 @@
               {{ placeholder | placeholder_svg_tag: 'placeholder-svg' }}
             {% endif %}
 
-            <div class="flex-caption slide-{{ block.id }}">
+            {% comment %} :: CAPTION BLOCK :: {% endcomment %}
+
+            <div class="flex-caption slide-{{ block.id }} caption-align-{{ block.settings.caption_horizontal }}">
               <div class="caption-inners">
                 {% if block.settings.heading != blank %}
                 <h2 class="slide-title">{{ block.settings.heading }}</h2>
@@ -78,9 +125,7 @@
           <style>
             .flex-caption.slide-{{ block.id }} {
               top: {{ block.settings.caption_vertical }}%;
-              text-align: {{ block.settings.caption_horizontal }};
             }
-
             .flex-caption.slide-{{ block.id }} .caption-inners {
 
               {% assign bg_color = block.settings.caption_background %}
@@ -95,7 +140,6 @@
             }
             .flex-caption.slide-{{ block.id }} h2.slide-title {
               color: {{ block.settings.slide_text_color }};
-              text-align: {{ block.settings.caption_horizontal }};
               border-bottom: 0 !important;
             }
             .flex-caption.slide-{{ block.id }} h2.slide-title:after {
@@ -106,28 +150,39 @@
             }
             .flex-caption.slide-{{ block.id }} .cta a {
               color: {{ block.settings.cta_color }};
-              background: {{ block.settings.cta_background }};
+              border-color: {{ block.settings.cta_color }};
             }
             .flex-caption.slide-{{ block.id }} .cta a:hover {
-              opacity: 0.9;
-            }
-            #Slideshow-{{ section.id }} .cta a, .cta {
-              font-size: {{ section.settings.cta_size }}px;
-              font-weight: {{ section.settings.cta_weight }};
+              background-color: {{ block.settings.cta_background }};
             }
             #Slideshow-{{ section.id }} .flex-caption h2.slide-title {
               font-size: {{ section.settings.slide_title_size }}px;
-              font-family: {{ settings.headings_font }};
               font-weight:{{ section.settings.slide_title_weight }};
             }
-            #Slideshow-{{ section.id }} .flex-caption p {
-              font-size: {{ section.settings.caption_size }}px;
-            }
+
           </style>
           {% endfor %}
         </ul>
-      </div>
+      </div><!-- .flexslider -->
+
+      {% comment %} New navigation {% endcomment %}
+
+      <div class="slider--nav">
+        <a href="#" class="flex-prev">
+          {% include 'svg-icon-caret-left' %}
+        </a>
+        <div class="pagination">
+          <span class="flexslider--current-slide"></span>
+          <span class="slash">/</span>
+          <span class="flexslider--total-slides"></span>
+        </div>
+        <a href="#" class="flex-next">
+          {% include 'svg-icon-caret-right' %}
+        </a>
+      </div><!-- .slider--nav -->
+
       {% endif %}
+
       {% if section.blocks.size == 0 %}
       {% include 'no-blocks' %}
       {% endif %}
@@ -149,10 +204,19 @@
       "name": "Image slide",
       "settings": [
         {
+          "type": "header",
+          "content": "Images"
+        },      
+        {
           "type": "image_picker",
           "id": "image",
-          "label": "Image"
+          "label": "Image (Desktop)"
         },
+        {
+          "type": "image_picker",
+          "id": "mobile_image",
+          "label": "Image (Mobile)"
+        },        
         {
           "type": "header",
           "content": "Caption Settings"
@@ -173,8 +237,12 @@
           "type": "color",
           "id": "slide_text_color",
           "label": "Heading and subheading",
-          "default": "#000000"
+          "default": "#ffffff"
         },
+        {
+          "type": "header",
+          "content": "CTA settings"
+        },        
         {
           "type": "url",
           "id": "link",
@@ -190,15 +258,20 @@
         {
           "type": "color",
           "id": "cta_color",
-          "label": "Button text",
+          "label": "Button Color (Text & Border)",
           "default": "#ffffff"
         },
         {
           "type": "color",
           "id": "cta_background",
-          "label": "Button background",
-          "default": "#000000"
+          "label": "Button background on hover",
+          "default": "#0b2f20"
         },
+        {
+          "type": "header",
+          "content": "Caption box settings"
+        },
+
   		  {
           "type": "select",
           "id": "caption_horizontal",
@@ -306,63 +379,35 @@
       {
         "type": "range",
         "id": "slide_title_size",
-        "min": 12,
-        "max": 36,
+        "min": 24,
+        "max": 50,
         "step": 1,
         "unit": "px",
         "label": "Heading size",
-        "default": 20
+        "default": 38
       },
       {
         "type": "select",
         "id": "slide_title_weight",
         "label": "Heading weight",
-		    "default": "bold",
+  	    "default": "700",
         "options": [
           {
-            "value": "normal",
-            "label": "Normal"
+            "value": "400",
+            "label": "Book"
           },
           {
-            "value": "bold",
-            "label": "Bold"
-          }
-        ]
-      },
-      {
-        "type": "range",
-        "id": "caption_size",
-        "min": 12,
-        "max": 36,
-        "step": 1,
-        "unit": "px",
-        "label": "Subheading size",
-        "default": 13
-      },
-      {
-        "type": "range",
-        "id": "cta_size",
-        "min": 12,
-        "max": 36,
-        "step": 1,
-        "unit": "px",
-        "label": "Button text size",
-        "default": 13
-      },
-      {
-        "type": "select",
-        "id": "cta_weight",
-        "label": "Button text weight",
-		    "default": "normal",
-        "options": [
-          {
-            "value": "normal",
-            "label": "Normal"
+            "value": "500",
+            "label": "Medium"
           },
           {
-            "value": "bold",
+            "value": "700",
             "label": "Bold"
-          }
+          },
+          {
+            "value": "800",
+            "label": "Black"
+          }          
         ]
       }
   ],
