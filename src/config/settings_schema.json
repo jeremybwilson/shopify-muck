@@ -21,54 +21,69 @@
   {
     "name": "Colors",
     "settings": [
+
       {
         "type": "header",
-        "content": "Announcement bar"
+        "content": "Announcement Header"
       },
       {
         "type": "color",
-        "id": "top_bar_background",
-        "label": "Background",
-        "default": "#000000"
-      },
-      {
-        "type": "color",
-        "id": "top_bar_color",
+        "id": "announcement_text_color",
         "label": "Text",
-        "default": "#fff"
+        "default": "#ffffff"
       },
       {
+        "type": "color",
+        "id": "announcement_bg_one",
+        "label": "Announcement BG - #1",
+        "default": "#124431"
+      },
+      {
+        "type": "color",
+        "id": "announcement_bg_two",
+        "label": "Announcement BG - #2",
+        "default": "#073322"
+      },
+
+
+      {
         "type": "header",
-        "content": "Header"
+        "content": "Navigation Header"
       },
       {
         "type": "color",
         "id": "header_background",
         "label": "Background",
-        "default": "#000000"
+        "default": "#FFFFFF"
       },
       {
         "type": "color",
         "id": "logo_color",
-        "label": "Logo text",
+        "label": "Text Logo Color",
         "default": "#777"
       },
       {
         "type": "color",
-        "id": "cart_links",
-        "label": "Links",
-        "default": "#000000"
+        "id": "nav_links",
+        "label": "Nav Icons",
+        "default": "#164632"
       },
       {
         "type": "color",
-        "id": "cart_links_hover",
-        "label": "Link hover",
-        "default": "#000000"
+        "id": "nav_links_hover",
+        "label": "Nav Icons Hover",
+        "default": "#AA5131"
+      },
+      {
+        "type": "color",
+        "id": "nav_minor_border_color",
+        "label": "Search Underline",
+        "default": "#cccccc"
       },
       {
         "type": "color",
         "id": "social_links",
-        "label": "Social icons",
+        "label": "Social Icons",
         "default": "#000000"
       },
       {
@@ -77,6 +92,8 @@
         "label": "Social icons hover",
         "default": "#000000"
       },
+
+
       {
         "type": "header",
         "content": "General"

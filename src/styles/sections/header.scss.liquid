@@ -1,8 +1,18 @@
 // HEADER.SCSS
 // -- sections/header.liquid
+// -- snippets/header-announcement-bar.liquid
+
+}
+
+
 
 /*  HEADER : Core Styles
  * ---------------------------------------------- */
+$navBoxShadow: 0px 1px 9px #8d8d8d;
+$navShadowAni: box-shadow 0.25s ease-in-out;
+$navMobileGutter: 15px;
+$navMinorBorder: 1px solid {{ settings.nav_minor_border_color }};
+
 #header-section {
     position: relative;
     margin-top: 0 !important; //The sticky nav plugin adds margin to the parent but isn't necessary, this prevents it. 
@@ -10,210 +20,16 @@
 
 
 
-/*  ANNOUNCEMENT TOP BAR (Promos on top of nav)
+/* SNIPPET : Header-Announcement-Bar 
+ *           (Promos bar on top of nav bar)
  * ---------------------------------------------- */
-#top-bar-bg {
-    width: 100%;
-    height: 40px;
-    z-index: 100;
-    position: absolute;
-    @include inline-flex;
-
-    #bg-1,
-    #bg-2 {
-        width: 100%;
-        height: 100%;
-    }
-
-    #bg-2 {
-        display: none;
-    }
-
-    @include mq( 'tablet-and-up' ) {
-        &.double-promo {
-            #bg-1,
-            #bg-2 {
-                display: inline-block;
-                width: 50%;
-            }
-        }
-    }
-}
-
-
-#top-bar {
-    font-family: $sans;
-    font-weight: $font-weight--book;
-    position: relative;
-    z-index: 200;
-
-    .row {
-        height: 100%;
-        width: 100%;
-        max-width: 1400px;
-        position: relative;
-    }
-
-    a {
-        text-decoration: none;
-        cursor: pointer;
-        width: 100%;
-    }
-
-    .bold { font-weight: $font-weight--bold; }
-}
+ @import url('../snippets/header-announcement-bar.scss.liquid');
 
 
 
 
-// PROMO : ONE : Single, full-bar promo is displayed
-#single-promo-wrapper {
-    @include flexbox;
-    @include align-items( center );
-    @include justify-content( center );
-    height: 100%;
-    width: 100%;
-    font-size: {{ settings.announcement_text_size }}px;
-    line-height: calc( {{ settings.announcement_text_size }}px + 4px );
-
-    div { 
-        display: inline-block; 
-    }
-}
-
-
-
-
-// PROMOS : TWO : Two promos displayed side by side with animation on mobile sizes
-#double-promo-wrapper {
-    @include inline-flex;
-    @include flex-flow( row wrap );
-    @include justify-content( space-evenly ); //Horizontally
-    @include align-items( center ); //Vertically
-    width: 100%;
-    height: 100%;
-    font-size: calc( {{ settings.announcement_text_size }}px - 3px );
-    line-height: calc( {{ settings.announcement_text_size }}px + 4px ); // Aligns the lines cleaner
-
-    /* TABLET : Adjust tablet portrait font to fit prettier in space */
-    @include mq( 'tablet-and-up' ) {
-        font-size: calc( {{ settings.announcement_text_size }}px - 4px );
-        line-height: calc( {{ settings.announcement_text_size }}px - 4px );
-    }
-
-    /* DESKTOP : Adjust tablet portrait font to fit prettier in space */
-    @include mq( 'lap-and-up' ) {
-        font-size: {{ settings.announcement_text_size }}px;
-        line-height: {{ settings.announcement_text_size }}px;
-    }
-
-    .promo-banner {
-        opacity: 0;
-        width: 100%;
-        position: absolute; 
-        transition: 0.5s all ease-in-out;
-        padding: 0 36px;
-
-        &.one { opacity: 1; }
-
-        div { display: inline-block; }//So any "bold" sections sit inline with the rest of unbolded text
-    }
-
-    #promo-arrow-left,
-    #promo-arrow-right {
-        position: absolute;
-        @include flexbox;
-        @include align-items( center );
-        cursor: pointer;
-        height: 100%;
-        width: 23px;
-        top: 50%;
-        transform: translateY( -50% );
-
-        svg {
-            width: 10px;
-            height: 10px;
-        }
-    }
-    #promo-arrow-left {
-        left: 0;
-        @include justify-content( flex-end );
-    }
-    #promo-arrow-right {
-        right: 0;
-        @include justify-content( flex-start );
-    }
-
-
-    // ALTERNATIVE : Animation class for mobile banner swaps, if they want to hide arrows and it just auto-rotates
-    &.auto-swap {
-        .one { animation: 10s promoFade1 0s linear infinite; }
-        .two { animation: 10s promoFade2 5s linear infinite; }
-    }
-
-    // Static Classes so user can manually swap the banners using arrows. (Arrow click removes auto-swap class)
-    &.show-promo-two .promo-banner {
-        &.one { opacity: 0; }
-        &.two { opacity: 1; }
-    }
-
-    // TABLET + HIGHER
-    @include mq( 'tablet-and-up' ) {
-        @include flex-flow( row nowrap );
-
-        // DISABLE : Animation on Tablet + since both are displayed at same time
-        &.auto-swap {
-            .one { animation: none; }
-            .two { animation: none; }
-        }
-
-        // DISABLE : Arrows on Tablet & Greater
-        #promo-arrow-left,
-        #promo-arrow-right {
-            display: none;
-        }
-
-        .promo-banner.one,
-        .promo-banner.two {
-            opacity: 1;
-            width: 50%;
-            padding: 0;
-            position: relative;
-        }
-        &.show-promo-two .promo-banner {
-            &.one { opacity: 1; }
-            &.two { opacity: 1; }
-        }
-    }
-}
-
-// MOBILE : Fade animation for promo banners when 2 are displayed
-@keyframes promoFade1 {
-    0%  { opacity: 0; }
-    5%  { opacity: 1; }
-    50% { opacity: 1; }
-    55% { opacity: 0; }
-}
-// MOBILE : Fade animation for promo banners when 2 are displayed
-@keyframes promoFade2 {
-    5%  { opacity: 0; }
-    10% { opacity: 1; }
-    45% { opacity: 1; }
-    50% { opacity: 0; }
-}
-
-
-
-
-
-
-
-/*  NAV : OVERALL NAV STYLES
+/*  NAV : Styles for the Nav-Bar portion
  * ---------------------------------------------- */
-$navBoxShadow: 0px 1px 9px #8d8d8d; //TODO : VARIBALIZE in SETTINGS
-$navShadowAni: box-shadow 0.25s ease-in-out;
-$navMobileGutter: 15px;
-
 #nav-bar-wrapper {
     position: relative;
     z-index: 1000;
@@ -329,7 +145,8 @@ $navMobileGutter: 15px;
                 @include align-items( center );
                 @include justify-content( center );
 
-                a {
+                a,
+                .inner-center {
                     @include inline-flex;
                     @include align-items( center );
                     @include justify-content( center );
@@ -339,6 +156,7 @@ $navMobileGutter: 15px;
                     text-decoration: none;
                 }
 
+                // Account, Cart, etc icons all congruent size
                 svg {
                     width: 19px;
                     height: 17px;
@@ -352,14 +170,144 @@ $navMobileGutter: 15px;
                 }
             }
 
-
-            // INTERNATIONAL : Sites Picker
+            // HIDE : MOBILE : Don't show sites, currency or search nav-items on mobile
             .nav-sites,
+            .nav-search,
             .nav-currency {
                 display: none;
+                @include justify-content( center );
 
-                @include mq( 'tablet-and-up' ) {
-                    display: inline-block;
+                @include mq( 'lap-and-up' ) {
+                    @include inline-flex;
+                }
+            }
+
+
+
+
+            // SEARCH : Search input field on 1024 + screen sizes (for now)
+            .nav-search {
+                position: relative;
+                margin-right: 20px;
+                width: 200px;
+
+                .nav-search-input {
+                    position: relative;
+                    width: 200px;
+                    max-width: 100%;
+                    border: none;
+                    border-bottom: $navMinorBorder;
+                    padding-right: 23px;
+                    outline: none;
+                }
+
+                .nav-search-icon-wrap {
+                    position: absolute;
+                    margin-top: -9px;
+                    top: 50%;
+                    right: 0;
+
+                    // Hidden search button on top of the search Icon,
+                    // so clicking it submits as well as enter.
+                    .nav-search-submit {
+                        position: absolute;
+                        opacity: 0;
+                        width: 100%;
+                        height: 100%;
+                        margin: 0;
+                        padding: 0;
+                        border-radius: 0;
+                    }
+                }
+            }
+
+
+
+
+            // SITE PICKER : Dropdown selector for the other site pickers
+            .nav-sites {
+                @include align-items( flex-start );
+                position: relative;
+                margin-top: -15px;
+                top: 50%;
+
+                ul.sites-picker {
+                    width: 65px;
+                    height: 35px;
+                    list-style: none;
+                    overflow: hidden;
+                    background: {{ settings.header_background }};
+                    transition: height 0.25s ease-in-out;
+
+                    &:hover {
+                        height: auto;
+
+                        li:first-child {
+                            border-bottom: $navMinorBorder;
+                        }
+                    }
+
+                    li {
+                        width: 100%;
+                        height: 35px;
+                        cursor: pointer;
+                        background: {{ settings.header_background }};
+                        transition: background 0.25s ease-in-out;
+
+                        // BORDER : Border on all but first (till hovered) and last 
+                        &:not(:last-child) { border-bottom: $navMinorBorder; }
+                        &:first-child {
+                            border: none;
+
+                            // Hide top item country code, its obvious and makes nice spot for arrow indicator
+                            .site-name { opacity: 0; }
+                        }
+
+                        // HOVER : On a country option
+                        &:hover {
+                            background: {{ settings.nav_links_hover }};
+
+                            .site-name  { 
+                                color: {{ settings.header_background }}; //Use bg color when swapping 
+                                background: {{ settings.nav_links_hover }};
+                            }
+                            .site-arrow { opacity: 0; }
+
+                            &:first-child {
+                                .site-name { opacity: 1; }
+                            }
+                        }
+
+                        .site-flag {
+                            height: 17px;
+                            margin-right: 4px;
+                        }
+
+                        .site-name {
+                            background: {{ settings.header_background }};
+                            transition: all 0.25s ease-in-out;
+                            padding: 0 2px;
+                            z-index: 10; // appear on top of arrow
+                        }
+
+                        .site-arrow {
+                            position: absolute;
+                            width: 9px;
+                            height: 7px;
+                            right: 10px;
+                            top: 13px;
+                            z-index: 5;
+                            transition: opacity 0.25s ease-in-out;
+
+                            svg {    
+                                position: absolute;
+                                height: 100%;
+                                width: 100%;
+                                left: 0;
+                                top: 0;
+                            }
+                        }
+                    }
                 }
             }
 
@@ -367,20 +315,42 @@ $navMobileGutter: 15px;
             // ACCOUNT : User account item
             .nav-account {
                 width: 46px;
+                
+                &:hover {
+                    .icon-account {
+                        fill: {{ settings.nav_links_hover }};
+                    }
+                }
+
+                .icon-account {
+                    transition: fill 0.35s ease-in-out;
+                    fill: {{ settings.nav_links }};
+                }
             }
 
 
             // CART 
             .nav-cart {
-                color: $color--dark-green-1;
+                color: {{ settings.nav_links }}; //Legacy font-icon support for "bag" font icon
+
+                &:hover {
+                    .fa-shopping-bag { color: {{ settings.nav_links_hover }}; }
+                    .icon-cart  { fill:  {{ settings.nav_links_hover }}; }
+                    .cart-count { color: {{ settings.nav_links_hover }}; }
+                }
 
                 i.fa, // Support bag font-icon for now..
                 .icon-cart {
                     margin-right: 8px; // Space icon from cart #
+                    fill: {{ settings.nav_links }};
+                    color: {{ settings.nav_links }}; //For "Bag" insteaed of Cart icon (font icon)
+                    transition: fill 0.35s ease-in-out;
                 }
 
                 .cart-count {
                     font-weight: bold;
+                    color: {{ settings.nav_links }};
+                    transition: color 0.35s ease-in-out;
                 }
             }
         }
@@ -395,7 +365,7 @@ $navMobileGutter: 15px;
             position: absolute;
             left: $navMobileGutter;
             width: 30px;
-            height: 15px;
+            height: 16px;
             top: 50%;
             transform: translateY(-50%);
 
