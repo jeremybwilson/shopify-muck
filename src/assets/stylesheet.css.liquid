@@ -980,6 +980,15 @@ html, body {
   height: 100%;
 }
 
+/* iOS 9 and lower fix for scrolling page */
+html.menu-open { 
+  padding: 0 !important; /* override inline style being set by js too often */
+  overflow: hidden;
+}
+.menu-open .index-sections {
+  pointer-events: none;
+}
+
 .no-fouc {
   display: none;
 }
@@ -995,6 +1004,11 @@ html, body {
 
 .hide {
   display: none;
+}
+
+#pageContainer { 
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 body {
@@ -1560,8 +1574,6 @@ ul#social-links li.searchbox {
 }
 
 nav {
-  background: {{ settings.navigation }};
-  font-family: {{ nav_font.family }};
   width: 100%;
   z-index: 5;
 }
