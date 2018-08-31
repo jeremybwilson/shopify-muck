@@ -1096,7 +1096,7 @@ theme.Slideshow = (function() {
         $('.flexslider--total-slides').text(slider.count);
       },
       before: function(slider) {
-        $('.flexslider--curent-slide').text(slider.animatingTo+1);
+        $('.flexslider--current-slide').text(slider.animatingTo+1);
       }
     });
   }

@@ -1,30 +1,25 @@
 <div class="homepage-section slideshow-section no-fouc index-section" data-section-id="{{ section.id }}" data-section-type="slideshow-section">
+
+  {% comment %} If full width isn't selected, include these grid containers {% endcomment %}
+
   {% unless section.settings.full_width %}
   <div class="row">
     <div class="desktop-12 tablet-6 mobile-3">
       {% endunless %}
 
-  {% case section.settings.slider_speed %}
-  {% when 3 %}
-  {%- assign slider_speed = 3000 -%}
-  {% when 4 %}
-  {%- assign slider_speed = 4000 -%}
-  {% when 5 %}
-  {%- assign slider_speed = 5000 -%}
-  {% when 6 %}
-  {%- assign slider_speed = 6000 -%}
-  {% when 7 %}
-  {%- assign slider_speed = 7000 -%}
-  {% when 8 %}
-  {%- assign slider_speed = 8000 -%}
-  {% when 9 %}
-  {%- assign slider_speed = 9000 -%}
-  {% when 10 %}
-  {%- assign slider_speed = 10000 -%}
-  {% endcase %}
+      {% assign slider_speed = section.settings.slider_speed | times: 1000 %}
 
       {% if section.blocks.size > 0 %}
-      <div class="flexslider index_Slider" id="Slideshow-{{ section.id }}" data-speed="{{ slider_speed }}">
+
+        {% comment %} Add a class for sliders with solo images {% endcomment %}      
+
+        {% if section.blocks.size == 1 %}
+          {% assign solo_class = 'one-image-only' %}
+        {% else %}
+          {% assign solo_class = '' %}
+        {% endif %}
+
+      <div class="flexslider index_Slider {{ solo_class }}" id="Slideshow-{{ section.id }}" data-speed="{{ slider_speed }}">
         <ul class="slides">
           {% for block in section.blocks %}
 
@@ -36,8 +31,6 @@
             {% comment %} :: IMAGES - MOBILE AND DESKTOP :: {% endcomment %}
 
             {% if block.settings.image != blank %}
-
-              {% if block.settings.link != blank %}<a href="{{ block.settings.link }}">{% endif %}
 
               <div class="box-ratio">
                 <picture>
@@ -65,8 +58,6 @@
                 </noscript>
 
               </div><!-- .box-ratio -->
-
-              {% if block.settings.link != blank %}</a>{% endif %}
 
             {% endif %}
 
@@ -112,11 +103,30 @@
                 {% if block.settings.subheading != blank %}
                 <p class="caption">{{ block.settings.subheading }}</p>
                 {% endif %}
-                {% if block.settings.link != blank and block.settings.button_text != blank %}
-                <div class="cta">
-                  <a href="{{ block.settings.link }}">
-                  {{ block.settings.button_text }}
-                  </a>
+
+                {% comment %} CTA BUTTONS {% endcomment %}
+
+                {% if block.settings.cta_one_link != blank and block.settings.cta_one_button_text != blank %}
+                <div class="buttons-row">
+
+                  <div class="cta" id="cta-one-{{ block.id }}">
+                    <a href="{{ block.settings.cta_one_link }}">
+                    {{ block.settings.cta_one_button_text }}
+                    </a>
+                  </div>
+
+                  {% comment %} CTA TWO - Only show if link exists. Duplicate this and the necessary schema code if client asks for more buttons. {% endcomment %}
+
+                  {% if block.settings.cta_two_link != blank and block.settings.cta_two_button_text != blank %}
+                  
+                    <div class="cta" id="cta-one-{{ block.id }}">
+                      <a href="{{ block.settings.cta_two_link }}">
+                      {{ block.settings.cta_two_button_text }}
+                      </a>
+                    </div>
+                  
+                  {% endif %}
+
                 </div>
                 {% endif %}
               </div>
@@ -138,26 +148,32 @@
               display: inline-block;
               padding: 10px 20px;
             }
+            {% comment %} COLOR SCHEME STYLING {% endcomment %}
+
+            {% if block.settings.caption_color_scheme == 'white' %}
+              {% assign slide_text_color = '#ffffff' %}
+              {% assign cta_hover_text_color = '#164732' %}
+            {% elsif block.settings.caption_color_scheme == 'dark_green' %}
+              {% assign slide_text_color = '#164732' %}
+              {% assign cta_hover_text_color = '#ffffff' %}
+            {% else %}
+              {% assign slide_text_color = block.settings.custom_slide_main_color %}
+              {% assign cta_hover_text_color = block.settings.custom_slide_alt_color %}
+            {% endif %}
+
             .flex-caption.slide-{{ block.id }} h2.slide-title {
-              color: {{ block.settings.slide_text_color }};
-              border-bottom: 0 !important;
-            }
-            .flex-caption.slide-{{ block.id }} h2.slide-title:after {
-              display: none !important;
+              color: {{ slide_text_color }};
             }
             .flex-caption.slide-{{ block.id }} p {
-              color: {{ block.settings.slide_text_color }};
+              color: {{ slide_text_color }};
             }
             .flex-caption.slide-{{ block.id }} .cta a {
-              color: {{ block.settings.cta_color }};
-              border-color: {{ block.settings.cta_color }};
+              color: {{ slide_text_color }};
+              border-color: {{ slide_text_color }};
             }
             .flex-caption.slide-{{ block.id }} .cta a:hover {
-              background-color: {{ block.settings.cta_background }};
-            }
-            #Slideshow-{{ section.id }} .flex-caption h2.slide-title {
-              font-size: {{ section.settings.slide_title_size }}px;
-              font-weight:{{ section.settings.slide_title_weight }};
+              background-color: {{ slide_text_color }};
+              color: {{ cta_hover_text_color }};
             }
 
           </style>
@@ -167,19 +183,23 @@
 
       {% comment %} New navigation {% endcomment %}
 
-      <div class="slider--nav">
-        <a href="#" class="flex-prev">
-          {% include 'svg-icon-caret-left' %}
-        </a>
-        <div class="pagination">
-          <span class="flexslider--current-slide"></span>
-          <span class="slash">/</span>
-          <span class="flexslider--total-slides"></span>
-        </div>
-        <a href="#" class="flex-next">
-          {% include 'svg-icon-caret-right' %}
-        </a>
-      </div><!-- .slider--nav -->
+      {% if section.blocks.size > 1 %}
+
+        <div class="slider--nav">
+          <a href="#" class="flex-prev">
+            {% include 'svg-icon-caret-left' %}
+          </a>
+          <div class="pagination">
+            <span class="flexslider--current-slide"></span>
+            <span class="slash">/</span>
+            <span class="flexslider--total-slides"></span>
+          </div>
+          <a href="#" class="flex-next">
+            {% include 'svg-icon-caret-right' %}
+          </a>
+        </div><!-- .slider--nav -->
+
+      {% endif %}
 
       {% endif %}
 
@@ -219,7 +239,7 @@
         },        
         {
           "type": "header",
-          "content": "Caption Settings"
+          "content": "Text Box - Content"
         },
         {
           "type": "text",
@@ -234,48 +254,81 @@
           "default": "Tell your brand's story through images"
         },
         {
-          "type": "color",
-          "id": "slide_text_color",
-          "label": "Heading and subheading",
-          "default": "#ffffff"
+          "type": "header",
+          "content": "Button 1"
         },
         {
-          "type": "header",
-          "content": "CTA settings"
-        },        
-        {
           "type": "url",
-          "id": "link",
+          "id": "cta_one_link",
           "label": "Link"
         },
         {
           "type": "text",
-          "id": "button_text",
+          "id": "cta_one_button_text",
           "label": "Button text",
           "default": "Add a button",
-		      "info": "Visible only if a link is chosen"
+          "info": "Visible only if a link is chosen"
+        },
+        {
+          "type": "header",
+          "content": "Button 2"
+        },
+        {
+          "type": "url",
+          "id": "cta_two_link",
+          "label": "Link"
+        },
+        {
+          "type": "text",
+          "id": "cta_two_button_text",
+          "label": "Button text",
+          "default": "Add a button",
+          "info": "Visible only if a link is chosen"
+        },        
+        {
+          "type": "header",
+          "content": "Text Box - Color Scheme"
+        },
+        {
+          "type": "select",
+          "id": "caption_color_scheme",
+          "label": "Color Scheme",
+          "info": "Choose a color scheme from the prescribed branding colors, or select CUSTOM to select your own colors",
+          "options": [
+            {
+              "value": "white",
+              "label": "White"
+            },
+            {
+              "value": "dark_green",
+              "label": "Dark Green"
+            },
+            {
+              "value": "custom",
+              "label": "Custom"
+            }
+          ] 
         },
         {
           "type": "color",
-          "id": "cta_color",
-          "label": "Button Color (Text & Border)",
+          "id": "custom_slide_main_color",
+          "label": "Custom - Main Color",
           "default": "#ffffff"
         },
         {
           "type": "color",
-          "id": "cta_background",
-          "label": "Button background on hover",
-          "default": "#0b2f20"
+          "id": "custom_slide_alt_color",
+          "label": "Custom - Alternate Color",
+          "default": "#164732"
         },
         {
           "type": "header",
-          "content": "Caption box settings"
+          "content": "Text Box - Position"
         },
-
-  		  {
+        {
           "type": "select",
           "id": "caption_horizontal",
-          "label": "Caption horizontal position",
+          "label": "Horizontal position",
           "options": [
             {
               "value": "left",
@@ -298,19 +351,23 @@
           "max": 50,
           "step": 5,
           "unit": "%",
-          "label": "Caption vertical position",
+          "label": "Vertical position",
           "default": 50
         },
-    		{
+        {
+          "type": "header",
+          "content": "Text Box - Background"
+        },
+        {
           "type": "color",
           "id": "caption_background",
-          "label": "Caption background",
+          "label": "Background",
           "default": "transparent"
         },
         {
           "type": "select",
           "id": "caption_opacity",
-          "label": "Caption background opacity",
+          "label": "Background opacity",
           "options": [
             {
               "value": "0.1",
@@ -371,45 +428,7 @@
       "step": 1,
       "label": "Slideshow speed (seconds)",
       "default": 5
-    },
-      {
-        "type": "header",
-        "content": "Slideshow Text"
-      },
-      {
-        "type": "range",
-        "id": "slide_title_size",
-        "min": 24,
-        "max": 50,
-        "step": 1,
-        "unit": "px",
-        "label": "Heading size",
-        "default": 38
-      },
-      {
-        "type": "select",
-        "id": "slide_title_weight",
-        "label": "Heading weight",
-  	    "default": "700",
-        "options": [
-          {
-            "value": "400",
-            "label": "Book"
-          },
-          {
-            "value": "500",
-            "label": "Medium"
-          },
-          {
-            "value": "700",
-            "label": "Bold"
-          },
-          {
-            "value": "800",
-            "label": "Black"
-          }          
-        ]
-      }
+    }
   ],
   "presets": [{
     "name": "Slideshow",
