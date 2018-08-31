@@ -979,6 +979,69 @@ theme.Header = (function() {
 
 
 /*============================================================================
+  Footer Newsletter
+==============================================================================*/
+
+theme.Newsletter = (function() {
+  function Newsletter(container) {
+    const $container = this.$container = $(container);
+    const ui = {
+           formId: $( '#footer-newsletter' ),
+          textbox: $( '#email' ),
+           submit: $( '#button-footer-newsletter-submit' ),
+         errorMsg: $( '#newsletter-error-response'),
+       successMsg: $( '#newsletter-success-response')
+    }; 
+
+    // regex for valid email 
+    
+    const regexEmail = new RegExp(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i);
+
+    if ( ui.formId ) {
+
+      ui.textbox.on('focus', () => {
+
+        // remove any pre-existing error class
+
+        ui.formId.removeClass('has-error');
+        ui.errorMsg.fadeOut();
+
+      });
+
+      // submit form
+
+      ui.formId.submit( (e) => {
+        e.preventDefault();
+
+        // validation code
+
+        let validEmail = regexEmail.test(ui.textbox.val());
+
+        if(!validEmail) {
+
+          // error state 
+
+          ui.formId.addClass('has-error');
+          ui.errorMsg.fadeIn();
+
+        } else {
+
+          // success state
+
+          zaius.subscribe({list_id: 'newsletter', email: email.value});
+          ui.formId.fadeOut( () => {
+            ui.successMsg.fadeIn();
+          });
+        }
+      });
+    }
+  }
+  Newsletter.prototype = _.assignIn({}, Newsletter.prototype, {});
+  return Newsletter;
+})();
+
+
+/*============================================================================
   Instagram on index
 ==============================================================================*/
 theme.Instagram = (function() {
@@ -2210,6 +2273,7 @@ theme.Collection = (function() {
 $(document).ready(function() {
   var sections = new theme.Sections();
   sections.register('header-section', theme.Header);
+  sections.register('newsletter-social', theme.Newsletter);
   sections.register('instagram', theme.Instagram);
   sections.register('featured-collections', theme.FeaturedCollections);
   sections.register('homepage-products', theme.FeaturedProducts);
