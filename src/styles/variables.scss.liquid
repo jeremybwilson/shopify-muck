@@ -4,6 +4,7 @@
 // colors
 
 $color--orange-1: #ab5232;
+$color--orange-2: #9b492b;
 $color--dark-green-1: #0b2f20;
   // used for text
 $color--dark-green-2: #164732;
@@ -11,12 +12,17 @@ $color--dark-green-2: #164732;
 
 $color--gray-1: #595959;
 $color--gray-2: #7f7f7f;
+$color--gray-3: #5b5b5b;
+
+$color--dark-gray: #3e3e3e;
+$color--light-gray: #e5e5e5;
 
 // dark background;
 $color--white: #ffffff;
 $color--light-green-1: #71847c;
 
-
+// utility colors;
+$color--error: red;
 
 // typography
 
@@ -40,6 +46,77 @@ $font-weight--black: 800;
 @mixin fontSize($size) {
   font-size: $size; //Fallback in px
   font-size: calculateRem($size);
+}
+
+// typography mixins
+
+@mixin p {
+  font-weight: $font-weight--book;
+  line-height: 27px / 16px;
+  letter-spacing: .025em;
+
+  @include fontSize(16px);
+}
+
+@mixin h1 {
+  font-weight: $font-weight--black;
+  line-height: 53px / 38px;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+
+  @include fontSize(38px);
+}
+@mixin h2 {
+  font-weight: $font-weight--black;
+  line-height: 50px / 30px;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+
+  @include fontSize(30px);
+}
+@mixin h3 {
+  font-weight: $font-weight--bold;
+  line-height: 24px / 25px;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+
+  @include fontSize(25px);
+}
+
+@mixin h4 {
+  font-weight: $font-weight--bold;
+  line-height: 30px / 22px;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+
+  @include fontSize(22px);
+}
+@mixin h5 {
+  font-weight: $font-weight--bold;
+  line-height: 24px / 16px;
+  letter-spacing: .25em;
+
+  @include fontSize(16px);
+}
+@mixin h6 {
+  font-weight: $font-weight--bold;
+  line-height: 24px / 16px;
+  letter-spacing: .05em;
+
+  @include fontSize(16px); 
+}
+@mixin h7 {
+  font-weight: $font-weight--medium;
+  line-height: 27px / 16px;
+  letter-spacing: .025em;
+}
+
+@mixin h8 {
+  font-weight: $font-weight--book;
+  line-height: 24px / 14px;
+  letter-spacing: .01em;
+
+  @include fontSize(14px);
 }
 
 
