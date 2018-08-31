@@ -991,8 +991,13 @@ theme.Newsletter = (function() {
            submit: $( '#button-footer-newsletter-submit' ),
          errorMsg: $( '#newsletter-error-response'),
        successMsg: $( '#newsletter-success-response')
-    } 
+    }; 
+
+    // regex for valid email 
+    
+    const regexEmail = new RegExp(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i);
     const self = this;
+
 
     if ( ui.formId ) {
 
@@ -1012,8 +1017,7 @@ theme.Newsletter = (function() {
 
         // validation code
 
-        const regex = new RegExp(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i);
-        const validEmail = regex.test(ui.textbox.val());
+        let validEmail = regexEmail.test(ui.textbox.val());
 
         if(!validEmail) {
 
