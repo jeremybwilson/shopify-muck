@@ -4,7 +4,7 @@
 html { font-size: 16px; }
 
 html, body {
-	height: 100%;
+  height: 100%;
 }
 
 body { 
@@ -15,9 +15,22 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font-family: $font-stack--heading;
+  font-family: $font-stack--heading;
 }
 
 p {
-	color: $color--gray-1;
+  color: $color--gray-1;
+}
+
+
+.gridlock .row {
+  @include mq('phone') {
+    width: 100%;
+    padding-left: 24px;
+    padding-right: 24px;    
+  }
+}
+
+.homepage-section {
+  margin-bottom: 40px;
 }
