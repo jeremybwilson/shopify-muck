@@ -2,171 +2,179 @@
 
 .slideshow-section {
 
-	// image holder (for lazy-loading)
+  // image holder (for lazy-loading)
 
-	.box-ratio {
-		&.slideshow__image__mobile {
-			@include mq('tablet-and-up') {
-				display: none;
-			}
-		}
-		&.slideshow__image__desktop {
-			display: none;
-			@include mq('tablet-and-up') {
-				display: inherit;
-			}
-		}
-	}
+  .box-ratio {
+    &.slideshow__image__mobile {
+      @include mq('tablet-and-up') {
+        display: none;
+      }
+    }
+    &.slideshow__image__desktop {
+      display: none;
+      @include mq('tablet-and-up') {
+        display: inherit;
+      }
+    }
+  }
 
-	// text-box
+  // text-box
 
-	.flex-caption {
-		@include flexbox;
-		@include justify-content(center);
-		transform: translateY(-50%);
+  .flex-caption {
+    @include flexbox;
+    @include justify-content(center);
+    transform: translateY(-50%);
 
-		@include mq('tablet-and-up') {
+    @include mq('tablet-and-up') {
 
-			&.caption-align-left {
-				@include justify-content(flex-start);
-			}
-			&.caption-align-right {
-				@include justify-content(flex-end);
-			}
-		}
+      &.caption-align-left {
+        @include justify-content(flex-start);
+      }
+      &.caption-align-right {
+        @include justify-content(flex-end);
+      }
+    }
 
-		.caption-inners {
-			max-width: 700px;
-			text-align: center;
-		}		
-	}
+    .caption-inners {
+      display: inline-block;
+      padding: 10px 20px;
+      max-width: 700px;
+      text-align: center;
+    }    
+  }
 
-	.slide-title {
-		letter-spacing: .2em;
-		line-height: 1.36em;
-		text-transform: uppercase;
+  .slide-title {
+    border-bottom: 0 !important;
+    font-size: 22px;
+    font-size: 1.375rem;      
+    letter-spacing: .2em;
+    line-height: 1.36em;
+    text-transform: uppercase;
 
-		@include mq('phone') {
-			font-size: 22px !important;
-			font-size: 1.375rem !important;			
-		}
-		@include mq('tablet') {
-			font-size: 29px !important;
-			font-size: 1.75rem !important;
-		}		
-		@include mq('lap-and-up') {
-			letter-spacing: .3em;
-			line-height: 1.39em;
-		}
-	}
-	
-	// button / cta
+    @include mq('tablet') {
+      font-size: 29px;
+      font-size: 1.75rem;
+    }    
+    @include mq('lap-and-up') {
+      font-size: 38px;
+      letter-spacing: .3em;
+      line-height: 1.39em;
+    }
 
-	.caption {
-		margin-top: 12px;
-		@include fontSize(14px);
-		line-height: 1.375em;
-		letter-spacing: .05em;
+    &:after {
+      display: none !important;
+    }
+  }
+  
+  // button / cta
 
-		@include mq('lap-and-up') {
-			margin-top: 20px;
-			@include fontSize(16px);
-			line-height: 1.625em;	
-		}
-	}
+  .caption {
+    margin-top: 12px;
+    @include fontSize(14px);
+    line-height: 1.375em;
+    letter-spacing: .05em;
 
-	// text box
+    @include mq('lap-and-up') {
+      margin-top: 20px;
+      @include fontSize(16px);
+      line-height: 1.625em;  
+    }
+  }
 
-	.cta {
-		display: inline-block;
-		margin-top: 10px;
-		margin-bottom: 0;
+  // text box
 
-		@include mq('lap-and-up') {
-			margin-top: 18px;
-		}
+  .cta {
+    display: inline-block;
+    margin: 10px 10px 0;
 
-		a {
-			display: inline-block;
-			padding: 15px 20px;
-			border-width: 2px;
-			border-style: solid;
-			border-radius: 0;
-			background: transparent;
-			@include fontSize(14px);
-			font-weight: $font-weight--bold;
-			letter-spacing: .15em;
-			text-transform: uppercase;
+    @include mq('lap-and-up') {
+      margin-top: 18px;
+    }
 
-			@include mq('lap-and-up') {
-				padding: 20px 24px;
-				border-width: 3px;
-				@include fontSize(16px);
-				letter-spacing: .2em;
-			}
-			&:hover {
-				text-decoration: none;
-			}
-		}
-	}
+    a {
+      display: inline-block;
+      padding: 15px 20px;
+      border-width: 2px;
+      border-style: solid;
+      border-radius: 0;
+      background: transparent;
+      @include fontSize(14px);
+      font-weight: $font-weight--bold;
+      letter-spacing: .15em;
+      text-transform: uppercase;
 
-	// navigation 
+      @include mq('lap-and-up') {
+        padding: 20px 24px;
+        border-width: 3px;
+        @include fontSize(16px);
+        letter-spacing: .2em;
+      }
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
 
-	.slider--nav {
-		@include flexbox;
-		@include justify-content(space-between);
-		@include align-items(center);
+  // navigation 
 
-		position: absolute;
-		z-index: 2;
-		bottom: 40px;
-		left: 50%;
-		width: 100%;
-		max-width: 220px;		
-		transform: translateX(-50%);
-		color: $color--white;
+  .flexslider.one-image-only .slider--nav {
+    display: none;
+  }
+  .slider--nav {
+    @include flexbox;
+    @include justify-content(space-between);
+    @include align-items(center);
 
-		@include mq('lap-and-up') {
-			bottom: 55px;
-		}
+    position: absolute;
+    z-index: 2;
+    bottom: 40px;
+    left: 50%;
+    width: 100%;
+    max-width: 220px;    
+    transform: translateX(-50%);
+    color: $color--white;
 
-		svg {
-			width: 20px;
-			height: 20px;
-			margin-top: 7px;
+    @include mq('lap-and-up') {
+      bottom: 55px;
+    }
 
-			* {
-				fill: $color--white;
-			}
-		}		
+    svg {
+      width: 20px;
+      height: 20px;
+      margin-top: 7px;
 
-		// pager
+      * {
+        fill: $color--white;
+      }
+    }    
 
-		.pagination {
-			position: relative;
-			color: $color--white;
-			font-weight: $font-weight--medium;
-			@include fontSize(10px);
+    // pager
 
-			@include mq('lap-and-up') {
-				@include fontSize(14px);
-			}
+    .pagination {
+      position: relative;
+      color: $color--white;
+      font-weight: $font-weight--medium;
+      @include fontSize(10px);
 
-			&:before {
-				content: '';				
-				position: absolute;
-				top: 50%;
-				left: 50%;
-				width: 43px;
-				height: 43px;
-				transform: translate(-50%,-50%) rotate(45deg);
-				border: solid 1px $color--white;
+      @include mq('lap-and-up') {
+        @include fontSize(14px);
+      }
 
-				@include mq('lap-and-up') {
-					width: 56px;
-					height: 56px;
-				}				
-			}
-		}
-	}
+      &:before {
+        content: '';        
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 43px;
+        height: 43px;
+        transform: translate(-50%,-50%) rotate(45deg);
+        border: solid 1px $color--white;
+
+        @include mq('lap-and-up') {
+          width: 56px;
+          height: 56px;
+        }        
+      }
+    }
+  }
 }
