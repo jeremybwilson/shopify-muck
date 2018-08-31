@@ -43,15 +43,7 @@
           {% comment %} ..:: SEARCH ::.. {% endcomment %}
           {% if section.settings.show_search %}
             <li id="nav-search-form" class="nav-item nav-search searchbox">
-              <form action="/search" method="get">
-                <input class="nav-search-input" type="text" name="q" id="q" placeholder="{{ 'general.search.placeholder' | t }}" />
-                <input type="hidden" name="type" value="product" />
-                <div class="nav-search-icon-wrap">
-                  <input class="nav-search-submit" type="submit" value=""/>
-                  {% include 'svg-icon-search' %}
-                </div>
-                
-              </form>           
+              {% include 'nav-search-input' %}           
             </li>
           {% endif %}
           
