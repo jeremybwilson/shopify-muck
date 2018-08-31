@@ -7,24 +7,7 @@
     <div class="desktop-12 tablet-6 mobile-3">
       {% endunless %}
 
-      {% case section.settings.slider_speed %}
-      {% when 3 %}
-      {%- assign slider_speed = 3000 -%}
-      {% when 4 %}
-      {%- assign slider_speed = 4000 -%}
-      {% when 5 %}
-      {%- assign slider_speed = 5000 -%}
-      {% when 6 %}
-      {%- assign slider_speed = 6000 -%}
-      {% when 7 %}
-      {%- assign slider_speed = 7000 -%}
-      {% when 8 %}
-      {%- assign slider_speed = 8000 -%}
-      {% when 9 %}
-      {%- assign slider_speed = 9000 -%}
-      {% when 10 %}
-      {%- assign slider_speed = 10000 -%}
-      {% endcase %}
+      {% assign slider_speed = section.settings.slider_speed | times: 1000 %}
 
       {% if section.blocks.size > 0 %}
 
