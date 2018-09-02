@@ -73,7 +73,13 @@
     @include flexbox;
     @include justify-content(space-between);
     position: relative;
+    margin-bottom: 12px;
     background: $color--white; 
+    border: solid 1px transparent;
+    transition: border .3s ease;
+  }
+  form.has-error {
+    border: solid 1px $color--error;
   }
   input[type="email"] {
     box-sizing: border-box;
@@ -84,6 +90,7 @@
     margin-bottom: 0;
     padding: 15px 68px 15px 20px;
     border: none;
+    border-radius: none;
     color: $color--gray-2;
     @include fontSize(14px);
     letter-spacing: .025em;
@@ -94,6 +101,13 @@
       padding: 20px 68px 20px 20px;
       @include fontSize(16px);
     }
+
+    &:focus {
+      color: $color--dark-gray;
+    }
+  }
+  form.has-error input[type="email"] {
+    color: $color--error;
   }
   #button-footer-newsletter-submit {
     position: absolute;
@@ -105,6 +119,7 @@
     right: 0;
     width: 47px;
     height: 47px;
+    cursor: pointer;
 
     @include mq('tablet-and-up') {
       width: 46px;
@@ -120,9 +135,33 @@
         height: 12px;
       }
     }
+
+    &:hover {
+      svg * {
+        fill: $color--orange-2;
+      }
+    }
   }
   input[type="submit"] {
     display: none;
+  }
+
+  // response messages
+
+  #newsletter-form--response {
+    color: $color--white;
+
+    #newsletter-error-response {
+      @include h7;
+    }  
+    #newsletter-success-response {
+      text-transform: none;
+
+      p {
+        color: inherit;
+        @include fontSize(16px);
+      }
+    }
   }
 }
 
@@ -189,6 +228,12 @@
         @include mq('tablet-and-up') {
           width: 20px;
           height: 20px;
+        }
+      }
+
+      &:hover {
+        svg * {
+          fill: $color--orange-1;
         }
       }
     }
