@@ -13,6 +13,8 @@ $zIndexBackingShadow: -1;
 $zIndexMobileMenu: 5;
 $zIndexBarBG: 25;
 $zIndexButtons: 50;
+$zIndexLogo: 75;
+$navBarDesktopHeight: 80px;
 
 #header-section {
     position: relative;
@@ -49,7 +51,7 @@ $zIndexButtons: 50;
     }
 
     @include mq( 'lap-and-up' ){
-        height: 80px;
+        height: $navBarDesktopHeight;
     }
     
     /* NAV BG :
@@ -89,7 +91,7 @@ $zIndexButtons: 50;
         transform: translateX( -50% ) rotateZ( 45deg );
         background: {{ settings.header_background }};
         top: 15px;
-        z-index: 50;
+        z-index: $zIndexLogo;
 
         a { transform: rotateZ( -45deg ); }
 
@@ -322,7 +324,11 @@ $zIndexButtons: 50;
     .nav-search {
         position: relative;
         margin-right: 20px;
-        width: 200px;
+        width: 140px;
+
+        @include mq( 'desk-and-up' ) {
+            width: 200px;
+        }
 
         form {
             position: relative;
@@ -330,7 +336,7 @@ $zIndexButtons: 50;
 
         .nav-search-input {
             position: relative;
-            width: 200px;
+            width: 100%;
             max-width: 100%;
             border: none;
             border-bottom: $navMinorBorder;
@@ -403,21 +409,114 @@ $zIndexButtons: 50;
 
 
 
+
     /*  NAV : MEGA-MENU + SUB-NAV LINKS
      * ---------------------------------------------- */
     nav#nav {
         color: $color--dark-green-2;
         display: none;
+        height: $navBarDesktopHeight;
 
         @include mq( 'lap-and-up' ) {
             display: block;
         }
 
         // Nav-Category-Header
-        .nav-category-header {
+        .nav-category-header,
+        .nav-category-header a {
+            @include h5;
+            text-decoration: none;
+            text-transform: uppercase;
             color: $color--dark-green-2;
         }
     }
+    #nav-menu-desktop {
+        position: relative;
+        height: 100%;
+        z-index: $zIndexButtons;
+
+        #nav-menu-desktop-list {
+            @include inline-flex;
+            @include justify-content( space-between );
+            @include align-items( center );
+            position: absolute;
+            list-style: none;
+            height: 100%;
+            width: 340px;
+            left: 320px;
+
+            > li {
+                @include flexbox;
+                @include align-items( center );
+                @include justify-content( flex-end );
+                height: 100%;
+                width: 100%;
+            }
+
+            .megamenu {
+                width: 100vw; // so it doesn't obey the list width
+                max-width: 1400px;
+                position: absolute;
+                left: -310px; // scoot left distance (- spacing) #nav-menu-desktop-list elements over from edge
+                top: 80px;
+                background: {{ settings.header_background }};
+                z-index: 5;
+                padding: 0;
+                text-align: left;
+                list-style: none;
+
+                // Noticed that sherwin used a light shadow to create illusion of menus being diff color but sampler
+                //  points out that they're same and its a shading trick along the edge o.O (awesome work)
+                background: #f8f7f8;
+                background: -moz-linear-gradient(top, #f8f7f8 0%, {{ settings.header_background }} 12%);
+                background: -webkit-linear-gradient(top, #f8f7f8 0%,{{ settings.header_background }} 12%);
+                background: linear-gradient(to bottom, #f8f7f8 0%,{{ settings.header_background }} 12%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f8f7f8', endColorstr='{{ settings.header_background }}',GradientType=0 );
+            
+                .mega-container {
+                    width: calc( 100% - 305px );
+                    height: 100%;
+                    left: 305px;
+                    
+                    position: relative;
+                    @include flexbox;
+                    @include justify-content( space-between );
+
+                    .mega-column-content {
+                        @include inline-flex;
+                        position: relative;
+                        width: 770px;
+                        margin-top: 65px;
+                    }
+
+                    .mega-image {
+                        @include inline-flex;
+                        position: relative;
+                        width: 320px;
+                    }
+
+                    // Spaces in menu (entries named '-')
+                    .nav-list-space {
+                        height: 26px;
+                    }
+
+                    a { 
+                        text-decoration: none;
+                    }
+                }
+
+                .nav-sub-header,
+                .nav-sub-header a {
+                    @include h5;
+                    letter-spacing: 3px; // Slightly thinner
+                    text-transform: uppercase;
+                    color: $color--dark-green-2;
+                }
+            }
+        }
+    }
+
+
 
 
 
