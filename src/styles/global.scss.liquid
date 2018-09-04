@@ -22,6 +22,12 @@ p {
   color: $color--gray-1;
 }
 
+{% comment %} Prevent sidways scrolling past page bounds on old iOS devices (9 and earlier){% endcomment %}
+body > .page-wrap {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
 
 .gridlock .row {
   @include mq('phone') {
