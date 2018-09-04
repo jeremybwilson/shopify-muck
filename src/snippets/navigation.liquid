@@ -11,7 +11,7 @@
             
             {% comment %} :: MEGA-MENU - WRAPPER :: {% endcomment %}
             {% capture megalink %}
-              <li class="dropdown has_sub_menu" aria-haspopup="true" aria-expanded="false">
+              <li class="nav-primary-link dropdown has_sub_menu" aria-haspopup="true" aria-expanded="false">
 
 
                 {% comment %} :: CATEGORY HEADER :: {% endcomment %}
@@ -168,7 +168,9 @@
 
 {% comment %} :: SINGLE LINK : One lonely weeb link :: {% endcomment %}
         {% else %}
-          <li class="nav-category-header">{{ link.title | link_to: link.url }}</li>
+          <li class="nav-primary-link">
+            <a class="nav-category-header" href="{{ link.url }}">{{ link.title }}</a>
+          </li>
         {% endif %}
 
       {% endfor %}
