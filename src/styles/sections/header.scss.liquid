@@ -2,16 +2,19 @@
 // -- sections/header.liquid
 // -- snippets/header-announcement-bar.liquid
 
-}
-
-
 
 /*  HEADER : Core Styles
  * ---------------------------------------------- */
 $navBoxShadow: 0px 1px 9px #8d8d8d;
 $navShadowAni: box-shadow 0.25s ease-in-out;
-$navMobileGutter: 15px;
+$navMobileBarGutter: 15px;
 $navMinorBorder: 1px solid {{ settings.nav_minor_border_color }};
+$zIndexBackingShadow: -1;
+$zIndexMobileMenu: 5;
+$zIndexBarBG: 25;
+$zIndexButtons: 50;
+$zIndexLogo: 75;
+$navBarDesktopHeight: 80px;
 
 #header-section {
     position: relative;
@@ -32,11 +35,10 @@ $navMinorBorder: 1px solid {{ settings.nav_minor_border_color }};
  * ---------------------------------------------- */
 #nav-bar-wrapper {
     position: relative;
-    z-index: 1000;
     height: 50px;
-    width: 100%;
+    width: 100vw;
     padding: 0;
-    z-index: 50;
+    z-index: 50; //entire wrapper, this relates to the header to rest of site so no need var
     transition: $navShadowAni;
 
     // SHADOW : When stick nav is active
@@ -49,7 +51,7 @@ $navMinorBorder: 1px solid {{ settings.nav_minor_border_color }};
     }
 
     @include mq( 'lap-and-up' ){
-        height: 80px;
+        height: $navBarDesktopHeight;
     }
     
     /* NAV BG :
@@ -63,6 +65,7 @@ $navMinorBorder: 1px solid {{ settings.nav_minor_border_color }};
         left: 0;
         width: 100%;
         height: 100%;
+        z-index: $zIndexBarBG; // 25
         background: {{ settings.header_background }};
     }
 
@@ -71,6 +74,7 @@ $navMinorBorder: 1px solid {{ settings.nav_minor_border_color }};
         width: 100%;
         height: 100%;
         max-width: 1400px;
+        padding: 0;
     }
 
 
@@ -88,6 +92,7 @@ $navMinorBorder: 1px solid {{ settings.nav_minor_border_color }};
         transform: translateX( -50% ) rotateZ( 45deg );
         background: {{ settings.header_background }};
         top: 15px;
+        z-index: $zIndexLogo;
 
         a { transform: rotateZ( -45deg ); }
 
@@ -120,9 +125,8 @@ $navMinorBorder: 1px solid {{ settings.nav_minor_border_color }};
         transition: $navShadowAni;
         transform: translateX( -50% ) rotateZ( 45deg );
         background: {{ settings.header_background }};
-        z-index: -1; //Relative to #nav-bar-wrapper, so its -1 on the 1000 layer.
+        z-index: $zIndexBackingShadow; // -1, Relative to #nav-bar-wrapper, so its -1 on inner layer of nav-bar.
     }
-
 
 
 
@@ -135,10 +139,11 @@ $navMinorBorder: 1px solid {{ settings.nav_minor_border_color }};
             @include inline-flex;
             @include justify-content( flex-end );
             position: absolute;
-            right: $navMobileGutter;
+            right: $navMobileBarGutter;
             height: 100%;
             list-style: none;
             text-align: right;
+            z-index: $zIndexButtons; //50
 
             .nav-item {
                 @include inline-flex;
@@ -183,47 +188,6 @@ $navMinorBorder: 1px solid {{ settings.nav_minor_border_color }};
             }
 
 
-
-
-            // SEARCH : Search input field on 1024 + screen sizes (for now)
-            .nav-search {
-                position: relative;
-                margin-right: 20px;
-                width: 200px;
-
-                .nav-search-input {
-                    position: relative;
-                    width: 200px;
-                    max-width: 100%;
-                    border: none;
-                    border-bottom: $navMinorBorder;
-                    padding-right: 23px;
-                    outline: none;
-                }
-
-                .nav-search-icon-wrap {
-                    position: absolute;
-                    margin-top: -9px;
-                    top: 50%;
-                    right: 0;
-
-                    // Hidden search button on top of the search Icon,
-                    // so clicking it submits as well as enter.
-                    .nav-search-submit {
-                        position: absolute;
-                        opacity: 0;
-                        width: 100%;
-                        height: 100%;
-                        margin: 0;
-                        padding: 0;
-                        border-radius: 0;
-                    }
-                }
-            }
-
-
-
-
             // SITE PICKER : Dropdown selector for the other site pickers
             .nav-sites {
                 @include align-items( flex-start );
@@ -265,11 +229,11 @@ $navMinorBorder: 1px solid {{ settings.nav_minor_border_color }};
 
                         // HOVER : On a country option
                         &:hover {
-                            background: {{ settings.nav_links_hover }};
+                            background: $color--dark-green-1;
 
                             .site-name  { 
                                 color: {{ settings.header_background }}; //Use bg color when swapping 
-                                background: {{ settings.nav_links_hover }};
+                                background: $color--dark-green-1;
                             }
                             .site-arrow { opacity: 0; }
 
@@ -357,37 +321,507 @@ $navMinorBorder: 1px solid {{ settings.nav_minor_border_color }};
     }
 
 
+    // SEARCH : Input on mobile-navigation.liquid + header.liquid (desktop)
+    .nav-search {
+        position: relative;
+        margin-right: 20px;
+        width: 140px;
 
-    /*  NAV : SITE-COLLECTIONS (Left Elements)
-     * ---------------------------------------------- */
-    #nav-collections {
-        .icon-nav-mobile-menu {
+        @include mq( 'desk-and-up' ) {
+            width: 200px;
+        }
+
+        form {
+            position: relative;
+        }
+
+        .nav-search-input {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            border: none;
+            border-bottom: $navMinorBorder;
+            padding-right: 23px;
+            outline: none;
+        }
+
+        .nav-search-icon-wrap {
             position: absolute;
-            left: $navMobileGutter;
-            width: 30px;
-            height: 16px;
+            transform: translateY( -43% );
             top: 50%;
-            transform: translateY(-50%);
+            right: 0;
 
-            .bar {
+            // Hidden search button on top of the search Icon,
+            // so clicking it submits as well as enter.
+            .nav-search-submit {
                 position: absolute;
-                background: $color--dark-green-1;
+                opacity: 0;
                 width: 100%;
-                height: 2px;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                border-radius: 0;
+            }
 
-                &.one   { top: 0; }
-                &.two   { 
-                    top: 50%;  
-                    transform: translateY( -50% ) 
+            svg.icon-search {
+                width: 19px;
+                height: 17px;
+            }
+        }
+    }
+
+
+
+    /*  NAV : MOBILE MENU ICON
+     * ---------------------------------------------- */
+    .icon-nav-mobile-menu {
+        position: absolute;
+        left: $navMobileBarGutter;
+        width: 30px;
+        height: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        z-index: $zIndexButtons; // 50
+
+        @include mq( 'lap-and-up' ) {
+            display: none;
+        }
+
+        .bar {
+            position: absolute;
+            background: $color--dark-green-1;
+            width: 100%;
+            height: 2px;
+            transition: all 0.25s ease-in-out;
+
+            &.one   { top: 0; }
+            &.two   { 
+                top: 50%;  
+                transform: translateY( -50% ) 
+            }
+            &.three { 
+                width: 70%;
+                top: 100%; 
+                transform: translateY( -50% ) 
+            }
+        }
+    }
+
+
+
+
+    /*  NAV : MEGA-MENU + SUB-NAV LINKS
+     * ---------------------------------------------- */
+    nav#nav {
+        color: $color--dark-green-2;
+        display: none;
+        height: $navBarDesktopHeight;
+
+        @include mq( 'lap-and-up' ) {
+            display: block;
+        }
+
+        // Nav-Category-Header
+        .nav-category-header {
+            @include h5;
+            height: 100%;
+            text-decoration: none;
+            text-transform: uppercase;
+            color: $color--dark-green-2;
+        }
+    }
+    #nav-menu-desktop {
+        position: relative;
+        height: 100%;
+
+        #nav-menu-desktop-list {
+            @include inline-flex;
+            @include justify-content( space-between );
+            @include align-items( center );
+            position: absolute;
+            list-style: none;
+            height: 100%;
+            width: 340px;
+            left: 320px;
+            z-index: $zIndexButtons;
+
+            .nav-primary-link {
+                @include flexbox;
+                @include justify-content( flex-end ); // Space links to better match mock
+                height: 100%;
+                width: 100%;
+
+                .nav-category-header { //Center the nav link item vertically 
+                    @include inline-flex;
+                    @include align-items( center );
+                    padding-top: 3px; // make up size for 3px bottom border on links
+                    border-bottom: 3px solid transparent;
                 }
-                &.three { 
-                    width: 70%;
-                    top: 100%; 
-                    transform: translateY( -50% ) 
+
+                &:hover > a {
+                    border-bottom: 3px solid {{ settings.nav_links_hover }};
+                }
+            }
+
+            .megamenu {
+                width: 100vw; // so it doesn't obey the list width
+                max-width: 1400px;
+                position: absolute;
+                left: -310px; // scoot left distance (- spacing) #nav-menu-desktop-list elements over from edge
+                top: 80px;
+                background: {{ settings.header_background }};
+                z-index: 5;
+                padding: 0;
+                text-align: left;
+                list-style: none;
+
+                // Noticed that sherwin used a light shadow to create illusion of menus being diff color but sampler
+                //  points out that they're same and its a shading trick along the edge o.O (awesome work)
+                background: #f8f7f8;
+                background: -moz-linear-gradient(top, #f8f7f8 0%, {{ settings.header_background }} 12%);
+                background: -webkit-linear-gradient(top, #f8f7f8 0%,{{ settings.header_background }} 12%);
+                background: linear-gradient(to bottom, #f8f7f8 0%,{{ settings.header_background }} 12%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f8f7f8', endColorstr='{{ settings.header_background }}',GradientType=0 );
+            
+                .mega-container {
+                    width: calc( 100% - 305px );
+                    height: 100%;
+                    left: 305px;
+                    position: relative;
+                    @include flexbox;
+                    @include justify-content( space-between );
+
+                    .mega-column-content {
+                        @include inline-flex;
+                        position: relative;
+                        width: 770px;
+                        margin-top: 30px;
+
+                        @include mq( 'desk-and-up' ) {
+                            margin-top: 65px;
+                        }
+                    }
+
+                    .mega-image {
+                        @include inline-flex;
+                        @include align-items( center );
+                        position: relative;
+                        width: 320px;
+                    }
+
+                    // Spaces in menu (entries named '-')
+                    .nav-list-space {
+                        height: 26px;
+                    }
+
+                    a { 
+                        text-decoration: none;
+                    }
+
+                    // Individual Sub-Sub-items (items inside nested lists)
+                    .nav-sub-sub-item {
+
+                        // "Shop All >" Links in sub-nav
+                        &.shop-all a {
+                            @include h7;
+                            position: relative;
+
+                            // TRAINGLE : CLOSED : Downward arrow in css
+                            &:after {
+                                width: 0; 
+                                height: 0; 
+                                position: absolute;
+                                top: 50%;
+                                transform: translateY( -50% );
+                                right: -20px;
+                                content: ""; // undo the preset arrow type
+                                border-top: 4px solid transparent;
+                                border-bottom: 4px solid transparent;
+                                border-left: 8px solid {{ settings.nav_links_hover }};
+                            }
+                        }  
+
+
+                        // SUB-NAV : Regular Links to sub-collection divisions
+                        a {
+                            @include h8;
+                            color: $color--gray-1;
+                            transition: color 0.25s ease-in-out;
+
+                            &:hover {
+                                color: {{ settings.nav_links_hover }};
+                            }
+                        }
+                    }
+                }
+
+                .nav-sub-header,
+                .nav-sub-header a {
+                    @include h5;
+                    letter-spacing: 3px; // Slightly thinner
+                    margin-bottom: 10px;
+                    text-transform: uppercase;
+                    color: $color--dark-green-2;
+                }
+            }
+        }
+    }
+
+
+
+
+
+    /*  NAV : MOBILE NAV MENU STYLES 
+     *   (would have combined them, but its all already setup in theme)
+     * ---------------------------------------------- */
+    $navMobileMenuGutter: 35px;
+
+    #nav-menu-mobile {
+        display: block;
+        pointer-events: none;
+        opacity: 0;
+        position: absolute;
+        color: $color--dark-green-2;
+        top: -200vh;
+        overflow-x: hidden;
+        overflow-y: auto;
+        transition: all 0.35s ease-in-out;
+        z-index: $zIndexMobileMenu; // 15
+        // NOTE : HEIGHT IS DONE IN HEADER STYLE BLOCK B/C IT READS PROMO SECTION HEIGHT!! (See: section/header.liquid)
+
+        &.mobile-nav-open {
+            display: block;
+            pointer-events: all;
+            opacity: 1;
+            top: 50px;
+            width: 100%;
+            background: {{ settings.header_background }};
+            z-index: 25; // logo is at 50
+            margin: 0;
+            padding: 70px 0;
+
+            @include mq( 'lap-and-up' ) {
+                display: none;
+            }
+        }
+
+        .nav-search {
+            width: 100%;
+            left: 50%;
+            transform: translateX( -50% );
+            margin-bottom: 20px; 
+            padding: 0 $navMobileMenuGutter;
+
+            input {
+                width: 100%;
+            }
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        // ACCORDION : Top Level
+        #accordion {
+            text-align: left;
+            padding: 0 2px; //Aligns the titles to the left edge matching search underline
+            @include fontSize( 16px );
+
+            li { 
+                position: relative;
+                border-bottom: none; 
+            }
+
+            a {
+                text-decoration: none;
+            }
+
+            .accordion-header,
+            .link-header {
+                padding: 0;
+                font-weight: $font-weight--bold;
+                color: $color--dark-green-2;
+                text-transform: uppercase;
+                letter-spacing: 4px;
+                padding-left: 35px;
+
+                a { 
+                    color: $color--dark-green-2;
+                    padding: 0;
+                }
+            }
+
+            .accordion-header,
+            .accordion-sub-header {
+                // TRAINGLE : CLOSED : Downward arrow in css
+                &:after {
+                    width: 0; 
+                    height: 0; 
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY( -50% );
+                    right: $navMobileMenuGutter;
+                    content: ""; // undo the preset arrow type
+                    border-left: 6px solid transparent;
+                    border-right: 6px solid transparent;
+                    border-top: 9px solid {{ settings.nav_links_hover }};
+                    transition: border 0.25s ease-in-out;
+                }
+
+                &.open:after {
+                    border-top: none;
+                    border-bottom: 9px solid {{ settings.nav_links_hover }};
+                }
+            }
+
+            .sub {
+                background: #F7F7F2;
+                padding: 0 0 0 35px;
+
+                .accordion-sub-header,
+                .link-sub-header {
+                    position: relative;
+                    text-decoration: none;
+                    color: $color--dark-green-2;
+                    font-weight: $font-weight--medium;
+
+                    a {
+                        color: $color--dark-green-2;
+                    }
+
+                    &.open,
+                    &.open a {
+                        color: {{ settings.nav_links_hover }};
+                    }
+                }
+
+                li {
+                    @include flexbox;
+                    @include align-items( center );
+                    height: 40px;
+                    padding: 0;
+
+                    a {
+                        @include flexbox;
+                        @include align-items( center );
+                        color: $color--dark-green-2;
+                        height: 100%;
+                    }
+
+                    &.shop-all {
+                        font-weight: $font-weight--bold;
+
+                        a {
+                            position: relative;
+
+                            // TRAINGLE : CLOSED : Rightward Arrow
+                            &:after {
+                                width: 0; 
+                                height: 0; 
+                                position: absolute;
+                                top: 50%;
+                                transform: translateY( -50% );
+                                right: -20px;
+                                content: ""; // undo the preset arrow type
+                                border-top: 4px solid transparent;
+                                border-bottom: 4px solid transparent;
+                                border-left: 8px solid {{ settings.nav_links_hover }};
+                            }
+                        }
+                    }
                 }
             }
         }
     }
 }
+
+// MOBILE MENU OPEN -- Become an X!
+.menu-open #icon-nav-mobile-menu-btn .bar {
+    &.one {
+        transform: rotateZ( 45deg );
+        top: 42%;
+    }
+    &.two {
+        transform: rotateZ( -45deg ) translateY( -50% );
+    }
+    &.three {
+        opacity: 0;
+    }
+}
+
+
+.shifter {
+    overflow-x: hidden;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

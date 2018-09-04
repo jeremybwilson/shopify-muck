@@ -43,15 +43,7 @@
           {% comment %} ..:: SEARCH ::.. {% endcomment %}
           {% if section.settings.show_search %}
             <li id="nav-search-form" class="nav-item nav-search searchbox">
-              <form action="/search" method="get">
-                <input class="nav-search-input" type="text" name="q" id="q" placeholder="{{ 'general.search.placeholder' | t }}" />
-                <input type="hidden" name="type" value="product" />
-                <div class="nav-search-icon-wrap">
-                  <input class="nav-search-submit" type="submit" value=""/>
-                  {% include 'svg-icon-search' %}
-                </div>
-                
-              </form>           
+              {% include 'nav-search-input' %}           
             </li>
           {% endif %}
           
@@ -100,7 +92,8 @@
       {% comment %} ..:: NAV : SITE-COLLECTIONS (Left Elements) ::.. {% endcomment %}
       <div id="nav-collections">
         {% include 'icon-nav-mobile-menu' %}
-        {% comment %}{% include 'navigation' %}{% endcomment %}
+        {% include 'navigation' %}
+        {% include 'mobile-navigation' %}
       </div>
 
     </div>
@@ -133,8 +126,24 @@
     }
 
     nav {
-      {% if section.settings.nav_center %}text-align: center;{% endif %}
        line-height: {{ section.settings.nav_height }}px;
+    }
+
+
+    /* MOBILE MENU : Height Setup
+        Notes :
+          - announcement_height default is 60px, and can be set to min of 40px
+          - actual navigation bar is 50px tall, and since scrolling hides promo, we have a "isStuck" condition which is 
+              basically an indicator for the user is scrolled down the page. 
+          - Why? Because we need users to be able to scroll the mobile menu, but not scroll backing content on page.
+    */
+    #nav-bar-wrapper #nav-menu-mobile {
+        height: calc( 100vh - ( {{ section.settings.announcement_height }}px + 50px ) );  /* Promo + Nav bar (50px) */
+    }
+
+    /* SCROLLING : Nav bar hides promo bar, so adjust menu height if the user opens menu scrolled down page */
+    #nav-bar-wrapper.isStuck #nav-menu-mobile {
+        height: calc( 100vh - 50px ); /* nav bar = 50px */
     }
   </style>
 </div>
