@@ -423,9 +423,9 @@ $navBarDesktopHeight: 80px;
         }
 
         // Nav-Category-Header
-        .nav-category-header,
-        .nav-category-header a {
+        .nav-category-header {
             @include h5;
+            height: 100%;
             text-decoration: none;
             text-transform: uppercase;
             color: $color--dark-green-2;
@@ -446,12 +446,22 @@ $navBarDesktopHeight: 80px;
             left: 320px;
             z-index: $zIndexButtons;
 
-            > li {
+            .nav-primary-link {
                 @include flexbox;
-                @include align-items( center );
-                @include justify-content( flex-end );
+                @include justify-content( flex-end ); // Space links to better match mock
                 height: 100%;
                 width: 100%;
+
+                .nav-category-header { //Center the nav link item vertically 
+                    @include inline-flex;
+                    @include align-items( center );
+                    padding-top: 3px; // make up size for 3px bottom border on links
+                    border-bottom: 3px solid transparent;
+                }
+
+                &:hover > a {
+                    border-bottom: 3px solid {{ settings.nav_links_hover }};
+                }
             }
 
             .megamenu {
