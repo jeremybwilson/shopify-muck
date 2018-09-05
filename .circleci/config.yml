@@ -31,7 +31,7 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      - run: npm i -g @shopify/slate
+      - run: sudo npm i -g @shopify/slate
 
       - run: npm run bootstrap
 
