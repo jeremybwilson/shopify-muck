@@ -22,8 +22,10 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
+      # NPM Install & Overwrite the slate build-js file with our custom one that compiles ES6 / React
       - run: npm run bootstrap
 
+      # Save the cached setup
       - save_cache:
           paths:
             - node_modules
@@ -31,8 +33,8 @@ jobs:
 
       # Persist the specified paths (workspace/echo-output) into the workspace for use in deploy job.
       - persist_to_workspace:
-          # Must be an absolute path, or relative path from working_directory. This is a directory on the container which is
-          # taken to be the root directory of the workspace.
+          # Must be an absolute path, or relative path from working_directory. This is a  
+          # directory on the container which is taken to be the root directory of the workspace.
           root: .
           # Must be relative path from root
           paths:
@@ -51,11 +53,11 @@ jobs:
       - run:
           name: Generate dev env setting
           command: |
-            echo "password: $SLATE_PASSWORD
-            theme_id: $SLATE_THEME_ID
+            echo 'password: $SLATE_PASSWORD
+            theme_id: "35212197986"
             store: muckboot-dev.myshopify.com
             ignore_files:
-              - settings_data.json # Uncomment this line to avoid resetting theme settings" > config.yml
+              - settings_data.json # Uncomment this line to avoid resetting theme settings' > config.yml
 
       - run:
           name: Deploy
