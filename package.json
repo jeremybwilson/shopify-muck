@@ -16,7 +16,7 @@
     "react-dom": "~16.4.2"
   },
   "scripts": {
-    "bootstrap": "npm i && sudo bash slate_build_react_shim.sh",
+    "bootstrap": "npm i && cp -fr ./.circleci/build-js.js ./node_modules/@shopify/slate-tools/lib/tasks",
     "build": "slate build",
     "deploy": "slate deploy",
     "start": "slate deploy && slate watch",
