@@ -5,6 +5,11 @@ defaults: &defaults
   docker:
     - image: circleci/node:8.11.3-browsers
 
+general:
+  branches:
+    only:
+      - develop # list of branches to build
+
 version: 2
 jobs:
   build:
@@ -60,7 +65,7 @@ jobs:
               store: muckboot-dev.myshopify.com
               ignore_files:
                 - settings_data.json # Uncomment this line to avoid resetting theme settings' > ./config.yml
-                
+
       - run:
           name: Deploy
           command: npm run deploy
