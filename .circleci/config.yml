@@ -53,11 +53,11 @@ jobs:
       - run:
           name: Generate dev env setting
           command: |
-            echo "password: $SLATE_PASSWORD
-            theme_id: 35212197986
+            echo 'password: $SLATE_PASSWORD
+            theme_id: "35212197986"
             store: muckboot-dev.myshopify.com
             ignore_files:
-              - settings_data.json # Uncomment this line to avoid resetting theme settings" > ./config.yml
+              - settings_data.json # Uncomment this line to avoid resetting theme settings' > ./config.yml
 
       - run: 
           name: Read the Config.yml File
