@@ -62,8 +62,8 @@ Thumbs.db
 _site
 /.idea
 /.vscode
+/config.yml
 secrets.json
 .jekyll-metadata
 .ruby-version
-config.yml
 settings_data.json
