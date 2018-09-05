@@ -53,10 +53,9 @@ jobs:
       - run:
           name: Generate dev env setting
           command: |
-            slatePW=$SLATE_PASSWORD;
             echo '
             development:
-              password: $slatePW
+              password: ${SLATE_PASSWORD}
               theme_id: "35212197986"
               store: muckboot-dev.myshopify.com
               ignore_files:
