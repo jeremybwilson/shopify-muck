@@ -1,5 +1,9 @@
 #!/bin/bash 
-cd node_modules/@shopify/slate-tools/lib/tasks 
+echo "Current DIR: "
+pwd
+echo " "
+echo " "
+cd ./node_modules/@shopify/slate-tools/lib/tasks
 echo "
 _______________________SLATE v0.14 REACT SHIM_____________________
 SHIMMING...
