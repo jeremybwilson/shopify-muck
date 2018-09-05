@@ -576,6 +576,7 @@ $navBarDesktopHeight: 80px;
      *   (would have combined them, but its all already setup in theme)
      * ---------------------------------------------- */
     $navMobileMenuGutter: 35px;
+    $navMobileSitesHeight: 60px;
 
     #nav-menu-mobile {
         display: block;
@@ -625,7 +626,7 @@ $navBarDesktopHeight: 80px;
         // ACCORDION : Top Level
         #accordion {
             text-align: left;
-            padding: 0 2px; //Aligns the titles to the left edge matching search underline
+            padding: 0 2px 60px; //Aligns the titles to the left edge matching search underline
             @include fontSize( 16px );
 
             li { 
@@ -728,6 +729,96 @@ $navBarDesktopHeight: 80px;
                                 border-bottom: 4px solid transparent;
                                 border-left: 8px solid {{ settings.nav_links_hover }};
                             }
+                        }
+                    }
+                }
+            }
+        }
+
+        #nav-sites-picker-mobile {
+            position: fixed;
+            width: 100%;
+            height: $navMobileSitesHeight;
+            bottom: 0;
+            left: 0;
+
+            // OPEN : Mobile Sites-Picker is open
+            &.open ul.sites-picker {
+                li.site-picker-item:first-child:after {
+                    transform: translateY( -50% ) rotateZ( -90deg );
+                }
+
+                li.site-picker-item:not(:first-child) {
+                    opacity: 1;
+                    height: $navMobileSitesHeight;
+                    pointer-events: all;
+                }
+            }
+
+            // SITES PICKER : Primary UL Styles
+            ul.sites-picker {
+                @include flexbox;
+                @include flex-direction( column-reverse );
+                @include align-items( center );
+                position: absolute;
+                width: 100%;
+                height: auto;
+                bottom: 0;
+                cursor: pointer;
+                background: {{ settings.header_background }};
+
+                li.site-picker-item {
+                    @include flexbox;
+                    @include justify-content( center );
+                    position: relative; // For :after arrow
+                    transition: all 0.25s ease-in-out;
+                    height: $navMobileSitesHeight;
+                    width: 100%;
+                    border-top: $navMinorBorder;
+
+                    &:first-child {
+                        // TRAINGLE : CLOSED : Rightward Arrow
+                        &:after {
+                            width: 0; 
+                            height: 0; 
+                            position: absolute;
+                            top: 50%;
+                            transform: translateY( -50% );
+                            right: $navMobileMenuGutter;
+                            content: ""; // undo the preset arrow type
+                            border-top: 6px solid transparent;
+                            border-bottom: 6px solid transparent;
+                            border-left: 11px solid {{ settings.nav_links_hover }};
+                            transition: all 0.25s ease-in-out;
+                        }
+                    }
+
+                    &:not(:first-child) {
+                        opacity: 0;
+                        height: 0;
+                        pointer-events: none;
+                    }
+
+                    .inner-center {
+                        @include flexbox;
+                        @include align-items( center );
+                        width: 230px;
+                        height: 100%;
+                        text-decoration: none;
+
+                        .site-flag {
+                            width: 25px;
+                            padding-top: 7px; //Center flag-svg - flexbox doesn't do it quite right
+                            margin-right: 20px;
+                        }
+
+                        .site-name {
+                            @include fontSize( 16px );
+                            font-weight: $font-weight--book;
+                        }
+
+                        .site-arrow {
+                            display: none;
                         }
                     }
                 }

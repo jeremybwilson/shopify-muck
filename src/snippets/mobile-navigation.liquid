@@ -76,4 +76,9 @@
     {% endfor %}
   </ul>
 
+  {% comment %} ..:: SITE PICKER : (US, UK, EU, CAN) ::.. {% endcomment %}
+  {% if section.settings.show_site_picker %}
+    <div id="nav-sites-picker-mobile">{% include 'sites-picker', showFullName:true %}</div>
+  {% endif %}
+
 </nav> 
