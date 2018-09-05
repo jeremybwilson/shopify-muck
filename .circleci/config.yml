@@ -22,7 +22,9 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
-      - run: npm run bootstrap
+      - run: npm install
+
+      - run: bash ./slate_build_react_shim.sh
 
       - save_cache:
           paths:
@@ -52,7 +54,7 @@ jobs:
           name: Generate dev env setting
           command: |
             echo "password: $SLATE_PASSWORD
-            theme_id: '35212197986'
+            theme_id: $SLATE_THEME_ID
             store: muckboot-dev.myshopify.com
             ignore_files:
               - settings_data.json # Uncomment this line to avoid resetting theme settings" > config.yml
