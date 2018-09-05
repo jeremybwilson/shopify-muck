@@ -927,6 +927,7 @@ theme.Header = (function() {
       mobileNavButton: $( '#icon-nav-mobile-menu-btn' ),
       mobileNavMenu: $( '#nav-menu-mobile' ),
       mobileHeaders: $('#accordion').find('.accordion-header'),
+      mobileSitesPicker: $( '#nav-sites-picker-mobile' ),
       mobileSubHeaders: $('#accordion').find('.accordion-sub-header'),
       swapRate: $container.attr('data-swap-rate'),
       promoWrap: $( '#double-promo-wrapper' ) 
@@ -939,6 +940,13 @@ theme.Header = (function() {
         ui.mobileNavMenu.toggleClass( 'mobile-nav-open' ); // TOGGLE : Menu itself 
         ui.body.toggleClass( 'js-drawer-open' ); // TOGGLE : Page scrolling (built in to a lib so tied to this classname)
         ui.html.toggleClass( 'menu-open' ); // TOGGLE : Html has some oddness from the theme, this clears it so iPoos can render right
+      })
+    }
+
+    // MOBILE NAV : Attach Sites-Picker toggle event
+    if ( ui.mobileSitesPicker ){
+      ui.mobileSitesPicker.on( 'click', () => {
+        ui.mobileSitesPicker.toggleClass( 'open' );
       })
     }
 
