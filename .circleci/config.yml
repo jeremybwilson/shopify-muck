@@ -60,8 +60,8 @@ jobs:
               - settings_data.json # Uncomment this line to avoid resetting theme settings" > ./config.yml
 
       - run: 
-        name: Read the Config.yml File
-        command: while read line; do echo "$line"; done < ./config.yml
+          name: Read the Config.yml File
+          command: while read line; do echo "$line"; done < ./config.yml
 
       - run:
           name: Deploy
