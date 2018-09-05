@@ -47,24 +47,20 @@ jobs:
           # Must be absolute path or relative path from working_directory
           at: ~/repo
 
-        #Install slate to use slate commands (v0.14)
+        #Install slate to use slate deploy commands (v0.14)
       - run: sudo npm i -g @shopify/slate
 
       - run:
           name: Generate dev env setting
-          command: |
+          command: | #Change theme ID for each level 
             echo '
             development:
               password:' $SLATE_PASSWORD '
-              theme_id: "35212197986"
+              theme_id: "live"
               store: muckboot-dev.myshopify.com
               ignore_files:
                 - settings_data.json # Uncomment this line to avoid resetting theme settings' > ./config.yml
-
-      - run: 
-          name: Read the Config.yml File
-          command: while read line; do echo "$line"; done < ./config.yml
-
+                
       - run:
           name: Deploy
           command: npm run deploy
