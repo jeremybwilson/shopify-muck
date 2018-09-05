@@ -24,7 +24,7 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
-      - run: npm install
+      - run: npm run bootstrap
 
       - save_cache:
           paths:
@@ -32,8 +32,6 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       - run: sudo npm i -g @shopify/slate
-
-      - run: sudo npm run bootstrap
 
       # Persist the specified paths (workspace/echo-output) into the workspace for use in deploy job.
       - persist_to_workspace:
