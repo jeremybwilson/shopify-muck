@@ -16,16 +16,14 @@ jobs:
       - checkout
 
       # Download and cache dependencies
-      # - restore_cache:
-      #     keys:
-      #     - v1-dependencies-{{ checksum "package.json" }}
-      #     # fallback to using the latest cache if no exact match is found
-      #     - v1-dependencies-
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}-bootstrapped
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
 
       # NPM Install & Overwrite the slate build-js file with our custom one that compiles ES6 / React
       - run: npm run bootstrap
-
-      - run : while read line; do echo "$line"; done < ./node_modules/@shopify/slate-tools/lib/tasks/build-js.js
 
       # Save the cached setup
       - save_cache:
@@ -55,11 +53,15 @@ jobs:
       - run:
           name: Generate dev env setting
           command: |
-            echo 'password: $SLATE_PASSWORD
-            theme_id: "35212197986"
+            echo "password: $SLATE_PASSWORD
+            theme_id: 35212197986
             store: muckboot-dev.myshopify.com
             ignore_files:
-              - settings_data.json # Uncomment this line to avoid resetting theme settings' > config.yml
+              - settings_data.json # Uncomment this line to avoid resetting theme settings" > ./config.yml
+
+      - run: 
+        name: Read the Config.yml File
+        command: while read line; do echo "$line"; done < ./config.yml
 
       - run:
           name: Deploy
