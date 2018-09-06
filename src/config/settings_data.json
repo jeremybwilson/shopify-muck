@@ -1,0 +1,490 @@
+{
+  "presets": {
+  },
+  "current": {
+    "announcement_text_color": "#ffffff",
+    "announcement_bg_one": "#124431",
+    "announcement_bg_two": "#073322",
+    "header_background": "#fefffe",
+    "logo_color": "#000000",
+    "nav_links": "#164632",
+    "nav_links_hover": "#aa5131",
+    "nav_minor_border_color": "#cccccc",
+    "social_links": "#000000",
+    "social_links_hover": "#000000",
+    "background": "#ffffff",
+    "header_color": "#000000",
+    "text_color": "#000000",
+    "link_color": "#000000",
+    "link_hover_color": "#000000",
+    "sale_color": "#bc0000",
+    "dotted_color": "#e5e5e5",
+    "button_color": "#000000",
+    "button_text": "#ffffff",
+    "button_hover": "#000000",
+    "button_text_hover": "#ffffff",
+    "secondary_button_color": "#ddd",
+    "secondary_button_hover": "#ccc",
+    "secondary_button_text": "#000",
+    "navigation": "#000000",
+    "nav_color": "#ffffff",
+    "nav_hover_color": "#2c2c2c",
+    "nav_hover_link_color": "#ffffff",
+    "dropdown_background_color": "#000000",
+    "nav_dropdown_color": "#ffffff",
+    "dropdown_hover_background_color": "#282828",
+    "dropdown_hover_link_color": "#ffffff",
+    "directional_background": "#000000",
+    "directional_hover_background": "#ffffff",
+    "directional_color": "#ffffff",
+    "directional_hover_color": "#000000",
+    "swatch_color": "#000000",
+    "swatch_background": "#ffffff",
+    "swatch_border": "#000000",
+    "swatch_selected_color": "#ffffff",
+    "swatch_selected_background": "#000000",
+    "swatch_selected_border": "#000000",
+    "new_background": "#222",
+    "new_text": "#ffffff",
+    "sale_background": "#af0000",
+    "sale_text": "#ffffff",
+    "soldout_background": "#222",
+    "soldout_text": "#ffffff",
+    "icons": "#000000",
+    "icons_hover": "#272727",
+    "footer_background": "#ffffff",
+    "footer_color": "#000000",
+    "footer_border": "#e5e5e5",
+    "main_font": "karla_n4",
+    "nav_font": "karla_n4",
+    "heading_font": "montserrat_n7",
+    "announcement_text_size": 18,
+    "font_size": 13,
+    "h1_size": 24,
+    "h2_size": 20,
+    "h3_size": 18,
+    "h4_size": 16,
+    "h5_size": 14,
+    "nav_size": 13,
+    "dropdown_font_size": 13,
+    "navigation_transform": "uppercase",
+    "dropdown_transform": "uppercase",
+    "link_decoration": "underline",
+    "section_title_border": "bottom_only_short",
+    "border_weight": "3px",
+    "breadcrumb": true,
+    "quickview": true,
+    "vendor": false,
+    "details_align": "center",
+    "secondary_images_hover": "image_flip",
+    "cart_notes_enable": false,
+    "ajax_cart_method": "drawer",
+    "twittername": "\/\/twitter.com\/undergrndmedia",
+    "facebook_url": "\/\/facebook.com\/ugmedia",
+    "pinterest_url": "",
+    "tumblr_url": "",
+    "youtube_url": "",
+    "googleplus_url": "",
+    "instagram_id": "",
+    "popup": false,
+    "email_image": "",
+    "email_popup_title": "Add a title",
+    "email_popup_text": "Add some text",
+    "show_multiple_currencies": false,
+    "currency_format": "money_with_currency_format",
+    "supported_currencies": "INR GBP CAD USD AUD EUR JPY",
+    "default_currency": "USD",
+    "checkout_header_image": "",
+    "checkout_logo_image": "",
+    "checkout_logo_position": "left",
+    "checkout_logo_size": "medium",
+    "checkout_body_background_image": "",
+    "checkout_body_background_color": "#fff",
+    "checkout_input_background_color_mode": "white",
+    "checkout_sidebar_background_image": "",
+    "checkout_sidebar_background_color": "#fafafa",
+    "checkout_heading_font": "Helvetica Neue",
+    "checkout_body_font": "Helvetica Neue",
+    "checkout_accent_color": "#000000",
+    "checkout_button_color": "#000000",
+    "checkout_error_color": "#ff6d6d",
+    "cart_links": "#000000",
+    "cart_links_hover": "#000000",
+    "newsletter_color": "#ffffff",
+    "newsletter_background": "#2f2f2f",
+    "newsletter_hover": "#ffffff",
+    "pre_footer_icon_color": "#e4e4e4",
+    "newsletter_button_color": "#ffffff",
+    "newsletter_button": "#000000",
+    "newsletter_button_hover": "#535353",
+    "alternate_colors": true,
+    "image_flip": true,
+    "font-size": 13,
+    "email_popup_image": false,
+    "megadropdown_link": "",
+    "nav_promo_image": false,
+    "nav_promo_link": "\/collections\/all",
+    "mega_1_show": false,
+    "mega_1_links": "",
+    "mega_2_show": false,
+    "mega_2_links": "",
+    "mega_3_show": false,
+    "mega_3_links": "",
+    "mega_4_show": false,
+    "mega_4_links": "",
+    "nav_center": true,
+    "nav_height": "40",
+    "linklist_breakpoint": "8",
+    "main_nav": "main-menu",
+    "password_bg": "no_password_bg",
+    "max-height": false,
+    "desktop-image-height": "",
+    "tablet-image-height": "",
+    "mobile-image-height": "",
+    "mailchimp": "",
+    "sections": {
+      "header": {
+        "type": "header",
+        "blocks": {
+          "1522184323686": {
+            "type": "mega_menu",
+            "settings": {
+              "menu_item": "Women",
+              "nav_image": "shopify:\/\/shop_images\/nav-desktop-image-women.jpg",
+              "nav_promo_link": "shopify:\/\/collections\/women"
+            }
+          },
+          "1535652898841": {
+            "type": "mega_menu",
+            "settings": {
+              "menu_item": "Men",
+              "nav_image": "shopify:\/\/shop_images\/man-hiking-in-mountains.jpg",
+              "nav_promo_link": "shopify:\/\/collections\/men"
+            }
+          },
+          "1535652979932": {
+            "type": "mega_menu",
+            "settings": {
+              "menu_item": "Kids",
+              "nav_image": "shopify:\/\/shop_images\/nav-desktop-image-women.jpg",
+              "nav_promo_link": "shopify:\/\/collections\/kids"
+            }
+          },
+          "1535653033501": {
+            "type": "mega_menu",
+            "settings": {
+              "menu_item": "",
+              "nav_image": "",
+              "nav_promo_link": ""
+            }
+          }
+        },
+        "block_order": [
+          "1522184323686",
+          "1535652898841",
+          "1535652979932",
+          "1535653033501"
+        ],
+        "settings": {
+          "full_width_header": false,
+          "show_announcement_text": true,
+          "num_of_promo_banners": "2",
+          "announcement_text_one": "<div class=\"bold\">FREE SHIPPING<\/div> ON ORDERS $50 OR MORE",
+          "announcement_link_one": "http:\/\/google.com",
+          "announcement_text_two": "<div class=\"bold\">40% OFF YOUR PURCHASE.<\/div> NO CODE NEEDED.",
+          "announcement_link_two": "http:\/\/google.com",
+          "announcement_height": 60,
+          "announcement_swap_rate": 5,
+          "logo_size": 24,
+          "logo_transform": "uppercase",
+          "logo_weight": "bold",
+          "cart_icon": "cart",
+          "show_site_picker": true,
+          "site_picker_manifest": "US|United States|http:\/\/mysite.com,EU|European Union|http:\/\/eu.mysite.com,UK|United Kingdom|http:\/\/uk.mysite.com,FR|French-Canada|http:\/\/fr.mysite.com",
+          "show_search": true,
+          "main_nav": "main-menu",
+          "nav_center": true,
+          "nav_height": 60,
+          "linklist_breakpoint": 10
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "blocks": {
+          "1480972996114": {
+            "type": "menu",
+            "settings": {
+              "footer_nav": "footer"
+            }
+          }
+        },
+        "block_order": [
+          "1480972996114"
+        ],
+        "settings": {
+          "tel_text": "855-377-BOOT (2668)",
+          "tel_number": "18553772668",
+          "show_credit_cards": true,
+          "visit_brand_link_one": "http:\/\/www.xtratuf.com",
+          "visit_brand_image_one": "shopify:\/\/shop_images\/logo-xtratuf.png",
+          "visit_brand_link_two": "http:\/\/www.oliversafetyboots.com",
+          "visit_brand_image_two": "shopify:\/\/shop_images\/logo-oliver.png",
+          "visit_brand_link_three": "http:\/\/www.howardleight.com",
+          "visit_brand_image_three": "shopify:\/\/shop_images\/logo-howard.png",
+          "trust_icon_image_one": "shopify:\/\/shop_images\/logo-trust-trustwave.png",
+          "trust_icon_image_two": "shopify:\/\/shop_images\/logo-trust-norton.png",
+          "trust_icon_image_three": "shopify:\/\/shop_images\/logo-trust-mcafee.png"
+        }
+      },
+      "collection-template": {
+        "type": "collection-template",
+        "settings": {
+          "grid": 4,
+          "rows": 5,
+          "sort_by": true,
+          "filter_1_title": "Filter by X",
+          "sort_a": "",
+          "filter_2_title": "Filter by Y",
+          "sort_b": "",
+          "filter_3_title": "Filter by Z",
+          "sort_c": ""
+        }
+      },
+      "product-template": {
+        "type": "product-template",
+        "settings": {
+          "vendor": true,
+          "show_quantity": true,
+          "show_sku": true,
+          "product_variants": "swatches",
+          "use_swatch_images": true,
+          "swatch_shape": "circles",
+          "show_payment_button": false,
+          "show_controls": true,
+          "thumbnails": "right",
+          "zoom_image_position": "zoom_over_main",
+          "related_products": "right",
+          "popup_one": "",
+          "popup_two": "",
+          "popup_three": "",
+          "popup_four": true,
+          "show_social": true
+        }
+      },
+      "blog-template": {
+        "type": "blog-template",
+        "settings": {
+          "image": "",
+          "text": "<p>Add some descriptive text to your Blog page.<\/p>",
+          "show_date": true
+        }
+      },
+      "mobile-navigation": {
+        "type": "mobile-navigation",
+        "settings": {
+          "main_nav": "main-menu"
+        }
+      },
+      "article-template": {
+        "type": "article-template",
+        "settings": {
+          "show_date": true,
+          "show_icons": true
+        }
+      },
+      "search-template": {
+        "type": "search-template",
+        "settings": {
+          "grid": 4,
+          "rows": 6
+        }
+      },
+      "password-template": {
+        "type": "password-template",
+        "settings": {
+          "newsletter_details": "<p>Coming Soon<\/p><p>Signup for our newsletter and get updated when we launch our site <a href=\"https:\/\/example.com\/\">see our newsletter policy.<\/a><\/p>",
+          "text_size": 18,
+          "text_color": "#000000",
+          "logo": "",
+          "logo_max_width": "500",
+          "background_color": "#f5f5f5",
+          "background_image": "",
+          "show_overlay_color": true,
+          "background_overlay_color": "#f5f5f5",
+          "overlay_color_opacity": 40,
+          "border_color": "#000000",
+          "button_color": "#000000",
+          "button_text_color": "#ffffff"
+        }
+      },
+      "1522183752403": {
+        "type": "instagram",
+        "settings": {
+          "heading": "Follow us on Instagram",
+          "instagram_access_token": "260602821.17babc8.603ff23302bb4a8bb278eee311b608cc"
+        }
+      },
+      "1522184606640": {
+        "type": "slideshow",
+        "blocks": {
+          "1522184606640-0": {
+            "type": "image",
+            "settings": {
+              "image": "",
+              "mobile_image": "",
+              "heading": "Add a title to your image",
+              "subheading": "Tell your brand's story through images",
+              "cta_one_link": "",
+              "cta_one_button_text": "Add a button",
+              "cta_two_link": "",
+              "cta_two_button_text": "Add a button",
+              "caption_color_scheme": "white",
+              "custom_slide_main_color": "#ffffff",
+              "custom_slide_alt_color": "#164732",
+              "caption_horizontal": "left",
+              "caption_vertical": 50,
+              "caption_background": "transparent",
+              "caption_opacity": "0.1"
+            }
+          },
+          "1522184606640-1": {
+            "type": "image",
+            "settings": {
+              "image": "",
+              "mobile_image": "",
+              "heading": "Add a title to your image",
+              "subheading": "Tell your brand's story through images",
+              "cta_one_link": "",
+              "cta_one_button_text": "Add a button",
+              "cta_two_link": "",
+              "cta_two_button_text": "Add a button",
+              "caption_color_scheme": "white",
+              "custom_slide_main_color": "#ffffff",
+              "custom_slide_alt_color": "#164732",
+              "caption_horizontal": "left",
+              "caption_vertical": 50,
+              "caption_background": "transparent",
+              "caption_opacity": "0.1"
+            }
+          }
+        },
+        "block_order": [
+          "1522184606640-0",
+          "1522184606640-1"
+        ],
+        "settings": {
+          "full_width": true,
+          "slider_speed": 5
+        }
+      },
+      "1522184618318": {
+        "type": "text-columns-with-image",
+        "blocks": {
+          "1522184618318-0": {
+            "type": "text_block",
+            "settings": {
+              "image": "",
+              "link": "",
+              "heading_text": "Our collections",
+              "text": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>"
+            }
+          },
+          "1522184618318-1": {
+            "type": "text_block",
+            "settings": {
+              "image": "",
+              "link": "",
+              "heading_text": "Our collections",
+              "text": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>"
+            }
+          },
+          "1522184618318-2": {
+            "type": "text_block",
+            "settings": {
+              "image": "",
+              "link": "",
+              "heading_text": "Our collections",
+              "text": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>"
+            }
+          }
+        },
+        "block_order": [
+          "1522184618318-0",
+          "1522184618318-1",
+          "1522184618318-2"
+        ],
+        "settings": {
+          "heading": "Text columns with images",
+          "align_text": "left"
+        }
+      },
+      "1522184636076": {
+        "type": "image-with-text-overlay",
+        "settings": {
+          "image": "",
+          "section_height": 500,
+          "heading": "Heading",
+          "heading_font_size": 30,
+          "heading_font_weight": "normal",
+          "heading_text_color": "#000",
+          "subheading_text": "Pair text with a large full width image to give focus to areas of your store. Add a button to encourage clicks.",
+          "subheading_font_size": 16,
+          "subheading_font_weight": "normal",
+          "subheading_text_color": "#000",
+          "button_text": "Add a button",
+          "link": "",
+          "button_text_color": "#fff",
+          "button_color": "#000"
+        }
+      },
+      "1522184647329": {
+        "type": "featured-collection",
+        "settings": {
+          "heading": "Featured collection",
+          "homepage_collection": "",
+          "homepage_product_limit": 8,
+          "homepage_product_display": "carousel",
+          "products_per_row": 4
+        }
+      },
+      "1522184661202": {
+        "type": "image-with-text-overlay",
+        "settings": {
+          "image": "",
+          "section_height": 500,
+          "heading": "Heading",
+          "heading_font_size": 30,
+          "heading_font_weight": "normal",
+          "heading_text_color": "#000",
+          "subheading_text": "Pair text with a large full width image to give focus to areas of your store. Add a button to encourage clicks.",
+          "subheading_font_size": 16,
+          "subheading_font_weight": "normal",
+          "subheading_text_color": "#000",
+          "button_text": "Add a button",
+          "link": "",
+          "button_text_color": "#fff",
+          "button_color": "#000"
+        }
+      },
+      "newsletter": {
+        "type": "newsletter",
+        "settings": {
+          "heading": "Subscribe to our newsletter",
+          "newsletter_subheading": "<p>Signup for our newsletter to stay up to date on sales and events.<\/p>",
+          "newsletter_placeholder": "Enter Your Email Address",
+          "newsletter_error": "Please enter a valid e-mail address",
+          "newsletter_success": "<p>You have successfully joined our newsletter<\/p>",
+          "social_heading": "Connect With Us"
+        }
+      }
+    },
+    "content_for_index": [
+      "1522184606640",
+      "1522184618318",
+      "1522184636076",
+      "1522184647329",
+      "1522184661202",
+      "1522183752403"
+    ]
+  }
+}
