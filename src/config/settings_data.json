@@ -1,6 +1,5 @@
 {
-  "presets": {
-  },
+  "presets": {},
   "current": {
     "announcement_text_color": "#ffffff",
     "announcement_bg_one": "#124431",
@@ -79,13 +78,13 @@
     "secondary_images_hover": "image_flip",
     "cart_notes_enable": false,
     "ajax_cart_method": "drawer",
-    "twittername": "\/\/twitter.com\/undergrndmedia",
-    "facebook_url": "\/\/facebook.com\/ugmedia",
+    "twittername": "",
+    "facebook_url": "\/\/www.facebook.com\/muckbootco\/",
     "pinterest_url": "",
     "tumblr_url": "",
-    "youtube_url": "",
+    "youtube_url": "\/\/www.youtube.com\/channel\/UCDojhS0yZvveLz5JlHOwdhQ",
     "googleplus_url": "",
-    "instagram_id": "",
+    "instagram_id": "muckbootco",
     "popup": false,
     "email_image": "",
     "email_popup_title": "Add a title",
@@ -317,174 +316,208 @@
           "button_text_color": "#ffffff"
         }
       },
-      "1522183752403": {
-        "type": "instagram",
-        "settings": {
-          "heading": "Follow us on Instagram",
-          "instagram_access_token": "260602821.17babc8.603ff23302bb4a8bb278eee311b608cc"
-        }
-      },
-      "1522184606640": {
-        "type": "slideshow",
-        "blocks": {
-          "1522184606640-0": {
-            "type": "image",
-            "settings": {
-              "image": "",
-              "mobile_image": "",
-              "heading": "Add a title to your image",
-              "subheading": "Tell your brand's story through images",
-              "cta_one_link": "",
-              "cta_one_button_text": "Add a button",
-              "cta_two_link": "",
-              "cta_two_button_text": "Add a button",
-              "caption_color_scheme": "white",
-              "custom_slide_main_color": "#ffffff",
-              "custom_slide_alt_color": "#164732",
-              "caption_horizontal": "left",
-              "caption_vertical": 50,
-              "caption_background": "transparent",
-              "caption_opacity": "0.1"
-            }
-          },
-          "1522184606640-1": {
-            "type": "image",
-            "settings": {
-              "image": "",
-              "mobile_image": "",
-              "heading": "Add a title to your image",
-              "subheading": "Tell your brand's story through images",
-              "cta_one_link": "",
-              "cta_one_button_text": "Add a button",
-              "cta_two_link": "",
-              "cta_two_button_text": "Add a button",
-              "caption_color_scheme": "white",
-              "custom_slide_main_color": "#ffffff",
-              "custom_slide_alt_color": "#164732",
-              "caption_horizontal": "left",
-              "caption_vertical": 50,
-              "caption_background": "transparent",
-              "caption_opacity": "0.1"
-            }
-          }
-        },
-        "block_order": [
-          "1522184606640-0",
-          "1522184606640-1"
-        ],
-        "settings": {
-          "full_width": true,
-          "slider_speed": 5
-        }
-      },
-      "1522184618318": {
-        "type": "text-columns-with-image",
-        "blocks": {
-          "1522184618318-0": {
-            "type": "text_block",
-            "settings": {
-              "image": "",
-              "link": "",
-              "heading_text": "Our collections",
-              "text": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>"
-            }
-          },
-          "1522184618318-1": {
-            "type": "text_block",
-            "settings": {
-              "image": "",
-              "link": "",
-              "heading_text": "Our collections",
-              "text": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>"
-            }
-          },
-          "1522184618318-2": {
-            "type": "text_block",
-            "settings": {
-              "image": "",
-              "link": "",
-              "heading_text": "Our collections",
-              "text": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>"
-            }
-          }
-        },
-        "block_order": [
-          "1522184618318-0",
-          "1522184618318-1",
-          "1522184618318-2"
-        ],
-        "settings": {
-          "heading": "Text columns with images",
-          "align_text": "left"
-        }
-      },
-      "1522184636076": {
-        "type": "image-with-text-overlay",
-        "settings": {
-          "image": "",
-          "section_height": 500,
-          "heading": "Heading",
-          "heading_font_size": 30,
-          "heading_font_weight": "normal",
-          "heading_text_color": "#000",
-          "subheading_text": "Pair text with a large full width image to give focus to areas of your store. Add a button to encourage clicks.",
-          "subheading_font_size": 16,
-          "subheading_font_weight": "normal",
-          "subheading_text_color": "#000",
-          "button_text": "Add a button",
-          "link": "",
-          "button_text_color": "#fff",
-          "button_color": "#000"
-        }
-      },
-      "1522184647329": {
-        "type": "featured-collection",
-        "settings": {
-          "heading": "Featured collection",
-          "homepage_collection": "",
-          "homepage_product_limit": 8,
-          "homepage_product_display": "carousel",
-          "products_per_row": 4
-        }
-      },
-      "1522184661202": {
-        "type": "image-with-text-overlay",
-        "settings": {
-          "image": "",
-          "section_height": 500,
-          "heading": "Heading",
-          "heading_font_size": 30,
-          "heading_font_weight": "normal",
-          "heading_text_color": "#000",
-          "subheading_text": "Pair text with a large full width image to give focus to areas of your store. Add a button to encourage clicks.",
-          "subheading_font_size": 16,
-          "subheading_font_weight": "normal",
-          "subheading_text_color": "#000",
-          "button_text": "Add a button",
-          "link": "",
-          "button_text_color": "#fff",
-          "button_color": "#000"
-        }
-      },
       "newsletter": {
         "type": "newsletter",
         "settings": {
-          "heading": "Subscribe to our newsletter",
-          "newsletter_subheading": "<p>Signup for our newsletter to stay up to date on sales and events.<\/p>",
+          "heading": "Join Our Newsletter",
+          "newsletter_subheading": "<p>Sign Up Now For Exclusive Offers.<\/p>",
           "newsletter_placeholder": "Enter Your Email Address",
           "newsletter_error": "Please enter a valid e-mail address",
           "newsletter_success": "<p>You have successfully joined our newsletter<\/p>",
           "social_heading": "Connect With Us"
         }
+      },
+      "1535728526385": {
+        "type": "slideshow",
+        "blocks": {
+          "1535728526385-0": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/hero-desktop.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/hero_mobile.jpg",
+              "heading": "Boots That get things done",
+              "subheading": "",
+              "cta_one_link": "\/",
+              "cta_one_button_text": "Shop Now",
+              "cta_two_link": "\/",
+              "cta_two_button_text": "Shop By Size",
+              "caption_color_scheme": "white",
+              "custom_slide_main_color": "#ffffff",
+              "custom_slide_alt_color": "#164732",
+              "caption_horizontal": "right",
+              "caption_vertical": 50,
+              "caption_background": "rgba(0,0,0,0)",
+              "caption_opacity": "0.1"
+            }
+          }
+        },
+        "block_order": [
+          "1535728526385-0"
+        ],
+        "settings": {
+          "full_width": true,
+          "slider_speed": 3
+        }
+      },
+      "1536068961071": {
+        "type": "columns-carousel",
+        "blocks": {
+          "1536068961071-0": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/home-cold_weather.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/columns-mobile-sample.jpg",
+              "heading": "Cold Weather",
+              "svg_icon": "<svg class=\"icon icon-cold-weather\" version=\"1.1\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\" x=\"0px\" y=\"0px\" viewbox=\"0 0 25.3 27.8\" style=\"enable-background:new 0 0 25.3 27.8;\" xmlns:xlink=\"http:\/\/www.w3.org\/1999\/xlink\" xml:space=\"preserve\"><path fill=\"#ffffff\" d=\"M25.3,16.4c-0.1-0.3-0.3-0.5-0.6-0.5c-0.1,0-0.1,0-0.2,0l-4.8,1.3L14,13.9l5.7-3.3l4.8,1.3\n\tc0.4,0.1,0.7-0.1,0.8-0.5c0.1-0.4-0.1-0.7-0.5-0.8l-3.5-0.9l3.1-1.8c0.2-0.1,0.3-0.2,0.3-0.4c0-0.2,0-0.4-0.1-0.5\n\tc-0.2-0.3-0.6-0.4-0.9-0.2l-3.1,1.8L21.6,5c0.1-0.4-0.1-0.7-0.5-0.8c-0.4-0.1-0.7,0.1-0.8,0.5L19,9.4l-5.7,3.3V6.1l3.5-3.5\n\tc0.3-0.3,0.3-0.7,0-0.9c-0.3-0.3-0.7-0.3-0.9,0l-2.5,2.5V0.7C13.3,0.3,13,0,12.7,0C12.3,0,12,0.3,12,0.7v3.6L9.5,1.7\n\tc-0.3-0.3-0.7-0.3-0.9,0C8.4,1.8,8.3,2,8.3,2.2s0.1,0.3,0.2,0.5L12,6.1v6.6L6.3,9.4L5,4.7C4.9,4.3,4.5,4.1,4.2,4.2\n\tC3.8,4.3,3.6,4.7,3.7,5l0.9,3.5L1.5,6.7C1.2,6.5,0.8,6.6,0.6,7C0.5,7.1,0.5,7.3,0.5,7.5c0,0.2,0.2,0.3,0.3,0.4L4,9.7l-3.5,0.9\n\tc-0.4,0.1-0.6,0.5-0.5,0.8c0.1,0.4,0.5,0.6,0.8,0.5l4.8-1.3l5.7,3.3l-5.7,3.3l-4.8-1.3c-0.3-0.1-0.7,0.1-0.8,0.5\n\tc0,0.2,0,0.4,0.1,0.5c0.1,0.2,0.2,0.3,0.4,0.3L4,18.2l-3.1,1.8c-0.3,0.2-0.4,0.6-0.2,0.9C0.7,21,0.8,21.1,1,21.2\n\tc0.2,0,0.4,0,0.5-0.1l3.1-1.8l-0.9,3.5c-0.1,0.4,0.1,0.7,0.5,0.8c0.4,0.1,0.7-0.1,0.8-0.5l1.3-4.8l5.7-3.3v6.6l-3.5,3.5\n\tc-0.1,0.1-0.2,0.3-0.2,0.5c0,0.2,0.1,0.3,0.2,0.5c0.3,0.3,0.7,0.3,0.9,0l2.5-2.5v3.6c0,0.4,0.3,0.7,0.7,0.7c0.4,0,0.7-0.3,0.7-0.7\n\tv-3.6l2.5,2.5c0.3,0.3,0.7,0.3,0.9,0c0.1-0.1,0.2-0.3,0.2-0.5c0-0.2-0.1-0.3-0.2-0.5l-3.5-3.5v-6.6l5.7,3.3l1.3,4.8\n\tc0.1,0.4,0.5,0.6,0.8,0.5c0.4-0.1,0.6-0.5,0.5-0.8l-0.9-3.5l3.1,1.8c0.2,0.1,0.3,0.1,0.5,0.1c0.2,0,0.3-0.2,0.4-0.3\n\tc0.2-0.3,0.1-0.7-0.2-0.9l-3.1-1.8l3.5-0.9c0.2,0,0.3-0.2,0.4-0.3C25.3,16.8,25.3,16.6,25.3,16.4z\"><\/path><\/svg>",
+              "png_icon": "",
+              "link": "\/",
+              "cta_text": "Shop Now"
+            }
+          },
+          "1536068961071-1": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/home-work.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/columns-mobile-sample.jpg",
+              "heading": "Work",
+              "svg_icon": "<svg version=\"1.1\" class=\"icon icon-work\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\" x=\"0px\" y=\"0px\" viewbox=\"0 0 32.1 31.8\" style=\"enable-background:new 0 0 32.1 31.8;\" xmlns:xlink=\"http:\/\/www.w3.org\/1999\/xlink\" xml:space=\"preserve\">\n<path fill=\"#ffffff\" d=\"M25,0l-2.6,2.5c-1.6,1.6-1.9,4.1-0.8,6l0.2,0.4L8.6,22.1c-0.2,0.2-0.2,0.4-0.2,0.6c0,0.2,0.1,0.4,0.2,0.6\n\tc0.3,0.3,0.9,0.3,1.2,0l5.3-5.3l4.8,4.7L15.5,27c-2,2-4.9,3.2-7.8,3.2c-1.7,0-3.3-0.4-4.7-1.1L2.9,29l-0.1-0.2\n\tc-2.2-4-1.3-9.1,2-12.4l4.4-4.3l2,2l1.2-1.1L9.2,9.8l-5.5,5.5c-4,3.9-4.8,10.1-2.1,14.7l0.1,0.2l0.2,0.1c1.7,1,3.8,1.6,5.9,1.6\n\tc3.3,0,6.6-1.3,8.9-3.6l5.5-5.5l-5.9-5.9l6.8-6.7l0.4,0.2c2,1.2,4.5,0.8,6.1-0.8L32.1,7L25,0z M28.4,8.4c-0.6,0.6-1.5,1-2.4,1\n\tc-0.9,0-1.7-0.3-2.4-1c-0.6-0.6-1-1.5-1-2.4c0-0.9,0.4-1.7,1-2.4L25,2.3L29.8,7L28.4,8.4z\"><\/path>\n<\/svg>",
+              "png_icon": "",
+              "link": "\/",
+              "cta_text": "Shop Now"
+            }
+          },
+          "1536068961071-2": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/home-outdoor_activity.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/columns-mobile-sample.jpg",
+              "heading": "Outdoor Activity",
+              "svg_icon": "<svg version=\"1.1\" class=\"icon icon-outdoor-activity\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\" x=\"0px\" y=\"0px\" viewbox=\"0 0 32.8 24.2\" style=\"enable-background:new 0 0 32.8 24.2;\" xmlns:xlink=\"http:\/\/www.w3.org\/1999\/xlink\" xml:space=\"preserve\">\n<polygon fill=\"#ffffff\" points=\"22.5,5.8 15.5,18.4 17.4,18.4 22.5,9.3 29.9,22.5 2.9,22.5 13.5,3.5 16.3,8.5 17.3,6.8 13.5,0 0,24.2 \n\t32.8,24.2 \"><\/polygon>\n<\/svg>",
+              "png_icon": "",
+              "link": "\/",
+              "cta_text": "Shop Now"
+            }
+          },
+          "1536068961071-3": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/home-equestrian.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/columns-mobile-sample.jpg",
+              "heading": "Equestrian",
+              "svg_icon": "<svg version=\"1.1\" class=\"icon icon-equestrian\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\" x=\"0px\" y=\"0px\" viewbox=\"0 0 56.4 38.3\" style=\"enable-background:new 0 0 56.4 38.3;\" xmlns:xlink=\"http:\/\/www.w3.org\/1999\/xlink\" xml:space=\"preserve\">\n<path fill=\"#ffffff\" d=\"M5.7,6.1C5.6,6,5.5,5.9,5.5,6L5.3,6.2c0,0.1-0.1,0.2-0.1,0.4c-0.1,0.2,0.6,0,0.9,0C6.4,6.5,6,6.4,5.7,6.1z\n\t M56.3,19.9l-0.6-0.3c-1.2-0.6-3.3-1.7-4.5-3.7c-2.1-3.6-4.3-5.4-6.6-5.4c-0.5,0-0.9,0.1-1.2,0.1c-0.1,0-0.2,0.1-0.3,0.1h-0.5\n\tC40.9,9.3,38.8,9,37.5,9c-1.8,0-3.4,0.5-4.8,1c-1.1,0.4-2.2,0.7-3.1,0.8c-1.9,0.1-3.4-0.1-4.4-0.2c-0.2,0-0.4,0-0.6-0.1\n\tc-0.7-0.1-1.3-0.1-1.8-0.2v0c0,0,0,0,0,0l0-0.4h0v0l-0.1,0l-0.3-0.2c-0.2-0.1-0.3-0.2-0.5-0.3c0-0.2,0-0.3-0.1-0.5l0-0.4l-0.1-0.1\n\tl-0.2-0.1c-0.1-0.1-0.3-0.1-0.4-0.2c-0.1,0-0.1-0.1-0.2-0.1c0-0.1-0.1-0.2-0.1-0.4c0,0,0-0.1,0-0.1l-0.1-0.3l-0.3-0.1\n\tc-0.1,0-0.1,0-0.2-0.1c-0.1,0-0.2-0.1-0.2-0.1c0,0-0.1,0-0.1-0.1c-0.1-0.2-0.1-0.3-0.2-0.5l-0.1-0.3l-0.3-0.1c0,0-0.1,0-0.1,0\n\tC19,6.1,18.8,6,18.6,6c-0.1-0.2-0.2-0.3-0.3-0.5l-0.1-0.3h0l0,0l-0.3-0.1c-0.2,0-0.4-0.1-0.6-0.1c-0.1-0.2-0.2-0.3-0.3-0.5l-0.2-0.3\n\tl-0.3,0c-0.2,0-0.4,0-0.6-0.1c-0.1-0.2-0.3-0.3-0.4-0.5l-0.2-0.2h0l-0.3,0c-0.2,0-0.4,0-0.6,0c-0.1-0.1-0.2-0.2-0.3-0.3\n\tC14.1,3.1,14,3.1,14,3l-0.2-0.2l-0.3,0c-0.2,0-0.3,0-0.5,0.1c-0.1-0.1-0.2-0.1-0.2-0.2c-0.1-0.1-0.2-0.2-0.3-0.2l-0.1-0.1l-0.2-0.1\n\th0l-0.3,0.1c-0.1,0-0.2,0.1-0.3,0.1c0,0-0.1,0-0.1,0c-0.1-0.1-0.2-0.2-0.4-0.2c-0.1,0-0.1-0.1-0.2-0.1l-0.1,0l-0.2-0.2L10.1,2\n\tc-0.1,0-0.2,0.1-0.2,0.1c-0.1,0-0.1,0.1-0.2,0.1c-0.1,0-0.1-0.1-0.2-0.1C9.4,2,9.3,2,9.2,1.9L8.8,1.7L8,2.2C7.7,1.8,7.2,1.4,6.8,1.1\n\tC6.7,1,6.6,0.9,6.5,0.8L5.6,0L5.5,1.2L4.6,0.4L4.4,1.6c-0.1,0.5,0,1,0.1,1.5C4.6,3.4,4.7,3.8,4.7,4L4.6,4.1v0C3.6,5.1,2.1,7,1.2,8.4\n\tC0.7,9.1,0.4,9.5,0.3,9.9c0,0.1-0.1,0.2-0.1,0.3c-0.3,0.6,0,1.1,0.1,1.4c0,0,0.1,0.1,0.1,0.1c0,0.3,0.2,0.8,0.6,1\n\tc0.1,0.1,0.2,0.1,0.4,0.1c0.4,0.3,1.1,0.4,1.5,0.3c0.6-0.1,0.8-0.5,0.9-0.7c0.3-0.4,2-1.3,2.5-1.3c0.1,0,0.1,0,0.2,0\n\tc0.6,0,1.4-0.1,2.1-0.6c0.2-0.1,0.3-0.3,0.4-0.4c1.1,1.6,2.2,3.4,2.9,4.8c0.1,0.3,0.1,0.9,0,1.5c-0.1,1.2-0.3,2.9,0.8,4.6\n\tc-0.2,0.8-0.9,3-1.7,4.8c-0.3,0.6-0.5,1.3-0.8,1.9c-0.7,1.9-1.4,3.9-2.8,5.6c-0.4,0.5-0.8,0.8-1.2,1.2c-0.9,0.8-1.8,1.6-2.1,2.9\n\tl-0.2,0.8h3.9l-0.1-0.7c0-0.1,0-0.7,0.3-1c0.2-0.2,0.5-0.3,1-0.3l0.6,0l0.1-0.6c0.1-0.8,1.7-4,2.3-4.4c0.4-0.3,1.1-1.4,2.2-3.1\n\tc0.8-1.3,1.7-2.8,2.3-3.4l0,0c0.2-0.2,0.5-0.5,0.8-0.5c0.1,0,0.1,0,0.3,0c0,0.2,0,0.4-0.1,0.6c-0.3,2.9-0.5,4.5-0.1,5.2\n\tc0.4,0.9,1.1,1.2,2.1,1.7c0.3,0.1,0.6,0.3,1.1,0.5c0.4,0.2,0.7,0.4,1,0.6c0.9,0.5,1.4,0.8,2.6,0.8h0.1c1.9,0,2.6-0.9,3-1.9l0.3-0.7\n\tl-0.8-0.2c-1.1-0.2-1.6-0.4-1.9-0.5l-0.4-0.2l-0.3,0.8c-0.2,0.4-0.8,0.3-0.7-0.2c0-0.1,0.2-0.9,0.2-0.9l-0.5,0c-0.3,0-0.6,0-0.8,0\n\tc-0.5,0-0.9,0-1.4-0.1c-0.3,0-0.5-0.1-0.6-0.2c-0.1-0.1-0.1-0.3,0-0.6c0-0.1,0.3-0.7,0.5-1.1c0.5-1,1.2-2.2,1.6-3.6\n\tc1.8-0.2,3.8-0.5,5.2-0.9c2-0.6,4.4-1.5,6.2-2.3c0,0.2,0,0.3,0,0.5c0.2,2,0.5,5.3,0.2,6.4c-0.4,1.4-2.6,4.7-3.4,5.8\n\tc-0.3,0.4-0.8,0.8-1.3,1.2c-1,0.8-2.1,1.7-2.2,2.7L27,38.2l0.7,0c0.6,0,1.2,0,1.7,0c0.5,0,0.9,0,1.2,0l0.7,0l-0.1-0.7\n\tc-0.1-0.7,0-0.8,0.3-1c0,0,0.1-0.1,0.1-0.1c0.1-0.1,0.4-0.2,0.8-0.2l0.5,0.1l0.2-0.5c0.3-0.8,1.2-2.7,2.1-4.1c0.5-0.8,1-1.3,1.5-1.8\n\tc0.3-0.3,0.6-0.6,0.9-1c0.3-0.4,0.4-1.1,0.5-2c0.2-1.2,0.5-3.1,1.3-3.2l0,0c0.6,0.3,1.3,0.7,2,1c0.2,0.1,0.4,0.2,0.6,0.3\n\tc1.5,0.7,3.1,1.3,3.6,2.2c0.6,0.9,0.6,1.9,0.6,2.9c0,0.9,0,1.9,0.5,2.7c1,1.8,2.3,2,4.2,2.4l0.8,0.2l-0.1-0.9\n\tc-0.1-1.3-0.5-2.1-0.7-2.6c-0.1-0.1-0.1-0.2-0.1-0.3l0-0.1l-0.7,0.2c-0.9,0.3-1.3-0.3-0.4-0.8l0.6-0.3l-0.3-0.3\n\tc-0.6-0.7-0.9-1.7-0.9-2.8c0-0.4,0.1-0.8,0.1-1.2c0.1-0.9,0.2-1.8-0.3-2.5c-0.3-0.5-0.6-0.7-1.1-0.6c-0.2,0-0.4,0-0.9-0.2\n\tc-3-1.2-3-2-2.9-2.1c0-0.1,1.2-4.7,0.2-7.8c0.2,0.1,0.4,0.3,0.5,0.5c1,3.6,2.7,6.8,5,9.1c0.1,0.1,0.3,0.3,0.7,0.5l0.3,0.2l0.3-0.2\n\tc0.2-0.1,0.3-0.2,0.5-0.4c0.1,0,0.3,0.1,0.4,0.1l0.3,0.1l0.3-0.2c0.2-0.2,0.3-0.3,0.5-0.4c0.2,0,0.3,0,0.5,0.1l0.3,0l0.2-0.2\n\tc0.1-0.2,0.3-0.3,0.4-0.5c0.2,0,0.4,0,0.5,0l0.3,0l0.2-0.3c0.2-0.2,0.4-0.5,0.5-0.7l0.2-0.2L56.3,19.9z M19.7,27\n\tc-0.4,0.8-0.6,1.2-0.7,1.5c0,0.2-0.1,0.9,0.3,1.5c0,0,0.6,0.5,1.4,0.7c0.6,0.2,1.1,0.3,1.5,0.3h0c0,0.3,0.4,1,1.2,1\n\tc0.4,0,0.9,0,1.2-0.3c0.2,0.1,0.5,0.2,0.8,0.2c-0.3,0.2-0.7,0.4-1.4,0.4c0,0-0.1,0-0.1,0c-0.9,0-1.1-0.2-1.9-0.6\n\tc-0.3-0.2-0.6-0.4-1.1-0.6c-0.1,0-0.2-0.1-0.3-0.1l-0.6-0.3l-0.3-0.2c-0.9-0.5-1.2-0.6-1.4-1.1c-0.2-0.5,0.1-3.4,0.2-4.5\n\tc0-0.3,0.1-0.5,0.1-0.7c0.7,0,1.5-0.1,2.4-0.2C20.7,25.2,20.1,26.2,19.7,27z M37,26.8c-0.1,0.5-0.2,1.3-0.3,1.4\n\tc-0.2,0.3-0.5,0.5-0.8,0.8c-0.5,0.5-1,1.1-1.6,2c-0.9,1.3-1.6,2.9-2.1,3.9c-0.5,0-1,0.2-1.4,0.5c0,0-0.1,0.1-0.1,0.1\n\tC30.4,35.8,30,36.2,30,37c-0.4,0-0.8,0-1.2,0c0.4-0.4,0.9-0.8,1.4-1.2c0.6-0.5,1.1-0.9,1.5-1.4c0.9-1.1,3.2-4.6,3.7-6.3\n\tc0.3-1.2,0.1-4-0.2-6.9c0-0.4-0.1-0.7-0.1-0.9c0.3-0.2,0.6-0.3,0.8-0.4c0.2,0.1,0.5,0.6,0.9,1.4c0.3,0.7,0.9,1.3,1.6,1.8\n\tC37.5,23.8,37.2,25.5,37,26.8z M46.6,24.2c0.7,0.3,1.1,0.3,1.4,0.3c0,0,0,0,0.1,0.1c0.2,0.3,0.1,0.9,0,1.7c0,0.4-0.1,0.9-0.1,1.3\n\tc0,1.2,0.2,2.2,0.8,3.1c-0.3,0.2-0.4,0.5-0.5,0.8c-0.1,0.3,0.1,0.7,0.3,0.9c0.3,0.3,0.8,0.4,1.4,0.3c0.1,0.3,0.3,0.6,0.4,1.1\n\tc-1.3-0.3-1.8-0.6-2.4-1.6c-0.3-0.5-0.3-1.2-0.3-2.1c0-1.1,0-2.4-0.8-3.7c-0.8-1.2-2.4-1.9-4.2-2.7c-0.2-0.1-0.4-0.2-0.6-0.3\n\tc-1.3-0.6-3.7-1.7-4.2-2.8c-0.3-0.8-1-2-1.8-2.2c-0.3-0.1-0.7,0-1,0.3c-0.5,0.4-4.6,2.2-7.8,3.2c-1.4,0.4-3.5,0.7-5.3,0.9l-0.1,0\n\tc-0.8,0.1-3.7,0.2-3.9,0.3c-0.3,0-0.5,0-0.6,0c-0.5-0.1-1.3-0.1-2.1,0.9c-0.6,0.7-1.6,2.2-2.4,3.6c-0.7,1.1-1.6,2.5-1.9,2.8\n\tc-0.8,1-2.1,3.4-2.6,4.7C7.8,35,7.3,35.3,7,35.6C6.6,36,6.5,36.6,6.4,37l-1,0c0.3-0.5,0.5-1,1.1-1.5C7,35.1,7.8,34.6,8.2,34\n\tc1.3-1.9,2.5-3.9,3.2-5.8c0.2-0.7,0.5-1.3,0.7-1.9c1-2.3,1.8-5.1,1.8-5.3l0.1-0.3l-0.2-0.2c-1-1.5-0.9-2.9-0.7-4.1\n\tc0.1-0.8,0.2-1.5-0.2-2.2c-0.8-1.6-2.2-3.8-3.5-5.7C9.5,7.9,9.1,7.2,9,6.7c0-0.1,0-0.1,0-0.1L7.9,6.9c0,0,0,0.1,0,0.2\n\tc0.1,0.5,0.4,1.4,0,2C7.9,9.2,7.8,9.4,7.7,9.5C7.3,9.7,6.7,9.8,6.2,9.8c-0.1,0-0.1,0-0.2,0c-0.7,0.1-3,1.1-3.5,2\n\tc-0.1,0-0.4,0-0.5-0.1l-0.2-0.3l-0.2,0.1c0,0,0,0,0-0.1c0-0.2-0.1-0.4-0.2-0.6c0,0-0.1-0.1-0.1-0.1c0-0.1,0.1-0.2,0.1-0.3\n\tc0.2-0.3,0.3-0.7,0.8-1.3C2.9,8.2,3.8,7,4.6,6l0.2-0.2c0.3-0.4,0.7-0.8,0.9-1l0.1-0.1C6,4.5,6.1,4.4,6.1,4.4l0,0\n\tc0.4-0.3,0.2-0.6,0.1-1.1L6.2,1.8c0,0,0.6,0.3,1.1,0.9L8,3.8l0.9-0.6C9,3.3,9.2,3.4,9.4,3.5l0.3,0.1L10,3.5c0.1-0.1,0.2-0.1,0.4-0.2\n\tc0.2,0.1,0.3,0.2,0.5,0.4l0.2,0.2l0.3-0.1c0.2,0,0.3-0.1,0.5-0.1C12,3.8,12.1,4,12.3,4.1l0.2,0.2l0.3,0c0.2,0,0.4,0,0.5-0.1\n\tc0.1,0.1,0.3,0.3,0.5,0.4l0.2,0.2l0.2,0c0.2,0,0.4,0,0.6,0c0.1,0.2,0.3,0.3,0.4,0.5l0.2,0.2l0.2,0c0.2,0,0.4,0,0.6,0.1\n\tc0.1,0.2,0.2,0.3,0.3,0.5l0.1,0.2l0.2,0.1c0.2,0,0.4,0.1,0.6,0.1c0.1,0.2,0.2,0.3,0.3,0.5L17.8,7L18,7.1c0.2,0.1,0.4,0.1,0.6,0.2\n\tc0.1,0.2,0.1,0.3,0.2,0.5L18.9,8l0.2,0.1c0.2,0.1,0.4,0.2,0.6,0.2c0,0.2,0.1,0.3,0.1,0.5l0.1,0.3l0.2,0.1c0.2,0.1,0.3,0.2,0.5,0.3\n\tc0,0.1,0,0.3,0.1,0.4l0,0.3l0.2,0.2c0.2,0.1,0.3,0.2,0.5,0.3c0,0.1,0.4,0.7,0.4,0.8c0.7,0.1,1.5,0.3,2.6,0.4c0.2,0,0.3,0,0.6,0.1\n\tc1,0.1,2.6,0.3,4.6,0.2c1.2-0.1,2.3-0.5,3.5-0.9c1.4-0.5,2.8-1,4.4-1c1.1,0,3.1,0.2,4.5,1.5c0.3,0.3,0.6,0.7,0.7,0.8\n\tc0,0,0.1,0.1,0.1,0.1c1.2,1.9,0.7,6.1,0.2,7.8C42.4,22.5,45.6,23.8,46.6,24.2z M54.4,20.4l-0.3,0l-0.2,0.2c-0.1,0.1-0.3,0.3-0.4,0.4\n\tc-0.2,0-0.3,0-0.5-0.1l-0.3,0l-0.2,0.2c-0.1,0.1-0.3,0.3-0.5,0.4c-0.1,0-0.3-0.1-0.4-0.1l-0.3-0.1l-0.2,0.2\n\tc-0.1,0.1-0.3,0.2-0.4,0.3c0,0,0,0,0,0c-2.1-2.1-3.8-5.1-4.7-8.5c-0.1-0.5-0.5-1.2-1.6-1.5c0.1,0,0.1,0,0.2,0c1.8,0,3.6,1.6,5.5,4.8\n\tc1.2,2,3,3.1,4.4,3.9C54.5,20.4,54.4,20.4,54.4,20.4z\"><\/path>\n<\/svg>",
+              "png_icon": "",
+              "link": "\/",
+              "cta_text": "Shop Now"
+            }
+          },
+          "1536068961071-4": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/home-outdoor_activity.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/columns-mobile-sample.jpg",
+              "heading": "Casual",
+              "svg_icon": "<svg class=\"icon icon-casual\" version=\"1.1\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\" x=\"0px\" y=\"0px\" viewbox=\"0 0 30.5 33.8\" style=\"enable-background:new 0 0 30.5 33.8;\" xmlns:xlink=\"http:\/\/www.w3.org\/1999\/xlink\" xml:space=\"preserve\">\n<g>\n\t<path fill=\"#ffffff\" d=\"M27.9,28.3c0.2-0.7,0.3-1.9,0-3.7c-0.3-1.4-0.2-2.9,0.2-4.4c3.6-14.3,2.3-15.7,1.8-16.1\n\t\tC29.8,4.1,29.6,4,29.5,4h-5.3c0-0.5,0.1-1,0.1-1.4c0,0,0,0,0,0c0-1.3-0.2-2.1-0.6-2.5C23.6,0.1,23.4,0,23.3,0H11\n\t\tc-0.3,0-0.5,0.1-0.7,0.3c-0.2,0.2-0.2,0.5-0.1,0.7c0.1,0.3,0.2,0.8,0.3,1.5c0,0.1,0,0.1,0,0.2c0,0.1,0,0.1,0,0.2\n\t\tc0.8,3.8,2.2,12.4-0.7,16.5c-0.9,1.2-2,1.9-3.5,2.1l-4.1,0.5c-0.2,0-0.5,0-0.9,0.3c-0.5,0.4-0.9,1.1-1,2.2l-0.4,1.2\n\t\tc-0.3,0.9,0.2,1.9,1.1,2.2c1.1,0.4,3.2,1.1,5.2,1.5l-0.1,0.3c-0.3,0.9,0.2,1.9,1.1,2.2c1.9,0.7,5,1.7,7.5,1.7c1.1,0,2-0.2,2.8-0.6\n\t\tc2.7-1.6,4-0.3,4.1-0.3C21.8,33,21.9,33,22,33c0.7,0.1,4.5,0.6,5.6-0.7c1.2-1.4,0.5-3.6,0.5-3.7C28,28.5,28,28.4,27.9,28.3z\n\t\t M29.2,5.1c0.1,0.2,0.1,0.5,0.2,1H17.7c-0.1-0.4-0.2-0.7-0.2-1H29.2z M11.5,2.1c-0.1-0.4-0.2-0.8-0.2-1H23c0.1,0.2,0.1,0.5,0.2,1\n\t\tH11.5z M2.3,23.2c0.1,0,0.1,0,0.1,0l4.2-0.5c1.8-0.3,3.2-1.1,4.2-2.6c2.9-4.2,1.9-12.1,0.9-16.9h11.4c0,0.3,0,0.5-0.1,0.8h-5.9\n\t\tc-0.3,0-0.5,0.1-0.7,0.3c-0.2,0.2-0.2,0.5-0.2,0.7c0.1,0.3,0.2,0.8,0.3,1.5v0c0,0.1,0.1,0.3,0.1,0.4v0c0.9,4,2.1,12.3-0.6,16.4\n\t\tc-0.9,1.3-2,2-3.6,2.2l-4.1,0.5c0,0,0,0,0,0c-0.1,0-0.2,0-0.4,0.1c-4.9,0.1-6.3-1.2-6.5-1.6C1.7,23.5,2.1,23.2,2.3,23.2z\n\t\t M6.7,28.5c-2-0.3-4-1-5.1-1.4c-0.4-0.1-0.5-0.5-0.4-0.9l0.1-0.4C2,26.5,3.7,27.2,7,27.3C6.9,27.6,6.7,28,6.7,28.5z M26.8,31.6\n\t\tc-0.5,0.6-2.9,0.6-4.5,0.4c-0.5-0.4-2.3-1.5-5.2,0.2c-1.6,0.9-5.1,0.5-9.4-1.1c-0.4-0.1-0.5-0.5-0.4-0.9l0.1-0.4\n\t\tc0.9,0.7,2.7,1.5,6.4,1.5h0c3.5,0,7.9-0.7,13.3-2C27.3,29.9,27.4,30.9,26.8,31.6z M27,20c-0.4,1.6-0.5,3.3-0.2,4.8\n\t\tc0.4,1.9,0.1,3.1-0.1,3.5c-5.2,1.3-9.5,1.9-12.9,1.9h0c-4.6,0-5.8-1.2-6.1-1.6c0.2-1.1,0.5-1.4,0.7-1.4c0.1,0,0.1,0,0.1,0l4.2-0.5\n\t\tc1.8-0.3,3.3-1.2,4.3-2.7C20,19.7,18.8,11.5,18,7.2h11.4c0,0.9-0.2,2.1-0.4,3.8C28.4,14.1,27.6,17.6,27,20z\"><\/path>\n\t<path fill=\"#ffffff\" d=\"M16.8,6.9c-0.1-0.1-0.1-0.2-0.1-0.3c0,0,0-0.1,0-0.1C16.8,6.7,16.8,6.8,16.8,6.9z\"><\/path>\n\t<path fill=\"#ffffff\" d=\"M10.6,2.9c-0.1-0.1-0.1-0.2-0.1-0.3c0,0,0-0.1,0-0.1c0,0.1,0,0.1,0,0.2C10.6,2.8,10.6,2.9,10.6,2.9z\"><\/path>\n<\/g>\n<\/svg>",
+              "png_icon": "",
+              "link": "\/",
+              "cta_text": "Shop Now"
+            }
+          },
+          "1536068961071-5": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/home-work.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/columns-mobile-sample.jpg",
+              "heading": "Gardening",
+              "svg_icon": "<svg version=\"1.1\" class=\"icon icon-gardening\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\" x=\"0px\" y=\"0px\" viewbox=\"0 0 39.3 28.5\" style=\"enable-background:new 0 0 39.3 28.5;\" xmlns:xlink=\"http:\/\/www.w3.org\/1999\/xlink\" xml:space=\"preserve\">\n<path fill=\"#ffffff\" d=\"M30.3,6.2v6.2l-3.9,3.1V6.6h-2.2C23.7,2.9,20.5,0,16.6,0S9.6,2.9,9.1,6.6h-7c-0.7,0-1.4,0.4-1.8,1\n\tC-0.1,8.2-0.1,9,0.2,9.7L7,23.8v4.7h19l7.2-13.3h6.1L30.3,6.2z M7,20.4L1.6,9.1c-0.1-0.3,0-0.5,0-0.6s0.2-0.3,0.5-0.3H7V20.4z\n\t M16.6,1.5c3,0,5.6,2.2,6,5.1h-12C11.1,3.7,13.6,1.5,16.6,1.5z M32.3,13.8L25.1,27H8.5V8.1h16.3v10.4l6.9-5.5V9.8l3.9,3.9H32.3z\"><\/path>\n<\/svg>",
+              "png_icon": "",
+              "link": "",
+              "cta_text": "Shop Now"
+            }
+          }
+        },
+        "block_order": [
+          "1536068961071-0",
+          "1536068961071-1",
+          "1536068961071-2",
+          "1536068961071-3",
+          "1536068961071-4",
+          "1536068961071-5"
+        ],
+        "settings": {
+        }
+      },
+      "1536251685211": {
+        "type": "twin-promos",
+        "blocks": {
+          "1536251685211-0": {
+            "type": "text_block",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/twin-promo-2_desktop.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/twin-promo-2_mobile.jpg",
+              "link": "\/",
+              "heading_text": "Gilford Collection",
+              "text": "",
+              "cta_text": "Shop Now"
+            }
+          },
+          "1536251685211-1": {
+            "type": "text_block",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/twin-promo-1_desktop.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/twin-promo-1_mobile.jpg",
+              "link": "\/",
+              "heading_text": "New Kids Boots",
+              "text": "<p>Lorem ipsum dolor sit amet, cons ec tetur adipiscing elit<\/p>",
+              "cta_text": "Shop Now"
+            }
+          }
+        },
+        "block_order": [
+          "1536251685211-1",
+          "1536251685211-0"
+        ],
+        "settings": {
+          "full_width": false
+        }
+      },
+      "1536252750894": {
+        "type": "slideshow",
+        "blocks": {
+          "1536252750894-0": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/our-heritage_desktop.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/our-heritage_mobile.jpg",
+              "heading": "Our Heritage",
+              "subheading": "Lorem ipsum dolor sit amet, cons ec tetur adipiscing  dolor sit amet, cons edolor",
+              "cta_one_link": "\/",
+              "cta_one_button_text": "Learn More",
+              "cta_two_link": "",
+              "cta_two_button_text": "Add a button",
+              "caption_color_scheme": "white",
+              "custom_slide_main_color": "#ffffff",
+              "custom_slide_alt_color": "#164732",
+              "caption_horizontal": "center",
+              "caption_vertical": 50,
+              "caption_background": "rgba(0,0,0,0)",
+              "caption_opacity": "0.1"
+            }
+          }
+        },
+        "block_order": [
+          "1536252750894-0"
+        ],
+        "settings": {
+          "full_width": true,
+          "slider_speed": 3
+        }
       }
     },
     "content_for_index": [
-      "1522184606640",
-      "1522184618318",
-      "1522184636076",
-      "1522184647329",
-      "1522184661202",
-      "1522183752403"
+      "1535728526385",
+      "1536068961071",
+      "1536251685211",
+      "1536252750894"
     ]
   }
 }
