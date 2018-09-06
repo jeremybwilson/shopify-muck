@@ -70,7 +70,11 @@
 
   {{ content_for_header }}
 
+<!--begin-bc-sf-filter-css-->
+  {% include 'bc-sf-filter-style' %}
+<!--end-bc-sf-filter-css-->
 </head>
+
 
 <body class="gridlock shifter {% if template contains 'product' %}product{% elsif template contains 'collection' %}collection{% else %}{{ template }}{% endif %}">
   {% include 'timber-cart' %}
@@ -184,5 +188,8 @@
       document.documentElement.className = document.documentElement.className.replace("no-js","js");
   </script>
   <!-- Add any additional scripts below this line -->
+<!--begin-bc-sf-filter-js-->
+  {% include 'bc-sf-filter' %}
+<!--end-bc-sf-filter-js-->
 </body>
 </html>
