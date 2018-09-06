@@ -59,31 +59,44 @@
 
               </div><!-- .box-ratio -->
 
-            {% endif %}
+              {% comment %} Styling to accommodate the box ratio for lazy-loaded images {% endcomment %}
 
-            {% comment %} Styling to accommodate the box ratio for lazy-loaded images {% endcomment %}
+              <style>
 
-            <style>
-
-              {% if block.settings.mobile_image != blank %}
-                {% assign mobile_image_box_ratio = block.settings.mobile_image.height | append: ".0" | times: 1 | divided_by: block.settings.mobile_image.width | times: 100 | append: "%" %}
-
-                #slide--{{ block.id }} .box-ratio {
-                  padding-bottom: {{ mobile_image_box_ratio }};
-                }
-              {% endif %}
-
-              {% if block.settings.image != blank %}
                 {% assign image_box_ratio = block.settings.image.height | append: ".0" | times: 1 | divided_by: block.settings.image.width | times: 100 | append: "%" %}
 
-                @media screen and (min-width: 768px) {
+                {% if block.settings.mobile_image != blank %}
+                  {% assign mobile_image_box_ratio = block.settings.mobile_image.height | append: ".0" | times: 1 | divided_by: block.settings.mobile_image.width | times: 100 | append: "%" %}
+
+                  /* Mobile */
+
+                  #slide--{{ block.id }} .box-ratio {
+                    padding-bottom: {{ mobile_image_box_ratio }};
+                  }
+
+                {% else %}
+
                   #slide--{{ block.id }} .box-ratio {
                     padding-bottom: {{ image_box_ratio }};
                   }
-                }
 
-              {% endif %}
-            </style>
+                {% endif %}
+
+                {% if block.settings.image != blank and block.settings.mobile_image != blank %}
+
+                  /* Tablet and up */
+
+                  @media screen and (min-width: 768px) {
+                    #slide--{{ block.id }} .box-ratio {
+                      padding-bottom: {{ image_box_ratio }};
+                    }
+                  }
+
+                {% endif %}
+                
+              </style>
+
+            {% endif %}
 
             {% comment %} :: NO IMAGE - PLACEHOLDER :: {% endcomment %}
 
