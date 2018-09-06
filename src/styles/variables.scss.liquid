@@ -49,7 +49,7 @@ $font-weight--black: 800;
 
 @mixin p {
   font-weight: $font-weight--book;
-  line-height: 27px / 16px;
+  line-height: 27px / 16px * 1em;
   letter-spacing: .025em;
 
   @include fontSize(16px);
@@ -57,7 +57,7 @@ $font-weight--black: 800;
 
 @mixin h1 {
   font-weight: $font-weight--black;
-  line-height: 53px / 38px;
+  line-height: 53px / 38px * 1em;
   letter-spacing: .3em;
   text-transform: uppercase;
 
@@ -65,7 +65,7 @@ $font-weight--black: 800;
 }
 @mixin h2 {
   font-weight: $font-weight--black;
-  line-height: 50px / 30px;
+  line-height: 50px / 30px * 1em;
   letter-spacing: .25em;
   text-transform: uppercase;
 
@@ -73,7 +73,7 @@ $font-weight--black: 800;
 }
 @mixin h3 {
   font-weight: $font-weight--bold;
-  line-height: 24px / 25px;
+  line-height: 24px / 25px * 1em;
   letter-spacing: .25em;
   text-transform: uppercase;
 
@@ -82,7 +82,7 @@ $font-weight--black: 800;
 
 @mixin h4 {
   font-weight: $font-weight--bold;
-  line-height: 30px / 22px;
+  line-height: 30px / 22px * 1em;
   letter-spacing: .3em;
   text-transform: uppercase;
 
@@ -90,27 +90,27 @@ $font-weight--black: 800;
 }
 @mixin h5 {
   font-weight: $font-weight--bold;
-  line-height: 24px / 16px;
+  line-height: 24px / 16px * 1em;
   letter-spacing: .25em;
 
   @include fontSize(16px);
 }
 @mixin h6 {
   font-weight: $font-weight--bold;
-  line-height: 24px / 16px;
+  line-height: 24px / 16px * 1em;
   letter-spacing: .05em;
 
   @include fontSize(16px); 
 }
 @mixin h7 {
   font-weight: $font-weight--medium;
-  line-height: 27px / 16px;
+  line-height: 27px / 16px * 1em;
   letter-spacing: .025em;
 }
 
 @mixin h8 {
   font-weight: $font-weight--book;
-  line-height: 24px / 14px;
+  line-height: 24px / 14px * 1em;
   letter-spacing: .01em;
 
   @include fontSize(14px);
