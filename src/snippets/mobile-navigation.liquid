@@ -1,55 +1,84 @@
-<nav class="shifter-navigation">
-  <div class="search">
-    <form action="/search" method="get">
-      <input type="text" name="q" id="q" placeholder="{{ 'general.search.placeholder' | t }}" />
-    </form>           
+<nav id="nav-menu-mobile">
+  
+  {% comment %} :: SEARCH :: {% endcomment %}
+  <div id="nav-search-form" class="nav-search searchbox">
+    {% include 'nav-search-input' %}          
   </div>
-  <script type="text/javascript">
-    $(document).ready(function($) {
-      $('#accordion').find('.accordion-toggle').click(function(){
-        //Expand or collapse this panel
-        $(this).toggleClass('open');
-        $(this).next().slideToggle('fast');
-        //Hide the other panels
-        $(".accordion-content").not($(this).next()).slideUp('fast');
-      });
-      $('#accordion').find('.accordion-toggle2').click(function(){
-        //Expand or collapse this panel
-        $(this).addClass('open');
-        $(this).next().slideToggle('fast');
-        //Hide the other panels
-        $(".accordion-content2").not($(this).next()).slideUp('fast');
-      });        
-    });
-  </script>    
-  <ul id="accordion">    
-    {% for link in linklists[settings.main_nav].links %}
-    {% capture child_list_handle %}{{ link.title | handleize }}{% endcapture %}
-    {% if linklists[child_list_handle] and linklists[child_list_handle].links.size > 0 %}
-    <li class="accordion-toggle">{{ link.title }}</li>
-    <div class="accordion-content">
-      <ul class="sub">
-        {% for l in linklists[child_list_handle].links %}
-        {% capture child_list_handle %}{{ l.title | handleize }}{% endcapture %}
-        {% if linklists[child_list_handle] and linklists[child_list_handle].links.size > 0 %} 
-        <div class="accordion-toggle2">{{ l.title }}</div>
-        <div class="accordion-content2">
+
+  {% comment %} :: MOBILE MENU :: {% endcomment %}
+  <ul id="accordion">
+    {% assign menu = linklists[settings.main_nav] %}
+    {% for link in menu.links %}
+      
+
+      {% comment %} :: LEVEL 1 : SUB-NAV : Accordion (Has nested menus) :: {% endcomment %}
+      {% if link.links != blank %}
+        <li class="accordion-header accordion-toggle" aria-haspopup="true" aria-expanded="false">{{ link.title | escape }}</li>
+        
+        <div class="accordion-content">
           <ul class="sub">
-            {% for l in linklists[child_list_handle].links %}
-            <li><a href="{{ l.url }}">{{ l.title }}</a></li>
+            {% for sub_link in link.links %}
+
+
+              {% comment %} :: LEVEL 2 : SUB-NAV : First sub-nav has children nav elements :: {% endcomment %}
+              {% if sub_link.links != blank %}
+                
+                {% comment %} :: LEVEL 2 : Title :: {% endcomment %}
+                <div class="accordion-sub-header accordion-toggle" aria-haspopup="true" aria-expanded="false"><span>{{ sub_link.title | escape }}</span></div>
+                
+                {% comment %} :: LEVEL 2 : Nested Sub-Sub-Nav Menu :: {% endcomment %}
+                <div class="accordion-content2">
+                  <ul class="sub">
+                    {% for sub_sub_link in sub_link.links %}
+                      
+                      {% comment %} PREVENT : Entries that denote a gap for desktop (are named "-'){% endcomment %}
+                      {% if sub_sub_link.title != '-' %}
+
+                        {% comment %} PREVENT : Our pseudo-sub-headers from showing on mobile (name starts with "SUB-HEADER_") {% endcomment %}
+                        {% if sub_sub_link.title contains 'SUB-HEADER_' %}{% else %}
+                          <li {% if sub_sub_link.title contains 'Shop All' %} class="shop-all" {% endif %}>
+                            <a href="{{ sub_sub_link.url }}">{{ sub_sub_link.title }}</a>
+                          </li>
+                        {% endif %}
+
+                      {% endif %}
+
+                    {% endfor %}
+                  </ul>
+                </div>
+
+
+              {% comment %} 
+                :: LEVEL 2 : FLAT : Sub-topic has no nested elements :: 
+                  * Hides menu elements that are titled as "-" which mark space gaps on desktop
+              {% endcomment %}
+              {% elsif sub_link.title != '-' %} 
+
+                {% comment %}Prevent our pseudo-sub-headers from showing on mobile (name starts with "SUB-HEADER_") {% endcomment %}
+                {% if sub_link.title contains 'SUB-HEADER_' %}{% else %}
+                  <li class="greg link-sub-header {% if sub_sub_link.title contains 'Shop All' %} shop-all {% endif %}">
+                    <a href="{{ sub_link.url }}">{{ sub_link.title | escape }}</a>
+                  </li>
+                {% endif %}
+
+              {% endif %}
+
             {% endfor %}
           </ul>
         </div>
-        {% else %}
-        <li><a href="{{ l.url }}">{{ l.title }}</a></li>
-        {% endif %}
-        {% endfor %}
-      </ul>
-    </div>
-    {% else %}
-    <li>{{ link.title | link_to: link.url }}</li>
-    {% endif %}
-    {% endfor %}  
-  </ul>     
-</nav> 
 
+
+      {% comment %} :: LEVEL 1 : FLAT : Simple Menu (has no nested children) :: {% endcomment %}
+      {% elsif link.title != '-' %}
+        <li class="link-header"><a href="{{ link.url }}">{{ link.title | escape }}</a></li>
+      {% endif %}
+
+    {% endfor %}
+  </ul>
+
+  {% comment %} ..:: SITE PICKER : (US, UK, EU, CAN) ::.. {% endcomment %}
+  {% if section.settings.show_site_picker %}
+    <div id="nav-sites-picker-mobile">{% include 'sites-picker', showFullName:true %}</div>
+  {% endif %}
+
+</nav> 

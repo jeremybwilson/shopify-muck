@@ -88,11 +88,6 @@ if (window.NodeList && !NodeList.prototype.forEach) {
     };
   };
 
-  timber.init = function () {
-    timber.cacheSelectors();
-    timber.drawersInit();
-  };
-
   timber.drawersInit = function () {
     timber.RightDrawer = new timber.Drawers('CartDrawer', 'right', {
       'onDrawerOpen': ajaxCart.load
@@ -101,6 +96,12 @@ if (window.NodeList && !NodeList.prototype.forEach) {
 
   timber.getHash = function () {
     return window.location.hash;
+  };
+
+
+  timber.init = function () {
+    timber.cacheSelectors();
+    timber.drawersInit();
   };
 
   /*============================================================================
@@ -921,12 +922,67 @@ theme.Header = (function() {
   function Header(container) {
     const $container = this.$container = $(container);
     const ui = {
+      arrows: $( '#promo-arrow-left, #promo-arrow-right' ),
+      body: $( 'body' ),
       containerId: $container.attr('data-section-id'),
+      html: $( 'html' ),
+      mobileNavButton: $( '#icon-nav-mobile-menu-btn' ),
+      mobileNavMenu: $( '#nav-menu-mobile' ),
+      mobileHeaders: $('#accordion').find('.accordion-header'),
+      mobileSitesPicker: $( '#nav-sites-picker-mobile' ),
+      mobileSubHeaders: $('#accordion').find('.accordion-sub-header'),
       swapRate: $container.attr('data-swap-rate'),
-      promoWrap: $( '#double-promo-wrapper' ),
-      arrows: $( '#promo-arrow-left, #promo-arrow-right' )
+      promoWrap: $( '#double-promo-wrapper' ) 
     }
     const self = this;
+
+    // MOBILE NAV : Attach menu toggle event
+    if ( ui.mobileNavButton && ui.mobileNavMenu ) {
+      ui.mobileNavButton.on( 'click', () => {
+        ui.mobileNavMenu.toggleClass( 'mobile-nav-open' ); // TOGGLE : Menu itself 
+        ui.body.toggleClass( 'js-drawer-open' ); // TOGGLE : Page scrolling (built in to a lib so tied to this classname)
+        ui.html.toggleClass( 'menu-open' ); // TOGGLE : Html has some oddness from the theme, this clears it so iPoos can render right
+      })
+    }
+
+    // MOBILE NAV : Attach Sites-Picker toggle event
+    if ( ui.mobileSitesPicker ){
+      ui.mobileSitesPicker.on( 'click', () => {
+        ui.mobileSitesPicker.toggleClass( 'open' );
+      })
+    }
+
+
+    // MOBILE NAV : LEVEL 1 HEADER ACCORDION : Accordion Functionality
+    ui.mobileHeaders.click( function(){
+      const header = $(this);
+      
+      //Expand or collapse this panel
+      if ( !header.hasClass('open') ) {
+        $('.accordion-header').removeClass('open'); // Clear other major sections that are open
+      }
+      header.toggleClass('open');         // Add open class to the requested header
+      header.next().slideToggle('fast');  // Reveal accordion content for requested header
+      
+      //Hide the other panels
+      $(".accordion-content").not(header.next()).slideUp('fast');
+    });
+
+    // MOBILE NAV : LEVEL 2 - SUB-HEADER ACCORDION : Accordion Functionality
+    ui.mobileSubHeaders.click( function(){
+      const subHead = $(this);
+      
+      //Expand or collapse this panel
+      if ( !subHead.hasClass('open') ) {
+        $('.accordion-sub-header').removeClass('open'); // Clear other major sections that are open
+      }
+      subHead.toggleClass('open');             // Open this header
+      subHead.next().slideToggle('fast');     // Reveal requested panel
+      
+      //Hide the other panels
+      $(".accordion-content2").not(subHead.next()).slideUp('fast');
+    });
+
 
 
     // PROMO BANNER : If 2+ Promos enabled, connect swapping and arrow functionality
@@ -1570,33 +1626,6 @@ theme.Maps = (function() {
   Map.prototype = _.assignIn({}, Map.prototype, {});
 
   return Map;
-})();
-
-/*============================================================================
- Mobile Navigation
-==============================================================================*/
-theme.mobileNav = (function() {
-  function mobileNav(container) {
-
-  $('#accordion').find('.accordion-toggle').click(function(){
-    //Expand or collapse this panel
-    $(this).next().slideToggle('fast');
-    //Hide the other panels
-    $(".accordion-content").not($(this).next()).slideUp('fast');
-  });
-
-  $('#accordion').find('.accordion-toggle2').click(function(){
-    //Expand or collapse this panel
-    $(this).toggleClass('open');
-    $(this).next().slideToggle('fast');
-    //Hide the other panels
-    $(".accordion-content2").not($(this).next()).slideUp('fast');
-  });
-
-  }
-  mobileNav.prototype = _.assignIn({}, mobileNav.prototype, {});
-
-  return mobileNav;
 })();
 
 /*============================================================================
