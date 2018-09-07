@@ -1,0 +1,67 @@
+// COLLECTION.SCSS
+// -- sections/collection-template.liquid
+
+
+/*  COLLECTION : Core Styles
+ * ---------------------------------------------- */
+$filterTextColor: $color--dark-green-2;
+
+#shopify-section-collection-template {
+	
+	// FILTERS : WRAPPER : Filter List Region
+	.filter-wrap-desktop {
+		@include inline-flex;
+		@include align-items( center );
+		position: relative;
+		width: 100%;
+		padding: 15px 30px;
+		background: {{ settings.filter_bg }};
+
+
+		// FILTERS : LABEL : "Filter" on desktop
+		.filter-label {
+			color: $filterTextColor;
+			margin-bottom: 0;
+		}
+
+		// FILTERS : OPTIONS : Actual filter options + dropdowns
+		.filter-list-desktop {
+			margin-bottom: 0;
+
+			.bc-sf-filter-option-block {
+				margin-bottom: 0; 
+
+
+				.bc-sf-filter-block-title a {
+					border: none;
+					background: transparent;
+
+					// ARROW : Yes its after, no clue why they did a before tag, but w.e
+					&:before {
+						transform: rotate( 0deg );
+						border-bottom: none;
+						border-left: 5px solid transparent;
+                    	border-right: 5px solid transparent;
+                    	border-top: 8px solid {{ settings.nav_links_hover }};
+					}
+
+					span {
+						@include h7;
+						text-transform: uppercase;
+						font-weight: $font-weight--medium;
+						color: $filterTextColor;
+					}
+				}
+			}
+		} 
+
+
+		// FILTERS : SORT : Sorting option dropdown
+		.sort-options-desktop {
+			position: absolute;
+			right: 0;
+			top: 0;
+			width: auto; // prevents it acting like a block element
+		}
+	}
+}
