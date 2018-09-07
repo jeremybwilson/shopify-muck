@@ -12,48 +12,60 @@
   {%- assign product_limit = section.settings.grid | times: section.settings.rows -%}   
   {% paginate collection.products by product_limit %}
 
-  <div id="collection-description" class="desktop-12 mobile-3">
-    <h1 id="bc-sf-filter-collection-header">{{ collection.title }}</h1>
-    <div class="rte" id="bc-sf-filter-collection-description">{{ collection.description | remove: "[banner]" }}</div> 
-  </div>
+    {% comment %} :: DESCRIPTION - HIDE FOR NOW :: 
+      <div id="collection-description" class="desktop-12 mobile-3">
+        <h1 id="bc-sf-filter-collection-header">{{ collection.title }}</h1>
+        <div class="rte" id="bc-sf-filter-collection-description">{{ collection.description | remove: "[banner]" }}</div> 
+      </div>
+    {% endcomment %}
 
-  <div class="clear"></div>
 
-  <div id="full-width-filter" class="desktop-12 tablet-6 mobile-3">
-    <div id="bc-sf-filter-tree-h"></div>
-    <ul id="sortme">
-      {% if section.settings.sort_by %} 
-      <li id="bc-sf-filter-top-sorting" class="clearfix filter"></li>
-      {% endif %}
-    </ul>
-  </div>
-  
-  <div class="desktop-12 tablet-6 mobile-3">
-    <div id="bc-sf-filter-tree-mobile"></div>
-    <div id="bc-sf-filter-tree"></div>
-  </div>
-      
-  <div id="product-loop" data-bc-sort="{{ collection.default_sort_by }}">
-    {% assign products-per-row = section.settings.products-per-row %}
-    {% if collection.image %}
-    <div class="product-index {{ grid_item_width }}" data-alpha="{{ collection.title }}">     
-        {{ collection.image.src | collection_img_url: 'grande' | img_tag: collection_title }}     
-    </div>  
-    {% endif %}
-
-    {% for product in collection.products %}
-    <div class="product-index {{ grid_item_width }}" data-alpha="{{ product.title }}" data-price="{{ product.price }}">     
-      {% include 'product-listing' %}
+    {% comment %} :: FILTER - Desktop :: {% endcomment %}
+    <div id="full-width-filter" class="filter-wrap-desktop">
+      <h4 class="filter-label">FILTER</h4>
+      <div id="bc-sf-filter-tree-h" class="filter-list-desktop"></div>
+      <ul id="sortme" class="sort-options-desktop">
+        {% if section.settings.sort_by %} 
+          <li id="bc-sf-filter-top-sorting" class="clearfix filter"></li>
+        {% endif %}
+      </ul>
     </div>
-    {% endfor %}
-  </div>
+    
 
-  <div id="pagination" class="desktop-12 tablet-6 mobile-3">
-    <div id="bc-sf-filter-bottom-pagination"></div>
-  </div>
+    {% comment %} :: FILTER - Mobile :: {% endcomment %}
+    <div class="desktop-12 tablet-6 mobile-3">
+      <div id="bc-sf-filter-tree-mobile"></div>
+      <div id="bc-sf-filter-tree"></div>
+    </div>
+    
+
+    {% comment %} :: PRODUCT LIST :: {% endcomment %}
+    <div id="product-loop" data-bc-sort="{{ collection.default_sort_by }}">
+      {% assign products-per-row = section.settings.products-per-row %}
+      {% if collection.image %}
+        <div class="product-index {{ grid_item_width }}" data-alpha="{{ collection.title }}">     
+            {{ collection.image.src | collection_img_url: 'grande' | img_tag: collection_title }}     
+        </div>  
+      {% endif %}
+
+      {% for product in collection.products %}
+        <div class="product-index {{ grid_item_width }}" data-alpha="{{ product.title }}" data-price="{{ product.price }}">     
+          {% include 'product-listing' %}
+        </div>
+      {% endfor %}
+    </div>
+
+
+    {% comment %} :: PAGINATION :: {% endcomment %}
+    <div id="pagination" class="desktop-12 tablet-6 mobile-3">
+      <div id="bc-sf-filter-bottom-pagination"></div>
+    </div>
 
   {% endpaginate %}
 </div>
+
+
+
 
 <script>
   // Declare bcSfFilterConfig variable
@@ -91,8 +103,10 @@
   };
 </script>
 
-      {% schema %}
-      
+
+
+
+{% schema %}  
   {
     "name": "Collection page",
     "max_blocks":4,
