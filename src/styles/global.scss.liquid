@@ -1,7 +1,10 @@
 @charset "UTF-8";
 
 // note: use @include fontSize(__px) to indicate all font sizes.
-html { font-size: 16px; }
+html { 
+  font-size: 16px;
+  padding-bottom: 0 !important; // Cart drawer adds weird padding...
+}
 
 html, body {
   height: 100%;
@@ -39,4 +42,59 @@ body > .page-wrap {
 
 .homepage-section {
   margin-bottom: 40px;
+}
+
+// Page Background (Design wanted a gradient stylization)
+#PageContainer {
+  background: {{ settings.background }};
+  background: -moz-linear-gradient(top, #f8f7f8 140px, {{ settings.background }} 200px);
+  background: -webkit-linear-gradient(top, #f8f7f8 140px,{{ settings.background }} 200px);
+  background: linear-gradient(to bottom, #f8f7f8 140px,{{ settings.background }} 200px);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f8f7f8', endColorstr='{{ settings.background }}', GradientType=0 );
+}
+
+#content {
+  position: relative;
+  margin-top: 55px;
+}
+
+// Breadcrumbs 
+#breadcrumb {
+  @include h8;
+  @include fontSize( 16px );
+
+  position: relative;
+  transform: translateX( -50% );
+  left: 50%;
+  top: 57px;
+  width: 100vw;
+  max-width: 1400px;
+  margin-bottom: 20px;
+  padding-left: 26px;
+
+  @include mq( 'tablet-and-up' ) {
+    padding-left: 30px;
+  }
+
+  @include mq( 'lap-and-up' ) {
+    padding-left: 316px;
+    top: 38px;
+  }
+
+  a {
+    color: $color--gray-2;
+    text-transform: capitalize;
+    text-decoration: none;
+  }
+
+  .separator {
+    color: $color--gray-2;
+  }
+
+  .page-title {
+    @include h7;
+
+    color: $color--dark-green-2;
+    font-weight: $font-weight--bold;
+  }
 }
