@@ -511,13 +511,24 @@
           "full_width": true,
           "slider_speed": 3
         }
+      },
+      "1536266098177": {
+        "type": "instagram",
+        "settings": {
+          "heading": "#muckboots",
+          "text": "<p>Lorem ipsum dolor sit amet, coasins ec tetur adipiscing elit<\/p>",
+          "link": "\/",
+          "cta_text": "View all",
+          "instagram_access_token": ""
+        }
       }
     },
     "content_for_index": [
       "1535728526385",
       "1536068961071",
       "1536251685211",
-      "1536252750894"
+      "1536252750894",
+      "1536266098177"
     ]
   }
 }
