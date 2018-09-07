@@ -1111,7 +1111,7 @@ theme.Instagram = (function() {
     var template = $("#instagram-template").html();
     var userFeed = new Instafeed({
       get: 'user',
-      limit: 5,
+      limit: 4,
       userId: 'self',
       target: instafeedId,
       accessToken: instafeedEl.attr('data-access-token'),
