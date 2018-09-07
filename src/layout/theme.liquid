@@ -9,9 +9,9 @@
   <!-- Add any tracking or verification meta content below this line -->
   <!-- Facebook or Google Analytics tracking should be placed in your Online store > Preferences and not your theme -->
 
+
   <!-- Meta content
 ================================================== -->
-
   <title>
     {{ page_title }}{% if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif %}{% if current_page != 1 %} &ndash; Page {{ current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
   </title>
@@ -22,19 +22,21 @@
 
   {% include 'social-media-meta-tags' %}
 
+
   <!-- CSS
 ================================================== -->
-
   {{ 'stylesheet.css' | asset_url | stylesheet_tag }}
   {{ 'font-awesome.css' | asset_url | stylesheet_tag }}
   {{ 'queries.css' | asset_url | stylesheet_tag }}
   {{ 'theme.scss.css' | asset_url | stylesheet_tag }}
+  {% include 'bc-sf-filter-style' %}
+
 
   <!-- Typography
 ================================================== -->
-
   {% include 'google-fonts' %}
   <link rel="stylesheet" type="text/css" href="https://cloud.typography.com/6183294/6308592/css/fonts.css" />
+
 
   <!-- JS
 ================================================== -->
@@ -58,9 +60,9 @@
 	{% endif %}
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
+
   <!-- Favicons
 ================================================== -->
-
   <link rel="shortcut icon" href="{{ 'favicon.png' | asset_url }}">
 
   {% if template contains 'customers' %}
@@ -69,10 +71,6 @@
   {% endif %}
 
   {{ content_for_header }}
-
-<!--begin-bc-sf-filter-css-->
-  {% include 'bc-sf-filter-style' %}
-<!--end-bc-sf-filter-css-->
 </head>
 
 
@@ -81,8 +79,17 @@
 
   <div class="shifter-page{% if settings.ajax_cart_method == 'drawer' %} is-moved-by-drawer{% endif %}" id="PageContainer">
     <div class="page-wrap">
+
       {% section 'header' %}
       <div class="clear"></div>
+
+      {% comment %}
+        REACT : EXAMPLE #1
+        <div id="example-global-react" data-info-passed-to-react='{ "name": "greg" }'></div>
+      {% endcomment %}
+
+      
+      {% comment %} :: COLLECTION - Banner Image :: {% endcomment %}
       {% if template contains 'collection' %}
         {% if collection.description contains '[banner]' %}
           {% capture banner %}{{ collection.handle }}.jpg{% endcapture %}
@@ -92,24 +99,31 @@
         {% endif %}
       {% endif %}
 
-      {% comment %}
-        REACT : EXAMPLE #1
-        <div id="example-global-react" data-info-passed-to-react='{ "name": "greg" }'></div>
-      {% endcomment %}
 
+      {% comment %} :: HOME / BLOG / LIST-COLLECTIONS - No Wrapper or Breadcrumbs :: {% endcomment %}
       {% if template == 'index' or template contains 'blog' or template contains 'list-collections' %}
-      {{ content_for_layout }}
+        {{ content_for_layout }}
+
+
+      {% comment %} :: ALL OTHER PAGES :: {% endcomment %}
       {% else %}
-      <div id="content" class="row">
+
+        {% comment %} :: BREADCRUMBS :: {% endcomment %}
         {% if template != 'index' %}
           {% if settings.breadcrumb %}
             {% include 'breadcrumb' %}
           {% endif %}
         {% endif %}
-        {{ content_for_layout }}
-      </div>
+
+        {% comment %} :: PAGE CONTENT :: {% endcomment %}
+        <div id="content" class="row">
+          {{ content_for_layout }}
+        </div>
       {% endif %}
+
     </div>  <!-- close the page-wrap class -->
+
+    
     {% section 'newsletter' %}
     {% section 'footer' %}
   </div> <!-- close the shifter-page class -->
