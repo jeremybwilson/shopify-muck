@@ -8,13 +8,14 @@
 /*================ VARIABLES ================*/
 @import url('variables.scss.liquid');
 
-/*================ Sections ================*/
 
+/*================ Sections ================*/
 // please refer to global for any notes re:styling
 @import url('global.scss.liquid');
-@import url('sections/header.scss.liquid');
+@import url('./sections/header.scss.liquid');
 @import url('./sections/newsletter.scss.liquid');
 @import url('./sections/footer.scss.liquid');
+@import url('./sections/collection.scss.liquid');
 
 @import url('./sections/slideshow.scss.liquid');
 @import url('./sections/columns-carousel.scss.liquid');
