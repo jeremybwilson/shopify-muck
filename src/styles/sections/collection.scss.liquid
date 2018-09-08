@@ -4,64 +4,156 @@
 
 /*  COLLECTION : Core Styles
  * ---------------------------------------------- */
-$filterTextColor: $color--dark-green-2;
+$filterBg: {{ settings.filter_bg }};
+$filterTextColor: {{ settings.filter_text_color }};
+$filterArrowColor: {{ settings.filter_arrow_color }};
+$filterCheckboxBg: {{ settings.filter_checkbox_bg }};
 
 #shopify-section-collection-template {
-	
-	// FILTERS : WRAPPER : Filter List Region
-	.filter-wrap-desktop {
-		@include inline-flex;
-		@include align-items( center );
-		position: relative;
-		width: 100%;
-		padding: 15px 30px;
-		background: {{ settings.filter_bg }};
+    
+    // FILTERS : WRAPPER : Filter List Region
+    .filter-wrap-desktop {
+        @include inline-flex;
+        @include align-items( center );
+        position: relative;
+        width: 100%;
+        padding: 15px 30px;
+        background: $filterBg;
+        z-index: 25; // Prevent it going on top of navbar when scrolling down long lists of filters
 
 
-		// FILTERS : LABEL : "Filter" on desktop
-		.filter-label {
-			color: $filterTextColor;
-			margin-bottom: 0;
-		}
+        // FILTERS : LABEL : "Filter" on desktop
+        .filter-label {
+            color: $filterTextColor;
+            margin-bottom: 0;
+            margin-right: 20px; //for 1024 - 1240 spacing
+        }
 
-		// FILTERS : OPTIONS : Actual filter options + dropdowns
-		.filter-list-desktop {
-			margin-bottom: 0;
+        // FILTERS : OPTIONS : Actual filter Labels + Dropdown Lists
+        .filter-list-desktop {
+            margin-bottom: 0;
 
-			.bc-sf-filter-option-block {
-				margin-bottom: 0; 
+            .bc-sf-filter-option-block {
+                position: relative; // So the giant menu will align with items, comment out to make full width menus
+                margin-bottom: 0; 
+
+                // FILTER : WRAPPER : Padding Wrapper, didn't think we needed to go ham with nesting :p
+                .bc-sf-filter-block-content-inner {
+                    padding: 30px 15px 15px;
+                }
+
+                // FILTER : TITLE : Single filter title dropdown parent
+                .bc-sf-filter-block-title a {
+                    border: none;
+                    background: transparent;
+                    padding: 5px 32px 5px 9px; // 1024 - 1240 probs
+
+                    // ARROW : Yes its after, no clue why they did a before tag, but w.e
+                    &:before {
+                        transform: rotate( 0deg );
+                        border-bottom: none;
+                        border-left: 5px solid transparent;
+                        border-right: 5px solid transparent;
+                        border-top: 8px solid $filterArrowColor;
+                        transition: all 0.25s ease-in-out;
+                        margin-top: -5px;
+                    }
+
+                    // LABEL : Filter label for that dropdown set
+                    span {
+                        @include h7;
+                        text-transform: uppercase;
+                        font-weight: $font-weight--medium;
+                        color: $filterTextColor;
+                    }
+
+                    // SELECTED : Filter is opened by user
+                    &.selected {
+
+                        // ARROW : Arrow flips when option open
+                        &:before {
+                            transform: rotateX( 180deg );
+                            margin-top: -5px;
+                        }
+
+                        // MENU TAB : Little extra visual tab they built in for making menu look like single unit
+                        div { display: none; }
+                    }
+                }
+
+                // FILTER : LIST : Block of options for a given feature
+                .bc-sf-filter-block-content {
+                    background: $filterBg;
+                    border: none;
+                    width: 190px;
+
+                    ul.bc-sf-filter-option-multiple-list {
+
+                        // FILTER : OPTION : Parent list item for individual item in filter options
+                        li {
+                            display: block; // one item per row :D 
+                            width: 100%; // Default: 30% in inital styles
+                            margin-bottom: 15px;
+
+                            // FILTER : OPTION : link wrapper around the 3 spans of data 
+                            a {
+                                @include inline-flex;
+                                @include align-items( center );
+                            }
+
+                            // FILTER : OPTION : Text spans, color for all
+                            span {
+                                color: $filterTextColor;
+                            }
+
+                            // FILTER : OPTION : Checkbox styling (namespace from app stylesheet)
+                            input[type=checkbox]+a>span:first-child {
+                                top: 50%;
+                                transform: translateY( -54% ); // Center box for multi-line option cases
+                                background: $filterCheckboxBg;
+                            }
+                        }
+                    }
+                }
+            }
+        } 
 
 
-				.bc-sf-filter-block-title a {
-					border: none;
-					background: transparent;
+        // FILTERS : SORT : Sorting option dropdown
+        .sort-options-desktop {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: auto; // prevents it acting like a block element
+            height: 100%;
 
-					// ARROW : Yes its after, no clue why they did a before tag, but w.e
-					&:before {
-						transform: rotate( 0deg );
-						border-bottom: none;
-						border-left: 5px solid transparent;
-                    	border-right: 5px solid transparent;
-                    	border-top: 8px solid {{ settings.nav_links_hover }};
-					}
+            #bc-sf-filter-top-sorting {
+                @include inline-flex;
+                @include align-items( center );
+                height: 100%;
 
-					span {
-						@include h7;
-						text-transform: uppercase;
-						font-weight: $font-weight--medium;
-						color: $filterTextColor;
-					}
-				}
-			}
-		} 
+                .sort-label,
+                .styled-select {
+                    margin: 0;
+                }
 
+                // SORT : Side Label
+                .sort-label {
+                    @include inline-flex;
+                    text-transform: uppercase;
+                    color: $filterTextColor;
+                }
 
-		// FILTERS : SORT : Sorting option dropdown
-		.sort-options-desktop {
-			position: absolute;
-			right: 0;
-			top: 0;
-			width: auto; // prevents it acting like a block element
-		}
-	}
+                .styled-select {
+                    @include h7;
+                    @include inline-flex;
+                    text-transform: uppercase;
+                    color: $filterTextColor;
+                    border: none;
+                    float: none;
+                    padding: 0 10px;
+                }
+            }
+        }
+    }
 }
