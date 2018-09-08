@@ -55,7 +55,7 @@ var bcSfFilterTemplate = {
     'paginateHtml': '<span class="count"></span>{{previous}}{{pageItems}}{{next}}',
   
     // Sorting Template
-    'sortingHtml': '<p>' + bcSfFilterConfig.label.sorting + '</p><select class="styled-select">{{sortingItems}}</select>'
+    'sortingHtml': '<h4 class="sort-label">' + bcSfFilterConfig.label.sorting + '</h4><select class="styled-select">{{sortingItems}}</select>'
 };
 
 BCSfFilter.prototype.buildProductGridItem = function(data, index, totalProduct) {
