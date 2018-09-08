@@ -1,96 +1,103 @@
 <ul id="sortme">
+
  {% if section.settings.sort_by %} 
-  <li class="clearfix filter">
-    <p>{{ 'collections.sorting.title' | t }}</p> 
-    <select id="sort-by" class="styled-select">
-      <option value="manual">{{ 'collections.sorting.featured' | t }}</option>
-      <option value="price-ascending">{{ 'collections.sorting.price_ascending' | t }}</option>
-      <option value="price-descending">{{ 'collections.sorting.price_descending' | t }}</option>
-      <option value="title-ascending">{{ 'collections.sorting.az' | t }}</option>
-      <option value="title-descending">{{ 'collections.sorting.za' | t }}</option>
-      <option value="created-ascending">{{ 'collections.sorting.date_ascending' | t }}</option>
-      <option value="created-descending">{{ 'collections.sorting.date_descending' | t }}</option>
-      <option value="best-selling">{{ 'collections.sorting.best_selling' | t }}</option>
-    </select>
-  </li>
-<script>
-    Shopify.queryParams = {};
-    if (location.search.length) {
-      for (var aKeyValue, i = 0, aCouples = location.search.substr(1).split('&'); i < aCouples.length; i++) {
-        aKeyValue = aCouples[i].split('=');
-        if (aKeyValue.length > 1) {
-          Shopify.queryParams[decodeURIComponent(aKeyValue[0])] = decodeURIComponent(aKeyValue[1]);
+    <li class="clearfix filter">
+      <h4 class="sort-label">{{ 'collections.sorting.title' | t }}</h4> 
+      <select id="sort-by" class="styled-select">
+        <option value="manual">{{ 'collections.sorting.featured' | t }}</option>
+        <option value="price-ascending">{{ 'collections.sorting.price_ascending' | t }}</option>
+        <option value="price-descending">{{ 'collections.sorting.price_descending' | t }}</option>
+        <option value="title-ascending">{{ 'collections.sorting.az' | t }}</option>
+        <option value="title-descending">{{ 'collections.sorting.za' | t }}</option>
+        <option value="created-ascending">{{ 'collections.sorting.date_ascending' | t }}</option>
+        <option value="created-descending">{{ 'collections.sorting.date_descending' | t }}</option>
+        <option value="best-selling">{{ 'collections.sorting.best_selling' | t }}</option>
+      </select>
+    </li>
+
+
+  <script>
+      Shopify.queryParams = {};
+      if (location.search.length) {
+        for (var aKeyValue, i = 0, aCouples = location.search.substr(1).split('&'); i < aCouples.length; i++) {
+          aKeyValue = aCouples[i].split('=');
+          if (aKeyValue.length > 1) {
+            Shopify.queryParams[decodeURIComponent(aKeyValue[0])] = decodeURIComponent(aKeyValue[1]);
+          }
         }
       }
-    }
-    jQuery('#sort-by')
-    .val('{{ collection.sort_by | default: collection.default_sort_by  }}')
-         .bind('change', function() {
-      Shopify.queryParams.sort_by = jQuery(this).val();
-      location.search = jQuery.param(Shopify.queryParams);
-    });
-    $(document).on('shopify:section:load', function(event) {
       jQuery('#sort-by')
       .val('{{ collection.sort_by | default: collection.default_sort_by  }}')
            .bind('change', function() {
         Shopify.queryParams.sort_by = jQuery(this).val();
         location.search = jQuery.param(Shopify.queryParams);
       });
-    });
-  </script>  
+      $(document).on('shopify:section:load', function(event) {
+        jQuery('#sort-by')
+        .val('{{ collection.sort_by | default: collection.default_sort_by  }}')
+             .bind('change', function() {
+          Shopify.queryParams.sort_by = jQuery(this).val();
+          location.search = jQuery.param(Shopify.queryParams);
+        });
+      });
+    </script>  
   {% endif %}
   
 
-{% if section.settings.sort_a != blank %}                        
-  <li class="clearfix filter">
-{% assign tags = section.settings.sort_a  | replace: ' ,', ',' | replace: ', ', ',' | split: ',' %}    
-<p>{{ section.settings.filter_1_title }}</p>
-    <select class="styled-select coll-filter">
-      <option value="">{{ 'collections.filter.all' | t }}</option>
-      {% for tag in tags %}
-      {% if current_tags contains tag %}
-      <option value="{{ tag | handle }}" selected>{{ tag }}</option>
-      {% elsif collection.all_tags contains tag %}
-      <option value="{{ tag | handle }}">{{ tag }}</option>
-      {% endif %}
-      {% endfor %}
-    </select>
-  </li>
-{% endif %}
+  {% if section.settings.sort_a != blank %}                        
+    <li class="clearfix filter">
 
-{% if section.settings.sort_b != blank %}
-  <li class="clearfix filter">
-{% assign tags = section.settings.sort_b  | replace: ' ,', ',' | replace: ', ', ',' | split: ',' %}    
-<p>{{ section.settings.filter_2_title }}</p>
-    <select class="styled-select coll-filter">
-      <option value="">{{ 'collections.filter.all' | t }}</option>
-      {% for tag in tags %}
-      {% if current_tags contains tag %}
-      <option value="{{ tag | handle }}" selected>{{ tag }}</option>
-      {% elsif collection.all_tags contains tag %}
-      <option value="{{ tag | handle }}">{{ tag }}</option>
-      {% endif %}
-      {% endfor %}
-    </select>
-  </li>
-{% endif %}
+      {% assign tags = section.settings.sort_a  | replace: ' ,', ',' | replace: ', ', ',' | split: ',' %}    
+      <h4>{{ section.settings.filter_1_title }}</h4>
+      <select class="styled-select coll-filter">
+        <option value="">{{ 'collections.filter.all' | t }}</option>
+        
+        {% for tag in tags %}
+          {% if current_tags contains tag %}
+            <option value="{{ tag | handle }}" selected>{{ tag }}</option>
+          {% elsif collection.all_tags contains tag %}
+            <option value="{{ tag | handle }}">{{ tag }}</option>
+          {% endif %}
+        {% endfor %}
 
-{% if section.settings.sort_c != blank %}
-  <li class="clearfix filter">
-{% assign tags = section.settings.sort_c  | replace: ' ,', ',' | replace: ', ', ',' | split: ',' %}    
-<p>{{ section.settings.filter_3_title }}</p>
-    <select class="styled-select coll-filter">
-      <option value="">{{ 'collections.filter.all' | t }}</option>
-      {% for tag in tags %}
-      {% if current_tags contains tag %}
-      <option value="{{ tag | handle }}" selected>{{ tag }}</option>
-      {% elsif collection.all_tags contains tag %}
-      <option value="{{ tag | handle }}">{{ tag }}</option>
-      {% endif %}
-      {% endfor %}
-    </select>
-  </li>
-{% endif %}
+      </select>
+
+    </li>
+  {% endif %}
+
+  {% if section.settings.sort_b != blank %}
+    <li class="clearfix filter">
+    {% assign tags = section.settings.sort_b  | replace: ' ,', ',' | replace: ', ', ',' | split: ',' %}    
+    <h4 class="sort-label">{{ section.settings.filter_2_title }}</h4>
+        <select class="styled-select coll-filter">
+          <option value="">{{ 'collections.filter.all' | t }}</option>
+          {% for tag in tags %}
+          {% if current_tags contains tag %}
+          <option value="{{ tag | handle }}" selected>{{ tag }}</option>
+          {% elsif collection.all_tags contains tag %}
+          <option value="{{ tag | handle }}">{{ tag }}</option>
+          {% endif %}
+          {% endfor %}
+        </select>
+      </li>
+  {% endif %}
+
+  {% if section.settings.sort_c != blank %}
+    <li class="clearfix filter">
+  {% assign tags = section.settings.sort_c  | replace: ' ,', ',' | replace: ', ', ',' | split: ',' %}    
+  <h4 class="sort-label">{{ section.settings.filter_3_title }}</h4>
+      <select class="styled-select coll-filter">
+        <option value="">{{ 'collections.filter.all' | t }}</option>
+        {% for tag in tags %}
+        {% if current_tags contains tag %}
+        <option value="{{ tag | handle }}" selected>{{ tag }}</option>
+        {% elsif collection.all_tags contains tag %}
+        <option value="{{ tag | handle }}">{{ tag }}</option>
+        {% endif %}
+        {% endfor %}
+      </select>
+    </li>
+  {% endif %}
 
 </ul>  
                    
