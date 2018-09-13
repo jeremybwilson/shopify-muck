@@ -35,7 +35,7 @@
   {% assign products-per-row = section.settings.products_per_row %}
 
   {% for product in collection.products %}
-  <div  id="product-listing-{{ product.id }}" class="product-index {{ grid_item_width }}" data-alpha="{{ product.title }}" data-price="{{ product.price }}">
+  <div id="product-listing-{{ product.id }}" class="product-index {{ grid_item_width }}" data-alpha="{{ product.title }}" data-price="{{ product.price }}">
     {% include 'product-listing' %}
   </div>
   {% endfor %}
