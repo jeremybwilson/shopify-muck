@@ -36,7 +36,7 @@ $navBarDesktopHeight: 80px;
 #nav-bar-wrapper {
     position: relative;
     height: 50px;
-    width: 100vw;
+    width: 100%;
     padding: 0;
     z-index: 50; //entire wrapper, this relates to the header to rest of site so no need var
     transition: $navShadowAni;
@@ -73,8 +73,17 @@ $navBarDesktopHeight: 80px;
         position: relative;
         width: 100%;
         height: 100%;
-        max-width: 1400px;
+        max-width: 960px; //iPad
         padding: 0;
+
+        // 1220px is bootstrap break apparently, not 1240 like we setup in our MQ include, might change it?
+        @media only screen and ( min-width: 1220px ) {
+            max-width: 1200px;
+        }
+
+        @include mq( 'wide-and-up' ){
+            max-width: 1400px;
+        }
     }
 
 
@@ -107,7 +116,7 @@ $navBarDesktopHeight: 80px;
         // DESKTOP ( 1024+ )
         @include mq( 'lap-and-up' ) {
             top: 19px;
-            left: 200px;
+            left: 86px;
             width: 119px;
             height: 119px;
 
@@ -144,6 +153,10 @@ $navBarDesktopHeight: 80px;
             list-style: none;
             text-align: right;
             z-index: $zIndexButtons; //50
+
+            @include mq( 'lap-and-up' ) {
+                right: 0;
+            }
 
             .nav-item {
                 @include inline-flex;
@@ -443,7 +456,7 @@ $navBarDesktopHeight: 80px;
             list-style: none;
             height: 100%;
             width: 340px;
-            left: 320px;
+            left: 210px;
             z-index: $zIndexButtons;
 
             .nav-primary-link {
