@@ -55,29 +55,29 @@ body > .page-wrap {
 
 #content {
   position: relative;
-  margin-top: 55px;
+  padding: 0 0 100px 0;
 }
 
 // Breadcrumbs 
 #breadcrumb {
   @include h8;
   @include fontSize( 16px );
-
   position: relative;
-  transform: translateX( -50% );
-  left: 50%;
   top: 57px;
-  width: 100vw;
-  max-width: 1400px;
-  margin-bottom: 20px;
-  padding-left: 26px;
+  left: 0;
+  margin: 0 auto;
+  padding-left: 20px;
+
+  @include mq( 'phone' ) {
+    width: 100vw;
+  }
 
   @include mq( 'tablet-and-up' ) {
-    padding-left: 30px;
+    padding-left: 0;
   }
 
   @include mq( 'lap-and-up' ) {
-    padding-left: 310px;
+    padding-left: 200px;
     top: 38px;
   }
 
@@ -98,3 +98,7 @@ body > .page-wrap {
     font-weight: $font-weight--bold;
   }
 }
+
+
+.animate25 { transition: all 0.25s ease-in-out; }
+.animate50 { transition: all 0.50s ease-in-out; }
