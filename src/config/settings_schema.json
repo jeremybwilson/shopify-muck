@@ -212,6 +212,36 @@
         "label": "Filter Checkbox Background",
         "default": "#FEFFFE"
       },
+      {
+        "type": "color",
+        "id": "filter_divider_color",
+        "label": "Filter Divider Color",
+        "default": "#D8D8D8"
+      },
+      {
+        "type": "color",
+        "id": "filter_button_main_bg",
+        "label": "Main Button Background",
+        "default": "#164732"
+      },
+      {
+        "type": "color",
+        "id": "filter_button_main_text",
+        "label": "Main Button Text",
+        "default": "#FEFFFE"
+      },
+      {
+        "type": "color",
+        "id": "filter_button_alt_bg",
+        "label": "Alt Button Background",
+        "default": "#AA5131"
+      },
+      {
+        "type": "color",
+        "id": "filter_button_alt_text",
+        "label": "Alt Button Text",
+        "default": "#FEFFFE"
+      },
 
 
 
