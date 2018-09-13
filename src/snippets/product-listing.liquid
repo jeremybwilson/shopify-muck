@@ -1,3 +1,5 @@
+{% comment %} THIS FILE DOES NOTHING, IT IS NOT USED ON COLLECTION AT LEAST... {% endcomment %}
+
 <div class="prod-container">
   {% if product.available %}
    {% for col in product.collections %}
@@ -51,6 +53,12 @@
 
 
 <div class="product-info">
+  {% if settings.secondary_images_hover == 'alternate_colors' and product.images.size > 1 %}
+    <div class="prod-colors">
+      {% include 'product-listing-swatches' %}
+    </div>
+  {% endif %}
+  
   <a href="{{ product.url | within: collection }}">
     {% if settings.vendor %}<p>{{ product.vendor }}</p>{% endif %}
     <h3>{{ product.title }}</h3>
@@ -65,12 +73,6 @@
     {% endif %}
   </div>
 </div>
-
-{% if settings.secondary_images_hover == 'alternate_colors' and product.images.size > 1 %}
-  <div class="prod-colors">
-    {% include 'product-listing-swatches' %}
-  </div>
-{% endif %}
 
 {% if settings.quickview %}
   <a class="fancybox.ajax product-modal" rel="no-index nofollow" href="{{ product.url }}?view=quick">{{ 'products.general.quick_view' | t }}</a>
