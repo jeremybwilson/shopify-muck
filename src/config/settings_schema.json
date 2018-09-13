@@ -54,7 +54,7 @@
         "type": "color",
         "id": "header_background",
         "label": "Background",
-        "default": "#FFFFFF"
+        "default": "#fefffe"
       },
       {
         "type": "color",
@@ -182,6 +182,69 @@
         "label": "Secondary button text",
         "default": "#000"
       },
+
+
+      {
+        "type": "header",
+        "content": "Collection + Filters"
+      },
+      {
+        "type": "color",
+        "id": "filter_bg",
+        "label": "Filter Bar Background",
+        "default": "#F4F2EC"
+      },
+      {
+        "type": "color",
+        "id": "filter_text_color",
+        "label": "Filter Text Color",
+        "default": "#164732"
+      },
+      {
+        "type": "color",
+        "id": "filter_arrow_color",
+        "label": "Filter Arrow Color",
+        "default": "#AA5131"
+      },
+      {
+        "type": "color",
+        "id": "filter_checkbox_bg",
+        "label": "Filter Checkbox Background",
+        "default": "#FEFFFE"
+      },
+      {
+        "type": "color",
+        "id": "filter_divider_color",
+        "label": "Filter Divider Color",
+        "default": "#D8D8D8"
+      },
+      {
+        "type": "color",
+        "id": "filter_button_main_bg",
+        "label": "Main Button Background",
+        "default": "#164732"
+      },
+      {
+        "type": "color",
+        "id": "filter_button_main_text",
+        "label": "Main Button Text",
+        "default": "#FEFFFE"
+      },
+      {
+        "type": "color",
+        "id": "filter_button_alt_bg",
+        "label": "Alt Button Background",
+        "default": "#AA5131"
+      },
+      {
+        "type": "color",
+        "id": "filter_button_alt_text",
+        "label": "Alt Button Text",
+        "default": "#FEFFFE"
+      },
+
+
+
       {
         "type": "header",
         "content": "Navigation"
@@ -263,6 +326,8 @@
         "label": "Text hover",
         "default": "#000000"
       },
+
+
       {
         "type": "header",
         "content": "Product variant swatches"
@@ -303,6 +368,8 @@
         "label": "Swatch selected border",
         "default": "#000000"
       },
+
+
       {
         "type": "header",
         "content": "Product icons"
@@ -355,6 +422,8 @@
         "label": "Social share hover",
         "default": "#000000"
       },
+
+
       {
         "type": "header",
         "content": "Footer"

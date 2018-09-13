@@ -69,7 +69,6 @@ if (window.NodeList && !NodeList.prototype.forEach) {
  * ----------------------------------------------------------------------------------------------------
  */
 
-
   /* Jonathan Snook - MIT License - https://github.com/snookca/prepareTransition */
   (function(a){a.fn.prepareTransition=function(){return this.each(function(){var b=a(this);b.one("TransitionEnd webkitTransitionEnd transitionend oTransitionEnd",function(){b.removeClass("is-transitioning")});var c=["transition-duration","-moz-transition-duration","-webkit-transition-duration","-o-transition-duration"];var d=0;a.each(c,function(a,c){d=parseFloat(b.css(c))||d});if(d!=0){b.addClass("is-transitioning");b[0].offsetWidth}})}})(jQuery);
 
@@ -2356,37 +2355,26 @@ Events.on("quickview:load", function (container) {
 ==============================================================================*/
 theme.Collection = (function() {
   function Collection(container) {
+    const ui = {
+      collectionWrap: $( '#shopify-section-collection-template' ), //Can store this one b/c its in initial template
+      mobileFilterBtn: $( '#filter-button-mobile' ) //Don't store this as its rendered in js
+    }
 
-    // Sidebar Toggle for screens below 980px wide
-    var $Sidebar = $("#collection-sidebar");
-    $(document).on("click.toggleNav touch.toggleNav", ".show", function(){
-      $Sidebar.toggleClass("open");
-    });
+    // EVENTS : Bind DOM events when ready
+    $(document).ready( () => {
 
-
-    $('.accordion-side-menu').find('.accordion-toggle').click(function(){
-      //Expand or collapse this panel
-      $(this).toggleClass('open');
-      $(this).next().slideToggle('fast');
-      //Hide the other panels
-      $(".accordion-content").not($(this).next()).slideUp('fast');
-      $(".accordion-toggle").not($(this)).removeClass('open');
-
-    });
-    $('.accordion-side-menu').find('.accordion-toggle2').click(function(){
-      //Expand or collapse this panel
-      $(this).toggleClass('open');
-      $(this).next().slideToggle('fast');
-      //Hide the other panels
-      $(".accordion-content2").not($(this).next()).slideUp('fast');
-      $(".accordion-toggle2").not($(this)).removeClass('open');
+      // FILTER MENU : OPEN / CLOSE : Indicator for the whole filter menu
+      ui.mobileFilterBtn.click( () => {
+        ui.collectionWrap.toggleClass( 'filter-open' );
+      });
     });
 
   }
-  Collection.prototype = _.assignIn({}, Collection.prototype, {});
 
+  Collection.prototype = _.assignIn({}, Collection.prototype, {});
   return Collection;
 })();
+
 
 /*============================================================================
   Registering Sections
@@ -2398,7 +2386,7 @@ $(document).ready(function() {
   sections.register('instagram', theme.Instagram);
   sections.register('featured-collections', theme.FeaturedCollections);
   sections.register('homepage-products', theme.FeaturedProducts);
-  sections.register('collection-page', theme.Collection);
+  sections.register('collection-template', theme.Collection);
   sections.register('slideshow-section', theme.Slideshow);
   sections.register('columns-carousel-section', theme.ColumnsCarousel);
   sections.register('parallax-section', theme.Parallax);

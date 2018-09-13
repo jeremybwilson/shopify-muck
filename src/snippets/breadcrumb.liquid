@@ -1,4 +1,4 @@
-  <div id="breadcrumb" class="desktop-12">
+  <div id="breadcrumb" class="desktop-12 row">
     <a href="/" class="homepage-link" title="{{ 'general.breadcrumbs.home' | t }}">{{ 'general.breadcrumbs.home' | t }}</a>
     {% if template contains "product" %}
     {% if collection %}            
@@ -36,5 +36,7 @@
     <span class="separator"> / </span>
     <span class="page-title">{{ page_title }}</span>
     {% endif %}
+
+    <div id="results-count"></div>
   </div>
 <div class="clear"></div>
