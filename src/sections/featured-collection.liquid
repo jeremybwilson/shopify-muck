@@ -3,7 +3,12 @@
   {% assign prod_limit = section.settings.homepage_product_limit %}
   <div class="row">
     {% if section.settings.heading != blank %}
-    <h2 class="section-heading desktop-12 tablet-6 mobile-3"><a href="{{ collection.url }}">{{ section.settings.heading | escape }}</a></h2>
+    <div class="section-header">
+      <h2 class="section-heading desktop-12 tablet-6 mobile-3">{{ section.settings.heading | escape }}</h2>
+      <div class="cta">
+        <a href="{{ collection.url }}"><span>View All</span>{% include 'svg-icon-caret-right' %}</a>
+      </div>
+    </div>
     {% endif %}
     <div class="clear"></div>
     {% if section.settings.homepage_product_display == 'grid' %}

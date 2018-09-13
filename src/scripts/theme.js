@@ -1110,7 +1110,7 @@ theme.Instagram = (function() {
     var template = $("#instagram-template").html();
     var userFeed = new Instafeed({
       get: 'user',
-      limit: 5,
+      limit: 4,
       userId: 'self',
       target: instafeedId,
       accessToken: instafeedEl.attr('data-access-token'),
@@ -1327,23 +1327,20 @@ theme.FeaturedProducts = (function() {
 
     var initHomepageCarousel = function(productCarousel) {
       productCarousel.owlCarousel({
-        itemsCustom : [
-          [0, 2],
-          [450, 2],
-          [600, 2],
-          [700, 3],
-          [1000, 4],
-          [1200, 6],
-          [1400, 6],
-          [1600, 6]
-        ],
-        lazyLoad : true,
-        pagination : false,
-        navigation: true,
-        navigationText : false,
-        autoPlay : false,
-        stopOnHover : true
+        responsive: {
+          0 : {
+            items: 1
+          },
+          767 : {
+            items: 3
+          }
+        },
+        nav: true,
+        navText: [$('.product-carousel--prev'),$('.product-carousel--next')],
+        lazyLoad : true
       });
+
+
     };
 
     initHomepageCarousel($('.product-collection-carousel'));
@@ -1767,22 +1764,24 @@ $(document).ready(function() {
     pagination: true
   });
 
-  $(".product-collection-carousel").owlCarousel({
-    itemsCustom : [
-      [0, 2],
-      [450, 2],
-      [600, 2],
-      [700, 2],
-      [1000, 4],
-      [1200, 4],
-      [1400, 4],
-      [1600, 5]
-    ],
-    lazyLoad : true,
-    navigation : true,
-    navigationText: ["",""],
-    pagination: false
- });
+  // NOTE: Not sure why there's a secondary call for owlCarousel here, but if nothing else breaks before live, I'll take it out -BJ
+
+  /*  $(".product-collection-carousel").owlCarousel({
+      itemsCustom : [
+        [0, 2],
+        [450, 2],
+        [600, 2],
+        [700, 2],
+        [1000, 4],
+        [1200, 4],
+        [1400, 4],
+        [1600, 5]
+      ],
+      lazyLoad : true,
+      navigation : true,
+      navigationText: ["",""],
+      pagination: false
+   });*/
 
   // Custom Navigation Events
   $(".next").click(function(){

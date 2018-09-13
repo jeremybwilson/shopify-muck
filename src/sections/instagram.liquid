@@ -1,7 +1,10 @@
+{% comment %} TEMPLATE {% endcomment %}
+
 <script id="instagram-template" type="text/template">
   {% raw %}
-    <div class="all-fifth">
-      <a class="instagram-image-container" target="_blank" href="{{link}}" rel="ig" title="{{caption}}">
+    <div class="instagram-item">
+      <a class="instagram-image-container" target="_blank" href="{{link}}" rel="ig" title="{{caption}}" style="background-image: url({{image}}); ">
+        
         <img class="instagram-image" src="{{image}}" />
       </a>
     </div>
@@ -10,9 +13,32 @@
 
 <div class="homepage-section instagram-feed no-fouc index-section" data-section-id="{{ section.id }}" data-section-type="instagram">
   <section id="index-social" class="row">
-    {% if section.settings.heading != blank %}
-    <h2 class="section-heading desktop-12 mobile-3">{{ section.settings.heading | escape }}</h2>
+
+    {% if section.settings.heading != blank or section.settings.text != blank%}
+
+    <div class="text-box">
+      {% if section.settings.heading != blank %}
+      <h2>{{ section.settings.heading | escape }}</h2>
+      {% endif %}
+
+      {% if section.settings.text != blank %}
+      <div class="copy">{{ section.settings.text }}</div>
+      {% endif %}
+
+      {% comment %} CTA {% endcomment %}
+
+      {% if section.settings.cta_text != blank %}
+      <div class="cta">
+        {% if section.settings.link != blank %}<a href="{{ section.settings.link }}">{% endif %}
+          <span>{{ section.settings.cta_text }}</span> {% include 'svg-icon-caret-right-submit' %}
+        {% if section.settings.link != blank %}</a>{% endif %}
+      </div>
+      {% endif %}
+
+    </div><!-- .text-box -->
+
     {% endif %}
+
     <div class="clear"></div>
 
     {% assign token = section.settings.instagram_access_token %}
@@ -54,13 +80,29 @@
       "label": "Heading",
       "default": "Follow us on Instagram"
     },
-
-      {
-          "type": "textarea",
-          "id": "instagram_access_token",
-          "label": "Instagram access token",
-      	  "info": "Required for permission to show your Instagram content [instructions here](http://support.undergroundmedia.co.uk/customer/en/portal/articles/2386318-home-page---instagram-feed) for setup."
-      }
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Lorem ipsum dolor sit amet, coasins ec tetur adipiscing elit</p>"
+    },
+    {
+       "type": "url",
+         "id": "link",
+      "label": "Link"
+    },
+    {
+       "type": "text",
+         "id": "cta_text",
+      "label": "CTA text",
+    "default": "View All"
+    },    
+    {
+        "type": "textarea",
+        "id": "instagram_access_token",
+        "label": "Instagram access token",
+    	  "info": "Required for permission to show your Instagram content [instructions here](http://support.undergroundmedia.co.uk/customer/en/portal/articles/2386318-home-page---instagram-feed) for setup."
+    }
   ],
   "presets": [
     {
