@@ -1,4 +1,4 @@
-<div data-section-id="{{ section.id }}" class="collection-template">
+<div data-section-id="{{ section.id }}" class="collection-template" data-section-type="collection-template">
   
   {% case section.settings.grid %}
   {% when '2' or 2 %}
@@ -20,11 +20,15 @@
     {% endcomment %}
 
 
-    {% comment %} :: FILTER - Desktop :: {% endcomment %}
+    {% comment %} :: FILTER + SORT - Desktop Component :: {% endcomment %}
     <div id="full-width-filter" class="filter-wrap-desktop">
+      
+      {% comment %} :: RESULTS COUNT :: {% endcomment %}
+      {% comment %}<div id="results-count"></div>{% endcomment %}
+      
       <h4 class="filter-label">FILTER</h4>
       <div id="bc-sf-filter-tree-h" class="filter-list-desktop"></div>
-      <ul id="sortme" class="sort-options-desktop">
+      <ul id="sortme" class="sort-options animate25">
         {% if section.settings.sort_by %} 
           <li id="bc-sf-filter-top-sorting" class="clearfix filter"></li>
         {% endif %}
@@ -32,12 +36,27 @@
     </div>
     
 
-    {% comment %} :: FILTER - Mobile :: {% endcomment %}
-    <div class="desktop-12 tablet-6 mobile-3">
-      <div id="bc-sf-filter-tree-mobile"></div>
-      <div id="bc-sf-filter-tree"></div>
+
+    {% comment %} :: FILTER - Mobile Component :: {% endcomment %}
+    <div id="filter-list-mobile-wrap">
+      <div id="filter-list-button-wrap">
+        
+        {% comment %} FILTER BUTTON {% endcomment %}
+        <div id="filter-button-mobile">
+          <div id="bc-sf-filter-tree-mobile"></div>
+          <div id="filter-button-arrow"></div>
+        </div>
+      </div>
+
+      {% comment %} FILTER LIST {% endcomment %}
+      <div id="bc-sf-filter-tree">
+
+        {% comment %} RESET ALL BUTTON {% endcomment %}
+        <button class="bc-sf-filter-clear-all" onclick="clearAllFilterOptions(event)">Clear All</button>
+      </div>
     </div>
     
+
 
     {% comment %} :: PRODUCT LIST :: {% endcomment %}
     <div id="product-loop" data-bc-sort="{{ collection.default_sort_by }}">
