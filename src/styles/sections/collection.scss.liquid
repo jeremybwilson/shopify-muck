@@ -14,21 +14,128 @@ $filterBtnAltBg: {{ settings.filter_button_alt_bg }};
 $filterBtnAltText: {{ settings.filter_button_alt_text }};
 $filterBorder: 1px solid {{ settings.filter_divider_color }};
 
-.collection #product-loop { //Pulled from stylesheet.scss.liquid
-  padding-top: 30px;
-}
+$catalogItemTextColor: {{ settings.catalog_item_text_color }};
+$catalogItemPriceColor: {{ settings.catalog_item_price_color }};
+$catalogItemAccentColor: {{ settings.catalog_item_accent_color }};
 
 #shopify-section-collection-template {
 
+    /* COLLECTION : Product Grid + Item View
+     * ---------------------------------------------- */
     .collection-template {
         margin-top: 65px;
 
         @include mq( 'lap-and-up' ) {
             margin-top: 0;
         }
+
+        // CATALOG : Wrapper to the catalog items
+        #product-loop {
+            position: relative;
+            padding-top: 30px;
+            width: 110%; //Design has this wider than page edges, but the max-width will prevent page bound breakage
+            left: 50%;
+            transform: translateX( -50% );
+            max-width: 99vw; // Prevent breaking viewport bounds
+
+            // IMAGE : Product Image containment and layers
+            .prod-container {
+                position: relative;
+                height: 190px; // Adjust for mobile probs...
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                @include mq( 'tablet-and-up' ){
+                    height: 230px;
+                }
+
+                @include mq( 'lap-and-up' ) {
+                    height: 310px;
+                }
+
+                @include mq( 'desk-and-up' ) {
+                    height: 370px;
+                }
+
+                // IMAGE WRAPPER - OUTER : Extra layers to power some of UI features
+                .prod-image {
+                    width: 100%;
+                    height: 100%;
+
+                    // IMAGE WRAPPER - INNER : inner wrap around the actual images themselves
+                    .reveal {
+                        position: relative;
+                        width: 100%;
+                        height: 100%;
+
+                        img {
+                            max-height: 100%;
+                        }
+                    }
+                }
+            }
+
+            // TITLE : Wrapper around product title
+            .product-title-wrap {
+                text-decoration: none;
+
+                .product-title {
+                    @include h6;
+                    @include fontSize( 14px );
+                    letter-spacing: 0.1em;
+                    color: $catalogItemTextColor;
+                    text-transform: uppercase;
+
+                    @include mq( 'lap-and-up' ) {
+                        @include fontSize( 16px );
+                    }
+                }
+            }
+
+            // PRICE : Wrapper around price block
+            .product-price-wrap {
+                @include fontSize( 16px );
+                color: $catalogItemPriceColor;
+
+                .was,
+                .onsale {
+                    display: inline-block;
+                }
+
+                .was {
+                    margin-right: 5px;
+                    font-weight: $font-weight--bold;
+                    color: $catalogItemPriceColor;
+                }
+
+                .onsale {
+                    color: $catalogItemAccentColor;
+                    font-weight: $font-weight--bold;
+                }
+            }
+
+            // QUICKVIEW BUTTON : Button to show the quickview
+            a.product-modal {
+                @include h7;
+                @include fontSize( 14px );
+                background: $filterBtnAltBg;
+                color: $filterBtnAltText;
+                opacity: 0.85;
+                border-radius: 0;
+
+                @include mq( 'lap-and-up' ) {
+                    @include fontSize( 16px );
+                }
+            }
+        }
     }
     
-    // FILTERS : DESKTOP - WRAPPER : Filter List Region on Desktop
+
+    /* FILTERS : DESKTOP - WRAPPER 
+     *    Filter layout and setup on Desktop
+     * ---------------------------------------------- */
     .filter-wrap-desktop {
         @include inline-flex;
         @include align-items( center );
@@ -142,8 +249,8 @@ $filterBorder: 1px solid {{ settings.filter_divider_color }};
                         @include h6;
                         width: 100%;
                         outline: none;
-                        color: $filterBg;
-                        background: $filterTextColor; // Reverse it so the button matches convention
+                        color: $filterBtnMainText;
+                        background: $filterBtnMainBg; // Reverse it so the button matches convention
                     }
 
                     // LIST : The actual list itself
@@ -356,8 +463,10 @@ $filterBorder: 1px solid {{ settings.filter_divider_color }};
     }
 
 
-
-    // FILTERS : MOBILE - WRAPPER : Filter List Region on Mobile
+ 
+    /* FILTERS : MOBILE - WRAPPER
+     *    Filter layout and setup on Mobile
+     * ---------------------------------------------- */
     #filter-list-mobile-wrap {
 
         // FILTER : BUTTON - MOBILE : Filter open button for mobile sizes
@@ -568,7 +677,9 @@ $filterBorder: 1px solid {{ settings.filter_divider_color }};
 
 
 
-    // MOBILE + DESKTOP : Congruent styles, mostly for things like the iconography
+    /* FILTERS : GLOBAL (All Resolutions)
+     *    Congruent styles, Iconography, etc.
+     * ---------------------------------------------- */
     // FILTER CHECKBOX MARK : Mark that appears when selecting filters
     .bc-sf-filter-block-content ul li input[type=checkbox]+a.selected>span:first-child {
         &:before,
@@ -611,7 +722,7 @@ $filterBorder: 1px solid {{ settings.filter_divider_color }};
         }
     }
 
-    // MOBILE : OPEN EVENTS : When filter is open, filter-open class is appended
+    // FILTER OPEN CHANGES : When filter is open, filter-open class is appended
     &.filter-open {
         #filter-button-arrow {
             transform: rotateX( 180deg ); // flip arrow
@@ -626,8 +737,12 @@ $filterBorder: 1px solid {{ settings.filter_divider_color }};
 }
 
 
-// RESULTS COUNT : # of results on a collection page 
-//    (technically in breadcrumb.liquid, but only shows up for pages with filters)
+/* RESULTS COUNT : 
+ *    # of results on a collection page, only shown
+ *    when filters are present so only applies here.
+ *
+ *    (NOTE: #results-count in breadcrumbs.liquid)
+ * ---------------------------------------------- */
 #results-count {
     @include h7;
     @include fontSize( 16px );
