@@ -242,6 +242,25 @@
         "label": "Alt Button Text",
         "default": "#FEFFFE"
       },
+      {
+        "type": "color",
+        "id": "catalog_item_text_color",
+        "label": "Catalog Item Text Color",
+        "default": "#164732"
+      },
+      {
+        "type": "color",
+        "id": "catalog_item_price_color",
+        "label": "Catalog Item Price Color",
+        "default": "#525252"
+      },
+      {
+        "type": "color",
+        "id": "catalog_item_accent_color",
+        "label": "Catalog Item Accent Color",
+        "default": "#AA5131"
+      },
+
 
 
 

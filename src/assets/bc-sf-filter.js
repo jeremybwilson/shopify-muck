@@ -36,11 +36,11 @@ var bcSfFilterTemplate = {
 
                                 '<div class="product-info">' +
                                     '{{itemSwatch}}' +
-                                    '<a href="{{itemUrl}}"> ' +
+                                    '<a class="product-title-wrap" href="{{itemUrl}}"> ' +
                                         '{{itemVendor}}' +
-                                        '<h3>{{itemTitle}}</h3>' +
+                                        '<h3 class="product-title">{{itemTitle}}</h3>' +
                                     '</a>' +
-                                    '<div class="price">{{itemPrice}}</div>' +
+                                    '<div class="product-price-wrap">{{itemPrice}}</div>' +
                                 '</div>' +
                                 '{{itemQuickview}}' +
                             '</div>',
@@ -133,15 +133,18 @@ BCSfFilter.prototype.buildProductGridItem = function(data, index, totalProduct) 
     // Add price
     var itemPriceHtml = '';
     if (onSale) {
-        itemPriceHtml += '<div class="onsale">' + this.formatMoney(data.price_min, this.moneyFormat) + '</div>';
         itemPriceHtml += '<div class="was">' + this.formatMoney(data.compare_at_price_min, this.moneyFormat) + '</div>';
+        itemPriceHtml += '<div class="onsale">' + this.formatMoney(data.price_min, this.moneyFormat) + '</div>';
+        
     } else {
         itemPriceHtml += '<div class="prod-price">';
+        
         if (priceVaries) {
             itemPriceHtml += bcSfFilterConfig.label.from_price + ' ' + this.formatMoney(data.price_min, this.moneyFormat) + ' - ' + this.formatMoney(data.price_max, this.moneyFormat);
         } else {
             itemPriceHtml += this.formatMoney(data.price_min, this.moneyFormat);
         }
+        
         itemPriceHtml += '</div>';
     }
     itemHtml = itemHtml.replace(/{{itemPrice}}/g, itemPriceHtml);
