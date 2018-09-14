@@ -242,8 +242,8 @@
       "collection-template": {
         "type": "collection-template",
         "settings": {
-          "grid": 4,
-          "rows": 5,
+          "grid": 3,
+          "rows": 8,
           "sort_by": true,
           "filter_1_title": "Filter by X",
           "sort_a": "",
