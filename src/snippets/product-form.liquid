@@ -27,6 +27,12 @@
     {% endif %}
   </div><div class="clear"></div>
 
+  {% comment %} REVIEWS - STAR RATING {% endcomment %}
+
+
+
+  {% comment %} SWATCHES {% endcomment %}
+
   {% if product.options.size > 1 %}
     <div class="select" {% if product.variants.size == 1 or section.settings.product_variants == 'swatches' %}style="display: none;"{% endif %}>
       <select id="product-select-{{ product.id }}" name='id'>
