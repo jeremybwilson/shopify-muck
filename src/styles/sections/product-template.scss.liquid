@@ -1,0 +1,291 @@
+@charset "UTF-8";
+
+/*==================
+  PDP
+ ==================*/
+
+#shopify-section-product-template {
+  @include mq('tablet-and-up') {
+    margin-top: 55px;
+  }
+}
+
+.product {
+  #content {
+    h1 {
+      color: $color--dark-green-1;
+      @include fontSize(16px);
+      font-weight: $font-weight--black;
+      letter-spacing: .125em;
+      line-height: 25px / 16px * 1em;
+      text-align: center;
+      text-transform: uppercase;
+
+      @include mq('tablet-and-up') {
+        max-width: 400px;
+        @include fontSize(25px);
+        letter-spacing: .25em;
+        line-height: 34px / 25px * 1em;
+        text-align: left;
+      }
+    }
+  }
+}
+
+#product-price {
+  border-bottom: none;
+  color: $color--dark-gray;
+  @include fontSize(16px);
+  font-weight: $font-weight--book;
+  letter-spacing: .125em;
+  text-align: center;
+
+  @include mq('tablet-and-up') {
+    @include fontSize(18px);
+    letter-spacing: .075em;
+    text-align: left;
+  }
+}
+
+#product-description {
+  form {
+    padding-top: 0;
+    border-top: none;
+    border-bottom: none;
+  }
+}
+
+#product-right {
+  max-width: 365px;
+
+  @include mq('tablet-and-up') {
+    float: right;
+  }
+}
+
+.swatch {
+  @include flexbox;
+  @include flex-wrap(wrap);
+  margin-bottom: 20px;
+
+  h5 { // swatch main label
+    width: 100%;
+    margin-bottom: 16px;
+    color: $color--dark-green-1;
+    @include fontSize(14px);
+    font-weight: $font-weight--black;
+    letter-spacing: .225em;
+    text-transform: uppercase;
+
+    @include mq('tablet-and-up') {
+      @include fontSize(16px);
+      letter-spacing: .25em;
+    }
+
+  }
+
+  label { // actual visible swatch
+    height: 37px !important;
+    margin-left: 0 !important;
+    margin-right: 5px !important;
+    margin-bottom: 5px;
+    border: solid 1px #d7d7d7;
+    color: $color--gray-3;
+    @include fontSize(15px);
+    font-weight: $font-weight--book;
+    letter-spacing: .025em;
+    line-height: 37px !important;
+  }
+  label:hover {
+    background-color: $color--dark-green-1;
+    border-color: $color--dark-green-1;
+    color: $color--white;
+  }
+  input:checked + label {
+    background-color: $color--dark-green-1;
+    border-color: $color--dark-green-1;
+    color: $color--white;
+  }
+
+  // Color Swatches
+
+  .swatch-element.color {
+    label {
+      position: relative;
+      width: 23px !important;
+      height: 23px !important;
+      min-width: 0 !important;
+      border: none;
+      margin-right: 16px !important;
+      margin-bottom: 16px !important;
+
+      &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        left: -6px;
+        top: -6px;
+        border: solid 1px transparent;
+      }
+    }
+    input:checked + label {
+      box-shadow: none;
+
+      &:after {
+        border-color: #d7d7d7;  
+      }
+    }
+  }
+}
+
+#product-add {
+  margin-top: 0;
+}
+input.add {
+  width: 100%;
+  height: 48px;
+  margin-top: 0;
+  background: $color--orange-1;
+
+  @include mq('tablet-and-up') {
+    height: 55px;
+  }
+}
+
+// Big green product description area
+
+.product-description--area {
+  padding-top: 50px;
+  padding-bottom: 40px;
+  background-color: $color--dark-green;
+
+  @include mq('tablet-and-up') {
+    padding-top: 100px;
+    padding-bottom: 90px;
+  }
+
+  .row {
+    @include flexbox;
+    @include flex-direction(column);
+    max-width: 1200px;
+
+    @include mq('tablet-and-up') {
+      @include flex-direction(row);
+      @include flex-wrap(wrap);
+      @include justify-content(space-between);
+    }
+  }
+
+  h3 { // Description header
+
+    width: 100%;
+    margin-bottom: 15px;
+    color: $color--white;
+    @include fontSize(18px);
+    font-weight: $font-weight--black;
+    letter-spacing: .25em;
+    text-align: center;
+    text-transform: uppercase;
+
+    @include mq('tablet-and-up') {
+      padding-left: 120 / 1200 * 100%; // line up with p below
+      @include fontSize(22px);
+      text-align: left;
+    }
+  }
+
+  // Paragraph
+
+  .rte, .rte p {
+    color: $color--white;
+    @include fontDim(14px,24px,.025em);
+    text-align: center;
+
+    @include mq('tablet-and-up') {
+      @include fontSize(16px);
+      line-height: 30px / 16px * 1em;
+      text-align: left;
+    }
+  } 
+
+  li {
+    position: relative;
+    padding-left: 20px;
+    text-align: left;
+    list-style: none;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 10px;
+      left: 0;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background-color: $color--orange-1;
+    }
+  }
+}
+
+.product-description--left {
+  @include mq('tablet-and-up') {
+    width: 720 / 1200 * 100%;
+    padding-left: 120 / 1200 * 100%;
+    padding-right: 120 / 1200 * 100%;
+  }
+
+  .rte > ul {
+    display: none;
+  }
+}
+.product-description--icons {
+  @include flexbox;
+  @include flex-wrap(wrap);
+  @include justify-content(center);
+  @include align-items(flex-start);
+  margin: 15px -10px; // neg margins to accommodate item padding
+
+  @include mq('tablet-and-up') {
+    @include justify-content(flex-start);
+    margin-top: 30px;
+  }
+
+  li {
+    @include flexbox;
+    @include flex-direction(column);
+    @include justify-content(center);
+    margin: 0 10px 20px;
+    max-width: 80px;
+    padding-left: 0;
+    list-style: none;
+    text-align: center;
+
+    &:before {
+      display: none;
+    }
+  }
+
+  img {
+    max-width: 54px;
+    margin: 0 auto 12px;
+  }
+  span {
+    color: $color--light-gray;
+    @include fontDim(13px,18px,.025em);
+  }
+}
+
+.product-description--right {
+
+  @include mq('tablet-and-up') {
+    width: 480 / 1200 * 100%;
+  }
+
+  .rte > p {
+    display: none;
+  }
+}
+
