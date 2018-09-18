@@ -9,7 +9,7 @@ For the initial setup, you'll want Node.js installed globally on your machine as
 ### BOOTSTRAP PROJECT: 
 ```
 * Ensure you have Slate (v0.14~) and NPM installed by entering the line below in a terminal window: ***
-	> npm -v && slate -v
+	> npm -v && slate -v  
 
 
 * Don't have Node? 

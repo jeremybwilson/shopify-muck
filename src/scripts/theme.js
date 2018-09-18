@@ -2265,17 +2265,24 @@ theme.ProductMobileGallery = function (events) {
   }
 
   element.owlCarousel({
-    navigation : true, // Show next and prev buttons
+    items: 1,
+    margin: 20,
+    nav: true,
+    navText: [$('.mobile-product-carousel--prev'),$('.mobile-product-carousel--next')],
+    lazyLoad : true,
+    dots: false
+
+    /*navigation : true, // Show next and prev buttons
     navigationText: ["",""],
     slideSpeed : 300,
     paginationSpeed : 400,
     singleItem:true,
     pagination: false,
     lazyLoad: true,
-    addClassActive: false
+    addClassActive: false*/
   });
 
-  var owl = element.data("owlCarousel");
+  //var owl = element.data("owlCarousel");
 
   events.on("variantchange:image", select);
 
@@ -2284,7 +2291,7 @@ theme.ProductMobileGallery = function (events) {
     var slide = slides.filter("[data-image-id=" + id + "]");
     var index = slides.index(slide);
 
-    owl.goTo(index);
+    element.trigger('to.owl.carousel', index);
   };
 };
 
