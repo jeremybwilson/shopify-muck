@@ -30,11 +30,14 @@ var buildSwatches = function() {
       try {
         const swatchData = JSON.parse(elements[el].dataset.swatches);
         
-        // RENDER : Render the Swatch List component into the target el
-        ReactDOM.render(
-          <SwatchList swatchData={ swatchData } />,
-          elements[el]
-        );
+        // RENDER : If > 1 color, Render SwatchList into target el
+        if ( swatchData.length > 1 ) {
+          ReactDOM.render(
+            <SwatchList swatchData={ swatchData } />,
+            elements[el]
+          );
+        }
+        
 
       // SAFETY : Malformatted JSON = most common error
       } catch (err) {
