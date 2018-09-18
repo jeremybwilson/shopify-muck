@@ -1,27 +1,31 @@
 @charset "UTF-8";
-
 /*============================================================================
 [Shopify-Muck] | Built with Slate
 - You cannot use native CSS/Sass @imports in this file without a build script
 ==============================================================================*/
 
-/*================ VARIABLES ================*/
+
+/*=========== VARIABLES + CORE =============*/
 @import url('variables.scss.liquid');
+@import url('global.scss.liquid');
 
 
 /*================ Sections ================*/
 // please refer to global for any notes re:styling
-@import url('global.scss.liquid');
 @import url('./sections/header.scss.liquid');
 @import url('./sections/newsletter.scss.liquid');
 @import url('./sections/footer.scss.liquid');
-@import url('./sections/collection.scss.liquid');
-
+@import url('./sections/twin-promos.scss.liquid');
 @import url('./sections/slideshow.scss.liquid');
 @import url('./sections/columns-carousel.scss.liquid');
-@import url('./sections/twin-promos.scss.liquid');
 @import url('./sections/instagram-feed.scss.liquid');
+@import url('./sections/collection.scss.liquid');
+@import url('./sections/product-template.scss.liquid');
+
+
+/*================ Snippets ================*/
 @import url('./snippets/product-carousel.scss.liquid');
 
 
-@import url('./sections/product-template.scss.liquid');
+/*============ ReactComponents =============*/
+@import url('./react-components/react-swatches.scss.liquid');

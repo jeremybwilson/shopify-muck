@@ -1,4 +1,4 @@
-// Override Settings
+// Override Settings : Note, custom object cant' be overriden and rquires direct modification
 var bcSfFilterSettings = {
     general: {
        limit: bcSfFilterConfig.custom.products_per_page,
@@ -11,6 +11,7 @@ var bcSfFilterSettings = {
     }
 };
 
+// FILTER TEMPLATES
 var bcSfFilterTemplate = {
     'saleLabelHtml': '<div class="sale-item icn">' + bcSfFilterConfig.label.sale + '</div>',
     'soldOutLabelHtml': '<div class="so icn">' + bcSfFilterConfig.label.sold_out + '</div>',
@@ -18,7 +19,7 @@ var bcSfFilterTemplate = {
     'vendorHtml': '<p>{{itemVendorLabel}}</p>',
 
     // Grid Template
-    'productGridItemHtml':  '<div class="product-index {{itemGridWidthClass}}" data-alpha="{{itemTitle}}" data-price="{{itemPriceAttr}}">' +
+    'productGridItemHtml':  '<div id="{{itemProductId}}" class="product-index {{itemGridWidthClass}}" data-alpha="{{itemTitle}}" data-price="{{itemPriceAttr}}">' +
                                 '<div class="prod-container">' +
                                     '{{itemNewLabel}}' +
                                     '{{itemSaleLabel}}' +
@@ -28,7 +29,7 @@ var bcSfFilterTemplate = {
                                     '<div class="prod-image">' +
                                         '<a href="{{itemUrl}}" title="{{itemTitle}}">' +
                                         '<div class="reveal">' +
-                                            '<img src="{{itemThumbUrl}}" alt="{{itemTitle}}" />' +
+                                            '<img id="product-image-{{itemProductId}}" src="{{itemThumbUrl}}" alt="{{itemTitle}}" />' +
                                             '{{itemFlipImage}}' +
                                         '</div>' +
                                     '</div>' +
@@ -102,9 +103,10 @@ BCSfFilter.prototype.buildProductGridItem = function(data, index, totalProduct) 
         var newLabel = data.collections.filter(function(e) { return e.handle == 'new'; });
         itemNewLabelHtml = typeof newLabel[0] != 'undefined' ? bcSfFilterTemplate.newLabelHtml : '';
 
-        if (onSale) {
-            itemSaleLabelHtml = bcSfFilterTemplate.saleLabelHtml;
-        }
+        // BUILD NEW BADGING HERE!!! (Old "Sale" badge)
+        // if (onSale) {
+        //     itemSaleLabelHtml = bcSfFilterTemplate.saleLabelHtml;
+        // }
     } else {
         itemSoldoutLabelHtml = bcSfFilterTemplate.soldOutLabelHtml;
     }
@@ -112,11 +114,14 @@ BCSfFilter.prototype.buildProductGridItem = function(data, index, totalProduct) 
     itemHtml = itemHtml.replace(/{{itemSaleLabel}}/g, itemSaleLabelHtml);
     itemHtml = itemHtml.replace(/{{itemSoldoutLabel}}/g, itemSoldoutLabelHtml);
     itemHtml = itemHtml.replace(/{{itemPreorderLabel}}/g, '');
+    itemHtml = itemHtml.replace(/{{itemProductId}}/g, data.id );
+
 
     // Add Thumbnail
     var itemThumbUrl = images.length > 0 ? this.optimizeImage(images[0]['src']) : bcSfFilterConfig.general.no_image_url;
     itemHtml = itemHtml.replace(/{{itemThumbUrl}}/g, itemThumbUrl);
     
+
     // Add Flip Image
     var itemFlipImageHtml = '';
     if (bcSfFilterConfig.custom.image_flip && images.length > 1) {
@@ -126,15 +131,17 @@ BCSfFilter.prototype.buildProductGridItem = function(data, index, totalProduct) 
     }
     itemHtml = itemHtml.replace(/{{itemFlipImage}}/g, itemFlipImageHtml);
 
+
     // Add Vendor
     var itemVendorHtml = bcSfFilterConfig.custom.vendor_enable ? bcSfFilterTemplate.vendorHtml.replace(/{{itemVendorLabel}}/g, data.vendor) : '';
     itemHtml = itemHtml.replace(/{{itemVendor}}/g, itemVendorHtml);
 
+
     // Add price
     var itemPriceHtml = '';
     if (onSale) {
-        itemPriceHtml += '<div class="was">' + this.formatMoney(data.compare_at_price_min, this.moneyFormat) + '</div>';
         itemPriceHtml += '<div class="onsale">' + this.formatMoney(data.price_min, this.moneyFormat) + '</div>';
+        itemPriceHtml += '<div class="was">' + this.formatMoney(data.compare_at_price_min, this.moneyFormat) + '</div>';
         
     } else {
         itemPriceHtml += '<div class="prod-price">';
@@ -149,6 +156,7 @@ BCSfFilter.prototype.buildProductGridItem = function(data, index, totalProduct) 
     }
     itemHtml = itemHtml.replace(/{{itemPrice}}/g, itemPriceHtml);
 
+
     // Add Quick view
     var itemQuickviewHtml = '';
     if (bcSfFilterConfig.custom.quick_view_enable) {
@@ -156,32 +164,57 @@ BCSfFilter.prototype.buildProductGridItem = function(data, index, totalProduct) 
     }
     itemHtml = itemHtml.replace(/{{itemQuickview}}/g, itemQuickviewHtml);
 
-    // Add variant
+
+    // Add Variant Swatches
     var itemSwatchHtml = '';
     if (bcSfFilterConfig.custom.alternate_colors) {
         var optionIndex = data.options_with_values.findIndex(function(e) { return (e.name).toLowerCase() == 'color' || (e.name).toLowerCase() == 'colour'; });
         var options = data.options_with_values.filter(function(e) { return (e.name).toLowerCase() == 'color' || (e.name).toLowerCase() == 'colour'; });
-        if (typeof options[0] !== 'undefined') {
-            itemSwatchHtml += '<div class="col-swatch">';
-            itemSwatchHtml += '<ul class="' + this.slugify(options[0]['name']) + 'options " data-option-index="' + optionIndex + '">';
-            for (var k = 0; k < options[0]['values'].length; k++) {
-                var option = options[0]['values'][k];
-                var value = option['title'];
-                var imageIndex = option['image'];
-                var variantImage = '';
+
+        // BUILD SWATCHES : React -> SwatchParent.js : render swatches if multiple colors
+        if (typeof options[0] !== 'undefined' && options[0]['values'] && options[0]['values'].length > 1 ) {
+            var swatchManifest = [];
+
+            // MANIFEST : LOOP : Build Swatch List for the Swatch List Display
+            for ( var k = 0; k < options[0]['values'].length; k++ ) {
+                var option = options[0]['values'][k]; //One color in the list of variant colors
+
+                // PRODUCT IMAGE : Parent image that is displayed by default (used by hover states to reset)
+                var productImgUrl = images.length > 0 ? this.optimizeImage(images[0]['src']) : bcSfFilterConfig.general.no_image_url;
+                
+                // VARIANT IMAGE : Build Variant Product Image URL for hover display of that color's image
+                var imageIndex = option['image'] - 1; //Doesn't count from 0, counts from 1
+                var variantImgUrl = '';
                 if (typeof data['images'][imageIndex] !== 'undefined') {
-                    variantImage = this.optimizeImage(data['images'][imageIndex]['src']);
+                    variantImgUrl = this.optimizeImage(data['images'][imageIndex]['src']);
                 }
-                var color = value.split(' ').length > 1 ? value.split(' ')[1] : value;
-                itemSwatchHtml += '<li data-option-title="' + value + '" data-href="' + variantImage + '" class="color ' + this.slugify(value) + '">';
-                if (color == 'white') {
-                    itemSwatchHtml += '<span style="border: 1px solid #ccc; background-color: ' + color + '; background-image: url(' + bcSfFilterConfig.general.asset_url.replace('bc-sf-filter.js', this.slugify(value) + '.png') + ')"></span>';
-                } else {
-                    itemSwatchHtml += '<span style="background-color: ' + color + '; background-image: url(' + bcSfFilterConfig.general.asset_url.replace('bc-sf-filter.js', this.slugify(value) + '.png') + ')"></span>';
+
+                // SWATCH IMAGE : Build swatch image, fallback to color setting in case that fails
+                var swatchImgUrl = bcSfFilterConfig.general.asset_url.replace('bc-sf-filter.js', this.slugify(option['title']) + '.png');
+
+                // SWATCH OBJ: Single swatch object for manifest
+                var colorValueName = this.slugify( option['title'] );
+                var swatch = {
+                    colorDisplayName: option['title'],          // NAME : Color Name that user sees in tooltip
+                    colorValueName,                             // NAME : CSS name for color style fallback
+                    productId: data.id,                         // ID : Product ID
+                    productImgUrl,                              // IMAGE : Product image original (for restoring after hover)
+                    swatchId: data.id + '-' + colorValueName,   // ID : Swatch : Swatch Color Unique ID
+                    swatchImgUrl,                               // SWATCH : Image url for swatch (fallback = name as color)    
+                    variantImgUrl                               // IMAGE : Product Variant Image for that color option
                 }
-                itemSwatchHtml += '</li>';
-            }
-            itemSwatchHtml += '</ul></div>';
+
+                // MANIFEST : ADD : Add this swatch to the list
+                swatchManifest.push( swatch );
+            };
+
+            // POPULATE : Render the react root element for each swatch list
+            var swatchManifestString = JSON.stringify( swatchManifest );
+            itemSwatchHtml = "<div class='react-swatch-list' data-swatches='" + swatchManifestString + "'></div>";
+        
+        // BUILD : Spacer : Only 1 color, render spacer instead of swatch list
+        } else {
+            itemSwatchHtml = "<div class='swatch-spacer'></div>";
         }
     }
     itemHtml = itemHtml.replace(/{{itemSwatch}}/g, itemSwatchHtml);
@@ -286,21 +319,26 @@ BCSfFilter.prototype.buildFilterSorting = function() {
 
 // Build additional attributes of product items
 BCSfFilter.prototype.buildExtrasProductList = function(data) {
-    if ($(window).width() >= 980) {
-        $('.product-index').hover(function(){ 
-            $(this).children('.product-modal').show();
-        }, function(){ 
-            $(this).children('.product-modal').hide(); 
-        })
-        // Call Fancybox for product modal + stop scroll to top 
-        $('.product-modal').fancybox({
-            helpers: {
-                overlay: {
-                    locked: false
-                }
-            }
-        });    
-    }
+    
+    // THE ONE IN THEME.JS SEEMS TO ACTUALLY DO SOMETHING, 
+    // NOT SURE WHAT THIS IS DOING AS NOTHING BROKE COMMENTING IT OUT..
+    
+    // if ($(window).width() >= 769) {
+    //     $('.prod-container').hover(function(){ 
+    //         $(this).children('.product-modal').show();
+    //     }, function(){ 
+    //         $(this).children('.product-modal').hide(); 
+    //     })
+
+    //     // Call Fancybox for product modal + stop scroll to top 
+    //     $('.product-modal').fancybox({
+    //         helpers: {
+    //             overlay: {
+    //                 locked: false
+    //             }
+    //         }
+    //     });    
+    // }
 };
 
 // Build Additional Elements
@@ -337,8 +375,14 @@ BCSfFilter.prototype.buildAdditionalElements = function(data, eventType) {
             }
         });
     }
+    updateFilterCounts(); //Invoke count update on filter update
 
-    updateFilterCounts();
+
+    // SWATCHES : Trigger event emit to re-render swatches
+    $.event.trigger({
+        type: "collectionUpdated",
+        time: new Date()
+    });
 };
 
     // Build Default layout

@@ -30,7 +30,6 @@
  *****************************************************************************/
 
 
-
 /* REACT - EXAMPLE #1
  *
  * GLOBAL-COMPONENT : 
@@ -1696,22 +1695,17 @@ $(document).ready(function() {
   $('.no-fouc').removeClass('no-fouc');
   $('.load-wait').addClass('hide');
 
-  /*============================================================================
-  Shifter side navigation for mobile
-  ==============================================================================*/
-  // $.shifter({
-  //   maxWidth: "980px"
-  // });
 
   /*============================================================================
   Use Fancybox to Ajax in product quick view template
   ==============================================================================*/
-  if ($(window).width() >= 980) {
-    $('.product-index').hover(function(){
-      $(this).children('.product-modal').show();
-    }, function(){
-      $(this).children('.product-modal').hide();
-    })
+  if ($(window).width() >= 769) {
+    // $('.prod-container').hover(function(){
+    //   $(this).children('.product-modal').show();
+    // }, function(){
+    //   $(this).children('.product-modal').hide();
+    // })
+
     // Call Fancybox for product modal + stop scroll to top
     // Call Fancybox on all elemnets with class "fancybox"
     $('.product-modal').fancybox({
@@ -2375,8 +2369,13 @@ theme.Collection = (function() {
         ui.collectionWrap.toggleClass( 'filter-open' );
       });
     });
-
   }
+
+  // SWATCHES : BUILD : Method to build the swatch components on collection updates (rebuilt in JS)
+  var buildSwatches = require('./react-components/swatches/SwatchParent.js');
+
+  // SWATCHES : SUB : Subscribe to collection updates to re-render swatches
+  $(document).on("collectionUpdated", buildSwatches);
 
   Collection.prototype = _.assignIn({}, Collection.prototype, {});
   return Collection;
