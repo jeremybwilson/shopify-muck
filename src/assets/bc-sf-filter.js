@@ -103,9 +103,10 @@ BCSfFilter.prototype.buildProductGridItem = function(data, index, totalProduct) 
         var newLabel = data.collections.filter(function(e) { return e.handle == 'new'; });
         itemNewLabelHtml = typeof newLabel[0] != 'undefined' ? bcSfFilterTemplate.newLabelHtml : '';
 
-        if (onSale) {
-            itemSaleLabelHtml = bcSfFilterTemplate.saleLabelHtml;
-        }
+        // BUILD NEW BADGING HERE!!! (Old "Sale" badge)
+        // if (onSale) {
+        //     itemSaleLabelHtml = bcSfFilterTemplate.saleLabelHtml;
+        // }
     } else {
         itemSoldoutLabelHtml = bcSfFilterTemplate.soldOutLabelHtml;
     }
@@ -314,21 +315,26 @@ BCSfFilter.prototype.buildFilterSorting = function() {
 
 // Build additional attributes of product items
 BCSfFilter.prototype.buildExtrasProductList = function(data) {
-    if ($(window).width() >= 980) {
-        $('.product-index').hover(function(){ 
-            $(this).children('.product-modal').show();
-        }, function(){ 
-            $(this).children('.product-modal').hide(); 
-        })
-        // Call Fancybox for product modal + stop scroll to top 
-        $('.product-modal').fancybox({
-            helpers: {
-                overlay: {
-                    locked: false
-                }
-            }
-        });    
-    }
+    
+    // THE ONE IN THEME.JS SEEMS TO ACTUALLY DO SOMETHING, 
+    // NOT SURE WHAT THIS IS DOING AS NOTHING BROKE COMMENTING IT OUT..
+    
+    // if ($(window).width() >= 769) {
+    //     $('.prod-container').hover(function(){ 
+    //         $(this).children('.product-modal').show();
+    //     }, function(){ 
+    //         $(this).children('.product-modal').hide(); 
+    //     })
+
+    //     // Call Fancybox for product modal + stop scroll to top 
+    //     $('.product-modal').fancybox({
+    //         helpers: {
+    //             overlay: {
+    //                 locked: false
+    //             }
+    //         }
+    //     });    
+    // }
 };
 
 // Build Additional Elements
