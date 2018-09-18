@@ -337,8 +337,14 @@ BCSfFilter.prototype.buildAdditionalElements = function(data, eventType) {
             }
         });
     }
+    updateFilterCounts(); //Invoke count update on filter update
 
-    updateFilterCounts();
+
+    // SWATCHES : Trigger event emit to re-render swatches
+    $.event.trigger({
+        type: "collectionUpdated",
+        time: new Date()
+    });
 };
 
     // Build Default layout
