@@ -264,7 +264,7 @@
           "use_swatch_images": true,
           "swatch_shape": "circles",
           "show_payment_button": false,
-          "show_controls": true,
+          "show_controls": false,
           "thumbnails": "left",
           "zoom_image_position": "zoom_over_main",
           "related_products": "none",
