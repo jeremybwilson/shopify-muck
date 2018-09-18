@@ -171,8 +171,8 @@ BCSfFilter.prototype.buildProductGridItem = function(data, index, totalProduct) 
         var optionIndex = data.options_with_values.findIndex(function(e) { return (e.name).toLowerCase() == 'color' || (e.name).toLowerCase() == 'colour'; });
         var options = data.options_with_values.filter(function(e) { return (e.name).toLowerCase() == 'color' || (e.name).toLowerCase() == 'colour'; });
 
-        // POWERED BY : React-Component : SwatchParent
-        if (typeof options[0] !== 'undefined') {
+        // BUILD SWATCHES : React -> SwatchParent.js : render swatches if multiple colors
+        if (typeof options[0] !== 'undefined' && options[0]['values'] && options[0]['values'].length > 1 ) {
             var swatchManifest = [];
 
             // MANIFEST : LOOP : Build Swatch List for the Swatch List Display
@@ -211,6 +211,10 @@ BCSfFilter.prototype.buildProductGridItem = function(data, index, totalProduct) 
             // POPULATE : Render the react root element for each swatch list
             var swatchManifestString = JSON.stringify( swatchManifest );
             itemSwatchHtml = "<div class='react-swatch-list' data-swatches='" + swatchManifestString + "'></div>";
+        
+        // BUILD : Spacer : Only 1 color, render spacer instead of swatch list
+        } else {
+            itemSwatchHtml = "<div class='swatch-spacer'></div>";
         }
     }
     itemHtml = itemHtml.replace(/{{itemSwatch}}/g, itemSwatchHtml);
