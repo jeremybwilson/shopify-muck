@@ -260,6 +260,18 @@
         "label": "Catalog Item Accent Color",
         "default": "#AA5131"
       },
+      {
+        "type": "color",
+        "id": "collection_seo_footer_bg",
+        "label": "Catalog SEO Footer BG",
+        "default": "#F4F2EC"
+      },
+      {
+        "type": "color",
+        "id": "collection_seo_footer_text",
+        "label": "Catalog SEO Footer Text Color",
+        "default": "#164732"
+      },
 
 
 
@@ -696,6 +708,13 @@
         "type": "checkbox",
         "id": "vendor",
         "label": "Show product vendor"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_collection_seo_block",
+        "label": "Show SEO Footer",
+        "info": "(Only rendered on collections, not on homepage featured collection.)",
+        "default": true
       },
       {
         "type": "select",

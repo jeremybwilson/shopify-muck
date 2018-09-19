@@ -2357,10 +2357,12 @@ Events.on("quickview:load", function (container) {
 theme.Collection = (function() {
   function Collection(container) {
     const ui = {
-      collectionWrap: $( '#shopify-section-collection-template' ), //Can store this one b/c its in initial template
-      mobileFilterBtn: $( '#filter-button-mobile' ) //Don't store this as its rendered in js
+      collectionWrap: $( '#shopify-section-collection-template' ), //Can store these b/c they are unaffected by the filter app JS re-renders
+      mobileFilterBtn: $( '#filter-button-mobile' ),
+      seoBlockWrap: $( '#collection-seo-wrap' ),
+      seoReadMoreBtn: $( '#collection-seo-read-more' )
     }
-
+    
     // EVENTS : Bind DOM events when ready
     $(document).ready( () => {
 
@@ -2368,6 +2370,23 @@ theme.Collection = (function() {
       ui.mobileFilterBtn.click( () => {
         ui.collectionWrap.toggleClass( 'filter-open' );
       });
+
+      // SEO PARAGRAPH : OPEN / CLOSE : Reveals the rest of the SEO Paragraph text on click
+      var seoExpanded = false;
+      ui.seoReadMoreBtn.click( () => {
+        if ( !seoExpanded ) {
+          seoExpanded = true;
+          ui.seoBlockWrap.addClass( 'seo-open' ).delay( 250 ).queue(function(){
+              $(this).addClass( 'seo-visible' ).dequeue();
+          });
+        
+        } else {
+          seoExpanded = false;
+          ui.seoBlockWrap.removeClass( 'seo-visible' ).delay( 250 ).queue( function() {
+            $(this).removeClass( 'seo-open' ).dequeue();
+          });
+        }
+      })
     });
   }
 
