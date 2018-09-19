@@ -1,18 +1,3 @@
 <div id="collection-seo-wrap">
-	<p class="collection-seo-content row">{{ settings.collection_seo_block_p1 }}</p>
-	
-	{% if settings.collection_seo_block_p2 %}
-		<p class="collection-seo-content row read-more-content">{{ settings.collection_seo_block_p2 }}</p>
-
-		{% if settings.collection_seo_block_p3 %}
-			<p class="collection-seo-content row read-more-content">{{ settings.collection_seo_block_p3 }}</p>
-		{% endif %}
-
-		{% if settings.collection_seo_block_p4 %}
-			<p class="collection-seo-content row read-more-content">{{ settings.collection_seo_block_p4 }}</p>
-		{% endif %}
-		
-	    <button id="collection-seo-read-more">Read More</button>
-	{% endif %}
-	
+	{{ collection.description }}
 </div>
