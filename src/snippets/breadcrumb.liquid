@@ -34,9 +34,8 @@
         {% if current_tags.size > 0 %}
             <span class="separator"> / </span>
             {% comment %}
-                Rather than make a duplicate collection of every single block, we use collections around a subset,
-                then filter using audience_GENDER mostly, this will alter the route display to their desire, 
-                but lets us manage the flow much much easier.
+                Collections are setup based on feature, style, topic, etc
+                and then filter using audience_GENDER tags via the nav "Main Menu".
             {% endcomment %}
             {% if current_tags.first contains '_women' %}
                 <a href="/collections/women">Women</a>
@@ -51,12 +50,8 @@
                 <span class="separator"> / </span>
             {% endif %}
 
+            {% comment %} :: COLLECTION NAME :: {% endcomment %}
             <span class="page-title">{{ collection.title }}</span>
-            {% comment %} 
-                :: HIDE TAG ON END OF URL ::
-                <span class="separator"> / </span>
-                <span class="page-title">{{ current_tags.first }}</span>
-            {% endcomment %}
 
         {% else %}
             <span class="separator"> / </span>
