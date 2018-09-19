@@ -9,7 +9,7 @@
                 {{ collection.title | link_to: url }}
 
             {% elsif collection.all_products_count > 0 and collection.products.first.type == collection.title %}
-                {{ collection.title | link_to_type }} (greg)
+                {{ collection.title | link_to_type }}
 
             {% elsif collection.all_products_count > 0 and collection.products.first.vendor == collection.title %}
                 {{ collection.title | link_to_vendor }}
