@@ -120,8 +120,14 @@
         <div id="content" {% if template !='product' %}class="row"{% endif %} />
           {{ content_for_layout }}
         </div>
-      {% endif %}
 
+        {% comment %} :: COLLECTION - SEO FOOTER PARAGRAPH :: {% endcomment %}
+        {% if template contains 'collection' and settings.show_collection_seo_block == true %}
+          {% include 'collection-seo-block' %}
+        {% endif %}
+
+      {% endif %} 
+      {% comment %} :: End of 'ALL OTHER PAGES' IF block :: {% endcomment %}
     </div>  <!-- close the page-wrap class -->
 
     
