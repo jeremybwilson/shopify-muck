@@ -260,6 +260,18 @@
         "label": "Catalog Item Accent Color",
         "default": "#AA5131"
       },
+      {
+        "type": "color",
+        "id": "collection_seo_footer_bg",
+        "label": "Catalog SEO Footer BG",
+        "default": "#F4F2EC"
+      },
+      {
+        "type": "color",
+        "id": "collection_seo_footer_text",
+        "label": "Catalog SEO Footer Text Color",
+        "default": "#164732"
+      },
 
 
 
@@ -736,6 +748,45 @@
         ],
         "default": "no_hover_effect",
         "info": "On swatch hover requires an image to be assigned to a variant [See instructions](https://help.shopify.com/manual/products/product-variant-images#add-images-to-existing-variants)"
+      },
+      {
+        "type": "header",
+        "content": "Collection SEO Footer"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_collection_seo_block",
+        "label": "Show SEO Footer",
+        "info": "(Only rendered on collections, not on homepage featured collection.)",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "collection_seo_block_p1",
+        "label": "SEO Text - Main",
+        "info": "(Above the 'Read More' Fold)",
+        "default": "This is a sample of the above-fold text for the SEO footer"
+      },
+      {
+        "type": "text",
+        "id": "collection_seo_block_p2",
+        "label": "SEO Text - Extra #1",
+        "info": "(1st paragraph below the fold)",
+        "default": "This is a sample of the below-fold text for the SEO footer"
+      },
+      {
+        "type": "text",
+        "id": "collection_seo_block_p3",
+        "label": "SEO Text - Extra #2",
+        "info": "(2nd paragraph below the fold)",
+        "default": "This is a sample of the below-fold text for the SEO footer"
+      },
+      {
+        "type": "text",
+        "id": "collection_seo_block_p4",
+        "label": "SEO Text - Extra #3",
+        "info": "(3rd paragraph below the fold)",
+        "default": "This is a sample of the below-fold text for the SEO footer"
       }
     ]
   },
