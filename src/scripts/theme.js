@@ -1853,6 +1853,8 @@ theme.ProductForm = function (context, events) {
   });
 
   (function single_option_selectors() {
+    // function for the dropdowns
+
     var elements = context.querySelectorAll(".single-option-selector");
 
     elements.forEach(Selector);
@@ -1869,6 +1871,8 @@ theme.ProductForm = function (context, events) {
   })();
 
   (function swatches() {
+    // function for the swatches
+
     var elements = context.querySelectorAll("[type=radio]");
 
     var states = {
@@ -1941,6 +1945,7 @@ theme.ProductForm = function (context, events) {
 
       element.addEventListener("change", function (event) {
         events.trigger("swatch:change:" + option_position, element.value);
+        current_option_text_change();
       });
 
       events.on("variantchange:option" + option_position + ":" + element.value, select);
@@ -1950,7 +1955,10 @@ theme.ProductForm = function (context, events) {
       function select() {
         element.checked = true;
       }
-
+      function current_option_text_change() {
+        var current_option_text = element.closest('.swatch').querySelector('.current-option');
+        current_option_text.innerHTML = element.value;        
+      }
       function set_availability(current_variant) {
         var available = false;
 
