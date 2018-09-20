@@ -7,9 +7,24 @@
 {% assign other_options = "option1 option2 option3" | remove: current_option | strip | split: " " %}
 
 <div class="swatch clearfix" data-option-index="{{ option.position }}" data-other-options='{{ other_options | json }}'>
-  <h5>{{ option.name }}</h5>
+
+  <div class="swatch-header">
+    
+    {% comment %} Option Name {% endcomment %}
+    <h5>{{ option.name }}</h5>
+    {% comment %} Currently Selected Option {% endcomment %}
+    <h6 class="current-option">{{ current_variant[current_option] }}</h6>
+
+  </div><!-- .swatch-header-->
+
+  {% comment %} Swatch Loop {% endcomment %}
+
+  {% comment %} Herein is the second level and third levels of a three-tiered cycling of product variants and options to determine the actual render of swatches. The "current_option" is determined by this snippet's parent loop.
+
+  CYCLE 2 - Cycle through the available values (ie: Color->Black, Color-> Red) {% endcomment %}
 
   {% for value in option.values %}
+
     {% assign image_url = value | handle | append: '.png' | asset_url %}
 
     {% assign css_color = value | split: ' ' | last | handle %}
@@ -18,14 +33,23 @@
 
     {% assign available = false %}
 
+    {% comment %} CYCLE 3 - Cycle through the available product variants (ie: Black S, Red M) and if it matches a set filter, render the swatch {% endcomment %}
+
     {% for variant in product.variants %}
+
+      {% comment %} if the variant is NOT available, skip to next variant {% endcomment %}
+
       {% unless variant.available %}
         {% continue %}
       {% endunless %}
 
+      {% comment %} if variant's current option (for instance, Color->Black) does NOT match current value of this cycle, skip{% endcomment %}
+
       {% unless variant[current_option] == value %}
         {% continue %}
       {% endunless %}
+
+      {% comment %} if variant's other options (as defined by "option1", "option2", and "option3" in the variant's JSON) do not match the currently selected variant's other options, then skip {% endcomment %}
 
       {% unless variant[other_options[0]] == current_variant[other_options[0]] %}
         {% continue %}
@@ -38,10 +62,13 @@
       {% assign available = true %}
     {% endfor %}
 
+    {% comment %} Initializing snippets for the render {% endcomment %}
+
     {% assign checked = "" %}
 
     {% if current_variant[current_option] == value %}
       {% assign checked = 'checked="checked"' %}
+
     {% endif %}
 
     {% capture radio_button %}
