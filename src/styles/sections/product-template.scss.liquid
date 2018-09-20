@@ -30,14 +30,14 @@
   }
 }
 
-.product-details--top {
+.row.product-details--top {
   @include flexbox;
   @include flex-direction(row);
   @include align-items(flex-start);
   @include justify-content(space-between);
 
   @include mq('tablet-and-up') {
-    width: 1350 / 1440 * 100% !important;
+    width: 1350 / 1440 * 100%;
     max-width: 1350px;
     margin: 0 auto 72px;
   }
