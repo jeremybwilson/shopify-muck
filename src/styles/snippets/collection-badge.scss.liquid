@@ -1,0 +1,43 @@
+// COLLECTION-BADGE.SCSS
+// -- bc-sf-filter.js : BADGE TEMPLATE SECTION
+
+
+/*  BADGE : Core Styles
+ * ---------------------------------------------- */
+$shapeSquareBg: {{ settings.product_badge_square_bg }};
+$shapeCircleBg: {{ settings.product_badge_circle_bg }};
+$shapeDiamondBg: {{ settings.product_badge_diamond_bg }};
+$textColor: {{ settings.product_badge_text_color }};
+$badgeSize: 80px;
+
+
+.product-badge {
+    position: absolute;
+    width: $badgeSize;
+    height: $badgeSize;
+    top: 0;
+    right: 0;
+    z-index: 20;
+    background: $shapeSquareBg; //Fallback : If shape class is not recognized
+
+    .product-badge-text {
+    	color: $textColor;
+    }
+
+    &.circle {
+    	border-radius: calc( $badgeSize / 2 );
+    	background: $shapeCircleBg;
+    }
+
+    &.diamond {
+    	transform: rotate( 45deg );
+    	background: $shapeDiamondBg;
+
+    	.product-badge-text {
+    		position: relative;
+		    left: 50%;
+		    top: 50%;
+		    transform: translate( -50%, -50% ) rotate( -45deg );
+    	}
+    }
+}
