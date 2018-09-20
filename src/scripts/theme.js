@@ -2311,6 +2311,11 @@ theme.Product = (function () {
     var events = new EventEmitter3();
     events.trigger = events.emit; // alias
 
+    const ui = {
+       freeShippingAccordionHeader: $( '#free-shipping--accordion-header' ),
+       freeShippingAccordionContent: $( '#free-shipping--accordion-content')
+    }
+
     theme.ProductMobileGallery(events);
 
     container.querySelectorAll("[data-product-gallery]").forEach(function (context) {
@@ -2321,6 +2326,14 @@ theme.Product = (function () {
       theme.ProductForm(context, events);
     });
 
+    $(document).ready( () => {
+
+      // FREE SHIPPING : Accordion
+      ui.freeShippingAccordionHeader.click( () => {
+        ui.freeShippingAccordionHeader.toggleClass( 'open' );
+        ui.freeShippingAccordionContent.slideToggle(250);
+      });
+    });
 
     /* REACT - EXAMPLE #2
      *
