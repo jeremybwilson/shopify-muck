@@ -13,19 +13,11 @@ var bcSfFilterSettings = {
 
 // FILTER TEMPLATES
 var bcSfFilterTemplate = {
-    'saleLabelHtml': '<div class="sale-item icn">' + bcSfFilterConfig.label.sale + '</div>',
-    'soldOutLabelHtml': '<div class="so icn">' + bcSfFilterConfig.label.sold_out + '</div>',
-    'newLabelHtml': '<div class="new icn">' + bcSfFilterConfig.label.new + '</div>',
-    'vendorHtml': '<p>{{itemVendorLabel}}</p>',
 
     // Grid Template
     'productGridItemHtml':  '<div id="{{itemProductId}}" class="product-index {{itemGridWidthClass}}" data-alpha="{{itemTitle}}" data-price="{{itemPriceAttr}}">' +
                                 '<div class="prod-container">' +
-                                    '{{itemNewLabel}}' +
-                                    '{{itemSaleLabel}}' +
-                                    '{{itemSoldoutLabel}}' +
-                                    '{{itemPreorderLabel}}' +
-
+                                    '{{itemBadge}}' +
                                     '<div class="prod-image">' +
                                         '<a href="{{itemUrl}}" title="{{itemTitle}}">' +
                                         '<div class="reveal">' +
@@ -46,6 +38,9 @@ var bcSfFilterTemplate = {
                                 '{{itemQuickview}}' +
                             '</div>',
 
+    // Badge Template
+    'itemBadgeHtml': '<div class="react-badge" data-badge=\'{{badgeTags}}\'></div>',
+
     // Pagination Template
     'previousHtml': '<a href="{{itemUrl}}"><i class="fa fa-angle-left" aria-hidden="true"></i></a>',
     'nextHtml': '<a href="{{itemUrl}}"><i class="fa fa-angle-right" aria-hidden="true"></i></a>',
@@ -63,15 +58,18 @@ var bcSfFilterTemplate = {
 BCSfFilter.prototype.buildProductGridItem = function(data, index, totalProduct) {
     /*** Prepare data ***/
     var images = data.images_info;
-     // Displaying price base on the policy of Shopify, have to multiple by 100
+    
+    // Displaying price base on the policy of Shopify, have to multiple by 100
     var soldOut = !data.available; // Check a product is out of stock
     var onSale = data.compare_at_price_min > data.price_min; // Check a product is on sale
     var priceVaries = data.price_min != data.price_max; // Check a product has many prices
+    
     // Get First Variant (selected_or_first_available_variant)
     var firstVariant = data['variants'][0];
     if (getParam('variant') !== null && getParam('variant') != '') {
         var paramVariant = data.variants.filter(function(e) { return e.id == getParam('variant'); });
         if (typeof paramVariant[0] !== 'undefined') firstVariant = paramVariant[0];
+    
     } else {
         for (var i = 0; i < data['variants'].length; i++) {
             if (data['variants'][i].available) {
@@ -82,10 +80,12 @@ BCSfFilter.prototype.buildProductGridItem = function(data, index, totalProduct) 
     }
     /*** End Prepare data ***/
   
-    // Get Template
+
+    // TEMPLATE : Create unique tpl instance
     var itemHtml = bcSfFilterTemplate.productGridItemHtml;
 
-    // Add itemGridWidthClass
+
+    // CSS GRID : Add itemGridWidthClass to match row config
     var itemGridWidthClass = '';
     switch (bcSfFilterConfig.custom.products_per_row) {
         case 2: itemGridWidthClass = 'desktop-6 tablet-3 mobile-half'; break;
@@ -95,34 +95,38 @@ BCSfFilter.prototype.buildProductGridItem = function(data, index, totalProduct) 
     }
     itemHtml = itemHtml.replace(/{{itemGridWidthClass}}/g, itemGridWidthClass);
 
-    // Add Label
-    var itemNewLabelHtml = '';
-    var itemSaleLabelHtml = '';
-    var itemSoldoutLabelHtml = '';
-    if (!soldOut) {
-        var newLabel = data.collections.filter(function(e) { return e.handle == 'new'; });
-        itemNewLabelHtml = typeof newLabel[0] != 'undefined' ? bcSfFilterTemplate.newLabelHtml : '';
 
-        // BUILD NEW BADGING HERE!!! (Old "Sale" badge)
-        // if (onSale) {
-        //     itemSaleLabelHtml = bcSfFilterTemplate.saleLabelHtml;
-        // }
-    } else {
-        itemSoldoutLabelHtml = bcSfFilterTemplate.soldOutLabelHtml;
+    // BADGE : ITEM TYPE : Add Item Badge (Required Tags : item_badge_text_SOMETHING + item_badge_shape_SOMETHING)
+    if ( data.tags ) {
+        var findTag = function(searchString) {
+            var foundTags = data.tags.filter( function( tag ) {
+                return tag.indexOf( searchString ) >= 0; 
+            });
+
+            return foundTags || [];
+        };
+
+        // POPULATE : Build array of tags with only the ones we want
+        var badgeTags = findTag( 'item_badge_' );
+        if ( badgeTags.length > 0 ) {
+
+            // RENDER : Drop populated badge template into itemHtml template
+            var itemBadgeHtml = bcSfFilterTemplate.itemBadgeHtml; //Don't modify original :)
+            itemBadgeHtml = itemBadgeHtml.replace( /{{badgeTags}}/g, JSON.stringify( badgeTags ) );
+            itemHtml = itemHtml.replace( /{{itemBadge}}/g, itemBadgeHtml );
+        
+        } else {
+            itemHtml = itemHtml.replace(/{{itemBadge}}/g, '' ); //No badge, remove block
+        }
     }
-    itemHtml = itemHtml.replace(/{{itemNewLabel}}/g, itemNewLabelHtml);
-    itemHtml = itemHtml.replace(/{{itemSaleLabel}}/g, itemSaleLabelHtml);
-    itemHtml = itemHtml.replace(/{{itemSoldoutLabel}}/g, itemSoldoutLabelHtml);
-    itemHtml = itemHtml.replace(/{{itemPreorderLabel}}/g, '');
-    itemHtml = itemHtml.replace(/{{itemProductId}}/g, data.id );
 
 
-    // Add Thumbnail
+    // THUMBNAIL : Add Thumbnail template
     var itemThumbUrl = images.length > 0 ? this.optimizeImage(images[0]['src']) : bcSfFilterConfig.general.no_image_url;
     itemHtml = itemHtml.replace(/{{itemThumbUrl}}/g, itemThumbUrl);
     
 
-    // Add Flip Image
+    // IMAGE : FLIP : Add Flip Image if enabled
     var itemFlipImageHtml = '';
     if (bcSfFilterConfig.custom.image_flip && images.length > 1) {
         itemFlipImageHtml = '<div class="hidden">';
@@ -132,12 +136,12 @@ BCSfFilter.prototype.buildProductGridItem = function(data, index, totalProduct) 
     itemHtml = itemHtml.replace(/{{itemFlipImage}}/g, itemFlipImageHtml);
 
 
-    // Add Vendor
+    // VENDOR : Display vendor if enabled
     var itemVendorHtml = bcSfFilterConfig.custom.vendor_enable ? bcSfFilterTemplate.vendorHtml.replace(/{{itemVendorLabel}}/g, data.vendor) : '';
     itemHtml = itemHtml.replace(/{{itemVendor}}/g, itemVendorHtml);
 
 
-    // Add price
+    // PRICE : Add price and original price if discounted
     var itemPriceHtml = '';
     if (onSale) {
         itemPriceHtml += '<div class="onsale">' + this.formatMoney(data.price_min, this.moneyFormat) + '</div>';
@@ -157,7 +161,7 @@ BCSfFilter.prototype.buildProductGridItem = function(data, index, totalProduct) 
     itemHtml = itemHtml.replace(/{{itemPrice}}/g, itemPriceHtml);
 
 
-    // Add Quick view
+    // QUICK VIEW : Add quickview template and setup for fancybox usage
     var itemQuickviewHtml = '';
     if (bcSfFilterConfig.custom.quick_view_enable) {
         itemQuickviewHtml += '<a class="fancybox.ajax product-modal" href="{{itemUrl}}?view=quick">' + bcSfFilterConfig.label.quick_view + '</a>';
@@ -165,7 +169,8 @@ BCSfFilter.prototype.buildProductGridItem = function(data, index, totalProduct) 
     itemHtml = itemHtml.replace(/{{itemQuickview}}/g, itemQuickviewHtml);
 
 
-    // Add Variant Swatches
+    // SWATCHES : Build data object for usage in react-swatches
+    itemHtml = itemHtml.replace(/{{itemProductId}}/g, data.id ); //Splice in product ID
     var itemSwatchHtml = '';
     if (bcSfFilterConfig.custom.alternate_colors) {
         var optionIndex = data.options_with_values.findIndex(function(e) { return (e.name).toLowerCase() == 'color' || (e.name).toLowerCase() == 'colour'; });
@@ -219,13 +224,16 @@ BCSfFilter.prototype.buildProductGridItem = function(data, index, totalProduct) 
     }
     itemHtml = itemHtml.replace(/{{itemSwatch}}/g, itemSwatchHtml);
   
-    // Add main attribute
+
+    // INFO : Add main attributes for product data
     itemHtml = itemHtml.replace(/{{itemPriceAttr}}/g, data.price_min);
     itemHtml = itemHtml.replace(/{{itemId}}/g, data.id);
     itemHtml = itemHtml.replace(/{{itemTitle}}/g, data.title);
     itemHtml = itemHtml.replace(/{{itemHandle}}/g, data.handle);
     itemHtml = itemHtml.replace(/{{itemUrl}}/g, this.buildProductItemUrl(data));
 
+
+    // RENDER : Return out our built template!
     return itemHtml;
 }
 
