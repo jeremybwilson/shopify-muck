@@ -112,10 +112,10 @@
       showing_items: {{ 'general.pagination.showing_items' | t | json }},
     },
     custom: {
-      products_per_page: {% if product_limit %} {{ product_limit | json }} {% else %} 24 {% endif %},
-      products_per_row: {% if section.settings.grid %} {{ section.settings.grid }} {% else %} 4 {% endif %},
+      products_per_page: {% if product_limit %} {{ product_limit | json }} {% else %} 36 {% endif %},
+      products_per_row: {% if section.settings.grid %} {{ section.settings.grid }} {% else %} 3 {% endif %},
       quick_view_enable: {% if settings.quickview %} {{ settings.quickview | json }} {% else %} false {% endif %},
-      image_flip: {% if settings.image-flip %} {{ settings.image-flip | json }} {% else %} false {% endif %},
+      image_flip: {% if settings.image_flip %} {{ settings.image_flip | json }} {% else %} false {% endif %},
       alternate_colors: {% if settings.alternate_colors %} {{ settings.alternate_colors | json }} {% else %} false {% endif %},
       vendor_enable: {% if settings.vendor %} {{ settings.vendor | json }} {% else %} false {% endif %},
     }

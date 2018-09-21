@@ -4,41 +4,60 @@ class SwatchItem extends React.Component {
   constructor(props) {
     super(props);
     this.callSelectSwatch = this.callSelectSwatch.bind(this);
+    this.hoverSwatch = this.hoverSwatch.bind(this);
   }
 
-  // SWAP IMAGE : Simple
-  callSelectSwatch() {
-    const {selectSwatch, swatchObj: {id, image_url, price, product_id, url}} = this.props;
-    selectSwatch(image_url, price, product_id, id, url);
+
+
+  // SWAP IMAGE : Select swatch changes image and sets active state
+  callSelectSwatch( isHover ) {
+    const { selectSwatch, swatchId, variantImgUrl } = this.props;
+    const isHoverState = isHover === true; //Click events cause this to be the "event" object instead
+    selectSwatch( swatchId, variantImgUrl, isHoverState );
   }
+
+  // HOVER TILE : Swap variant image on hover, don't store as selection
+  hoverSwatch() { this.callSelectSwatch( true ) }
+
 
 
   render() {
-    const {active, swatchObj} = this.props; // Destructuring for verbosity
+    const { 
+      active,
+      colorValueName, 
+      resetProductImg, 
+      swatchId,
+      swatchImgUrl,
+      variantImgUrl
+    } = this.props; // Destructuring = verbosity save
+
     const isActive = active ? 'active' : '';
-    const swatchClasses = `swatch-item ${swatchObj.color} ${isActive}`;
     const swatchColorStyle = {
-      backgroundColor: swatchObj.color
+      backgroundColor: colorValueName,
+      backgroundImage: `url( ${swatchImgUrl} )` //May or may not have swatch img
     }
 
     return (
-      <div
-        style={ swatchColorStyle }
-        className={ swatchClasses }
-        data-swatch-data={ this.props.swatchObj }
-        onClick={ this.callSelectSwatch }></div>
+      <div 
+        className={ 'swatch-item-wrap ' + isActive }
+        onMouseEnter={ this.hoverSwatch }
+        onMouseLeave={ resetProductImg }
+        onClick={ this.callSelectSwatch }>
+        
+        <div className="swatch-highlight"></div>
+        <div style={ swatchColorStyle } className={ 'swatch-item ' + colorValueName }></div>
+      </div>
     );
   }
 }
 
 SwatchItem.propTypes = {
   active: PropTypes.bool.isRequired,
+  colorValueName: PropTypes.string.isRequired,
   selectSwatch: PropTypes.func.isRequired,
-  swatchObj: PropTypes.shape({
-    color: PropTypes.string.isRequired,
-    image_url: PropTypes.string.isRequired,
-    product_id: PropTypes.string.isRequired,
-  })
+  swatchId: PropTypes.string.isRequired,
+  swatchImgUrl: PropTypes.string,
+  variantImgUrl: PropTypes.string.isRequired
 };
 
 module.exports = SwatchItem;

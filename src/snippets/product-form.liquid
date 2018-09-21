@@ -16,6 +16,14 @@
     {% assign price = current_variant.price | money %}
     {% assign compare_price = current_variant.compare_at_price | money %}
   {%- endif -%}
+
+  {% comment %}
+
+  PRICE
+  -------------------
+
+  {% endcomment %}
+
   <div id="product-price">
     <span class="product-price" itemprop="price">
       <span class="money">{{ price }}</span>
@@ -29,11 +37,17 @@
 
   {% comment %} REVIEWS - STAR RATING {% endcomment %}
 
+  {% comment %}
 
+  SWATCHES 
+  -------------------
 
-  {% comment %} SWATCHES {% endcomment %}
+  CONDITION #1 - If there are more than one set of product options (Color AND Size). This condition also renders the different variants under said options (Red S, Blue L).
+
+  {% endcomment %}
 
   {% if product.options.size > 1 %}
+
     <div class="select" {% if product.variants.size == 1 or section.settings.product_variants == 'swatches' %}style="display: none;"{% endif %}>
       <select id="product-select-{{ product.id }}" name='id'>
         {% for variant in product.variants %}
@@ -42,54 +56,88 @@
           </option>
         {% endfor %}
       </select>
-    </div>
+    </div><!-- .select -->
     {% if section.settings.product_variants == 'swatches' %}
+
+      {% comment %} Option Loop 
+
+      This is the first of 3 sets of loops that determine the render of the product swatches. See 'swatch.liquid' for the other two.
+
+      CYCLE #1 - Cycle through the available options {% endcomment %}
+
       {% for option in product.options_with_values %}
         {% include "swatch" %}
       {% endfor %}
+
     {% endif %}
-    {% elsif product.options.size == 1 and product.variants.size > 1 %}
-      <div class="select" {% if section.settings.product_variants == 'swatches' %}style="display: none;"{% endif %}>
-        <label>{{ product.options[0] }}</label>
-        <select id="product-select-{{ product.id }}" name='id'>
-          {% for variant in product.variants %}
-            <option data-sku="{{ variant.sku }}" value="{{ variant.id }}" {% if variant == current_variant %}selected="selected"{% endif %}>
-              {{ variant.title }} - {{ variant.price | money }}
-            </option>
-          {% endfor %}
-        </select>
-      </div>
-      {% if section.settings.product_variants == 'swatches' %}
-        {% for option in product.options_with_values %}
-          {% include 'swatch' with option %}
-        {% endfor %}
-      {% endif %}
-    {% elsif product.variants.size == 1 %}
-      <select id="product-select-{{ product.id }}" name="id" {% if product.variants.size == 1 or section.settings.product_variants == 'swatches' %}style="display: none;"{% endif %}>
+
+  {% comment %}
+
+  CONDITION #2 - If there is only one product option (Color), but multiple variants under that option (Red, Blue, Green).
+
+  {% endcomment %}
+
+  {% elsif product.options.size == 1 and product.variants.size > 1 %}
+
+    <div class="select" {% if section.settings.product_variants == 'swatches' %}style="display: none;"{% endif %}>
+      <label>{{ product.options[0] }}</label>
+      <select id="product-select-{{ product.id }}" name='id'>
         {% for variant in product.variants %}
-          <option value="{{ variant.id }}" {% if variant == current_variant %}selected="selected"{% endif %}>
+          <option data-sku="{{ variant.sku }}" value="{{ variant.id }}" {% if variant == current_variant %}selected="selected"{% endif %}>
             {{ variant.title }} - {{ variant.price | money }}
           </option>
         {% endfor %}
       </select>
-    {% else %}
-      <div class="what-is-it">
-        {% if product.options.first != 'Title' %}
-          <label>{{ product.options.first }}:</label>
-          {% for variant in product.variants %}
-            <span class="it-is">{{ variant.option1 | escape }}</span>
-          {% endfor %}
-        {% endif %}
-      </div>
-      <div class="product-variants"></div><!-- product variants -->
-      <input  type="hidden" id="{{ variant.id }}" name="id" data-sku="{{ variant.sku }}" value="{{ product.variants[0].id }}" />
+    </div><!-- .select -->
+    {% if section.settings.product_variants == 'swatches' %}
+
+      {% comment %} Option Loop 
+
+      This is the first of 3 sets of loops that determine the render of the product swatches. See 'swatch.liquid' for the other two.
+
+      CYCLE #1 - Cycle through the available options {% endcomment %}
+
+      {% for option in product.options_with_values %}
+        {% include 'swatch' with option %}
+      {% endfor %}
+
     {% endif %}
+
+  {% comment %}
+
+  CONDITION #3 - If there aren't any options or variants at all; this interprets the number of variants as exactly 1.
+
+  {% endcomment %}
+
+  {% elsif product.variants.size == 1 %}
+
+    <select id="product-select-{{ product.id }}" name="id" {% if product.variants.size == 1 or section.settings.product_variants == 'swatches' %}style="display: none;"{% endif %}>
+      {% for variant in product.variants %}
+        <option value="{{ variant.id }}" {% if variant == current_variant %}selected="selected"{% endif %}>
+          {{ variant.title }} - {{ variant.price | money }}
+        </option>
+      {% endfor %}
+    </select><!-- .select -->
+    {% else %}
+    <div class="what-is-it">
+      {% if product.options.first != 'Title' %}
+        <label>{{ product.options.first }}:</label>
+        {% for variant in product.variants %}
+          <span class="it-is">{{ variant.option1 | escape }}</span>
+        {% endfor %}
+      {% endif %}
+    </div>
+    <div class="product-variants"></div><!-- product variants -->
+    <input  type="hidden" id="{{ variant.id }}" name="id" data-sku="{{ variant.sku }}" value="{{ product.variants[0].id }}" />
+
+  {% endif %}
+
   <div class="clear"></div>
 
   {% if section.settings.show_sku %}
-  <div class="sku">
-    <label style="line-height: 1.6em;">{{ 'customer.order.details.sku' | t }}:</label> <span class="variant_sku">{{ current_variant.sku }}</span>
-  </div><div class="clear"></div>
+    <div class="sku">
+      <label style="line-height: 1.6em;">{{ 'customer.order.details.sku' | t }}:</label> <span class="variant_sku">{{ current_variant.sku }}</span>
+    </div><div class="clear"></div>
   {% endif %}
 
   {% if product.available %}

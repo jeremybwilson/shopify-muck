@@ -14,16 +14,26 @@ var utils = require('./includes/utilities.js');
 
 function processThemeJs() {
   messages.logProcessFiles('build:js');
-  return gulp.src([config.roots.js, '!' + config.roots.vendorJs]).pipe(plumber(utils.errorHandler)).pipe(babel({presets:['env','react']})).pipe(include()).pipe(browserify({transform: ['reactify']})).pipe(gulp.dest(config.dist.assets));
+  return gulp.src([config.roots.js, '!' + config.roots.vendorJs])
+  .pipe(plumber(utils.errorHandler))
+  .pipe(babel({presets:['env','react']}))
+  .pipe(include())
+  .pipe(browserify({transform: ['reactify']}))
+  .pipe(babel({presets:['env','react']})) //Compiles the js from imported react components
+  .pipe(gulp.dest(config.dist.assets));
 }
 
 function processVendorJs() {
   messages.logProcessFiles('build:vendor-js');
-  return gulp.src(config.roots.vendorJs).pipe(plumber(utils.errorHandler)).pipe(include()).pipe(uglify({
-    mangle: true,
-    compress: true,
-    preserveComments: 'license'
-  })).pipe(gulp.dest(config.dist.assets));
+  return gulp.src(config.roots.vendorJs)
+    .pipe(plumber(utils.errorHandler))
+    .pipe(include())
+    .pipe(uglify({
+      mangle: true,
+      compress: true,
+      preserveComments: 'license'
+    }))
+    .pipe(gulp.dest(config.dist.assets));
 }
 
 gulp.task('build:js', function () {

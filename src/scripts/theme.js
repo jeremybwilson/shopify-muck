@@ -30,7 +30,6 @@
  *****************************************************************************/
 
 
-
 /* REACT - EXAMPLE #1
  *
  * GLOBAL-COMPONENT : 
@@ -1696,22 +1695,17 @@ $(document).ready(function() {
   $('.no-fouc').removeClass('no-fouc');
   $('.load-wait').addClass('hide');
 
-  /*============================================================================
-  Shifter side navigation for mobile
-  ==============================================================================*/
-  // $.shifter({
-  //   maxWidth: "980px"
-  // });
 
   /*============================================================================
   Use Fancybox to Ajax in product quick view template
   ==============================================================================*/
-  if ($(window).width() >= 980) {
-    $('.product-index').hover(function(){
-      $(this).children('.product-modal').show();
-    }, function(){
-      $(this).children('.product-modal').hide();
-    })
+  if ($(window).width() >= 769) {
+    // $('.prod-container').hover(function(){
+    //   $(this).children('.product-modal').show();
+    // }, function(){
+    //   $(this).children('.product-modal').hide();
+    // })
+
     // Call Fancybox for product modal + stop scroll to top
     // Call Fancybox on all elemnets with class "fancybox"
     $('.product-modal').fancybox({
@@ -1859,6 +1853,8 @@ theme.ProductForm = function (context, events) {
   });
 
   (function single_option_selectors() {
+    // function for the dropdowns
+
     var elements = context.querySelectorAll(".single-option-selector");
 
     elements.forEach(Selector);
@@ -1875,6 +1871,8 @@ theme.ProductForm = function (context, events) {
   })();
 
   (function swatches() {
+    // function for the swatches
+
     var elements = context.querySelectorAll("[type=radio]");
 
     var states = {
@@ -1947,6 +1945,7 @@ theme.ProductForm = function (context, events) {
 
       element.addEventListener("change", function (event) {
         events.trigger("swatch:change:" + option_position, element.value);
+        current_option_text_change();
       });
 
       events.on("variantchange:option" + option_position + ":" + element.value, select);
@@ -1956,7 +1955,10 @@ theme.ProductForm = function (context, events) {
       function select() {
         element.checked = true;
       }
-
+      function current_option_text_change() {
+        var current_option_text = element.closest('.swatch').querySelector('.current-option');
+        current_option_text.innerHTML = element.value;        
+      }
       function set_availability(current_variant) {
         var available = false;
 
@@ -2271,17 +2273,24 @@ theme.ProductMobileGallery = function (events) {
   }
 
   element.owlCarousel({
-    navigation : true, // Show next and prev buttons
+    items: 1,
+    margin: 20,
+    nav: true,
+    navText: [$('.mobile-product-carousel--prev'),$('.mobile-product-carousel--next')],
+    lazyLoad : true,
+    dots: false
+
+    /*navigation : true, // Show next and prev buttons
     navigationText: ["",""],
     slideSpeed : 300,
     paginationSpeed : 400,
     singleItem:true,
     pagination: false,
     lazyLoad: true,
-    addClassActive: false
+    addClassActive: false*/
   });
 
-  var owl = element.data("owlCarousel");
+  //var owl = element.data("owlCarousel");
 
   events.on("variantchange:image", select);
 
@@ -2290,7 +2299,7 @@ theme.ProductMobileGallery = function (events) {
     var slide = slides.filter("[data-image-id=" + id + "]");
     var index = slides.index(slide);
 
-    owl.goTo(index);
+    element.trigger('to.owl.carousel', index);
   };
 };
 
@@ -2302,6 +2311,11 @@ theme.Product = (function () {
     var events = new EventEmitter3();
     events.trigger = events.emit; // alias
 
+    const ui = {
+       freeShippingAccordionHeader: $( '#free-shipping--accordion-header' ),
+       freeShippingAccordionContent: $( '#free-shipping--accordion-content')
+    }
+
     theme.ProductMobileGallery(events);
 
     container.querySelectorAll("[data-product-gallery]").forEach(function (context) {
@@ -2312,6 +2326,14 @@ theme.Product = (function () {
       theme.ProductForm(context, events);
     });
 
+    $(document).ready( () => {
+
+      // FREE SHIPPING : Accordion
+      ui.freeShippingAccordionHeader.click( () => {
+        ui.freeShippingAccordionHeader.toggleClass( 'open' );
+        ui.freeShippingAccordionContent.slideToggle(250);
+      });
+    });
 
     /* REACT - EXAMPLE #2
      *
@@ -2356,10 +2378,12 @@ Events.on("quickview:load", function (container) {
 theme.Collection = (function() {
   function Collection(container) {
     const ui = {
-      collectionWrap: $( '#shopify-section-collection-template' ), //Can store this one b/c its in initial template
-      mobileFilterBtn: $( '#filter-button-mobile' ) //Don't store this as its rendered in js
+      collectionWrap: $( '#shopify-section-collection-template' ), //Can store these b/c they are unaffected by the filter app JS re-renders
+      mobileFilterBtn: $( '#filter-button-mobile' ),
+      seoBlockWrap: $( '#collection-seo-wrap' ),
+      seoReadMoreBtn: $( '#collection-seo-read-more' )
     }
-
+    
     // EVENTS : Bind DOM events when ready
     $(document).ready( () => {
 
@@ -2367,9 +2391,41 @@ theme.Collection = (function() {
       ui.mobileFilterBtn.click( () => {
         ui.collectionWrap.toggleClass( 'filter-open' );
       });
-    });
 
+      // SEO PARAGRAPH : OPEN / CLOSE : Reveals the rest of the SEO Paragraph text on click
+      var seoExpanded = false;
+      ui.seoReadMoreBtn.click( () => {
+        if ( !seoExpanded ) {
+          seoExpanded = true;
+          ui.seoBlockWrap.addClass( 'seo-open' ).delay( 250 ).queue(function(){
+              $(this).addClass( 'seo-visible' ).dequeue();
+          });
+        
+        } else {
+          seoExpanded = false;
+          ui.seoBlockWrap.removeClass( 'seo-visible' ).delay( 250 ).queue( function() {
+            $(this).removeClass( 'seo-open' ).dequeue();
+          });
+        }
+      })
+    });
   }
+
+  // SWATCHES : BUILD : Method to build the swatch components on collection updates (rebuilt in JS)
+  const buildSwatches = require('./react-components/swatches/SwatchParent.js');
+
+  // BADGES : BUILD : Method to build react-badges component on collection updates (rebuilt in JS)
+  const buildBadges = require('./react-components/badges/BadgeParent.js');
+
+
+  // UPDATE : FIRE : Fires all build functions on subscribed event trigger
+  const updateTemplate = function() {
+    buildSwatches();
+    buildBadges();
+  }
+
+  // UPDATES : SUB : Subscribe to collection updates to re-render react-components
+  $(document).on("collectionUpdated", updateTemplate);
 
   Collection.prototype = _.assignIn({}, Collection.prototype, {});
   return Collection;
