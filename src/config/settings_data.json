@@ -279,10 +279,8 @@
           "thumbnails": "left",
           "zoom_image_position": "zoom_over_main",
           "related_products": "none",
-          "popup_one": "",
-          "popup_two": "",
-          "popup_three": "",
-          "popup_four": false,
+          "free_shipping_header_text": "Free Shipping & Returns",
+          "free_shipping_text": "<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accu santium doloremque laudantium<\/p>",
           "show_social": false
         }
       },

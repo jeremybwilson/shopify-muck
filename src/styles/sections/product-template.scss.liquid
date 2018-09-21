@@ -30,14 +30,17 @@
   }
 }
 
-.product-details--top {
+.row.product-details--top {
   @include flexbox;
   @include flex-direction(row);
   @include align-items(flex-start);
   @include justify-content(space-between);
-  width: 1350 / 1440 * 100% !important;
-  max-width: 1350px;
-  margin: 0 auto 72px;
+
+  @include mq('tablet-and-up') {
+    width: 1350 / 1440 * 100%;
+    max-width: 1350px;
+    margin: 0 auto 72px;
+  }
 }
 
 .product {
@@ -91,6 +94,9 @@
 }
 
 #product-right {
+  margin-left: 0;
+  margin-right: 0;
+
   @include mq('tablet-and-up') {
     max-width: 365px;
     margin-top: 35px;
@@ -100,103 +106,89 @@
   }
 }
 
-.swatch {
-  @include flexbox;
-  @include flex-wrap(wrap);
-  margin-bottom: 20px;
+/* Product Form Snippet
+ * ---------------------------------------------- */
+@import url('../snippets/product-form.scss.liquid');
 
-  h5 { // swatch main label
-    width: 100%;
-    margin-bottom: 16px;
-    color: $color--dark-green-1;
-    @include fontSize(14px);
-    font-weight: $font-weight--black;
-    letter-spacing: .225em;
-    text-transform: uppercase;
+
+/* Free Shipping
+ * ---------------------------------------------- */
+
+#free-shipping--accordion {
+  @include flexbox;
+  @include flex-direction(column);
+  width: 100%;
+
+  // header & accordion trigger
+
+  dt {
+    @include flexbox;
+    @include justify-content(space-between);
+    @include align-items(center);
+    cursor: pointer;
+
+    & > svg {
+      width: 21px;
+      height: 21px;
+      margin-right: 5px;
+
+      @include mq('tablet-and-up') {
+        width: 36px;
+        height: 36px;
+        margin-right: 12px;
+      }
+    }
+    h3 {
+      margin-top: 3px;
+      color: $color--dark-green;
+      @include fontDim(14px,14px,.05em);
+      font-weight: $font-weight--bold;
+      text-transform: uppercase;
+
+      @include mq('tablet-and-up') {
+        margin-top: 5px;
+        @include fontDim(16px,16px,.15em);
+      }
+    }
+    .opener {
+      margin-left: auto;
+
+      svg {
+        width: 10px;
+        height: 10px;
+        transition: transform .25s ease;
+        transform-origin: center;
+      }
+    }
+  }
+  dt.open {
+    .opener svg {
+      transform: rotate(180deg);
+    }
+  }
+
+  // content
+
+  dd {
+    display: none;
+    margin-top: 16px;
+    padding-right: 10px;
 
     @include mq('tablet-and-up') {
-      @include fontSize(16px);
-      letter-spacing: .25em;
+      padding-right: 24px;
     }
+    p {
+      @include fontDim(14px,24px,.025em);
 
-  }
-
-  label { // actual visible swatch
-    height: 37px !important;
-    margin-left: 0 !important;
-    margin-right: 5px !important;
-    margin-bottom: 5px;
-    border: solid 1px #d7d7d7;
-    color: $color--gray-3;
-    @include fontSize(15px);
-    font-weight: $font-weight--book;
-    letter-spacing: .025em;
-    line-height: 37px !important;
-  }
-  label:hover {
-    background-color: $color--dark-green-1;
-    border-color: $color--dark-green-1;
-    color: $color--white;
-  }
-  input:checked + label {
-    background-color: $color--dark-green-1;
-    border-color: $color--dark-green-1;
-    color: $color--white;
-  }
-
-  // Color Swatches
-
-  .swatch-element.color {
-    label {
-      position: relative;
-      width: 23px !important;
-      height: 23px !important;
-      min-width: 0 !important;
-      border: none;
-      margin-right: 16px !important;
-      margin-bottom: 16px !important;
-
-      &:after {
-        content: '';
-        display: block;
-        position: absolute;
-        width: 35px;
-        height: 35px;
-        border-radius: 50%;
-        left: -6px;
-        top: -6px;
-        border: solid 1px transparent;
-      }
-    }
-    input:checked + label {
-      box-shadow: none;
-
-      &:after {
-        border-color: #d7d7d7;  
+      @include mq('tablet-and-up') {
+        @include fontDim(16px,26px,.025em);
       }
     }
   }
 }
 
-#product-add {
-  margin-top: 0;
-}
-input.add {
-  width: 100%;
-  height: 48px;
-  margin-top: 0;
-  background: $color--orange-1;
-
-  @include mq('tablet-and-up') {
-    height: 55px;
-  }
-
-  &:hover {
-    background: $color--dark-green;
-  }
-}
-
-// Big green product description area
+/* Big Green Product Description Area
+ * ---------------------------------------------- */
 
 .product-description--area {
   padding-top: 50px;
