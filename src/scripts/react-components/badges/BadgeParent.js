@@ -37,7 +37,7 @@ const prepData = () => {
     const badgeColorTag = findTag( 'item_badge_color_' ); // Optional
     const badgeBgTag = findTag( 'item_badge_bg_' );       // Optional
 
-    // ADD BADGE : text and shape required, if both present generate badge
+    // ADD BADGE : text tag content required
     if ( badgeTextTag ) {
 
         // MAP : Parse + Build needed info
