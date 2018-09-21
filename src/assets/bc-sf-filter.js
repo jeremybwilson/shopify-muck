@@ -39,9 +39,7 @@ var bcSfFilterTemplate = {
                             '</div>',
 
     // Badge Template
-    'itemBadgeHtml': '<div class="product-badge {{badgeShape}}" style="{{badgeColor}} {{badgeBg}}">' +
-                        '<div class="product-badge-text">{{badgeText}}</div>' + 
-                     '</div>',
+    'itemBadgeHtml': '<div class="react-badge" data-badge=\'{{badgeTags}}\'></div>',
 
     // Pagination Template
     'previousHtml': '<a href="{{itemUrl}}"><i class="fa fa-angle-left" aria-hidden="true"></i></a>',
@@ -95,49 +93,25 @@ BCSfFilter.prototype.buildProductGridItem = function(data, index, totalProduct) 
     itemHtml = itemHtml.replace(/{{itemGridWidthClass}}/g, itemGridWidthClass);
 
 
-    // HAX HAX : REMOVE THIS BEFORE FINISHING
-    // NOTE : CHANGE THE TAG NAME SINCE ITS ON PDP AS WELL NUB!!!!
-    var moreTags = [ "plp_badge_color_#0ff0ff", "plp_badge_shape_diamond", "plp_badge_text_BACK IN STOCK", "plp_badge_bg_#333333" ];
-    moreTags.forEach( tag => {
-        data.tags.push( tag );
-    });
-
-    // Add Item Badge (Required Tags : plp_badge_text_SOMETHING + plp_badge_shape_SOMETHING)
+    // BADGE : ITEM TYPE : Add Item Badge (Required Tags : item_badge_text_SOMETHING + item_badge_shape_SOMETHING)
     if ( data.tags ) {
         var findTag = function(searchString) {
-            var foundTag = data.tags.find( function( tag ) {
+            var foundTags = data.tags.filter( function( tag ) {
                 return tag.indexOf( searchString ) >= 0; 
             });
 
-            return foundTag;
+            return foundTags || [];
         };
-        var badgeTextTag = findTag( 'plp_badge_text_' );
-        var badgeShapeTag = findTag( 'plp_badge_shape_' );
-        var badgeColorTag = findTag( 'plp_badge_color_' ); // Optional
-        var badgeBgTag = findTag( 'plp_badge_bg_' );       // Optional
-        
-        // ADD BADGE : text and shape required, if both present generate a badge
-        if ( badgeTextTag && badgeShapeTag ) {
 
-            // MAP : Parse values to use for template replacement
-            var badgeData = {
-                "{{badgeText}}" : badgeTextTag.split( 'plp_badge_text_' )[1],
-                "{{badgeShape}}": badgeShapeTag.split( 'plp_badge_shape_' )[1],
-                "{{badgeColor}}": badgeColorTag ? 'color:' + badgeColorTag.split( 'plp_badge_color_' )[1] + '' : '',
-                "{{badgeBg}}"   : badgeBgTag ? 'background:' + badgeColorTag.split( 'plp_badge_color_' )[1] + '' : ''
-            }
-
-            // POPULATE : Replace properties with tag values
-            var itemBadgeHtml = bcSfFilterTemplate.itemBadgeHtml;
-            var re = new RegExp( Object.keys( badgeData ).join( "|" ), "gi" );
-            itemBadgeHtml = itemBadgeHtml.replace( re, function( matched ){
-                return badgeData[matched];
-            });
+        // POPULATE : Build array of tags with only the ones we want
+        var badgeTags = findTag( 'item_badge_' );
+        if ( badgeTags.length > 0 ) {
 
             // RENDER : Drop populated badge template into itemHtml template
+            var itemBadgeHtml = bcSfFilterTemplate.itemBadgeHtml; //Don't modify original :)
+            itemBadgeHtml = itemBadgeHtml.replace( /{{badgeTags}}/g, JSON.stringify( badgeTags ) );
             itemHtml = itemHtml.replace( /{{itemBadge}}/g, itemBadgeHtml );
         
-        // NO BADGE : Tags missing, remove badge from template
         } else {
             itemHtml = itemHtml.replace(/{{itemBadge}}/g, '' ); //No badge, remove block
         }
