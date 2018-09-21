@@ -2391,10 +2391,20 @@ theme.Collection = (function() {
   }
 
   // SWATCHES : BUILD : Method to build the swatch components on collection updates (rebuilt in JS)
-  var buildSwatches = require('./react-components/swatches/SwatchParent.js');
+  const buildSwatches = require('./react-components/swatches/SwatchParent.js');
 
-  // SWATCHES : SUB : Subscribe to collection updates to re-render swatches
-  $(document).on("collectionUpdated", buildSwatches);
+  // BADGES : BUILD : Method to build react-badges component on collection updates (rebuilt in JS)
+  const buildBadges = require('./react-components/badges/BadgeParent.js');
+
+
+  // UPDATE : FIRE : Fires all build functions on subscribed event trigger
+  const updateTemplate = function() {
+    buildSwatches();
+    buildBadges();
+  }
+
+  // UPDATES : SUB : Subscribe to collection updates to re-render react-components
+  $(document).on("collectionUpdated", updateTemplate);
 
   Collection.prototype = _.assignIn({}, Collection.prototype, {});
   return Collection;
