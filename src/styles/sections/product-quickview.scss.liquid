@@ -1,0 +1,145 @@
+// PRODUCT-QUICKVIEW.SCSS
+// -- sections/product-quickview.liquid
+
+
+/*  QUICKVIEW : Core Styles
+ * ---------------------------------------------- */
+
+.fancybox-quickview {
+	// Fancybox sucks at its job, it manually sets things when the box isn't fully loaded, slow devices will destroy this without hard sets. 
+	width: 960px !important;
+	top: 50% !important;
+	left: 50% !important;
+	transform: translate( -50%, -50% );
+
+	.fancybox-inner {
+		max-width: 960px;
+		width: 100% !important;
+	}
+}
+
+#product-quick-view {
+	padding: 40px 40px 40px 20px;
+	margin: 0;
+	overflow-x: hidden;
+	overflow-y: auto;
+	width: 100%;
+
+	#shopify-section-product-template {
+		margin-top: 0;
+
+		.product-details--top {
+			width: 100%;
+			margin: 0;
+		}
+
+
+		// IMAGES : LEFT SIDE : Left side of UI modal that holds image viewer
+		#product-photos {
+			max-height: 470px;
+
+			#thumbnail-gallery {
+				.bx-viewport {
+					height: 311px !important; // fancybox is an inline style nazi...
+				}
+			}
+		}
+
+		// DESCRIPTION : RIGHT SIDE : Right side of UI that houses product info and cart buttons
+		#product-right {
+			max-width: 306px;
+			margin-top: 20px;
+
+			#product-description {
+				width: 100%;
+				padding: 0;
+				border: none;
+
+				h1 {
+					@include h6;
+					@include fontSize( 26px );
+					font-weight: $font-weight--black;
+					color: $color--dark-green;
+				    text-transform: uppercase;
+					letter-spacing: 0.2em; //Matches mock, seems big but what they approved lol
+				}
+
+				.desc {
+					border: none;
+					padding: 0;
+					margin: 0;
+				}
+
+				// SIZE SQUARES : Needed so it sits flush on right edge, 
+				// lots of important tags in stylesheet.css so don't wanna hurt anything potentially on PDP
+				#AddToCartForm {
+
+					.swatch-element label {
+						width: 46px; //So half sizes = whole size boxes
+					}
+
+					.swatch-element:nth-child(7n) label {
+					    margin-right: 0 !important;
+					}
+				}
+			}
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* STYLES PULLED FROM STYLESHEET.css.liquid
+.row.product-quick-view .add {
+    clear: left;
+    margin-left: 0;
+}
+
+.row.product-quick-view .quanity-select {
+    width: 100%;
+    display: block;
+    float: left;
+}*/
