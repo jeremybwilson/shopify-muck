@@ -1699,12 +1699,7 @@ $(document).ready(function() {
   /*============================================================================
   Use Fancybox to Ajax in product quick view template
   ==============================================================================*/
-  if ($(window).width() >= 769) {
-    // $('.prod-container').hover(function(){
-    //   $(this).children('.product-modal').show();
-    // }, function(){
-    //   $(this).children('.product-modal').hide();
-    // })
+  if ($(window).width() > 1024) {
 
     // Call Fancybox for product modal + stop scroll to top
     // Call Fancybox on all elemnets with class "fancybox"
@@ -1713,9 +1708,10 @@ $(document).ready(function() {
       margin: 0,
       transitionIn: 'fade',
       afterShow: function () {
-        var context = document.querySelector(".product-quick-view");
+        var context = document.querySelector("#product-quick-view");
         Events.trigger("quickview:load", context);
       },
+      wrapCSS: 'fancybox-quickview',
       helpers: {
         overlay: {
           locked: false
@@ -2366,10 +2362,10 @@ Events.on("quickview:load", function (container) {
   theme.Product(container);
 });
 
-
-Events.on("quickview:load", function (container) {
-  Currency.convertAll( defaultCurrency, Currency.currentCurrency );
-});
+// CURRENCY CONVERSION NOT UTILIZED
+// Events.on("quickview:load", function (container) {
+//   Currency.convertAll( defaultCurrency, Currency.currentCurrency );
+// });
 
 
 /*============================================================================

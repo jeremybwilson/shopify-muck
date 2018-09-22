@@ -164,7 +164,7 @@ BCSfFilter.prototype.buildProductGridItem = function(data, index, totalProduct) 
     // QUICK VIEW : Add quickview template and setup for fancybox usage
     var itemQuickviewHtml = '';
     if (bcSfFilterConfig.custom.quick_view_enable) {
-        itemQuickviewHtml += '<a class="fancybox.ajax product-modal" href="{{itemUrl}}?view=quick">' + bcSfFilterConfig.label.quick_view + '</a>';
+        itemQuickviewHtml += '<a class="fancybox.ajax product-modal product-quickview" href="{{itemUrl}}?view=quick">' + bcSfFilterConfig.label.quick_view + '</a>';
     }
     itemHtml = itemHtml.replace(/{{itemQuickview}}/g, itemQuickviewHtml);
 
