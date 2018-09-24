@@ -77,6 +77,28 @@ $catalogItemAccentColor: {{ settings.catalog_item_accent_color }};
                 }
             }
 
+            // QUICKVIEW BUTTON : Button to show the quickview
+            .product-index {
+                .product-modal {
+                    @include h7;
+                    @include fontSize( 16px );
+                    background: $filterBtnAltBg;
+                    color: $filterBtnAltText;
+                    opacity: 0;
+                    border-radius: 0;
+                    transition: opacity 0.25s ease-in-out;
+                }
+
+                @include mq( 'lap-and-up' ) {
+                    &:hover .product-modal {
+                        display: block;
+                        opacity: 0.9;
+                        pointer-events: all;
+                    }
+                }
+            }
+            
+
             // TITLE : Wrapper around product title
             .product-title-wrap {
                 text-decoration: none;
@@ -113,20 +135,6 @@ $catalogItemAccentColor: {{ settings.catalog_item_accent_color }};
                     margin-right: 5px;
                     color: $catalogItemAccentColor;
                     font-weight: $font-weight--bold;
-                }
-            }
-
-            // QUICKVIEW BUTTON : Button to show the quickview
-            a.product-modal {
-                @include h7;
-                @include fontSize( 14px );
-                background: $filterBtnAltBg;
-                color: $filterBtnAltText;
-                opacity: 0.85;
-                border-radius: 0;
-
-                @include mq( 'lap-and-up' ) {
-                    @include fontSize( 16px );
                 }
             }
         }
