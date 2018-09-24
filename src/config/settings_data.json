@@ -545,6 +545,110 @@
           "homepage_product_display": "carousel",
           "products_per_row": 4
         }
+      },
+      "page-about-template": {
+        "type": "page-about-template",
+        "blocks": {
+          "1537319917728": {
+            "type": "html",
+            "settings": {
+              "html_block": "<div style=\"vertical-align: middle;  padding: 10vw 5vw; height: 400px; text-align: center;\"><p style=\"text-transform: uppercase; line-height: 40px;\"><span>every boot in the collection delivers the same <\/span><strong style=\"color:orange;\">100% waterproof quality &amp; comfort<\/strong><span> that inspired the original boots<\/span><\/p><\/div>",
+              "html_block_color": "rgba(0,0,0,0)"
+            }
+          },
+          "1537319921572": {
+            "type": "image_picker",
+            "settings": {
+              "image_picker_block": "shopify:\/\/shop_images\/IMG_4714.jpg"
+            }
+          },
+          "1537487476214": {
+            "type": "video_url",
+            "settings": {
+              "video_url_block": "https:\/\/youtu.be\/ksHFRQO5IY4",
+              "video_image_block": "shopify:\/\/shop_images\/32A3755.jpg"
+            }
+          },
+          "1537470215266": {
+            "type": "html",
+            "settings": {
+              "html_block": "<div style=\"outline: 1px solid #fff; outline-offset: -20px; padding: 10vw 5vw; color: #fff;  line-height: 40px; text-align: center; height: 100%;\">\n<span>Over the last two decades, the line has grown to <\/span><strong style=\"text-transform: capitalize;\">over 60 styles of rubber and leather footwear<\/strong><span>, all designed to stand up to tough conditions, whether on the farm, in the city, or in the great outdoors.<\/span>\n<\/div>",
+              "html_block_color": "#ab5232"
+            }
+          },
+          "1537482225047": {
+            "type": "html",
+            "settings": {
+              "html_block": "<div style=\"vertical-align: middle; padding: 10vw 5vw; height: 400px; text-align: center;\">\n<h2 style=\"padding-bottom: 10px; border-bottom: 1px solid #ccc; width: 100px; margin: 0 auto;\">Today<\/h2>\n<p style=\"text-transform: uppercase; line-height: 40px;\"><span>the muck boot brand sets a standard of <\/span><strong style=\"color:orange;\">comfort &amp; quality<\/strong><span> that goes beyond the expectations of customers around the world<\/span><\/p>\n<\/div>",
+              "html_block_color": ""
+            }
+          },
+          "1537482252402": {
+            "type": "image_picker",
+            "settings": {
+              "image_picker_block": "shopify:\/\/shop_images\/about_3_dd20e733-1007-4476-9488-9fbd53dd8482.png"
+            }
+          },
+          "1537483249387": {
+            "type": "image_picker",
+            "settings": {
+              "image_picker_block": "shopify:\/\/shop_images\/about_4_89c017e4-2c1d-4247-a385-71dccf4a90b4.png"
+            }
+          },
+          "1537483333044": {
+            "type": "html",
+            "settings": {
+              "html_block": "<div style=\"vertical-align: middle; padding: 5vw; height: 400px; text-align: center;\"><p style=\"text-transform: uppercase; line-height: 40px;\"><strong style=\"color:orange;\">All Muck® Boot products are 100% waterproof and backed by our 12 month warranty.<\/strong><span> purchase on our website and we offer a 30-day hassle free return guarantee<\/span><\/p><\/div>",
+              "html_block_color": ""
+            }
+          }
+        },
+        "block_order": [
+          "1537319917728",
+          "1537319921572",
+          "1537487476214",
+          "1537470215266",
+          "1537482225047",
+          "1537482252402",
+          "1537483249387",
+          "1537483333044"
+        ],
+        "settings": {
+          "about_text": "<div style=\"outline: 1px solid #fff; outline-offset: -20px; padding: 100px; min-height: 200px; text-align: center; width: 100%;\">\n<h2 style=\"color: #fff; padding-bottom: 10px; border-bottom: 1px solid #ccc; width: 300px; text-transform: capitalize; margin: 0 auto;\">we had a single Purpose:<\/h2>\n<br>\n<p style=\"color: #fff; max-width: 500px; margin: 0 auto;\">To build the most protective, most comfortable, most reliable boots possible. So, we created the Original Muck Boot Company, whose sole reason for being is to create footwear that can withstand the harshest conditions.<\/p>\n<\/div>",
+          "about_text_color": "#164632"
+        }
+      },
+      "slideshow": {
+        "type": "slideshow",
+        "blocks": {
+          "1537562942330": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/our-heritage_desktop.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/our-heritage_mobile.jpg",
+              "heading": "Add a title to your image",
+              "subheading": "Tell your brand's story through images",
+              "cta_one_link": "",
+              "cta_one_button_text": "Add a button",
+              "cta_two_link": "",
+              "cta_two_button_text": "Add a button",
+              "caption_color_scheme": "white",
+              "custom_slide_main_color": "#ffffff",
+              "custom_slide_alt_color": "#164732",
+              "caption_horizontal": "left",
+              "caption_vertical": 50,
+              "caption_background": "transparent",
+              "caption_opacity": "0.1"
+            }
+          }
+        },
+        "block_order": [
+          "1537562942330"
+        ],
+        "settings": {
+          "full_width": false,
+          "slider_speed": 5
+        }
       }
     },
     "content_for_index": [
