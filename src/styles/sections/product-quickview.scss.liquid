@@ -11,10 +11,24 @@
 	top: 50% !important;
 	left: 50% !important;
 	transform: translate( -50%, -50% );
+	display: none;
+
+	+ .fancybox-overlay {
+		display: none;
+	}
 
 	.fancybox-inner {
 		max-width: 960px;
 		width: 100% !important;
+	}
+
+
+	@include mq( 'lap-and-up' ){
+		display: block;
+
+		+ .fancybox-overlay {
+			display: block;
+		}
 	}
 }
 
