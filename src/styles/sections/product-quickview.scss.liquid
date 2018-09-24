@@ -78,8 +78,21 @@
 						width: 46px; //So half sizes = whole size boxes
 					}
 
-					.swatch-element:nth-child(7n) label {
+					.swatch-element:nth-child(6n+1) label {
 					    margin-right: 0 !important;
+					}
+				}
+
+				// "View Full Details" Link
+				a.full-click {
+					@include h7;
+					@include fontSize( 16px );
+					color: $color--dark-green;
+					text-decoration: underline;
+					transition: color 0.25s ease-in-out;
+
+					&:hover {
+						color: $color--orange-1;
 					}
 				}
 			}
