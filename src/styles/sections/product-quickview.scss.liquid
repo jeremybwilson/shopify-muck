@@ -45,12 +45,25 @@
 		.product-details--top {
 			width: 100%;
 			margin: 0;
+			padding: 20px 0 40px;
 		}
 
 
 		// IMAGES : LEFT SIDE : Left side of UI modal that holds image viewer
 		#product-photos {
 			max-height: 470px;
+			width: 500px;
+
+			.react-badge {
+				position: absolute;
+				right: 0;
+				top: 50px;
+			}
+
+			.product-main-images {
+				position: relative;
+				top: 50px;
+			}
 
 			#thumbnail-gallery {
 				.bx-viewport {
@@ -61,7 +74,7 @@
 
 		// DESCRIPTION : RIGHT SIDE : Right side of UI that houses product info and cart buttons
 		#product-right {
-			max-width: 306px;
+			max-width: 301px; // 46px * 6 Size squares with 5px * 5 right margins (last doesn't have one)
 			margin-top: 20px;
 
 			#product-description {
