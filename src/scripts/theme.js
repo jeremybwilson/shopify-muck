@@ -2322,7 +2322,12 @@ theme.Product = (function () {
       theme.ProductForm(context, events);
     });
 
+    // BADGES : BUILD : Method to build react-badges component on collection updates (rebuilt in JS)
+    const buildBadges = require('./react-components/badges/BadgeParent.js');
+
     $(document).ready( () => {
+      // BADGES : Generate badge in div slot if present
+      buildBadges();
 
       // FREE SHIPPING : Accordion
       ui.freeShippingAccordionHeader.click( () => {
