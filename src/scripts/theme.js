@@ -736,6 +736,11 @@ p.width()>b&&(a=p.width())):p.width()>n.width()&&(a=p.width());this.overlay.widt
 ":not('.fancybox-item, .fancybox-nav')","click.fb-start",k);this.filter("[data-fancybox-start=1]").trigger("click");return this};p.ready(function(){var a,d;f.scrollbarWidth===v&&(f.scrollbarWidth=function(){var a=f('<div style="width:50px;height:50px;overflow:auto"><div/></div>').appendTo("body"),b=a.children(),b=b.innerWidth()-b.height(99).innerWidth();a.remove();return b});if(f.support.fixedPosition===v){a=f.support;d=f('<div style="position:fixed;top:20px;"></div>').appendTo("body");var e=20===
                   d[0].offsetTop||15===d[0].offsetTop;d.remove();a.fixedPosition=e}f.extend(b.defaults,{scrollbarWidth:f.scrollbarWidth(),fixed:f.support.fixedPosition,parent:f("body")});a=f(r).width();J.addClass("fancybox-lock-test");d=f(r).width();J.removeClass("fancybox-lock-test");f("<style type='text/css'>.fancybox-margin{margin-right:"+(d-a)+"px;}</style>").appendTo("head")})})(window,document,jQuery);
 
+/* FANCYBOX MEDIA HELPER */
+
+!function(e){"use strict";var a=function(a,t,o){return o=o||"","object"===e.type(o)&&(o=e.param(o,!0)),e.each(t,function(e,t){a=a.replace("$"+e,t||"")}),o.length&&(a+=(a.indexOf("?")>0?"&":"?")+o),a};e.fancybox.helpers.media={defaults:{youtube:{matcher:/(youtube\.com|youtu\.be|youtube-nocookie\.com)\/(watch\?v=|v\/|u\/|embed\/?)?(videoseries\?list=(.*)|[\w-]{11}|\?listType=(.*)&list=(.*)).*/i,params:{autoplay:1,autohide:1,fs:1,rel:0,hd:1,wmode:"opaque",enablejsapi:1,ps:"docs",controls:1},type:"iframe",url:"//www.youtube.com/embed/$3?rel=0&amp;showinfo=0"},vimeo:{matcher:/(?:vimeo(?:pro)?.com)\/(?:[^\d]+)?(\d+)(?:.*)/,params:{autoplay:1,hd:1,show_title:1,show_byline:1,show_portrait:0,fullscreen:1},type:"iframe",url:"//player.vimeo.com/video/$1"},metacafe:{matcher:/metacafe.com\/(?:watch|fplayer)\/([\w\-]{1,10})/,params:{autoPlay:"yes"},type:"swf",url:function(a,t,o){return o.swf.flashVars="playerVars="+e.param(t,!0),"//www.metacafe.com/fplayer/"+a[1]+"/.swf"}},dailymotion:{matcher:/dailymotion.com\/video\/(.*)\/?(.*)/,params:{additionalInfos:0,autoStart:1},type:"swf",url:"//www.dailymotion.com/swf/video/$1"},twitvid:{matcher:/twitvid\.com\/([a-zA-Z0-9_\-\?\=]+)/i,params:{autoplay:0},type:"iframe",url:"//www.twitvid.com/embed.php?guid=$1"},twitpic:{matcher:/twitpic\.com\/(?!(?:place|photos|events)\/)([a-zA-Z0-9\?\=\-]+)/i,type:"image",url:"//twitpic.com/show/full/$1/"},instagram:{matcher:/(instagr\.am|instagram\.com)\/p\/([a-zA-Z0-9_\-]+)\/?/i,type:"image",url:"//$1/p/$2/media/?size=l"},google_maps:{matcher:/maps\.google\.([a-z]{2,3}(\.[a-z]{2})?)\/(\?ll=|maps\?)(.*)/i,type:"iframe",url:function(e){return"//maps.google."+e[1]+"/"+e[3]+e[4]+"&output="+(e[4].indexOf("layer=c")>0?"svembed":"embed")}}},beforeLoad:function(t,o){var i,r,m,l,c=o.href||"",p=!1;for(i in t)if(t.hasOwnProperty(i)&&(r=t[i],m=c.match(r.matcher))){p=r.type,l=e.extend(!0,{},r.params,o[i]||(e.isPlainObject(t[i])?t[i].params:null)),c="function"===e.type(r.url)?r.url.call(this,m,l,o):a(r.url,m,l);break}p&&(o.href=c,o.type=p,o.autoHeight=!1)}}}(jQuery);
+
+
  /**
  * ----------------------------------------------------------------------------------------------------
  * PLACEHOLDERS
@@ -1699,30 +1704,23 @@ $(document).ready(function() {
   /*============================================================================
   Use Fancybox to Ajax in product quick view template
   ==============================================================================*/
-  if ($(window).width() >= 769) {
-    // $('.prod-container').hover(function(){
-    //   $(this).children('.product-modal').show();
-    // }, function(){
-    //   $(this).children('.product-modal').hide();
-    // })
-
-    // Call Fancybox for product modal + stop scroll to top
-    // Call Fancybox on all elemnets with class "fancybox"
-    $('.product-modal').fancybox({
-      padding: 0,
-      margin: 0,
-      transitionIn: 'fade',
-      afterShow: function () {
-        var context = document.querySelector(".product-quick-view");
-        Events.trigger("quickview:load", context);
-      },
-      helpers: {
-        overlay: {
-          locked: false
-        }
+  // Call Fancybox for product modal + stop scroll to top
+  // Call Fancybox on all elemnets with class "fancybox"
+  $('.product-modal').fancybox({
+    padding: 0,
+    margin: 0,
+    transitionIn: 'fade',
+    afterShow: function () {
+      var context = document.querySelector("#product-quick-view");
+      Events.trigger("quickview:load", context);
+    },
+    wrapCSS: 'fancybox-quickview',
+    helpers: {
+      overlay: {
+        locked: false
       }
-    });
-  }
+    }
+  });
 
   /*============================================================================
   Scroll to top
@@ -2313,7 +2311,8 @@ theme.Product = (function () {
 
     const ui = {
        freeShippingAccordionHeader: $( '#free-shipping--accordion-header' ),
-       freeShippingAccordionContent: $( '#free-shipping--accordion-content')
+       freeShippingAccordionContent: $( '#free-shipping--accordion-content'),
+       campaignVideoTrigger: $( '.campaign-video--trigger' )
     }
 
     theme.ProductMobileGallery(events);
@@ -2326,13 +2325,35 @@ theme.Product = (function () {
       theme.ProductForm(context, events);
     });
 
+    // BADGES : BUILD : Method to build react-badges component on collection updates (rebuilt in JS)
+    const buildBadges = require('./react-components/badges/BadgeParent.js');
+
     $(document).ready( () => {
+      // BADGES : Generate badge in div slot if present
+      buildBadges();
 
       // FREE SHIPPING : Accordion
       ui.freeShippingAccordionHeader.click( () => {
         ui.freeShippingAccordionHeader.toggleClass( 'open' );
         ui.freeShippingAccordionContent.slideToggle(250);
       });
+
+      // CAMPAIGN VIDEO
+
+      if ( ui.campaignVideoTrigger.length > 0 ) {
+        ui.campaignVideoTrigger.fancybox({
+          width: 900,
+          height: 506,
+          padding: 0,
+          aspectRatio: true,
+          helpers: {
+            media: true,
+            overlay: {
+              locked: false
+            }
+          }
+        });
+      }
     });
 
     /* REACT - EXAMPLE #2
@@ -2366,10 +2387,10 @@ Events.on("quickview:load", function (container) {
   theme.Product(container);
 });
 
-
-Events.on("quickview:load", function (container) {
-  Currency.convertAll( defaultCurrency, Currency.currentCurrency );
-});
+// CURRENCY CONVERSION NOT UTILIZED
+// Events.on("quickview:load", function (container) {
+//   Currency.convertAll( defaultCurrency, Currency.currentCurrency );
+// });
 
 
 /*============================================================================

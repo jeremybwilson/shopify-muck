@@ -39,6 +39,10 @@
   <div class="row product-details--top">
 
     <div id="product-photos" class="{% if section.settings.related_products == 'right' %}desktop-5{% else %}desktop-6{% endif %} tablet-3 mobile-hide" data-product-gallery>
+      
+      {% comment %} :: ITEM BADGE :: {% endcomment %}
+      {% include 'react-item-badge' %}
+
       {%- if product.featured_image -%}
         {% include 'product-image-gallery' %}
       {%- else -%}
@@ -251,6 +255,8 @@
 
     {% comment %} CAMPAIGN VIDEO {% endcomment %}
 
+    {% include 'product-campaign-video' %}
+
     {% comment %} REVIEWS {% endcomment %}
 
     {% comment %} RECENTLY VIEWED {% endcomment %}
@@ -335,26 +341,6 @@
   {% else %}
     #product-description .zoom-box {
       left: 57.5%;
-    }
-  {% endif %}
-  {% if template == 'product.quick' %}
-    #product-description {
-      width: 100%;
-      padding: 0;
-      border: none;
-    }
-    #product-description .desc {
-      border: none;
-      padding: 0;
-      margin: 0;
-    }
-    .fancybox-inner {
-     border: 1px solid {{ settings.dotted_color }};
-      }
-    .product-quick-view {
-      width: 810px !important;
-      padding: 20px 0;
-      margin-left: 10px !important;
     }
   {% endif %}
 </style>

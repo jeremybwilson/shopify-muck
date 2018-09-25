@@ -164,7 +164,7 @@ BCSfFilter.prototype.buildProductGridItem = function(data, index, totalProduct) 
     // QUICK VIEW : Add quickview template and setup for fancybox usage
     var itemQuickviewHtml = '';
     if (bcSfFilterConfig.custom.quick_view_enable) {
-        itemQuickviewHtml += '<a class="fancybox.ajax product-modal" href="{{itemUrl}}?view=quick">' + bcSfFilterConfig.label.quick_view + '</a>';
+        itemQuickviewHtml += '<a class="fancybox.ajax product-modal product-quickview" href="{{itemUrl}}?view=quick">' + bcSfFilterConfig.label.quick_view + '</a>';
     }
     itemHtml = itemHtml.replace(/{{itemQuickview}}/g, itemQuickviewHtml);
 
@@ -393,8 +393,83 @@ BCSfFilter.prototype.buildAdditionalElements = function(data, eventType) {
     });
 };
 
-    // Build Default layout
+
+// Build Default layout
 function buildDefaultLink(a,b){var c=window.location.href.split("?")[0];return c+="?"+a+"="+b}BCSfFilter.prototype.buildDefaultElements=function(a){if(bcSfFilterConfig.general.hasOwnProperty("collection_count")&&jQ("#bc-sf-filter-bottom-pagination").length>0){var b=bcSfFilterConfig.general.collection_count,c=parseInt(this.queryParams.page),d=Math.ceil(b/this.queryParams.limit);if(1==d)return jQ(this.selector.pagination).html(""),!1;if("default"==this.getSettingValue("general.paginationType")){var e=bcSfFilterTemplate.paginateHtml,f="";f=c>1?bcSfFilterTemplate.hasOwnProperty("previousActiveHtml")?bcSfFilterTemplate.previousActiveHtml:bcSfFilterTemplate.previousHtml:bcSfFilterTemplate.hasOwnProperty("previousDisabledHtml")?bcSfFilterTemplate.previousDisabledHtml:"",f=f.replace(/{{itemUrl}}/g,buildDefaultLink("page",c-1)),e=e.replace(/{{previous}}/g,f);var g="";g=c<d?bcSfFilterTemplate.hasOwnProperty("nextActiveHtml")?bcSfFilterTemplate.nextActiveHtml:bcSfFilterTemplate.nextHtml:bcSfFilterTemplate.hasOwnProperty("nextDisabledHtml")?bcSfFilterTemplate.nextDisabledHtml:"",g=g.replace(/{{itemUrl}}/g,buildDefaultLink("page",c+1)),e=e.replace(/{{next}}/g,g);for(var h=[],i=c-1;i>c-3&&i>0;i--)h.unshift(i);c-4>0&&h.unshift("..."),c-4>=0&&h.unshift(1),h.push(c);for(var j=[],k=c+1;k<c+3&&k<=d;k++)j.push(k);c+3<d&&j.push("..."),c+3<=d&&j.push(d);for(var l="",m=h.concat(j),n=0;n<m.length;n++)"..."==m[n]?l+=bcSfFilterTemplate.pageItemRemainHtml:l+=m[n]==c?bcSfFilterTemplate.pageItemSelectedHtml:bcSfFilterTemplate.pageItemHtml,l=l.replace(/{{itemTitle}}/g,m[n]),l=l.replace(/{{itemUrl}}/g,buildDefaultLink("page",m[n]));e=e.replace(/{{pageItems}}/g,l),jQ(this.selector.pagination).html(e)}}if(bcSfFilterTemplate.hasOwnProperty("sortingHtml")&&jQ(this.selector.topSorting).length>0){jQ(this.selector.topSorting).html("");var o=this.getSortingList();if(o){var p="";for(var q in o)p+='<option value="'+q+'">'+o[q]+"</option>";var r=bcSfFilterTemplate.sortingHtml.replace(/{{sortingItems}}/g,p);jQ(this.selector.topSorting).html(r);var s=void 0!==this.queryParams.sort_by?this.queryParams.sort_by:this.defaultSorting;jQ(this.selector.topSorting+" select").val(s),jQ(this.selector.topSorting+" select").change(function(a){window.location.href=buildDefaultLink("sort_by",jQ(this).val())})}}};
 
-    // Customize data to suit the data of Shopify API
-BCSfFilter.prototype.prepareProductData=function(data){for(var k=0;k<data.length;k++){data[k]['images']=data[k]['images_info'];if(data[k]['images'].length>0){data[k]['featured_image']=data[k]['images'][0]}else{data[k]['featured_image']={src:bcSfFilterConfig.general.no_image_url,width:'',height:'',aspect_ratio:0}}data[k]['url']='/products/'+data[k].handle;var optionsArr=[];for(var i=0;i<data[k]['options_with_values'].length;i++){optionsArr.push(data[k]['options_with_values'][i]['name'])}data[k]['options']=optionsArr;data[k]['price_min']*=100,data[k]['price_max']*=100,data[k]['compare_at_price_min']*=100,data[k]['compare_at_price_max']*=100;data[k]['price']=data[k]['price_min'];data[k]['compare_at_price']=data[k]['compare_at_price_min'];data[k]['price_varies']=data[k]['price_min']!=data[k]['price_max'];var firstVariant=data[k]['variants'][0];if(getParam('variant')!==null&&getParam('variant')!=''){var paramVariant=data.variants.filter(function(e){return e.id==getParam('variant')});if(typeof paramVariant[0]!=='undefined')firstVariant=paramVariant[0]}else{for(var i=0;i<data[k]['variants'].length;i++){if(data[k]['variants'][i].available){firstVariant=data[k]['variants'][i];break}}}data[k]['selected_or_first_available_variant']=firstVariant;for(var i=0;i<data[k]['variants'].length;i++){var variantOptionArr=[];var count=1;var variant=data[k]['variants'][i];var variantOptions=variant['merged_options'];if(Array.isArray(variantOptions)){for(var j=0;j<variantOptions.length;j++){var temp=variantOptions[j].split(':');data[k]['variants'][i]['option'+(parseInt(j)+1)]=temp[1];data[k]['variants'][i]['option_'+temp[0]]=temp[1];variantOptionArr.push(temp[1])}data[k]['variants'][i]['options']=variantOptionArr}data[k]['variants'][i]['compare_at_price']=parseFloat(data[k]['variants'][i]['compare_at_price'])*100;data[k]['variants'][i]['price']=parseFloat(data[k]['variants'][i]['price'])*100}data[k]['description']=data[k]['content']=data[k]['body_html']}return data};
+
+// Customize data to suit the data of Shopify API
+BCSfFilter.prototype.prepareProductData = function(data) {
+    for (var k = 0; k < data.length; k++) {
+        data[k]['images'] = data[k]['images_info'];
+        if (data[k]['images'].length > 0) {
+            data[k]['featured_image'] = data[k]['images'][0]
+        } else {
+            data[k]['featured_image'] = {
+                src: bcSfFilterConfig.general.no_image_url,
+                width: '',
+                height: '',
+                aspect_ratio: 0
+            }
+        }
+        data[k]['url'] = '/products/' + data[k].handle;
+        
+        var optionsArr = [];
+        for (var i = 0; i < data[k]['options_with_values'].length; i++) { 
+            optionsArr.push(data[k]['options_with_values'][i]['name']) 
+        } 
+
+        data[k]['options'] = optionsArr;
+
+        data[k]['price_min'] *= 100, 
+        data[k]['price_max'] *= 100, 
+        data[k]['compare_at_price_min'] *= 100, 
+        data[k]['compare_at_price_max'] *= 100;
+
+        data[k]['price'] = data[k]['price_min'];
+        data[k]['compare_at_price'] = data[k]['compare_at_price_min'];
+        data[k]['price_varies'] = data[k]['price_min'] != data[k]['price_max'];
+        
+        var firstVariant = data[k]['variants'][0];
+        if (getParam('variant') !== null && getParam('variant') != '') { 
+            var variantArr = data.variants ? data.variants : data[k]['variants']; //MODIFIED : This was breaking collection when ?variant=### query params were in url
+            var paramVariant = variantArr.filter(
+                function(e) { 
+                    return e.id == getParam('variant') 
+                }
+            ); 
+
+            if (typeof paramVariant[0] !== 'undefined') firstVariant = paramVariant[0] 
+        } else { 
+            for (var i = 0; i < data[k]['variants'].length; i++) { 
+                if (data[k]['variants'][i].available) { 
+                    firstVariant = data[k]['variants'][i]; 
+                    break 
+                } 
+            } 
+        } 
+
+        data[k]['selected_or_first_available_variant'] = firstVariant;
+        for (var i = 0; i < data[k]['variants'].length; i++) { 
+            var variantOptionArr = []; 
+            var count = 1; 
+            var variant = data[k]['variants'][i]; 
+            var variantOptions = variant['merged_options']; 
+            if (Array.isArray(variantOptions)) { 
+                for (var j = 0; j < variantOptions.length; j++) { 
+                    var temp = variantOptions[j].split(':');
+                    data[k]['variants'][i]['option' + (parseInt(j) + 1)] = temp[1];
+                    data[k]['variants'][i]['option_' + temp[0]] = temp[1];
+                    variantOptionArr.push(temp[1]) 
+                } 
+                data[k]['variants'][i]['options'] = variantOptionArr 
+            } 
+
+            data[k]['variants'][i]['compare_at_price'] = parseFloat(data[k]['variants'][i]['compare_at_price']) * 100;
+            data[k]['variants'][i]['price'] = parseFloat(data[k]['variants'][i]['price']) * 100 
+        } 
+
+        data[k]['description'] = data[k]['content'] = data[k]['body_html']
+    }
+    return data
+};

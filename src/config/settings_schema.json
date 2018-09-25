@@ -299,6 +299,30 @@
       },
 
 
+      {
+        "type": "header",
+        "content": "Modals + Fancybox"
+      },
+      {
+        "type": "text",
+        "id": "fancybox_overlay_bg",
+        "label": "Modal Overlay BG (rgba)",
+        "info": "(The full-screen backing behind the modal)",
+        "default": "0,0,0,0.8"
+      },
+      {
+        "type": "color",
+        "id": "fancybox_close_color",
+        "label": "Modal Close Color",
+        "default": "#5B5B5B"
+      },
+      {
+        "type": "color",
+        "id": "fancybox_close_hover_color",
+        "label": "Modal Close Hover Color",
+        "default": "#9B492B"
+      },
+
 
       {
         "type": "header",
