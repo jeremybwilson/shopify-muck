@@ -297,6 +297,24 @@
         "label": "Catalog SEO Footer Text Color",
         "default": "#164732"
       },
+      {
+        "type": "color",
+        "id": "collection_load_more_text",
+        "label": "Load More Text Color",
+        "default": "#FEFFFE"
+      },
+      {
+        "type": "color",
+        "id": "collection_load_more_bg",
+        "label": "Load More Button BG ",
+        "default": "#ab5232"
+      },
+      {
+        "type": "color",
+        "id": "collection_load_more_bg_hover",
+        "label": "Load More Button BG on Hover",
+        "default": "#9b492b"
+      },
 
 
       {
