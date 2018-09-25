@@ -3,36 +3,36 @@
 {% for tag in product.tags %}
 
   {% comment %} Check to see if a product has a campaign video tag {% endcomment %}
-  {% if tag contains 'campaignVideo_' %}
+  {% if tag contains 'campaign_video_url' %}
 
     
     {% comment %} Splits up the tag into an array and grab the necessary vars {% endcomment %}
 
-    {% assign campaign_vid = tag | remove: 'campaignVideo_' %}
+    {% assign campaign_vid = tag | remove: 'campaign_video_url_' %}
 
     {{ campaign_vid.type }}
 
   {% endif %}
 
-  {% if tag contains 'campaignVideoImage' %}
+  {% if tag contains 'campaign_video_image' %}
 
     {% comment %} If an image URL exists for the Campaign Video, parse {% endcomment %}
 
-    {% if tag contains 'campaignVideoImageDesktop' %}
-      {% assign campaign_image_desktop = tag | remove: 'campaignVideoImageDesktop_' %}
+    {% if tag contains 'campaign_video_image_desktop' %}
+      {% assign campaign_image_desktop = tag | remove: 'campaign_video_image_desktop_' %}
     {% endif %}
-    {% if tag contains 'campaignVideoImageMobile' %}
-      {% assign campaign_image_mobile = tag | remove: 'campaignVideoImageMobile_' %}
+    {% if tag contains 'campaign_video_image_mobile' %}
+      {% assign campaign_image_mobile = tag | remove: 'campaign_video_image_mobile_' %}
     {% endif %}    
   {% endif %}
 
   {% comment %} Text for the Overlay {% endcomment %}
 
-  {% if tag contains 'campaignVideoSubheadline' %}
-    {% assign campaign_subheadline = tag | remove: 'campaignVideoSubheadline_' %}
+  {% if tag contains 'campaign_video_subheadline' %}
+    {% assign campaign_subheadline = tag | remove: 'campaign_video_subheadline_' %}
   {% endif %}
-  {% if tag contains 'campaignVideoHeadline' %}
-    {% assign campaign_headline = tag | remove: 'campaignVideoHeadline_' %}
+  {% if tag contains 'campaign_video_headline' %}
+    {% assign campaign_headline = tag | remove: 'campaign_video_headline_' %}
   {% endif %}  
 
 {% endfor %}
