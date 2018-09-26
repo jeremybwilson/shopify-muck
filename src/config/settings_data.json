@@ -92,7 +92,7 @@
     "dropdown_font_size": 13,
     "navigation_transform": "uppercase",
     "dropdown_transform": "uppercase",
-    "link_decoration": "underline",
+    "link_decoration": "none",
     "section_title_border": "bottom_only_short",
     "border_weight": "3px",
     "breadcrumb": true,
