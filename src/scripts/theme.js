@@ -1158,6 +1158,7 @@ theme.Slideshow = (function() {
       },
       before: function(slider) {
         $('.flexslider--current-slide').text(slider.animatingTo+1);
+        $('.flexslider--total-slides').text(slider.count);
       }
     });
   }

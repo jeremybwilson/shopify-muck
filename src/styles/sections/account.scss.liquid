@@ -1,0 +1,27 @@
+#customer-wrapper {
+  h2 {
+    @include h3;
+    color: $color--dark-green;
+  }
+  label {
+    @include h7;
+    color: $color--gray-1;
+  }
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    color: $color--gray-1;
+    font-family: $sans;
+  }
+  a {
+    color: $color--gray-1;
+  }
+  .button {
+    background: $color--orange-1;
+    coloR: $color--white;
+
+    &:hover {
+      background: $color--dark-green;
+    }
+  }
+}
