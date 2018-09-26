@@ -25,6 +25,7 @@
     "secondary_button_color": "#ddd",
     "secondary_button_hover": "#ccc",
     "secondary_button_text": "#000",
+    "error_text": "#f00",
     "product_badge_square_bg": "#3e3e3e",
     "product_badge_circle_bg": "#ab5232",
     "product_badge_diamond_bg": "#164732",

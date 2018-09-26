@@ -184,6 +184,12 @@
       },
       {
         "type": "color",
+        "id": "error_text",
+        "label": "Error text",
+        "default": "#f00"
+      },
+      {
+        "type": "color",
         "id": "product_badge_square_bg",
         "label": "Square Badge BG",
         "default": "#3E3E3E"
