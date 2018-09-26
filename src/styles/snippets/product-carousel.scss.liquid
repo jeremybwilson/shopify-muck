@@ -5,7 +5,7 @@
   text-align: center;
 
   @include mq('tablet-and-up') {
-    margin-top: 20px;
+    margin-top: 60px;
   }
 
   .row {
@@ -109,6 +109,10 @@
     margin-bottom: 0;
   }
 
+  .icn {
+    display: none; // hide for now while we sort this out
+  }
+
   .product-info {
     a {
       text-decoration: none;
@@ -140,6 +144,26 @@
         letter-spacing: .15em;
 
       }
+    }
+  }
+  .product-modal {
+    @include h7;
+    @include fontSize( 16px );
+    background: $color--orange-1;
+    color: $color--white;
+    opacity: 0;
+    border-radius: 0;
+    transition: opacity .25s ease-in-out;
+  }
+
+  @include mq('lap-and-up') {
+    .product-index:hover .product-modal {
+      display: block;
+      opacity: 0.9;
+      pointer-events: all;
+    }
+    .product-index:hover .product-modal:hover {
+      opacity: 1;
     }
   }
 
