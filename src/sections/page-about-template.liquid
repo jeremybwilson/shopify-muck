@@ -3,8 +3,10 @@
 		{{ section.settings.about_text }}
 	</div>
 
+
 	{% for block in section.blocks %}
-	  <div class="block" {% if block.type == 'html' %}style="background-color:{{ block.settings.html_block_color }}"{% endif %}> 	  {% if block.type == 'image_picker' %}
+	  <div class="block {% if block.type == 'image_picker' %}image-block{% endif %}" style="order:{{ block.settings.block_order }}; {% if block.type == 'html' %}background-color:{{ block.settings.html_block_color }}{% elsif block.type == 'image_picker' %}margin-top:{{ block.settings.image_offset }}{% endif %}">
+	   	{% if block.type == 'image_picker' %}
 	    <img src="{{ block.settings.image_picker_block | img_url: '800x' }}" />
 	  	{% elsif block.type == 'html' %}
 	  	{{ block.settings.html_block }}
@@ -24,24 +26,51 @@
 </div>
 
 <style>
+	.gridlock .row {
+		width: 100%;
+	}
 	.homepage-section  {
 		margin-bottom: 0;
 	}
 	.about-container {
-		display: flex;
-	  flex-wrap: wrap;  
+	  display: flex;
+	  flex-wrap: wrap; 
 	}
 	.about-block {
 		width: 100%;
 	}
 	.block {
-	  width: 50%;
+	  width: 40%;
 	}
-	@media screen and ( max-width: 740px ) {
-    .block {
-		  width: 100%;
+	.fancybox img {
+		margin-bottom: -6px;
+	}
+
+	@media screen and ( min-width: 741px ) {
+		.block {
+			order: inherit !important;
+		}	
+		.block:nth-of-type(even) {
+			margin-left: 10%;
 		}
-  }
+		.block:nth-of-type(odd) {
+			margin-right: 10%;
+		}
+	}
+
+	@media screen and ( max-width: 740px ) {
+		.about-container {
+			flex-direction: column;
+	  		align-items: flex-start; 
+		}
+	    .block {
+			  width: 100%;
+			}
+		.image-block {
+			margin-top: 0 !important;
+		}
+  	}
+
 	.block img {
 	  width: 100%;
 	  height: 100%;
@@ -63,6 +92,7 @@
 {% schema %}  
   {
     "name": "Collection page", 
+    "max_blocks": 8,
     "settings": [
       {
         "type": "html",
@@ -85,11 +115,56 @@
          "id": "html_block",
          "label": "HTML Block"
         },
-		    {
-		      "type": "color",
-		      "id": "html_block_color",	
-		      "label": "HTML Block Background Color"     	
-		    }       
+	    {
+	      "type": "color",
+	      "id": "html_block_color",	
+	      "label": "HTML Block Background Color"     	
+	    },
+		{
+		   "type": "select",
+		   "id": "block_order",
+		   "label": "Mobile Block Order",
+		   "options": [
+		     {
+		       "value": "initial",
+		       "label": "None"
+		     },		   
+		     {
+		       "value": "1",
+		       "label": "1st"
+		     },
+		     {
+		       "value": "2",
+		       "label": "2nd"
+		     },
+		     {
+		       "value": "3",
+		       "label": "3rd"
+		     },
+		     {
+		       "value": "4",
+		       "label": "4th"
+		     },
+		     {
+		       "value": "5",
+		       "label": "5th"
+		     },
+		     {
+		       "value": "6",
+		       "label": "6th"
+		     },
+		     {
+		       "value": "7",
+		       "label": "7th"
+		     },	
+		     {
+		       "value": "8",
+		       "label": "8th"
+		     }
+		   ],
+		   "default": "initial",
+		   "info": "None"
+		}
       ]
     },
     {
@@ -100,7 +175,57 @@
           "type": "image_picker",
           "id": "image_picker_block",
           "label": "Image Block"
-        }  
+        },
+        {
+        	"type": "text",
+        	"id": "image_offset",
+        	"label": "Image Offset Top (In Percent)"
+        },
+		{
+		   "type": "select",
+		   "id": "block_order",
+		   "label": "Mobile Block Order",
+		   "options": [
+		     {
+		       "value": "initial",
+		       "label": "None"
+		     },		   
+		     {
+		       "value": "1",
+		       "label": "1st"
+		     },
+		     {
+		       "value": "2",
+		       "label": "2nd"
+		     },
+		     {
+		       "value": "3",
+		       "label": "3rd"
+		     },
+		     {
+		       "value": "4",
+		       "label": "4th"
+		     },
+		     {
+		       "value": "5",
+		       "label": "5th"
+		     },
+		     {
+		       "value": "6",
+		       "label": "6th"
+		     },
+		     {
+		       "value": "7",
+		       "label": "7th"
+		     },	
+		     {
+		       "value": "8",
+		       "label": "8th"
+		     }
+		   ],
+		   "default": "initial",
+		   "info": "None"
+		} 
       ]
     },
     {
@@ -108,16 +233,61 @@
       "name":"Lightbox Video Block",
       "settings":[
   	  	{
-		      "type": "video_url",
-		      "id": "video_url_block",
-		      "label": "YouTube or Vimeo link",
-		      "accept": ["youtube", "vimeo"]
-		    },      
+		    "type": "video_url",
+		    "id": "video_url_block",
+		    "label": "YouTube or Vimeo link",
+		    "accept": ["youtube", "vimeo"]
+		},      
         {
           "type": "image_picker",
           "id": "video_image_block",
           "label": "Image Block"
-        }
+        },
+		{
+		   "type": "select",
+		   "id": "block_order",
+		   "label": "Mobile Block Order",
+		   "options": [
+		     {
+		       "value": "initial",
+		       "label": "None"
+		     },		   
+		     {
+		       "value": "1",
+		       "label": "1st"
+		     },
+		     {
+		       "value": "2",
+		       "label": "2nd"
+		     },
+		     {
+		       "value": "3",
+		       "label": "3rd"
+		     },
+		     {
+		       "value": "4",
+		       "label": "4th"
+		     },
+		     {
+		       "value": "5",
+		       "label": "5th"
+		     },
+		     {
+		       "value": "6",
+		       "label": "6th"
+		     },
+		     {
+		       "value": "7",
+		       "label": "7th"
+		     },	
+		     {
+		       "value": "8",
+		       "label": "8th"
+		     }
+		   ],
+		   "default": "initial",
+		   "info": "None"
+		}
       ]
     }
     ]
