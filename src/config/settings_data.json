@@ -224,7 +224,7 @@
           "logo_weight": "bold",
           "cart_icon": "cart",
           "show_site_picker": true,
-          "site_picker_manifest": "US|United States|http:\/\/mysite.com,EU|European Union|http:\/\/eu.mysite.com,UK|United Kingdom|http:\/\/uk.mysite.com,FR|French-Canada|http:\/\/fr.mysite.com",
+          "site_picker_manifest": "US|United States|https:\/\/muckbootcompany.com,EU|European Union|https:\/\/www.muckbootcompany.eu,UK|United Kingdom|https:\/\/www.muckbootcompany.co.uk,CA|Canada|https:\/\/muckbootcompany.com",
           "show_search": true,
           "main_nav": "main-menu",
           "nav_center": true,
