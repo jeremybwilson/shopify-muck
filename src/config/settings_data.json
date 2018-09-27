@@ -583,10 +583,10 @@
         "type": "instagram",
         "settings": {
           "heading": "@muckbootco",
-          "text": "",
+          "text": "<p>Tag your photos with <strong>#MUCKBOOTS<\/strong> to be featured on our feed<\/p>",
           "link": "http:\/\/www.instagram.com\/muckbootco",
           "cta_text": "View all",
-          "instagram_access_token": ""
+          "instagram_access_token": "35479505.1677ed0.258c332c4d82450cb46f1fa05e45a100"
         }
       },
       "1536353642475": {
