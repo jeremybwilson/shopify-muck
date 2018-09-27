@@ -195,7 +195,7 @@ BCSfFilter.prototype.buildProductGridItem = function(data, index, totalProduct) 
                 }
 
                 // SWATCH IMAGE : Build swatch image, fallback to color setting in case that fails
-                var swatchImgUrl = bcSfFilterConfig.general.asset_url.replace('bc-sf-filter.js', this.slugify(option['title']) + '.png');
+                var swatchImgUrl = bcSfFilterConfig.general.asset_url.replace('bc-sf-filter.js', 'swatch_' + this.slugify(option['title']) + '.png');
 
                 // SWATCH OBJ: Single swatch object for manifest
                 var colorValueName = this.slugify( option['title'] );
