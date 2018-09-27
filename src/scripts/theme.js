@@ -1135,11 +1135,13 @@ theme.Instagram = (function() {
 theme.Slideshow = (function() {
   function Slideshow(container) {
 
-    var $container = this.$container = $(container);
-    var sectionId = $container.attr('data-section-id');
-    var speed = $('.flexslider').data('speed');
+    var $container = this.$container = $(container),
+         sectionId = $container.attr('data-section-id'),
+       $flexslider = $container.find('.flexslider'),
+        $sliderNav = $flexslider.next('.slider--nav'),
+             speed = $flexslider.data('speed');
 
-    $('.flexslider').flexslider({
+    $flexslider.flexslider({
       animation: 'fade',
       slideshowSpeed: speed,
       animationSpeed: 600,
@@ -1153,12 +1155,12 @@ theme.Slideshow = (function() {
       /* adds a custom pagination */
 
       start: function(slider) {
-        $('.flexslider--current-slide').text(slider.currentSlide+1);
-        $('.flexslider--total-slides').text(slider.count);
+        console.log($flexslider);
+        $sliderNav.find('.flexslider--current-slide').text(slider.currentSlide+1);
+        $sliderNav.find('.flexslider--total-slides').text(slider.count);
       },
       before: function(slider) {
-        $('.flexslider--current-slide').text(slider.animatingTo+1);
-        $('.flexslider--total-slides').text(slider.count);
+        $sliderNav.find('.flexslider--current-slide').text(slider.animatingTo+1);
       }
     });
   }
@@ -1231,7 +1233,7 @@ theme.ColumnsCarousel = (function() {
         },
         onChanged: function(event) {
           current = event.item.index+1;
-          ui.currentSlide.text(current);
+          //ui.currentSlide.text(current);
         }
       });
 
@@ -1248,6 +1250,8 @@ theme.ColumnsCarousel = (function() {
       // ITEM HOVER 
 
       ui.item.on('mouseenter', this, function() {
+        ui.item.removeClass('hovered');
+        $(this).addClass('hovered');
 
         // get the index of the currently hovered item
 
@@ -1256,7 +1260,7 @@ theme.ColumnsCarousel = (function() {
 
         // restore the current slide from the carousel index 
 
-        ui.currentSlide.text(current);
+        //ui.currentSlide.text(current);
       });
     };
 
