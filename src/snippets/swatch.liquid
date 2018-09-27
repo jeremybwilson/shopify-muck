@@ -25,7 +25,7 @@
 
   {% for value in option.values %}
 
-    {% assign image_url = value | handle | append: '.png' | asset_url %}
+    {% assign image_url = value | handle | prepend: 'swatch_' | append: '.png' | asset_url %}
 
     {% assign css_color = value | split: ' ' | last | handle %}
 
@@ -98,7 +98,7 @@
 
         {{ radio_button }}
 
-        <label for="{{ id }}" style="background-color: {{ css_color }}; {% if settings.use_swatch_images %}background-image: url({{ image_url }}){% endif %}">
+        <label for="{{ id }}" style="background-color: {{ css_color }}; {% if settings.use_swatch_images or section.settings.use_swatch_images %}background-image: url({{ image_url }}){% endif %}">
           {{ sold_out_image }}
         </label>
       </div>
