@@ -1233,7 +1233,7 @@ theme.ColumnsCarousel = (function() {
         },
         onChanged: function(event) {
           current = event.item.index+1;
-          ui.currentSlide.text(current);
+          //ui.currentSlide.text(current);
         }
       });
 
@@ -1250,6 +1250,8 @@ theme.ColumnsCarousel = (function() {
       // ITEM HOVER 
 
       ui.item.on('mouseenter', this, function() {
+        ui.item.removeClass('hovered');
+        $(this).addClass('hovered');
 
         // get the index of the currently hovered item
 
@@ -1258,7 +1260,7 @@ theme.ColumnsCarousel = (function() {
 
         // restore the current slide from the carousel index 
 
-        ui.currentSlide.text(current);
+        //ui.currentSlide.text(current);
       });
     };
 
