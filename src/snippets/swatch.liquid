@@ -6,7 +6,7 @@
 
 {% assign other_options = "option1 option2 option3" | remove: current_option | strip | split: " " %}
 
-<div class="swatch clearfix" data-option-index="{{ option.position }}" data-other-options='{{ other_options | json }}'>
+<div class="swatch clearfix {{ option.name }}" data-option-index="{{ option.position }}" data-other-options='{{ other_options | json }}'>
 
   <div class="swatch-header">
     
