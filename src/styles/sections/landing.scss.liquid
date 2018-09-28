@@ -1,12 +1,27 @@
 @charset "UTF-8";
 
 #subpage {
-	margin: 100px 30px;
-  
+	margin-right: 27px;
+	margin-left: 27px;
+
+	@include p;
+  	font-size: 14px;
+  	line-height: 2;
+
+	@include mq('tablet-and-up') {
+		margin: 0;
+  	}
+
   p {
   	@include p;
   	font-size: 14px;
   	line-height: 2;
+  }
+  h1 {
+  	@include h1;
+  	color: $color--dark-green;
+  	font-size: 24px;
+  	padding-bottom: 20px;
   }
   h4 {
   	color: $color--orange-2;
@@ -14,9 +29,10 @@
   }
   h5 {
   	@include h5;
-  	color: $color--dark-green-2;
+  	color: $color--dark-green;
   	text-transform: uppercase;
   	letter-spacing: 0 !important;
+  	margin: 15px 0;
   }
   ul > li {
   		list-style: none;
@@ -28,7 +44,7 @@
 	  	&:before {
 	  		content: "•";
 	  		color: $color--orange-2;
-	  		margin-right: 5px;
+	  		margin-right: 10px;
 	  	}
 
 	  	&:last-child {
@@ -39,7 +55,7 @@
 		list-style-type: decimal;
 		content: " ";
 		padding-bottom: 10px;
-		padding-left: 20px;
+		padding-left: 40px;
 
 		&:last-child {
 			padding-bottom: 0;
@@ -47,8 +63,14 @@
 	}
 
 	div.left-nav {
-		float: left;
-		width: 19%;
+
+		margin-bottom: 50px;
+
+		@include mq('tablet-and-up') {
+			float: left;
+			width: 35%;
+			padding-left: 200px;
+		}
 
 		nav > ul > li {
 			&:before {
@@ -58,11 +80,48 @@
 	}
 
 	div.page-content-field {
-		float: right;
-		width: 81%;
+
+		@include mq('tablet-and-up') {
+			float: right;
+			width: 65%;
+		}
 	}
 
-	div.qa {
-		padding-bottom: 20px;
+
+	div.col {
+		width: 100%;
+		float: left;
+	    background: linear-gradient(to top, rgb(38, 92, 77) 0%, rgb(52, 127, 105) 100%);
+	    color: rgb(255, 255, 255);
+	    border: 1px dotted rgb(255, 255, 255);
+	    margin: 10px 0 20px 0;
+	    text-align: center;
+	    height: 270px;
+	    padding: 2%;
+
+		@include mq('tablet-and-up') {
+			width: 33%;
+		}
+
+		img {
+			padding-top: 7%;
+
+			@include mq('tablet-and-up') {
+				padding-top: 0;
+			}
+		}
+	}
+
+	table {
+		tr:first-child {
+			background-color: #000;
+			color: #fff
+		}
+		td {
+			border: 1px solid #ccc;
+			padding: 5px 10px;
+		}
 	}
 }
+
+
