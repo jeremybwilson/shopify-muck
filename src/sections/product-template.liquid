@@ -267,6 +267,8 @@
   {% endunless %}
 </div>
 
+{% include 'product-size-chart' %}
+
 <style>
   {% if section.settings.thumbnails == 'right' %}
     .thumbnail-gallery {
@@ -506,6 +508,15 @@
         "id": "show_social",
         "label": "Show social share icons",
         "default": true
+      },
+      {
+        "type": "header",
+        "content": "Size Chart"
+      },
+      {
+        "type": "page",
+        "id": "size_chart_page",
+        "label": "Size Chart Page"
       }
     ]
   }

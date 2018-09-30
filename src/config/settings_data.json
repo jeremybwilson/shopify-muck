@@ -291,8 +291,9 @@
           "zoom_image_position": "zoom_over_main",
           "related_products": "none",
           "free_shipping_header_text": "Free Shipping & Returns",
-          "free_shipping_text": "<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accu santium doloremque laudantium<\/p>",
-          "show_social": false
+          "free_shipping_text": "<p>FREE Shipping and FREE Returns for all ground orders. Orders placed before 2PM EST Monday &ndash; Friday will ship next day. For additional information, visit our <a href=\"\/pages\/shipping-returns\" title=\"Shipping and Return\">Shipping page<\/a>.<\/p>",
+          "show_social": false,
+          "size_chart_page": "size-chart"
         }
       },
       "blog-template": {

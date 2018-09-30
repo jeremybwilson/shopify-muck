@@ -2315,6 +2315,7 @@ theme.Product = (function () {
     events.trigger = events.emit; // alias
 
     const ui = {
+       sizeChartPopup: $( '#size-chart--popup' ),
        freeShippingAccordionHeader: $( '#free-shipping--accordion-header' ),
        freeShippingAccordionContent: $( '#free-shipping--accordion-content'),
        campaignVideoTrigger: $( '.campaign-video--trigger' )
@@ -2358,6 +2359,16 @@ theme.Product = (function () {
             }
           }
         });
+      }
+
+      // SIZE CHART 
+
+      if ( ui.sizeChartPopup.length > 0 ) {
+        var size_chart_type = ui.sizeChartPopup.data('size-chart-type');
+        if ( size_chart_type != 'all' ) {
+          ui.sizeChartPopup.find('.size-chart--wrapper').hide();
+          ui.sizeChartPopup.find('#size-chart--' + size_chart_type).show();
+        } 
       }
     });
 
