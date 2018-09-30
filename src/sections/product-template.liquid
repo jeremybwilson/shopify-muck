@@ -154,65 +154,7 @@
           {{ product.description }}
           </div>
 
-          {% comment %}
-
-            ICONS
-            -----------------------------  
-          {% endcomment %}
-
-          <ul class="product-description--icons">
-            
-            <li>
-              <img src="{{ 'SpecIcon_BreathableMesh.png' | asset_url }}" alt="Breathable Mesh" />
-              <span>Breathable Mesh</span>
-            </li>
-
-            <li>
-              <img src="{{ 'SpecIcon_CompositeToe.png' | asset_url }}" alt="Composite Toe" />
-              <span>Composite Toe</span>
-            </li>
-
-            <li>
-              <img src="{{ 'SpecIcon_Fleece.png' | asset_url }}" alt="100% Fleece" />
-              <span>100% Fleece</span>
-            </li>
-
-            <li>
-              <img src="{{ 'SpecIcon_OilResistant.png' | asset_url }}" alt="Oil Resistant" />
-              <span>Oil Resistant</span>
-            </li>
-
-            <li>
-              <img src="{{ 'SpecIcon_ScentMasking.png' | asset_url }}" alt="Scent Masking" />
-              <span>Scent Masking</span>
-            </li>
-
-            <li>
-              <img src="{{ 'SpecIcon_SlipResistant.png' | asset_url }}" alt="Slip Resistant" />
-              <span>Slip Resistant</span>
-            </li>
-
-            <li>
-              <img src="{{ 'SpecIcon_SnakeProof.png' | asset_url }}" alt="Snake Proof" />
-              <span>Snake Proof</span>
-            </li>
-
-            <li>
-              <img src="{{ 'SpecIcon_SteelToe.png' | asset_url }}" alt="Steel Toe" />
-              <span>Steel Toe</span>
-            </li>
-
-            <li>
-              <img src="{{ 'SpecIcon_Waterproof.png' | asset_url }}" alt="Waterproof" />
-              <span>Breathable Mesh</span>
-            </li>
-
-            <li>
-              <img src="{{ 'SpecIcon_XpressCool.png' | asset_url }}" alt="XpressCool" />
-              <span>XpressCool</span>
-            </li>            
-
-          </ul><!-- .--icons -->
+          {% include 'product-spec-icons' %}
 
         </div><!-- .--left -->
 
@@ -228,6 +170,11 @@
 
             <div class="rte">
             {{ product.description }}
+
+            <ul>
+              <li>SKU <span class="product-sku">{{ product.variants.first.sku }}</span></li>
+            </ul>
+
             </div>
             
           </div><!-- .--specs -->
