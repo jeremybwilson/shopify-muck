@@ -44,13 +44,17 @@ body > .page-wrap {
   margin-bottom: 40px;
 }
 
-// Page Background (Design wanted a gradient stylization)
-#PageContainer {
+@mixin bgGradient {
   background: {{ settings.background }};
   background: -moz-linear-gradient(top, #f8f7f8 140px, {{ settings.background }} 200px);
   background: -webkit-linear-gradient(top, #f8f7f8 140px,{{ settings.background }} 200px);
   background: linear-gradient(to bottom, #f8f7f8 140px,{{ settings.background }} 200px);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f8f7f8', endColorstr='{{ settings.background }}', GradientType=0 );
+}
+
+// Page Background (Design wanted a gradient stylization)
+#PageContainer {
+  @include bgGradient;
 }
 
 #content {
@@ -63,6 +67,9 @@ body > .page-wrap {
   body.collection &,
   body.product & {
     padding-top: 0;
+  }
+  body.product & {
+    padding-bottom: 20px;
   }
 }
 

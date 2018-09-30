@@ -1,15 +1,46 @@
-<div id="recently-viewed-products" class="collection clearfix" style="display:none">
-  <h4>{{ 'cart.general.recently_viewed' | t }}</h4>
-</div>
+<div id="recently-viewed-products--wrapper" class="featured-collection">
+  <div class="row">
+    <div class="section-header">
+      <h2 class="section-heading">{{ 'cart.general.recently_viewed' | t }}</h2>
+    </div>
+
+    <div id="recently-viewed-products" class="product-collection-carousel collection clearfix owl-carousel" style="display:none"></div>
+
+    <div class="product-carousel--nav">
+      <a class="product-carousel--prev">
+        {% include 'svg-icon-caret-left' %}
+      </a>
+      <a class="product-carousel--next">
+        {% include 'svg-icon-caret-right' %}
+      </a>
+    </div>
+
+  </div><!--.row-->
+</div><!--#recently-viewed-products--wrapper-->
 
 {% raw %}
 <script id="recently-viewed-product-template"  type="text/x-jquery-tmpl">
-<div id="product-${handle}" class="desktop-2 tablet-1 mobile-half">
-  <div class="image">
-    <a href="${url}" class="cy">
-      <img src="${Shopify.resizeImage(featured_image, "medium")}" />
-  </a>
-  </div>
+  <div class="product-car">
+    <div id="recently-product-${handle}" class="prod-container">
+      <div class="prod-image">
+        <a href="${url}" class="cy">
+          <img src="${Shopify.resizeImage(featured_image, "large")}" />
+        </a>
+      </div>
+      <div class="product-info">
+        <a href="${url}">
+          <h3>${title}</h3>
+        </a>
+        <div class="price">
+          {{if price < compare_at_price}}
+            <div class="onsale"><span class="money">${Shopify.formatMoney(price)}</span></div>
+            <div class="was"><span class="money">${Shopify.formatMoney(compare_at_price)}</span></div>
+          {{else}}
+          <div class="prod-price"><span class="money">${Shopify.formatMoney(price)}</span></div>
+          {{/if}}
+        </div>
+      </div>
+    </div>
   </div>
 </script>
 {% endraw %}
@@ -37,7 +68,24 @@
 <script type="text/javascript" charset="utf-8">
   //<![CDATA[
 
-  Shopify.Products.showRecentlyViewed( { howManyToShow:6 } );
+  Shopify.Products.showRecentlyViewed( {
+    howManyToShow:6,
+    onComplete: function() {
+      $('#recently-viewed-products').owlCarousel({
+        responsive : {
+          0 : {
+            items: 1
+          },
+          767 : {
+            items: 3
+          }
+        },
+        nav: true,
+        navText: [$('.product-carousel--prev'),$('.product-carousel--next')]  
+      });      
+    }
+
+  } );
 
   //]]>
 </script>
