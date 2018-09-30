@@ -55,7 +55,15 @@ body > .page-wrap {
 
 #content {
   position: relative;
-  padding: 0 0 100px 0;
+  //padding: 0 0 100px 0;
+  padding: 100px 0;
+
+  // special pages that don't need padding at the top
+
+  body.collection &,
+  body.product & {
+    padding-top: 0;
+  }
 }
 
 // Breadcrumbs 
@@ -104,6 +112,13 @@ body > .page-wrap {
 .animate25 { transition: all 0.25s ease-in-out; }
 .animate50 { transition: all 0.50s ease-in-out; }
 
+.errors {
+  color: $color--error;
+
+  li {
+    margin-bottom: 20px;
+  }
+}
 
 
 // Buttons
