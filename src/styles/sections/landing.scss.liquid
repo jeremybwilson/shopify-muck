@@ -22,9 +22,10 @@
   	color: $color--dark-green;
   	font-size: 24px;
   	padding-bottom: 20px;
+  	border-bottom: none;
   }
   h4 {
-  	color: $color--orange-2;
+  	color: $color--dark-green;
   	text-transform: capitalize;
   }
   h5 {
@@ -75,6 +76,7 @@
 		nav > ul > li {
 			&:before {
 				content: " ";
+				margin-right: 0;
 			}
 		}
 	}
@@ -85,6 +87,10 @@
 			float: right;
 			width: 65%;
 		}
+
+		a {
+    		color: $color--orange-1;
+  		}
 	}
 
 
@@ -114,8 +120,7 @@
 
 	table {
 		tr:first-child {
-			background-color: #000;
-			color: #fff
+
 		}
 		td {
 			border: 1px solid #ccc;
