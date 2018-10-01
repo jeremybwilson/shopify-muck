@@ -116,7 +116,7 @@ $navBarDesktopHeight: 80px;
         // DESKTOP ( 1024+ )
         @include mq( 'lap-and-up' ) {
             top: 19px;
-            left: 86px;
+            left: 80px;
             width: 119px;
             height: 119px;
 
@@ -126,6 +126,10 @@ $navBarDesktopHeight: 80px;
                 left: -7px;
                 top: -3px;
             }
+        }
+
+        @include mq( 'desk-and-up' ) {
+            left: 86px;
         }
     }
 
@@ -455,19 +459,40 @@ $navBarDesktopHeight: 80px;
             position: absolute;
             list-style: none;
             height: 100%;
-            width: 340px;
-            left: 210px;
+            width: 434px;
+            left: 180px;
             z-index: $zIndexButtons;
+
+            @include mq( 'desk-and-up' ) {
+                left: 210px;
+                width: 474px;
+            }
 
             .nav-primary-link {
                 @include flexbox;
                 @include justify-content( flex-end ); // Space links to better match mock
                 height: 100%;
                 width: 100%;
+                padding-right: 26px;
+
+                &:nth-child(2),
+                &:nth-child(3) {
+                    @include justify-content( center ); // Men and Kids align Better like this with the long 4th element
+                }
+
+                &:last-child {
+                    padding-right: 0;
+                }
+
+                // New nav entry is way larger than "Sale" so it needs extra spacing
+                &.new-arrivals a {
+                    width: 167px;
+                }
 
                 .nav-category-header { //Center the nav link item vertically 
                     @include inline-flex;
                     @include align-items( center );
+                    letter-spacing: 0.18em; 
                     padding-top: 3px; // make up size for 3px bottom border on links
                     border-bottom: 3px solid transparent;
                 }
@@ -575,6 +600,7 @@ $navBarDesktopHeight: 80px;
                     margin-bottom: 10px;
                     text-transform: uppercase;
                     color: $color--dark-green-2;
+                    pointer-events: none;
                 }
             }
         }
@@ -698,6 +724,12 @@ $navBarDesktopHeight: 80px;
                     text-decoration: none;
                     color: $color--dark-green-2;
                     font-weight: $font-weight--medium;
+
+                    &.custom-sub-header {
+                        margin-top: 20px;
+                        font-weight: 600;
+                        margin-bottom: -10px;
+                    }
 
                     a {
                         color: $color--dark-green-2;
