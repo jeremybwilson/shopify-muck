@@ -2111,6 +2111,116 @@ theme.ProductForm = function (context, events) {
 
 theme.ProductGallery = function (context, events) {
 
+  (function product_video() {
+
+    var $video_thumbnail = $('.product-video-thumbnail', context);
+
+    if ( !$video_thumbnail.length ) {
+      return false;
+    }
+
+    var video_type,
+        video_player,
+        video_play,
+        video_pause;
+
+    (function vimeo_player() {
+
+      var $vimeo_thumbnail = $('.vimeo-thumbnail');
+
+      if ( !$vimeo_thumbnail.length ) {
+        return false;
+      }
+
+      video_type = 'vimeo';
+
+      /* Because Vimeo doesn't just allow for thumbnail URLs, we'll need to pull it from its API */
+
+      var vimeo_id = $vimeo_thumbnail.data('src');
+
+      $.ajax({
+        type:'GET',
+        url: 'https://vimeo.com/api/oembed.json?url=https://www.vimeo.com/' + vimeo_id,
+        dataType: 'json',
+        error: function(xhr, error) {
+          console.log(xhr); console.log(error);
+        },
+        success: function(data){
+          var thumbnail_src = data.thumbnail_url;
+          $vimeo_thumbnail.attr('src',thumbnail_src);
+        }
+      });
+
+      /* Call vimeo */
+
+      var Vimeo = require('@vimeo/player');  
+      var options = {
+        id: vimeo_id,
+        width: 850
+      }
+      video_player = new Vimeo('product-video--vimeo', options);
+
+    })(); 
+
+    (function youtube_player() {
+
+      var $youtube_thumbnail = $('.youtube-thumbnail'); 
+
+      if ( !$youtube_thumbnail.length ) {
+        return false;
+      }
+
+      video_type = 'youtube';
+
+      var youtube_id = $('#product-video--youtube').data('src');
+
+      var YouTubeIframeLoader = require('youtube-iframe');
+
+      YouTubeIframeLoader.load(function(YT) {
+        video_player = new YT.Player('product-video--youtube', {
+          width: '850',
+          height: '480',
+          playerVars: {
+            rel: 0,
+            showinfo: 0,
+            modestbranding: 0,
+            origin: window.location.protocol + window.location.hostname
+          },
+          videoId: youtube_id
+        });  
+      });
+    })();
+
+    events.on('thumbnail:click', video_controls);
+    events.on("variantchange:image", video_controls);
+
+    function video_controls(id) {
+      if ( typeof video_player !== 'undefined' ) {
+
+        if ( id == 'video_thumbnail_id' ) {
+
+          /* PLAY */
+
+          if ( video_type == 'vimeo' ) {
+            video_player.play();
+          } else if ( video_type == 'youtube' ) {
+            video_player.playVideo();
+          }
+
+        } else {
+          /* pause */
+
+          if ( video_type == 'vimeo' ) {
+            video_player.pause();
+          } else if ( video_type == 'youtube' ) {
+            video_player.pauseVideo();
+          }
+        }
+      }
+    };
+
+  })();
+
   (function thumbnails() {
     var $elements = $(".product-thumbnail", context);
 
@@ -2120,12 +2230,10 @@ theme.ProductGallery = function (context, events) {
 
     $elements.on("click", function(event) {
       event.preventDefault();
-
       var id = this.dataset.imageId;
-
       select(id);
-
       events.trigger("thumbnail:click", id);
+
     });
 
     events.on("variantchange:image", select);
@@ -2190,11 +2298,28 @@ theme.ProductGallery = function (context, events) {
   (function zoom() {
     var elements = context.querySelectorAll(".product-main-image");
 
+    if ( !elements ) {
+      return false;
+    }
+
+    /* check to see if the settings for Zoom is on */
+
+    if ( document.querySelector('.product-main-images').classList.contains('no-zoom') ) {
+      return false;
+    }
     if ( window.matchMedia("(max-width: 740px)").matches ) {
       return false;
     }
 
+    /* elemental loop */
+
     elements.forEach(function (element) {
+
+      /* check to see if element is a video */
+
+      if ( element.classList.contains('product-video') ) {
+        return false;
+      }
       if ( !element.querySelector('img').getAttribute('data-zoom-src') ) {
         return false;
       }
@@ -2225,6 +2350,7 @@ theme.ProductGallery = function (context, events) {
   })();
 
   (function thumbnail_slider() {
+
     var initThumbSlider = function(prodSlideshow) {
 
       var slider_type = $('#thumbnail-gallery').attr("data-slider-type");
@@ -2264,6 +2390,7 @@ theme.ProductGallery = function (context, events) {
       function filter_images(color) {
         $slideshow.slick('slickUnfilter');
         $slideshow.find('.product-thumbnail').removeClass('active');
+        $slideshow.find('.product-video-thumbnail').addClass('active');
         $slideshow.find('[data-color-var="' + color + '"]').addClass('active');
         $slideshow.slick('slickFilter','.active');
       }
@@ -2286,6 +2413,7 @@ theme.ProductGallery = function (context, events) {
       target.find('.product-main-image').zoom('destroy');
       $(document).off('.product-main-image');
     });
+    
   })();
 };
 

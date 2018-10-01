@@ -11,9 +11,12 @@
     "reactify": "^1.1.1"
   },
   "dependencies": {
+    "@vimeo/player": "^2.6.3",
     "prop-types": "~15.6.2",
     "react": "~16.4.2",
-    "react-dom": "~16.4.2"
+    "react-dom": "~16.4.2",
+    "slick-carousel": "^1.6.0",
+    "youtube-iframe": "^1.0.3"
   },
   "scripts": {
     "bootstrap": "npm i && cp -fr ./.circleci/build-js.js ./node_modules/@shopify/slate-tools/lib/tasks",
