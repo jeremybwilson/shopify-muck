@@ -39,7 +39,7 @@
     {% for image in product.images %}
       {% assign img_url = image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
 
-      <div class="product-thumbnail {% if forloop.first %}selected{% endif %}{% if section.settings.thumbnails == 'bottom' %} desktop-2{% endif %}" data-image-id="{{ image.id }}">
+      <div class="product-thumbnail {% if forloop.first %}selected{% endif %}{% if section.settings.thumbnails == 'bottom' %} desktop-2{% endif %}" data-image-id="{{ image.id }}" data-color-var="{{ image.alt | escape }}">
         <img class="lazyload lazyload-fade"
           src="{{ image | product_img_url: '200x' }}"
           data-src="{{ img_url }}"

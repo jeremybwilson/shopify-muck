@@ -323,10 +323,19 @@
   }
 }
 
-#looked-at {
-  display: none;
-}
-
 /* Product Campaign Video
  * ---------------------------------------------- */
 @import url('../snippets/product-campaign-video.scss.liquid');
+
+#recently-viewed-products--wrapper {
+  @include bgGradient;
+  margin-top: 0;
+  padding-top: 50px;
+  padding-bottom: 35px;
+  border-bottom: solid 1px $color--border-gray;
+
+  @include mq('tablet-and-up') {
+    padding-top: 100px;
+    padding-bottom: 70px;
+  }
+}

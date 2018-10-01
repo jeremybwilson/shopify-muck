@@ -95,7 +95,7 @@
     {% endcapture %}
 
     {% capture color_swatch %}
-      <div class="swatch-element color {% unless available %}soldout{% endunless %}">
+      <div class="swatch-element color {% unless available %}soldout{% endunless %}" data-swatch-value="{{ value | esc }}">
         <div class="tooltip">
           {{ value }}
         </div>
