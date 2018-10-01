@@ -2284,6 +2284,10 @@ theme.ProductGallery = function (context, events) {
   (function zoom() {
     var elements = context.querySelectorAll(".product-main-image");
 
+    if ( !elements ) {
+      return false;
+    }
+
     /* check to see if the settings for Zoom is on */
 
     if ( document.querySelector('.product-main-images').classList.contains('no-zoom') ) {
@@ -2351,7 +2355,6 @@ theme.ProductGallery = function (context, events) {
           addClassActive: false
         });
       } else {
-        console.log()
         $slideshow.slick({
           vertical: true,
           arrows: false,
