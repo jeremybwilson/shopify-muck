@@ -10,6 +10,8 @@
   <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
   <meta itemprop="image" content="{{ product.featured_image.src | img_url: '800x' }}">
 
+  {% include 'product-video' %}
+
   <div class="mobile-product-photos--wrapper">
 
     {% comment %}
@@ -25,6 +27,12 @@
         {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
         {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
       {%- endif -%}
+
+      {% comment %}
+        Mobile Product Video - Rendered from 'product-video'
+      {% endcomment %}
+
+      {{ mobile_product_video }}
     </div>
 
     <a class="mobile-product-carousel--prev">
@@ -375,6 +383,12 @@
         "id": "show_controls",
         "label": "Show gallery controls",
         "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_zoom",
+        "label": "Show zoom",
+        "default": false
       },
       {
         "type": "select",
