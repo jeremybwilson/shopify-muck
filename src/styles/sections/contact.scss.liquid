@@ -31,22 +31,40 @@
     }
   }
   table {
-    @include mq( 'phone' ) {
-      tr:first-child td:first-child {
-        border-top: 1px solid #e5e5e5;
-        border-bottom: 1px solid #e5e5e5;
-        padding: 20px 0;
-        margin: 20px 0;
+    
+    tr:first-child td:first-child { 
+      border-right: 1px solid #e5e5e5;
+      @include mq( 'phone' ) {
+          border-top: 1px solid #e5e5e5;
+          border-bottom: 1px solid #e5e5e5;
+          border-right: none;
+          padding: 20px 0;
+          margin: 20px 0;
       }
     }
     td {
+      float: left;
       border: none;
       vertical-align: top;
+      height: 90px;
       padding: 0;
 
       @include mq( 'phone' ) {
         float: left;
         width: 100% !important;
+        height: auto !important;
+      }
+
+      &:first-child {
+        float: left;
+        width: 33% !important;
+        margin-right: 4.5%;
+        padding-right: 4.5%;
+        border-right: 1px solid #e5e5e5;
+
+        @include mq( 'phone' ) {
+          width: 100% !important;
+        }
       }
     }
   }
