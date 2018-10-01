@@ -11,7 +11,7 @@
             
             {% comment %} :: MEGA-MENU - WRAPPER :: {% endcomment %}
             {% capture megalink %}
-              <li class="nav-primary-link dropdown has_sub_menu" aria-haspopup="true" aria-expanded="false">
+              <li class="nav-primary-link {{ link.title | replace: ' ', '-' | downcase }} dropdown has_sub_menu" aria-haspopup="true" aria-expanded="false">
 
 
                 {% comment %} :: CATEGORY HEADER :: {% endcomment %}
@@ -40,7 +40,7 @@
 
                       {% comment %} :: SUB-NAV - LINKS :: {% endcomment %}
                       {% for sub_link in link.links %}
-                        <li class="nav-sub-item {{ column_width }}">
+                        <li class="nav-sub-item  {{ sub_link.title | replace: ' ', '-' | downcase }} {{ column_width }}">
                           <h5 class="nav-sub-header"><a href="{{ sub_link.url }}">{{ sub_link.title }}</a></h4>
                           
                           {% if sub_link.links != blank %}
@@ -59,13 +59,13 @@
 
                                 {% comment %} :: #2 - Nested Sub-Sub Header :: {% endcomment %}
                                 {% elsif sub_sub_link.title contains 'SUB-HEADER_' %}  
-                                  <h5 class="nav-sub-header inline-sub-header">
+                                  <h5 class="nav-sub-header inline-sub-header {{ sub_sub_link.title | replace: ' ', '-' | downcase }}">
                                     <a href="{{ sub_sub_link.url }}">{{ sub_sub_link.title | replace:  'SUB-HEADER_', '' }}</a>
                                   </h5>
 
                                 {% comment %} :: #3 - Regular Sub-Sub Link (notice 'Shop All' Case in this also) :: {% endcomment %}
                                 {% else %}
-                                  <li class="nav-sub-sub-item {% if sub_sub_link.title contains 'Shop All' %}shop-all{% endif %}">
+                                  <li class="nav-sub-sub-item {% if sub_sub_link.title contains 'Shop All' %}shop-all{% endif %} {{ sub_sub_link.title | replace: ' ', '-' | downcase }}">
                                     <a href="{{ sub_sub_link.url }}">{{ sub_sub_link.title }}</a>
                                   </li>
                                 {% endif %} 
@@ -152,7 +152,7 @@
                     {% if sub_link.links != blank %}
                       <ul class="nested">
                         {% for sub_sub_link in sub_link.links %}
-                          <li><a href="{{ sub_sub_link.url }}">{{ sub_sub_link.title }}</a></li>
+                          <li class="{{ sub_sub_link.title | replace: ' ', '-' | downcase }}"><a href="{{ sub_sub_link.url }}">{{ sub_sub_link.title }}</a></li>
                         {% endfor %}
                       </ul>
                     {% endif %}
@@ -168,7 +168,7 @@
 
 {% comment %} :: SINGLE LINK : One lonely weeb link :: {% endcomment %}
         {% else %}
-          <li class="nav-primary-link">
+          <li class="nav-primary-link {{ link.title | replace: ' ', '-' | downcase }}">
             <a class="nav-category-header" href="{{ link.url }}">{{ link.title }}</a>
           </li>
         {% endif %}
