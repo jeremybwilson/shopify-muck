@@ -2303,8 +2303,8 @@ theme.ProductGallery = function (context, events) {
     }
 
     /* check to see if the settings for Zoom is on */
-
-    if ( document.querySelector('.product-main-images').classList.contains('no-zoom') ) {
+    var productMainImages = document.querySelector('.product-main-images');
+    if ( productMainImages && productMainImages.classList.contains('no-zoom') ) {
       return false;
     }
     if ( window.matchMedia("(max-width: 740px)").matches ) {
