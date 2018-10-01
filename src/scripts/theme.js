@@ -2025,7 +2025,7 @@ theme.ProductForm = function (context, events) {
   })();
 
   (function sku() {
-    var element = context.querySelector(".variant_sku");
+    var element = document.querySelector(".product-sku");
 
     if ( !element ) {
       return false;
