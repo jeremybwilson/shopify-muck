@@ -34,8 +34,10 @@
                       {% comment %} PREVENT : Entries that denote a gap for desktop (are named "-'){% endcomment %}
                       {% if sub_sub_link.title != '-' %}
 
-                        {% comment %} PREVENT : Our pseudo-sub-headers from showing on mobile (name starts with "SUB-HEADER_") {% endcomment %}
-                        {% if sub_sub_link.title contains 'SUB-HEADER_' %}{% else %}
+                        {% comment %} PSEUDO HEADER : Adding "SUB-HEADER_ will cause entry to not link, but be a nested header" {% endcomment %}
+                        {% if sub_sub_link.title contains 'SUB-HEADER_' %}
+                          <li class="link-sub-header custom-sub-header">{{ sub_sub_link.title | replace: 'SUB-HEADER_', '' }}</li>
+                        {% else %}
                           <li {% if sub_sub_link.title contains 'Shop All' %} class="shop-all" {% endif %}>
                             <a href="{{ sub_sub_link.url }}">{{ sub_sub_link.title }}</a>
                           </li>
@@ -56,7 +58,7 @@
 
                 {% comment %}Prevent our pseudo-sub-headers from showing on mobile (name starts with "SUB-HEADER_") {% endcomment %}
                 {% if sub_link.title contains 'SUB-HEADER_' %}{% else %}
-                  <li class="greg link-sub-header {% if sub_sub_link.title contains 'Shop All' %} shop-all {% endif %}">
+                  <li class="link-sub-header {% if sub_sub_link.title contains 'Shop All' %} shop-all {% endif %}">
                     <a href="{{ sub_link.url }}">{{ sub_link.title | escape }}</a>
                   </li>
                 {% endif %}

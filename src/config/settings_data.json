@@ -213,9 +213,9 @@
         "settings": {
           "full_width_header": false,
           "show_announcement_text": true,
-          "num_of_promo_banners": "2",
-          "announcement_text_one": "<div class=\"bold\">FREE SHIPPING<\/div> ON ORDERS $50 OR MORE",
-          "announcement_link_one": "http:\/\/google.com",
+          "num_of_promo_banners": "1",
+          "announcement_text_one": "<div class=\"bold\">FREE SHIPPING & FREE RETURNS<\/div>",
+          "announcement_link_one": "\/pages\/shipping-returns",
           "announcement_text_two": "<div class=\"bold\">40% OFF YOUR PURCHASE.<\/div> NO CODE NEEDED.",
           "announcement_link_two": "http:\/\/google.com",
           "announcement_height": 60,
