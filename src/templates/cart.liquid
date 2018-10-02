@@ -16,11 +16,11 @@
     <table>
       <thead>
         <tr>
-          <th><label>{{ 'cart.general.product' | t }}</label></th>
+          <th style="text-align:left"><label>{{ 'cart.general.product' | t }}</label></th>
+          <th class="cart--remove" style="text-align: center;"><label>{{ 'cart.general.remove' | t }}</label></th>
           <th><label>{{ 'cart.general.price' | t }}</label></th>
           <th style="text-align: center;"><label>{{ 'cart.general.qty' | t }}</label></th>
-          <th style="text-align: center;"><label>{{ 'cart.general.remove' | t }}</label></th>
-          <th><label>{{ 'cart.general.price' | t }}</label></th>
+          <th class="cart--total-price"><label>{{ 'cart.general.price' | t }}</label></th>
         </tr>
       </thead>
       <tbody>
@@ -56,16 +56,16 @@
             {% endfor %}
             {% endif %}
           </td>
+          <td class="cart-remove">
+            <a href="#" onclick="remove_item({{ item.variant.id }}); return false;"><i class="fa fa-times"></i><span class="remove-text">{{ 'cart.general.remove' | t }}</span></a>
+          </td>          
           <td class="cart-price">
             <span class="money">{{ item.price | money }}</span>{% if item.variant.compare_at_price > item.price %}&nbsp;<del><span class="money">{{ item.variant.compare_at_price | money }}</span></del>{% endif %}
           </td>
           <td class="cart-quantity">
             <input type="text" class="cart-qty" size="4" name="updates[{{ item.id }}]" id="updates_{{ item.variant.id }}" value="{{ item.quantity }}" onfocus="this.select();"/>
           </td>
-          <td class="cart-remove">
-            <a href="#" onclick="remove_item({{ item.variant.id }}); return false;"><i class="fa fa-times"></i></a>
-          </td>
-          <td class="cart-total">
+          <td class="cart--total-price">
             <span class="money">{{ item.line_price | money }}</span>
           </td>
         </tr>
@@ -75,7 +75,7 @@
 
 
     <div id="basket-right" class="desktop-4 tablet-6 mobile-3">
-      <h4>{{ 'cart.general.subtotal' | t }} <span class="money">{{ cart.total_price | money }}</span></h4>
+      <h4><span class="subtotal-header">{{ 'cart.general.subtotal' | t }}</span> <span class="money">{{ cart.total_price | money }}</span></h4>
       <input type="submit" name="update" id="update-cart" value="{{ 'cart.general.update' | t }}" class="button" />
       <input type="submit" name="checkout" id="checkout" value="{{ 'cart.general.checkout' | t }}" class="button" />
       <div class="clear"></div>

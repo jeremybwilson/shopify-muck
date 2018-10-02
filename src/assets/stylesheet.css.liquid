@@ -976,10 +976,6 @@
   {{ main_font_bold_italic | font_face }}
 {% endif %}
 
-html, body {
-  height: 100%;
-}
-
 /* iOS 9 and lower fix for scrolling page */
 html.menu-open { 
   padding: 0 !important; /* override inline style being set by js too often */
@@ -2995,9 +2991,6 @@ ul#popups li.last {
     width: 100%;
   }
 
-  .quantity-increment {
-      margin-bottom: 20px! important;
-  }
 
 @media screen and ( min-width: 981px ) {
    .shopify-payment-button {
@@ -3412,45 +3405,10 @@ a.bx-next:after {
 /* =============== */
 /* = Cart = */
 /* =============== */
-#cartform {
-  margin-top: 20px;
-}
-
-.cart-image {
-  display: inline-block;
-  margin-right: 10px;
-}
-
-.cart-image img {
-  vertical-align: middle;
-}
-
-.cart-title {
-  display: inline-block;
-}
 
 table {
   width: 100%;
   border-collapse: collapse;
-}
-
-#shopping-cart td, #shopping-cart th {
-  padding: 10px;
-  border-bottom: 1px solid {{ settings.dotted_color }};
-}
-
-#shopping-cart th {
-  text-align: left;
-}
-
-.cart-quantity input {
-  margin-bottom: 0;
-  text-indent: 0;
-  text-align: center;
-}
-
-td.cart-remove {
-  text-align: center;
 }
 
 #basket-right {
