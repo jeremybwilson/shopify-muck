@@ -79,7 +79,8 @@
       width: 23px !important;
       height: 23px !important;
       min-width: 0 !important;
-      border: none;
+      border: solid 1px $color--white;
+      border-radius: 50%;
       background-color: $color--light-gray; // shows a default color until we get swatch images up
       margin-right: 16px !important;
       margin-bottom: 16px !important;
@@ -94,8 +95,8 @@
         width: 35px;
         height: 35px;
         border-radius: 50%;
-        left: -6px;
-        top: -6px;
+        left: -7px;
+        top: -7px;
         border: solid 1px transparent;
       }
     }
@@ -113,6 +114,13 @@
       &:after {
         border-color: $color--border-gray;  
       }
+    }
+  }
+  .swatch-element.color[data-swatch-value="White"],
+  .swatch-element.color[data-swatch-value="white"] {
+    label {
+      border: solid 1px $color--border-gray;
+
     }
   }
 
