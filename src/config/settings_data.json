@@ -626,7 +626,7 @@
             "type": "video_url",
             "settings": {
               "video_url_block": "https:\/\/youtu.be\/6OHdkzsC8to",
-              "video_image_block": "shopify:\/\/shop_images\/about-image-2-video-still.png",
+              "video_image_block": "shopify:\/\/shop_images\/about-image-2-video-still.jpg",
               "block_order": "3"
             }
           },
@@ -649,7 +649,7 @@
           "1537482252402": {
             "type": "image_picker",
             "settings": {
-              "image_picker_block": "shopify:\/\/shop_images\/about-image-3.png",
+              "image_picker_block": "shopify:\/\/shop_images\/about-image-3.jpg",
               "image_offset": "",
               "block_order": "5"
             }
@@ -665,7 +665,7 @@
           "1537483333044": {
             "type": "html",
             "settings": {
-              "html_block": "<div style=\"vertical-align: middle; padding: 15vw 5vw; height: 400px; text-align: center;\"><p style=\"text-transform: uppercase; line-height: 40px;\"><strong style=\"color:#ab5232;\">All Muck® Boot products are 100% waterproof and backed by our 12 month warranty.<\/strong><span> purchase on our website and we offer a 30-day hassle free return guarantee<\/span><\/p><\/div>",
+              "html_block": "<div style=\"vertical-align: middle; padding: 5vw; height: 400px; text-align: center;\"><p style=\"text-transform: uppercase; line-height: 40px;\"><strong style=\"color:#ab5232;\">All Muck® Boot products are 100% waterproof and backed by our 12 month warranty.<\/strong><span> purchase on our website and we offer a 30-day hassle free return guarantee<\/span><\/p><\/div>",
               "html_block_color": "",
               "block_order": "8"
             }
