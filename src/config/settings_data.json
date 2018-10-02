@@ -614,7 +614,7 @@
           "1537319921572": {
             "type": "image_picker",
             "settings": {
-              "image_picker_block": "shopify:\/\/shop_images\/about-image-1.png",
+              "image_picker_block": "shopify:\/\/shop_images\/Layer_1.png",
               "image_offset": "-4%",
               "block_order": "1"
             }
@@ -623,7 +623,7 @@
             "type": "video_url",
             "settings": {
               "video_url_block": "https:\/\/youtu.be\/6OHdkzsC8to",
-              "video_image_block": "shopify:\/\/shop_images\/about-image-2-video-still.png",
+              "video_image_block": "shopify:\/\/shop_images\/Video_image_640x561.jpg",
               "block_order": "3"
             }
           },
@@ -646,7 +646,7 @@
           "1537482252402": {
             "type": "image_picker",
             "settings": {
-              "image_picker_block": "shopify:\/\/shop_images\/about-image-3.png",
+              "image_picker_block": "shopify:\/\/shop_images\/3rd_image_640x669.jpg",
               "image_offset": "",
               "block_order": "5"
             }
@@ -654,7 +654,7 @@
           "1537483249387": {
             "type": "image_picker",
             "settings": {
-              "image_picker_block": "shopify:\/\/shop_images\/about-image-4.png",
+              "image_picker_block": "shopify:\/\/shop_images\/about_4_89c017e4-2c1d-4247-a385-71dccf4a90b4.png",
               "image_offset": "-8%",
               "block_order": "7"
             }
@@ -662,7 +662,7 @@
           "1537483333044": {
             "type": "html",
             "settings": {
-              "html_block": "<div style=\"vertical-align: middle; padding: 15vw 5vw; height: 400px; text-align: center;\"><p style=\"text-transform: uppercase; line-height: 40px;\"><strong style=\"color:#ab5232;\">All Muck® Boot products are 100% waterproof and backed by our 12 month warranty.<\/strong><span> purchase on our website and we offer a 30-day hassle free return guarantee<\/span><\/p><\/div>",
+              "html_block": "<div style=\"vertical-align: middle; padding: 5vw; height: 400px; text-align: center;\"><p style=\"text-transform: uppercase; line-height: 40px;\"><strong style=\"color:#ab5232;\">All Muck® Boot products are 100% waterproof and backed by our 12 month warranty.<\/strong><span> purchase on our website and we offer a 30-day hassle free return guarantee<\/span><\/p><\/div>",
               "html_block_color": "",
               "block_order": "8"
             }
@@ -689,8 +689,8 @@
           "1537562942330": {
             "type": "image",
             "settings": {
-              "image": "shopify:\/\/shop_images\/about-hero-desktop-slide-1.jpg",
-              "mobile_image": "shopify:\/\/shop_images\/about-hero-mobile-slide-1.jpg",
+              "image": "shopify:\/\/shop_images\/hero_1920x828_02ca8c25-b233-4fb0-9c77-57ea7aec46f0.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/hero_mobile_768x835_b50a97c4-fe36-4a24-9ec7-9b633bac6c6f.jpg",
               "heading": "Add a title to your image",
               "subheading": "Tell your brand's story through images",
               "cta_one_link": "",

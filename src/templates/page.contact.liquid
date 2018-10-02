@@ -1,22 +1,12 @@
 <div id="contact-muck">
 	<div id="subpage">
-	  <div class="left-nav">
-	      <nav>
-	          <ul>
-	          <li><a href="/pages/shipping-returns" title="">Shipping &amp; Returns</a></li>
-	          <li><a href="/pages/faq" title="">FAQ</a></li>
-	          <li><a href="/pages/contact-us" title="">Contact Us</a></li>
-	          </ul>
-	      </nav>
-	  </div>
-
+	  	{% include 'sidenav' %}
 		<div class="page-content-field">
 			{{ page.content }}
 
 			<div id="muck-form">
 				{% include 'contact' %}
 			</div>
-		</div>
-
+		</div>			
 	</div>
 </div>
