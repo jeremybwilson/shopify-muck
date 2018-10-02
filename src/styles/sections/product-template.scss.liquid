@@ -22,6 +22,60 @@
   }
 }
 
+.product--mobile-header {
+  position: relative;
+  @include flexbox;
+  @include justify-content(space-between);
+  @include align-items(center);
+
+  padding: 12px 20px 12px;
+  margin-top: 15px;
+  margin-bottom: 25px;
+
+  @include mq('tablet-and-up') {
+    display: none;
+  }
+  
+  &:after {
+    position: absolute;
+    content: '';
+    top: 100%;
+    left: 0;
+    height: 25px;
+    width: 100%;
+    opacity: .25;
+
+    background: #ffffff;
+    background: -moz-linear-gradient(top, #d9d9d9 0%, #ffffff 100%);
+    background: -webkit-linear-gradient(top, #d9d9d9 0%,#ffffff 100%);
+    background: linear-gradient(to bottom, #d9d9d9 0%,#ffffff 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d9d9d9', endColorstr='#ffffff',GradientType=0 );    
+  }
+
+  .product-title {
+    color: $color--dark-green;
+    @include fontDim(15px,20px,.125em);
+    font-weight: $font-weight--black;
+    text-transform: uppercase;
+  }
+  .money {
+    @include fontSize(15px);
+  }
+
+  .add {
+    margin-left: 40px;
+    max-width: 92px;
+    padding: 6px 8px;
+    margin-right: 0;
+    @include fontSize(12px);
+    line-height: 14px / 12px * 1em;
+    white-space: normal;
+  }
+  .add[disabled] {
+    @include fontSize(8px);
+  }
+}
+
 #shopify-section-product-template {
   margin-top: 60px;
 

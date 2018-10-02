@@ -10,6 +10,9 @@
   <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
   <meta itemprop="image" content="{{ product.featured_image.src | img_url: '800x' }}">
 
+
+  {% include 'product-mobile-header' %}
+
   {% include 'product-video' %}
 
   <div class="mobile-product-photos--wrapper">

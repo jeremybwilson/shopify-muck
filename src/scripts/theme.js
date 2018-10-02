@@ -2058,6 +2058,7 @@ theme.ProductForm = function (context, events) {
 
   (function add_to_cart() {
     var element = context.querySelector(".add");
+    var mobileElement = document.querySelector('.product--mobile-header--add');
 
     events.on("variantchange", function (variant) {
       var text = config.button;
@@ -2070,11 +2071,98 @@ theme.ProductForm = function (context, events) {
 
       element.value = text;
       element.disabled = disabled;
+
+      mobileElement.value = text;
+      mobileElement.disabled = disabled;
     });
 
     events.on("variantunavailable", function () {
       element.value = config.unavailable;
       element.disabled = true;
+
+      mobileElement.value = config.unavailable;
+      mobileElement.disabled = true;
+    });
+  })();
+
+  (function mobile_header_button() {
+    var addToCart = document.querySelector('.product--mobile-header--add');
+
+    if ( !addToCart ) {
+      return false;
+    }
+
+    // change the text to mirror the bottom button
+
+    events.on("variantchange", function (variant) {
+      var text = config.button;
+      var disabled = false;
+
+      if ( !variant.available ) {
+        text = config.sold_out;
+        disabled = true;
+      }
+
+      addToCart.value = text;
+      addToCart.disabled = disabled;
+    });
+
+    events.on("variantunavailable", function () {
+      addToCart.value = config.unavailable;
+      addToCart.disabled = true;
+    });
+
+    // trigger the click
+
+    addToCart.click( () => {
+      $('#product-add .add').trigger('click');
+    });
+
+  })();
+
+  (function mobile_header_price() {
+    var element = document.querySelector(".product--mobile-header .product-price .money") || document.querySelector(".product--mobile-header .product-price");
+
+    if ( !element ) {
+      return false;
+    }
+
+    events.on("variantchange", function (variant) {
+
+      var price = money(variant.price);
+
+      if ( !variant.available ) {
+        price = config.sold_out;
+      }
+
+      element.innerHTML = price;
+
+      events.on("variantunavailable", function (variant) {
+        price = config.unavailable;
+        element.innerHTML = price;
+      });
+    });
+  })();
+
+  (function mobile_header_compare_price() {
+    var element = document.querySelector(".product--mobile-header .was");
+
+    if ( !element ) {
+      return false;
+    }
+
+    events.on("variantchange", function (variant) {
+      var price = "";
+
+      if ( variant.compare_at_price > variant.price ) {
+        var price = money(variant.compare_at_price);
+      }
+
+      if ( !variant.available ) {
+        price = "";
+      }
+
+      element.innerHTML = '<span class="money">' + price + '</span>';
     });
   })();
 
@@ -2467,6 +2555,8 @@ theme.Product = (function () {
        sizeChartPopup: $( '#size-chart--popup' ),
        freeShippingAccordionHeader: $( '#free-shipping--accordion-header' ),
        freeShippingAccordionContent: $( '#free-shipping--accordion-content'),
+       descriptionMobileTrigger: $( '#product-description--mobile-dropdown-trigger' ),
+       descriptionMobileContent: $( '#product-description--mobile-dropdown' ),
        campaignVideoTrigger: $( '.campaign-video--trigger' )
     }
 
@@ -2488,10 +2578,23 @@ theme.Product = (function () {
       buildBadges();
 
       // FREE SHIPPING : Accordion
-      ui.freeShippingAccordionHeader.click( () => {
-        ui.freeShippingAccordionHeader.toggleClass( 'open' );
-        ui.freeShippingAccordionContent.slideToggle(250);
-      });
+
+      if ( ui.freeShippingAccordionContent.length > 0 ) {
+        ui.freeShippingAccordionHeader.click( () => {
+          ui.freeShippingAccordionHeader.toggleClass( 'open' );
+          ui.freeShippingAccordionContent.slideToggle(250);
+        });
+      }
+
+      // DESCRIPTION : Accordion 
+
+      if ( ui.descriptionMobileContent.length > 0 ) {
+        ui.descriptionMobileTrigger.click( () => {
+          ui.descriptionMobileTrigger.toggleClass( 'open' );
+          ui.descriptionMobileContent.sl
+        });        
+      }
+
 
       // CAMPAIGN VIDEO
 
