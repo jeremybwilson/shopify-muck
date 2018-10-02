@@ -689,8 +689,8 @@
           "1537562942330": {
             "type": "image",
             "settings": {
-              "image": "shopify:\/\/shop_images\/hero_1920x828_02ca8c25-b233-4fb0-9c77-57ea7aec46f0.jpg",
-              "mobile_image": "shopify:\/\/shop_images\/hero_mobile_768x835_b50a97c4-fe36-4a24-9ec7-9b633bac6c6f.jpg",
+              "image": "shopify:\/\/shop_images\/about-hero-desktop-slide-1.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/about-hero-mobile-slide-1.jpg",
               "heading": "Add a title to your image",
               "subheading": "Tell your brand's story through images",
               "cta_one_link": "",
