@@ -2591,7 +2591,7 @@ theme.Product = (function () {
       if ( ui.descriptionMobileContent.length > 0 ) {
         ui.descriptionMobileTrigger.click( () => {
           ui.descriptionMobileTrigger.toggleClass( 'open' );
-          ui.descriptionMobileContent.sl
+          ui.descriptionMobileContent.slideToggle(350);
         });        
       }
 
