@@ -119,7 +119,7 @@ ShopifyAPI.changeItem = function(line, quantityChange, callback) {
     success: function(cart) {
       if ((typeof callback) === 'function') {
         if (quantityChange > cart.items[line-1].quantity) {
-          alert('{{ ajax_cart_low_stock_text }}');
+          alert('{{ settings.ajax_cart_low_stock_text }}');
         };
         callback(cart);
       }
