@@ -2467,6 +2467,8 @@ theme.Product = (function () {
        sizeChartPopup: $( '#size-chart--popup' ),
        freeShippingAccordionHeader: $( '#free-shipping--accordion-header' ),
        freeShippingAccordionContent: $( '#free-shipping--accordion-content'),
+       descriptionMobileTrigger: $( '#product-description--mobile-dropdown-trigger' ),
+       descriptionMobileContent: $( '#product-description--mobile-dropdown' ),
        campaignVideoTrigger: $( '.campaign-video--trigger' )
     }
 
@@ -2488,10 +2490,23 @@ theme.Product = (function () {
       buildBadges();
 
       // FREE SHIPPING : Accordion
-      ui.freeShippingAccordionHeader.click( () => {
-        ui.freeShippingAccordionHeader.toggleClass( 'open' );
-        ui.freeShippingAccordionContent.slideToggle(250);
-      });
+
+      if ( ui.freeShippingAccordionContent.length > 0 ) {
+        ui.freeShippingAccordionHeader.click( () => {
+          ui.freeShippingAccordionHeader.toggleClass( 'open' );
+          ui.freeShippingAccordionContent.slideToggle(250);
+        });
+      }
+
+      // DESCRIPTION : Accordion 
+
+      if ( ui.descriptionMobileContent.length > 0 ) {
+        ui.descriptionMobileTrigger.click( () => {
+          ui.descriptionMobileTrigger.toggleClass( 'open' );
+          ui.descriptionMobileContent.slideToggle(350);
+        });        
+      }
+
 
       // CAMPAIGN VIDEO
 
