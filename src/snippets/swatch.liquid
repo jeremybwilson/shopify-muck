@@ -6,7 +6,7 @@
 
 {% assign other_options = "option1 option2 option3" | remove: current_option | strip | split: " " %}
 
-<div class="swatch clearfix {{ option.name }}" data-option-index="{{ option.position }}" data-other-options='{{ other_options | json }}'>
+<div class="swatch clearfix {{ option.name | downcase }}" data-option-index="{{ option.position }}" data-other-options='{{ other_options | json }}'>
 
   <div class="swatch-header">
     
@@ -15,7 +15,7 @@
     {% comment %} Currently Selected Option {% endcomment %}
     <h6 class="current-option">{{ current_variant[current_option] }}</h6>
 
-    {% if option_name contains 'size' %}
+    {% if option_name contains 'size' and template != 'product.quick' %}
       <a href="#size-chart--popup" class="fancybox size-chart--trigger">Size Chart</a>
     {% endif %}
 
@@ -84,7 +84,13 @@
     {% endcapture %}
 
     {% capture regular_swatch %}
-      <div class="swatch-element {% unless available %}soldout{% endunless %}">
+      {% assign sizeValueLength = value | size %}
+      {% if sizeValueLength > 3 %}
+        {% assign sizeClass = 'long-label' %}
+      {% else %}
+        {% assign sizeClass = 'short-label' %}
+      {% endif %}
+      <div class="swatch-element {{ sizeClass }} {% unless available %}soldout{% endunless %}">
         {{ radio_button }}
 
         <label for="{{ id }}">
