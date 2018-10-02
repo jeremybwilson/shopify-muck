@@ -366,10 +366,8 @@ var ajaxCart = (function(module, $) {
       var $el = $(this),
           line = $el.data('line');
 
-      if (confirm(removeText)) {
-        if (line) {
-          updateQuantity(line, 0);
-        }
+      if (confirm(removeText) && line) {
+        updateQuantity(line, 0);
       } else {
         return false;
       }
