@@ -289,6 +289,7 @@
           "swatch_shape": "circles",
           "show_payment_button": false,
           "show_controls": false,
+          "show_zoom": false,
           "thumbnails": "left",
           "zoom_image_position": "zoom_over_main",
           "related_products": "none",
@@ -363,19 +364,19 @@
             "settings": {
               "image": "shopify:\/\/shop_images\/home-hero-desktop-slide-1.jpg",
               "mobile_image": "shopify:\/\/shop_images\/home-hero-mobile-slide-1.jpg",
-              "heading": "Boots That get things done",
-              "subheading": "",
-              "cta_one_link": "shopify:\/\/collections\/farm-work",
-              "cta_one_button_text": "Farm & Work",
-              "cta_two_link": "shopify:\/\/collections\/garden",
+              "heading": "Introducing the New Liberty Collection",
+              "subheading": "100% Waterproof Leather",
+              "cta_one_link": "shopify:\/\/collections\/new-arrivals",
+              "cta_one_button_text": "Shop our New Arrivals",
+              "cta_two_link": "",
               "cta_two_button_text": "Garden",
               "caption_color_scheme": "white",
               "custom_slide_main_color": "#ffffff",
               "custom_slide_alt_color": "#164732",
-              "caption_horizontal": "right",
+              "caption_horizontal": "left",
               "caption_vertical": 50,
               "caption_background": "rgba(0,0,0,0)",
-              "caption_opacity": "0.1"
+              "caption_opacity": "0.2"
             }
           },
           "1537990277479": {
@@ -383,16 +384,16 @@
             "settings": {
               "image": "shopify:\/\/shop_images\/home-hero-desktop-slide-2.jpg",
               "mobile_image": "shopify:\/\/shop_images\/home-hero-mobile-slide-2.jpg",
-              "heading": "Boots That Get Things Done",
-              "subheading": "",
-              "cta_one_link": "shopify:\/\/collections\/cold-snow",
-              "cta_one_button_text": "Cold & Snow",
+              "heading": "Boots That Work Hard for Hardworkers",
+              "subheading": "Built for comfort and tough performance",
+              "cta_one_link": "shopify:\/\/collections\/work",
+              "cta_one_button_text": "Shop Work",
               "cta_two_link": "",
               "cta_two_button_text": "Add a button",
-              "caption_color_scheme": "dark_green",
+              "caption_color_scheme": "white",
               "custom_slide_main_color": "#ffffff",
               "custom_slide_alt_color": "#164732",
-              "caption_horizontal": "left",
+              "caption_horizontal": "right",
               "caption_vertical": 50,
               "caption_background": "rgba(0,0,0,0)",
               "caption_opacity": "0.1"
@@ -403,10 +404,10 @@
             "settings": {
               "image": "shopify:\/\/shop_images\/home-hero-desktop-slide-3.jpg",
               "mobile_image": "shopify:\/\/shop_images\/home-hero-mobile-slide-3.jpg",
-              "heading": "Boots That Get Things Done",
-              "subheading": "",
-              "cta_one_link": "shopify:\/\/collections",
-              "cta_one_button_text": "Shop Now",
+              "heading": "Ready for all types of weather",
+              "subheading": "Durable & waterproof for every function",
+              "cta_one_link": "\/collections\/all?_=pf&pf_t_feature=feature_100%25 waterproof&pf_t_feature=feature_leather material",
+              "cta_one_button_text": "Shop Waterproof Leather",
               "cta_two_link": "",
               "cta_two_button_text": "Add a button",
               "caption_color_scheme": "white",
@@ -524,10 +525,10 @@
             "settings": {
               "image": "shopify:\/\/shop_images\/home-twin-promo-desktop-1.jpg",
               "mobile_image": "shopify:\/\/shop_images\/home-twin-promo-mobile-1.jpg",
-              "link": "shopify:\/\/collections\/kids",
-              "heading_text": "New Kids Boots",
-              "text": "<p>Muck&rsquo;s kid's winter boots can handle all the outside play your junior explorer can throw at them.<\/p>",
-              "cta_text": "Shop Now"
+              "link": "shopify:\/\/collections\/hunting",
+              "heading_text": "Perfect for trekking the mud",
+              "text": "<p>Improved fit and elevated comfort.<\/p>\n<p>Our New Summit Boot.<\/p>",
+              "cta_text": "Shop Hunt"
             }
           },
           "1536251685211-0": {
@@ -535,10 +536,10 @@
             "settings": {
               "image": "shopify:\/\/shop_images\/home-twin-promo-desktop-2.jpg",
               "mobile_image": "shopify:\/\/shop_images\/home-twin-promo-mobile-2.jpg",
-              "link": "shopify:\/\/collections\/women",
-              "heading_text": "WOMEN'S BOOTS",
-              "text": "<p>Muck boots are a favorite among women everywhere, from the garden to the stable, and everyplace in between.<\/p>",
-              "cta_text": "Shop Now"
+              "link": "shopify:\/\/collections\/arctic-ice",
+              "heading_text": "Winter Is Coming",
+              "text": "<p>Shop our warmest boot yet.<\/p>\n<p>New Vibram&reg; outsole for improved durability and performance.<\/p>",
+              "cta_text": "Shop The Arctic Ice COllection"
             }
           }
         },
@@ -558,10 +559,10 @@
             "settings": {
               "image": "shopify:\/\/shop_images\/home-about-promo-desktop-1.jpg",
               "mobile_image": "shopify:\/\/shop_images\/home-about-promo-mobile-1.jpg",
-              "heading": "Our Heritage",
-              "subheading": "The Original Muck® Boot Company story began in 1999 with the sole purpose of building the most comfortable, high-performance footwear on the market.",
+              "heading": "Our Purpose",
+              "subheading": "Made for work (and life) in the muck",
               "cta_one_link": "shopify:\/\/pages\/about",
-              "cta_one_button_text": "Learn More",
+              "cta_one_button_text": "Our Story",
               "cta_two_link": "",
               "cta_two_button_text": "Add a button",
               "caption_color_scheme": "white",
