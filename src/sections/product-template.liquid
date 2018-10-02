@@ -166,7 +166,8 @@
 
         </div><!-- .--left -->
 
-        <div class="product-description--right">
+        <div id="product-description--mobile-dropdown">
+          {% include 'product-spec-icons' %}
 
           {% comment %}
 
@@ -177,17 +178,22 @@
           <div class="product-description--specs">
 
             <div class="rte">
-            {{ product.description }}
+              {{ product.description }}
 
-            <ul>
-              <li>SKU <span class="product-sku">{{ product.variants.first.sku }}</span></li>
-            </ul>
+              <ul>
+                <li>SKU <span class="product-sku">{{ product.variants.first.sku }}</span></li>
+              </ul>
 
-            </div>
+            </div><!-- .rte -->
             
           </div><!-- .--specs -->
 
-        </div><!-- .--right -->
+
+        </div><!-- .--mobile-dropdown -->
+
+        <div id="product-description--mobile-dropdown-trigger">
+          <span class="closed-text">More Details</span><span class="open-text">Less Details</span>{% include 'svg-icon-caret-down' %}
+        </div>
 
       </div><!-- .row -->
     </div>
