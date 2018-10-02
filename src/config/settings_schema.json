@@ -852,7 +852,19 @@
             "label": "Page"
           }
         ]
-      }
+      },
+      {
+        "type": "text",
+        "id": "ajax_cart_remove_text",
+        "label": "Remove from Cart confirmation text",
+        "default": "This will remove the item from your cart. Continue?"
+      },
+      {
+        "type": "text",
+        "id": "ajax_cart_low_stock_text",
+        "label": "Low stock alert text",
+        "default": "This item does not have enough stock to add to your cart."
+      }      
     ]
   },
   {
