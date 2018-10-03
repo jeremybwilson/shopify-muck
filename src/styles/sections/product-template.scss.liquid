@@ -24,10 +24,6 @@
 
 .product--mobile-header {
   position: relative;
-  @include flexbox;
-  @include justify-content(space-between);
-  @include align-items(center);
-
   padding: 12px 20px 12px;
   margin-top: 15px;
   margin-bottom: 25px;
@@ -52,6 +48,12 @@
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d9d9d9', endColorstr='#ffffff',GradientType=0 );    
   }
 
+  .mobile-header--top {
+    @include flexbox;
+    @include justify-content(space-between);
+    @include align-items(center);
+  }  
+
   .product-title {
     color: $color--dark-green;
     @include fontDim(15px,20px,.125em);
@@ -73,6 +75,9 @@
   }
   .add[disabled] {
     @include fontSize(8px);
+  }
+  .errors {
+    width: 100%;
   }
 }
 

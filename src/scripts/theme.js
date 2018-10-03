@@ -2232,7 +2232,7 @@ theme.ProductForm = function (context, events) {
   })();
 
   (function mobile_header_button() {
-    var addToCart = document.querySelector('.product--mobile-header--add');
+    var addToCart = $('.product--mobile-header--add');
 
     if ( !addToCart ) {
       return false;
@@ -2260,16 +2260,16 @@ theme.ProductForm = function (context, events) {
 
     // trigger the click
 
-    addToCart.click( () => {
+    addToCart.on('click',this, function() {      
       $('#product-add .add').trigger('click');
     });
 
   })();
 
   (function mobile_header_price() {
-    var element = document.querySelector(".product--mobile-header .product-price .money") || document.querySelector(".product--mobile-header .product-price");
+    var element = $(".product--mobile-header .product-price .money") || $(".product--mobile-header .product-price");
 
-    if ( !element ) {
+    if ( !element.length > 0 ) {
       return false;
     }
 
@@ -2281,19 +2281,19 @@ theme.ProductForm = function (context, events) {
         price = config.sold_out;
       }
 
-      element.innerHTML = price;
+      element.html(price);
 
       events.on("variantunavailable", function (variant) {
         price = config.unavailable;
-        element.innerHTML = price;
+        element.html(price);
       });
     });
   })();
 
   (function mobile_header_compare_price() {
-    var element = document.querySelector(".product--mobile-header .was");
+    var element = $(".product--mobile-header .was");
 
-    if ( !element ) {
+    if ( !element.length > 0 ) {
       return false;
     }
 
