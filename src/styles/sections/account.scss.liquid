@@ -3,6 +3,13 @@
     @include h3;
     color: $color--dark-green;
   }
+  h5 {
+    @include h5;
+    line-height: 1.6875em;
+    letter-spacing: .025em;
+    color: $color--dark-green;    
+    font-weight: 700;
+  }
   label {
     @include h7;
     color: $color--gray-1;
@@ -14,14 +21,19 @@
     font-family: $sans;
   }
   a {
-    color: $color--gray-1;
+    color: $color--orange-1;
   }
   .button {
     background: $color--orange-1;
-    coloR: $color--white;
+    color: $color--white;
 
     &:hover {
       background: $color--dark-green;
+    }
+  }
+  #customer_orders {
+    @include mq('phone') {
+      margin-top: 50px;
     }
   }
 }
