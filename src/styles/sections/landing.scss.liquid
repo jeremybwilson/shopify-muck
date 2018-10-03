@@ -65,23 +65,84 @@
 
 	div.left-nav {
 
-		margin-bottom: 50px;
+	    float: left;
+	    width: 100%;
+	    margin: 0 0 25px 0;
 
-		@include mq('tablet-and-up') {
-			float: left;
-			width: 35%;
-			padding-left: 200px;
-		}
+	    @include mq('tablet-and-up') {
+	    	width: auto !important;	
+	    }
 
-		nav > ul > li {
-			&:before {
-				content: " ";
-				margin-right: 0;
+		div.desktop-left-nav {
+			display: none;
+
+			@include mq('tablet-and-up') {
+				display: block;
+				float: left;
+				width: 100%;
+				padding-left: 200px;
+			}
+
+			@include mq('tablet') {
+				padding-left: 0;
+			}
+
+			ul > li {
+
+				&:before {
+					content: " ";
+					margin-right: 0;
+				}
+
+				a {
+					font-size: 16px;
+					color: $color--dark-green-1;
+					line-height: 1.6875em;
+	    			letter-spacing: .025em;
+	    			font-weight: 700;
+				}
 			}
 		}
 	}
 
+	div.categories {
+		float: left;
+		width: 100%;
+    	font-size: 16px;
+    	font-weight: 700;
+    	text-transform: capitalize;
+
+    	span {
+    		float: left;
+    		width: 100%;
+    		color: #fff;
+			background: $color--orange-1;
+			padding: 15px;
+    	}
+
+		div.category {
+			display: none;
+			float: left;
+			width: 100%;
+			background: #f9f7f4;
+			padding: 25px;
+
+			a {
+				float: left;
+				width: 100%;
+				color: $color--dark-green-1;
+				margin-bottom: 15px;
+			}
+		}
+
+		@include mq('tablet-and-up') {
+			display: none;
+		}
+	}
+
 	div.page-content-field {
+
+		float: left;
 
 		@include mq('tablet-and-up') {
 			float: right;
