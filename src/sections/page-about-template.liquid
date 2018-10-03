@@ -5,16 +5,23 @@
 
 
 	{% for block in section.blocks %}
-	  <div class="block {% if block.type == 'image_picker' %}image-block{% endif %}" style="order:{{ block.settings.block_order }}; {% if block.type == 'html' %}background-color:{{ block.settings.html_block_color }}{% elsif block.type == 'image_picker' %}margin-top:{{ block.settings.image_offset }}{% endif %}">
+	  <div class="block {% if block.type == 'image_picker' %}image-block{% endif %}{% if block.type == 'video_url' %}video-url{% endif %} " style="order:{{ block.settings.block_order }}; {% if block.type == 'html' %}background-color:{{ block.settings.html_block_color }}{% elsif block.type == 'image_picker' %}margin-top:{{ block.settings.image_offset }}{% endif %}">
 	   	{% if block.type == 'image_picker' %}
 	    <img src="{{ block.settings.image_picker_block | img_url: '800x' }}" />
 	  	{% elsif block.type == 'html' %}
 	  	{{ block.settings.html_block }}
 	  	{% else %} 
 	      {% if block.settings.video_url_block.type == "youtube" %}
-	      <a class="fancybox" data-type="iframe" href="//www.youtube.com/embed/{{ block.settings.video_url_block.id }}?rel=0&showinfo=0&vq=720" title="youtube">
+	        <a class="fancybox" data-type="iframe" href="//www.youtube.com/embed/{{ block.settings.video_url_block.id }}?rel=0&showinfo=0&vq=720" title="youtube">
 		  		<img src="{{ block.settings.video_image_block | img_url: '800x' }}" />
-		  	</a>
+		    </a>
+		   <div class="columns-carousel--nav">
+
+		      <div class="pagination">
+		        PLAY
+		      </div>
+
+		    </div>
 	      {% elsif block.settings.video_url_block.type == "vimeo" %}
 	      <a class="fancybox" data-type="iframe" href="//player.vimeo.com/video/{{ block.settings.video_url_block.id }}?byline=0&portrait=0&badge=0" title="youtube">
 		  		<img src="{{ block.settings.video_image_block | img_url: '800x' }}" />
@@ -29,8 +36,26 @@
 	.gridlock .row {
 		width: 100%;
 	}
+	.video-url {
+		position: relative;
+	}
+	.columns-carousel--nav {
+		left: 50%;
+		bottom: 50%;
+		width: 40px;
+	}
+	#breadcrumb {
+		display: none;
+	}	
+	#content {
+		padding-top: 0;
+		padding-bottom: 0;
+	}
 	.homepage-section  {
 		margin-bottom: 0;
+	}
+	.caption-inners {
+		margin: 0 auto;
 	}
 	.about-container {
 	  display: flex;
@@ -47,9 +72,6 @@
 	}
 
 	@media screen and ( min-width: 741px ) {
-		#breadcrumb {
-			margin-left: 8%;
-		}
 		.block {
 			order: inherit !important;
 		}	
