@@ -63,7 +63,8 @@
     {{ 'instafeed.js' | asset_url | script_tag }}
 	{% endif %}
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
+  <!-- Zendesk -->
+  <script src='//d3c3cq33003psk.cloudfront.net/opentag-73170-muckbootproduction.js' async defer></script>
 
   <!-- Favicons
 ================================================== -->
@@ -75,10 +76,6 @@
   {% endif %}
 
   {{ content_for_header }}
-
-  <!-- Zendesk
-================================================== -->
-<script src='//d3c3cq33003psk.cloudfront.net/opentag-73170-muckbootproduction.js' async defer></script>
 
 </head>
 
