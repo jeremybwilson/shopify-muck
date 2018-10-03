@@ -24,6 +24,9 @@
     @include mq( 'phone' ) {
       display: none;
     }
+    @include mq( 'tablet') {
+      display: none;
+    }
   }
   br {
     @include mq( 'phone' ) {
@@ -34,7 +37,15 @@
     
     tr:first-child td:first-child { 
       border-right: 1px solid #e5e5e5;
+
       @include mq( 'phone' ) {
+          border-top: 1px solid #e5e5e5;
+          border-bottom: 1px solid #e5e5e5;
+          border-right: none;
+          padding: 20px 0;
+          margin: 20px 0;
+      }
+      @include mq( 'tablet' ) {
           border-top: 1px solid #e5e5e5;
           border-bottom: 1px solid #e5e5e5;
           border-right: none;
@@ -54,6 +65,11 @@
         width: 100% !important;
         height: auto !important;
       }
+      @include mq( 'tablet' ) {
+        float: left;
+        width: 100% !important;
+        height: auto !important;
+      }
 
       &:first-child {
         float: left;
@@ -63,6 +79,10 @@
         border-right: 1px solid #e5e5e5;
 
         @include mq( 'phone' ) {
+          width: 100% !important;
+        }
+
+        @include mq( 'tablet' ) {
           width: 100% !important;
         }
       }
