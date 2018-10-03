@@ -22,10 +22,6 @@
 
     {% comment %} :: FILTER + SORT - Desktop Component :: {% endcomment %}
     <div id="full-width-filter" class="filter-wrap-desktop">
-      
-      {% comment %} :: RESULTS COUNT :: {% endcomment %}
-      {% comment %}<div id="results-count"></div>{% endcomment %}
-      
       <h4 class="filter-label">FILTER</h4>
       <div id="bc-sf-filter-tree-h" class="filter-list-desktop"></div>
       <ul id="sortme" class="sort-options animate25">
@@ -48,12 +44,8 @@
         </div>
       </div>
 
-      {% comment %} FILTER LIST {% endcomment %}
-      <div id="bc-sf-filter-tree">
-
-        {% comment %} RESET ALL BUTTON {% endcomment %}
-        <button class="bc-sf-filter-clear-all" onclick="clearAllFilterOptions(event)">Clear All</button>
-      </div>
+      {% comment %} FILTERS LIST {% endcomment %}
+      <div id="bc-sf-filter-tree"></div>
     </div>
     
 

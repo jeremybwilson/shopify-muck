@@ -36,7 +36,7 @@ $loadMoreBgHover: {{ settings.collection_load_more_bg_hover }};
         // CATALOG : Wrapper to the catalog items
         #product-loop {
             position: relative;
-            padding-top: 30px;
+            padding-top: 40px;
             width: 110%; //Design has this wider than page edges, but the max-width will prevent page bound breakage
             left: 50%;
             transform: translateX( -50% );
@@ -574,6 +574,10 @@ $loadMoreBgHover: {{ settings.collection_load_more_bg_hover }};
                 &[data-selected-filter-count] {
                     padding-bottom: 30px;
                 } 
+
+                &[data-hide="true"] {
+                    display: none;
+                }
             }
 
 
@@ -621,7 +625,6 @@ $loadMoreBgHover: {{ settings.collection_load_more_bg_hover }};
                     @include h8;
                     @include fontSize( 14px );
                     position: absolute;
-                    float: none;
                     left: 0;
                     bottom: 10px;
                     color: $filterTextColor;
@@ -654,6 +657,28 @@ $loadMoreBgHover: {{ settings.collection_load_more_bg_hover }};
                 }
             }
 
+            // BUTTON : APPLY : Filters activate on user selection, this closes the menu.
+            .mobile-apply-button {
+                position: absolute;
+                bottom: 16px;
+                left: 50%;
+                float: none;
+                height: 50px;
+                width: calc( 100% - 30px ); //15px gutters
+                transform: translateX( -50% );
+                margin: 0;
+                outline: none;
+                background: $filterBtnMainBg;
+                color: $filterBtnMainText;
+            }
+
+            &.selections-active  .mobile-apply-button {
+                width: calc( 50% - 20px ); // 20px margin for 2 buttons on edge
+                left: auto;
+                right: 20px;
+                transform: translateX( 0 );
+            }
+
             // BUTTON : CLEAR ALL - WRAP : Selections of what filters you wanted, basically just canabalizing the clear button :p 
             .bc-sf-filter-selection-wrapper {
                 margin: 0;
@@ -668,11 +693,14 @@ $loadMoreBgHover: {{ settings.collection_load_more_bg_hover }};
 
                 // BUTTON : CLEAR ALL : Clear all button that we visually trick to be at footer, see the > div:nth-child(2) for companion styles
                 .bc-sf-filter-block-title {
+                    @include inline-flex;
+                    @include align-content( space-around );
                     position: absolute;
-                    width: 100%;
+                    width: 50%;
                     bottom: 15px;
                     left: 0;
-                    padding: 0 20px;
+                    padding: 0 10px 0 20px;
+                    float: none;
 
                     .bc-sf-filter-clear-all {
                         @include h6;
@@ -684,15 +712,15 @@ $loadMoreBgHover: {{ settings.collection_load_more_bg_hover }};
                         color: $filterBtnAltText;
                         padding: 15px;
                         width: 100%;
-                        float: left;
+                        height: 50px;
+                        float: none;
                     }
                 }
             }
 
-            // BUTTON : CLEAR ALL : Space for the button, selection block generates on filter selection,
-            //                      so this only applies when users select filters so it works. 
-            > div:nth-child(2) {
-                padding-bottom: 60px; 
+            // OPTIONS WRAPPER : Give padding for button and bottom border
+            #bc-sf-filter-options-wrapper {
+                padding-bottom: 60px;
 
                 .bc-sf-filter-option-block:last-child {
                     border-bottom: $filterBorder;
