@@ -245,7 +245,7 @@ var ajaxCart = (function(module, $) {
     if (!!data.message) {
       if (data.status == 422) {
         $formContainer.after('<div class="errors qty-error">'+ data.description +'</div>');
-        $('.product--mobile-header--add').after('<div class="errors qty-error">'+ data.description +'</div>');
+        $('.mobile-header--top').after('<div class="errors qty-error">'+ data.description +'</div>');
       }
     }
   };
