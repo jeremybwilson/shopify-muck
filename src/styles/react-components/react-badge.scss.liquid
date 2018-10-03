@@ -47,20 +47,23 @@ $badgeSizeDesktop: 72px;
             @include fontSize( 14px ); 
         }
 
+
         @include mq( 'lap-and-up' ) {
-            &.tiny { 
+            &.tiny { // (A.) 11+ chars -- (B.) Longest word 7+ chars
                 @include fontSize( 11px ); 
-                line-height: 0.9rem; // rem so font-sizing wont affect spacing
+                line-height: 0.9rem;
             }
-            &.small { 
+            &.small { // (A.) 7-10 Chars -- (B.) Longest less than 7 chars
                 @include fontSize( 12px );
                 line-height: 0.95rem; 
             }
-            &.medium { 
+            &.medium { // 4-6 Letters
                 @include fontSize( 14px );
                 line-height: 1.15rem; 
             }
-            &.large { @include fontSize( 16px ); }
+            &.large { // 1-3 Letters
+                @include fontSize( 16px ); 
+            }
         }
     }
 
@@ -72,8 +75,8 @@ $badgeSizeDesktop: 72px;
 
         @include mq( 'lap-and-up' ) {
             border-radius: calc( ( #{$badgeSizeDesktop} + 8px ) / 2 );
-            width: calc( #{$badgeSizeDesktop} + 8px ); // Circle is larger in mocks
-            height: calc( #{$badgeSizeDesktop} + 8px ); // Circle is larger in mocks
+            width: calc( #{$badgeSizeDesktop} + 8px );
+            height: calc( #{$badgeSizeDesktop} + 8px );
         }
     }
 
@@ -88,8 +91,8 @@ $badgeSizeDesktop: 72px;
         @include mq( 'lap-and-up' ) {
             right: 20px;
             top: 20px;
-            width: calc( #{$badgeSizeDesktop} - 8px ); // Diamond is smaller in mocks
-            height: calc( #{$badgeSizeDesktop} - 8px ); // Diamond is smaller in mocks
+            width: calc( #{$badgeSizeDesktop} - 8px );
+            height: calc( #{$badgeSizeDesktop} - 8px );
         }
 
     	.item-badge-text {
