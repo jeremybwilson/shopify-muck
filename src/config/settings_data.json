@@ -674,7 +674,7 @@
           "1537483333044": {
             "type": "html",
             "settings": {
-              "html_block": "<div style=\"vertical-align: middle; padding: 5vw; height: 400px; text-align: center;\"><p style=\"text-transform: uppercase; line-height: 40px;\"><strong style=\"color:#ab5232;\">All Muck® Boot products are 100% waterproof and backed by our 12 month warranty.<\/strong><span> purchase on our website and we offer a 30-day hassle free return guarantee<\/span><\/p><\/div>",
+              "html_block": "<div style=\"vertical-align: middle; padding: 10vw 5vw; height: 400px; text-align: center;\"><p style=\"text-transform: uppercase; line-height: 40px;\"><strong style=\"color:#ab5232;\">All Muck® Boot products are 100% waterproof and backed by our 12 month warranty.<\/strong><span> purchase on our website and we offer a 30-day hassle free return guarantee<\/span><\/p><\/div>",
               "html_block_color": "",
               "block_order": "8"
             }
@@ -691,7 +691,7 @@
           "1537483333044"
         ],
         "settings": {
-          "about_text": "<div style=\"outline: 1px solid #fff; outline-offset: -20px; padding: 100px; min-height: 200px; text-align: center; width: 100%;\">\n<h2 style=\"color: #fff; padding-bottom: 10px; border-bottom: 1px solid #ccc; width: 300px; text-transform: capitalize; margin: 0 auto;\">we had a single Purpose:<\/h2>\n<br>\n<p style=\"color: #fff; max-width: 500px; margin: 0 auto;\">To build the most protective, most comfortable, most reliable boots possible. So, we created the Original Muck Boot Company, whose sole reason for being is to create footwear that can withstand the harshest conditions.<\/p>\n<\/div>",
+          "about_text": "<div style=\"outline: 1px solid #fff; outline-offset: -20px; padding: 100px; min-height: 200px; text-align: center; width: 100%;\">\n<h2 style=\"color: #fff; padding-bottom: 10px; text-transform: capitalize; margin: 0 auto;\">we had a single Purpose:<\/h2>\n<hr style=\"width: 200px; margin: 10px auto; color\">\n<br>\n<p style=\"color: #fff; max-width: 500px; margin: 0 auto;\">To build the most protective, most comfortable, most reliable boots possible. So, we created the Original Muck Boot Company, whose sole reason for being is to create footwear that can withstand the harshest conditions.<\/p>\n<\/div>",
           "about_text_color": "#164632"
         }
       },
@@ -703,8 +703,8 @@
             "settings": {
               "image": "shopify:\/\/shop_images\/about-hero-desktop-slide-1.jpg",
               "mobile_image": "shopify:\/\/shop_images\/about-hero-mobile-slide-1.jpg",
-              "heading": "Add a title to your image",
-              "subheading": "Tell your brand's story through images",
+              "heading": "Our Story<hr style=\"width: 100px; margin: 20px auto\">",
+              "subheading": "OVER TWO DECADES OF SETTING <br> THE STANDARD OF COMFORT & QUALITY",
               "cta_one_link": "",
               "cta_one_button_text": "Add a button",
               "cta_two_link": "",
