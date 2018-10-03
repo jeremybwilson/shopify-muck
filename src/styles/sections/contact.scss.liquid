@@ -21,12 +21,6 @@
   }
   hr {
     margin: 25px 0;
-    @include mq( 'phone' ) {
-      display: none;
-    }
-    @include mq( 'tablet') {
-      display: none;
-    }
   }
   br {
     @include mq( 'phone' ) {
@@ -35,56 +29,28 @@
   }
   table {
     
-    tr:first-child td:first-child { 
-      border-right: 1px solid #e5e5e5;
-
-      @include mq( 'phone' ) {
-          border-top: 1px solid #e5e5e5;
-          border-bottom: 1px solid #e5e5e5;
-          border-right: none;
-          padding: 20px 0;
-          margin: 20px 0;
-      }
-      @include mq( 'tablet' ) {
-          border-top: 1px solid #e5e5e5;
-          border-bottom: 1px solid #e5e5e5;
-          border-right: none;
-          padding: 20px 0;
-          margin: 20px 0;
-      }
-    }
     td {
       float: left;
       border: none;
       vertical-align: top;
-      height: 90px;
+      // height: 90px;
       padding: 0;
 
       @include mq( 'phone' ) {
         float: left;
         width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        border-left: none !important;
         height: auto !important;
       }
       @include mq( 'tablet' ) {
         float: left;
         width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        border-left: none !important;
         height: auto !important;
-      }
-
-      &:first-child {
-        float: left;
-        width: 33% !important;
-        margin-right: 4.5%;
-        padding-right: 4.5%;
-        border-right: 1px solid #e5e5e5;
-
-        @include mq( 'phone' ) {
-          width: 100% !important;
-        }
-
-        @include mq( 'tablet' ) {
-          width: 100% !important;
-        }
       }
     }
   }
