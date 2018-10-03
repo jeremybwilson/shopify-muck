@@ -382,7 +382,9 @@ BCSfFilter.prototype.buildAdditionalElements = function(data, eventType) {
 
     // HIDE 1 OPTION FILTERS : Do not show filters with one option, app doesn't seem to handle this right
     var filters = data.filter.options || [];
-    var activeFilters = filters.filter( obj => obj.status === 'active' && obj.values && obj.values.length > 1 );
+    var activeFilters = filters.filter( function( obj ) {
+        return obj.status === 'active' && obj.values && obj.values.length > 1 
+    });
 
 
     // FILTER SELECTION COUNTS : Indicates how many filters in each set are selected
@@ -403,7 +405,9 @@ BCSfFilter.prototype.buildAdditionalElements = function(data, eventType) {
 
             // PURGE : Remove any filter with only one value available
             var id = this.dataset.id;
-            var hasMultipleValues = activeFilters.find( active => id && id === active.filterOptionId )
+            var hasMultipleValues = activeFilters.find( function(active) {
+                return id && id === active.filterOptionId;
+            });
             if ( !hasMultipleValues ) {
                 $(this).remove(); // Removal means border setups on ":first-child" still behave properly
             }
