@@ -931,12 +931,84 @@
       {
         "type": "text",
         "id": "email_popup_title",
-        "label": "Email popup title"
+        "label": "Email popup title",
+        "default": "Get the Latest News"
       },
       {
         "type": "text",
         "id": "email_popup_text",
-        "label": "Email popup text"
+        "label": "Email popup text",
+        "default": "Sign up for free shipping & returns in the US on your first order."
+      },
+      {
+        "type": "text",
+        "id": "email_popup_input_placeholder",
+        "label": "Email popup placeholder text",
+        "default": "Enter Your Email Address"
+      },      
+      {
+        "type": "richtext",
+        "id": "email_popup_bottom_text",
+        "label": "Fine print",
+        "default": "<p>By providing your email address, you agree to our <a href=\"https://www.honeywell.com/privacy-statement\">Privacy Policy</a> & <a href=\"/pages/terms-and-conditions\">Terms of Service</a>.</p>"
+      },
+      { 
+        "type": "text",
+        "id": "email_popup_error",
+        "label": "Error Text",
+        "default": "Please enter a valid e-mail address"
+      },
+      {
+        "type": "richtext",
+        "id": "email_popup_success",
+        "label": "Success Text",
+        "default": "<p>You have successfully joined our newsletter</p>"
+      }
+    ]
+  },
+  {
+    "name": "GDPR",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Cookie banner settings. Separate settings for desktop and mobile."
+      },
+      {
+        "type": "header",
+        "content": "Mobile settings"
+      },
+      {
+        "type": "richtext",
+        "id": "cookie_banner_mobile_text",
+        "label": "Mobile text",
+        "default": "<p>We use cookies.</p>"
+      },
+      {
+        "type": "url",
+        "id": "cookie_banner_mobile_button",
+        "label": "Mobile - privacy policy button link"
+      },
+      {
+        "type": "text",
+        "id": "cookie_banner_mobile_button_text",
+        "label": "Mobile - privacy policy button text",
+        "default": "More Info"
+      },
+      {
+        "type": "header",
+        "content": "Desktop settings"
+      },
+      {
+        "type": "richtext",
+        "id": "cookie_banner_desktop_text",
+        "label": "Desktop text",
+        "default": "<p>This site uses cookies to simplify and improve your usage and experience of this website. Cookies are small text files stored on the device you are using to access this website. If you ignore this message and continue without changing your browser settings, we will assume that you are consenting to our use of cookies. For further information on our use of cookies, please see our <a href=\"https://www.honeywell.com/privacy-statement\">Privacy Statement</a></p>"
+      },
+      {
+        "type": "text",
+        "id": "cookie_banner_accept_button_text",
+        "label": "Accept button text",
+        "default": "Accept"
       }
     ]
   },

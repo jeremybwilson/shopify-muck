@@ -1078,10 +1078,23 @@ theme.Newsletter = (function() {
 
           // success state
 
-          zaius.subscribe({list_id: 'newsletter', email: email.value});
-          ui.formId.fadeOut( () => {
-            ui.successMsg.fadeIn();
-          });
+          zaius.subscribe({         
+              list_id: 'newsletter',
+              email: ui.textbox.val()
+            },
+
+            // success state
+            function() {
+              ui.formId.fadeOut( () => {
+                ui.successMsg.fadeIn();
+              });
+            },
+
+            // fail state
+            function(error) {
+              console.log(error);
+            }
+          );
         }
       });
     }
@@ -1144,7 +1157,6 @@ theme.Slideshow = (function() {
       /* adds a custom pagination */
 
       start: function(slider) {
-        console.log($flexslider);
         $sliderNav.find('.flexslider--current-slide').text(slider.currentSlide+1);
         $sliderNav.find('.flexslider--total-slides').text(slider.count);
       },
@@ -1797,6 +1809,153 @@ $(document).ready(function() {
     $(document).ready( function() {
       $('#nav-bar-wrapper').stickUp();
     });
+
+  /*============================================================================
+   Cookie Banner
+  ==============================================================================*/  
+
+  (function cookie_banner() {
+    
+    // check the cookie 
+
+    var check_banner_cookie = $.cookie('gdpr_banner_read');
+    if(check_banner_cookie == null) {
+      $.fancybox({
+        href: "#cookie-banner--popup",
+        tpl: {
+          wrap : '<div class="fancybox-wrap" tabIndex="-1" id="cookie-banner--popup-wrapper"><div class="fancybox-skin"><div class="fancybox-outer"><div class="fancybox-inner"></div></div></div></div>',
+        },
+        helpers: {
+          overlay: null
+        },
+        openEffect: 'elastic',
+        closeEffect: 'fade'
+      });
+
+      // close the button 
+
+      $('.button-close').click(function() {
+        $.cookie('gdpr_banner_read','true'); // make the cookie
+        parent.$.fancybox.close();
+
+        email_popup_load();
+      });
+    }
+
+  })();
+
+  /*============================================================================
+   Email Popup
+  ==============================================================================*/  
+
+  (function email_popup() {
+
+    // check cookies (including GDPR)
+
+    var check_popup_cookie = $.cookie('mailing_list_delay_popup');
+    var check_banner_cookie = $.cookie('gdpr_banner_read');
+
+    // by default, the cookie banner will popup first. once the user hits "accept", then load the newsletter.
+
+    // the newsletter is set to popup again after 7 days. though the cookie banner has already been read,
+
+    if(check_popup_cookie == null && check_banner_cookie != null){
+      setTimeout(function(){
+        email_popup_load();
+      }, 4000);
+    }
+
+    const ui = {
+         formId: $( '#subscribe--popup--form' ),
+        textbox: $( '#email-popup' ),
+         submit: $( '#subscribe--popup--button' ),
+       errorMsg: $( '#subscribe--popup--error-response' ),
+     successMsg: $( '#subscribe--popup--success-response' ),
+   fadeOutGroup: $( '#subscribe--popup--form, #subscribe--popup .fine-print')
+    };
+
+    const regexEmail = new RegExp(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i);
+
+    if ( ui.formId ) {
+
+      ui.textbox.on('focus', () => {
+
+        // remove any pre-existing error class
+
+        ui.formId.removeClass('has-error');
+        ui.errorMsg.fadeOut();
+
+      });
+
+      // submit form
+
+      ui.formId.submit( (e) => {
+        e.preventDefault();
+
+        // validation code
+
+        let validEmail = regexEmail.test(ui.textbox.val());
+
+        if(!validEmail) {
+
+          // error state 
+
+          ui.formId.addClass('has-error');
+          ui.errorMsg.fadeIn();
+
+        } else {
+
+          // success state
+
+          zaius.subscribe({         
+              list_id: 'newsletter',
+              email: ui.textbox.val()
+            },
+
+            // success state
+            function() {
+              ui.fadeOutGroup.fadeOut( () => {
+                ui.successMsg.fadeIn();
+              });
+            },
+
+            // fail state
+            function(error) {
+              console.log(error);
+            }
+          );
+        }
+      });
+    }
+
+  })();
+
+  function email_popup_load() {
+
+    var $popup = $('#subscribe--popup');
+
+    if ( !$popup.length > 0 ) {
+      return false;
+    }
+
+    $.cookie('mailing_list_delay_popup', 'expires_seven_days', { expires: 7 });
+
+    $.fancybox({
+      href: "#subscribe--popup",
+      tpl: {
+        wrap : '<div class="fancybox-wrap" tabIndex="-1" id="subscribe--popup-wrapper"><div class="fancybox-skin"><div class="fancybox-outer"><div class="fancybox-inner"></div></div></div></div>',
+      },
+      helpers: {
+        overlay: null
+      },
+      openEffect: 'elastic',
+      closeEffect: 'fade'
+    });
+
+    $('#subscribe--close').click(function() {
+      parent.$.fancybox.close();
+    });    
+  };
 
 });
 
