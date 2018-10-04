@@ -34,16 +34,19 @@
           <th class="date">{{ 'customer.orders.date' | t }}</th>
           <th class="payment_status">{{ 'customer.orders.payment_status' | t }}</th>
           <th class="fulfillment_status">{{ 'customer.orders.fulfillment_status' | t }}</th>
+          <th>Order Status</th>
           <th class="total">{{ 'customer.orders.total' | t }}</th>
         </tr>
       </thead>
       <tbody>
         {% for order in customer.orders %}
+        {% assign orderpath = canonical_url | replace: 'https://www.muckboot-dev.myshopify.com/account/', 'https://checkout.shopify.com/3264807010/' %}
         <tr class="{% cycle 'odd', 'even' %} {% if order.cancelled %}cancelled_order{% endif %}">
           <td>{{ order.name | link_to: order.customer_url }}</td>
           <td><span class="note">{{ order.created_at | date: "%b %d, %Y" }}</span></td>
           <td><span class="status_{{ order.financial_status }}">{{ order.financial_status }}</span></td>
           <td><span class="status_{{ order.fulfillment_status }}">{{ order.fulfillment_status }}</span></td>
+          <td><a href="{{ order.order_status_url }}" title="Track Your Order" target="_blank">Track Order</a></td>
           <td><span class="total money"><span class="money">{{ order.total_price | money }}</span></span></td>
         </tr>
         {% endfor %}
