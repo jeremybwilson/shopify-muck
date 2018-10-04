@@ -1835,7 +1835,7 @@ $(document).ready(function() {
       // close the button 
 
       $('.button-close').click(function() {
-        $.cookie('gdpr_banner_read','true'); // make the cookie
+        $.cookie('gdpr_banner_read','true', { expires: 180 }); // make the cookie, expires in 180 days
         parent.$.fancybox.close();
 
         email_popup_load();
