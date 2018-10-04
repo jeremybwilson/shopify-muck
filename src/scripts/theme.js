@@ -2204,7 +2204,7 @@ theme.ProductForm = function (context, events) {
 
   (function add_to_cart() {
     var element = context.querySelector(".add");
-    var mobileElement = document.querySelector('.product--mobile-header--add');
+    var mobileElement = document.querySelector('.product--mobile-header--add') || {};
 
     events.on("variantchange", function (variant) {
       var text = config.button;
