@@ -14,17 +14,20 @@
 	      {% if block.settings.video_url_block.type == "youtube" %}
 	        <a class="fancybox" data-type="iframe" href="//www.youtube.com/embed/{{ block.settings.video_url_block.id }}?rel=0&showinfo=0&vq=720" title="youtube">
 		  		<img src="{{ block.settings.video_image_block | img_url: '800x' }}" />
+			  	<div class="columns-carousel--nav">
+			      <div class="pagination">
+			        PLAY
+			      </div>
+			    </div>
 		    </a>
-		   <div class="columns-carousel--nav">
-
-		      <div class="pagination">
-		        PLAY
-		      </div>
-
-		    </div>
 	      {% elsif block.settings.video_url_block.type == "vimeo" %}
 	      <a class="fancybox" data-type="iframe" href="//player.vimeo.com/video/{{ block.settings.video_url_block.id }}?byline=0&portrait=0&badge=0" title="youtube">
 		  		<img src="{{ block.settings.video_image_block | img_url: '800x' }}" />
+			  	<div class="columns-carousel--nav">
+			      <div class="pagination">
+			        PLAY
+			      </div>
+			    </div>		  		
 		  	</a>      
 	      {% endif %}	  	
 	  	{% endif %}

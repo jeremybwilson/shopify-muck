@@ -619,14 +619,6 @@
               "block_order": "1"
             }
           },
-          "1537487476214": {
-            "type": "video_url",
-            "settings": {
-              "video_url_block": "https:\/\/youtu.be\/6OHdkzsC8to",
-              "video_image_block": "shopify:\/\/shop_images\/about-image-2-video-still.jpg",
-              "block_order": "3"
-            }
-          },
           "1537470215266": {
             "type": "html",
             "settings": {
@@ -655,7 +647,7 @@
             "type": "image_picker",
             "settings": {
               "image_picker_block": "shopify:\/\/shop_images\/about-image-4.png",
-              "image_offset": "-8%",
+              "image_offset": "-6.5%",
               "block_order": "7"
             }
           },
@@ -666,12 +658,20 @@
               "html_block_color": "",
               "block_order": "8"
             }
+          },
+          "1538611281678": {
+            "type": "image_picker",
+            "settings": {
+              "image_picker_block": "shopify:\/\/shop_images\/about-image-2.jpg",
+              "image_offset": "",
+              "block_order": "3"
+            }
           }
         },
         "block_order": [
           "1537319917728",
           "1537319921572",
-          "1537487476214",
+          "1538611281678",
           "1537470215266",
           "1537482225047",
           "1537482252402",
