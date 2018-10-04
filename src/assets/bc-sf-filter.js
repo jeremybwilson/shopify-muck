@@ -381,7 +381,16 @@ BCSfFilter.prototype.buildAdditionalElements = function(data, eventType) {
     }
 
     // HIDE 1 OPTION FILTERS : Do not show filters with one option, app doesn't seem to handle this right
-    var filters = data.filter.options || [];
+    var filterData = {};
+    if ( data.filter ) {
+        filterData = window.filter = data.filter; //Update filter data with latest from API
+    
+    // FAllback, only initial API calls have filter data since its for the whole set of paginated data.
+    } else {
+        filterData = window.filter;
+    }
+    var filters =  filterData && filterData.options ? filterData.options : [];
+
     var activeFilters = filters.filter( function( obj ) {
         return obj.status === 'active' && obj.values && obj.values.length > 1 
     });
