@@ -82,12 +82,7 @@
                     {% comment %} :: MEGA-MENU - IMAGE :: {% endcomment %}
                     {% if block.settings.nav_image != blank %}
                       <span class="mega-image mm-image">
-                        <a href="{{ block.settings.nav_promo_link }}">
-                          {% include 'basic-responsive-image', type: block.settings.nav_image %}
-                          <noscript>
-                            <img src="{{ block.settings.nav_image | img_url: '300x' }}" alt="block.settings.nav_image.alt">
-                          </noscript>
-                        </a>
+                        <a href="{{ block.settings.nav_promo_link }}" style="background-image: url( '{{ block.settings.nav_image | img_url: '300x' }}' );" alt="block.settings.nav_image.alt"></a>
                       </span>
                     {% endif %}
                     
