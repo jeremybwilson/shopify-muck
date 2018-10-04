@@ -22,79 +22,79 @@ var badgeData = []; // Top level so findTag() can use it also
 
 // HELPER : Tag Finder
 const findTag = (searchString) => {
-    var foundTag = badgeData.find( function( tag ) {
-        return tag.indexOf( searchString ) >= 0; 
-    });
-    return foundTag;
+  var foundTag = badgeData.find( function( tag ) {
+    return tag.indexOf( searchString ) >= 0; 
+  });
+  return foundTag;
 };
 
 
 
 // HELPER : Builds Proper data object to pass to component
 const prepData = () => {
-    const badgeTextTag = findTag( 'item_badge_text_' );   // Required
-    const badgeShapeTag = findTag( 'item_badge_shape_' ); // Optional, default is square
-    const badgeColorTag = findTag( 'item_badge_color_' ); // Optional
-    const badgeBgTag = findTag( 'item_badge_bg_' );       // Optional
+  const badgeTextTag = findTag( 'item_badge_text_' );   // Required
+  const badgeShapeTag = findTag( 'item_badge_shape_' ); // Optional, default is square
+  const badgeColorTag = findTag( 'item_badge_color_' ); // Optional
+  const badgeBgTag = findTag( 'item_badge_bg_' );       // Optional
 
-    // ADD BADGE : text tag content required
-    if ( badgeTextTag ) {
+  // ADD BADGE : text tag content required
+  if ( badgeTextTag ) {
 
-        // MAP : Parse + Build needed info
-        return {
-            text  : badgeTextTag.split( 'item_badge_text_' )[1],
-            shape : badgeShapeTag ? badgeShapeTag.split( 'item_badge_shape_' )[1] : null,
-            color : badgeColorTag ? badgeColorTag.split( 'item_badge_color_' )[1] : null,
-            bg    : badgeBgTag ? badgeColorTag.split( 'item_badge_bg_' )[1] : null
-        };
-    
+    // MAP : Parse + Build needed info
+    return {
+      text  : badgeTextTag.split( 'item_badge_text_' )[1],
+      shape : badgeShapeTag ? badgeShapeTag.split( 'item_badge_shape_' )[1] : null,
+      color : badgeColorTag ? badgeColorTag.split( 'item_badge_color_' )[1] : null,
+      bg    : badgeBgTag ? badgeColorTag.split( 'item_badge_bg_' )[1] : null
+    };
+  
 
-    // ERROR : Required badge data missing
-    } else {
-        return { 
-            error: true,
-            msg: 'The badge text is empty, please supply a tag in the format of "item_badge_text_MY TEXT".'
-        }; 
-    }
+  // ERROR : Required badge data missing
+  } else {
+    return { 
+      error: true,
+      msg: 'The badge text is empty, please supply a tag in the format of "item_badge_text_MY TEXT".'
+    }; 
+  }
 };
 
 
 
 // BUILD : Parses Badge Data + Builds Component
 var buildBadges = function() {
-const elements = document.getElementsByClassName('react-badge');
-    for (const el in elements) {
+  const elements = document.getElementsByClassName('react-badge') || [];
+  [...elements].forEach( el => {  //htmlCollection isn't a true array, use spread operator to convert
 
-        // SAFETY : Prevent prototype trips + Ensure 'data-badge' exists on element
-        if (elements.hasOwnProperty(el) && elements[el].dataset.badge) {
+    // SAFETY : Ensure data exists
+    if ( el.dataset && el.dataset.badge ) {
 
-            // PARSE : Ensure clean badge data before handing to component
-            try {
-                badgeData = JSON.parse(elements[el].dataset.badge);
 
-                // PREP : Build data for component render
-                if ( badgeData.length > 0 ) {
-                    const preparedData = prepData();
+      // PARSE : Read + Pass data to component if valid JSON
+      try {
+        badgeData = JSON.parse(el.dataset.badge);
 
-                    // BUILD : No errors, Render badge component
-                    if ( !preparedData.error ) {
-                        const { bg, color, text, shape } = preparedData;
-                        ReactDOM.render(
-                            <BadgeItem bg={bg} color={color} shape={shape} text={text} />,
-                            elements[el]
-                        );
-                    
-                    } else {
-                        console.log( preparedData.msg );
-                    }
-                }
+        // PREP : Build data for component render
+        if ( badgeData.length > 0 ) {
+          const preparedData = prepData();
 
-            // SAFETY : Malformatted JSON = most common error
-            } catch (err) {
-                console.log(`Badge Data malformed (JSON.parse failed), please check 'data-badge' prop on element.\n  >${err.message || err}`);
-            }
+          // BUILD : No errors, Render badge component
+          if ( !preparedData.error ) {
+            const { bg, color, text, shape } = preparedData;
+            ReactDOM.render( <BadgeItem bg={bg} color={color} shape={shape} text={text} />, el );
+          
+          } else {
+            console.log( preparedData.msg );
+          }
         }
+
+
+      // SAFETY : Malformatted JSON = most common error
+      } catch (err) {
+        console.log(`Badge Data malformed (JSON.parse failed), please check 'data-badge' prop on element.\n  >${err.message || err}`);
+      }
     }
+
+  });
 }
 
 module.exports = buildBadges;

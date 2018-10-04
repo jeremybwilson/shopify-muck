@@ -20,22 +20,20 @@ var SwatchList = require('./SwatchList');
 
 // RENDER : Find all swatch elements and render a SwatchList in each element
 var buildSwatches = function() {
-  const elements = document.getElementsByClassName('react-swatch-list');
-  for (const el in elements) {
+  const elements = document.getElementsByClassName('react-swatch-list') || [];
+  [...elements].forEach( el => {
+    
+    // SAFETY : Ensure data exists
+    if ( el.dataset && el.dataset.swatches ) {
 
-    // SAFETY : Prevent prototype trips + Ensure 'data-swatches' exists on elem.
-    if (elements.hasOwnProperty(el) && elements[el].dataset.swatches) {
 
-      // PARSE : Ensure clean swatchData before handing to components
+      // PARSE : Read + Pass data to component if valid JSON
       try {
-        const swatchData = JSON.parse(elements[el].dataset.swatches);
+        const swatchData = JSON.parse(el.dataset.swatches);
         
         // RENDER : If > 1 color, Render SwatchList into target el
         if ( swatchData.length > 1 ) {
-          ReactDOM.render(
-            <SwatchList swatchData={ swatchData } />,
-            elements[el]
-          );
+          ReactDOM.render( <SwatchList swatchData={ swatchData } />, el );
         }
         
 
@@ -44,7 +42,7 @@ var buildSwatches = function() {
         console.log(`Swatch Data malformed, please check 'data-swatches' info on element\n  >${err.message || err}`);
       }
     }
-  }
+  });
 };
 
 module.exports = buildSwatches;
