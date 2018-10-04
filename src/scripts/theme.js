@@ -2867,6 +2867,34 @@ theme.Collection = (function() {
 })();
 
 
+
+/*============================================================================
+  Search template
+==============================================================================*/
+theme.Search = (function() {
+  function Search(container) {
+    const ui = {
+      mobileFilterBtn: '#filter-button-mobile',
+      searchWrap: '#search-template'
+    }
+    
+    // EVENTS : Bind DOM events when ready
+    $(document).ready( () => {
+
+      // FILTER MENU : OPEN / CLOSE : Indicator for the whole filter menu (mobile)
+      $( ui.mobileFilterBtn ).click( () => {
+        $( ui.searchWrap ).toggleClass( 'filter-open' );
+        console.log( 'DO THINGS' );
+      });
+    });
+  }
+
+  Search.prototype = _.assignIn({}, Search.prototype, {});
+  return Search;
+})();
+
+
+
 /*============================================================================
   Registering Sections
 ==============================================================================*/
@@ -2885,6 +2913,7 @@ $(document).ready(function() {
   sections.register('homepage-testimonials', theme.Testimonials);
   sections.register('mobile-navigation', theme.mobileNav);
   sections.register('product-section', theme.Product);
+  sections.register('search-template', theme.Search);
 });
 
 /*============================================================================
