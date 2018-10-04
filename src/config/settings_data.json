@@ -535,8 +535,8 @@
               "image": "shopify:\/\/shop_images\/home-twin-promo-desktop-1.jpg",
               "mobile_image": "shopify:\/\/shop_images\/home-twin-promo-mobile-1.jpg",
               "link": "shopify:\/\/collections\/hunting",
-              "heading_text": "Perfect for trekking the mud",
-              "text": "<p>Improved fit and elevated comfort.<\/p>\n<p>Our New Summit Boot.<\/p>",
+              "heading_text": "For the Hunt",
+              "text": "<p>Stability and support for a full day of comfort.<\/p>\n<p>Our New Summit Boot.<\/p>",
               "cta_text": "Shop Hunt"
             }
           },
@@ -547,8 +547,8 @@
               "mobile_image": "shopify:\/\/shop_images\/home-twin-promo-mobile-2.jpg",
               "link": "shopify:\/\/collections\/arctic-ice",
               "heading_text": "Winter Is Coming",
-              "text": "<p>Shop our warmest boot yet.<\/p>\n<p>New Vibram&reg; outsole for improved durability and performance.<\/p>",
-              "cta_text": "Shop The Arctic Ice COllection"
+              "text": "<p>Shop our warmest boot yet.<\/p>\n<p>Superior wet ice traction.<\/p>",
+              "cta_text": "Shop The Arctic Ice Collection"
             }
           }
         },
