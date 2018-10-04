@@ -385,14 +385,14 @@ BCSfFilter.prototype.buildAdditionalElements = function(data, eventType) {
     if ( data.filter ) {
         filterData = window.filter = data.filter; //Update filter data with latest from API
     
-    // FAllback, only initial API calls have filter data since its for the whole set of paginated data.
+    // Fallback, only initial API calls have filter data since its for the whole set of paginated data.
     } else {
         filterData = window.filter;
     }
+    // HIDE : 'activeFilters' builds array of populated filters with 2+ props
     var filters =  filterData && filterData.options ? filterData.options : [];
-
     var activeFilters = filters.filter( function( obj ) {
-        return obj.status === 'active' && obj.values && obj.values.length > 1 
+        return obj.status === 'active' && obj.values && obj.values.length > 1
     });
 
 
