@@ -2884,7 +2884,6 @@ theme.Search = (function() {
       // FILTER MENU : OPEN / CLOSE : Indicator for the whole filter menu (mobile)
       $( ui.mobileFilterBtn ).click( () => {
         $( ui.searchWrap ).toggleClass( 'filter-open' );
-        console.log( 'DO THINGS' );
       });
     });
   }
