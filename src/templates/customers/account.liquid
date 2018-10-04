@@ -40,7 +40,6 @@
       </thead>
       <tbody>
         {% for order in customer.orders %}
-        {% assign orderpath = canonical_url | replace: 'https://www.muckboot-dev.myshopify.com/account/', 'https://checkout.shopify.com/3264807010/' %}
         <tr class="{% cycle 'odd', 'even' %} {% if order.cancelled %}cancelled_order{% endif %}">
           <td>{{ order.name | link_to: order.customer_url }}</td>
           <td><span class="note">{{ order.created_at | date: "%b %d, %Y" }}</span></td>
