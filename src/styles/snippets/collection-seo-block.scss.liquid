@@ -3,6 +3,7 @@
  *
  * SNIPPET: collection-seo-block.liquid
  * ---------------------------------------------- */
+$seoArrowColor: {{ settings.filter_arrow_color }};
 $seoFooterBg: {{ settings.collection_seo_footer_bg }};
 $seoTextColor: {{ settings.collection_seo_footer_text }};
 
@@ -58,7 +59,7 @@ $seoTextColor: {{ settings.collection_seo_footer_text }};
             border-bottom: none;
             border-left: 5px solid transparent;
             border-right: 5px solid transparent;
-            border-top: 8px solid $filterArrowColor;
+            border-top: 8px solid $seoArrowColor;
             transition: all 0.25s ease-in-out;
             transform: rotateX( 0deg ); // to reverse the animation
         }
