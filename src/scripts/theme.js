@@ -2274,8 +2274,19 @@ theme.ProductForm = function (context, events) {
 
     // trigger the click
 
-    addToCart.on('click',this, function() {      
-      $('#product-add .add').trigger('click');
+    addToCart.on('click',this, function() {     
+      const ui = {
+        navLogo: $('#nav-logo svg'),
+        prodDesc: $('#product-description')
+      } 
+
+      if ( ui.navLogo.length > 0 && ui.prodDesc.length > 0 ) {
+
+        const $headerHeight = ui.navLogo.outerHeight() * 1.75; // accommodate for header height
+        var scrollValue = ui.prodDesc.offset().top - $headerHeight;
+
+        $('body,html').animate({ scrollTop: scrollValue }, 1000);
+      }
     });
 
   })();

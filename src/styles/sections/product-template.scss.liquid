@@ -113,6 +113,10 @@
       text-align: center;
       text-transform: uppercase;
 
+      @include mq('phone') {
+        display: none;
+      }
+
       @include mq('tablet-and-up') {
         max-width: 400px;
         @include fontSize(25px);
@@ -136,6 +140,10 @@
   font-weight: $font-weight--book;
   letter-spacing: .125em;
   text-align: center;
+
+  @include mq('phone') {
+    display: none;
+  }
 
   @include mq('tablet-and-up') {
     @include fontSize(18px);
