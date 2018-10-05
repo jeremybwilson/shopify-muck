@@ -2145,6 +2145,9 @@ theme.ProductForm = function (context, events) {
 
   (function price() {
     var element = context.querySelector(".product-price .money") || context.querySelector(".product-price");
+    if ( !element ) {
+      return false;
+    }
 
     events.on("variantchange", function (variant) {
       var price = money(variant.price);
@@ -2204,7 +2207,7 @@ theme.ProductForm = function (context, events) {
 
   (function add_to_cart() {
     var element = context.querySelector(".add");
-    var mobileElement = document.querySelector('.product--mobile-header--add') || {};
+    var mobileElement = document.querySelector('.product--mobile-header--add');
 
     events.on("variantchange", function (variant) {
       var text = config.button;
@@ -2215,19 +2218,27 @@ theme.ProductForm = function (context, events) {
         disabled = true;
       }
 
-      element.value = text;
-      element.disabled = disabled;
+      if ( element ) {
+        element.value = text;
+        element.disabled = disabled;
+      }
 
-      mobileElement.value = text;
-      mobileElement.disabled = disabled;
+      if ( mobileElement ) {
+        mobileElement.value = text;
+        mobileElement.disabled = disabled;
+      }
     });
 
     events.on("variantunavailable", function () {
-      element.value = config.unavailable;
-      element.disabled = true;
+      if ( element ) {
+        element.value = config.unavailable;
+        element.disabled = true;
+      }
 
-      mobileElement.value = config.unavailable;
-      mobileElement.disabled = true;
+      if ( mobileElement ) {
+        mobileElement.value = config.unavailable;
+        mobileElement.disabled = true;
+      }
     });
   })();
 
