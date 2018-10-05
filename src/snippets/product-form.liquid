@@ -24,16 +24,32 @@
 
   {% endcomment %}
 
+  {% if current_variant.compare_at_price > current_variant.price %}
+
+  {% comment %} Sale price formatting {% endcomment %}
+
+  <div id="product-price" class="has-compare-price">
+    <span class="product-price" itemprop="price">
+      <span class="money">{{ price }}</span>
+    </span>
+      <span class="was">
+        <span class="money">{{ compare_price }}</span>
+      </span>
+  </div>
+
+  {% else %}
+
+  {% comment %} Regular price {% endcomment %}
+
   <div id="product-price">
     <span class="product-price" itemprop="price">
       <span class="money">{{ price }}</span>
     </span>
-    {% if current_variant.compare_at_price > current_variant.price %}
-      <span class="was">
-        <span class="money">{{ compare_price }}</span>
-      </span>
-    {% endif %}
-  </div><div class="clear"></div>
+  </div>
+  
+  {% endif %}
+
+  <div class="clear"></div>
 
   {% comment %} REVIEWS - STAR RATING {% endcomment %}
 

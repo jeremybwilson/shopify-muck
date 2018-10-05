@@ -142,6 +142,15 @@
     letter-spacing: .075em;
     text-align: left;
   }
+
+  &.has-compare-price {
+    .product-price {
+      color: {{ settings.sale_color }}
+    }
+    .was {
+      color: $color--dark-green;      
+    }
+  }
 }
 
 #product-description {
@@ -446,4 +455,17 @@
     padding-top: 100px;
     padding-bottom: 70px;
   }
+
+  .price {
+
+    & > div {
+      display: inline;
+    }
+    .onsale {
+      color: {{ settings.sale_color }}
+    }
+    .was {
+      color: $color--dark-green;
+    }
+  }  
 }
