@@ -947,7 +947,7 @@
         "default": "Enter Your Email Address"
       },      
       {
-        "type": "richtext",
+        "type": "html",
         "id": "email_popup_bottom_text",
         "label": "Fine print",
         "default": "<p>By providing your email address, you agree to our <a href=\"https://www.honeywell.com/privacy-statement\">Privacy Policy</a> & <a href=\"/pages/terms-and-conditions\">Terms of Service</a>.</p>"
@@ -999,7 +999,7 @@
         "content": "Desktop settings"
       },
       {
-        "type": "richtext",
+        "type": "html",
         "id": "cookie_banner_desktop_text",
         "label": "Desktop text",
         "default": "<p>This site uses cookies to simplify and improve your usage and experience of this website. Cookies are small text files stored on the device you are using to access this website. If you ignore this message and continue without changing your browser settings, we will assume that you are consenting to our use of cookies. For further information on our use of cookies, please see our <a href=\"https://www.honeywell.com/privacy-statement\">Privacy Statement</a></p>"
