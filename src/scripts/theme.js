@@ -2272,7 +2272,13 @@ theme.ProductForm = function (context, events) {
     // trigger the click
 
     addToCart.on('click',this, function() {      
-      $('#product-add .add').trigger('click');
+      //$('#product-add .add').trigger('click');
+
+      // scroll down to the product form
+      const $headerHeight = $('#nav-logo svg').outerHeight() * 1.75; // accommodate for header height
+      var scrollValue = $('#product-description').offset().top - $headerHeight;
+
+      $('body,html').animate({ scrollTop: scrollValue }, 1000);
     });
 
   })();
