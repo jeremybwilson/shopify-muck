@@ -1838,7 +1838,10 @@ $(document).ready(function() {
         $.cookie('gdpr_banner_read','true', { expires: 180 }); // make the cookie, expires in 180 days
         parent.$.fancybox.close();
 
-        email_popup_load();
+        setTimeout(function(){
+          email_popup_load();
+        }, 5000);
+
       });
     }
 
@@ -1862,7 +1865,7 @@ $(document).ready(function() {
     if(check_popup_cookie == null && check_banner_cookie != null){
       setTimeout(function(){
         email_popup_load();
-      }, 4000);
+      }, 5000);
     }
 
     const ui = {
