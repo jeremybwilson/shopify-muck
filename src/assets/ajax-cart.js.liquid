@@ -167,7 +167,7 @@ var ajaxCart = (function(module, $) {
       formSelector       : 'form[action^="/cart/add"]',
       cartContainer      : '#CartContainer',
       addToCartSelector  : 'input[type="submit"]',
-      cartCountSelector  : null,
+      cartCountSelector  : '.cart-count',
       cartCostSelector   : null,
       moneyFormat        : '${{amount}}',
       disableAjaxCart    : false,
@@ -210,14 +210,16 @@ var ajaxCart = (function(module, $) {
   };
 
   updateCountPrice = function (cart) {
-    if ($cartCountSelector) {
-      $cartCountSelector.html(cart.item_count).removeClass('hidden-count');
+    // HAVE CART + COUNT NODE?
+    if ( cart && $cartCountSelector && $cartCountSelector.length > 0 ) {
+      $cartCountSelector.html( cart.item_count ).removeClass('hidden-count');
 
-      if (cart.item_count === 0) {
+      // HIDE : Count hides when no items in cart
+      if ( cart.item_count === 0 ) {
         $cartCountSelector.addClass('hidden-count');
       }
     }
-    if ($cartCostSelector) {
+    if ( $cartCostSelector && $cartCostSelector.length > 0 ) {
       $cartCostSelector.html(Shopify.formatMoney(cart.total_price, settings.moneyFormat));
     }
   };
