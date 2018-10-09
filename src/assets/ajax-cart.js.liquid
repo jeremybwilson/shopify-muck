@@ -118,7 +118,11 @@ ShopifyAPI.changeItem = function(line, quantityChange, callback) {
     dataType: 'json',
     success: function(cart) {
       if ((typeof callback) === 'function') {
-        if (quantityChange > cart.items[line-1].quantity) {
+
+        // NOTE: If call returns with cartItem Quantity LESS than quantityChange, it means
+        //       that this product has no more available units.
+        var cartItem = cart.items[line-1];
+        if ( cartItem && quantityChange > cartItem.quantity ) {
           alert('{{ settings.ajax_cart_low_stock_text }}');
         };
         callback(cart);
