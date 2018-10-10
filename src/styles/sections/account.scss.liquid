@@ -1,3 +1,11 @@
+.account-header {
+  position: relative;
+
+  h1 {
+    color: $color--dark-green;
+  }
+}
+
 #customer-wrapper {
   h2 {
     @include h3;
@@ -23,6 +31,25 @@
   a {
     color: $color--orange-1;
   }
+
+  #sign_out {
+    @include h6;
+    @include fontSize( 13px );  
+    position: relative;
+    padding: 13px 16px;
+    top: 20px;
+    background: $color--orange-1;
+    color: $color--white;
+    outline: none;
+    cursor: pointer;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+
+    &:hover {
+      background: $color--dark-green;
+    }
+}
   .button {
     background: $color--orange-1;
     color: $color--white;

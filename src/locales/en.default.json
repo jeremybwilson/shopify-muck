@@ -136,6 +136,7 @@
   "customer": {
     "account": {
       "title": "Account",
+      "sign_out": "Sign Out",
       "details": "Account Details",
       "view_addresses": "View Addresses",
       "return": "Return to Account Details"
