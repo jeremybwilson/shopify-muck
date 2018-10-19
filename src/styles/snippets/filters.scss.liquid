@@ -641,3 +641,8 @@ $filterBorder: 1px solid {{ settings.filter_divider_color }};
         border-bottom-left-radius: 3px;
     }
 }
+
+// HIDE SORT DROPDOWN ARROW (IE 9-11)
+select::-ms-expand {
+    display: none;
+}
