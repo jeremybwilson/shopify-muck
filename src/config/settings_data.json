@@ -248,14 +248,21 @@
         "type": "footer",
         "blocks": {
           "1480972996114": {
-            "type": "menu",
+            "type": "link_list",
             "settings": {
               "footer_nav": "footer"
+            }
+          },
+          "1539632090505": {
+            "type": "link_list",
+            "settings": {
+              "footer_nav": "footer-2"
             }
           }
         },
         "block_order": [
-          "1480972996114"
+          "1480972996114",
+          "1539632090505"
         ],
         "settings": {
           "tel_text": "855-377-BOOT (2668)",
