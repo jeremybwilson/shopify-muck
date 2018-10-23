@@ -51,19 +51,23 @@
 
 
     {% comment %} :: PRODUCT LIST :: {% endcomment %}
-    <div id="product-loop" data-bc-sort="{{ collection.default_sort_by }}">
-      {% assign products-per-row = section.settings.products-per-row %}
-      {% if collection.image %}
-        <div class="product-index {{ grid_item_width }}" data-alpha="{{ collection.title }}">     
-            {{ collection.image.src | collection_img_url: 'grande' | img_tag: collection_title }}     
-        </div>  
-      {% endif %}
+    <div id="product-loop" data-bc-sort="{{ collection.sort_by }}">
+      {% comment %} :: ORIGINAL TEMPLATE TRIGGER (bc-sf-filter.js Overwrites this) :: 
 
-      {% for product in collection.products %}
-        <div class="product-index {{ grid_item_width }}" data-alpha="{{ product.title }}" data-price="{{ product.price }}">     
-          {% include 'product-listing' %}
-        </div>
-      {% endfor %}
+      {% assign products-per-row = section.settings.products-per-row %}
+        {% if collection.image %}
+          <div class="product-index {{ grid_item_width }}" data-alpha="{{ collection.title }}">     
+            {{ collection.image.src | collection_img_url: 'grande' | img_tag: collection_title }}     
+          </div>  
+        {% endif %}
+
+        {% for product in collection.products %}
+          <div class="product-index {{ grid_item_width }}" data-alpha="{{ product.title }}" data-price="{{ product.price }}">     
+            {% include 'product-listing' %}
+          </div>
+        {% endfor %}
+
+      {% endcomment %}
     </div>
 
 
@@ -71,7 +75,7 @@
     <div id="pagination" class="desktop-12 tablet-6 mobile-3">
       <div id="bc-sf-filter-bottom-pagination"></div>
     </div>
-  	<div id="bc-sf-filter-load-more"></div>
+    <div id="bc-sf-filter-load-more"></div>
 
   {% endpaginate %}
 </div>
@@ -83,15 +87,18 @@
   // Declare bcSfFilterConfig variable
   var bcSfFilterConfig = {
     label: {
+
+      // ENABLED SORT OPTIONS
       sorting: {% assign temp = 'collections.sorting.title' | t  %} {% unless temp contains 'translation missing'  %} {{ temp | json }} {% else %} "Sorting" {% endunless %},
-      sorting_best_selling: {% assign temp = 'collections.sorting.best_selling' | t %} {% unless temp contains 'translation missing'  %} {{ temp | json }} {% else %} "Best Selling" {% endunless %},
       sorting_featured: {% assign temp = 'collections.sorting.featured' | t %} {% unless temp contains 'translation missing'  %} {{ temp | json }} {% else %} "Featured" {% endunless %},
+      sorting_date_descending: {% assign temp = 'collections.sorting.date_descending' | t %} {% unless temp contains 'translation missing'  %} {{ temp | json }} {% else %} "Newest" {% endunless %},
+      sorting_best_selling: {% assign temp = 'collections.sorting.best_selling' | t %} {% unless temp contains 'translation missing'  %} {{ temp | json }} {% else %} "Best Sellers" {% endunless %},
+      sorting_price_descending: {% assign temp = 'collections.sorting.price_descending' | t %} {% unless temp contains 'translation missing'  %} {{ temp | json }} {% else %} "Price (Highest to Lowest)" {% endunless %},
+      sorting_price_ascending: {% assign temp = 'collections.sorting.price_ascending' | t %} {% unless temp contains 'translation missing'  %} {{ temp | json }} {% else %} "Price (Lowest to Highest)" {% endunless %},
+      
       sorting_title_ascending: {% assign temp = 'collections.sorting.az' | t %} {% unless temp contains 'translation missing'  %} {{ temp | json }} {% else %} "Alphabetically, A-Z" {% endunless %},
       sorting_title_descending: {% assign temp = 'collections.sorting.za' | t %} {% unless temp contains 'translation missing'  %} {{ temp | json }} {% else %} "Alphabetically, Z-A" {% endunless %},
-      sorting_price_ascending: {% assign temp = 'collections.sorting.price_ascending' | t %} {% unless temp contains 'translation missing'  %} {{ temp | json }} {% else %} "Lowest Price" {% endunless %},
-      sorting_price_descending: {% assign temp = 'collections.sorting.price_descending' | t %} {% unless temp contains 'translation missing'  %} {{ temp | json }} {% else %} "Highest Price" {% endunless %},
       sorting_date_ascending: {% assign temp = 'collections.sorting.date_ascending' | t %} {% unless temp contains 'translation missing'  %} {{ temp | json }} {% else %} "Date, Old to New" {% endunless %},
-      sorting_date_descending: {% assign temp = 'collections.sorting.date_descending' | t %} {% unless temp contains 'translation missing'  %} {{ temp | json }} {% else %} "Date, New to Old" {% endunless %},
       sorting_sale_descending: {% assign temp = 'collections.sorting.sale_descending' | t %} {% unless temp contains 'translation missing'  %} {{ temp | json }} {% else %} "% Off" {% endunless %},
       sorting_relevance: {% assign temp = 'collections.sorting.relevance' | t %} {% unless temp contains 'translation missing'  %} {{ temp | json }} {% else %} "Relevance" {% endunless %},
       
