@@ -150,6 +150,7 @@ $filterBorder: 1px solid {{ settings.filter_divider_color }};
                         // FILTER : OPTION : Text spans, color for all
                         span {
                             color: $filterTextColor;
+                            text-transform: capitalize;
                         }
 
                         // FILTER : OPTION : Checkbox styling (namespace from app stylesheet)
@@ -335,6 +336,63 @@ $filterBorder: 1px solid {{ settings.filter_divider_color }};
                     position: relative;
                     opacity: 1;
                     padding-right: 32px;
+                }
+            }
+        }
+    }
+
+    // DENSE MODE : 6+ filter sets, shrink spacing on elements to fit for iPad
+    &[data-total-filter-count="6"],
+    &[data-total-filter-count="7"],
+    &[data-total-filter-count="8"],
+    &[data-total-filter-count="9"] {
+        @include mq( 'lap-and-up' ){
+            padding: 15px 5px;
+        }
+        @include mq( 'desk-and-up' ) {
+            padding: 15px 30px;
+        }
+
+        // FILTER : PARENT LABEL : label on iPad in dense filter sets
+        .filter-label {
+            @include fontSize( 14px );
+            margin-top: 2px;
+        }
+
+        // FILTER : SET HEADER : Shrink font aroud filter set headers
+        .filter-list-desktop .bc-sf-filter-option-block .bc-sf-filter-block-title a span {
+            @include fontSize( 12px );
+
+            @include mq( 'desk-and-up' ) {
+                @include fontSize( 14px );
+            }
+        }
+
+        // SORT : Visually hide selected option, move label on top for compression
+        .sort-options #bc-sf-filter-top-sorting {
+            @include mq( 'lap-and-desk' ) {
+
+                // SORT : LABEL : Move label on top of click zone for select
+                .sort-label {
+                    @include fontSize( 14px );
+                    position: absolute;
+                    right: 40px;
+                    z-index: 10;
+                    pointer-events: none;
+                    margin-top: 2px;
+
+                    &:after {
+                        right: -24px;
+                    }
+                }
+
+                // SORT : LABEL : Hide select label visually so label is click element visually
+                .styled-select {
+                    @include fontSize( 12px );
+                    min-width: 100px;
+                    width: 100px;
+                    color: $filterBg; //Hide text, but still use menu
+                    cursor: pointer;
                 }
             }
         }
