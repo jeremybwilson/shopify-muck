@@ -76,6 +76,12 @@
       },
       {
         "type": "color",
+        "id": "nav_links_sale",
+        "label": "Special for nav menu items named 'sale' ",
+        "default": "#AA5131"
+      },
+      {
+        "type": "color",
         "id": "nav_minor_border_color",
         "label": "Search Underline",
         "default": "#cccccc"
@@ -761,6 +767,13 @@
         "type": "checkbox",
         "id": "breadcrumb",
         "label": "Show Breadcrumb navigation"
+      },
+      {
+        "type": "checkbox",
+        "default" : true,
+        "id": "enable_nav_name_styling",
+        "label": "Stylize Key Nav Items",
+        "info" : "(Adds bold/color-selection to nav items like 'Sale' in the menu)"
       }
     ]
   },
