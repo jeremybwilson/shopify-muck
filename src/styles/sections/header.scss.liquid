@@ -638,6 +638,14 @@ $navBarDesktopHeight: 80px;
                                 color: {{ settings.nav_links_hover }};
                             }
                         }
+
+                        // SALE : Sale gets unique color var from settings
+                        {% if settings.enable_nav_name_styling %}
+                            &.sale a {
+                                color: {{ settings.nav_links_sale }};
+                                font-weight: $font-weight--medium;
+                            }
+                        {% endif %}
                     }
                 }
 
