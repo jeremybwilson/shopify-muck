@@ -65,7 +65,7 @@
 
                                 {% comment %} :: #3 - Regular Sub-Sub Link (notice 'Shop All' Case in this also) :: {% endcomment %}
                                 {% else %}
-                                  <li class="nav-sub-sub-item {% if sub_sub_link.title contains 'Shop All' %}shop-all{% endif %} {{ sub_sub_link.title | replace: ' ', '-' | downcase }}">
+                                  <li class="nav-sub-sub-item {{ sub_sub_link.title | replace: ' ', '-' | downcase }}">
                                     <a href="{{ sub_sub_link.url }}">{{ sub_sub_link.title }}</a>
                                   </li>
                                 {% endif %} 
