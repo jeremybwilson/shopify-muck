@@ -97,7 +97,19 @@
 
       @include mq('tablet-and-up') {
         display: block;
-        columns: 2;
+
+        .footer-sub-nav-wrapper {
+          position: relative;
+          width: 49%;
+          display: inline-flex;
+          padding-top: 25px;
+        } 
+
+        h4.nav-sub-header {
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
 
         &.footer-sub-nav {
           columns: 1;
