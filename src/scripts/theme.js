@@ -1227,14 +1227,12 @@ theme.ColumnsCarousel = (function() {
       currentSlide: $container.find('.columns-carousel--current-slide'),
        totalSlides: $container.find('.columns-carousel--total-slides'),
               item: $container.find('.column-item')
-    }
+    };
 
     // CAROUSEL INIT
-
     var initColumnsCarousel = function(Columnscarousel) {
 
       var current = 0;
-
       var cols = Columnscarousel.owlCarousel({
         lazyLoad: true,
         responsive : {
@@ -1255,7 +1253,11 @@ theme.ColumnsCarousel = (function() {
         },
         onChanged: function(event) {
           current = event.item.index+1;
-          //ui.currentSlide.text(current);
+
+          // iOS - Library wasn't updated for swipes
+          if ( ui.currentSlide.length > 0 ) {
+            ui.currentSlide.text(current);
+          }
         }
       });
 
@@ -1276,12 +1278,10 @@ theme.ColumnsCarousel = (function() {
         $(this).addClass('hovered');
 
         // get the index of the currently hovered item
-
         ui.currentSlide.text($('.column-item').index(this)+1);
       }).on('mouseleave', function() {
 
         // restore the current slide from the carousel index 
-
         //ui.currentSlide.text(current);
       });
     };

@@ -1,7 +1,6 @@
 <div class="homepage-section columns-carousel-section no-fouc index-section" data-section-id="{{ section.id }}" data-section-type="columns-carousel-section">
 
   {% comment %} :: WRAPPER :: {% endcomment %}
-
   {% if section.blocks.size > 0 %}
 
   <div class="columns-carousel">
@@ -9,7 +8,6 @@
     <ul class="owl-carousel columns-carousel--columns">
 
       {% comment %} :: THE LOOP :: {% endcomment %}
-
       {% for block in section.blocks %}
 
       <li id="column--{{ block.id }}" data-block-id="{{ block.id }}" class="column-item" {{ block.shopify_attributes }}>
@@ -20,14 +18,12 @@
           {% endif %}
 
           {% comment %} :: IMAGES :: {% endcomment %}
-
           {% if block.settings.image != blank %}
 
             <div class="box-ratio">
               <picture>
                 
                 {% comment %} :: MOBILE IMAGE :: {% endcomment %}
-
                 {% if block.settings.mobile_image != blank %}
                   {% assign mobile_img_url = block.settings.mobile_image | img_url: '767x' %}
 
@@ -51,7 +47,6 @@
             </div><!-- .box-ratio -->
 
             {% comment %} Styling to accommodate the box ratio for lazy-loaded images {% endcomment %}
-
             <style>
 
               {% assign image_box_ratio = block.settings.image.height | append: ".0" | times: 1 | divided_by: block.settings.image.width | times: 100 | append: "%" %}
@@ -60,7 +55,6 @@
                 {% assign mobile_image_box_ratio = block.settings.mobile_image.height | append: ".0" | times: 1 | divided_by: block.settings.mobile_image.width | times: 100 | append: "%" %}
 
                 /* Mobile */
-
                 #column--{{ block.id }} .box-ratio {
                   padding-bottom: {{ mobile_image_box_ratio }};
                 }
@@ -76,7 +70,6 @@
               {% if block.settings.image != blank and block.settings.mobile_image != blank %}
 
                 /* Tablet and up */
-
                 @media screen and (min-width: 768px) {
                   #column--{{ block.id }} .box-ratio {
                     padding-bottom: {{ image_box_ratio }};
@@ -90,7 +83,6 @@
           {% endif %}
 
           {% comment %} :: NO IMAGE - PLACEHOLDER :: {% endcomment %}
-
           {% if block.settings.image == blank %}
             {% capture current %}{% cycle 1, 2 %}{% endcapture %}
             {%- assign placeholder = 'lifestyle-' | append: current -%}
@@ -98,13 +90,11 @@
           {% endif %}
 
           {% comment %} :: TEXT & ICON OVERLAY :: {% endcomment %}
-
           <div class="overlay"></div>
 
           <div class="text-overlay" id="overlay-{{ block.id }}">
 
             {% comment %} :: ICON :: {% endcomment %}
-            
             {% if block.settings.png_icon != blank or block.settings.svg_icon != block %}
 
             <div class="overlay-icon">
@@ -118,7 +108,6 @@
             {% endif %}
 
             {% comment %} :: TEXT :: {% endcomment %}
-
             {% if block.settings.heading != blank %}
             <h3>{{ block.settings.heading }}</h3>
             {% endif %}
@@ -142,7 +131,6 @@
     </ul>
 
     {% comment %} :: PAGINATION :: {% endcomment %}
-
     {% if section.blocks.size > 1 %}
 
     <div class="columns-carousel--nav">
