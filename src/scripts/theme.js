@@ -1987,14 +1987,11 @@ $(document).ready(function() {
   Product Modules
 ==============================================================================*/
 var Events = new EventEmitter3();
-
 Events.trigger = Events.emit; // trigger alias
 
 theme.ProductForm = function (context, events) {
   var $context = $(context);
-
   var config = JSON.parse(context.dataset.productForm || '{}');
-
   var product = context.querySelector(".product-json").innerHTML,
       product = JSON.parse(product || '{}');
 
@@ -2016,7 +2013,6 @@ theme.ProductForm = function (context, events) {
       }
 
       events.trigger("variantchange", variant);
-
       events.trigger("variantchange:option1:" + variant.option1);
       events.trigger("variantchange:option2:" + variant.option2);
       events.trigger("variantchange:option3:" + variant.option3);
@@ -2032,12 +2028,10 @@ theme.ProductForm = function (context, events) {
     // function for the dropdowns
 
     var elements = context.querySelectorAll(".single-option-selector");
-
     elements.forEach(Selector);
 
     function Selector(element, index) {
       var option_position = index + 1;
-
       events.on("swatch:change:" + option_position, change);
 
       function change(value) {
@@ -2047,26 +2041,24 @@ theme.ProductForm = function (context, events) {
   })();
 
   (function swatches() {
+
     // function for the swatches
-
     var elements = context.querySelectorAll("[type=radio]");
-
     var states = {
       sold_out: function (element) {
         element.parentElement.classList.add("soldout");
       },
+
       available: function (element) {
         element.parentElement.classList.remove("soldout");
       }
     };
 
     events.on("variantunavailable", set_unavailable);
-
     elements.forEach(Swatch);
 
     function set_unavailable() {
       var selected = {};
-
       var selected_elements = $(elements).filter(":checked").toArray();
 
       selected_elements.forEach(function (element) {
@@ -2078,11 +2070,8 @@ theme.ProductForm = function (context, events) {
 
       elements.forEach(function (element) {
         var available = false;
-
         var current_option = "option" + element.getAttribute("data-position");
-
         var current_value = element.value;
-
         var other_options = ["option1", "option2", "option3"].filter(function (option) {
           return selected[option] && option != current_option;
         });
@@ -2112,9 +2101,7 @@ theme.ProductForm = function (context, events) {
 
     function Swatch(element) {
       var option_position = element.getAttribute("data-position");
-
       var current_option = "option" + option_position;
-
       var other_options = ["option1", "option2", "option3"].filter(function (option) {
         return option != current_option;
       });
@@ -2125,16 +2112,17 @@ theme.ProductForm = function (context, events) {
       });
 
       events.on("variantchange:option" + option_position + ":" + element.value, select);
-
       events.on("variantchange", set_availability);
 
       function select() {
         element.checked = true;
       }
+
       function current_option_text_change() {
         var current_option_text = element.closest('.swatch').querySelector('.current-option');
         current_option_text.innerHTML = element.value;        
       }
+
       function set_availability(current_variant) {
         var available = false;
 
@@ -2274,7 +2262,6 @@ theme.ProductForm = function (context, events) {
     }
 
     // change the text to mirror the bottom button
-
     events.on("variantchange", function (variant) {
       var text = config.button;
       var disabled = false;
@@ -2294,7 +2281,6 @@ theme.ProductForm = function (context, events) {
     });
 
     // trigger the click
-
     addToCart.on('click',this, function() {     
       const ui = {
         navLogo: $('#nav-logo svg'),
@@ -2320,7 +2306,6 @@ theme.ProductForm = function (context, events) {
     }
 
     events.on("variantchange", function (variant) {
-
       var price = money(variant.price);
 
       if ( !variant.available ) {
@@ -2328,7 +2313,6 @@ theme.ProductForm = function (context, events) {
       }
 
       element.html(price);
-
       events.on("variantunavailable", function (variant) {
         price = config.unavailable;
         element.html(price);
@@ -2369,6 +2353,7 @@ theme.ProductForm = function (context, events) {
 
       if ( !variant.available ) {
          element.style.display = 'none';
+
        } else {
          element.style.display = 'inline-block';
        }
@@ -2386,8 +2371,8 @@ theme.ProductForm = function (context, events) {
       return Shopify.formatMoney(cents, config.money_format);
     }
   }
-
 };
+
 
 theme.ProductGallery = function (context, events) {
 
@@ -2415,7 +2400,6 @@ theme.ProductGallery = function (context, events) {
       video_type = 'vimeo';
 
       /* Because Vimeo doesn't just allow for thumbnail URLs, we'll need to pull it from its API */
-
       var vimeo_id = $vimeo_thumbnail.data('src');
 
       $.ajax({
@@ -2432,7 +2416,6 @@ theme.ProductGallery = function (context, events) {
       });
 
       /* Call vimeo */
-
       var Vimeo = require('@vimeo/player');  
       var options = {
         id: vimeo_id,
@@ -2992,12 +2975,3 @@ function debounce(fn, wait, immediate) {
       }
     };
   }
-
-  /* Log Theme Version */
-  var log = function() {
-      var args = Array.prototype.slice.call(arguments);
-      args.unshift(console);
-      return Function.prototype.bind.apply(console.log, args);
-  }
-
-  log("Fashionopolism Version 5.4 by Underground", {bar: 1})();

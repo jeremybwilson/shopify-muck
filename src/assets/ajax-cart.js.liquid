@@ -146,7 +146,7 @@ var ajaxCart = (function(module, $) {
   'use strict';
 
   // Public functions
-  var init, loadCart;
+  var init, loadCart, initAddToCartButtons;
 
   // Private general variables
   var settings, isUpdating, $body;
@@ -158,7 +158,39 @@ var ajaxCart = (function(module, $) {
   var updateCountPrice, formOverride, itemAddedCallback, itemErrorCallback, cartUpdateCallback, buildCart, cartCallback, adjustCart, adjustCartCallback, createQtySelectors, qtySelectors, validateQty;
 
   /*============================================================================
-    Initialise the plugin and define global options
+              Bind new addToCart buttons for cases like "Quickview" 
+  ==============================================================================*/
+  initAddToCartButtons = function( options, calledFromInit ) {
+
+    // Default settings
+    if ( !calledFromInit ) {
+      settings = {
+        formSelector       : 'form[action^="/cart/add"]',
+        cartContainer      : '#CartContainer',
+        addToCartSelector  : 'input[type="submit"]',
+        disableAjaxCart    : false
+      };
+
+      // Override defaults with arguments
+      $.extend(settings, options);
+
+      // Select DOM elements
+      $formContainer = $(settings.formSelector);
+      $addToCart     = $formContainer.find(settings.addToCartSelector);
+    }
+
+    // Track cart activity status
+    isUpdating = false;
+
+    // Take over the add to cart form submit action if ajax enabled
+    if (!settings.disableAjaxCart && $addToCart.length) {
+      formOverride();
+    }
+  }
+
+
+  /*============================================================================
+    Initialise plugin + define global options   (DO NOT INVOKE MORE THAN ONCE!!)
   ==============================================================================*/
   init = function (options) {
 
@@ -187,17 +219,12 @@ var ajaxCart = (function(module, $) {
     // General Selectors
     $body = $('body');
 
-    // Track cart activity status
-    isUpdating = false;
+    // ADD TO CART : Initialize Add to cart buttons, method also used in quickview when initializing its cart buttons after initial.. init call :p 
+    initAddToCartButtons( options, true );
 
     // Setup ajax quantity selectors on the any template if enableQtySelectors is true
     if (settings.enableQtySelectors) {
       qtySelectors();
-    }
-
-    // Take over the add to cart form submit action if ajax enabled
-    if (!settings.disableAjaxCart && $addToCart.length) {
-      formOverride();
     }
 
     // Run this function in case we're using the quantity selector outside of the cart
@@ -219,6 +246,7 @@ var ajaxCart = (function(module, $) {
         $cartCountSelector.addClass('hidden-count');
       }
     }
+
     if ( $cartCostSelector && $cartCostSelector.length > 0 ) {
       $cartCostSelector.html(Shopify.formatMoney(cart.total_price, settings.moneyFormat));
     }
@@ -348,10 +376,12 @@ var ajaxCart = (function(module, $) {
       // Add or subtract from the current quantity
       if ($el.hasClass('ajaxcart__qty--plus')) {
         qty += 1;
+      
       } else {
         qty -= 1;
-        if (qty <= 0) { 
-          if (confirm(removeText)) {
+        
+        if ( qty <= 0 ) { 
+          if ( confirm(removeText) ) {
             qty = 0;
           } else {
             return false;
@@ -538,7 +568,8 @@ var ajaxCart = (function(module, $) {
 
   module = {
     init: init,
-    load: loadCart
+    load: loadCart,
+    initAddToCartButtons: initAddToCartButtons
   };
   
   
