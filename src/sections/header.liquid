@@ -79,7 +79,7 @@
               {% if section.settings.cart_icon == 'cart' %}
                 {% include 'svg-icon-cart' %}
               {% elsif section.settings.cart_icon == 'bag' %}
-                <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+                {% include 'svg-icon-shopping-bag' %}
               {% endif %}
               <span class="cart-count {% if cart.item_count == 0 %}hidden-count{% endif %}">{{ cart.item_count }}</span>
             </a>
