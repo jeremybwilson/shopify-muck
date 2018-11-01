@@ -5,29 +5,27 @@
 </div>
 
 {% if settings.ajax_cart_method == 'drawer' %}
-  {{ 'handlebars.min.js' | asset_url | script_tag }}
-  {% include 'ajax-cart-template' %}
-  {{ 'ajax-cart.js' | asset_url | script_tag }}
   <script>
     jQuery(function($) {
-      ajaxCart.init({
+      ajaxCart.initAddToCartButtons({
         formSelector: '.product_form',
         cartContainer: '#CartContainer',
-        addToCartSelector: '.AddtoCart',
-        cartCountSelector: '.CartCount',
-        cartCostSelector: '.CartCost',
-        moneyFormat: {{ shop.money_format | json }}
+        addToCartSelector: '.AddtoCart'
      });
     });
+
     jQuery('body').on('ajaxCart.afterCartLoad', function(evt, cart) {
       $.fancybox.close(true);
       // Bind to 'ajaxCart.afterCartLoad' to run any javascript after the cart has loaded in the DOM
       timber.RightDrawer.open();
     });
+
     {% if settings.show_multiple_currencies %}
       jQuery('body').on('ajaxCart.afterCartLoad', function(evt, cart) {
         // Convert currency when ajaxcart opens
-        Currency.convertAll(shopCurrency, Currency.currentCurrency);
+        if ( Currency && currency.convertAll ) {
+          Currency.convertAll(shopCurrency, Currency.currentCurrency);
+        } 
       });
     {% endif %}
   </script>
