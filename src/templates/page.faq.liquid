@@ -238,7 +238,13 @@
 </div>
 
 <script>
-$( document).ready(function() {    
+$( document).ready(function() {
+	// Expand section if url contains a direct anchor reference
+	var targetSection = window.location.href.split( '#' )[1]; // undefined if not present, aka false
+	if ( targetSection ) {
+		$( '#' + targetSection ).parent('.toggle-title').addClass( 'active' );
+	}
+
 	if( $(".toggle .toggle-title").hasClass('active') ){
       $(".toggle .toggle-title.active").closest('.toggle').find('.toggle-inner').show();
     }
