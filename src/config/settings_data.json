@@ -1,7 +1,7 @@
 {
   "presets": {},
   "current": {
-    "store_location": "US",
+    "international_store_version": "US",
     "announcement_text_color": "#ffffff",
     "announcement_bg_one": "#124431",
     "announcement_bg_two": "#073322",
