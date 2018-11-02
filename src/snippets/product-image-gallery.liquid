@@ -45,12 +45,18 @@
 </div>
 
 {%- if product.images.size > 1 or product_vid != blank -%}
-  <div id="thumbnail-gallery" class="product-thumbnails {% if section.settings.thumbnails == 'bottom' %}desktop-12{% else %}{% endif %} mobile-3" data-slider-type="{% if section.settings.thumbnails == 'bottom' %}bottom{% elsif section.settings.thumbnails == 'left' %}left{% else %}right{% endif %}">
-   {% if product.images.size > 4 %}<div class="thumbnail-slider">{% endif %}
+  <div id="thumbnail-gallery" 
+    class="product-thumbnails {% if section.settings.thumbnails == 'bottom' %}desktop-12{% else %}{% endif %} mobile-3" 
+    data-slider-type="{% if section.settings.thumbnails == 'bottom' %}bottom{% elsif section.settings.thumbnails == 'left' %}left{% else %}right{% endif %}">
+   
+   {% if product.images.size > 2 %}<div class="thumbnail-slider">{% endif %}
     {% for image in product.images %}
       {% assign img_url = image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
 
-      <div class="product-thumbnail {% if forloop.first %}selected{% endif %}{% if section.settings.thumbnails == 'bottom' %} desktop-2{% endif %}" data-image-id="{{ image.id }}" data-color-var="{{ image.alt | escape }}">
+      <div class="product-thumbnail {% if forloop.first %}selected{% endif %}{% if section.settings.thumbnails == 'bottom' %} desktop-2{% endif %}" 
+        data-image-id="{{ image.id }}" 
+        data-color-var="{{ image.alt | escape }}">
+
         <img class="lazyload lazyload-fade"
           src="{{ image | product_img_url: '200x' }}"
           data-src="{{ img_url }}"
@@ -70,7 +76,7 @@
 
     {{ product_video_thumbnail }}
 
-   {% if product.images.size > 4 %}</div>{% endif %}
+   {% if product.images.size > 2 %}</div>{% endif %}
   </div>
   {% if section.settings.show_controls %}
     <div class="main-image-navigation">
