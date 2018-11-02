@@ -81,7 +81,15 @@
 		<p>Boots and shoes are available in whole sizes only, but will stretch to fit half sizes. There is a 15mm toe allowance built into the sizing. For men who are a 1/2 size, order the next size up. For Women who are a 1/2 size order the next size down.</p>
 		<p>Many of our best selling boots are built for men and women- we call them unisex sizing. Women should order 1 size down from the men's size shown. Our size charts will help you find the perfect fit.</p>
 
-		<img src="https://www.muckbootcompany.com/pub/media/wysiwyg/size_charts/muckboot_m2_sizeKidsConversasionChart_US.jpg" width="499px" height="800px" alt="Muck Boot Kids Size Chart" />   <img src="https://www.muckbootcompany.com/pub/media/wysiwyg/size_charts/mens-sizechart-withInches.png" width="431px" height="685px" alt="Muck Boot Mens Size Chart" />   <img src="https://www.muckbootcompany.com/pub/media/wysiwyg/size_charts/womens-sizechart-withInches.png" width="428px" height="550px" alt="Muck Boot Womens Size Chart" />
+		{% if settings.store_location == 'US' %}
+			<div class="faq-size-charts-wrapper">
+				<a href="/pages/size-chart" target="_blank">Men's Size Chart</a> | <a href="/pages/size-chart#size-chart--womens" target="_blank">Women's Size Chart</a> | <a href="/pages/size-chart#size-chart--kids" target="_blank">Kids Size Chart</a>
+			</div>
+		{% else %}
+			<img src="{{ 'sizechart-uk-eu-adults.jpg' | asset_img_url: '500x' }}" alt="Muck Boot Mens/Womens Size Chart">
+			<br>
+			<img src="{{ 'sizechart-uk-eu-kids.jpg' | asset_img_url: '500x' }}" alt="Muck Boot Kids Size Chart">
+		{% endif %}
 	</div>
 </div>
 
