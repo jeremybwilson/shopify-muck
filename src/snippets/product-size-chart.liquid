@@ -1,4 +1,8 @@
 {% comment %} SIZE CHART {% endcomment %}
+{% assign is_eu_or_uk = false %}
+{% if settings.international_store_version == 'UK' or settings.international_store_version == 'EU' %}
+  {% assign is_eu_or_uk = true %}
+{% endif %}
 
 {% for tag in product.tags %}
   {% if tag contains 'audience' %}
@@ -11,8 +15,18 @@
         {% assign size_chart_type = 'kids' %}
       {% when 'men' %}
         {% assign size_chart_type = 'mens' %}
+        
+        {% if is_eu_or_uk %}
+          {% assign size_chart_type = 'mens-womens' %}
+        {% endif %}
+        
       {% when 'women' %}
         {% assign size_chart_type = 'womens' %}
+        
+        {% if is_eu_or_uk %}
+          {% assign size_chart_type = 'mens-womens' %}
+        {% endif %}
+        
       {% when 'sale' %}
         {% assign size_chart_type = 'all' %}
       {% else %}
