@@ -88,6 +88,7 @@
       "title": "My Cart",
       "close_cart": "Close",
       "shipping_at_checkout": "Shipping calculated at check out",
+      "no_po_box_shipping": "Note: We are unable to ship products to P.O. Boxes.",
       "empty": "Your cart is currently empty.",
       "product": "Product",
       "price": "Price",
