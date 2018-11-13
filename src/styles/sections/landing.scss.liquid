@@ -191,3 +191,37 @@
 }
 
 
+#content .nested-list {
+    ol {
+        counter-reset: li;
+
+        & > li {
+            content: none;
+            padding-left: 25px;
+            list-style-type: none;
+            text-indent: -12px;
+
+            &:before {
+                counter-increment: li;
+                content: counters(li,".") ". ";
+                display: inline-block;
+            }
+
+            h2 {
+                display: inline;
+                @include h6;
+                text-transform: uppercase;
+            }
+            p {
+                display: inline;
+            }
+
+        }
+        h3 {
+            @include h6;
+            color: $color--dark-green;
+            margin-top: 20px;
+            padding-left: 25px;
+        }
+    }
+}
