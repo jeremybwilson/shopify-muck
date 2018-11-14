@@ -11,9 +11,9 @@
     "name": "Favicon",
     "settings": [
       {
-        "type": "image",
-        "id": "favicon.png",
-        "label": "Upload a favicon",
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Choose your favicon",
         "info": "32 x 32px .png"
       }
     ]
