@@ -2,6 +2,7 @@
   "presets": {},
   "current": {
     "international_store_version": "US",
+    "favicon": "shopify:\/\/shop_images\/favicon.png",    
     "announcement_text_color": "#ffffff",
     "announcement_bg_one": "#124431",
     "announcement_bg_two": "#073322",
@@ -732,6 +733,144 @@
         "settings": {
           "full_width": false,
           "slider_speed": 5
+        }
+      },
+      "page-faq-template": {
+        "type": "page-faq-template",
+        "blocks": {
+          "1542219298126": {
+            "type": "html",
+            "settings": {
+              "title": "What's Important About Measurements?",
+              "answer": "<h5>Tips for measurement<\/h5>\n        <ul>\n            <li>Measure your feet regularly as they can change shape and size over time.<\/li>\n            <li>Different styles use different lasts in construction, therefore sizing may vary with a new style.<\/li>\n            <li>Feet are 3-dimensional, any measuring device can only approximate your true size.<\/li>\n        <\/ul>",
+              "anchor": ""
+            }
+          },
+          "1542220082322": {
+            "type": "html",
+            "settings": {
+              "title": "How To Find your Muck Boots Size?",
+              "answer": "<h5>Tricks for measurement<\/h5>\n            <ul>\n                <li>Measure at the end of the day when your feet are at their largest.<\/li>\n                <li>Tools: ruler, pen, and a piece of paper.<\/li>\n                <li>Follow these steps:\n                    <ol>\n                        <li>Place the paper on the ground and stand on it with your weight slightly forward to make sure your foot is flat.<\/li>\n                        <li>Draw a line behind your heel and another line in front of your longest toe. It is common to have one foot longer than the other, so use the longer foot to measure.<\/li>\n                        <li>Measure the distance between lines in inches or centimeters.<\/li>\n                        <li>Find your measurement on the Muck Boot size chart to figure out the best. Round up if your size falls in between.<\/li>\n                    <\/ol>\n                <\/li>\n            <\/ul>",
+              "anchor": ""
+            }
+          },
+          "1542220259294": {
+            "type": "html",
+            "settings": {
+              "title": "What makes these boots so great?",
+              "answer": "<h5>It's all in the design. All MUCK® BOOTS are 100% waterproof keeping feet warm, dry and protected in harsh weather and messy working conditions.<\/h5>\n        <h5>The secret:<\/h5>\n            <ul>\n                <li>Our exclusive, self-insulating, waterproof NEOPRENE shell construction. The NEOPRENE bootie material acts as a \"neutral medium\" between inside and outside temperatures. Naturally lightweight, and very comfortable, the material keeps the foot and lower leg warm and protected in cold and wet conditions.<\/li>\n                <li>Natural rubber overlays act as a protective skin for the upper bootie. The upper has a triple-reinforced toe area and quadruple-reinforced heel area. The outsole is made of high abrasion natural rubber. The rubber in the boots will stay flexible for years.<\/li>\n            <\/ul>",
+              "anchor": ""
+            }
+          },
+          "1542220285963": {
+            "type": "html",
+            "settings": {
+              "title": "How are the boots sized?",
+              "answer": "<p>Boots and shoes are available in whole sizes only, but will stretch to fit half sizes. There is a 15mm toe allowance built into the sizing. For men who are a 1\/2 size, order the next size up. For Women who are a 1\/2 size order the next size down.<\/p>\n        <p>Many of our best selling boots are built for men and women- we call them unisex sizing. Women should order 1 size down from the men's size shown. Our size charts will help you find the perfect fit.<\/p>\n\n            <div class=\"faq-size-charts-wrapper\">\n                <a href=\"\/pages\/size-chart\" target=\"_blank\">Men's Size Chart<\/a> | <a href=\"\/pages\/size-chart#size-chart--womens\" target=\"_blank\">Women's Size Chart<\/a> | <a href=\"\/pages\/size-chart#size-chart--kids\" target=\"_blank\">Kids Size Chart<\/a>\n            <\/div>",
+              "anchor": ""
+            }
+          },
+          "1542220342731": {
+            "type": "html",
+            "settings": {
+              "title": "Do the boots fit wide widths?",
+              "answer": "<p>Yes. Our boots are made to standard widths, but the materials will stretch to fit widths up to a EEE. For narrow feet, we suggest wearing a thicker sock or putting in an additional sock liner to take up room.<\/p>",
+              "anchor": ""
+            }
+          },
+          "1542220365959": {
+            "type": "html",
+            "settings": {
+              "title": "Are the collar and calf stiff?",
+              "answer": "<p>No. The upper calf and topline areas are made of soft, flexible NEOPRENE and will stretch. With the flexible upper, the pant leg can be worn over or inside the boot. The collar material can be turned down to allow hands-free removal and vent humidity in warmer working conditions.<\/p>",
+              "anchor": ""
+            }
+          },
+          "1542220387334": {
+            "type": "html",
+            "settings": {
+              "title": "Should people wear thick socks?",
+              "answer": "<p>It isn't necessary unless activities are planned for extreme, cold conditions. The NEOPRENE bootie material is rated sub-zero during active use and will effectively withstand freezing temperatures for up to one hour. Medium-weight athletic socks should provide the best fit. The upper will stretch to accommodate thicker socks.<\/p>",
+              "anchor": ""
+            }
+          },
+          "1542220434241": {
+            "type": "html",
+            "settings": {
+              "title": "What are the benefits of NEOPRENE?",
+              "answer": "<p>Work boots and hiking shoes typically use lofted insulations to resist cold temperatures. They are usually laminated to the whole shoe lining or glued into the toe area of a shoe or boot. It is not a waterproof material.<\/p>\n        <p>The NEOPRENE used in MUCK® BOOTS is both waterproof and self insulating. Our materials exceed the long-term effectiveness of waterproof membrane materials and provide greater insulating properties than all non-specialty temperature-control substrates.<\/p>",
+              "anchor": ""
+            }
+          },
+          "1542220460535": {
+            "type": "html",
+            "settings": {
+              "title": "Do these boots allow your feet to breathe?",
+              "answer": "<p>One of the most important and revolutionary features of The Original Muck Boot Company® footwear is the structured, Breathable Airmesh lining used in all our products. Airmesh is made up of thousands of tiny vertical fibers that allow air to circulate throughout the interior lining surfaces. Excess humidity and perspiration that might build up in the boot are quickly wicked away. This creates a comfortable environment for your feet that lasts for extended periods of use.<\/p>",
+              "anchor": ""
+            }
+          },
+          "1542220481622": {
+            "type": "html",
+            "settings": {
+              "title": "How do you care for and clean these products?",
+              "answer": "<p>The rubber shell and nylon upper are very durable and clean up easily with a spray of water or gentle scrubbing with soap and water. The rubber upper can be conditioned with wax polish, Armor All® or liquid detergent. It is not recommended to use conditioners on the outsole area. This may cause it to become slick in wet or icy conditions.<\/p>",
+              "anchor": ""
+            }
+          },
+          "1542220502350": {
+            "type": "html",
+            "settings": {
+              "title": "Can the rubber be repaired if punctured?",
+              "answer": "<p>Yes. The natural rubber can be repaired with sealant found in local hardware stores. We recommend Aquaseal® brand marine sealant. First, clean the punctured area thoroughly with mineral spirits. Then, apply the sealant over affected area and wipe to a thin film. The sealant should air dry for at least 24 hours.<\/p>",
+              "anchor": ""
+            }
+          },
+          "1542220523668": {
+            "type": "html",
+            "settings": {
+              "title": "How Do I check My Order Status?",
+              "answer": "<p>If you are a registered customer, you can access your order history by logging into your account using the credentials you used to create your account. You will find the “My Account” link located at the top of each page. Once you have accessed your account, you can click on the “Track Order” link for order status. If you are not a registered user, you can contact Customer Service at 855-377-BOOT (2668) by submitting an email via the Contact Us section on our site <a href=\"\/pages\/contact-us\"> here<\/a>. Customer Service hours are 7am to 11pm (PST\/PDT) Monday through Friday.<\/p>",
+              "anchor": "orderstatus"
+            }
+          },
+          "1542220577233": {
+            "type": "html",
+            "settings": {
+              "title": "Do you offer special discounts for active military troops and their families?",
+              "answer": "<p>Muck Boots is proud to help outfit active troops and their families by offering a 25% discount. Discounts are currently available via phone orders only, please call our customer care center at 1-855-377-2668 for complete details.<\/p>",
+              "anchor": "militarydiscount"
+            }
+          },
+          "1542220607549": {
+            "type": "html",
+            "settings": {
+              "title": "Do you offer discounts for bulk orders?",
+              "answer": "<p>Need Mucks for the whole crew? The Original Muck Boot Company® is happy to offer bulk discounts on large orders of boots and shoes. Discounts are currently available via phone orders only, please call our customer care center at 1-855-377-2668 for complete details.<\/p>",
+              "anchor": "bulkdiscount"
+            }
+          }
+        },
+        "block_order": [
+          "1542219298126",
+          "1542220082322",
+          "1542220259294",
+          "1542220285963",
+          "1542220342731",
+          "1542220365959",
+          "1542220387334",
+          "1542220434241",
+          "1542220460535",
+          "1542220481622",
+          "1542220502350",
+          "1542220523668",
+          "1542220577233",
+          "1542220607549"
+        ],
+        "settings": {
+          "anchor_top_offset": -100,
+          "before_content": "<h1>FAQ<\/h1>",
+          "after_content": "<div class=\"fineprint\">\n\t<p>AQUASEAL® is a registered symbol of the McNett Corporation<\/p>\n\t<p>ARMOR ALL® is a registered symbol of Armor All Products Company<\/p>\n<\/div>"
         }
       }
     },
