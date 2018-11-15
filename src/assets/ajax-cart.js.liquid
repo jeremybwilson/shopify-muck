@@ -288,6 +288,13 @@ var ajaxCart = (function(module, $) {
     // Update quantity and price
     updateCountPrice(cart);
     buildCart(cart);
+
+    // UPDATE : Event trigger for the Discounts Engine (React Component)
+    $.event.trigger({
+        type: "cartUpdated",
+        time: new Date(),
+        cart: cart
+    });
   };
 
   buildCart = function (cart) {
@@ -473,7 +480,14 @@ var ajaxCart = (function(module, $) {
     // Reprint cart on short timeout so you don't see the content being removed
     setTimeout(function() {
       ShopifyAPI.getCart(buildCart);
-    }, 150)
+    }, 150);
+
+    // UPDATE : Event trigger for the Discounts Engine (React Component)
+    $.event.trigger({
+        type: "cartUpdated",
+        time: new Date(),
+        cart: cart
+    });
   };
 
   createQtySelectors = function() {
