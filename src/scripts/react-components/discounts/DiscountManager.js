@@ -24,16 +24,24 @@ class DiscountManager extends React.Component {
 			thresholdDiscounts: [{
 				discountId: 1,					// DISCOUNT ID -- Unique identifier for this discount, so we can tell if its already applied
 				giftId: 17667671031906, 		// VARIANT ID --- Item being given for free, see docs for formatting rules
-				grantType: 'always',			// GRANT TYPE --- Does user get this gift if higher threshold is met? -- (OPTIONS: 'always' or 'highest')
+				grantType: 'all',				// GRANT TYPE --- Does user get this gift if higher threshold is met? -- (OPTIONS: 'all' or 'pick')
 				inventoryId: 17275313422434,	// INVENTORY ID - Variant ID of full-price original version (gift is untracked usually, uses full-cost variant to see how many left)
-				minSpend: 200					// THRESHOLD ---- Dollar (or current currency) amount to trigger free gift
+				minSpend: 50					// THRESHOLD ---- Dollar (or current currency) amount to trigger free gift
+			},
+			{
+				discountId: 2,					// DISCOUNT ID -- Unique identifier for this discount, so we can tell if its already applied
+				giftId: 17667671031906, 		// VARIANT ID --- Item being given for free, see docs for formatting rules
+				grantType: 'all',				// GRANT TYPE --- Does user get this gift if higher threshold is met? -- (OPTIONS: 'always' or 'highest')
+				inventoryId: 17275313422434,	// INVENTORY ID - Variant ID of full-price original version (gift is untracked usually, uses full-cost variant to see how many left)
+				minSpend: 100					// THRESHOLD ---- Dollar (or current currency) amount to trigger free gift
 			}]
 		};
 
 		// STATE : Current state in manager
 		this.state = {
 			appliedDiscounts: [],
-			cartTotal: 0
+			cartTotal: 0,
+			discountsToApply: []
 		};
 
 		// EVENTS : Bind functions to current context
@@ -55,39 +63,48 @@ class DiscountManager extends React.Component {
 
 	onCartUpdate( e ) {
 		// console.log( `::: DEBUG : Saw cart update.. \n  Cart Data:\n ${JSON.stringify( e.cart )}` );
-		const { thresholdDiscounts } = this.config;
-		var discountsToApply = [];
+		const { thresholdDiscounts } = this.config; // ARRAY : Configured threshold discount objects (if any setup)
+		var { appliedDiscounts } = this.state; 		// ARRAY : IDs to Mark as Used (2 grantType "highest" deals met, mark both, but apply highest deal only)
+		var discountsToApply = []; 					// ARRAY : Met Discount Objects
 
 		try {
-			// CONVERT : Change cart value to a whole dollar (or other currency) amount
+			// TOTAL : Calculate whole dollar (or other currency) amount in cart (comes as "12345" which === "$123.45" )
+			// NOTE: Assumes a base10 currency -- last two digits a form of "cents" -- WILL NOT WORK on Yen-type currency
 			const cartTotal = this.calcCartTotal( e.cart.total_price );
 			
-			// THRESHOLDS : Calculate Threshold Discounts to Apply
-			if ( thresholdDiscounts && thresholdDiscounts.length > 0 ) {
-				let discounts = this.calcThresholdDiscounts( cartTotal );
-				
-				// ADD : Were any thresholds met?
-				if ( discounts && discounts.length > 0 ) {
-					discountsToApply.push( discounts );
+
+			// TOTAL INCREASED : See if any discounts were met with the increase..
+			if ( cartTotal > this.state.cartTotal ) {
+
+				// THRESHOLDS : Calculate Threshold Discounts to Apply
+				if ( thresholdDiscounts && thresholdDiscounts.length > 0 ) {
+					let discounts = this.calcThresholdDiscounts( cartTotal ); //Returns null if no discounts to apply
+					
+					// APPLY : Any threshold discounts met that need application?
+					if ( discounts ) {
+						discountsToApply = discounts.toApply; 						// APPLY : All deals to apply for this cart update
+						var merged = appliedDiscounts.concat( discounts.markUsed ); // FLAG  : All deals to flag as used (accounts for multiple met deals set to grantType: "highest" )
+                        var dedupe = new Set( merged );
+                        appliedDiscounts = Array.from( dedupe ); //Merges + De-dupes the existing state array
+					}
 				}
-			}
 
-			console.log( `::: DEBUG : Discounts to Apply : ${JSON.stringify( discountsToApply )}` );
- 
-
-
-			// !! TODO #1 : Need to next make a function that sets up the discountsToApply when it has discounts to fulfill before the render
-			// this.setState({ cartTotal, discountsToApply });
+				console.log( `::: DEBUG : Discounts to Apply : ${JSON.stringify( discountsToApply )}` );
+				console.log( `::: DEBUG : Discounts to Flag : ${JSON.stringify( discountsToFlag )}` );
+				this.setState({ appliedDiscounts, cartTotal, discountsToApply });
 
 
-
-			// !! TODO #2 : Need function to handle removal of items and checking the unlayering of "highest" grantType discounts applied !!
-			// Probably want a flag that figures out if price in cart went down, then re-route it to a thresholdAdjust function
-			// so we only have to check removals in the cases of cart total reducing
+				// !! TODO #1 : OTHER DISCOUNT TYPES : Add code handling for other types here in future
 
 			
+			// TOTAL DECREASED : Calculate if any discounts are no longer met and inform user
+			} else {
+				// !! TODO #2 : Need function to handle removal of items and checking the unlayering of "highest" grantType discounts applied !!
+				// Probably want a flag that figures out if price in cart went down, then re-route it to a thresholdAdjust function
+				// so we only have to check removals in the cases of cart total reducing
+			}
 
-			// !! TODO #3 : OTHER DISCOUNT TYPES : Add code handling for other types here in future
+
 		}
 
 		catch (err) {
@@ -116,53 +133,25 @@ class DiscountManager extends React.Component {
 	calcThresholdDiscounts( cartTotal ) {
 		const { thresholdDiscounts } = this.config;
 		const { appliedDiscounts } = this.state;
+		var metDiscounts = [];
 
 		// CHECK : Did we meet any discount thresholds? (Safety, as this evolves..)
 		if ( thresholdDiscounts.length > 0 ) {
 
 			// BUILD : ARRAY : Discounts NOT used yet + Past "minSpend" Threshold
-			var metThresholds = thresholdDiscounts.filter( rule => {
+			metDiscounts = thresholdDiscounts.filter( rule => {
 				const hasBeenUsed = appliedDiscounts.find( used => used === rule.discountId );
-				const pastThreshold = rule.minSpend <= cartTotal;
-				return !hasBeenUsed && pastThreshold;
+				const hasBeenMet = rule.minSpend <= cartTotal;
+				return !hasBeenUsed && hasBeenMet;
 			});
-
-			// REDUCE : Obey grantType: 'highest' threshold rule
-			if ( metThresholds.length > 0 ) {
-				var rulesToCheck = metThresholds.filter( rule => { return rule.grantType === 'highest' });
-				var readyDiscounts = metThresholds.filter( rule => { return rule.grantType === 'always' });
-
-				// HIGHEST : Find the highest discount of those set to grantType: 'highest'
-				if ( rulesToCheck.length > 0 ) {
-					let highest;
-					let usedIds = rulesToCheck.map( rule => { return rule.discountId }); // Must account for the lower ones being flagged as "used" so they don't get applied in subsequent cart updates unless the spend is dropped which will be handled by removal function
-					
-					rulesToCheck.forEach( rule => {
-						if ( !highest || highest.minSpend < rule.minSpend ) {
-							highest = rule;
-						}
-					});
-
-					// ADD : Insert our highest discount record 
-					readyDiscounts.push( highest );
-				}
-
-				// DONE : Return the discounts that need to be applied
-				return readyDiscounts;
-			}
-			return null;
 		}
-		return null; //Extra protection is all here..
+		return metDiscounts; //Extra protection is all here..
 	}
 
 
 
 	render() {
-		
-		const { appliedDiscounts, cartTotal } = this.state;
-		var discountsToApply = [];
-
-
+		const { appliedDiscounts, cartTotal, discountsToApply } = this.state;
 
 		// DISCOUNTS : Do we have discounts that need application?
 		if ( discountsToApply.length > 0 ) {
@@ -175,7 +164,10 @@ class DiscountManager extends React.Component {
 
 		return (
 			<div id="react-discount-modal-wrapper">
-				<DiscountModal />
+				<DiscountModal 
+					appliedDiscounts={ appliedDiscounts }
+					cartTotal={ cartTotal }
+					discountsToApply={ discountsToApply } />
 			</div>
 		);
 	}
