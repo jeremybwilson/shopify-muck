@@ -25,15 +25,22 @@ class DiscountManager extends React.Component {
 				discountId: 1,					// DISCOUNT ID -- Unique identifier for this discount, so we can tell if its already applied
 				giftId: 17667671031906, 		// VARIANT ID --- Item being given for free, see docs for formatting rules
 				grantType: 'all',				// GRANT TYPE --- Does user get this gift if higher threshold is met? -- (OPTIONS: 'all' or 'pick')
+				imageUrl: 'https://cdn.shopify.com/s/files/1/0032/6480/7010/products/product_P0495-067_1_grande.jpg',
 				inventoryId: 17275313422434,	// INVENTORY ID - Variant ID of full-price original version (gift is untracked usually, uses full-cost variant to see how many left)
-				minSpend: 50					// THRESHOLD ---- Dollar (or current currency) amount to trigger free gift
+				minSpend: 50,					// THRESHOLD ---- Dollar (or current currency) amount to trigger free gift
+				name: "Men's Northwest Territory Socks",
+				productHandle: 'mens-northwest-territory-socks'
+
 			},
 			{
 				discountId: 2,					// DISCOUNT ID -- Unique identifier for this discount, so we can tell if its already applied
 				giftId: 17667671031906, 		// VARIANT ID --- Item being given for free, see docs for formatting rules
 				grantType: 'all',				// GRANT TYPE --- Does user get this gift if higher threshold is met? -- (OPTIONS: 'always' or 'highest')
+				imageUrl: 'https://cdn.shopify.com/s/files/1/0032/6480/7010/products/product_P0495-067_1_grande.jpg',
 				inventoryId: 17275313422434,	// INVENTORY ID - Variant ID of full-price original version (gift is untracked usually, uses full-cost variant to see how many left)
-				minSpend: 100					// THRESHOLD ---- Dollar (or current currency) amount to trigger free gift
+				minSpend: 100,					// THRESHOLD ---- Dollar (or current currency) amount to trigger free gift
+				name: "Men's Northwest Territory Socks",
+				productHandle: 'mens-northwest-territory-socks'
 			}]
 		};
 
@@ -48,6 +55,7 @@ class DiscountManager extends React.Component {
 		this.onCartUpdate = this.onCartUpdate.bind( this );
 		this.calcCartTotal = this.calcCartTotal.bind( this );
 		this.calcThresholdDiscounts = this.calcThresholdDiscounts.bind( this );
+		this.updateAppliedDiscounts = this.updateAppliedDiscounts.bind( this );
 	}
 
 	componentDidMount() {
@@ -64,12 +72,11 @@ class DiscountManager extends React.Component {
 	onCartUpdate( e ) {
 		// console.log( `::: DEBUG : Saw cart update.. \n  Cart Data:\n ${JSON.stringify( e.cart )}` );
 		const { thresholdDiscounts } = this.config; // ARRAY : Configured threshold discount objects (if any setup)
-		var { appliedDiscounts } = this.state; 		// ARRAY : IDs to Mark as Used (2 grantType "highest" deals met, mark both, but apply highest deal only)
-		var discountsToApply = []; 					// ARRAY : Met Discount Objects
+		var discountsToApply = [];
 
 		try {
 			// TOTAL : Calculate whole dollar (or other currency) amount in cart (comes as "12345" which === "$123.45" )
-			// NOTE: Assumes a base10 currency -- last two digits a form of "cents" -- WILL NOT WORK on Yen-type currency
+			// NOTE: Assumes base10 currency -- last two digits a form of "cents" -- WILL NOT WORK on Yen-type currency
 			const cartTotal = this.calcCartTotal( e.cart.total_price );
 			
 
@@ -78,20 +85,13 @@ class DiscountManager extends React.Component {
 
 				// THRESHOLDS : Calculate Threshold Discounts to Apply
 				if ( thresholdDiscounts && thresholdDiscounts.length > 0 ) {
-					let discounts = this.calcThresholdDiscounts( cartTotal ); //Returns null if no discounts to apply
 					
 					// APPLY : Any threshold discounts met that need application?
-					if ( discounts ) {
-						discountsToApply = discounts.toApply; 						// APPLY : All deals to apply for this cart update
-						var merged = appliedDiscounts.concat( discounts.markUsed ); // FLAG  : All deals to flag as used (accounts for multiple met deals set to grantType: "highest" )
-                        var dedupe = new Set( merged );
-                        appliedDiscounts = Array.from( dedupe ); //Merges + De-dupes the existing state array
-					}
+					discountsToApply = this.calcThresholdDiscounts( cartTotal );
 				}
 
-				console.log( `::: DEBUG : Discounts to Apply : ${JSON.stringify( discountsToApply )}` );
-				console.log( `::: DEBUG : Discounts to Flag : ${JSON.stringify( discountsToFlag )}` );
-				this.setState({ appliedDiscounts, cartTotal, discountsToApply });
+				// console.log( `::: DEBUG : Discounts to Apply : ${JSON.stringify( discountsToApply )}` );
+				this.setState({ cartTotal, discountsToApply });
 
 
 				// !! TODO #1 : OTHER DISCOUNT TYPES : Add code handling for other types here in future
@@ -140,12 +140,21 @@ class DiscountManager extends React.Component {
 
 			// BUILD : ARRAY : Discounts NOT used yet + Past "minSpend" Threshold
 			metDiscounts = thresholdDiscounts.filter( rule => {
-				const hasBeenUsed = appliedDiscounts.find( used => used === rule.discountId );
+				const hasBeenUsed = appliedDiscounts.find( used => used.discountId === rule.discountId );
 				const hasBeenMet = rule.minSpend <= cartTotal;
 				return !hasBeenUsed && hasBeenMet;
 			});
 		}
 		return metDiscounts; //Extra protection is all here..
+	}
+
+	updateAppliedDiscounts( appliedDiscounts ) {
+		if ( appliedDiscounts ) {
+			this.setState({ appliedDiscounts });
+
+		} else {
+			console.log( `[ DiscountManager -- updateAppliedDiscounts() ] : No discount application array was provided..` );
+		}
 	}
 
 
@@ -167,7 +176,8 @@ class DiscountManager extends React.Component {
 				<DiscountModal 
 					appliedDiscounts={ appliedDiscounts }
 					cartTotal={ cartTotal }
-					discountsToApply={ discountsToApply } />
+					discountsToApply={ discountsToApply }
+					updateAppliedDiscounts={ this.updateAppliedDiscounts } />
 			</div>
 		);
 	}
