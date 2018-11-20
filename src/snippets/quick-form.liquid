@@ -1,39 +1,41 @@
 <form action="/cart/add" method="post" data-money-format="{{ shop.money_format }}" data-option-index="{{ option_index }}" enctype="multipart/form-data" class="product_form" id="AddToCartForm">
+  
   {% if product.options.size > 1 %}
-  <div class="select">
-    <select id="product-select-{{ product.id }}" name='id'>
-      {% for variant in product.variants %}
-      <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} data-sku="{{ variant.sku }}" value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
-      {% endfor %}
-    </select>
-  </div>
+    <div class="select">
+      <select id="product-select-{{ product.id }}" name='id'>
+        {% for variant in product.variants %}
+          <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} data-sku="{{ variant.sku }}" value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
   {% elsif product.options.size == 1 and product.variants.size > 1 %}
-  <div class="select">
-    <label>{{ product.options[0] }}</label>
-    <select id="product-select-{{ product.id }}" name='id'>
-      {% for variant in product.variants %}
-      <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} data-sku="{{ variant.sku }}" value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
-      {% endfor %}
-    </select>
-  </div>
+    <div class="select">
+      <label>{{ product.options[0] }}</label>
+      <select id="product-select-{{ product.id }}" name='id'>
+        {% for variant in product.variants %}
+          <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} data-sku="{{ variant.sku }}" value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
   {% else %}
-  <div class="what-is-it">
-    {% if product.options.first != 'Title' %}
-    <label>{{ product.options.first }}:</label>{% for variant in product.variants %}<span class="it-is">{{ variant.option1 | escape }}</span>{% endfor %}
-    {% endif %}
-  </div>
-  <div class="product-variants"></div><!-- product variants -->  
-  <input  type="hidden" id="{{ variant.id }}" name="id" data-sku="{{ variant.sku }}" value="{{ product.variants[0].id }}" />    
+    <div class="what-is-it">
+      {% if product.options.first != 'Title' %}
+        <label>{{ product.options.first }}:</label>{% for variant in product.variants %}<span class="it-is">{{ variant.option1 | escape }}</span>{% endfor %}
+      {% endif %}
+    </div>
+    <div class="product-variants"></div><!-- product variants -->  
+    <input  type="hidden" id="{{ variant.id }}" name="id" data-sku="{{ variant.sku }}" value="{{ product.variants[0].id }}" />    
   {% endif %}
 
   {% if product.available %}  
-  <div id="product-add">
-    <input type="submit" name="button" class="add" id="AddToCart" value="{{ 'products.product.add_to_cart' | t }}" />
-  </div>
+    <div id="product-add">
+      <input type="submit" name="button" class="add" id="AddToCart" value="{{ 'products.product.add_to_cart' | t }}" />
+    </div>
   {% endif %}
 
   <div class="clear"></div>
-
 </form>
   
 
