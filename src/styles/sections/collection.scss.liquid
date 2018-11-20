@@ -6,11 +6,51 @@
  * ---------------------------------------------- */
 $resultsTextColor: {{ settings.filter_text_color }};
 
+/* COLLECTION : Product Grid + Item View
+ * ---------------------------------------------- */
+
+.collection-banner {
+    margin-top: 0;
+    margin-bottom: -55px;
+
+    @include mq( 'lap-and-up' ) {
+        margin-bottom: -30px;
+    }
+    
+    img {
+        width: 100%;
+    }
+
+    .asset-desk {
+        display: none;
+    }
+
+    @include mq( 'lap-and-up' ) {
+        .asset-mob {
+            display: none;
+        }
+        .asset-desk {
+            display: block;
+        }
+    }    
+}
+.has--category-banner {
+    display: none;
+}
+.collection-banner + #breadcrumb {
+  @include mq( 'lap-and-up' ) {
+    padding-left: 0px;
+  }
+
+  @include mq( 'desk-and-up' ) {
+    padding-left: 0px;
+  }    
+}
+
 
 /*  COLLECTION : Main styling block
  * ---------------------------------------------- */
 #shopify-section-collection-template {
-
 
     /* COLLECTION : Product Grid + Item View
      * ---------------------------------------------- */

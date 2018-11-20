@@ -97,12 +97,28 @@
         REACT : EXAMPLE #1
         <div id="example-global-react" data-info-passed-to-react='{ "name": "greg" }'></div>
       {% endcomment %}
-
       
-      {% comment %} :: COLLECTION - Banner Image :: {% endcomment %}
+      {% comment %} :: COLLECTION - Banner Image :: 
+
+        Notes:
+        ------
+        To activate a collection banner, you'll need the following images uploaded to the "Files" section:
+        Desktop Images - collection-banner-__collectionHandle__-desktop.jpg
+        Mobile Images - collection-banner-__collectionHandle__-mobile.jpg
+
+        To display the banners, enter the following HTML in the collection description:
+        <div class="category-banner has--category-banner banner--only"></div>
+
+        IMPORTANT: 
+        ----------
+        If the description ONLY contains the Category Banner code above, then you need to include the classname "banner--only".
+        Otherwise, enter the code below if you have other content (such as the SEO footer text)
+        <div class="category-banner has--category-banner"></div>
+
+      {% endcomment %}
+
       {% if template contains 'collection' %}
-        {% if collection.description contains '[banner]' %}
-          {% capture banner %}{{ collection.handle }}.jpg{% endcapture %}
+        {% if collection.description contains 'has--category-banner' %}
           <div class="collection-banner">
             {% include 'collection-banner-image' %}
           </div>
@@ -134,7 +150,9 @@
         {% comment %} :: COLLECTION - SEO FOOTER PARAGRAPH :: {% endcomment %}
         {% if template contains 'collection' and settings.show_collection_seo_block == true %}
           {% if collection.description != blank %}
-            {% include 'collection-seo-block' %}
+            {% unless collection.description contains "banner--only" %}
+              {% include 'collection-seo-block' %}
+            {% endunless %}
           {% endif %}
         {% endif %}
 
