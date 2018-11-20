@@ -265,6 +265,23 @@ var ajaxCart = (function(module, $) {
     // Override defaults with arguments
     $.extend(settings, options);
 
+    // HANDLEBARS : Add our template helper functions to handlebars for cart logic
+    Handlebars.registerHelper('if_eq', function(a, b, opts) {
+      if (a == b) {
+          return opts.fn(this);
+      } else {
+          return opts.inverse(this);
+      }
+    });
+
+    Handlebars.registerHelper('if_not_eq', function(a, b, opts) {
+      if (a != b) {
+          return opts.fn(this);
+      } else {
+          return opts.inverse(this);
+      }
+    });
+
     // Select DOM elements
     $formContainer     = $(settings.formSelector);
     $cartContainer     = $(settings.cartContainer);
