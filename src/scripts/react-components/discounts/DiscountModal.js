@@ -1,112 +1,148 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const PropTypes = require( 'prop-types' );
 const fetch = require( 'isomorphic-fetch' );
 const ModalItem = require( './ModalItem.js' );
+const ModalRemoved = require( './ModalRemoved.js' );
 
 class DiscountModal extends React.Component {
 	constructor( props ) {
 		super( props );
+		this.state = {
+			showModal: false
+		}
 
-		// this.fetchProduct = this.fetchProduct.bind( this );
+		this.modalShowHide = this.modalShowHide.bind( this );
+		this.getDiscountById = this.getDiscountById.bind( this );
+		this.handleSelection = this.handleSelection.bind( this );
+		this.confirmRemoval = this.confirmRemoval.bind( this );
+		this.addItemToCart = this.addItemToCart.bind( this );
+		this.onAddItemError = this.onAddItemError.bind( this );
 	}
 
-	// fetchProduct( productHandle ) {
-	// 	fetch( `/products/${productHandle}.json` )
-	// 		.then( res => {
-	// 	        if ( res.status >= 400 ) {
-	// 	            throw new Error( "Bad res from server" );
-	// 	        }
-	// 	        return res.json();
-	// 	    })
-	// 	    .then( productJson => {
-	// 	        return productJson;
-	// 		})
-	// 		.catch( err => {
-	// 			const theError = error && error.message ? error.message : error || 'Request failed for an unknown reason with no error object returned..';
-	// 			console.log( `[ DiscountModal -- fetchProduct() ] : Failed request :\n${ theError }` );
-	// 			throw new Error( theError );
-	// 		});
-	// }
-
-	addToCart( variantId ) {
-
+	componentDidMount() {
+		this.modalShowHide();
 	}
+
+	componentDidUpdate() {
+		this.modalShowHide();
+	}
+
+
+
+	modalShowHide() {
+		const { discountsToApply, doNotShowAgain, removedDiscounts } = this.props;
+		
+		let showHide = !doNotShowAgain && ( discountsToApply.length > 0 || removedDiscounts.length > 0 )? true : false;
+		if ( this.state.showModal !== showHide ) {
+			this.setState({ showModal: showHide });
+		}
+	}
+
+	getDiscountById( discountId ) {
+		const { discountsToApply } = this.props;
+		return discountsToApply.find( rule => rule.discountId === discountId );
+	}
+
+	handleSelection( discountId, addToCart = false ) {
+		// FIND : Lookup discount by 'discountId'
+		const discount = this.getDiscountById( discountId );
+		
+		// ADD : If user clicked "Add to Cart"
+		if ( addToCart ) {
+			this.addItemToCart( discount ); //Cart marks as used once added successfully
+		
+		// NO THANKS : Mark discount as used
+		} else {
+			// this.props.markDiscountUsed( discount ); // TODO : Change to rejected to track this independently!!!
+			// this.props.markDiscountRejected( discountId );
+		}
+	}
+
+	confirmRemoval( discountId ) {
+		// TODO : This will remove the item from the removedDiscounts array in manager so it wont prompt again about removal
+	}
+
+	onAddItemError( err ) {
+		console.log( `Looks like adding to cart failed, error message:\n${JSON.stringify( err )}` );
+		// TODO : Handle errors better here! -- Probably want to set up a message into the template that shows error message
+	}
+
+	addItemToCart( discount ) {
+		// SUCCESS : Callback for success handling
+		const markUsedOnSuccess = () => {
+			this.props.markDiscountUsed( discount.discountId );
+		};
+
+		// ADD : Use API from ajax-cart.js.liquid to add item to cart!
+		ShopifyAPI.addItemById( 
+			discount.giftId, 		// Gift ID (must be a Variant ID)
+			markUsedOnSuccess,		// Success Callback
+			this.onAddItemError, 	// Error Callback
+			true					// isGift Flag (adds note property to item so we can hide things like cart quantity modifiers)
+		);
+	}
+
+
 
 	render() {
 		const { 
-			appliedDiscounts,
 			cartTotal,
+			confirmRemoval,
 			discountsToApply,
-			updateAppliedDiscounts
+			markDiscountUsed,
+			removedDiscounts,
+			usedDiscounts
 		} = this.props;
 
-		var showModal = false;
-		var modalItems = null;
 
-		// CHECK : Do we have discounts to offer the user?
+		// CHECK : OFFER DISCOUNT : Do we have any discounts to offer the user?
+		var modalItems = null;
 		if ( discountsToApply.length > 0 ) {
-			showModal = true;
 			modalItems = discountsToApply.map( discount => {
 				return (
-					<ModalItem 
+					<ModalItem
+						discountId={ discount.discountId }
+						handleSelection={ this.handleSelection }
 						imageUrl={ discount.imageUrl }
-						name={ discount.name }
-						variantId={ discount.variantId } />
+						message={ discount.message }
+						title={ discount.title } />
 				);
 			})
 		}
 
+		// CHECK : ALERT REMOVAL : Were any discounts removed for not meeting the requirements? 
+		//		   (Hide if offering discounts at same time, subsequent render will kick us into here)
+		var removedItems = null;
+		if ( !modalItems && removedDiscounts.length > 0 ) {
+			removedItems = (
+				<ModalRemoved
+					confirmRemoval={ confirmRemoval }
+					removedDiscounts={ removedDiscounts } />
+			);
+		}  
+
+
 		return (
-			<div id="react-discount-modal" className={ showModal ? 'show-modal' : 'hide-modal' }>
-				{ modalItems }
+			<div id="react-discount-modal" 
+				data-component="DiscountModal" 
+				className={ this.state.showModal ? 'show-modal' : '' }>
+				
+				<div id="react-discount-modal-content">
+					{ modalItems }
+					{ removedItems }
+				</div>
 			</div>
 		);
 	}
-	
 }
 
 DiscountModal.propTypes = {
-	appliedDiscounts: PropTypes.array,
 	cartTotal: PropTypes.number.isRequired,
 	discountsToApply: PropTypes.array,
-	updateAppliedDiscounts: PropTypes.func.isRequired
+	doNotShowAgain: PropTypes.bool.isRequired,
+	enableDoNotShowAgain: PropTypes.func.isRequired,
+	markDiscountUsed: PropTypes.func.isRequired,
+	removedDiscounts: PropTypes.array,
+	usedDiscounts: PropTypes.array
 }
 
 module.exports = DiscountModal;
