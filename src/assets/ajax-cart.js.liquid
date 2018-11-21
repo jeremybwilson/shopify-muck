@@ -72,7 +72,6 @@ ShopifyAPI.onError = function(XMLHttpRequest, textStatus) {
     - Usage for Form submissions via product form templates
 ==============================================================================*/
 ShopifyAPI.addItemFromForm = function(form, callback, errorCallback) {
-  console.log( '[ ShopifyAPI.addItemFromForm() ] -- attempting to add item to cart...' );
   var params = {
     type: 'POST',
     url: '/cart/add.js',
@@ -179,7 +178,7 @@ ShopifyAPI.changeItem = function(line, quantityChange, callback, errorCallback) 
       }
 
       // CALLBACK : Trigger standard cart update callback
-      ajaxCart.updateCountPrice( cart );
+      ajaxCart.cartUpdateCallback( cart );
     },
 
     error: function(XMLHttpRequest, textStatus) {
@@ -549,9 +548,7 @@ var ajaxCart = (function(module, $) {
     updateCountPrice(cart);
 
     // Reprint cart on short timeout so you don't see the content being removed
-    setTimeout(function() {
-      ShopifyAPI.getCart(buildCart);
-    }, 150);
+    ShopifyAPI.getCart(buildCart);
 
     // UPDATE : Event trigger for the Discounts Engine (React Component)
     $.event.trigger({
@@ -656,8 +653,8 @@ var ajaxCart = (function(module, $) {
     initAddToCartButtons: initAddToCartButtons,
     itemAddedCallback: itemAddedCallback,
     itemErrorCallback: itemErrorCallback,
-    load: loadCart,
-    updateCountPrice: updateCountPrice
+    cartUpdateCallback: cartUpdateCallback,
+    load: loadCart
   };
   
   
