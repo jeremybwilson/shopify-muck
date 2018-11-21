@@ -52,7 +52,7 @@ class ModalRemoved extends React.Component {
 		const removedItems = removedDiscounts.map( discount => {
 			return(
 				<li className="modal-removal-item">
-					<div className="modal-removal-image" style={{ backgroundImage: `url(${discount.imageUrl} )` }}></div>
+					<div className="modal-removal-image" style={{ backgroundImage: `url(${discount.imageUrl || ''} )` }}></div>
 					<div className="modal-removal-title">{ discount.title }</div>
 				</li>
 			);

@@ -13,7 +13,6 @@ class DiscountModal extends React.Component {
 		this.modalShowHide = this.modalShowHide.bind( this );
 		this.getDiscountById = this.getDiscountById.bind( this );
 		this.handleSelection = this.handleSelection.bind( this );
-		this.confirmRemoval = this.confirmRemoval.bind( this );
 		this.addItemToCart = this.addItemToCart.bind( this );
 		this.onAddItemError = this.onAddItemError.bind( this );
 	}
@@ -52,13 +51,8 @@ class DiscountModal extends React.Component {
 		
 		// NO THANKS : Mark discount as used
 		} else {
-			// this.props.markDiscountUsed( discount ); // TODO : Change to rejected to track this independently!!!
-			// this.props.markDiscountRejected( discountId );
+			this.props.rejectDiscount( discountId );
 		}
-	}
-
-	confirmRemoval( discountId ) {
-		// TODO : This will remove the item from the removedDiscounts array in manager so it wont prompt again about removal
 	}
 
 	onAddItemError( err ) {
@@ -141,6 +135,7 @@ DiscountModal.propTypes = {
 	doNotShowAgain: PropTypes.bool.isRequired,
 	enableDoNotShowAgain: PropTypes.func.isRequired,
 	markDiscountUsed: PropTypes.func.isRequired,
+	rejectDiscount: PropTypes.func.isRequired,
 	removedDiscounts: PropTypes.array,
 	usedDiscounts: PropTypes.array
 }
