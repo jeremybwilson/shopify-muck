@@ -28,15 +28,18 @@ class DiscountManager extends React.Component {
 		// CONFIG : Discount Configuration Manifest
 		this.config = {
 			cookieExpireInDays: 60,				// COOKIE : # of days before cookie expires
-			thresholdDiscounts: [{
-				discountId: 1,					// DISCOUNT ID -- Unique identifier for this discount, so we can tell if its already applied
-				giftId: 17667671031906, 		// VARIANT ID --- Item being given for free, see docs for formatting rules
-				grantType: 'all',				// GRANT TYPE --- Does user get this gift if higher threshold is met? -- (OPTIONS: 'all' or 'pick')
-				inventoryId: 17275313422434,	// INVENTORY ID - Variant ID of full-price original version (gift is untracked usually, uses full-cost variant to see how many left)
-				message: "For spending over $200, here is your free gift!",
-				minSpend: 200,					// THRESHOLD ---- Dollar (or current currency) amount to trigger free gift
-				productHandle: 'mens-northwest-territory-socks'
-			}]
+			thresholdDiscounts: [
+				// ..:: SAMPLE ::..
+				// {
+				// 	discountId: 1,					// DISCOUNT ID -- Unique identifier for this discount, so we can tell if its already applied
+				// 	giftId: 17667671031906, 		// VARIANT ID --- Item being given for free, see docs for formatting rules
+				// 	grantType: 'all',				// GRANT TYPE --- Does user get this gift if higher threshold is met? -- (OPTIONS: 'all' or 'pick')
+				// 	inventoryId: 17275313422434,	// INVENTORY ID - Variant ID of full-price original version (gift is untracked usually, uses full-cost variant to see how many left)
+				// 	message: "For spending over $200, here is your free gift!",
+				// 	minSpend: 200,					// THRESHOLD ---- Dollar (or current currency) amount to trigger free gift
+				// 	productHandle: 'mens-northwest-territory-socks'
+				// }
+			]
 		};
 
 		// ENABLED : Did the user disable showing the modal?
