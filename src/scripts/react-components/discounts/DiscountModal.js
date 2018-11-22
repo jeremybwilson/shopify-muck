@@ -10,10 +10,10 @@ class DiscountModal extends React.Component {
 			showModal: false
 		}
 
-		this.modalShowHide = this.modalShowHide.bind( this );
+		this.addItemToCart = this.addItemToCart.bind( this );
 		this.getDiscountById = this.getDiscountById.bind( this );
 		this.handleSelection = this.handleSelection.bind( this );
-		this.addItemToCart = this.addItemToCart.bind( this );
+		this.modalShowHide = this.modalShowHide.bind( this );
 		this.onAddItemError = this.onAddItemError.bind( this );
 	}
 
@@ -27,13 +27,19 @@ class DiscountModal extends React.Component {
 
 
 
-	modalShowHide() {
-		const { discountsToApply, doNotShowAgain, removedDiscounts } = this.props;
-		
-		let showHide = !doNotShowAgain && ( discountsToApply.length > 0 || removedDiscounts.length > 0 )? true : false;
-		if ( this.state.showModal !== showHide ) {
-			this.setState({ showModal: showHide });
-		}
+	addItemToCart( discount ) {
+		// SUCCESS : Callback for success handling
+		const markUsedOnSuccess = () => {
+			this.props.markDiscountUsed( discount.discountId );
+		};
+
+		// ADD : Use API from ajax-cart.js.liquid to add item to cart!
+		ShopifyAPI.addItemById( 
+			discount.giftId, 		// Gift ID (must be a Variant ID)
+			markUsedOnSuccess,		// Success Callback
+			this.onAddItemError, 	// Error Callback
+			true					// isGift Flag (adds note property to item so we can hide things like cart quantity modifiers)
+		);
 	}
 
 	getDiscountById( discountId ) {
@@ -55,24 +61,18 @@ class DiscountModal extends React.Component {
 		}
 	}
 
+	modalShowHide() {
+		const { discountsToApply, doNotShowAgain, removedDiscounts } = this.props;
+		
+		let showHide = !doNotShowAgain && ( discountsToApply.length > 0 || removedDiscounts.length > 0 )? true : false;
+		if ( this.state.showModal !== showHide ) {
+			this.setState({ showModal: showHide });
+		}
+	}
+
 	onAddItemError( err ) {
 		console.log( `Looks like adding to cart failed, error message:\n${JSON.stringify( err )}` );
 		// TODO : Handle errors better here! -- Probably want to set up a message into the template that shows error message
-	}
-
-	addItemToCart( discount ) {
-		// SUCCESS : Callback for success handling
-		const markUsedOnSuccess = () => {
-			this.props.markDiscountUsed( discount.discountId );
-		};
-
-		// ADD : Use API from ajax-cart.js.liquid to add item to cart!
-		ShopifyAPI.addItemById( 
-			discount.giftId, 		// Gift ID (must be a Variant ID)
-			markUsedOnSuccess,		// Success Callback
-			this.onAddItemError, 	// Error Callback
-			true					// isGift Flag (adds note property to item so we can hide things like cart quantity modifiers)
-		);
 	}
 
 
@@ -145,67 +145,3 @@ DiscountModal.propTypes = {
 }
 
 module.exports = DiscountModal;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -27,9 +27,8 @@ class ModalItem extends React.Component {
 			message, 
 			title 
 		} = this.props;
-
-		message = message || "You've earned a free gift!";
 		
+		message = message || "You've earned a free gift!";
 
 		return (
 		  <div className="modal-item">

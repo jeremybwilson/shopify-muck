@@ -2,18 +2,23 @@
  *
  * ..:: SAMPLES - DISCOUNT CONFIG ::..
  *
- *  #1 - Spend X, Get Y Style
+ *
+ *  #1 - Spend X, Get Y item free (or whatever you set its price to)
+ *
  *		thresholdDiscounts: [{
+ *			discountId: 1,					// DISCOUNT ID -- Unique identifier for this discount, so we can tell if its already applied
  *			giftId: 17667671031906, 		// VARIANT ID --- Item being given for free, see docs for formatting rules
- *			inventoryId: 17275313422434,	// INVENTORY ID - Variant ID of full-price orig. item (gift untracked, uses full-cost variant to validate inventory - use gift id if only instance and is tracked)
- *			minSpend: 200					// THRESHOLD ---- Dollar (or current currency) amount to trigger free gift
+ *			grantType: 'all',				// GRANT TYPE --- Does user get this gift if higher threshold is met? -- (OPTIONS: 'all' or 'pick')
+ *			inventoryId: 17275313422434,	// INVENTORY ID - Variant ID of full-price original version (gift is untracked usually, uses full-cost variant to see how many left)
+ *			message: "For spending over $200, here is your free gift!",
+ *			minSpend: 200,					// THRESHOLD ---- Dollar (or current currency) amount to trigger free gift
+ *			productHandle: 'mens-northwest-territory-socks'
  *		}]
  *
  *****************************************************************************/ 
 const PropTypes = require( 'prop-types' );
 const Promise = require( 'bluebird' );
 const DiscountModal = require( './DiscountModal.js' );
-// const DiscountMeter = require( './DiscountMeter.js' ); //Portal'd to cart node
 
 
 class DiscountManager extends React.Component {
@@ -31,17 +36,7 @@ class DiscountManager extends React.Component {
 				message: "For spending over $200, here is your free gift!",
 				minSpend: 200,					// THRESHOLD ---- Dollar (or current currency) amount to trigger free gift
 				productHandle: 'mens-northwest-territory-socks'
-
-			}/*,
-			{
-				discountId: 2,					// DISCOUNT ID -- Unique identifier for this discount, so we can tell if its already applied
-				giftId: 17667671031906, 		// VARIANT ID --- Item being given for free, see docs for formatting rules
-				grantType: 'all',				// GRANT TYPE --- Does user get this gift if higher threshold is met? -- (OPTIONS: 'always' or 'highest')
-				inventoryId: 17275313422434,	// INVENTORY ID - Variant ID of full-price original version (gift is untracked usually, uses full-cost variant to see how many left)
-				message: "For spending over $200, here is your free gift!",
-				minSpend: 100,					// THRESHOLD ---- Dollar (or current currency) amount to trigger free gift
-				productHandle: 'mens-northwest-territory-socks'
-			}*/]
+			}]
 		};
 
 		// ENABLED : Did the user disable showing the modal?
@@ -60,9 +55,8 @@ class DiscountManager extends React.Component {
 			}
 		}
 		catch( err ) {
-			console.log( `DiscountManager : Had trouble parsing the cookies... ${err}` );
+			console.log( `DiscountManager : Choked while eating the cookies, they may have gone bad...\n${err}` );
 		}
-
 
 		// STATE : Current state in manager
 		this.state = {
@@ -75,14 +69,15 @@ class DiscountManager extends React.Component {
 		};
 
 		// EVENTS : Bind functions to current context
-		this.onCartUpdate = this.onCartUpdate.bind( this );
+		
 		this.calcCartTotal = this.calcCartTotal.bind( this );
-		this.removeCartItem = this.removeCartItem.bind( this );
 		this.calcThresholdDiscounts = this.calcThresholdDiscounts.bind( this );
 		this.confirmRemoval = this.confirmRemoval.bind( this );
 		this.enableDoNotShowAgain = this.enableDoNotShowAgain.bind( this );
 		this.markDiscountUsed = this.markDiscountUsed.bind( this );
+		this.onCartUpdate = this.onCartUpdate.bind( this );
 		this.rejectDiscount = this.rejectDiscount.bind( this );
+		this.removeCartItem = this.removeCartItem.bind( this );
 	}
 
 	componentDidMount() {
@@ -94,9 +89,107 @@ class DiscountManager extends React.Component {
 			ShopifyAPI.getCart( ajaxCart.cartUpdateCallback ); 
 		}
 	}
-
+	
 	componentDidUnmount() {
 		$( document ).off( "cartUpdated", this.onCartUpdate );
+	}
+
+
+
+	calcCartTotal( total_price = 0 ) {
+		// CONVERT : Change cart value to a whole dollar (or other currency) amount
+		var dollar, cents, cartTotal, total = JSON.stringify( total_price );
+		
+		if ( total.length < 3 ) {
+			dollar = 0;
+			cents = total
+		
+		} else {
+			dollar = total.substring( 0, total.length - 2 );
+			cents = total.substring( total.length - 2, total.length );
+		}
+
+		cartTotal = JSON.parse( dollar + '.' + cents );
+		// console.log( `::: DEBUG : Parsed cart total: $${cartTotal}` );
+		return cartTotal;
+	}
+
+	calcThresholdDiscounts( cartTotal ) {
+		const { thresholdDiscounts } = this.config;
+		const { rejectedDiscounts, usedDiscounts } = this.state;
+		var metDiscounts = [];
+
+		// CHECK : Did we meet any discount thresholds? (Safety, as this evolves..)
+		if ( thresholdDiscounts.length > 0 ) {
+
+			// BUILD : ARRAY : Discounts NOT used yet + Past "minSpend" Threshold
+			metDiscounts = thresholdDiscounts.filter( rule => {
+				const hasBeenUsed = usedDiscounts.find( used => used.discountId === rule.discountId );
+				const hasBeenRejected = rejectedDiscounts.find( rejectId => rejectId === rule.discountId );
+				const hasBeenMet = rule.minSpend <= cartTotal;
+				return !hasBeenUsed && !hasBeenRejected && hasBeenMet;
+			});
+		}
+		return metDiscounts; //Extra protection is all here..
+	}
+
+	confirmRemoval() {
+		// CONFIRMED : Clear out the "removedDiscounts" array since we've informed the user now
+		this.setState( state => {
+	    	return { removedDiscounts: [] };
+	    });
+	}
+
+	enableDoNotShowAgain() {
+		$.cookie( 'BOL_hide_discounts_modal','true', { expires: 90 } ); //Expire in days
+		this.setState({ doNotShowAgain: true });
+	}
+
+	fetchProduct( productHandle ) {
+		return fetch( `/products/${productHandle}?view=availability` )
+			.then( res => {
+		        if ( res.status >= 400 ) {
+		            throw new Error( "Bad res from server" );
+		        }
+		        return res.json();
+		    })
+		    .then( productJson => {
+		        return productJson;
+			})
+			.catch( err => {
+				const theError = error && error.message ? error.message : error || 'Request failed for an unknown reason with no error object returned..';
+				console.log( `[ DiscountModal -- fetchProduct() ] : Failed request :\n${ theError }` );
+				throw new Error( theError );
+			});
+	}
+
+
+	markDiscountUsed( discountId ) {
+		var { usedDiscounts } = this.state;
+		
+		// CHECK : If not present, add to the list
+		var isAlreadyMarked = usedDiscounts.find( used => used.discountId === discountId );
+		if ( !isAlreadyMarked ) {
+
+			// UPDATE : Create new array to for state-based render update
+			this.setState( state => {
+				// USED : Update the used list with our fully-built discount obj (includes image_url)
+				const appliedDiscount = state.discountsToApply.find( discount => discount.discountId === discountId );
+		    	const updatedUsedList = appliedDiscount ? state.usedDiscounts.concat( [ appliedDiscount ] ) : state.usedDiscounts;
+		    	
+		    	// TO APPLY : Remove the now applied discount from the manifest of those to apply still
+		    	const updatedApplyList = state.discountsToApply.filter( discount => discount.discountId !== discountId );
+		    	const discountsToApply = [].concat( updatedApplyList );
+
+		    	// SAVE : Save our data before updating the app, in case user leaves site
+		    	$.cookie( 'BOL_used_discounts', JSON.stringify( updatedUsedList ), { expires: this.config.cookieExpireInDays } );
+		    	
+		    	return { 
+		    		discountsToApply,
+		    		usedDiscounts: updatedUsedList
+		    	};
+		    });
+		}
 	}
 
 	onCartUpdate( e ) {
@@ -116,8 +209,6 @@ class DiscountManager extends React.Component {
 
 		// CART : ITEMS : Store current cart manifest so we can check it for removal needs
 		const cartItems = e.cart.items || [];
-		console.log( `::: DEBUG : Saw a cart update! -- State Total: ${cartTotal} -- New Total: ${newCartTotal}`  );
-		
 
 		try { // SAFETY FIRST!
 
@@ -156,14 +247,14 @@ class DiscountManager extends React.Component {
 
 
 
-			// REMOVE CHECK : NEW : Check items in cart, if any are matches to any in our discount config, lets check them for removal need
+			// REMOVE CHECK : CART SCAN : Check cart items, if any match a discount in config, check if it still qualifies
 			cartItems.forEach( ( item, index ) => {
 				var matchedDiscount = thresholdDiscounts.find( rule => rule.giftId === item.variant_id );
 
 				// CHECK : Do we still meet this deals requirements?
 				if ( matchedDiscount && matchedDiscount.minSpend > newCartTotal ) {
 
-					// CART : Find the gift item in the cart, and flag for removal
+					// CHECK : Have we already flagged this item to be removed?
 					var isAlreadyMarked = discountsToRemove.find( rule => rule.discountId === matchedDiscount.discountId ); //Undef if not found
 
 					// SAFETY : Ensure item was in cart still
@@ -210,7 +301,6 @@ class DiscountManager extends React.Component {
 				).then( res => {
 					// NOTE : Each individual removal resolution call then pulls that ID from the usedDiscounts array above in the promise.all
 					// REMOVE CHECK : UPDATE : Save our data in cookie and state
-					console.log( `::: DEBUG : Removal success, updating cookie and state...` );
 	    			$.cookie( 'BOL_used_discounts', JSON.stringify( usedDiscounts ), { expires: this.config.cookieExpireInDays } );
 					this.setState({ 
 						removedDiscounts,
@@ -229,129 +319,6 @@ class DiscountManager extends React.Component {
 		this.setState({ cartTotal: newCartTotal });
 	}
 
-	calcCartTotal( total_price = 0 ) {
-		// CONVERT : Change cart value to a whole dollar (or other currency) amount
-		var dollar, cents, cartTotal, total = JSON.stringify( total_price );
-		
-		if ( total.length < 3 ) {
-			dollar = 0;
-			cents = total
-		
-		} else {
-			dollar = total.substring( 0, total.length - 2 );
-			cents = total.substring( total.length - 2, total.length );
-		}
-
-		cartTotal = JSON.parse( dollar + '.' + cents );
-		console.log( `::: DEBUG : Parsed cart total: $${cartTotal}` );
-		return cartTotal;
-	}
-
-	calcThresholdDiscounts( cartTotal ) {
-		const { thresholdDiscounts } = this.config;
-		const { rejectedDiscounts, usedDiscounts } = this.state;
-		var metDiscounts = [];
-
-		// CHECK : Did we meet any discount thresholds? (Safety, as this evolves..)
-		if ( thresholdDiscounts.length > 0 ) {
-
-			// BUILD : ARRAY : Discounts NOT used yet + Past "minSpend" Threshold
-			metDiscounts = thresholdDiscounts.filter( rule => {
-				const hasBeenUsed = usedDiscounts.find( used => used.discountId === rule.discountId );
-				const hasBeenRejected = rejectedDiscounts.find( rejectId => rejectId === rule.discountId );
-				const hasBeenMet = rule.minSpend <= cartTotal;
-				return !hasBeenUsed && !hasBeenRejected && hasBeenMet;
-			});
-		}
-		return metDiscounts; //Extra protection is all here..
-	}
-
-	confirmRemoval() {
-		// CONFIRMED : Clear out the "removedDiscounts" array since we've informed the user now
-		this.setState( state => {
-	    	return { removedDiscounts: [] };
-	    });
-	}
-
-	fetchProduct( productHandle ) {
-		return fetch( `/products/${productHandle}?view=availability` )
-			.then( res => {
-		        if ( res.status >= 400 ) {
-		            throw new Error( "Bad res from server" );
-		        }
-		        return res.json();
-		    })
-		    .then( productJson => {
-		        return productJson;
-			})
-			.catch( err => {
-				const theError = error && error.message ? error.message : error || 'Request failed for an unknown reason with no error object returned..';
-				console.log( `[ DiscountModal -- fetchProduct() ] : Failed request :\n${ theError }` );
-				throw new Error( theError );
-			});
-	}
-
-	removeCartItem( line_item, discount ) {
-		return new Promise(function (resolve, reject) {
-			console.log( '::: DEBUG : Submitting item for removal...' );
-
-			// SUCCESS : Callback for success handling
-			const onSuccess = ( cart ) => {
-				console.log( '::: DEBUG : SUCCESS : Resolving Removal Function' );
-				resolve( discount );
-			};
-
-			// FAILED : Callback for failure handling
-			const onFailure = (XMLHttpRequest, textStatus) => {
-				console.log( '::: DEBUG : FAILURE : Rejecting Removal Function: ' );
-				reject( XMLHttpRequest, textStatus );
-			};
-
-			// REMOVE : Use API from ajax-cart.js.liquid to set item quantity to 0 for a removal
-			ShopifyAPI.changeItem( 
-				line_item, 	// LINE ITEM : Which cart item is being removed
-				0,			// AMOUNT : Set quantity to 0 to remove an item
-				onSuccess,	// SUCCESS : Callback Handler for Successful Updates
-				onFailure	// FAILED : Callback handler for failed updates
-			);
-		});
-	}
-
-	enableDoNotShowAgain() {
-		$.cookie( 'BOL_hide_discounts_modal','true', { expires: 90 } ); //Expire in days
-		this.setState({ doNotShowAgain: true });
-	}
-
-	markDiscountUsed( discountId ) {
-		var { usedDiscounts } = this.state;
-		console.log( `::: DEBUG : Checking if discount is marked used already : ${discountId}` );
-		
-		// CHECK : If not present, add to the list
-		var isAlreadyMarked = usedDiscounts.find( used => used.discountId === discountId );
-		if ( !isAlreadyMarked ) {
-			console.log( `::: DEBUG : Marking Discount as Used : ${discountId}` );
-
-			// UPDATE : Create new array to for state-based render update
-			this.setState( state => {
-				// USED : Update the used list with our fully-built discount obj (includes image_url)
-				const appliedDiscount = state.discountsToApply.find( discount => discount.discountId === discountId );
-		    	const updatedUsedList = appliedDiscount ? state.usedDiscounts.concat( [ appliedDiscount ] ) : state.usedDiscounts;
-		    	
-		    	// TO APPLY : Remove the now applied discount from the manifest of those to apply still
-		    	const updatedApplyList = state.discountsToApply.filter( discount => discount.discountId !== discountId );
-		    	const discountsToApply = [].concat( updatedApplyList );
-
-		    	// SAVE : Save our data before updating the app, in case user leaves site
-		    	$.cookie( 'BOL_used_discounts', JSON.stringify( updatedUsedList ), { expires: this.config.cookieExpireInDays } );
-		    	
-		    	return { 
-		    		discountsToApply,
-		    		usedDiscounts: updatedUsedList
-		    	};
-		    });
-		}
-	}
-
 	rejectDiscount( discountId ) {
 		var { 
 			discountsToApply,
@@ -359,7 +326,6 @@ class DiscountManager extends React.Component {
 		} = this.state;
 
 		const isAlreadyMarked = rejectedDiscounts.find( id => id === discountId );
-		console.log( 'rejecting discount!' );
 
 		if ( !isAlreadyMarked ){
 			this.setState( state => {
@@ -376,6 +342,29 @@ class DiscountManager extends React.Component {
 		}
 	}
 
+	removeCartItem( line_item, discount ) {
+		return new Promise(function (resolve, reject) {
+
+			// SUCCESS : Callback for success handling
+			const onSuccess = ( cart ) => {
+				resolve( discount );
+			};
+
+			// FAILED : Callback for failure handling
+			const onFailure = (XMLHttpRequest, textStatus) => {
+				reject( XMLHttpRequest, textStatus );
+			};
+
+			// REMOVE : Use API from ajax-cart.js.liquid to set item quantity to 0 for a removal
+			ShopifyAPI.changeItem( 
+				line_item, 	// LINE ITEM : Which cart item is being removed
+				0,			// AMOUNT : Set quantity to 0 to remove an item
+				onSuccess,	// SUCCESS : Callback Handler for Successful Updates
+				onFailure	// FAILED : Callback handler for failed updates
+			);
+		});
+	}
+
 
 
 	render() {
@@ -386,19 +375,6 @@ class DiscountManager extends React.Component {
 			removedDiscounts, 
 			usedDiscounts 
 		} = this.state;
-
-
-		// DISCOUNTS : Do we have discounts that need application?
-		if ( discountsToApply.length > 0 ) {
-			console.log( '::: RENDER : ADD : We have discounts to apply : ' + JSON.stringify( discountsToApply ) );
-		
-		} else if ( removedDiscounts.length > 0 ) {
-			console.log( '::: RENDER : REMOVE : We have removed some discounts : ' + JSON.stringify( removedDiscounts ) );
-
-		} else {
-			console.log( '::: RENDER : NONE : No discount rules were met for the current cart...' );
-		}
-
 
 		return (
 			<div id="react-discount-manager" data-component="DiscountManager">
@@ -418,75 +394,3 @@ class DiscountManager extends React.Component {
 }
 
 module.exports = DiscountManager;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
