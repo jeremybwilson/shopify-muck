@@ -62,6 +62,9 @@ if (window.NodeList && !NodeList.prototype.forEach) {
     };
 }
 
+// POLYFILL : Object.assign (IE 11)
+require( 'es6-object-assign/auto' ); //812 bytes, pretty safe and small :D 
+
  /**
  * ----------------------------------------------------------------------------------------------------
  * AJAX CART
