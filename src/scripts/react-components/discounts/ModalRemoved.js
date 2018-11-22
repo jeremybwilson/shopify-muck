@@ -1,42 +1,4 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const PropTypes = require( 'prop-types' );
-
 
 class ModalRemoved extends React.Component {
 	constructor( props ){
@@ -73,67 +35,9 @@ class ModalRemoved extends React.Component {
 	}
 }
 
-
 ModalRemoved.propTypes = {
 	confirmRemoval: PropTypes.func.isRequired,
 	removedDiscounts: PropTypes.array.isRequired
 }
 
 module.exports = ModalRemoved;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
