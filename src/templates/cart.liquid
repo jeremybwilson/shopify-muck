@@ -26,7 +26,8 @@
         
         if ( total.length < 3 ) {
           dollar = 0;
-          cents = total
+          cents = total.length < 2 ? '0' + total : total; // So "9" becomes "0.09" at the end
+
         } else {
           dollar = total.substring( 0, total.length - 2 );
           cents = total.substring( total.length - 2, total.length );
