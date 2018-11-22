@@ -114,15 +114,19 @@ class DiscountModal extends React.Component {
 			);
 		}  
 
+		//TODO : Add a div so the user can tap black area to close as well
 
 		return (
 			<div id="react-discount-modal" 
 				data-component="DiscountModal" 
 				className={ this.state.showModal ? 'show-modal' : '' }>
-				
+
 				<div id="react-discount-modal-content">
 					{ modalItems }
 					{ removedItems }
+
+					<div id="react-discount-do-not-show" 
+						onClick={ this.props.enableDoNotShowAgain }>Do not show deals again</div>
 				</div>
 			</div>
 		);
