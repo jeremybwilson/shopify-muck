@@ -27,155 +27,155 @@ $modalButtonAltText: {{ settings.discount_modal_button_alt_text }};
     transition: opacity 0.25s ease-in-out;
 
     &.show-modal {
-    	opacity: 1;
-    	z-index: 200;
-    	pointer-events: all;
+        opacity: 1;
+        z-index: 200;
+        pointer-events: all;
     }
 
     #react-discount-modal-content {
-	    position: absolute;
-	    width: 90vw;
-	    max-width: 400px;
-	    background: $modalBg;
-	    left: 50%;
-	    top: 5vw;
-	    transform: translateX( -50% );
+        position: absolute;
+        width: 90vw;
+        max-width: 400px;
+        background: $modalBg;
+        left: 50%;
+        top: 5vw;
+        transform: translateX( -50% );
 
-	    .modal-item {
-		    position: relative;
-		    width: 100%;
-		    padding: 10px;
-		    text-align: center;
+        .modal-item {
+            position: relative;
+            width: 100%;
+            padding: 10px;
+            text-align: center;
 
-		    &:not(:last-child) {
-			    /*border-bottom: 1px solid #D0D0D0;*/
-			}
+            &:not(:last-child) {
+                /*border-bottom: 1px solid #D0D0D0;*/
+            }
 
-		    // HEADING : Modal headline
-		    .modal-item-message {
-		    	@include fontDim( 18px, 22px, 0 );
-		    	font-weight: $font-weight--bold;
-		    	color: $modalMessage;
-		    	position: relative;
-		    	margin: 10px 0;
-		    	padding: 0;
-		    	text-transform: uppercase;
+            // HEADING : Modal headline
+            .modal-item-message {
+                @include fontDim( 18px, 22px, 0 );
+                font-weight: $font-weight--bold;
+                color: $modalMessage;
+                position: relative;
+                margin: 10px 0;
+                padding: 0;
+                text-transform: uppercase;
 
-		    	@include mq( 'tablet-and-up' ) {
-		    		@include fontDim( 20px, 22px, 0 );
-		    		padding: 0 20px;
-		    	}
-		    }
+                @include mq( 'tablet-and-up' ) {
+                    @include fontDim( 20px, 22px, 0 );
+                    padding: 0 20px;
+                }
+            }
 
-		    // IMAGE : Modal image 
-		    .modal-item-image {
-			    width: 100%;
-			    height: 190px;
-			    background-size: contain;
-			    background-repeat: no-repeat;
-			    background-position: center;
-			    margin-bottom: 15px;
+            // IMAGE : Modal image 
+            .modal-item-image {
+                width: 100%;
+                height: 190px;
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+                margin-bottom: 15px;
 
-			    @include mq( 'tablet-and-up' ) {
-			    	height: 270px;
-			    }
-			}
+                @include mq( 'tablet-and-up' ) {
+                    height: 270px;
+                }
+            }
 
-			// TITLE : Item Being offered
-			.modal-item-title {
-				@include fontDim( 16px, 18px, 0 );
-		    	font-weight: $font-weight--medium;
-		    	color: $modalText;
-		    	margin-bottom: 15px;
+            // TITLE : Item Being offered
+            .modal-item-title {
+                @include fontDim( 16px, 18px, 0 );
+                font-weight: $font-weight--medium;
+                color: $modalText;
+                margin-bottom: 15px;
 
-		    	@include mq( 'tablet-and-up' ) {
-		    		@include fontDim( 18px, 18px, 0 );
-		    	}
-			}
+                @include mq( 'tablet-and-up' ) {
+                    @include fontDim( 18px, 18px, 0 );
+                }
+            }
 
-			// BUTTONS : "Add to Cart" + "No Thanks" Buttons
-			.modal-item-buttons {
+            // BUTTONS : "Add to Cart" + "No Thanks" Buttons
+            .modal-item-buttons {
 
-				// Prevent multiple clicks
-				&.disable-buttons {
-					pointer-events: none;
-					opacity: 0.9;
-				}
+                // Prevent multiple clicks
+                &.disable-buttons {
+                    pointer-events: none;
+                    opacity: 0.9;
+                }
 
-				[class^='modal-item-btn'], 
-				[class*=' modal-item-btn'] {
-					@include fontDim( 14px, 16px, 0 );
-					font-weight: $font-weight--bold;
-					background: $modalButtonBg;
-					color: $modalButtonText;
-					margin-right: 5px;
+                [class^='modal-item-btn'], 
+                [class*=' modal-item-btn'] {
+                    @include fontDim( 14px, 16px, 0 );
+                    font-weight: $font-weight--bold;
+                    background: $modalButtonBg;
+                    color: $modalButtonText;
+                    margin-right: 5px;
 
-					@include mq( 'tablet-and-up' ) {
-						@include fontDim( 16px, 16px, 0 );
-					}
-				}
+                    @include mq( 'tablet-and-up' ) {
+                        @include fontDim( 16px, 16px, 0 );
+                    }
+                }
 
-				// "No Thanks" Button
-				.modal-item-btn-no {
-					background: $modalButtonAltBg;
-					color: $modalButtonAltText;
-					margin-right: 0;
-					margin-left: 5px;
-				}
-			}			
+                // "No Thanks" Button
+                .modal-item-btn-no {
+                    background: $modalButtonAltBg;
+                    color: $modalButtonAltText;
+                    margin-right: 0;
+                    margin-left: 5px;
+                }
+            }           
 
 
 
-			// REMOVED DISCOUNTS MODAL : 
-			&.removed-discounts {
-				.modal-item-message {
-					@include fontDim( 18px, 20px, 0 );
-					padding: 0;
-				}
+            // REMOVED DISCOUNTS MODAL : 
+            &.removed-discounts {
+                .modal-item-message {
+                    @include fontDim( 18px, 20px, 0 );
+                    padding: 0;
+                }
 
-				.modal-item-removal-list {
-				    position: relative;
-				    list-style: none;
-				    padding: 0;
-				    margin: 30px 0 35px;
+                .modal-item-removal-list {
+                    position: relative;
+                    list-style: none;
+                    padding: 0;
+                    margin: 30px 0 35px;
 
-				    .modal-removal-item {
-				    	width: 100%;
-				    	height: 40px;
-				    	@include inline-flex;
-				    	@include align-items( center );
+                    .modal-removal-item {
+                        width: 100%;
+                        height: 40px;
+                        @include inline-flex;
+                        @include align-items( center );
 
-				    	.modal-removal-image {
-						    width: 47px;
-						    height: 100%;
-						    background-repeat: no-repeat;
-						    background-size: cover;
-						    margin-right: 5px;
-						}
+                        .modal-removal-image {
+                            width: 47px;
+                            height: 100%;
+                            background-repeat: no-repeat;
+                            background-size: cover;
+                            margin-right: 5px;
+                        }
 
-						.modal-removal-title {
-							@include fontDim( 16px, 16px, 0 );
-							font-weight: $font-weight--medium;
-							text-align: left;
-							width: 100%;
-						}
-				    }
-				}
+                        .modal-removal-title {
+                            @include fontDim( 16px, 16px, 0 );
+                            font-weight: $font-weight--medium;
+                            text-align: left;
+                            width: 100%;
+                        }
+                    }
+                }
 
-				.modal-item-btn-confirm {
-					margin: 0 0 10px;
-					width: 200px;
-				}
-			}
-				
-		}
+                .modal-item-btn-confirm {
+                    margin: 0 0 10px;
+                    width: 200px;
+                }
+            }
+                
+        }
 
-		// BUTTONS : Disable offers
-		#react-discount-do-not-show {
-		    position: relative;
-		    text-align: center;
-		    margin-bottom: 20px;
-		    cursor: pointer;
-		}
-	}
+        // BUTTONS : Disable offers
+        #react-discount-do-not-show {
+            position: relative;
+            text-align: center;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+    }
 }
