@@ -8,7 +8,7 @@
 $modalBackDarken: {{ settings.fancybox_overlay_bg }};
 $modalBg: {{ settings.discount_modal_bg }};
 $modalText: {{ settings.discount_modal_text }};
-$modalMessage: {{ settings.discount_modal_message }}; //Header Msg on modal items being given
+$modalHeader: {{ settings.discount_modal_header }}; //Header title on modal display
 $modalButtonBg: {{ settings.discount_modal_button_bg }};
 $modalButtonText: {{ settings.discount_modal_button_text }};
 $modalButtonAltBg: {{ settings.discount_modal_button_alt_bg }};
@@ -23,6 +23,8 @@ $modalButtonAltText: {{ settings.discount_modal_button_alt_text }};
     left: 0;
     z-index: -1;
     opacity: 0;
+    overflow-x: hidden;
+    overflow-y: auto; // Enable scrolling on small screens if we are too tall
     pointer-events: none;
     transition: opacity 0.25s ease-in-out;
 
@@ -41,25 +43,26 @@ $modalButtonAltText: {{ settings.discount_modal_button_alt_text }};
         top: 5vw;
         transform: translateX( -50% );
 
-        .modal-item {
-            position: relative;
-            width: 100%;
-            padding: 10px;
-            text-align: center;
+        // BUTTONS : Disable all buttons if set to true (Prevents multliple add to cart clicks)
+        [data-enable-buttons*='true'] button {
+            pointer-events: none !important;
+            opacity: 0.9 !important;
+        }
 
-            &:not(:last-child) {
-                /*border-bottom: 1px solid #D0D0D0;*/
-            }
+
+// DISCOUNT ITEM LIST : (List of ModalItem components)
+        #discount-modal-list {
 
             // HEADING : Modal headline
-            .modal-item-message {
+            .modal-list-heading {
                 @include fontDim( 18px, 22px, 0 );
                 font-weight: $font-weight--bold;
-                color: $modalMessage;
+                color: $modalHeader;
                 position: relative;
                 margin: 10px 0;
-                padding: 0;
+                padding: 0 10px;
                 text-transform: uppercase;
+                text-align: center;
 
                 @include mq( 'tablet-and-up' ) {
                     @include fontDim( 20px, 22px, 0 );
@@ -67,22 +70,71 @@ $modalButtonAltText: {{ settings.discount_modal_button_alt_text }};
                 }
             }
 
+            // CONTENT : Modal Item content in the list
+            .modal-list-content {
+                display: inline-flex;
+                flex-wrap: nowrap;
+                margin-bottom: 20px;
+                width: 100%;
+            }
+
+            // REJECT : Reject the discounts being offered and silence them
+            .modal-list-btn-no-thanks {
+                width: 240px;
+                position: relative;
+                left: 50%;
+                transform: translateX( -50% );
+                background: $modalButtonAltBg;
+                color: $modalButtonAltText;
+                margin-bottom: 20px;
+            }
+        }
+
+
+
+// DISCOUNT ITEM : Single Item styling
+        // CONTENT : ITEM DISPLAY : Single item in the set of items
+        [data-option-count*='1'] .modal-item {
+            width: 100%;
+            padding: 10px 10px 50px 10px;
+
+            .modal-item-image {
+                height: 190px;
+
+                @include mq( 'tablet-and-up' ) {
+                    height: 270px;
+                }
+            }
+        }
+
+        [data-option-count*='2'] .modal-item {
+            width: 50%;
+            padding: 5px 5px 50px 5px;
+        }
+
+        .modal-item {
+            position: relative;
+            text-align: center;
+            width: 33.33%;  // More than 3 items in list, will read this
+            padding: 0;     // More than 3 items in list, will read this
+            padding-bottom: 50px; //So buttons align on same axis regardless of text length
+
             // IMAGE : Modal image 
             .modal-item-image {
                 width: 100%;
-                height: 190px;
+                height: 100px;
                 background-size: contain;
                 background-repeat: no-repeat;
                 background-position: center;
                 margin-bottom: 15px;
 
                 @include mq( 'tablet-and-up' ) {
-                    height: 270px;
+                    height: 180px;
                 }
             }
 
-            // TITLE : Item Being offered
-            .modal-item-title {
+            // NAME : Item Being offered's name
+            .modal-item-name {
                 @include fontDim( 16px, 18px, 0 );
                 font-weight: $font-weight--medium;
                 color: $modalText;
@@ -95,32 +147,25 @@ $modalButtonAltText: {{ settings.discount_modal_button_alt_text }};
 
             // BUTTONS : "Add to Cart" + "No Thanks" Buttons
             .modal-item-buttons {
-
-                // Prevent multiple clicks
-                &.disable-buttons {
-                    pointer-events: none;
-                    opacity: 0.9;
-                }
-
                 [class^='modal-item-btn'], 
                 [class*=' modal-item-btn'] {
                     @include fontDim( 14px, 16px, 0 );
                     font-weight: $font-weight--bold;
                     background: $modalButtonBg;
                     color: $modalButtonText;
-                    margin-right: 5px;
 
                     @include mq( 'tablet-and-up' ) {
                         @include fontDim( 16px, 16px, 0 );
                     }
                 }
 
-                // "No Thanks" Button
-                .modal-item-btn-no {
-                    background: $modalButtonAltBg;
-                    color: $modalButtonAltText;
-                    margin-right: 0;
-                    margin-left: 5px;
+                // Special alignment so button sits uniformly on single axis regardless of title length
+                .modal-item-btn-add {
+                    position: absolute;
+                    margin: 0 auto;
+                    left: 50%;
+                    transform: translateX( -50% );
+                    bottom: 10px;
                 }
             }           
 
@@ -128,9 +173,19 @@ $modalButtonAltText: {{ settings.discount_modal_button_alt_text }};
 
             // REMOVED DISCOUNTS MODAL : 
             &.removed-discounts {
-                .modal-item-message {
+                width: 100%;
+                padding-bottom: 0;
+
+
+                .modal-item-removal-header {
                     @include fontDim( 18px, 20px, 0 );
-                    padding: 0;
+                    font-weight: $font-weight--bold;
+                    color: $modalHeader;
+                    position: relative;
+                    margin: 10px 0;
+                    padding: 0 10px;
+                    text-transform: uppercase;
+                    text-align: center;
                 }
 
                 .modal-item-removal-list {
@@ -138,6 +193,7 @@ $modalButtonAltText: {{ settings.discount_modal_button_alt_text }};
                     list-style: none;
                     padding: 0;
                     margin: 30px 0 35px;
+                    padding: 0 10px;
 
                     .modal-removal-item {
                         width: 100%;
@@ -148,8 +204,9 @@ $modalButtonAltText: {{ settings.discount_modal_button_alt_text }};
                         .modal-removal-image {
                             width: 47px;
                             height: 100%;
+                            background-position: center, center;
                             background-repeat: no-repeat;
-                            background-size: cover;
+                            background-size: contain;
                             margin-right: 5px;
                         }
 
@@ -163,7 +220,7 @@ $modalButtonAltText: {{ settings.discount_modal_button_alt_text }};
                 }
 
                 .modal-item-btn-confirm {
-                    margin: 0 0 10px;
+                    margin: 0 0 20px;
                     width: 200px;
                 }
             }
