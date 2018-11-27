@@ -1,12 +1,13 @@
 const PropTypes = require( 'prop-types' );
 const fetch = require( 'isomorphic-fetch' );
-const ModalItem = require( './ModalItem.js' );
+const ModalList = require( './ModalList.js' );
 const ModalRemoved = require( './ModalRemoved.js' );
 
 class DiscountModal extends React.Component {
 	constructor( props ) {
 		super( props );
 		this.state = {
+			disableButtons: false,
 			showModal: false
 		}
 
@@ -15,6 +16,7 @@ class DiscountModal extends React.Component {
 		this.handleSelection = this.handleSelection.bind( this );
 		this.modalShowHide = this.modalShowHide.bind( this );
 		this.onAddItemError = this.onAddItemError.bind( this );
+		this.toggleButtonEnable = this.toggleButtonEnable.bind( this );
 	}
 
 	componentDidMount() {
@@ -31,6 +33,7 @@ class DiscountModal extends React.Component {
 		// SUCCESS : Callback for success handling
 		const markUsedOnSuccess = () => {
 			this.props.markDiscountUsed( discount.discountId );
+			this.toggleButtonEnable( true ); // re-enable the UI buttons in case there are more items for user to add
 		};
 
 		// ADD : Use API from ajax-cart.js.liquid to add item to cart!
@@ -64,7 +67,7 @@ class DiscountModal extends React.Component {
 	modalShowHide() {
 		const { discountsToApply, doNotShowAgain, removedDiscounts } = this.props;
 		
-		let showHide = !doNotShowAgain && ( discountsToApply.length > 0 || removedDiscounts.length > 0 )? true : false;
+		let showHide = !doNotShowAgain && ( discountsToApply.length > 0 || removedDiscounts.length > 0 ) ? true : false;
 		if ( this.state.showModal !== showHide ) {
 			this.setState({ showModal: showHide });
 		}
@@ -75,38 +78,38 @@ class DiscountModal extends React.Component {
 		// TODO : Handle errors better here! -- Probably want to set up a message into the template that shows error message
 	}
 
+	toggleButtonEnable( passedValue ) {
+		const newState = passedValue ? passedValue : !this.state.disableButtons;
+		this.setState({
+			disableButtons: newState
+		});
+	}
+
 
 
 	render() {
-		const { 
-			cartTotal,
+		const {
 			confirmRemoval,
 			discountsToApply,
-			markDiscountUsed,
-			removedDiscounts,
-			usedDiscounts
+			removedDiscounts
 		} = this.props;
 
 
 		// CHECK : OFFER DISCOUNT : Do we have any discounts to offer the user?
-		var modalItems = null;
+		var modalList = null;
 		if ( discountsToApply.length > 0 ) {
-			modalItems = discountsToApply.map( discount => {
-				return (
-					<ModalItem
-						discountId={ discount.discountId }
-						handleSelection={ this.handleSelection }
-						imageUrl={ discount.imageUrl }
-						message={ discount.message }
-						title={ discount.title } />
-				);
-			})
+			modalList = (
+				<ModalList 
+					discountsToApply={ discountsToApply }
+					handleSelection={ this.handleSelection }
+					toggleButtonEnable={ this.toggleButtonEnable } />
+			);
 		}
 
 		// CHECK : ALERT REMOVAL : Were any discounts removed for not meeting the requirements? 
 		//		   (Hide if offering discounts at same time, subsequent render will kick us into here)
 		var removedItems = null;
-		if ( !modalItems && removedDiscounts.length > 0 ) {
+		if ( !modalList && removedDiscounts.length > 0 ) {
 			removedItems = (
 				<ModalRemoved
 					confirmRemoval={ confirmRemoval }
@@ -122,11 +125,12 @@ class DiscountModal extends React.Component {
 				className={ this.state.showModal ? 'show-modal' : '' }>
 
 				<div id="react-discount-modal-content">
-					{ modalItems }
+					
+					{ modalList }
 					{ removedItems }
 
 					<div id="react-discount-do-not-show" 
-						onClick={ this.props.enableDoNotShowAgain }>Do not show deals again</div>
+						 onClick={ this.props.enableDoNotShowAgain }>Do not show deals again</div>
 				</div>
 			</div>
 		);
