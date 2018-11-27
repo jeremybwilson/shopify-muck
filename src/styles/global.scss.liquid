@@ -132,8 +132,17 @@ body > .page-wrap {
 }
 
 
-// Buttons
+// CART : Don't show ajax cart slide out when on the cart page already
+body.cart {
+  overflow-y: auto;
 
+  #CartDrawer {
+    display: none !important; // override inline styles applied via js
+  }
+}
+
+
+// Buttons
 .button,
 button,
 input[type="submit"],

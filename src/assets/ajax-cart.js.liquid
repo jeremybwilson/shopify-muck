@@ -67,9 +67,9 @@ ShopifyAPI.onError = function(XMLHttpRequest, textStatus) {
 };
 
 /*============================================================================
-  POST to cart/add.js returns the JSON of the cart
-    - Allow use of form element instead of just id
-    - Allow custom error callback
+  POST to cart/add.js 
+    - Returns 'line_item' object + original form
+    - Usage for Form submissions via product form templates
 ==============================================================================*/
 ShopifyAPI.addItemFromForm = function(form, callback, errorCallback) {
   var params = {
@@ -78,18 +78,21 @@ ShopifyAPI.addItemFromForm = function(form, callback, errorCallback) {
     data: jQuery(form).serialize(),
     dataType: 'json',
     success: function(line_item) {
+      
+      // CALLBACK : Fire callback if one was provided
       if ((typeof callback) === 'function') {
         callback(line_item, form);
-      }
-      else {
-        ShopifyAPI.onItemAdded(line_item, form);
+      
+      // DEFAULT : Default to updating cart with line item added
+      } else {
+        ajaxCart.itemAddedCallback( line_item );
       }
     },
     error: function(XMLHttpRequest, textStatus) {
       if ((typeof errorCallback) === 'function') {
         errorCallback(XMLHttpRequest, textStatus);
-      }
-      else {
+      
+      } else {
         ShopifyAPI.onError(XMLHttpRequest, textStatus);
       }
     }
@@ -97,42 +100,94 @@ ShopifyAPI.addItemFromForm = function(form, callback, errorCallback) {
   jQuery.ajax(params);
 };
 
+
+/*============================================================================
+  POST to cart/add.js returns the JSON of the cart
+    - Direct add item call by Variant ID
+==============================================================================*/
+ShopifyAPI.addItemById = function( variantId, callback, errorCallback, isGift ) {
+  var bodyData = "form_type=product&utf8=%E2%9C%93&id=" + variantId;
+  bodyData = isGift ? bodyData + "&properties[discountItem]=true" : bodyData;
+  
+  // SETUP : Build the fetch call
+  var params = {
+    type: 'POST',
+    url: '/cart/add.js',
+    data: bodyData,
+    dataType: 'json',
+    success: function(line_item) {
+      
+      // CALLBACK : Fire any provided success callbacks
+      if ((typeof callback) === 'function') {
+        callback( line_item );
+      } 
+
+      // UPDATE : ALways inform Ajax Cart of the Additions
+      ajaxCart.itemAddedCallback( line_item );
+    },
+    error: function(XMLHttpRequest, textStatus) {
+      
+      // CALLBACK : Fire any provided error callbacks
+      if ((typeof errorCallback) === 'function') {
+        errorCallback(XMLHttpRequest, textStatus);
+
+      // DEFAULT : Flow through default error alert flow if no callback given
+      } else {
+        ShopifyAPI.onError(XMLHttpRequest, textStatus);
+      }
+    }
+  };
+
+  // FIRE : Submit our cart item to add
+  jQuery.ajax(params);
+};
+
+
+
 // Get from cart.js returns the cart in JSON
 ShopifyAPI.getCart = function(callback) {
   jQuery.getJSON('/cart.js', function (cart, textStatus) {
     if ((typeof callback) === 'function') {
       callback(cart);
-    }
-    else {
+    
+    } else {
       ShopifyAPI.onCartUpdate(cart);
     }
   });
 };
 
 // POST to cart/change.js returns the cart in JSON
-ShopifyAPI.changeItem = function(line, quantityChange, callback) {  
+ShopifyAPI.changeItem = function(line, quantityChange, callback, errorCallback) {  
   var params = {
     type: 'POST',
     url: '/cart/change.js',
     data: 'quantity=' + quantityChange + '&line=' + line,
     dataType: 'json',
     success: function(cart) {
+
+      // CALLBACK : Custom callback function provided?
       if ((typeof callback) === 'function') {
 
-        // NOTE: If call returns with cartItem Quantity LESS than quantityChange, it means
-        //       that this product has no more available units.
+        // NO MORE STOCK: 'cartItem' quantity < 'quantityChange' === no more units available
         var cartItem = cart.items[line-1];
         if ( cartItem && quantityChange > cartItem.quantity ) {
           alert('{{ settings.ajax_cart_low_stock_text }}');
         };
-        callback(cart);
+
+        callback( cart );
       }
-      else {
-        ShopifyAPI.onCartUpdate(cart);
-      }
+
+      // CALLBACK : Trigger standard cart update callback
+      ajaxCart.cartUpdateCallback( cart );
     },
+
     error: function(XMLHttpRequest, textStatus) {
-      ShopifyAPI.onError(XMLHttpRequest, textStatus);
+      if ((typeof errorCallback) === 'function') {
+        errorCallback( XMLHttpRequest, textStatus );
+
+      } else {
+        ShopifyAPI.onError(XMLHttpRequest, textStatus);
+      }
     }
   };
   jQuery.ajax(params);
@@ -209,6 +264,23 @@ var ajaxCart = (function(module, $) {
     // Override defaults with arguments
     $.extend(settings, options);
 
+    // HANDLEBARS : Add our template helper functions to handlebars for cart logic
+    Handlebars.registerHelper('if_eq', function(a, b, opts) {
+      if (a == b) {
+          return opts.fn(this);
+      } else {
+          return opts.inverse(this);
+      }
+    });
+
+    Handlebars.registerHelper('if_not_eq', function(a, b, opts) {
+      if (a != b) {
+          return opts.fn(this);
+      } else {
+          return opts.inverse(this);
+      }
+    });
+
     // Select DOM elements
     $formContainer     = $(settings.formSelector);
     $cartContainer     = $(settings.cartContainer);
@@ -261,7 +333,6 @@ var ajaxCart = (function(module, $) {
 
       // Remove any previous quantity errors
       $('.qty-error').remove();
-
       ShopifyAPI.addItemFromForm(evt.target, itemAddedCallback, itemErrorCallback);
     });
   };
@@ -288,6 +359,13 @@ var ajaxCart = (function(module, $) {
     // Update quantity and price
     updateCountPrice(cart);
     buildCart(cart);
+
+    // UPDATE : Event trigger for the Discounts Engine (React Component)
+    $.event.trigger({
+        type: "cartUpdated",
+        time: new Date(),
+        cart: cart
+    });
   };
 
   trackCartStart = function() {
@@ -514,9 +592,14 @@ var ajaxCart = (function(module, $) {
     trackCartStart();
 
     // Reprint cart on short timeout so you don't see the content being removed
-    setTimeout(function() {
-      ShopifyAPI.getCart(buildCart);
-    }, 150)
+    ShopifyAPI.getCart(buildCart);
+
+    // UPDATE : Event trigger for the Discounts Engine (React Component)
+    $.event.trigger({
+        type: "cartUpdated",
+        time: new Date(),
+        cart: cart
+    });
   };
 
   createQtySelectors = function() {
@@ -611,8 +694,11 @@ var ajaxCart = (function(module, $) {
 
   module = {
     init: init,
-    load: loadCart,
-    initAddToCartButtons: initAddToCartButtons
+    initAddToCartButtons: initAddToCartButtons,
+    itemAddedCallback: itemAddedCallback,
+    itemErrorCallback: itemErrorCallback,
+    cartUpdateCallback: cartUpdateCallback,
+    load: loadCart
   };
   
   

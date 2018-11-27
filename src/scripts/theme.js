@@ -62,6 +62,9 @@ if (window.NodeList && !NodeList.prototype.forEach) {
     };
 }
 
+// POLYFILL : Object.assign (IE 11)
+require( 'es6-object-assign/auto' ); //812 bytes, pretty safe and small :D 
+
  /**
  * ----------------------------------------------------------------------------------------------------
  * AJAX CART
@@ -158,7 +161,9 @@ if (window.NodeList && !NodeList.prototype.forEach) {
         this.$activeSource = $(evt.currentTarget);
       }
 
-      if (this.drawerIsOpen && !externalCall) {
+      // CHECK : see if we are already on cart page, and therefore don't need to open the drawer
+      var onCartPage = window.location.pathname.indexOf( '/cart' ) !== -1;
+      if (onCartPage || ( this.drawerIsOpen && !externalCall )) {
         return this.close();
       }
 
@@ -813,6 +818,20 @@ a.prototype[n]=function(){var n=arguments;return e&&!this.__chain__?t.apply(this
  * http://benalman.com/about/license/
  */
 // (function(b,c){var $=b.jQuery||b.Cowboy||(b.Cowboy={}),a;$.throttle=a=function(e,f,j,i){var h,d=0;if(typeof f!=="boolean"){i=j;j=f;f=c}function g(){var o=this,m=+new Date()-d,n=arguments;function l(){d=+new Date();j.apply(o,n)}function k(){h=c}if(i&&!h){l()}h&&clearTimeout(h);if(i===c&&m>e){l()}else{if(f!==true){h=setTimeout(i?k:l,i===c?e-m:e)}}}if($.guid){g.guid=j.guid=j.guid||$.guid++}return g};$.debounce=function(d,e,f){return f===c?a(d,e,false):a(d,f,e!==false)}})(this);
+
+
+
+/*
+ * ----------------------------------------------------------------------------------------------------
+ * DISCOUNT ENGINE (React Component)
+ * ----------------------------------------------------------------------------------------------------
+ */
+require( './react-components/discounts/DiscountParent.js' );
+
+
+
+
+
 
 /*============================================================================
   Sections

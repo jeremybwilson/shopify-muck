@@ -29,7 +29,7 @@
   {{ 'font-awesome.css' | asset_url | stylesheet_tag }}
   {{ 'queries.css' | asset_url | stylesheet_tag }}
   {{ 'theme.scss.css' | asset_url | stylesheet_tag }}
-  {% include 'bc-sf-filter-style' %}
+  {{ 'bc-sf-filter.scss.css' | asset_url | stylesheet_tag }} {% comment %} Filter App Styling {% endcomment %}
 
 
   <!-- Typography
@@ -165,9 +165,13 @@
     {% section 'footer' %}
   </div> <!-- close the shifter-page class -->
 
-  {% include 'cookie-banner' %}
 
+  <!-- Global Components
+  ================================================== -->
+  {% include 'cookie-banner' %}
   {% include 'popup' %}
+  {% include 'react-discounts' %}
+
 
   <a href="#" class="scrollup"><i class="icon-chevron-up icon-2x"></i></a>
 
