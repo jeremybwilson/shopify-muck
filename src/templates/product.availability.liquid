@@ -6,7 +6,7 @@
 			{%- if variant.available -%}
 				{
 					"variantId": {{- variant.id -}},
-					"imageUrl": "{{- variant.image.src | img_url: '500x' -}}",
+					"imageUrl": "{{- variant.image.src | img_url: '400x' -}}",
 					"title": "{{ product.title | replace: '"', '\"' | strip }}"
 				},
 			{%- endif -%}
