@@ -26,21 +26,44 @@ class DiscountManager extends React.Component {
 		super( props );
 
 		// CONFIG : Discount Configuration Manifest
-		this.config = {
-			cookieExpireInDays: 60,				// COOKIE : # of days before cookie expires
-			thresholdDiscounts: [
-				// ..:: SAMPLE ::..
-				// {
-				// 	discountId: 1,					// DISCOUNT ID -- Unique identifier for this discount, so we can tell if its already applied
-				// 	giftId: 17667671031906, 		// VARIANT ID --- Item being given for free, see docs for formatting rules
-				// 	grantType: 'all',				// GRANT TYPE --- Does user get this gift if higher threshold is met? -- (OPTIONS: 'all' or 'pick')
-				// 	inventoryId: 17275313422434,	// INVENTORY ID - Variant ID of full-price original version (gift is untracked usually, uses full-cost variant to see how many left)
-				// 	message: "For spending over $200, here is your free gift!",
-				// 	minSpend: 200,					// THRESHOLD ---- Dollar (or current currency) amount to trigger free gift
-				// 	productHandle: 'mens-northwest-territory-socks'
-				// }
-			]
-		};
+		this.config = props.config;
+		this.config.thresholdDiscounts = this.config.thresholdDiscounts || []; // Safety net
+
+		/* EXAMPLE CONFIG : 3 Gift items set to "Pick" after spending $200+ in cart total (Sample is on muckboot-dev)
+			{
+				cookieExpireInDays: 60,						// COOKIE : # of days before cookie expires
+				thresholdDiscounts: [
+					// SAMPLE : Pick Style, spend over 200 and pick among these..		
+					{
+						discountId: 1,						// DISCOUNT ID -- Unique identifier for this discount, so we can tell if its already applied
+						displayName: 'Wigwam Hat (Black)',	// DISPLAY NAME - Name displayed under item in the ModalItem component (Falls back to "title" provided during the item inventory check)
+						giftId: 18107441610850, 			// VARIANT ID --- Item being given for free, see docs for formatting rules
+						grantType: 'pick',					// GRANT TYPE --- Does user get this gift if higher threshold is met? -- (OPTIONS: 'all' or 'pick')
+						inventoryId: 18107441610850,		// INVENTORY ID - Variant ID of full-price original version (gift is untracked usually, uses full-cost variant to see how many left)
+						minSpend: 200,						// THRESHOLD ---- Dollar (or current currency) amount to trigger free gift
+						productHandle: 'wigwam-winter-hat'
+					},
+					{
+						discountId: 2,						// DISCOUNT ID -- Unique identifier for this discount, so we can tell if its already applied
+						displayName: 'Wigwam Hat (Gray)',	// DISPLAY NAME - Name displayed under item in the ModalItem component
+						giftId: 18107441643618, 			// VARIANT ID --- Item being given for free, see docs for formatting rules
+						grantType: 'pick',					// GRANT TYPE --- Does user get this gift if higher threshold is met? -- (OPTIONS: 'all' or 'pick')
+						inventoryId: 18107441643618,		// INVENTORY ID - Variant ID of full-price original version (gift is untracked usually, uses full-cost variant to see how many left)
+						minSpend: 200,						// THRESHOLD ---- Dollar (or current currency) amount to trigger free gift
+						productHandle: 'wigwam-winter-hat'
+					},
+					{
+						discountId: 3,						// DISCOUNT ID -- Unique identifier for this discount, so we can tell if its already applied
+						displayName: 'Wigwam Hat (Natural)',// DISPLAY NAME - Name displayed under item in the ModalItem component
+						giftId: 18107441676386, 			// VARIANT ID --- Item being given for free, see docs for formatting rules
+						grantType: 'pick',					// GRANT TYPE --- Does user get this gift if higher threshold is met? -- (OPTIONS: 'all' or 'pick')
+						inventoryId: 18107441676386,		// INVENTORY ID - Variant ID of full-price original version (gift is untracked usually, uses full-cost variant to see how many left)
+						minSpend: 200,						// THRESHOLD ---- Dollar (or current currency) amount to trigger free gift
+						productHandle: 'wigwam-winter-hat'
+					}
+				]
+			}
+		*/
 
 		// ENABLED : Did the user disable showing the modal?
 		const doNotShowAgain = $.cookie( 'BOL_hide_discounts_modal' );
@@ -71,8 +94,9 @@ class DiscountManager extends React.Component {
 			usedDiscounts: savedUsedDiscounts || []
 		};
 
+		this.inFlightIds = [];
+
 		// EVENTS : Bind functions to current context
-		
 		this.calcCartTotal = this.calcCartTotal.bind( this );
 		this.calcThresholdDiscounts = this.calcThresholdDiscounts.bind( this );
 		this.confirmRemoval = this.confirmRemoval.bind( this );
@@ -125,12 +149,21 @@ class DiscountManager extends React.Component {
 		// CHECK : Did we meet any discount thresholds? (Safety, as this evolves..)
 		if ( thresholdDiscounts.length > 0 ) {
 
-			// BUILD : ARRAY : Discounts NOT used yet + Past "minSpend" Threshold
+			// BUILD : ARRAY : Discounts NOT used yet + Past "minSpend" Threshold + No other "Pick" discounts at same minSpend are met
 			metDiscounts = thresholdDiscounts.filter( rule => {
 				const hasBeenUsed = usedDiscounts.find( used => used.discountId === rule.discountId );
 				const hasBeenRejected = rejectedDiscounts.find( rejectId => rejectId === rule.discountId );
 				const hasBeenMet = rule.minSpend <= cartTotal;
-				return !hasBeenUsed && !hasBeenRejected && hasBeenMet;
+
+				// PICK : grantType === 'pick' + usedDiscount marked at same minSpend and same grantType of pick
+				const otherOptionPicked = usedDiscounts.find( used => {
+					const sameMinSpend = used.minSpend === rule.minSpend;
+					const isGrantTypePick = used.grantType === 'pick'
+					return sameMinSpend && isGrantTypePick;
+				});
+
+
+				return !hasBeenUsed && !hasBeenRejected && !otherOptionPicked && hasBeenMet;
 			});
 		}
 		return metDiscounts; //Extra protection is all here..
@@ -161,7 +194,7 @@ class DiscountManager extends React.Component {
 			})
 			.catch( err => {
 				const theError = error && error.message ? error.message : error || 'Request failed for an unknown reason with no error object returned..';
-				console.log( `[ DiscountModal -- fetchProduct() ] : Failed request :\n${ theError }` );
+				console.log( `[ DiscountManager -- fetchProduct() ] : Failed request :\n${ theError }` );
 				throw new Error( theError );
 			});
 	}
@@ -176,6 +209,7 @@ class DiscountManager extends React.Component {
 
 			// UPDATE : Create new array to for state-based render update
 			this.setState( state => {
+
 				// USED : Update the used list with our fully-built discount obj (includes image_url)
 				const appliedDiscount = state.discountsToApply.find( discount => discount.discountId === discountId );
 		    	const updatedUsedList = appliedDiscount ? state.usedDiscounts.concat( [ appliedDiscount ] ) : state.usedDiscounts;
@@ -221,7 +255,7 @@ class DiscountManager extends React.Component {
 			}
 
 			// ADD CHECK : IN STOCK : Are the 'discountsToApply' in stock? 
-			if ( discountsToApply.length > 0 ) {
+			if ( discountsToApply.length !== this.state.discountsToApply.length || discountsToApply.length > 0 ) {
 				var inStockDiscounts = [];
 
 				// ITERATE : Map each discount to check if its gift is available
@@ -230,7 +264,7 @@ class DiscountManager extends React.Component {
 						return this.fetchProduct( discount.productHandle )
 							.then( res => {
 
-								// IN STOCK : Do we have in-stock variants?
+								// IN STOCK : Are any variants in the giftData available? 
 								if ( res && res.availableVariants ) {
 									const inStockObj = res.availableVariants.find( variant => variant.variantId === discount.inventoryId );
 
@@ -256,17 +290,18 @@ class DiscountManager extends React.Component {
 
 				// CHECK : Do we still meet this deals requirements?
 				if ( matchedDiscount && matchedDiscount.minSpend > newCartTotal ) {
-
+					
 					// CHECK : Have we already flagged this item to be removed?
 					var isAlreadyMarked = discountsToRemove.find( rule => rule.discountId === matchedDiscount.discountId ); //Undef if not found
+					var isInFlight = this.inFlightIds.find( id => id === matchedDiscount.discountId );
 
 					// SAFETY : Ensure item was in cart still
-					if ( !isAlreadyMarked ) {
+					if ( !isAlreadyMarked && !isInFlight ) {
 						matchedDiscount.line_item = index + 1; // +1 as line_item starts @ 1 not 0 for API calls
 						discountsToRemove.push( matchedDiscount );
 					}
 				}
-			})
+			});
 
 			// REMOVE CHECK : PROCESS REMOVALS : Pull any items that are unmet and alert user to their removal
 			if ( discountsToRemove.length > 0 ) {
@@ -346,25 +381,40 @@ class DiscountManager extends React.Component {
 	}
 
 	removeCartItem( line_item, discount ) {
+		// PRE-FLIGHT : Remove current entry from discountsToRemove so subsequent cart changes don't re-fire this guy during flight
+		var _this = this;
+
+		// RETURN : Promisifed request handler
 		return new Promise(function (resolve, reject) {
 
 			// SUCCESS : Callback for success handling
 			const onSuccess = ( cart ) => {
+				_this.inFlightIds = _this.inFlightIds.filter( id => id === discount.discountId );
 				resolve( discount );
 			};
 
 			// FAILED : Callback for failure handling
 			const onFailure = (XMLHttpRequest, textStatus) => {
+				_this.inFlightIds = _this.inFlightIds.filter( id => id === discount.discountId );
 				reject( XMLHttpRequest, textStatus );
 			};
 
 			// REMOVE : Use API from ajax-cart.js.liquid to set item quantity to 0 for a removal
-			ShopifyAPI.changeItem( 
-				line_item, 	// LINE ITEM : Which cart item is being removed
-				0,			// AMOUNT : Set quantity to 0 to remove an item
-				onSuccess,	// SUCCESS : Callback Handler for Successful Updates
-				onFailure	// FAILED : Callback handler for failed updates
-			);
+			if ( _this.inFlightIds.indexOf( discount.discountId ) === -1 ) {
+				
+				// IN FLIGHT : Add Discount ID to in-flight manifest
+				_this.inFlightIds.push( discount.discountId );
+				
+				// FIRE : Enact the removal!
+				ShopifyAPI.changeItem(
+					line_item, 	// LINE ITEM : Which cart item is being removed
+					0,			// AMOUNT : Set quantity to 0 to remove an item
+					onSuccess,	// SUCCESS : Callback Handler for Successful Updates
+					onFailure	// FAILED : Callback handler for failed updates
+				);
+			} else {
+				reject( '[ DiscountManager -- removeCartItem() ] : Request to remove Line Item #' + line_item + ' for Discount ID:' + discount.discountId + ' is already in flight...' );
+			}
 		});
 	}
 
