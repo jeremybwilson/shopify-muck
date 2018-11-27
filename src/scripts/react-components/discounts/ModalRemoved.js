@@ -15,7 +15,7 @@ class ModalRemoved extends React.Component {
 			return(
 				<li className="modal-removal-item">
 					<div className="modal-removal-image" style={{ backgroundImage: `url(${discount.imageUrl || ''} )` }}></div>
-					<div className="modal-removal-title">{ discount.title }</div>
+					<div className="modal-removal-title">{ discount.displayName || discount.title || 'Free Gift Item' }</div>
 				</li>
 			);
 		});
@@ -23,7 +23,7 @@ class ModalRemoved extends React.Component {
 		
 		return (
 		  <div className="modal-item removed-discounts">
-			<div className="modal-item-message">Your cart no longer meets the requirements for these deals:</div>
+			<div className="modal-item-removal-header">Your cart no longer meets the requirements for these deals:</div>
 			<ul className="modal-item-removal-list">
 				{ removedItems }
 			</ul>

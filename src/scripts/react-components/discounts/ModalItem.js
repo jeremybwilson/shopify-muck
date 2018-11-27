@@ -3,42 +3,35 @@ const PropTypes = require( 'prop-types' );
 class ModalItem extends React.Component {
 	constructor( props ){
 		super( props );
-
-		this.state = {
-			disableButtons: false
-		}
-
-		this.selectButton = this.selectButton.bind(this);
+		this.addToCart = this.addToCart.bind(this);
 	}
 
-	selectButton( e ) {
-		this.setState({ disableButtons: true });
-		const addToCart = e.target.className.indexOf( 'add' ) > -1;
-		const { discountId, handleSelection } = this.props;
+	addToCart( e ) {
+		const {
+			discountId,
+			handleSelection,
+			toggleButtonEnable
+		} = this.props;
 
-		handleSelection( discountId, addToCart );
+		toggleButtonEnable( false );			// BUTTONS : Prevent multiple clicks
+		handleSelection( discountId, true );	// ADD : Submit item to the cart
 	}
 
 	render() {
-		const { disableButtons } = this.state;
-		var { 
+		var {
+			grantType,
 			handleSelection, 
 			imageUrl, 
-			message, 
-			title 
+			name 
 		} = this.props;
-		
-		message = message || "You've earned a free gift!";
 
 		return (
 		  <div className="modal-item">
-			<div className="modal-item-message">{ message }</div>
 			<div className="modal-item-image" style={{ backgroundImage: `url(${imageUrl} )` }}></div>
-			<div className="modal-item-title">{ title }</div>
+			<div className="modal-item-name">{ name }</div>
 
-			<div className={ `modal-item-buttons ${disableButtons ? 'disable-buttons' : '' }` }>
-				<button className="modal-item-btn-add" onClick={ this.selectButton }>Add to Cart</button>
-				<button className="modal-item-btn-no"  onClick={ this.selectButton }>No Thanks</button>
+			<div className="modal-item-buttons">
+				<button className="modal-item-btn-add" onClick={ this.addToCart }>{ grantType === 'pick' ? 'Select' : 'Add' }</button>
 			</div>
 		  </div>
 		);
@@ -48,10 +41,11 @@ class ModalItem extends React.Component {
 
 ModalItem.propTypes = {
 	discountId: PropTypes.number.isRequired,
+	grantType: PropTypes.string.isRequired,
 	handleSelection: PropTypes.func.isRequired,
 	imageUrl: PropTypes.string.isRequired,
-	message: PropTypes.string,
-	title: PropTypes.string.isRequired
+	name: PropTypes.string.isRequired,
+	toggleButtonEnable: PropTypes.func.isRequired
 }
 
 module.exports = ModalItem;
