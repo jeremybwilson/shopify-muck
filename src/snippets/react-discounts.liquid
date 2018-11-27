@@ -3,6 +3,9 @@
 		- Liquid Template for rendering global components into
 
 	INFO :
-		- Config managed in scripts > react-components > react-discounts > DiscountsParent.js
+		- Config is BASE64 Encoded, Stringified JSON object. Decodes itself in DiscountParent.js
+
 {% endcomment %}
-<div id="react-discounts"></div>
+{% if settings.discount_modal_enable %}
+	<div id="react-discounts" data-discount-config="{{ settings.discount_modal_config }}"></div>
+{% endif %}
