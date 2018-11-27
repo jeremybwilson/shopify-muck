@@ -67,9 +67,11 @@
     <div class="select" {% if product.variants.size == 1 or section.settings.product_variants == 'swatches' %}style="display: none;"{% endif %}>
       <select id="product-select-{{ product.id }}" name='id'>
         {% for variant in product.variants %}
-          <option value="{{ variant.id }}" {% if variant == current_variant %}selected="selected"{% endif %}>
-            {{ variant.title }} - {{ variant.price | money }}
-          </option>
+          {% unless variant.metafields.BOL.isDiscountItem == true %}
+            <option value="{{ variant.id }}" {% if variant == current_variant %}selected="selected"{% endif %}>
+              {{ variant.title }} - {{ variant.price | money }}
+            </option>
+          {% endunless %}
         {% endfor %}
       </select>
     </div><!-- .select -->
@@ -129,9 +131,11 @@
 
     <select id="product-select-{{ product.id }}" name="id" {% if product.variants.size == 1 or section.settings.product_variants == 'swatches' %}style="display: none;"{% endif %}>
       {% for variant in product.variants %}
-        <option value="{{ variant.id }}" {% if variant == current_variant %}selected="selected"{% endif %}>
-          {{ variant.title }} - {{ variant.price | money }}
-        </option>
+        {% unless variant.metafields.BOL.isDiscountItem == true %}
+          <option value="{{ variant.id }}" {% if variant == current_variant %}selected="selected"{% endif %}>
+            {{ variant.title }} - {{ variant.price | money }}
+          </option>
+        {% endunless %}
       {% endfor %}
     </select><!-- .select -->
     {% else %}
