@@ -23,7 +23,7 @@
   CYCLE 2 - Cycle through the available values (ie: Color->Black, Color-> Red) {% endcomment %}
 
   {% for value in option.values %}
-    {% unless value contains 'Free Gift' %}
+    {% unless value contains 'Gift Item' or value contains 'Free Gift' %}
       {% assign image_url = value | handle | prepend: 'swatch_' | append: '.png' | asset_url %}
       {% assign css_color = value | split: ' ' | last | handle %}
       {% capture id %}swatch-{{ option.position }}-{{ value | handle }}{% endcapture %}

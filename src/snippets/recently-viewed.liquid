@@ -32,11 +32,12 @@
           <h3>${title}</h3>
         </a>
         <div class="price">
+
           {{if price < compare_at_price}}
             <div class="onsale"><span class="money">${Shopify.formatMoney(price)}</span></div>
             <div class="was"><span class="money">${Shopify.formatMoney(compare_at_price)}</span></div>
-          {{else}}
-          <div class="prod-price"><span class="money">${Shopify.formatMoney(price)}</span></div>
+          {{else price > 0}}
+            <div class="prod-price"><span class="money">${Shopify.formatMoney(price)}</span></div>
           {{/if}}
         </div>
       </div>
