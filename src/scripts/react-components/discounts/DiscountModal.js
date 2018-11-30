@@ -34,6 +34,11 @@ class DiscountModal extends React.Component {
 		const markUsedOnSuccess = () => {
 			this.props.markDiscountUsed( discount.discountId );
 			this.toggleButtonEnable( true ); // re-enable the UI buttons in case there are more items for user to add
+
+			// The /Cart route page itself is a shitshow and doesn't play nice with the ajax cart, so lets just refresh it to reflect the added item
+			if ( window.location.pathname.indexOf( '/cart' ) > -1 ) {
+				window.location.reload();
+			}
 		};
 
 		// ADD : Use API from ajax-cart.js.liquid to add item to cart!
