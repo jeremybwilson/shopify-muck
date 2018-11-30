@@ -55,17 +55,17 @@ class DiscountModal extends React.Component {
 		return discountsToApply.find( rule => rule.discountId === discountId );
 	}
 
-	handleSelection( discountId, addToCart = false ) {
-		// FIND : Lookup discount by 'discountId'
-		const discount = this.getDiscountById( discountId );
-		
+	handleSelection( discountIds, addToCart = false ) {
 		// ADD : If user clicked "Add to Cart"
 		if ( addToCart ) {
-			this.addItemToCart( discount ); //Cart marks as used once added successfully
+			discountIds.forEach( discountId => {
+				const discount = this.getDiscountById( discountId );
+				this.addItemToCart( discount ); //Cart marks as used once added successfully
+			});
 		
 		// NO THANKS : Mark discount as used
 		} else {
-			this.props.rejectDiscount( discountId );
+			this.props.rejectDiscount( discountIds );
 		}
 	}
 
@@ -149,8 +149,7 @@ DiscountModal.propTypes = {
 	enableDoNotShowAgain: PropTypes.func.isRequired,
 	markDiscountUsed: PropTypes.func.isRequired,
 	rejectDiscount: PropTypes.func.isRequired,
-	removedDiscounts: PropTypes.array,
-	usedDiscounts: PropTypes.array
+	removedDiscounts: PropTypes.array
 }
 
 module.exports = DiscountModal;
