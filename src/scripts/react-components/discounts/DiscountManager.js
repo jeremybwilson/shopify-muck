@@ -276,8 +276,27 @@ class DiscountManager extends React.Component {
 							});
 					})
 
-				// ADD CHECK : UPDATE : Set state to trigger render cycle with discountsToApply populated
+				// ADD CHECK : CART ITEMS : Ensure we don't already have a deal item in the cart that would prevent other rules being met
 				).then( () => {
+					cartItems.forEach( item => {
+						const matchedDiscount = inStockDiscounts.find( discount => discount.giftId === item.variant_id );
+
+						// MATCH : Remove any other discounts that would be prevented by having added this one
+						if ( matchedDiscount ) {
+							
+							// FILTER : Remove any other discounts that are pick type and under our spend threshold
+							inStockDiscounts = inStockDiscounts.filter( discount => {
+								const spendConflict = discount.minSpend <= matchedDiscount.minSpend;
+								const isPickType = discount.grantType === 'pick';
+
+								if ( !spendConflict && !isPickType ) {
+									return discount;
+								}
+							});
+						}
+					});
+
+					// UPDATE : Set the discounts we have into state so they can be offered
 					this.setState({ discountsToApply: inStockDiscounts });
 				});
 			}
@@ -425,8 +444,7 @@ class DiscountManager extends React.Component {
 			cartTotal, 
 			discountsToApply, 
 			doNotShowAgain, 
-			removedDiscounts, 
-			usedDiscounts 
+			removedDiscounts
 		} = this.state;
 
 		return (
@@ -439,8 +457,7 @@ class DiscountManager extends React.Component {
 					enableDoNotShowAgain ={ this.enableDoNotShowAgain }
 					markDiscountUsed={ this.markDiscountUsed }
 					rejectDiscount={ this.rejectDiscount }
-					removedDiscounts={ removedDiscounts }
-					usedDiscounts={ usedDiscounts } />
+					removedDiscounts={ removedDiscounts } />
 			</div>
 		);
 	}
