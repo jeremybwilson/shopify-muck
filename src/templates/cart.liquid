@@ -99,7 +99,11 @@
               <span class="money">{{ item.price | money }}</span>{% if item.variant.compare_at_price > item.price %}&nbsp;<del><span class="money">{{ item.variant.compare_at_price | money }}</span></del>{% endif %}
             </td>
             <td class="cart-quantity">
-              <input type="text" class="cart-qty" size="4" name="updates[{{ item.id }}]" id="updates_{{ item.variant.id }}" value="{{ item.quantity }}" onfocus="this.select();"/>
+              {% if item.title contains "Free Gift" or item.title contains "Gift Item" %}
+                <div id="updates_{{ item.variant.id }}" class="cart-qty gift-item-cart-qty">{{ item.quantity }}</div>
+              {% else %}
+                <input type="text" class="cart-qty" size="4" name="updates[{{ item.id }}]" id="updates_{{ item.variant.id }}" value="{{ item.quantity }}" onfocus="this.select();"/>
+              {% endif %}
             </td>
             <td class="cart--total-price">
               <span class="money">{{ item.line_price | money }}</span>
