@@ -141,29 +141,40 @@ class DiscountManager extends React.Component {
 		return cartTotal;
 	}
 
-	calcThresholdDiscounts( cartTotal ) {
-		const { thresholdDiscounts } = this.config;
-		const { rejectedDiscounts, usedDiscounts } = this.state;
+	calcThresholdDiscounts( cartTotal, cartItems ) {
+		var { thresholdDiscounts } = this.config;
+		const { rejectedDiscounts } = this.state;
 		var metDiscounts = [];
 
 		// CHECK : Did we meet any discount thresholds? (Safety, as this evolves..)
 		if ( thresholdDiscounts.length > 0 ) {
 
+			// SCAN CART : Check cart items to ensure no other discounts are met, if they are lets remove their competition (ones set to grantType: 'pick' that are also met)
+			cartItems.forEach( item => {
+				const discountInCart = thresholdDiscounts.find( rule => rule.giftId === item.variant_id );
+
+				// MATCH : Remove any other discounts that would be prevented by having added this one
+				if ( discountInCart ) {
+					
+					// FILTER : Remove any other discounts that are pick type and under our spend threshold
+					thresholdDiscounts = thresholdDiscounts.filter( discount => {
+						const spendConflict = discount.minSpend <= discountInCart.minSpend;
+						const isPickType = discount.grantType === 'pick';
+
+						if ( !spendConflict && !isPickType ) {
+							return discount;
+						}
+					});
+				}
+			});
+
+
 			// BUILD : ARRAY : Discounts NOT used yet + Past "minSpend" Threshold + No other "Pick" discounts at same minSpend are met
 			metDiscounts = thresholdDiscounts.filter( rule => {
-				const hasBeenUsed = usedDiscounts.find( used => used.discountId === rule.discountId );
 				const hasBeenRejected = rejectedDiscounts.find( rejectId => rejectId === rule.discountId );
 				const hasBeenMet = rule.minSpend <= cartTotal;
 
-				// PICK : grantType === 'pick' + usedDiscount marked at same minSpend and same grantType of pick
-				const otherOptionPicked = usedDiscounts.find( used => {
-					const sameMinSpend = used.minSpend === rule.minSpend;
-					const isGrantTypePick = used.grantType === 'pick'
-					return sameMinSpend && isGrantTypePick;
-				});
-
-
-				return !hasBeenUsed && !hasBeenRejected && !otherOptionPicked && hasBeenMet;
+				return !hasBeenRejected && hasBeenMet;
 			});
 		}
 		return metDiscounts; //Extra protection is all here..
@@ -251,7 +262,7 @@ class DiscountManager extends React.Component {
 
 			// ADD CHECK : THRESHOLD : Did we meet any new discounts with this cart change?
 			if ( thresholdDiscounts && thresholdDiscounts.length > 0 ) {
-				discountsToApply = this.calcThresholdDiscounts( newCartTotal );
+				discountsToApply = this.calcThresholdDiscounts( newCartTotal, cartItems );
 			}
 
 			// ADD CHECK : IN STOCK : Are the 'discountsToApply' in stock? 
@@ -275,9 +286,9 @@ class DiscountManager extends React.Component {
 								}
 							});
 					})
-
-				// ADD CHECK : UPDATE : Set state to trigger render cycle with discountsToApply populated
 				).then( () => {
+
+					// UPDATE : Set the discounts we have into state so they can be offered
 					this.setState({ discountsToApply: inStockDiscounts });
 				});
 			}
@@ -357,27 +368,38 @@ class DiscountManager extends React.Component {
 		this.setState({ cartTotal: newCartTotal });
 	}
 
-	rejectDiscount( discountId ) {
+	rejectDiscount( discountIds ) {
 		var { 
 			discountsToApply,
 			rejectedDiscounts 
 		} = this.state;
 
-		const isAlreadyMarked = rejectedDiscounts.find( id => id === discountId );
 
-		if ( !isAlreadyMarked ){
-			this.setState( state => {
-				const updatedRejectList = rejectedDiscounts.concat( discountId ); // ADD : Rejected ID to the list
-				const updatedApplyList = discountsToApply.filter( discount => discount.discountId !== discountId ); // REMOVE : Discount from queue of ones to apply
+		// ALREADY TRACKED : Mark if already tracked
+		discountIds = discountIds.filter( discountId => {
+			const isMarked = rejectedDiscounts.find( rejectId => rejectId === discountId );
 
-				// SAVE : Save our data before updating the app, in case user leaves site
-		    	$.cookie( 'BOL_rejected_discounts', JSON.stringify( updatedRejectList ), { expires: this.config.cookieExpireInDays } );
-				return {
-					discountsToApply: updatedApplyList,
-					rejectedDiscounts: updatedRejectList
+			if ( !isMarked ) {
+				return discountId;
+			}
+		});
+
+		this.setState( state => {
+			const updatedRejectList = rejectedDiscounts.concat( discountIds ); // ADD : Rejected ID to the list
+			const updatedApplyList = discountsToApply.filter( discount => {
+				const matchedDiscount = discountIds.find( discountId => discountId === discount.discountId )
+				if ( !matchedDiscount ) {
+					return discount;
 				}
-			});
-		}
+			}); // REMOVE : Discount from queue of ones to apply
+
+			// SAVE : Save our data before updating the app, in case user leaves site
+	    	$.cookie( 'BOL_rejected_discounts', JSON.stringify( updatedRejectList ), { expires: this.config.cookieExpireInDays } );
+			return {
+				discountsToApply: updatedApplyList,
+				rejectedDiscounts: updatedRejectList
+			}
+		});
 	}
 
 	removeCartItem( line_item, discount ) {
@@ -425,8 +447,7 @@ class DiscountManager extends React.Component {
 			cartTotal, 
 			discountsToApply, 
 			doNotShowAgain, 
-			removedDiscounts, 
-			usedDiscounts 
+			removedDiscounts
 		} = this.state;
 
 		return (
@@ -439,8 +460,7 @@ class DiscountManager extends React.Component {
 					enableDoNotShowAgain ={ this.enableDoNotShowAgain }
 					markDiscountUsed={ this.markDiscountUsed }
 					rejectDiscount={ this.rejectDiscount }
-					removedDiscounts={ removedDiscounts }
-					usedDiscounts={ usedDiscounts } />
+					removedDiscounts={ removedDiscounts } />
 			</div>
 		);
 	}

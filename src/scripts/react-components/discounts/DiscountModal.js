@@ -34,6 +34,11 @@ class DiscountModal extends React.Component {
 		const markUsedOnSuccess = () => {
 			this.props.markDiscountUsed( discount.discountId );
 			this.toggleButtonEnable( true ); // re-enable the UI buttons in case there are more items for user to add
+
+			// The /Cart route page itself is a shitshow and doesn't play nice with the ajax cart, so lets just refresh it to reflect the added item
+			if ( window.location.pathname.indexOf( '/cart' ) > -1 ) {
+				window.location.reload();
+			}
 		};
 
 		// ADD : Use API from ajax-cart.js.liquid to add item to cart!
@@ -50,17 +55,17 @@ class DiscountModal extends React.Component {
 		return discountsToApply.find( rule => rule.discountId === discountId );
 	}
 
-	handleSelection( discountId, addToCart = false ) {
-		// FIND : Lookup discount by 'discountId'
-		const discount = this.getDiscountById( discountId );
-		
+	handleSelection( discountIds, addToCart = false ) {
 		// ADD : If user clicked "Add to Cart"
 		if ( addToCart ) {
-			this.addItemToCart( discount ); //Cart marks as used once added successfully
+			discountIds.forEach( discountId => {
+				const discount = this.getDiscountById( discountId );
+				this.addItemToCart( discount ); //Cart marks as used once added successfully
+			});
 		
 		// NO THANKS : Mark discount as used
 		} else {
-			this.props.rejectDiscount( discountId );
+			this.props.rejectDiscount( discountIds );
 		}
 	}
 
@@ -144,8 +149,7 @@ DiscountModal.propTypes = {
 	enableDoNotShowAgain: PropTypes.func.isRequired,
 	markDiscountUsed: PropTypes.func.isRequired,
 	rejectDiscount: PropTypes.func.isRequired,
-	removedDiscounts: PropTypes.array,
-	usedDiscounts: PropTypes.array
+	removedDiscounts: PropTypes.array
 }
 
 module.exports = DiscountModal;

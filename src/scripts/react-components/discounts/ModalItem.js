@@ -14,7 +14,7 @@ class ModalItem extends React.Component {
 		} = this.props;
 
 		toggleButtonEnable( false );			// BUTTONS : Prevent multiple clicks
-		handleSelection( discountId, true );	// ADD : Submit item to the cart
+		handleSelection( [discountId], true );	// ADD : Submit item to the cart
 	}
 
 	render() {

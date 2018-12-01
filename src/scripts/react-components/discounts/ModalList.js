@@ -18,10 +18,12 @@ class ModalList extends React.Component {
 		toggleButtonEnable( false );
 
 		// FLAG : Mark all presented deals as used
+		var rejectedDiscountIds = [];
 		discountsToApply.forEach( discount => {
-			console.log( '::: DEBUG : Marking discount ' + discount.discountId + ' as used to hide it' );
-			handleSelection( discount.discountId, false );
+			rejectedDiscountIds.push( discount.discountId );
 		});
+
+		handleSelection( rejectedDiscountIds, false );
 	}
 
 
