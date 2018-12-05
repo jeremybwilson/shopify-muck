@@ -26,6 +26,13 @@
         {% if is_eu_or_uk %}
           {% assign size_chart_type = 'mens-womens' %}
         {% endif %}
+
+      {% when 'socks' %}
+         {% assign size_chart_type = 'socks' %}
+
+          {% if is_eu_or_uk %}
+            {% assign size_chart_type = 'socks' %}
+          {% endif %}
         
       {% when 'sale' %}
         {% assign size_chart_type = 'all' %}
