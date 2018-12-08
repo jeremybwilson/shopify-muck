@@ -731,7 +731,7 @@
               "custom_slide_alt_color": "#164732",
               "caption_horizontal": "left",
               "caption_vertical": 50,
-              "caption_background": "transparent",
+              "caption_background": "rgba(0,0,0,0)",
               "caption_opacity": "0.1"
             }
           }
