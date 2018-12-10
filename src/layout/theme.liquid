@@ -19,6 +19,11 @@
   <meta name="description" content="{{ page_description | escape }}" />
   {% endif %}
   <link rel="canonical" href="{{ canonical_url }}" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  {% if settings.international_store_version == 'UK' %}
+    <!-- gs.uk--> <meta name="google-site-verification" content="Q_rdvBTmaaMZxNvPtwzObfp70UECW9MkmG2U6ldc5a8" />
+  {% endif %}
 
   {% include 'social-media-meta-tags' %}
 
@@ -62,7 +67,7 @@
   {% if template contains 'index' %}
     {{ 'instafeed.js' | asset_url | script_tag }}
 	{% endif %}
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
   <!-- Zendesk -->
   <script src='//d3c3cq33003psk.cloudfront.net/opentag-73170-muckbootproduction.js' async defer></script>
 
