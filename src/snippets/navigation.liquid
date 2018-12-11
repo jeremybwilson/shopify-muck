@@ -7,7 +7,7 @@
 
         {% assign meganav = false %}
         {% for block in section.blocks %}
-          {% if block.settings.menu_item == link.title %}
+          {% if block.settings.menu_item == link.title and block.type == 'mega_menu' %}
             
             {% comment %} :: MEGA-MENU - WRAPPER :: {% endcomment %}
             {% capture megalink %}
