@@ -997,7 +997,27 @@
         "id": "gtm_container_id",
         "label": "Container ID",
         "info": "Add the container ID (GTM-XXXXXXX) associated with the Google Tag Manager Account."
+      }, 
+      {
+        "type": "text",
+        "id": "sizmek_company_id",
+        "label": "Sizmek - Company ID",
+        "info": "Sizmek company ID (EX: 6795), copied from sizmek dashboard"
+      }, 
+      {
+        "type": "text",
+        "id": "sizmek_version_num",
+        "label": "Sizmek - Version Number",
+        "info": "EX: 9",
+        "default": "9"
+      }, 
+      {
+        "type": "text",
+        "id": "sizmek_pixel_cart_start",
+        "label": "Sizmek - Cart Start Pixel ID",
+        "info": "Cart start pixel ID (EX: 20720632), copied from sizmek pixel dashboard."
       }
+
     ]
   },
   {

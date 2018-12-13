@@ -380,7 +380,8 @@ var ajaxCart = (function(module, $) {
     var hasBeenTracked = $.cookie( 'BOL_cart_started' );
     if ( !hasBeenTracked ) {
 
-      // TRACK : SIZMEK (ID: 20720632 - "92525 Muck US Cart Start") : Fire tracking pixel for cart start 
+      // TRACK : SIZMEK : Fire tracking pixel for cart start 
+      // (Example: Pixel = 20720632, Company = "6795", version = 9 for Muck-USA)
       (function() {
         var w = window, d = document;
         var s = d.createElement('script');
@@ -395,11 +396,11 @@ var ajaxCart = (function(module, $) {
             w['_rfi'].commands.push(arguments);
           };
         }
-        _rfi('setArgs', 'ver', '9');
-        _rfi('setArgs', 'rb', '6795');
-        _rfi('setArgs', 'ca', '20720632');
-        _rfi('setArgs', '_o', '6795');
-        _rfi('setArgs', '_t', '20720632');
+        _rfi('setArgs', 'ver','{{ settings.sizmek_version_num }}');
+        _rfi('setArgs', 'rb', '{{ settings.sizmek_company_id }}');
+        _rfi('setArgs', 'ca', '{{ settings.sizmek_pixel_cart_start }}');
+        _rfi('setArgs', '_o', '{{ settings.sizmek_company_id }}');
+        _rfi('setArgs', '_t', '{{ settings.sizmek_pixel-cart_start }}');
         _rfi('track');
       })();
 
