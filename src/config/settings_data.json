@@ -1,8 +1,8 @@
 {
-  "presets": {},
+  "presets": {
+  },
   "current": {
-    "international_store_version": "US",
-    "favicon": "shopify:\/\/shop_images\/favicon.png",    
+    "favicon": "shopify:\/\/shop_images\/favicon.png",
     "announcement_text_color": "#ffffff",
     "announcement_bg_one": "#124431",
     "announcement_bg_two": "#073322",
@@ -53,6 +53,15 @@
     "fancybox_overlay_bg": "0,0,0,0.8",
     "fancybox_close_color": "#5b5b5b",
     "fancybox_close_hover_color": "#9b492b",
+    "discount_modal_enable": true,
+    "discount_modal_config": "eyJjb29raWVFeHBpcmVJbkRheXMiOjYwLCJ0aHJlc2hvbGREaXNjb3VudHMiOlt7ImRpc2NvdW50SWQiOjEsImRpc3BsYXlOYW1lIjoiV2lnd2FtIEhhdCAoQmxhY2spIiwiZ2lmdElkIjoxNTQ1OTk2NDA5MjUxMCwiZ3JhbnRUeXBlIjoicGljayIsImludmVudG9yeUlkIjoxNTQwMjIxMjk4Mjg3OCwibWluU3BlbmQiOjE1MCwicHJvZHVjdEhhbmRsZSI6IndpZ3dhbS13aW50ZXItaGF0In0seyJkaXNjb3VudElkIjoyLCJkaXNwbGF5TmFtZSI6IldpZ3dhbSBIYXQgKEdyYXkpIiwiZ2lmdElkIjoxNTQ1OTk2NTM3MDQ2MiwiZ3JhbnRUeXBlIjoicGljayIsImludmVudG9yeUlkIjoxNTQwMjIxMzAxNTY0NiwibWluU3BlbmQiOjE1MCwicHJvZHVjdEhhbmRsZSI6IndpZ3dhbS13aW50ZXItaGF0In0seyJkaXNjb3VudElkIjozLCJkaXNwbGF5TmFtZSI6IldpZ3dhbSBIYXQgKE5hdHVyYWwpIiwiZ2lmdElkIjoxNTQ1OTk2NTUwMTUzNCwiZ3JhbnRUeXBlIjoicGljayIsImludmVudG9yeUlkIjoxNTQwMjIxMzA0ODQxNCwibWluU3BlbmQiOjE1MCwicHJvZHVjdEhhbmRsZSI6IndpZ3dhbS13aW50ZXItaGF0In1dfQ==",
+    "discount_modal_bg": "#fefffe",
+    "discount_modal_text": "#000000",
+    "discount_modal_header": "#164732",
+    "discount_modal_button_bg": "#164732",
+    "discount_modal_button_text": "#fefffe",
+    "discount_modal_button_alt_bg": "#ab5232",
+    "discount_modal_button_alt_text": "#fefffe",
     "navigation": "#000000",
     "nav_color": "#ffffff",
     "nav_hover_color": "#2c2c2c",
@@ -71,15 +80,6 @@
     "swatch_selected_color": "#ffffff",
     "swatch_selected_background": "#000000",
     "swatch_selected_border": "#000000",
-    "discount_modal_enable": true,
-    "discount_modal_config": "eyJjb29raWVFeHBpcmVJbkRheXMiOjYwLCJ0aHJlc2hvbGREaXNjb3VudHMiOlt7ImRpc2NvdW50SWQiOjEsImRpc3BsYXlOYW1lIjoiV2lnd2FtIEhhdCAoQmxhY2spIiwiZ2lmdElkIjoxNTQ1OTk2NDA5MjUxMCwiZ3JhbnRUeXBlIjoicGljayIsImludmVudG9yeUlkIjoxNTQwMjIxMjk4Mjg3OCwibWluU3BlbmQiOjE1MCwicHJvZHVjdEhhbmRsZSI6IndpZ3dhbS13aW50ZXItaGF0In0seyJkaXNjb3VudElkIjoyLCJkaXNwbGF5TmFtZSI6IldpZ3dhbSBIYXQgKEdyYXkpIiwiZ2lmdElkIjoxNTQ1OTk2NTM3MDQ2MiwiZ3JhbnRUeXBlIjoicGljayIsImludmVudG9yeUlkIjoxNTQwMjIxMzAxNTY0NiwibWluU3BlbmQiOjE1MCwicHJvZHVjdEhhbmRsZSI6IndpZ3dhbS13aW50ZXItaGF0In0seyJkaXNjb3VudElkIjozLCJkaXNwbGF5TmFtZSI6IldpZ3dhbSBIYXQgKE5hdHVyYWwpIiwiZ2lmdElkIjoxNTQ1OTk2NTUwMTUzNCwiZ3JhbnRUeXBlIjoicGljayIsImludmVudG9yeUlkIjoxNTQwMjIxMzA0ODQxNCwibWluU3BlbmQiOjE1MCwicHJvZHVjdEhhbmRsZSI6IndpZ3dhbS13aW50ZXItaGF0In1dfQ==",
-    "discount_modal_bg": "#fefffe",
-    "discount_modal_text": "#000000",
-    "discount_modal_header": "#164732",
-    "discount_modal_button_bg": "#164732",
-    "discount_modal_button_text": "#fefffe",
-    "discount_modal_button_alt_bg": "#ab5232",
-    "discount_modal_button_alt_text": "#fefffe",
     "new_background": "#222",
     "new_text": "#ffffff",
     "sale_background": "#af0000",
@@ -119,7 +119,6 @@
     "ajax_cart_method": "drawer",
     "ajax_cart_remove_text": "This will remove the item from your cart. Continue?",
     "ajax_cart_low_stock_text": "This item does not have enough stock to add to your cart.",
-    "gtm_container_id": "GTM-MXBM66P",
     "sizmek_company_id": "6795",
     "sizmek_version_num": "9",
     "sizmek_pixel_cart_start": "20720632",
@@ -130,9 +129,10 @@
     "youtube_url": "\/\/www.youtube.com\/channel\/UCDojhS0yZvveLz5JlHOwdhQ",
     "googleplus_url": "",
     "instagram_id": "muckbootco",
+    "gtm_container_id": "GTM-MXBM66P",
     "popup": true,
     "email_image": "",
-    "email_popup_title": "Signup Up & Get 10% Off Your First Order!",
+    "email_popup_title": "Sign Up & Get 10% Off Your First Order!",
     "email_popup_text": "",
     "email_popup_input_placeholder": "Enter Your Email Address",
     "email_popup_bottom_text": "<p>By providing your email address, you agree to our <a target=\"_blank\" href=\"https:\/\/www.honeywell.com\/privacy-statement\">Privacy Policy<\/a> &amp; <a href=\"\/pages\/terms-conditions\" target=\"_blank\">Terms of Service<\/a>.<\/p>",
@@ -161,6 +161,7 @@
     "checkout_accent_color": "#164632",
     "checkout_button_color": "#ab5232",
     "checkout_error_color": "#ff6d6d",
+    "international_store_version": "US",
     "cart_links": "#000000",
     "cart_links_hover": "#000000",
     "newsletter_color": "#ffffff",
@@ -241,11 +242,11 @@
         "settings": {
           "full_width_header": false,
           "show_announcement_text": true,
-          "num_of_promo_banners": "1",
+          "num_of_promo_banners": "2",
           "announcement_text_one": "<div class=\"bold\">FREE SHIPPING & FREE RETURNS<\/div>",
           "announcement_link_one": "\/pages\/shipping-returns",
-          "announcement_text_two": "<div class=\"bold\">40% OFF YOUR PURCHASE.<\/div> NO CODE NEEDED.",
-          "announcement_link_two": "http:\/\/google.com",
+          "announcement_text_two": "<div class=\"bold\">FREE GIFT WITH PURCHASE on all orders over $150<\/div>",
+          "announcement_link_two": "shopify:\/\/collections\/new-arrivals",
           "announcement_height": 60,
           "announcement_swap_rate": 5,
           "logo_size": 24,
@@ -287,10 +288,7 @@
           "visit_brand_image_three": "shopify:\/\/shop_images\/visit-brand-image-3.png",
           "trust_icon_image_one": "",
           "trust_icon_image_two": "",
-          "trust_icon_image_three": "",
-          "show_payment_icons": false,
-          "color_footer_bg": "#f5f5f5",
-          "color_footer_text": "#3d4246"
+          "trust_icon_image_three": ""
         }
       },
       "collection-template": {
@@ -353,8 +351,6 @@
       "search-template": {
         "type": "search-template",
         "settings": {
-          "grid": 4,
-          "rows": 6
         }
       },
       "password-template": {
@@ -392,8 +388,8 @@
           "1535728526385-0": {
             "type": "image",
             "settings": {
-              "image": "shopify:\/\/shop_images\/home-hero-desktop-slide-1.jpg",
-              "mobile_image": "shopify:\/\/shop_images\/home-hero-mobile-slide-1.jpg",
+              "image": "shopify:\/\/shop_images\/home-hero-desktop-slide-2.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/home-hero-mobile-slide-2.jpg",
               "heading": "Waterproof & Ready for life<br> in the muck",
               "subheading": "",
               "cta_one_link": "shopify:\/\/collections\/gifts-for-the-muck",
@@ -412,38 +408,18 @@
           "1537990277479": {
             "type": "image",
             "settings": {
-              "image": "shopify:\/\/shop_images\/home-hero-desktop-slide-2.jpg",
-              "mobile_image": "shopify:\/\/shop_images\/home-hero-mobile-slide-2.jpg",
-              "heading": "Boots That Work Hard for Hardworkers",
-              "subheading": "Built for comfort and tough performance",
-              "cta_one_link": "shopify:\/\/collections\/work",
-              "cta_one_button_text": "Shop Work",
+              "image": "shopify:\/\/shop_images\/waterproof-liberty-desktop.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/waterproof-liberty-mobile.jpg",
+              "heading": "Introducing our new waterproof liberty collection",
+              "subheading": "",
+              "cta_one_link": "shopify:\/\/collections\/new-arrivals",
+              "cta_one_button_text": "Shop New Arrivals",
               "cta_two_link": "",
               "cta_two_button_text": "Add a button",
               "caption_color_scheme": "white",
               "custom_slide_main_color": "#ffffff",
               "custom_slide_alt_color": "#164732",
-              "caption_horizontal": "right",
-              "caption_vertical": 50,
-              "caption_background": "rgba(0,0,0,0)",
-              "caption_opacity": "0.1"
-            }
-          },
-          "1537990398288": {
-            "type": "image",
-            "settings": {
-              "image": "shopify:\/\/shop_images\/home-hero-desktop-slide-3.jpg",
-              "mobile_image": "shopify:\/\/shop_images\/home-hero-mobile-slide-3.jpg",
-              "heading": "Ready for all types of weather",
-              "subheading": "Durable & waterproof for every function",
-              "cta_one_link": "\/collections\/all?_=pf&pf_t_feature=feature_100%25 waterproof&pf_t_feature=feature_leather material",
-              "cta_one_button_text": "Shop Waterproof Leather",
-              "cta_two_link": "",
-              "cta_two_button_text": "Add a button",
-              "caption_color_scheme": "white",
-              "custom_slide_main_color": "#ffffff",
-              "custom_slide_alt_color": "#164732",
-              "caption_horizontal": "center",
+              "caption_horizontal": "left",
               "caption_vertical": 50,
               "caption_background": "rgba(0,0,0,0)",
               "caption_opacity": "0.1"
@@ -452,8 +428,7 @@
         },
         "block_order": [
           "1535728526385-0",
-          "1537990277479",
-          "1537990398288"
+          "1537990277479"
         ],
         "settings": {
           "full_width": true,
@@ -555,10 +530,10 @@
             "settings": {
               "image": "shopify:\/\/shop_images\/home-twin-promo-desktop-1.jpg",
               "mobile_image": "shopify:\/\/shop_images\/home-twin-promo-mobile-1.jpg",
-              "link": "shopify:\/\/collections\/hunting",
-              "heading_text": "For the Hunt",
-              "text": "<p>Stability and support for a full day of comfort.<\/p>\n<p>Our New Summit Boot.<\/p>",
-              "cta_text": "Shop Hunt"
+              "link": "shopify:\/\/collections\/liberty-leather",
+              "heading_text": "New Waterproof liberty collection",
+              "text": "",
+              "cta_text": "Shop Women's Waterproof leather"
             }
           },
           "1536251685211-0": {
@@ -652,6 +627,14 @@
               "block_order": "1"
             }
           },
+          "1538611281678": {
+            "type": "image_picker",
+            "settings": {
+              "image_picker_block": "shopify:\/\/shop_images\/about-image-2.jpg",
+              "image_offset": "",
+              "block_order": "3"
+            }
+          },
           "1537470215266": {
             "type": "html",
             "settings": {
@@ -690,14 +673,6 @@
               "html_block": "<div style=\"vertical-align: middle; padding: 10vw 5vw; height: 400px; text-align: center;\"><p style=\"text-transform: uppercase; line-height: 40px;\"><strong style=\"color:#ab5232;\">All Muck® Boot products are 100% waterproof and backed by our 12 month warranty.<\/strong><span> purchase on our website and we offer a 30-day hassle free return guarantee<\/span><\/p><\/div>",
               "html_block_color": "",
               "block_order": "8"
-            }
-          },
-          "1538611281678": {
-            "type": "image_picker",
-            "settings": {
-              "image_picker_block": "shopify:\/\/shop_images\/about-image-2.jpg",
-              "image_offset": "",
-              "block_order": "3"
             }
           }
         },
