@@ -990,6 +990,17 @@
     ]
   },
   {
+    "name": "Marketing Tags",
+    "settings": [
+      {
+        "type": "text",
+        "id": "gtm_container_id",
+        "label": "Container ID",
+        "info": "Add the container ID (GTM-XXXXXXX) associated with the Google Tag Manager Account."
+      }
+    ]
+  },
+  {
     "name": "Newsletter",
     "settings": [
       {
