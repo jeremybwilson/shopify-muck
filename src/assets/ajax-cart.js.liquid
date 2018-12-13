@@ -378,35 +378,37 @@ var ajaxCart = (function(module, $) {
 
     // CHECK : Have we tracked this user already?
     var hasBeenTracked = $.cookie( 'BOL_cart_started' );
-    if ( !hasBeenTracked ) {
+    {% if settings.sizmek_company_id != blank and settings.sizmek_pixel_cart_start != blank %}
+      if ( !hasBeenTracked ) {
 
-      // TRACK : SIZMEK : Fire tracking pixel for cart start 
-      // (Example: Pixel = 20720632, Company = "6795", version = 9 for Muck-USA)
-      (function() {
-        var w = window, d = document;
-        var s = d.createElement('script');
-        s.setAttribute('async', 'true');
-        s.setAttribute('type', 'text/javascript');
-        s.setAttribute('src', '//c1.rfihub.net/js/tc.min.js');
-        var f = d.getElementsByTagName('script')[0];
-        f.parentNode.insertBefore(s, f);
-        if (typeof w['_rfi'] !== 'function') {
-          w['_rfi']=function() {
-            w['_rfi'].commands = w['_rfi'].commands || [];
-            w['_rfi'].commands.push(arguments);
-          };
-        }
-        _rfi('setArgs', 'ver','{{ settings.sizmek_version_num }}');
-        _rfi('setArgs', 'rb', '{{ settings.sizmek_company_id }}');
-        _rfi('setArgs', 'ca', '{{ settings.sizmek_pixel_cart_start }}');
-        _rfi('setArgs', '_o', '{{ settings.sizmek_company_id }}');
-        _rfi('setArgs', '_t', '{{ settings.sizmek_pixel-cart_start }}');
-        _rfi('track');
-      })();
+        // TRACK : SIZMEK : Fire tracking pixel for cart start 
+        // (Example: Pixel = 20720632, Company = "6795", version = 9 for Muck-USA)
+        (function() {
+          var w = window, d = document;
+          var s = d.createElement('script');
+          s.setAttribute('async', 'true');
+          s.setAttribute('type', 'text/javascript');
+          s.setAttribute('src', '//c1.rfihub.net/js/tc.min.js');
+          var f = d.getElementsByTagName('script')[0];
+          f.parentNode.insertBefore(s, f);
+          if (typeof w['_rfi'] !== 'function') {
+            w['_rfi']=function() {
+              w['_rfi'].commands = w['_rfi'].commands || [];
+              w['_rfi'].commands.push(arguments);
+            };
+          }
+          _rfi('setArgs', 'ver','{{ settings.sizmek_version_num }}');
+          _rfi('setArgs', 'rb', '{{ settings.sizmek_company_id }}');
+          _rfi('setArgs', 'ca', '{{ settings.sizmek_pixel_cart_start }}');
+          _rfi('setArgs', '_o', '{{ settings.sizmek_company_id }}');
+          _rfi('setArgs', '_t', '{{ settings.sizmek_pixel-cart_start }}');
+          _rfi('track');
+        })();
 
-      // COOKIE : Write the cookie that will prevent this from tracking again
-      $.cookie( 'BOL_cart_started', 'true', { expires: 30 } ); //Expire in days
-    }
+        // COOKIE : Write the cookie that will prevent this from tracking again
+        $.cookie( 'BOL_cart_started', 'true', { expires: 30 } ); //Expire in days
+      }
+    {% endif %}
   };
 
   buildCart = function (cart) {
