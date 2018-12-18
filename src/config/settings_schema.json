@@ -359,20 +359,6 @@
         "content": "Discount Modal (React-Discounts)"
       },
       {
-        "type": "checkbox",
-        "default" : false,
-        "id": "discount_modal_enable",
-        "label": "Enable Discount Modals",
-        "info" : "(Powers the 'Spend X, Pick Free Gift' component)"
-      },
-      {
-        "type": "text",
-        "id": "discount_modal_config",
-        "label": "Discount Config",
-        "info": "(stringify config object, then base64)",
-        "default": "eyJjb29raWVFeHBpcmVJbkRheXMiOjYwLCJ0aHJlc2hvbGREaXNjb3VudHMiOltdfQ=="
-      },
-      {
         "type": "color",
         "id": "discount_modal_bg",
         "label": "BG of Modal Body",
@@ -939,7 +925,25 @@
         "id": "ajax_cart_low_stock_text",
         "label": "Low stock alert text",
         "default": "This item does not have enough stock to add to your cart."
-      }      
+      },
+      {
+        "type": "header",
+        "content": "Gift w/ Purchase Modal (React-Discounts)"
+      },
+      {
+        "type": "checkbox",
+        "default" : false,
+        "id": "discount_modal_enable",
+        "label": "Enable Gift with Purchase Modal",
+        "info" : "(Powers the 'Spend X, Pick Free Gift' component)"
+      },
+      {
+        "type": "text",
+        "id": "discount_modal_config",
+        "label": "Discount Config",
+        "info": "(stringify config object, then base64)",
+        "default": "eyJjb29raWVFeHBpcmVJbkRheXMiOjYwLCJ0aHJlc2hvbGREaXNjb3VudHMiOltdfQ=="
+      } 
     ]
   },
   {
@@ -993,11 +997,21 @@
     "name": "Marketing Tags",
     "settings": [
       {
+        "type": "header",
+        "content": "Google Tag Manager"
+      },
+      {
         "type": "text",
         "id": "gtm_container_id",
         "label": "Container ID",
         "info": "Add the container ID (GTM-XXXXXXX) associated with the Google Tag Manager Account."
-      }, 
+      },
+
+
+      {
+        "type": "header",
+        "content": "Sizmek Tracking Info"
+      },
       {
         "type": "text",
         "id": "sizmek_company_id",
