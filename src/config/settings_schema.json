@@ -356,7 +356,7 @@
 
       {
         "type": "header",
-        "content": "Discount Modal (React-Discounts)"
+        "content": "Gift w/ Purchase Modal"
       },
       {
         "type": "color",
@@ -928,7 +928,7 @@
       },
       {
         "type": "header",
-        "content": "Gift w/ Purchase Modal (React-Discounts)"
+        "content": "Gift w/ Purchase Modal"
       },
       {
         "type": "checkbox",
