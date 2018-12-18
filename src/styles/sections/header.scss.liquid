@@ -528,6 +528,12 @@ $navBarDesktopHeight: 80px;
                 &:hover > a {
                     border-bottom: 3px solid {{ settings.nav_links_hover }};
                 }
+                // SALE : Sale gets unique color var from settings
+                {% if settings.enable_nav_name_styling %}
+                    &.sale a {
+                        color: {{ settings.nav_links_sale }};
+                    }
+                {% endif %}
             }
 
             .megamenu {
@@ -946,74 +952,3 @@ $navBarDesktopHeight: 80px;
 .shifter {
     overflow-x: hidden;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
