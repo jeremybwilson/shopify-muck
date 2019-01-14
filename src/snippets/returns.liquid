@@ -1,0 +1,93 @@
+{% form 'contact' %}
+
+{% if form.posted_successfully? %}
+<div class="successForm feedback">
+  <p>Thanks for contacting us. Someone will be in touch with you regarding your return shortly</p>
+</div>
+{% endif %}
+
+{% if form.errors %}
+<div class="notice error">
+  <p>{{ 'general.forms.post_error' | t }}</p>
+  <ul class="disc">
+    {% for field in form.errors %}
+    {% if field == 'form' %}
+    <li>
+      {{ form.errors.messages[field] }}
+    </li>
+    {% else %}
+    <li>
+      <strong>{{ field | replace: 'body', 'Message' }}</strong> {{ form.errors.messages[field] }}
+    </li>
+    {% endif %}
+
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}
+
+<div class="gridlock">
+  
+  
+  <h4 class="row" style="margin: 0 0 0.5rem 0;"><label for="contact[name]">{{ 'contact.form.name' | t }}</label></h4>    
+  <input class="row" style="margin: 0 0 1rem 0;" type="text" id="contactFormName" name="contact[name]" placeholder="{{ 'contact.form.name' | t }}" />
+  
+
+  <h4 class="row" style="margin: 0 0 0.5rem 0;"><label for="contact[email]">{{ 'contact.form.email' | t }}</label></h4>
+  <input class="row" style="margin: 0 0 1rem 0;" type="email" id="contactFormEmail" name="contact[email]" placeholder="{{ 'contact.form.email' | t }}" />
+  
+
+  <h4 class="row" style="margin: 0 0 0.5rem 0;"><label for="contact[order]">Order #</label></h4>
+  <input class="row" style="margin: 0 0 1rem 0;" type="text" id="contactFormOrderNum" name="contact[order]" placeholder="Order #" />
+  
+  <h4 class="row" style="margin: 0 0 0 0;"><label>Items<abel></h4>
+    <small style="margin: 0 0 0.5rem 0; color: grey;">List the items you wish to return</small>
+  {% for i in (1..4) %}
+  <div class="row sku-row" style="margin: 0;">
+    <input type="text" class="desktop-2 sku" style="margin-left: 0;" placeholder="SKU" />
+    <input type="text" class="desktop-4 desc" style="margin-left: 0;" placeholder="desc" />
+    <input type="text" class="desktop-2 qty" style="margin-left: 0;" placeholder="qty" />
+    <select class="desktop-4 reason" style="margin-left: 0;" onChange="Javascript:updateSummaryField()">
+      <option value="" disabled selected>please choose</option>
+      <option>Too Big</option>
+      <option>Too Small</option>
+      <option>Orders more than one size</option>
+      <option>Item not as described</option>
+      <option>Poor quality / Faulty</option>
+      <option>Incorrect item recieved</option>
+      <option>Order arrived too late</option>
+      <option>Changed mind</option>
+      <option>Other (please specify in comments)</option>
+      <option>Vanilla</option>
+      <option>Strawberry</option>
+    </select>
+  </div>
+  {% endfor %}
+    
+  <h4 class="row" style="margin: 0 0 0.5rem 0;"><label>Comments</label></h4>
+  <textarea class="row" style="margin: 0 0 1rem 0;" rows="15" cols="90" id="contactFormComments" name="contact[comments]" placeholder="{{ 'contact.form.message' | t }}"></textarea>
+  <input type="hidden" id="skuSummary" name="contact[skus]" />
+  <p class="form-submit" >
+    <input type="submit" style="width: 200px; background-color: #ab5232;" id="contactFormSubmit" class="secondary button" value="{{ 'contact.form.send' | t }}" />
+  </p> 
+</div>
+<script>
+  function updateSummaryField() {
+    $("#skuSummary").val(summarizeSkus())
+  }
+  
+  function summarizeSkus() {
+    var summary = "";
+    $(".sku-row").each(function(i, obj) {
+      var sku = $(this).find("input.sku").val();
+      var desc = $(this).find("input.desc").val();
+      var qty = $(this).find("input.qty").val();
+      var reason = $(this).find("select.reason").val();
+      if (sku) {
+        summary += "SKU: "+ sku + " " +desc+" qty: "+qty+" reason: "+ reason+" \n";
+      }
+	})
+    return summary;
+  }
+</script>
+{% endform %}
