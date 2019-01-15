@@ -60,7 +60,16 @@
   }
   
   function createTicket() {
-    ${}
+    // Avoid double click
+    $("#contactFormSubmit").attr("disabled", true);
+    $("#contactFormSubmit").css("background-color", "grey");
+    
+    // Restore click functionality on timeout
+    setTimeout(function(){ 
+      $("#contactFormSubmit").attr("disabled", false);
+      $("#contactFormSubmit").css("background-color", "#ab5232");
+    }, 3000);
+    
     $.ajax({
       url: "https://us-central1-muck-uk-returns.cloudfunctions.net/create-return",
       jsonp: "callback",
