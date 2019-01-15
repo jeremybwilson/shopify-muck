@@ -33,8 +33,6 @@
       <option>Order arrived too late</option>
       <option>Changed mind</option>
       <option>Other (please specify in comments)</option>
-      <option>Vanilla</option>
-      <option>Strawberry</option>
     </select>
   </div>
   {% endfor %}
@@ -62,6 +60,7 @@
   }
   
   function createTicket() {
+    ${}
     $.ajax({
       url: "https://us-central1-muck-uk-returns.cloudfunctions.net/create-return",
       jsonp: "callback",
@@ -75,15 +74,29 @@
         format: "json"
       },
       success: function( response ) {
-        $("#returnsForm").hide();
-        $("#returnsSuccess").show();
-        $("html, body").animate({ scrollTop: 0 }, "slow");
+        if (response.error) {
+          showError(response.error);
+        } else {
+          showSuccess();
+        }
+
       },
       error: function( response ) {
-        $("#returnsForm").hide();
-        $("#returnsError").show();
-        $("html, body").animate({ scrollTop: 0 }, "slow");
+        showError("There was an error creating your return. Please contact customer service.")
       }
     }); 
+  }
+  
+  function showSuccess(message) {
+    $("#returnsForm").hide();
+    $("#returnsError").hide();
+    $("#returnsSuccess").show();
+    $("html, body").animate({ scrollTop: 0 }, "slow");
+  }
+  
+  function showError(message) {
+    $("#returnsError").html(message);
+    $("#returnsError").show();
+    $("html, body").animate({ scrollTop: 0 }, "slow");
   }
 </script>
