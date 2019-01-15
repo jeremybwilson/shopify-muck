@@ -95,6 +95,7 @@ class DiscountModal extends React.Component {
 	render() {
 		const {
 			confirmRemoval,
+			currencySymbol,
 			discountsToApply,
 			removedDiscounts
 		} = this.props;
@@ -104,7 +105,8 @@ class DiscountModal extends React.Component {
 		var modalList = null;
 		if ( discountsToApply.length > 0 ) {
 			modalList = (
-				<ModalList 
+				<ModalList
+					currencySymbol={ currencySymbol }
 					discountsToApply={ discountsToApply }
 					handleSelection={ this.handleSelection }
 					toggleButtonEnable={ this.toggleButtonEnable } />
@@ -144,6 +146,7 @@ class DiscountModal extends React.Component {
 
 DiscountModal.propTypes = {
 	cartTotal: PropTypes.number.isRequired,
+	currencySymbol: PropTypes.string.isRequired,
 	discountsToApply: PropTypes.array,
 	doNotShowAgain: PropTypes.bool.isRequired,
 	enableDoNotShowAgain: PropTypes.func.isRequired,
