@@ -30,6 +30,7 @@ class ModalList extends React.Component {
 
 	render() {
 		const { 
+			currencySymbol,
 			disableButtons,
 			discountsToApply, 
 			handleSelection,
@@ -62,7 +63,7 @@ class ModalList extends React.Component {
 
 		return (
 			<div id="discount-modal-list" data-option-count={ discountsToApply ? discountsToApply.length : '0' } data-enable-buttons={ disableButtons }>
-				<div className="modal-list-heading">{ `For spending over $${priceThreshold}, you've earned a gift!` }</div>
+				<div className="modal-list-heading">{ `For spending over ${currencySymbol}${priceThreshold}, you've earned a gift!` }</div>
 
 				<div className="modal-list-content">
 					{ modalItems }
@@ -76,6 +77,7 @@ class ModalList extends React.Component {
 
 
 ModalList.propTypes = {
+	currencySymbol: PropTypes.string.isRequired,
 	discountsToApply: PropTypes.array,
 	handleSelection: PropTypes.func.isRequired,
 	toggleButtonEnable: PropTypes.func.isRequired

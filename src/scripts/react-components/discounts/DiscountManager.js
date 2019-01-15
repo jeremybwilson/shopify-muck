@@ -41,7 +41,7 @@ class DiscountManager extends React.Component {
 						grantType: 'pick',					// GRANT TYPE --- Does user get this gift if higher threshold is met? -- (OPTIONS: 'all' or 'pick')
 						inventoryId: 18107441610850,		// INVENTORY ID - Variant ID of full-price original version (gift is untracked usually, uses full-cost variant to see how many left)
 						minSpend: 200,						// THRESHOLD ---- Dollar (or current currency) amount to trigger free gift
-						productHandle: 'wigwam-winter-hat'
+						productHandle: 'wigwam-winter-hat'  // HANDLE NAME -- Handle name of product (found in seo-block on product page in admin)
 					},
 					{
 						discountId: 2,						// DISCOUNT ID -- Unique identifier for this discount, so we can tell if its already applied
@@ -50,7 +50,7 @@ class DiscountManager extends React.Component {
 						grantType: 'pick',					// GRANT TYPE --- Does user get this gift if higher threshold is met? -- (OPTIONS: 'all' or 'pick')
 						inventoryId: 18107441643618,		// INVENTORY ID - Variant ID of full-price original version (gift is untracked usually, uses full-cost variant to see how many left)
 						minSpend: 200,						// THRESHOLD ---- Dollar (or current currency) amount to trigger free gift
-						productHandle: 'wigwam-winter-hat'
+						productHandle: 'wigwam-winter-hat'	// HANDLE NAME -- Handle name of product (found in seo-block on product page in admin)
 					},
 					{
 						discountId: 3,						// DISCOUNT ID -- Unique identifier for this discount, so we can tell if its already applied
@@ -59,7 +59,7 @@ class DiscountManager extends React.Component {
 						grantType: 'pick',					// GRANT TYPE --- Does user get this gift if higher threshold is met? -- (OPTIONS: 'all' or 'pick')
 						inventoryId: 18107441676386,		// INVENTORY ID - Variant ID of full-price original version (gift is untracked usually, uses full-cost variant to see how many left)
 						minSpend: 200,						// THRESHOLD ---- Dollar (or current currency) amount to trigger free gift
-						productHandle: 'wigwam-winter-hat'
+						productHandle: 'wigwam-winter-hat'	// HANDLE NAME -- Handle name of product (found in seo-block on product page in admin)
 					}
 				]
 			}
@@ -449,12 +449,14 @@ class DiscountManager extends React.Component {
 			doNotShowAgain, 
 			removedDiscounts
 		} = this.state;
+		const currencySymbol = this.config.currencySymbol || '$';
 
 		return (
 			<div id="react-discount-manager" data-component="DiscountManager">
 				<DiscountModal 
 					cartTotal={ cartTotal }
 					confirmRemoval={ this.confirmRemoval }
+					currencySymbol={ currencySymbol }
 					discountsToApply={ discountsToApply }
 					doNotShowAgain={ doNotShowAgain }
 					enableDoNotShowAgain ={ this.enableDoNotShowAgain }
