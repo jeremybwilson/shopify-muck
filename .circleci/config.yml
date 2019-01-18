@@ -95,7 +95,7 @@ jobs:
             echo '
             production:
               password:' $SLATE_PASSWORD_MUCK_PROD '
-              theme_id: "37308792926"
+              theme_id: "live"
               store: muckboot-usa.myshopify.com
               ignore_files:
                 - settings_data.json' > ./config.yml
