@@ -90,20 +90,19 @@ jobs:
       - run: sudo npm i -g @shopify/slate
 
       - run:
-          name: Generate dev env setting
+          name: Generate prod env setting
           command: | #Change theme ID for each level
             echo '
-            development:
-              password:' $SLATE_PASSWORD '
-              theme_id: "live"
-              store: muckboot-dev.myshopify.com
+            production:
+              password:' $SLATE_PASSWORD_MUCK_PROD '
+              theme_id: "37308792926"
+              store: muckboot-usa.myshopify.com
               ignore_files:
-                - settings_data.json
-                - settings_data.presets-portion.bak.json' > ./config.yml
+                - settings_data.json' > ./config.yml
 
       - run:
           name: Deploy
-          command: npm run deploy
+          command: slate deploy -e production
 
 workflows:
   version: 2
