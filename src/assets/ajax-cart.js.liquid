@@ -107,7 +107,7 @@ ShopifyAPI.addItemFromForm = function(form, callback, errorCallback) {
 ==============================================================================*/
 ShopifyAPI.addItemById = function( variantId, callback, errorCallback, isGift ) {
   var bodyData = "form_type=product&utf8=%E2%9C%93&id=" + variantId;
-  bodyData = isGift ? bodyData + "&properties[discountItem]=true" : bodyData;
+  bodyData = isGift ? bodyData + "&properties[_discountItem]=true" : bodyData;
   
   // SETUP : Build the fetch call
   var params = {

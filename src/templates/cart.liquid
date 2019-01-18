@@ -75,7 +75,7 @@
               {% assign property_size = item.properties | size %}
               {% if property_size > 0 %}
                 {% for p in item.properties %}
-                  {% unless p.first == 'discountItem' or p.last == blank %}
+                  {% unless p.first == '_discountItem' or p.last == blank %}
                     {{ p.first }}:
 
                     {% comment %}
