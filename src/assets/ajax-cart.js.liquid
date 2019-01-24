@@ -104,6 +104,10 @@ ShopifyAPI.addItemFromForm = function(form, callback, errorCallback) {
 /*============================================================================
   POST to cart/add.js returns the JSON of the cart
     - Direct add item call by Variant ID
+    - NOTE : the isGift prop is for Gift With Purchase usage when
+             react-discounts adds the item from its modal. 
+
+    UNDERSCORE AS FIRST LETTER OF LINE ITEM PROP HIDES IT FROM CHECKOUT!!
 ==============================================================================*/
 ShopifyAPI.addItemById = function( variantId, callback, errorCallback, isGift ) {
   var bodyData = "form_type=product&utf8=%E2%9C%93&id=" + variantId;
