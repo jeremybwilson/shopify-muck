@@ -105,6 +105,7 @@ class DiscountManager extends React.Component {
 		this.onCartUpdate = this.onCartUpdate.bind( this );
 		this.rejectDiscount = this.rejectDiscount.bind( this );
 		this.removeCartItem = this.removeCartItem.bind( this );
+		this.updateInFlightIds = this.updateInFlightIds.bind( this );
 	}
 
 	componentDidMount() {
@@ -204,7 +205,7 @@ class DiscountManager extends React.Component {
 		        return productJson;
 			})
 			.catch( err => {
-				const theError = error && error.message ? error.message : error || 'Request failed for an unknown reason with no error object returned..';
+				const theError = err && err.message ? err.message : err || 'Request failed for an unknown reason with no error object returned..';
 				console.log( `[ DiscountManager -- fetchProduct() ] : Failed request :\n${ theError }` );
 				throw new Error( theError );
 			});
@@ -251,12 +252,12 @@ class DiscountManager extends React.Component {
 		var discountsToApply = [];	// Array of Discount Objects
 		var discountsToRemove = []; // Array of Discount objects
 
-		// CART : TOTAL : Calc $$$ in cart (comes as "12345" which === "$123.45" )
-		//         (Assumes base10 -- last two digits seen as "cents" -- WILL NOT WORK on Yen-type currency)
-		const newCartTotal = this.calcCartTotal( e.cart.total_price );
-
 		// CART : ITEMS : Store current cart manifest so we can check it for removal needs
 		const cartItems = e.cart.items || [];
+
+		// CART : CONVERT TOTAL : Calc $$$ in cart (comes as "12345" which === "$123.45" )
+		//         (Assumes base10 -- last two digits seen as "cents" -- WILL NOT WORK on Yen-type currency)
+		const newCartTotal = this.calcCartTotal( e.cart.total_price );
 
 		try { // SAFETY FIRST!
 
@@ -411,13 +412,13 @@ class DiscountManager extends React.Component {
 
 			// SUCCESS : Callback for success handling
 			const onSuccess = ( cart ) => {
-				_this.inFlightIds = _this.inFlightIds.filter( id => id === discount.discountId );
+				_this.updateInFlightIds( discount.discountId, 'remove' );
 				resolve( discount );
 			};
 
 			// FAILED : Callback for failure handling
 			const onFailure = (XMLHttpRequest, textStatus) => {
-				_this.inFlightIds = _this.inFlightIds.filter( id => id === discount.discountId );
+				_this.updateInFlightIds( discount.discountId, 'remove' );
 				reject( XMLHttpRequest, textStatus );
 			};
 
@@ -425,7 +426,7 @@ class DiscountManager extends React.Component {
 			if ( _this.inFlightIds.indexOf( discount.discountId ) === -1 ) {
 				
 				// IN FLIGHT : Add Discount ID to in-flight manifest
-				_this.inFlightIds.push( discount.discountId );
+				_this.updateInFlightIds( discount.discountId, 'add' );
 				
 				// FIRE : Enact the removal!
 				ShopifyAPI.changeItem(
@@ -438,6 +439,17 @@ class DiscountManager extends React.Component {
 				reject( '[ DiscountManager -- removeCartItem() ] : Request to remove Line Item #' + line_item + ' for Discount ID:' + discount.discountId + ' is already in flight...' );
 			}
 		});
+	}
+
+	updateInFlightIds( id, addOrRemove ) {
+		// Have to call this from inside shopifyAPI removal call, so needed a helper function
+		// instead of binding the list to a new var and modding that inside the remove call
+		if ( addOrRemove === 'add' ) {
+			this.inFlightIds.push( id );
+		
+		} else {
+			this.inFlightIds = this.inFlightIds.filter( inFlightId => inFlightId !== id );
+		}
 	}
 
 
