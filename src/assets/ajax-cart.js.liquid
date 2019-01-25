@@ -104,6 +104,10 @@ ShopifyAPI.addItemFromForm = function(form, callback, errorCallback) {
 /*============================================================================
   POST to cart/add.js returns the JSON of the cart
     - Direct add item call by Variant ID
+    - NOTE : the isGift prop is for Gift With Purchase usage when
+             react-discounts adds the item from its modal. 
+
+    UNDERSCORE AS FIRST LETTER OF LINE ITEM PROP HIDES IT FROM CHECKOUT!!
 ==============================================================================*/
 ShopifyAPI.addItemById = function( variantId, callback, errorCallback, isGift ) {
   var bodyData = "form_type=product&utf8=%E2%9C%93&id=" + variantId;
@@ -210,7 +214,7 @@ var ajaxCart = (function(module, $) {
   var $formContainer, $addToCart, $cartCountSelector, $cartCostSelector, $cartContainer, $drawerContainer;
 
   // Private functions
-  var updateCountPrice, formOverride, itemAddedCallback, itemErrorCallback, trackCartStart, cartUpdateCallback, buildCart, cartCallback, adjustCart, adjustCartCallback, createQtySelectors, qtySelectors, validateQty;
+  var updateCountPrice, removeGiftItemsFromTotalPrice, formOverride, itemAddedCallback, itemErrorCallback, trackCartStart, cartUpdateCallback, buildCart, cartCallback, adjustCart, adjustCartCallback, createQtySelectors, qtySelectors, validateQty;
 
   /*============================================================================
               Bind new addToCart buttons for cases like "Quickview" 
@@ -355,7 +359,30 @@ var ajaxCart = (function(module, $) {
     }
   };
 
+  // RETURNS : Total price (in cents) sans items tagged with _discountItem property
+  //    NOTE : The _discountItem property is only added via addItemById()
+  removeGiftItemsFromTotalPrice = function( cart ) {
+    var cleanTotal = 0;
+
+    // SCAN CART ITEMS : Remove cost of gift items from total price (can't have 0 cost items due to SAP issue)
+    if ( cart.items && cart.items.length > 0 ) {
+      
+      // CALC : Add cost of each item together, skipping the discount flagged items
+      cart.items.forEach( function( item ) {
+        if ( !item.properties._discountItem ) {
+          cleanTotal = cleanTotal + ( item.discounted_price * item.quantity );
+        }
+      });
+    }
+
+    return cleanTotal;
+  };
+
+
   cartUpdateCallback = function (cart) {
+    // Ensure gift items are not counted in the cart total
+    cart.total_price = removeGiftItemsFromTotalPrice( cart );
+
     // Update quantity and price
     updateCountPrice(cart);
     buildCart(cart);
@@ -472,7 +499,6 @@ var ajaxCart = (function(module, $) {
     }
 
     $cartContainer.append(template(data));
-
     cartCallback(cart);
   };
 
@@ -585,8 +611,16 @@ var ajaxCart = (function(module, $) {
     });
   };
 
+  // NOTE : THIS FUNCTION ONLY CALLED WHEN CHANGING QUANTITY / REMOVING ITEMS
   adjustCartCallback = function (cart) {
     isUpdating = false;
+
+    /* TOTAL : Calculate cart total, subtracting gift item prices for safety
+       WHY: Removing items that drop you below threshold cause the ruby script to stop discounting
+        the item cost, so if the item itself that is a gift is set to a price higher than the threshold,
+        or ends up putting the user above the threshold it ends up thinking the cart total includes
+        the gift item, which causes the react app to not remove it. */
+    cart.total_price = removeGiftItemsFromTotalPrice( cart );
 
     // Update quantity and price
     updateCountPrice(cart);

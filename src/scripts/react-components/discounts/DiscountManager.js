@@ -18,6 +18,9 @@
  *****************************************************************************/ 
 const PropTypes = require( 'prop-types' );
 const Promise = require( 'bluebird' );
+const Entities = require('html-entities').AllHtmlEntities;
+const entities = new Entities();
+
 const DiscountModal = require( './DiscountModal.js' );
 
 
@@ -28,6 +31,7 @@ class DiscountManager extends React.Component {
 		// CONFIG : Discount Configuration Manifest
 		this.config = props.config;
 		this.config.thresholdDiscounts = this.config.thresholdDiscounts || []; // Safety net
+		this.config.currencySymbol = this.config.currencySymbol ? entities.decode( this.config.currencySymbol ) : '$';
 
 		/* EXAMPLE CONFIG : 3 Gift items set to "Pick" after spending $200+ in cart total (Sample is on muckboot-dev)
 			{
@@ -105,6 +109,7 @@ class DiscountManager extends React.Component {
 		this.onCartUpdate = this.onCartUpdate.bind( this );
 		this.rejectDiscount = this.rejectDiscount.bind( this );
 		this.removeCartItem = this.removeCartItem.bind( this );
+		this.updateInFlightIds = this.updateInFlightIds.bind( this );
 	}
 
 	componentDidMount() {
@@ -204,7 +209,7 @@ class DiscountManager extends React.Component {
 		        return productJson;
 			})
 			.catch( err => {
-				const theError = error && error.message ? error.message : error || 'Request failed for an unknown reason with no error object returned..';
+				const theError = err && err.message ? err.message : err || 'Request failed for an unknown reason with no error object returned..';
 				console.log( `[ DiscountManager -- fetchProduct() ] : Failed request :\n${ theError }` );
 				throw new Error( theError );
 			});
@@ -251,12 +256,12 @@ class DiscountManager extends React.Component {
 		var discountsToApply = [];	// Array of Discount Objects
 		var discountsToRemove = []; // Array of Discount objects
 
-		// CART : TOTAL : Calc $$$ in cart (comes as "12345" which === "$123.45" )
-		//         (Assumes base10 -- last two digits seen as "cents" -- WILL NOT WORK on Yen-type currency)
-		const newCartTotal = this.calcCartTotal( e.cart.total_price );
-
 		// CART : ITEMS : Store current cart manifest so we can check it for removal needs
 		const cartItems = e.cart.items || [];
+
+		// CART : CONVERT TOTAL : Calc $$$ in cart (comes as "12345" which === "$123.45" )
+		//         (Assumes base10 -- last two digits seen as "cents" -- WILL NOT WORK on Yen-type currency)
+		const newCartTotal = this.calcCartTotal( e.cart.total_price );
 
 		try { // SAFETY FIRST!
 
@@ -411,13 +416,13 @@ class DiscountManager extends React.Component {
 
 			// SUCCESS : Callback for success handling
 			const onSuccess = ( cart ) => {
-				_this.inFlightIds = _this.inFlightIds.filter( id => id === discount.discountId );
+				_this.updateInFlightIds( discount.discountId, 'remove' );
 				resolve( discount );
 			};
 
 			// FAILED : Callback for failure handling
 			const onFailure = (XMLHttpRequest, textStatus) => {
-				_this.inFlightIds = _this.inFlightIds.filter( id => id === discount.discountId );
+				_this.updateInFlightIds( discount.discountId, 'remove' );
 				reject( XMLHttpRequest, textStatus );
 			};
 
@@ -425,7 +430,7 @@ class DiscountManager extends React.Component {
 			if ( _this.inFlightIds.indexOf( discount.discountId ) === -1 ) {
 				
 				// IN FLIGHT : Add Discount ID to in-flight manifest
-				_this.inFlightIds.push( discount.discountId );
+				_this.updateInFlightIds( discount.discountId, 'add' );
 				
 				// FIRE : Enact the removal!
 				ShopifyAPI.changeItem(
@@ -440,6 +445,17 @@ class DiscountManager extends React.Component {
 		});
 	}
 
+	updateInFlightIds( id, addOrRemove ) {
+		// Have to call this from inside shopifyAPI removal call, so needed a helper function
+		// instead of binding the list to a new var and modding that inside the remove call
+		if ( addOrRemove === 'add' ) {
+			this.inFlightIds.push( id );
+		
+		} else {
+			this.inFlightIds = this.inFlightIds.filter( inFlightId => inFlightId !== id );
+		}
+	}
+
 
 
 	render() {
@@ -449,14 +465,13 @@ class DiscountManager extends React.Component {
 			doNotShowAgain, 
 			removedDiscounts
 		} = this.state;
-		const currencySymbol = this.config.currencySymbol || '$';
 
 		return (
 			<div id="react-discount-manager" data-component="DiscountManager">
 				<DiscountModal 
 					cartTotal={ cartTotal }
 					confirmRemoval={ this.confirmRemoval }
-					currencySymbol={ currencySymbol }
+					currencySymbol={ this.config.currencySymbol }
 					discountsToApply={ discountsToApply }
 					doNotShowAgain={ doNotShowAgain }
 					enableDoNotShowAgain ={ this.enableDoNotShowAgain }
