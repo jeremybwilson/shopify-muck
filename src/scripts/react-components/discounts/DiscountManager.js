@@ -18,6 +18,9 @@
  *****************************************************************************/ 
 const PropTypes = require( 'prop-types' );
 const Promise = require( 'bluebird' );
+const Entities = require('html-entities').AllHtmlEntities;
+const entities = new Entities();
+
 const DiscountModal = require( './DiscountModal.js' );
 
 
@@ -28,6 +31,7 @@ class DiscountManager extends React.Component {
 		// CONFIG : Discount Configuration Manifest
 		this.config = props.config;
 		this.config.thresholdDiscounts = this.config.thresholdDiscounts || []; // Safety net
+		this.config.currencySymbol = this.config.currencySymbol ? entities.decode( this.config.currencySymbol ) : '$';
 
 		/* EXAMPLE CONFIG : 3 Gift items set to "Pick" after spending $200+ in cart total (Sample is on muckboot-dev)
 			{
@@ -461,14 +465,13 @@ class DiscountManager extends React.Component {
 			doNotShowAgain, 
 			removedDiscounts
 		} = this.state;
-		const currencySymbol = this.config.currencySymbol || '$';
 
 		return (
 			<div id="react-discount-manager" data-component="DiscountManager">
 				<DiscountModal 
 					cartTotal={ cartTotal }
 					confirmRemoval={ this.confirmRemoval }
-					currencySymbol={ currencySymbol }
+					currencySymbol={ this.config.currencySymbol }
 					discountsToApply={ discountsToApply }
 					doNotShowAgain={ doNotShowAgain }
 					enableDoNotShowAgain ={ this.enableDoNotShowAgain }
