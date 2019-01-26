@@ -80,7 +80,10 @@ BCSfFilter.prototype.buildProductGridItem = function(data, index, totalProduct) 
         affect the "all products" collection and a num or two off shouldn't matter there.
     * --------------------------------------------------------------------------------------- */ 
     if ( data.tags ) {
-        const hasHideFlag = data.tags.find( tag => tag === 'hide_from_catalog' );
+        var hasHideFlag = data.tags.filter(function (tag) {
+            return tag === 'hide_from_catalog'
+        }).length
+
         if ( hasHideFlag ) {
             return '';
         }
