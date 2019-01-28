@@ -14,43 +14,40 @@ general:
       - release-eu
       - release-ca
 jobs:
-  # BUILD TASK
-    build:
-      <<: *defaults
-      working_directory: ~/repo
-      steps:
-        - checkout
-        # Download and cache dependencies
-        - restore_cache:
-            keys:
-            - v1-dependencies-{{ checksum "package.json" }}-bootstrapped
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-        # NPM Install & Overwrite the slate build-js file with our custom one that compiles ES6 / React
-        - run: npm run bootstrap
-        # Save the cached setup
-        - save_cache:
-            paths:
-              - node_modules
-            key: v1-dependencies-{{ checksum "package.json" }}-bootstrapped
-        # Persist the specified paths (workspace/echo-output) into the workspace for use in deploy job.
-        - persist_to_workspace:
-            # Must be an absolute path, or relative path from working_directory. This is a  
-            # directory on the container which is taken to be the root directory of the workspace.
-            root: .
-            # Must be relative path from root
-            paths:
-              - .
+  build:
+    <<: *defaults
+    working_directory: ~/repo
+    steps:
+      - checkout
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}-bootstrapped
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
+      # NPM Install & Overwrite the slate build-js file with our custom one that compiles ES6 / React
+      - run: npm run bootstrap
+      # Save the cached setup
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}-bootstrapped
+      # Persist the specified paths (workspace/echo-output) into the workspace for use in deploy job.
+      - persist_to_workspace:
+          # Must be an absolute path, or relative path from working_directory. This is a  
+          # directory on the container which is taken to be the root directory of the workspace.
+          root: .
+          # Must be relative path from root
+          paths:
+            - .
   deploy_develop:
     <<: *defaults
     steps:
       - attach_workspace:
           # Must be absolute path or relative path from working_directory
           at: ~/repo
-
         #Install slate to use slate deploy commands (v0.14)
       - run: sudo npm i -g @shopify/slate
-
       - run:
           name: Generate dev env setting
           command: | #Change theme ID for each level 
@@ -61,22 +58,17 @@ jobs:
               store: muckboot-dev.myshopify.com
               ignore_files:
                 # - settings_data.json #Commented out to keep dev sync with repo changes' > ./config.yml
-
       - run:
           name: Deploy
           command: npm run deploy
-
   deploy_release_us:
     <<: *defaults
-
     steps:
       - attach_workspace:
           # Must be absolute path or relative path from working_directory
           at: ~/repo
-
         #Install slate to use slate deploy commands (v0.14)
       - run: sudo npm i -g @shopify/slate
-
       - run:
           name: Generate prod env setting
           command: | #Change theme ID for each level
@@ -87,22 +79,18 @@ jobs:
               store: muckboot-usa.myshopify.com
               ignore_files:
                 - settings_data.json' > ./config.yml
-
       - run:
           name: Deploy
           command: slate deploy -e production
 
   deploy_release_uk:
     <<: *defaults
-
     steps:
       - attach_workspace:
           # Must be absolute path or relative path from working_directory
           at: ~/repo
-
         #Install slate to use slate deploy commands (v0.14)
       - run: sudo npm i -g @shopify/slate
-
       - run:
           name: Generate prod env setting
           command: | #Change theme ID for each level
@@ -113,22 +101,18 @@ jobs:
               store: muckboot-uk.myshopify.com
               ignore_files:
                 - settings_data.json' > ./config.yml
-
       - run:
           name: Deploy
           command: slate deploy -e production
 
   deploy_release_eu:
     <<: *defaults
-
     steps:
       - attach_workspace:
           # Must be absolute path or relative path from working_directory
           at: ~/repo
-
         #Install slate to use slate deploy commands (v0.14)
       - run: sudo npm i -g @shopify/slate
-
       - run:
           name: Generate prod env setting
           command: | #Change theme ID for each level
@@ -139,14 +123,11 @@ jobs:
               store: muckboot-eu.myshopify.com
               ignore_files:
                 - settings_data.json' > ./config.yml
-
       - run:
           name: Deploy
           command: slate deploy -e production
-  
   deploy_release_ca:
     <<: *defaults
-
     steps:
       - attach_workspace:
           # Must be absolute path or relative path from working_directory
@@ -154,7 +135,6 @@ jobs:
 
         #Install slate to use slate deploy commands (v0.14)
       - run: sudo npm i -g @shopify/slate
-
       - run:
           name: Generate prod env setting
           command: | #Change theme ID for each level
@@ -165,11 +145,9 @@ jobs:
               store: muckboot-ca.myshopify.com
               ignore_files:
                 - settings_data.json' > ./config.yml
-
       - run:
           name: Deploy
           command: slate deploy -e production
-
 workflows:
   version: 2
   build_deploy_dev:
