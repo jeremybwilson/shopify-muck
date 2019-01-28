@@ -14,47 +14,37 @@ general:
       - release-eu
       - release-ca
 
-build_job: &build_job
-  <<: *defaults
-
-  working_directory: ~/repo
-
-  steps:
-    - checkout
-
-    # Download and cache dependencies
-    - restore_cache:
-        keys:
-        - v1-dependencies-{{ checksum "package.json" }}-bootstrapped
-        # fallback to using the latest cache if no exact match is found
-        - v1-dependencies-
-
-    # NPM Install & Overwrite the slate build-js file with our custom one that compiles ES6 / React
-    - run: npm run bootstrap
-
-    # Save the cached setup
-    - save_cache:
-        paths:
-          - node_modules
-        key: v1-dependencies-{{ checksum "package.json" }}-bootstrapped
-
-    # Persist the specified paths (workspace/echo-output) into the workspace for use in deploy job.
-    - persist_to_workspace:
-        # Must be an absolute path, or relative path from working_directory. This is a  
-        # directory on the container which is taken to be the root directory of the workspace.
-        root: .
-        # Must be relative path from root
-        paths:
-          - .
-
 version: 2
 jobs:
-  build_develop:
-    <<: *build_job
+  # BUILD TASK
+    build:
+      <<: *defaults
+      working_directory: ~/repo
+      steps:
+        - checkout
+        # Download and cache dependencies
+        - restore_cache:
+            keys:
+            - v1-dependencies-{{ checksum "package.json" }}-bootstrapped
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+        # NPM Install & Overwrite the slate build-js file with our custom one that compiles ES6 / React
+        - run: npm run bootstrap
+        # Save the cached setup
+        - save_cache:
+            paths:
+              - node_modules
+            key: v1-dependencies-{{ checksum "package.json" }}-bootstrapped
+        # Persist the specified paths (workspace/echo-output) into the workspace for use in deploy job.
+        - persist_to_workspace:
+            # Must be an absolute path, or relative path from working_directory. This is a  
+            # directory on the container which is taken to be the root directory of the workspace.
+            root: .
+            # Must be relative path from root
+            paths:
+              - .
 
-  build_release:
-    <<: *build_job
-
+  # DEPLOYMENT TASKS
   deploy_develop:
     <<: *defaults
 
@@ -189,14 +179,14 @@ workflows:
   version: 2
   build_deploy_dev:
     jobs:
-      - build_develop:
+      - build:
           filters:
             branches:
               only:
                 - develop
       - deploy_develop:
           requires:
-            - build_develop
+            - build
           filters:
             branches:
               only:
@@ -204,14 +194,14 @@ workflows:
 
   build_deploy_release_us:
     jobs:
-      - build_release:
+      - build:
           filters:
             branches:
               only:
                 - release-us
-      - deploy_release:
+      - deploy_release_us:
           requires:
-            - build_release
+            - build
           filters:
             branches:
               only:
@@ -219,14 +209,14 @@ workflows:
 
   build_deploy_release_uk:
     jobs:
-      - build_release:
+      - build:
           filters:
             branches:
               only:
                 - release-uk
-      - deploy_release:
+      - deploy_release_uk:
           requires:
-            - build_release
+            - build
           filters:
             branches:
               only:
@@ -234,14 +224,14 @@ workflows:
 
   build_deploy_release_eu:
     jobs:
-      - build_release:
+      - build:
           filters:
             branches:
               only:
                 - release-eu
-      - deploy_release:
+      - deploy_release_eu:
           requires:
-            - build_release
+            - build
           filters:
             branches:
               only:
@@ -249,14 +239,14 @@ workflows:
 
   build_deploy_release_ca:
     jobs:
-      - build_release:
+      - build:
           filters:
             branches:
               only:
                 - release-ca
-      - deploy_release:
+      - deploy_release_ca:
           requires:
-            - build_release
+            - build
           filters:
             branches:
               only:
