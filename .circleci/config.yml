@@ -9,6 +9,10 @@ general:
   branches:
     only:
       - develop # list of branches to build
+      - release-us
+      - release-uk
+      - release-eu
+      - release-ca
 
 build_job: &build_job
   <<: *defaults
@@ -67,18 +71,17 @@ jobs:
           command: | #Change theme ID for each level 
             echo '
             development:
-              password:' $SLATE_PASSWORD '
+              password:' $SLATE_PASSWORD_DEV '
               theme_id: "live"
               store: muckboot-dev.myshopify.com
               ignore_files:
-                # - settings_data.json #This is commented out so we keep in sync with repo
-                - settings_data.presets-portion.bak.json' > ./config.yml
+                # - settings_data.json #Commented out to keep dev sync with repo changes' > ./config.yml
 
       - run:
           name: Deploy
           command: npm run deploy
 
-  deploy_release:
+  deploy_release_us:
     <<: *defaults
 
     steps:
@@ -94,9 +97,87 @@ jobs:
           command: | #Change theme ID for each level
             echo '
             production:
-              password:' $SLATE_PASSWORD_MUCK_PROD '
+              password:' $SLATE_PASSWORD_PROD_US '
               theme_id: "live"
               store: muckboot-usa.myshopify.com
+              ignore_files:
+                - settings_data.json' > ./config.yml
+
+      - run:
+          name: Deploy
+          command: slate deploy -e production
+
+  deploy_release_uk:
+    <<: *defaults
+
+    steps:
+      - attach_workspace:
+          # Must be absolute path or relative path from working_directory
+          at: ~/repo
+
+        #Install slate to use slate deploy commands (v0.14)
+      - run: sudo npm i -g @shopify/slate
+
+      - run:
+          name: Generate prod env setting
+          command: | #Change theme ID for each level
+            echo '
+            production:
+              password:' $SLATE_PASSWORD_PROD_UK '
+              theme_id: "live"
+              store: muckboot-uk.myshopify.com
+              ignore_files:
+                - settings_data.json' > ./config.yml
+
+      - run:
+          name: Deploy
+          command: slate deploy -e production
+
+  deploy_release_eu:
+    <<: *defaults
+
+    steps:
+      - attach_workspace:
+          # Must be absolute path or relative path from working_directory
+          at: ~/repo
+
+        #Install slate to use slate deploy commands (v0.14)
+      - run: sudo npm i -g @shopify/slate
+
+      - run:
+          name: Generate prod env setting
+          command: | #Change theme ID for each level
+            echo '
+            production:
+              password:' $SLATE_PASSWORD_PROD_EU '
+              theme_id: "live"
+              store: muckboot-eu.myshopify.com
+              ignore_files:
+                - settings_data.json' > ./config.yml
+
+      - run:
+          name: Deploy
+          command: slate deploy -e production
+  
+  deploy_release_ca:
+    <<: *defaults
+
+    steps:
+      - attach_workspace:
+          # Must be absolute path or relative path from working_directory
+          at: ~/repo
+
+        #Install slate to use slate deploy commands (v0.14)
+      - run: sudo npm i -g @shopify/slate
+
+      - run:
+          name: Generate prod env setting
+          command: | #Change theme ID for each level
+            echo '
+            production:
+              password:' $SLATE_PASSWORD_PROD_CA '
+              theme_id: "live"
+              store: muckboot-ca.myshopify.com
               ignore_files:
                 - settings_data.json' > ./config.yml
 
@@ -121,17 +202,62 @@ workflows:
               only:
                 - develop
 
-  build_deploy_release:
+  build_deploy_release_us:
     jobs:
       - build_release:
           filters:
             branches:
               only:
-                - release
+                - release-us
       - deploy_release:
           requires:
             - build_release
           filters:
             branches:
               only:
-                - release
+                - release-us
+
+  build_deploy_release_uk:
+    jobs:
+      - build_release:
+          filters:
+            branches:
+              only:
+                - release-uk
+      - deploy_release:
+          requires:
+            - build_release
+          filters:
+            branches:
+              only:
+                - release-uk
+
+  build_deploy_release_eu:
+    jobs:
+      - build_release:
+          filters:
+            branches:
+              only:
+                - release-eu
+      - deploy_release:
+          requires:
+            - build_release
+          filters:
+            branches:
+              only:
+                - release-eu
+
+  build_deploy_release_ca:
+    jobs:
+      - build_release:
+          filters:
+            branches:
+              only:
+                - release-ca
+      - deploy_release:
+          requires:
+            - build_release
+          filters:
+            branches:
+              only:
+                - release-ca
