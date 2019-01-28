@@ -1,10 +1,10 @@
 # Javascript Node CircleCI 2.0 configuration file
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
+version: 2
 defaults: &defaults
   working_directory: ~/repo
   docker:
     - image: circleci/node:8.11.3-browsers
-
 general:
   branches:
     only:
@@ -13,8 +13,6 @@ general:
       - release-uk
       - release-eu
       - release-ca
-
-version: 2
 jobs:
   # BUILD TASK
     build:
@@ -43,11 +41,8 @@ jobs:
             # Must be relative path from root
             paths:
               - .
-
-  # DEPLOYMENT TASKS
   deploy_develop:
     <<: *defaults
-
     steps:
       - attach_workspace:
           # Must be absolute path or relative path from working_directory
