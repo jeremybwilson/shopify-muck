@@ -369,7 +369,7 @@ var ajaxCart = (function(module, $) {
       
       // CALC : Add cost of each item together, skipping the discount flagged items
       cart.items.forEach( function( item ) {
-        if ( !item.properties._discountItem ) {
+        if ( !item.properties || !item.properties._discountItem ) {
           cleanTotal = cleanTotal + ( item.discounted_price * item.quantity );
         }
       });
