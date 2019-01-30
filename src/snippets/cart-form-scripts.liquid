@@ -1,0 +1,88 @@
+<script type="text/javascript">
+  var currencySymbol = "{{ 1 | money }}";
+  currencySymbol = currencySymbol.slice( 0,1 );
+  var changedLineItem = null; //Used to pass to success cb what item was changed
+  var newQtyCount = null; // Used to pass success cb new quantity 
+  
+  // SUCCESS : REMOVE : Callback for successful handle of cart change
+  function removeSuccess( cart ) {
+    // REMOVE : Line item we removed via api
+    $( '#cart-line-item-' + changedLineItem ).remove();
+    
+    // UPDATE : Price now currently in the cart
+    var cartTotal = cleanPrice( cart.total_price );
+    $( '#cart-page-price' ).html( cartTotal );
+  }
+
+  // ERROR : General error handler, undoes disable state on qty selectors and alerts user
+  function errorHandler( cart ) {
+    $( '.quantity-selector' ).removeClass( 'disabled' );
+    alert( 'Something went wrong, please try again.' );
+  }
+
+  function updateQtySuccess( cart ) {
+    console.log( 'updating qty success' );
+    $( '.quantity-selector' ).removeClass( 'disabled' );
+
+    // PRICE : Update total price on that line item
+    var changedItem = cart.items[ changedLineItem - 1 ];
+    if ( changedItem ) {
+      var noMoreStock = changedItem.quantity !== newQtyCount;
+
+      if ( noMoreStock ) {
+        alert( 'Looks like we have no more of those items in stock, sorry.' );
+      
+      } else {
+        // QUANTITY : Update change in quantity count
+        $( '#cart-line-item-' + changedLineItem + ' .cart-qty' ).html( newQtyCount );
+
+        // SUB-TOTAL : Adjust sub-total for new price
+        var newSubTotal = cleanPrice( changedItem.line_price );
+        $( '#cart-line-item-' + changedLineItem + ' .cart--total-price .money' ).html( newSubTotal );
+      }
+    }
+    
+
+    // UPDATE : Price now currently in the cart
+    var cartTotal = cleanPrice( cart.total_price );
+    $( '#cart-page-price' ).html( cartTotal );
+  }
+
+
+  // HELPER : Calculates new cart total
+  function cleanPrice( total_price ) {
+    // CONVERT : Change cart value to a whole dollar (or other currency) amount
+    var dollar, cents, cartTotal, total = JSON.stringify( total_price );
+    
+    if ( total.length < 3 ) {
+      dollar = 0;
+      cents = total.length < 2 ? '0' + total : total; // So "9" becomes "0.09" at the end
+
+    } else {
+      dollar = total.substring( 0, total.length - 2 );
+      cents = total.substring( total.length - 2, total.length );
+    }
+    return ( currencySymbol + dollar + '.' + cents );
+  }
+
+
+
+  // REMOVE : Use API from ajax-cart.js.liquid to set item quantity to 0 for a removal
+  function remove_item( line_item ) {
+    if ( typeof( line_item ) != "undefined" ) { //Line item can be 0, so have to account for that 
+      changedLineItem = line_item;
+      ShopifyAPI.changeItem( line_item, 0, removeSuccess, errorHandler, true );
+    }
+  }
+
+  // UPDATE : Use API from ajax-cart.js.liquid to set new quantity so it checks stock 
+  function updateQuantity( line_item, new_quantity ) {
+    if ( typeof( line_item ) != "undefined" && typeof( new_quantity ) != "undefined" ) {
+      changedLineItem = line_item;
+      newQtyCount = new_quantity;
+
+      $( '.quantity-selector' ).addClass( 'disabled' );
+      ShopifyAPI.changeItem( line_item, new_quantity, updateQtySuccess, errorHandler, true );
+    }
+  }
+</script>
