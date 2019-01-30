@@ -169,15 +169,14 @@ ShopifyAPI.changeItem = function(line, quantityChange, callback, errorCallback) 
     dataType: 'json',
     success: function(cart) {
 
-      // CALLBACK : Custom callback function provided?
+      // NO MORE STOCK: 'cartItem' quantity < 'quantityChange' === no more units available
+      var cartItem = cart.items[line-1];
+      if ( cartItem && quantityChange > cartItem.quantity ) {
+        alert( '{{ settings.ajax_cart_low_stock_text }}' );
+      };
+
+      // CALLBACK : CUSTOM : Custom callback function provided
       if ((typeof callback) === 'function') {
-
-        // NO MORE STOCK: 'cartItem' quantity < 'quantityChange' === no more units available
-        var cartItem = cart.items[line-1];
-        if ( cartItem && quantityChange > cartItem.quantity ) {
-          alert('{{ settings.ajax_cart_low_stock_text }}');
-        };
-
         callback( cart );
       }
 
