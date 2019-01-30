@@ -4,6 +4,12 @@
   is really the ajax-cart displayed in full screen.
 {% endcomment %}
 
+<script>
+  // Must force fetch ajax-cart, otherwise it hasn't rendered yet :p
+  $(document).ready( function() {
+    ShopifyAPI.getCart( ajaxCart.cartUpdateCallback );
+  });
+</script>
 
 <div id="shopping-cart" class="desktop-12 tablet-6 mobile-3">
 
