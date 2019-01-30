@@ -1,3 +1,132 @@
+
+// CART DRAWER : Using the same drawer from the side instead of the template
+// as its kind of already bad logic and the setup for ajax cart is much more robust
+body.cart {
+  overflow: hidden !important;
+
+  #breadcrumb {
+    display: none !important;
+  }
+
+  #CartDrawer {
+    display: block !important;
+    width: 100%;
+    height: 100vh;
+    max-width: 100%;
+    left: 0;
+    top: 0;
+    padding-top: 110px;
+    padding-bottom: 100px;
+    @include bgGradient;
+
+    @include mq( 'tablet-and-up' ) {
+      padding-top: 220px;
+    }
+    
+
+    // CLOSE BUTTON : hide button so it looks like the cart page
+    .drawer__close.js-drawer-close {
+      display: none;
+    }
+
+    // CART LINE ITEMS
+    .ajaxcart__inner {
+
+      // SINGLE LINE ITEM
+      .ajaxcart__product {
+
+        .ajaxcart__product-inner {
+          width: 100%;
+          padding: 0 0 15px;
+          @include inline-flex;
+          @include justify-content( space-around );
+          @include align-items( center );
+
+          .ajaxcart__product-img {
+            width: 13%;
+            float: none;
+            @include inline-flex;
+            @include justify-content( center );
+          }
+
+          .ajaxcart__product-details {
+            @include inline-flex;
+            @include justify-content( space-between );
+            @include align-items( center );
+            height: 100%;
+            width: 100%;
+            float: none;
+            position: relative;
+
+            .ajaxcart__name-wrap {
+              flex-basis: 35%;
+            }
+
+            .ajaxcart__price-wrap {
+              @include inline-flex;
+              @include align-items( center );
+              position: absolute;
+              left: 43%;
+              height: 100%;
+
+              @include mq( 'tablet-and-up' ) {
+                left: 53%;
+              }
+            }
+
+            .qty-remove-wrap {
+              flex-basis: 18%;
+
+              input.ajaxcart__qty-num {
+                @include mq( 'phone' ) {
+                  border: none;
+                }
+              }
+
+              .qty-remove-wrap-inner {
+                @include flexbox;
+                @include flex-direction( column );
+                @include align-items( flex-end );
+
+                .ajaxcart__qty {
+                    @include inline-flex;
+                    @include flex-direction( column-reverse ); //so plus is on top for mobile
+                    right: 8px;
+                    position: relative;
+
+                    @include mq( 'tablet-and-up' ) {
+                      right: 0;
+                      @include flex-direction( row );
+                    }
+                }
+              }
+            }
+            
+          }
+        }
+      }
+    }
+
+    .ajaxcart__footer {
+      width: 100%;
+      border-bottom: none;
+
+      .cart__checkout {
+        display: block;
+        max-width: 300px;
+        margin: 0 auto;
+      }
+    }
+
+  }
+}
+
+
+
+
+
+
+// OLD PAGE STYLES
 body.cart {
   #content {
     max-width: 1200px;
@@ -20,11 +149,13 @@ body.cart {
 #shopping-cart {
   h2 {
     @include h2;
-    color: $color--dark-green;
     @include fontSize(20px);
+    color: $color--dark-green;
     text-align: center;
+    display: none;
 
     @include mq('tablet-and-up') {
+      display: block;
       text-align: left;
       @include fontSize(24px);
     }
@@ -65,6 +196,7 @@ body.cart {
           @include flex-wrap(wrap);
           @include justify-content(flex-start); 
           padding-bottom: 20px;
+          padding-top: 20px;
           border-bottom: solid 1px $color--border-gray;
         }
       }
@@ -132,7 +264,12 @@ th.cart--remove {
     @include justify-content(flex-start);
     @include order(5);
     width: 100%;
-    @include fontSize(9px);
+
+    .remove-text {
+      @include fontSize( 14px );
+      margin-top: 15px;
+      display: block;
+    }
   }
 
   a {
@@ -186,6 +323,34 @@ th.cart--remove {
     text-indent: 0;
     text-align: center;
   }
+
+  .qty-wrapper {
+    @include inline-flex;
+    @include justify-content( space-between );
+    position: relative;
+    left: 50%;
+    transform: translateX( -50% );
+
+    .quantity-selector {
+      width: 30px;
+      height: 20px;
+      display: flex;
+      border-radius: 3px;
+      text-align: center;
+      border: 1px solid #000;
+      align-items: center;
+      justify-content: center;
+      margin: 0 10px;
+      cursor: pointer;
+
+      &.disabled { 
+        pointer-events: none;
+        opacity: 0.5;
+      }
+    }
+  }
+
+  
 }
 
 .cart--total-price {
