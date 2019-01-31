@@ -2,6 +2,7 @@
   "presets": {
   },
   "current": {
+    "favicon": "",
     "announcement_text_color": "#ffffff",
     "announcement_bg_one": "#124431",
     "announcement_bg_two": "#073322",
@@ -9,6 +10,7 @@
     "logo_color": "#000000",
     "nav_links": "#164632",
     "nav_links_hover": "#aa5131",
+    "nav_links_sale": "#aa5131",
     "nav_minor_border_color": "#cccccc",
     "social_links": "#000000",
     "social_links_hover": "#000000",
@@ -51,6 +53,13 @@
     "fancybox_overlay_bg": "0,0,0,0.8",
     "fancybox_close_color": "#5b5b5b",
     "fancybox_close_hover_color": "#9b492b",
+    "discount_modal_bg": "#fefffe",
+    "discount_modal_text": "#000000",
+    "discount_modal_header": "#164732",
+    "discount_modal_button_bg": "#164732",
+    "discount_modal_button_text": "#fefffe",
+    "discount_modal_button_alt_bg": "#ab5232",
+    "discount_modal_button_alt_text": "#fefffe",
     "navigation": "#000000",
     "nav_color": "#ffffff",
     "nav_hover_color": "#2c2c2c",
@@ -98,6 +107,7 @@
     "section_title_border": "bottom_only_short",
     "border_weight": "3px",
     "breadcrumb": true,
+    "enable_nav_name_styling": true,
     "quickview": true,
     "vendor": false,
     "show_collection_seo_block": true,
@@ -107,6 +117,8 @@
     "ajax_cart_method": "drawer",
     "ajax_cart_remove_text": "This will remove the item from your cart. Continue?",
     "ajax_cart_low_stock_text": "This item does not have enough stock to add to your cart.",
+    "discount_modal_enable": false,
+    "discount_modal_config": "eyJjb29raWVFeHBpcmVJbkRheXMiOjYwLCJ0aHJlc2hvbGREaXNjb3VudHMiOltdfQ==",
     "twittername": "",
     "facebook_url": "\/\/www.facebook.com\/muckbootco\/",
     "pinterest_url": "",
@@ -114,6 +126,10 @@
     "youtube_url": "\/\/www.youtube.com\/channel\/UCDojhS0yZvveLz5JlHOwdhQ",
     "googleplus_url": "",
     "instagram_id": "muckbootco",
+    "gtm_container_id": "",
+    "sizmek_company_id": "",
+    "sizmek_version_num": "9",
+    "sizmek_pixel_cart_start": "",
     "popup": true,
     "email_image": "",
     "email_popup_title": "Signup Up & Get 10% Off Your First Order!",
@@ -632,6 +648,14 @@
               "block_order": "1"
             }
           },
+          "1538611281678": {
+            "type": "image_picker",
+            "settings": {
+              "image_picker_block": "shopify:\/\/shop_images\/about-image-2.jpg",
+              "image_offset": "",
+              "block_order": "3"
+            }
+          },
           "1537470215266": {
             "type": "html",
             "settings": {
@@ -675,14 +699,6 @@
               "html_block": "<div style=\"vertical-align: middle; padding: 10vw 5vw; height: 400px; text-align: center;\"><p style=\"text-transform: uppercase; line-height: 40px;\"><strong style=\"color:#ab5232;\">All Muck\u00ae Boot products are 100% waterproof and backed by our 12 month warranty.<\/strong><span> purchase on our website and we offer a 30-day hassle free return guarantee<\/span><\/p><\/div>",
               "html_block_color": "",
               "block_order": "8"
-            }
-          },
-          "1538611281678": {
-            "type": "image_picker",
-            "settings": {
-              "image_picker_block": "shopify:\/\/shop_images\/about-image-2.jpg",
-              "image_offset": "",
-              "block_order": "3"
             }
           }
         },
