@@ -101,7 +101,8 @@
         .footer-sub-nav-wrapper {
           position: relative;
           width: 49%;
-          display: inline-flex;
+          float: left;
+          // display: inline-flex;
           padding-top: 25px;
         } 
 
@@ -113,12 +114,20 @@
 
         &.footer-sub-nav {
           columns: 1;
+
+          li {
+            display: inline;
+            padding: 9.5px 0;
+          }
         }
       }
     }
 
     a {
-      display: block;
+      display: inline-block;
+      float: left;
+      clear: left;
+      line-height: 1;
       padding: 7px 12px 7px 0;
       color: $color--white;
 
@@ -194,6 +203,7 @@
   }
 }
 .brands--telephone {
+  display: inline-block;
   padding-bottom: 42px;
   border-bottom: solid 1px $color--dark-green-2;
 
@@ -234,8 +244,9 @@
 #payment {
   padding-top: 36px;
 
-  @include mq('tablet-and-up') {
-    @include flexbox;
+ @include mq('tablet-and-up') {
+    // @include flexbox;
+    display: inline-block;
     @include align-items(center);
     padding-top: 6px;
   }
@@ -250,8 +261,25 @@
     margin-bottom: 16px;
 
     @include mq('tablet-and-up') {
-      margin-top: 5px;
+      display: inline-block;
+      float: left;
+      margin-top: 0;
       margin-bottom: 0;
+    }
+
+    h4 {
+      margin-top: 5px;
+    }
+  }
+
+  .payment-methods {
+   @include mq('tablet-and-up') {
+      // @include flexbox;
+      display: inline-block;
+    }
+
+    svg {
+      width: 47px;
     }
   }
 
