@@ -310,6 +310,7 @@ $lap-and-up:       "screen and (min-width: 1024px)";
 $desk-and-up:      "screen and (min-width: 1220px)";
 $lap-and-desk:     "screen and (min-width: 1024px) and (max-width: 1679px)";
 $wide-and-up:      "screen and (min-width: 1680px)";
+$ie-high-contrast: "screen and (-ms-high-contrast: active), (-ms-high-contrast: none)";
 $retina:           "(-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi)";
 
 @mixin mq($alias) {
@@ -351,6 +352,10 @@ $retina:           "(-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi)
     }
   } @else if $alias == "wide-and-up" {
     @media #{$wide-and-up} {
+      @content;
+    }
+  } @else if $alias == "ie-high-contrast" {
+    @media #{$ie-high-contrast} {
       @content;
     }
   } @else if $alias == "retina" {
