@@ -101,8 +101,7 @@
         .footer-sub-nav-wrapper {
           position: relative;
           width: 49%;
-          float: left;
-          // display: inline-flex;
+          display: inline-flex;
           padding-top: 25px;
         } 
 
@@ -114,7 +113,16 @@
 
         &.footer-sub-nav {
           columns: 1;
+        }
+      }
 
+      @include mq( 'ie-high-contrast' ){
+        .footer-sub-nav-wrapper {
+          display: block;
+          float: left;
+        } 
+
+        &.footer-sub-nav {
           li {
             display: inline;
             padding: 9.5px 0;
@@ -124,10 +132,7 @@
     }
 
     a {
-      display: inline-block;
-      float: left;
-      clear: left;
-      line-height: 1;
+      display: block;
       padding: 7px 12px 7px 0;
       color: $color--white;
 
@@ -137,6 +142,12 @@
       }
       @include mq('lap-and-up') {
         padding: 9.5px 0;
+      }
+      @include mq( 'ie-high-contrast' ){
+        display: inline-block;
+        float: left;
+        clear: left;
+        line-height: 1;
       }
     }      
   }
@@ -203,7 +214,6 @@
   }
 }
 .brands--telephone {
-  display: inline-block;
   padding-bottom: 42px;
   border-bottom: solid 1px $color--dark-green-2;
 
@@ -215,6 +225,9 @@
   }
   @include mq('lap-and-up') {
     margin-bottom: 0;
+  }
+  @include mq( 'ie-high-contrast' ){
+    display: inline-block;
   }
 
   a {
@@ -245,8 +258,7 @@
   padding-top: 36px;
 
  @include mq('tablet-and-up') {
-    // @include flexbox;
-    display: inline-block;
+    @include flexbox;
     @include align-items(center);
     padding-top: 6px;
   }
@@ -256,30 +268,38 @@
   @include mq('desk-and-up') {
     margin-right: auto;
   }
+  @include mq( 'ie-high-contrast' ){
+    display: inline-block;
+  }
 
   .section-title {
     margin-bottom: 16px;
 
     @include mq('tablet-and-up') {
+      margin-top: 5px;
+      margin-bottom: 0;
+    }
+    @include mq( 'ie-high-contrast' ){
       display: inline-block;
       float: left;
       margin-top: 0;
-      margin-bottom: 0;
     }
-
     h4 {
-      margin-top: 5px;
+      @include mq( 'ie-high-contrast' ){
+        margin-top: 5px;
+      }
     }
   }
 
   .payment-methods {
-   @include mq('tablet-and-up') {
-      // @include flexbox;
+    @include mq( 'ie-high-contrast' ){
       display: inline-block;
     }
 
-    svg {
-      width: 47px;
+    @include mq( 'ie-high-contrast' ){
+      svg {
+        width: 47px;
+      }
     }
   }
 
