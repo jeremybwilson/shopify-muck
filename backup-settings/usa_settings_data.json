@@ -811,12 +811,12 @@
           "1548186930171": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/start-year-off-right-50-off-code-take50_76458229-02ee-42b7-9249-1b997af9a13b.jpg",
-              "mobile_image": "shopify://shop_images/start-year-off-right-50-off-code-take50-mobile_494a8a3b-246e-4c3b-a7ee-22ebeee27b03.jpg",
-              "heading": "<br><br><br>",
+              "image": "shopify://shop_images/love-of-the-land-slide-1_04ad2088-5e8b-44a8-84bd-dd32aabe55f9.jpg",
+              "mobile_image": "shopify://shop_images/love-of-the-land-slide-1-mobile_72f5c8e8-f87d-46d6-9a32-4b8fd869d1ca.jpg",
+              "heading": "For love of the land",
               "subheading": "",
-              "cta_one_link": "shopify://collections/web-specials",
-              "cta_one_button_text": "Shop Now",
+              "cta_one_link": "shopify://collections/best-sellers",
+              "cta_one_button_text": "Shop best sellers",
               "cta_two_link": "",
               "cta_two_button_text": "",
               "caption_color_scheme": "white",
@@ -831,14 +831,34 @@
           "1545367874052": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/snow-boots.jpg",
-              "mobile_image": "shopify://shop_images/snow-boots-mobile.jpg",
-              "heading": "GEAR UP FOR WINTER WITH COMFORTABLE WATERPROOF BOOTS",
+              "image": "shopify://shop_images/waterproof-weatherproof-slide-2_df5e5ac3-4c85-45b3-bad2-adb2d6e807f5.jpg",
+              "mobile_image": "shopify://shop_images/waterproof-weatherproof-slide-2-mobile_868658e8-a143-4261-a893-ffffb8a7d8cb.jpg",
+              "heading": "Waterproof, weatherproof leather",
               "subheading": "",
-              "cta_one_link": "shopify://collections/cold-snow",
-              "cta_one_button_text": "SHOP WINTER BOOTS",
+              "cta_one_link": "shopify://collections/men-featured-fairfield-leather",
+              "cta_one_button_text": "Shop Fairfield Leather collection",
               "cta_two_link": "",
               "cta_two_button_text": "Add a button",
+              "caption_color_scheme": "white",
+              "custom_slide_main_color": "#ffffff",
+              "custom_slide_alt_color": "#164732",
+              "caption_horizontal": "center",
+              "caption_vertical": 50,
+              "caption_background": "rgba(0,0,0,0)",
+              "caption_opacity": "0.1"
+            }
+          },
+          "1549601388573": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/comfortable-waterproof-slide-3_aebfe416-8c85-4313-a720-c4609aa1f027.jpg",
+              "mobile_image": "shopify://shop_images/comfortable-waterproof-slide-3-mobile_329e89cb-6cdd-447a-aaa8-da32797a83f3.jpg",
+              "heading": "Comfortable Waterproof Winter boots",
+              "subheading": "",
+              "cta_one_link": "shopify://collections/cold-snow",
+              "cta_one_button_text": "Shop Cold & Snow",
+              "cta_two_link": "",
+              "cta_two_button_text": "",
               "caption_color_scheme": "white",
               "custom_slide_main_color": "#ffffff",
               "custom_slide_alt_color": "#164732",
@@ -851,7 +871,8 @@
         },
         "block_order": [
           "1548186930171",
-          "1545367874052"
+          "1545367874052",
+          "1549601388573"
         ],
         "settings": {
           "full_width": true,
