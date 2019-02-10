@@ -2,10 +2,27 @@
 
   {% if section.settings.image != blank %}
     <div class="collection-banner">
-      {%- include 'basic-responsive-image', type: section.settings.image -%}
+      {% assign type = section.settings.image %}
+      {%- if type.size > 0 -%}
+        {% assign img_url = type | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+        {% assign imageid = image.id %}
+
+        <div class="box-ratio blog-hero-img">
+          <img class="lazyload lazyload-fade"
+               id="{{ imageid }}"
+               data-src="{{ img_url }}"
+               data-sizes="auto"
+               alt="{{ type.alt | escape }}">
+          {% if section.settings.heading != blank %}
+            <h1 class="blog-hero-heading">{{ section.settings.heading }}</h1>
+          {% endif %}
+        </div>
+      {%- endif -%}
+
       <noscript>
         <img src="{{ section.settings.image | img_url: '1024x' }}" alt="{{ section.settings.image.alt }}">
       </noscript>
+
     </div>
   {% endif %}
 
@@ -68,13 +85,18 @@
 
 {% schema %}
 {
-"name": "Blog",
-"settings":
+  "name": "Blog",
+  "settings":
   [
     {
       "type": "image_picker",
       "id": "image",
       "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
     },
     {
       "id": "text",
