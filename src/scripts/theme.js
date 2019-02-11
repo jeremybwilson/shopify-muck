@@ -2940,25 +2940,6 @@ theme.Search = (function() {
   return Search;
 })();
 
-/*============================================================================
- Blog template
- ==============================================================================*/
-theme.Blog = (function() {
-    function Blog(container) {
-        console.log('blog-template loaded:', container);
-        const ui = {
-            blogNavItem: $('.blog-nav-primary-link'),
-        };
-
-        // EVENTS : Bind DOM events when ready
-        $(document).ready( () => {
-        });
-    }
-
-    Blog.prototype = _.assignIn({}, Blog.prototype, {});
-    return Blog;
-})();
-
 
 
 /*============================================================================
@@ -2980,7 +2961,6 @@ $(document).ready(function() {
   sections.register('mobile-navigation', theme.mobileNav);
   sections.register('product-section', theme.Product);
   sections.register('search-template', theme.Search);
-  sections.register('blog-template', theme.Blog);
 });
 
 /*============================================================================

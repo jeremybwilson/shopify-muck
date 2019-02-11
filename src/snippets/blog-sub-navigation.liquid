@@ -1,5 +1,6 @@
 <nav class="blog-nav">
   <div class="blog-nav-menu">
+
     <ul class="blog-nav-menu-desktop-list">
       {% for link in linklists.blogs.links %}
         {% assign blogItem = link.object %}
@@ -8,6 +9,7 @@
         </li>
       {% endfor %}
     </ul>
+
     <div class="blog-nav-menu-mobile">
       <div class="prefix">Viewing </div>
       <div class="blog-nav-menu-mobile-list-wrapper">
