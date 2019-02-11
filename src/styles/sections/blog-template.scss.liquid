@@ -64,11 +64,11 @@
   }
   nav.blog-nav {
     color: $color--dark-green-2;
-    display: none;
+    display: block;
     height: $navBarDesktopHeight;
 
-    @include mq( 'lap-and-up' ) {
-      display: block;
+    @include mq('phone') {
+      height: 60px;
     }
 
     // Nav-Category-Header
@@ -80,7 +80,7 @@
       color: $color--dark-green-2;
     }
   }
-  .blog-nav-menu-desktop {
+  .blog-nav-menu {
     position: relative;
     height: 100%;
 
@@ -91,6 +91,10 @@
       height: 100%;
       width: 100%;
       z-index: $zIndexButtons;
+
+      @include mq('phone') {
+        display: none;
+      }
 
       .blog-nav-primary-link {
         display: inline;
@@ -126,5 +130,67 @@
       {% endif %}
       }
     }
+
+    .blog-nav-menu-mobile {
+      display: none;
+      height: 100%;
+      text-transform: uppercase;
+      letter-spacing: 0.08rem;
+      font-family: $font-stack--heading;
+      font-weight: 500;
+      width: 100%;
+
+      @include mq('phone') {
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .prefix {
+        height: 100%;
+        line-height: 61px;
+        width: 100px;
+        margin-left: 30px;
+        text-align: right;
+      }
+
+      .blog-nav-menu-mobile-list-wrapper {
+        border: none;
+        height: 100%;
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        margin-right: 25px;
+
+        &:after {
+          width: 0;
+          height: 0;
+          border-left: 6px solid transparent;
+          border-right: 6px solid transparent;
+          border-top: 7px solid {{ settings.nav_links_hover }};
+          position: absolute;
+          top: 45%;
+          right: 4px;
+          content: "";
+          z-index: 99;
+        }
+
+        .blog-nav-menu-mobile-list {
+          background: none;
+          border: none;
+          color: $color--dark-green-2;
+          height: 100%;
+          margin: 0;
+          position: relative;
+          text-transform: uppercase;
+          letter-spacing: 0.08rem;
+          line-height: 60px;
+          font-family: $font-stack--heading;
+          font-weight: 500;
+          width: 100%;
+          z-index: 98;
+        }
+      }
+    }
+
   }
 }
