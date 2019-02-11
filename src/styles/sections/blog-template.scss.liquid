@@ -1,5 +1,5 @@
 .blog-template {
-  .collection-banner {
+  .blog-banner {
     .blog-hero-img {
       height: 420px;
       position: relative;
@@ -50,6 +50,80 @@
           font-weight: 500;
           min-width: 300px;
         }
+      }
+    }
+  }
+
+  .blog-nav-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+  }
+  nav.blog-nav {
+    color: $color--dark-green-2;
+    display: none;
+    height: $navBarDesktopHeight;
+
+    @include mq( 'lap-and-up' ) {
+      display: block;
+    }
+
+    // Nav-Category-Header
+    .nav-category-header {
+      @include h5;
+      height: 100%;
+      text-decoration: none;
+      text-transform: uppercase;
+      color: $color--dark-green-2;
+    }
+  }
+  .blog-nav-menu-desktop {
+    position: relative;
+    height: 100%;
+
+    .blog-nav-menu-desktop-list {
+      display: inline-block;
+      list-style: none;
+      text-align: center;
+      height: 100%;
+      width: 100%;
+      z-index: $zIndexButtons;
+
+      .blog-nav-primary-link {
+        display: inline;
+        height: 100%;
+        width: 100%;
+        padding: 5px 20px;
+
+        .nav-category-header { //Center the nav link item vertically 
+          @include inline-flex;
+          @include align-items( center );
+          @include fontSize( 14px );
+          text-align:center;
+          letter-spacing: 0.08rem;
+          padding-top: 3px; // make up size for 3px bottom border on links
+          border-bottom: 3px solid transparent;
+          font-family: $font-stack--heading;
+          font-weight: 500;
+        }
+
+        &:hover > a {
+          border-bottom: 3px solid {{ settings.nav_links_hover }};
+        }
+
+        &.active > a {
+          color: {{ settings.nav_links_hover }};
+          border-bottom: none;
+        }
+        // SALE : Sale gets unique color var from settings
+      {% if settings.enable_nav_name_styling %}
+        &.sale a {
+          color: {{ settings.nav_links_sale }};
+        }
+      {% endif %}
       }
     }
   }

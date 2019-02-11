@@ -1,7 +1,11 @@
-<div data-section-id="{{ section.id }}" class="blog-template">
+<div id="blog-template"
+     data-section-id="{{ section.id }}"
+     data-section-type="blog-template"
+     class="blog-template"
+>
 
   {% if section.settings.image != blank %}
-    <div class="collection-banner">
+    <div class="blog-banner">
       {% assign type = section.settings.image %}
       {%- if type.size > 0 -%}
         {% assign img_url = type | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
@@ -26,18 +30,22 @@
     </div>
   {% endif %}
 
+  <div class="blog-nav-container">
+    {% include 'blog-sub-navigation' %}
+  </div>
+
   <div id="content" class="row">
     {% if settings.breadcrumb %}
-    {% include 'breadcrumb' %}
+      {% include 'breadcrumb' %}
     {% endif %}
 
     <h1 class="desktop-12 mobile-3">{% if current_tags %}{{ blog.title | link_to: blog.url }} &raquo; {{ current_tags.first }}{% else %}{{ blog.title }}{% endif %}</h1>
     {% paginate blog.articles by 50 %}
 
     {% if section.settings.text != blank %}
-    <div class="desktop-12 tablet-6 mobile-3">
-    {{ section.settings.text }}
-    </div>
+      <div class="desktop-12 tablet-6 mobile-3">
+        {{ section.settings.text }}
+      </div>
     {% endif %}
 
     <div id="article-loop" class="desktop-9 tablet-6 mobile-3">
@@ -79,6 +87,18 @@
 
     {% endpaginate %}
   </div>
+
+  <style>
+    .blog-nav-menu-desktop {
+      background-color: {{section.settings.blog_nav_bg_color}};
+    }
+
+    .blog-nav-menu-desktop
+    .blog-nav-menu-desktop-list
+    .blog-nav-primary-link a {
+      font-size: {{section.settings.blog_nav_font_size}}px !important;
+    }
+  </style>
 </div>
 
 
@@ -97,6 +117,22 @@
       "type": "text",
       "id": "heading",
       "label": "Heading"
+    },
+    {
+      "type": "color",
+      "id": "blog_nav_bg_color",
+      "label": "Blog Nav Background Color",
+      "default": "#f5f1ed"
+    },
+    {
+      "type": "range",
+      "id": "blog_nav_font_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Blog Nav Font Size",
+      "default": 14
     },
     {
       "id": "text",
