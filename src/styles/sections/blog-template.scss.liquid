@@ -195,112 +195,153 @@
 
   #content {
     padding: 50px 0;
-  }
-  .article-loop-container {
-    .article-index {
-      clear: both;
-      display: inline-block;
-      float: none !important;
-      margin-left: 1.08%;
-      margin-right: 1.08%;
-      vertical-align: top;
-      width: 47.6%;
+    .article-loop-container {
+      width: 100%;
 
-      @include mq('phone') {
-        margin-left: 2.16%;
-        margin-right: 2.16%;
-        width: 95.2%;
+      .article-index {
+        clear: both;
+        display: inline-block;
+        float: none !important;
+        margin-left: 1.08%;
+        margin-right: 1.08%;
+        vertical-align: top;
+        width: 47.6%;
+
+        .article-info {
+          .article-info-inner {
+            margin: auto;
+            max-width: 533px;
+
+            .box-ratio {
+              height: auto;
+              max-height: 356px;
+              padding: 0 !important;
+            }
+
+            .blog-title {
+              margin: 40px auto 10px;
+              text-align: center;
+
+              a {
+                color: {{settings.nav_links_hover}};
+                font-family: $font-stack--heading;
+                font-size: 16px;
+                font-weight: 500;
+                letter-spacing: 0.2rem;
+              }
+            }
+
+            .article-title {
+              a {
+                color: $color--dark-green-2;
+                font-family: $font-stack--heading;
+                font-size: 26px;
+                font-weight: 800;
+                letter-spacing: 0.4rem;
+              }
+            }
+
+            .posted {
+              color: $color--dark-green-2;
+              font-size: 14px;
+              font-weight: 500;
+              text-align: center;
+              text-transform: uppercase;
+            }
+
+            .comments {
+              margin: 10px auto;
+              text-align: center;
+              a {
+                .comments-icon {
+                  color: {{settings.nav_links_hover}};
+                  font-size: 14px;
+                  margin-right: 5px;
+                }
+                .comments-count {
+                  font-size: 14px;
+                  font-weight: 400;
+                  text-transform: capitalize;
+                }
+              }
+            }
+
+            .article-content {
+              font-size: 14px;
+              letter-spacing: 0.1rem;
+              margin-top: 10px;
+              margin-bottom: 10px;
+              padding: 10px 50px;
+              text-align: center;
+            }
+
+            .readmore {
+              text-align: center;
+
+              a {
+                background: none;
+                color: $color--dark-green-2;
+                font-size: 14px;
+                font-weight: 500;
+                letter-spacing: 0.1rem;
+                line-height: 18px;
+
+                .caret-icon {
+                  color: {{settings.nav_links_hover}};
+                  font-size: 18px;
+                  line-height: 18px;
+                  margin-left: 10px;
+                  vertical-align: text-top;
+                }
+              }
+            }
+
+          }
+        }
       }
     }
 
-    .article-info {
-      .article-info-inner {
-        margin: auto;
-        max-width: 533px;
+    @include mq('phone') {
+      margin-bottom: 30px;
+      padding: 20px 0;
 
-        .box-ratio {
-          height: auto;
-          max-height: 356px;
-          padding: 0 !important;
-        }
+      .article-loop-container {
+        .article-index {
+          margin-left: 2.16%;
+          margin-right: 2.16%;
+          width: 95.2%;
 
-        .blog-title {
-          margin: 40px auto 10px;
-          text-align: center;
+          .article-info {
+            margin-bottom: 10px;
+            padding: 0 18px;
 
-          a {
-            color: {{ settings.nav_links_hover }};
-            font-family: $font-stack--heading;
-            font-size: 16px;
-            font-weight: 500;
-          }
-        }
+            .article-info-inner {
+              .blog-title {
+                margin: 30px auto 10px;
 
-        .article-title {
-          a {
-            color: $color--dark-green-2;
-            font-family: $font-stack--heading;
-            font-size: 26px;
-            font-weight: 800;
-            letter-spacing: 0.4rem;
-          }
-        }
+                a {
+                  font-size: 14px;
+                  font-weight: 500;
+                }
+              }
 
-        .posted {
-          color: $color--dark-green-2;
-          font-size: 14px;
-          font-weight: 500;
-          text-align: center;
-          text-transform: uppercase;
-        }
+              .article-title {
+                a {
+                  font-size: 22px;
+                  letter-spacing: 0.3rem;
+                }
+              }
 
-        .comments {
-          margin: 10px auto;
-          text-align: center;
-          a {
-            .comments-icon {
-              color: {{ settings.nav_links_hover }};
-              font-size: 14px;
-              margin-right: 5px;
-            }
-            .comments-count {
-              font-size: 14px;
-              font-weight: 400;
-              text-transform: capitalize;
+              .article-content {
+                padding: 0;
+              }
+
+              .readmore {
+                margin: 20px auto 0;
+              }
             }
           }
         }
-
-        .article-content {
-          font-size: 14px;
-          letter-spacing: 0.1rem;
-          margin-top: 10px;
-          margin-bottom: 10px;
-          padding: 10px 50px;
-          text-align: center;
-        }
-
-        .readmore {
-          text-align: center;
-
-          a {
-            background: none;
-            color: $color--dark-green-2;
-            font-size: 14px;
-            font-weight: 500;
-            letter-spacing: 0.1rem;
-            line-height: 18px;
-
-            .caret-icon {
-              color: {{ settings.nav_links_hover }};
-              font-size: 18px;
-              line-height: 18px;
-              margin-left: 10px;
-              vertical-align: text-top;
-            }
-          }
-        }
-
       }
     }
   }
