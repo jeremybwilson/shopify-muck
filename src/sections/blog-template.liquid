@@ -59,23 +59,15 @@
 
         <div class="article-loop-container">
           {% for article in blog.articles  %}
-            {% assign isOdd = forloop.index | modulo:2 %}
-            {% if isOdd or forloop.first %}
-              <div class="row">
-            {% endif %}
-
             {% assign number_of_comments = article.comments_count %}
             {% if comment and comment.created_at %}
               {% assign number_of_comments = article.comments_count | plus: 1 %}
             {% endif %}
-            <div class="desktop-6 tablet-6 mobile-12 article-index"
+            <div class="article-index"
                  id="article-{{ article.id }}"
                  data-alpha="{{ article.title }}">
               {% include 'article-loop' %}
             </div>
-            {% if isOdd == 0 or forloop.last %}
-              </div>
-            {% endif %}
           {% endfor %}
         </div>
 

@@ -193,14 +193,33 @@
     }
   }
 
+  #content {
+    padding: 50px 0;
+  }
   .article-loop-container {
+    .article-index {
+      clear: both;
+      display: inline-block;
+      float: none !important;
+      margin-left: 1.08%;
+      margin-right: 1.08%;
+      vertical-align: top;
+      width: 47.6%;
+
+      @include mq('phone') {
+        margin-left: 2.16%;
+        margin-right: 2.16%;
+        width: 95.2%;
+      }
+    }
+
     .article-info {
       .article-info-inner {
         margin: auto;
         max-width: 533px;
 
         .box-ratio {
-          height: 356px;
+          height: auto;
           max-height: 356px;
           padding: 0 !important;
         }
@@ -247,6 +266,7 @@
             .comments-count {
               font-size: 14px;
               font-weight: 400;
+              text-transform: capitalize;
             }
           }
         }
