@@ -39,11 +39,38 @@
     
   <h4 class="row" style="margin: 0 0 0.5rem 0;"><label>Comments</label></h4>
   <textarea class="row" style="margin: 0 0 1rem 0;" rows="15" cols="90" id="contactFormComments" name="contact[comments]" placeholder="{{ 'contact.form.message' | t }}"></textarea>
+  
+  <div>
+    <b>Please confirm that you understand and have met the requirements for submitting a return.</b>
+    <ul>
+      <li>Returned items must be new, unworn or unused and returned within 14 days of the date the products were delivered to you.</li>
+      <li>Returned items must have all outer and inner packaging materials, products with original tags, labels and gift with purchase in place.</li>
+      <li>Ensure each item to be returned is entered individually in the form.</li> 
+    </ul>
+    <b>Failure to meet these requirements can lead to delays in processing your return.</b>
+  </div>
+  <br>
+  <input type="checkbox" id="acceptConditions" onchange="document.getElementById('contactFormSubmit').disabled = !this.checked;" style="float: left; margin-top: 8px;"/>
+  <div style="margin-left: 25px;">
+    <b>I understand the requirements for submitting a return.</b>
+  </div>
+  <br>
   <p class="form-submit" >
-    <input type="button" onclick="createTicket()" style="width: 200px; background-color: #ab5232;" id="contactFormSubmit" class="secondary button" value="{{ 'contact.form.send' | t }}" />
+    <input type="button" onclick="createTicket()" id="contactFormSubmit" class="secondary button" value="{{ 'contact.form.send' | t }}"  disabled/>
   </p> 
 </div>
 
+<style>
+#contactFormSubmit {
+  width: 200px;
+  background-color: #ab5232;
+}
+#contactFormSubmit:disabled {
+  width: 200px;
+  background-color: grey;
+  cursor: not-allowed;
+}
+</style>
 <script>
   function summarizeSkus() {
     var summary = "";
