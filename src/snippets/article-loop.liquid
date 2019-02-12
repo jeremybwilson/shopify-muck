@@ -18,21 +18,23 @@
       <h2 class="article-title">
         <a href="{{ article.url }}">{{ article.title }}</a>
       </h2>
-      {% assign published_at = article.published_at | date: format: 'month_date_year' %}
+      {% assign published_at = article.published_at | date: '%b %d, %y' %}
       {% if section.settings.show_date %}
         <p class="posted">{{ article.author }} | {{ published_at }}</p>
       {% endif %}
 
       <div class="comments">
-        <span class="fa fa-comment"></span>
-        <span class="comments-count">
-          {% if number_of_comments %}
-            {{ number_of_comments }}
-          {% else %}
-            0
-          {% endif %}
-          &nbsp;Comments
-        </span>
+        <a href="{% if article.comments_enabled? %}{{ article.comment_post_url }}{% endif %}">
+          <span class="fa fa-comment comments-icon"></span>
+          <span class="comments-count">
+            {% if number_of_comments %}
+              {{ number_of_comments }}
+            {% else %}
+              0
+            {% endif %}
+             Comments
+          </span>
+        </a>
       </div>
 
       <div class="article-content">
@@ -45,9 +47,11 @@
       </div>
 
       <div class="readmore">
-        <a href="{{ article.url }}">{{ 'blogs.article.read_more' | t }}</a>
+        <a href="{{ article.url }}">
+          {{ 'blogs.article.read_more' | t }}
+          <span class="fa fa-caret-right caret-icon"></span>
+        </a>
       </div>
 
     </div>
-
   </div>
