@@ -5,7 +5,7 @@
       {% for article in blog.articles  %}
         {% assign number_of_comments = article.comments_count %}
         {% if comment and comment.created_at %}
-        {% assign number_of_comments = article.comments_count | plus: 1 %}
+          {% assign number_of_comments = article.comments_count | plus: 1 %}
         {% endif %}
         <div class="desktop-6 tablet-6 mobile-12 article-index"
              id="article-{{ article.id }}"
