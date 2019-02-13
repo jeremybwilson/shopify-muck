@@ -1,0 +1,89 @@
+
+.article-template {
+  .article-featured-img {
+    .box-ratio {
+      height: 420px;
+      position: relative;
+
+      img {
+        position: absolute;
+        top: 50%;
+        -webkit-transform: translateY(-38%);
+        -moz-transform: translateY(-38%);
+        -ms-transform: translateY(-38%);
+        -o-transform: translateY(-38%);
+        transform: translateY(-38%);
+      }
+
+      @include mq('phone') {
+        height: auto;
+
+        img {
+          position: relative;
+          top: 0;
+          -webkit-transform: none;
+          -moz-transform: none;
+          -ms-transform: none;
+          -o-transform: none;
+          transform: none;
+        }
+      }
+    }
+  }
+
+  #blog-article {
+    .blog-title {
+      margin: 40px auto 10px;
+      text-align: center;
+
+      a {
+        color: {{settings.nav_links_hover}};
+        font-family: $font-stack--heading;
+        font-size: 16px;
+        font-weight: 500;
+        letter-spacing: 0.2rem;
+      }
+    }
+
+    .article-title {
+      a {
+        color: $color--dark-green-2;
+        font-family: $font-stack--heading;
+        font-size: 26px;
+        font-weight: 800;
+        letter-spacing: 0.4rem;
+      }
+    }
+
+    .posted {
+      color: $color--dark-green-2;
+      font-size: 14px;
+      font-weight: 500;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .comments {
+      margin: 10px auto;
+      text-align: center;
+      a {
+        .comments-icon {
+          color: {{settings.nav_links_hover}};
+          font-size: 14px;
+          margin-right: 5px;
+        }
+        .comments-count {
+          font-size: 14px;
+          font-weight: 400;
+          text-transform: capitalize;
+        }
+      }
+    }
+
+    .share-icons {
+      a {
+        color: $color--dark-green-2;
+      }
+    }
+  }
+}
