@@ -25,6 +25,7 @@
     </div>
   {% endif %}
 
+  <div id="content" class="row">
   {% paginate article.comments by 20 %}
 
     <div id="blog-article" class="desktop-8 desktop-push-2 tablet-6 mobile-3">
@@ -33,9 +34,7 @@
         <a href="{{ blog.url }}">{{ blog.title }}</a>
       </h3>
 
-      <h2 class="article-title">
-        <a href="{{ article.url }}">{{ article.title }}</a>
-      </h2>
+      <h1 class="article-title">{{ article.title }}</h1>
 
       {% assign published_at = article.published_at | date: '%b %d, %y' %}
       {% if section.settings.show_date %}
@@ -85,7 +84,6 @@
               </li>
               {% endfor %}
             </ul>
-
           </div>
 
           <!-- Comment Form -->
@@ -169,6 +167,7 @@
     <div class="clear"></div>
 
   {% endpaginate %}
+  </div>
 </div>
 
 {% schema %}
