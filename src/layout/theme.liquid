@@ -240,6 +240,10 @@
     </script>
   {% endif %}
 
+
+  <!-- ajax load more for blog-->
+  {% include 'ajax-blog-load-more' %}
+
   <!-- Responsive Images -->
   {{ 'ls.rias.min.js' | asset_url | script_tag }}
   {{ 'ls.bgset.min.js' | asset_url | script_tag }}

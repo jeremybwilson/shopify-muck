@@ -55,7 +55,7 @@
     {% if blog.handle == 'all-posts' %}
       {% include 'all-posts' %}
     {% else %}
-      {% paginate blog.articles by 50 %}
+      {% paginate blog.articles by 10 %}
 
         <div class="article-loop-container">
           {% for article in blog.articles  %}
@@ -94,10 +94,18 @@
         </div>
         {% endcomment %}
 
-
         <div class="clear"></div>
 
-        {% include 'pagination' %}
+        {% if paginate.next %}
+          <div class="load_more">
+            <button class="btn-load-more" data-url="{{ paginate.next.url }}">Load More</button>
+          </div>
+        {% endif %}
+
+        <div id="blog-list-foot"></div>
+        <div class="loading-blog">
+          <img src="{{ 'bc-sf-filter-loading.gif' | asset_url }}"/>
+        </div>
 
       {% endpaginate %}
     {% endif %}

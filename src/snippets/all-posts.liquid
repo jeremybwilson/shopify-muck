@@ -1,3 +1,5 @@
+{% assign count = 0 %}
+
 <div class="article-loop-container">
   {% for link in linklists.blogs.links %}
     {% assign blog = link.object %}
@@ -11,6 +13,11 @@
            data-alpha="{{ article.title }}">
         {% include 'article-loop' %}
       </div>
+      {% assign count = count | plus: 1 %}
+      {% if count == 20 %}
+        {% assign count = 0 %}
+        {% break %}
+      {% endif %}
     {% endfor %}
   {% endfor %}
 </div>
