@@ -1,7 +1,7 @@
 .blog-template {
   .blog-banner {
     .blog-hero-img {
-      height: 420px;
+      height: 390px;
       position: relative;
 
       img {
@@ -26,7 +26,7 @@
         font-family: $font-stack--heading;
         font-size: 53px;
         text-transform: uppercase;
-        letter-spacing: 10px;
+        letter-spacing: 0.84rem;
         font-weight: 800;
         max-width: 600px;
       }
@@ -65,7 +65,7 @@
   nav.blog-nav {
     color: $color--dark-green-2;
     display: block;
-    height: $navBarDesktopHeight;
+    height: 60px;
 
     @include mq('phone') {
       height: 60px;
@@ -101,6 +101,7 @@
         height: 100%;
         width: 100%;
         padding: 5px 20px;
+        margin: 0 9px;
 
         .nav-category-header { //Center the nav link item vertically 
           @include inline-flex;
@@ -194,7 +195,7 @@
   }
 
   #content {
-    padding: 50px 0;
+    padding: 70px 0;
 
     @include mq('phone') {
       margin-bottom: 30px;
@@ -245,9 +246,26 @@
     vertical-align: top;
     width: 47.6%;
 
+    &:nth-child(odd) {
+      .article-info {
+        .article-info-inner {
+          margin-left: 0;
+          margin-right: auto;
+        }
+      }
+    }
+
+    &:nth-child(even) {
+      .article-info {
+        .article-info-inner {
+          margin-left: auto;
+          margin-right: 0;
+        }
+      }
+    }
+
     .article-info {
       .article-info-inner {
-        margin: auto;
         max-width: 533px;
 
         .box-ratio {
@@ -263,9 +281,9 @@
           a {
             color: {{settings.nav_links_hover}};
             font-family: $font-stack--heading;
-            font-size: 16px;
+            font-size: 17px;
             font-weight: 500;
-            letter-spacing: 0.2rem;
+            letter-spacing: 0.22rem;
           }
         }
 
@@ -273,9 +291,9 @@
           a {
             color: $color--dark-green-2;
             font-family: $font-stack--heading;
-            font-size: 26px;
+            font-size: 30px;
             font-weight: 800;
-            letter-spacing: 0.4rem;
+            letter-spacing: 0.47rem;
           }
         }
 
@@ -319,16 +337,16 @@
           a {
             background: none;
             color: $color--dark-green-2;
-            font-size: 14px;
+            font-size: 16px;
             font-weight: 500;
-            letter-spacing: 0.1rem;
+            letter-spacing: 0.2rem;
             line-height: 18px;
 
             .caret-icon {
               color: {{settings.nav_links_hover}};
               font-size: 18px;
               line-height: 18px;
-              margin-left: 10px;
+              margin-left: 5px;
               vertical-align: text-top;
             }
           }
