@@ -105,6 +105,93 @@
       .rte {
         margin: 40px auto 0;
       }
+
+      #comments {
+        .comments-container {
+          margin-top: 40px;
+
+          .section-title {
+            color: $color--dark-green-2;
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: 0.3rem;
+            text-align: left;
+            text-transform: uppercase;
+          }
+
+          .info-block {
+            border-bottom: 1px solid #eee;
+            color: $color--dark-green-2;
+            display: flex;
+            font-size: 14px;
+            font-weight: 400;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+
+            .customer-login {
+              font-size: inherit;
+
+              .comments-icon {
+                color: {{settings.nav_links_hover}};
+                font-size: inherit;
+                margin-right: 5px;
+              }
+
+              .login-text {
+                color: $color--dark-green-2;
+                font-size: inherit;
+              }
+            }
+          }
+
+          .social-block {
+            color: $color--dark-green-2;
+            display: flex;
+            font-size: 13px;
+            font-weight: 400;
+            justify-content: space-between;
+            margin-bottom: 20px;
+
+            .recommend {
+              .comments-icon {
+                color: {{settings.nav_links_hover}};
+                font-size: inherit;
+                margin-right: 5px;
+              }
+            }
+            .social-twitter,
+            .social-facebook {
+              border-radius: 3px;
+              color: white;
+              margin-right: 5px;
+              padding: 2px 0 2px 5px;
+              font-size: 14px;
+              text-transform: uppercase;
+
+              .sub-text {
+                font-size: 8px;
+                vertical-align: middle;
+              }
+            }
+
+            .social-twitter {
+              background-color: #33aae0;
+            }
+
+            .social-facebook {
+              background-color: #3b5d98;
+
+              .sub-text {
+                margin-right: 5px;
+              }
+            }
+            .sort-widget {
+
+            }
+          }
+        }
+      }
     }
   }
 
