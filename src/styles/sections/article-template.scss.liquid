@@ -107,6 +107,8 @@
       }
 
       #comments {
+        padding: 20px 10px 0;
+
         .comments-container {
           margin-top: 40px;
 
@@ -173,6 +175,7 @@
 
               .sub-text {
                 font-size: 8px;
+                margin-right: 5px;
                 vertical-align: middle;
               }
             }
@@ -183,10 +186,6 @@
 
             .social-facebook {
               background-color: #3b5d98;
-
-              .sub-text {
-                margin-right: 5px;
-              }
             }
             .sort-widget {
             }
@@ -206,12 +205,12 @@
             }
             #comment-form {
               margin-right: auto;
-              max-width: 450px;
+              max-width: 550px;
               width: 100%;
 
               .form-widget {
                 input {
-                  max-width: 450px;
+                  max-width: 550px;
                 }
 
                 .hide-part {
@@ -329,6 +328,45 @@
         .rte {
           margin: 20px auto 0;
           padding: 0 20px;
+        }
+
+        #comments {
+          .comments-container {
+            .section-title {
+              font-size: 22px;
+            }
+
+            .social-block {
+              flex-direction: column;
+
+              .social {
+                margin-bottom: 10px;
+              }
+
+              .social-twitter,
+              .social-facebook {
+                float: right;
+              }
+              .sort-widget {
+                text-align: right;
+
+                .sort-text {
+                  margin-right: 10px;
+                }
+              }
+            }
+
+            .comments-list-block {
+              #commentlist {
+                .comment-single-part {
+                  .user-info-part {
+                    width: 45px;
+                  }
+                }
+              }
+            }
+
+          }
         }
       }
     }
