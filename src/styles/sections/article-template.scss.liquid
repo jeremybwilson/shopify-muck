@@ -154,10 +154,12 @@
             margin-bottom: 20px;
 
             .recommend {
+              margin-right: 5px;
+
               .comments-icon {
                 color: {{settings.nav_links_hover}};
                 font-size: inherit;
-                margin-right: 5px;
+                margin-right: 3px;
               }
             }
             .social-twitter,
@@ -187,9 +189,103 @@
               }
             }
             .sort-widget {
-
             }
           }
+
+          .comment-submit-block {
+            border-bottom: 1px solid #eee;
+            display: flex;
+            margin-bottom: 10px;
+            padding: 20px 0 5px;
+
+            .user-info-part {
+              color: $color--dark-green-2;
+              font-size: 38px;
+              padding: 0 5px;
+              width: 60px;
+            }
+            #comment-form {
+              margin-right: auto;
+              max-width: 450px;
+              width: 100%;
+
+              .form-widget {
+                input {
+                  max-width: 450px;
+                }
+
+                .hide-part {
+                  display: none;
+                }
+              }
+
+              .comment-submit {
+                background-color: {{settings.nav_links_hover}};
+                display: none;
+                letter-spacing: 0.1rem;
+                float: right;
+                font-size: 14px;
+                font-weight: 500;
+              }
+            }
+          }
+
+          .comments-list-block {
+            width: 100%;
+
+            #commentlist {
+              .comment-single-part {
+                display: flex;
+                padding: 0 5px;
+
+                .user-info-part {
+                  align-items: center;
+                  background-color: #164732;
+                  border-radius: 20px;
+                  color: white;
+                  display: flex;
+                  font-size: 14px;
+                  font-weight: 500;
+                  height: 38px;
+                  justify-content: center;
+                  margin-right: 20px;
+                  width: 40px;
+                }
+
+                .comment-details-part {
+                  font-size: 12px;
+                  padding-top: 10px;
+                  width: 100%;
+
+                  .comment-details {
+                    .author {
+                      color: $color--dark-green-2;
+                      font-size: 14px;
+                      font-weight: 500;
+                      margin-right: 5px;
+                    }
+                  }
+
+                  .comment {
+                    float: none;
+                  }
+
+                  .controls {
+                    .reply-control {
+                      margin-right: 10px;
+                    }
+                    .share-control {
+                      .fa-share-square-o {
+                        color: {{settings.nav_links_hover}};
+                        margin-right: 5px;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+
         }
       }
     }
