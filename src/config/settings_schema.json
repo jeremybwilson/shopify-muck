@@ -1030,6 +1030,16 @@
         "id": "sizmek_pixel_cart_start",
         "label": "Sizmek - Cart Start Pixel ID",
         "info": "Cart start pixel ID (EX: 20720632), copied from sizmek pixel dashboard."
+      },
+      {
+        "type": "header",
+        "content": "Criteo Tracking"
+      },
+      {
+        "type": "text",
+        "id": "criteo_account_number",
+        "label": "Criteo Account Number",
+        "info": "Enter a 5 digit number."
       }
 
     ]
