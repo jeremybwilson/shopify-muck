@@ -15,16 +15,14 @@
       }
 
       @include mq('phone') {
-        height: auto;
+        height: 230px;
 
         img {
-          position: relative;
-          top: 0;
-          -webkit-transform: none;
-          -moz-transform: none;
-          -ms-transform: none;
-          -o-transform: none;
-          transform: none;
+          -webkit-transform: translateY(-56%);
+          -moz-transform: translateY(-56%);
+          -ms-transform: translateY(-56%);
+          -o-transform: translateY(-56%);
+          transform: translateY(-56%);
         }
       }
     }
@@ -333,21 +331,37 @@
   }
 
   @include mq('phone') {
+    #content {
+      padding: 0 10px 20px;
+    }
     #blog-article {
       .blog-title {
+        margin: 43px auto 7px;
+
         a {
           font-size: 14px;
+          letter-spacing: 0.1rem;
         }
       }
 
       .article-title {
         font-size: 22px;
-        letter-spacing: 0.3rem;
+        letter-spacing: 0.35rem;
         margin-bottom: 0 !important;
       }
 
       .posted {
         font-size: 12px;
+        margin-bottom: 7px;
+      }
+
+      .share-icons {
+        margin: 0 auto;
+
+        a {
+          font-size: 10px;
+          margin: 5px 11px;
+        }
       }
 
       .comments {
@@ -362,41 +376,105 @@
         margin-top: 20px;
 
         .rte {
-          margin: 20px auto 0;
-          padding: 0 20px;
+          margin: 30px auto 0;
+          padding: 0 10px;
         }
 
         #comments {
+          padding: 20px 10px 0;
+
           .comments-container {
+            margin-top: 10px;
+
             .section-title {
               font-size: 22px;
+              letter-spacing: 0.35rem;
+              margin-bottom: 16px;
+            }
+
+            .info-block {
+              font-size: 14px;
+              margin-bottom: 28px;
+              padding-bottom: 13px;
+
+              .customer-login {
+                .login-text {
+                  margin-right: 27px;
+                }
+              }
             }
 
             .social-block {
               flex-direction: column;
+              margin-bottom: 0;
+              padding: 0 3px;
 
               .social {
-                margin-bottom: 10px;
+                margin-bottom: 15px;
               }
 
               .social-twitter,
               .social-facebook {
                 float: right;
+                padding: 0 0 0 5px;
               }
               .sort-widget {
                 text-align: right;
 
                 .sort-text {
-                  margin-right: 10px;
+                  font-size: 14px;
+                  letter-spacing: 0.02rem;
+                  margin-right: 22px;
+                }
+              }
+            }
+
+            .comment-submit-block {
+              padding: 12px 0 5px;
+
+              #comment-form {
+                padding: 0 5px;
+
+                .form-widget {
+                  input {
+                    font-size: 14px;
+                    letter-spacing: 0.03rem;
+                    padding: 0 6px;
+                  }
                 }
               }
             }
 
             .comments-list-block {
               #commentlist {
+                margin-top: 20px;
+
                 .comment-single-part {
                   .user-info-part {
+                    margin-right: 10px;
+                    max-width: 45px;
+                    min-width: 45px;
                     width: 45px;
+                  }
+
+                  .comment-details-part {
+                    .comment-details {
+                      margin-bottom: 10px;
+
+                      .author {
+                        display: block;
+                        font-size: 15px;
+                        margin-bottom: 5px;
+                      }
+                    }
+
+                    .comment {
+                      margin-bottom: 20px;
+
+                      p {
+                        font-size: 14px;
+                      }
+                    }
                   }
                 }
               }
@@ -405,6 +483,11 @@
           }
         }
       }
+    }
+
+    .related-articles {
+      margin-top: 0;
+      padding: 55px 0 40px;
     }
   }
 }

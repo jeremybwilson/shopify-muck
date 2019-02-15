@@ -190,7 +190,8 @@
                         </div>
                         <div class="comment-details-part">
                           <div class="comment-details">
-                            <span class="author">{{ comment.author }}</span> {{ comment.created_at | date: "%B %d, %Y" }}
+                            <span class="author">{{ comment.author }}</span>
+                            <span class="date"> {{ comment.created_at | date: "%B %d, %Y" }}</span>
                           </div>
                           <div class="comment">
                             {{ comment.content }}
