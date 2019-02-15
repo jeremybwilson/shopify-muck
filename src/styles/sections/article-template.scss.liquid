@@ -32,6 +32,12 @@
     padding: 0 10px 50px;
   }
 
+  .blog-article {
+    float: none !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
   #blog-article {
     float: none;
     margin-left: auto;
@@ -113,14 +119,60 @@
       margin-top: 40px;
 
       .rte {
-        margin: 40px auto 0;
+        margin: 57px auto 0;
+
+        h1,h2,h3,h4,h5,h6 {
+          margin-left: auto;
+          margin-right: auto;
+          margin-bottom: 50px;
+          padding: 0 30px;
+          text-align: center;
+          width: 72.91666667%;
+        }
+
+        h4 {
+          font-size: 18px;
+          font-weight: 400;
+          letter-spacing: 0.045rem;
+          line-height: 2.1rem;
+        }
+
+        p {
+          font-size: 16px;
+          letter-spacing: 0.045rem;
+          line-height: 1.94rem;
+          margin-left: auto;
+          margin-right: auto;
+          margin-bottom: 30px;
+          padding: 0 30px;
+          text-align: left;
+          width: 72.91666667%;
+        }
+
+        iframe {
+          display: block;
+          height: 560px;
+          margin: 0 auto 57px;
+          max-width: 960px;
+        }
+
+        table {
+          margin: 50px auto;
+        }
+
+        img {
+          height: 100%;
+          padding: 0 10px;
+          width: 100%;
+          margin: 50px 0;
+        }
       }
 
       #comments {
-        padding: 20px 50px 0 10px;
+        padding: 20px 38px 0 22px;
 
         .comments-container {
-          margin-top: 40px;
+          margin-top: 15px;
 
           .section-title {
             color: $color--dark-green-2;
@@ -488,6 +540,16 @@
     .related-articles {
       margin-top: 0;
       padding: 55px 0 40px;
+    }
+  }
+}
+
+@media screen and (max-width: 959px) {
+  #article-body {
+    .rte {
+      p {
+        width: 100%;
+      }
     }
   }
 }

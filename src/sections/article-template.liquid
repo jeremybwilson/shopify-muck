@@ -28,213 +28,218 @@
   <div id="content" class="row">
   {% paginate article.comments by 20 %}
 
-    <div id="blog-article" class="desktop-9 tablet-6 mobile-3">
+    <div id="blog-article">
 
-      <h3 class="blog-title">
-        <a href="{{ blog.url }}">{{ blog.title }}</a>
-      </h3>
+      <div class="desktop-9 tablet-6 mobile-3 blog-article">
+        <h3 class="blog-title">
+          <a href="{{ blog.url }}">{{ blog.title }}</a>
+        </h3>
 
-      <h1 class="article-title">{{ article.title }}</h1>
+        <h1 class="article-title">{{ article.title }}</h1>
 
-      {% assign published_at = article.published_at | date: '%b %d, %y' %}
-      {% if section.settings.show_date %}
-        <p class="posted">{{ article.author }} | {{ published_at }}</p>
-      {% endif %}
+        {% assign published_at = article.published_at | date: '%b %d, %y' %}
+        {% if section.settings.show_date %}
+          <p class="posted">{{ article.author }} | {{ published_at }}</p>
+        {% endif %}
 
-      {% if section.settings.show_icons %}
-        {% include 'social' with article %}
-      {% endif %}
+        {% if section.settings.show_icons %}
+          {% include 'social' with article %}
+        {% endif %}
 
-      <div class="comments">
-        <a href="{% if article.comments_enabled? %}{{ article.comment_post_url }}{% endif %}">
-          <span class="fa fa-comment comments-icon"></span>
-          <span class="comments-count">
-            {% if number_of_comments %}
-              {{ number_of_comments }}
-            {% else %}
-              0
-            {% endif %}
-             Comments
-          </span>
-        </a>
+        <div class="comments">
+          <a href="{% if article.comments_enabled? %}{{ article.comment_post_url }}{% endif %}">
+            <span class="fa fa-comment comments-icon"></span>
+            <span class="comments-count">
+              {% if number_of_comments %}
+                {{ number_of_comments }}
+              {% else %}
+                0
+              {% endif %}
+               Comments
+            </span>
+          </a>
+        </div>
       </div>
 
       <div id="article-body">
         <div class="rte">{{ article.content }}</div>
 
         {% if blog.comments_enabled? %}
-          <div id="comments">
-            {% assign number_of_comments = article.comments_count %}
+          <div class="desktop-9 tablet-6 mobile-3 blog-article">
 
-            <div class="comments-container">
-              <h2 class="section-title">Comments</h2>
+            <div id="comments">
+              {% assign number_of_comments = article.comments_count %}
 
-              <div class="info-block">
-                <span class="comments-count">
-                  {{ 'blogs.comments.comments_with_count' | t: count: number_of_comments }}
-                </span>
-                {% if shop.customer_accounts_enabled %}
-                  {% if customer %}
-                    {% assign account_url = '/account' %}
-                    {% assign account_txt = 'Account' %}
-                  {% else %}
-                    {% assign account_url = '/account/login' %}
-                    {% assign account_txt = 'Login' %}
+              <div class="comments-container">
+                <h2 class="section-title">Comments</h2>
+
+                <div class="info-block">
+                  <span class="comments-count">
+                    {{ 'blogs.comments.comments_with_count' | t: count: number_of_comments }}
+                  </span>
+                  {% if shop.customer_accounts_enabled %}
+                    {% if customer %}
+                      {% assign account_url = '/account' %}
+                      {% assign account_txt = 'Account' %}
+                    {% else %}
+                      {% assign account_url = '/account/login' %}
+                      {% assign account_txt = 'Login' %}
+                    {% endif %}
+
+                    <a href="{{ account_url }}" class="customer-login">
+                      <span class="fa fa-comment comments-icon"></span>
+                      <span class="login-text">{{ account_txt }}</span>
+                    </a>
                   {% endif %}
-
-                  <a href="{{ account_url }}" class="customer-login">
-                    <span class="fa fa-comment comments-icon"></span>
-                    <span class="login-text">{{ account_txt }}</span>
-                  </a>
-                {% endif %}
-              </div>
-
-              <div class="social-block">
-                <div class="social">
-                  <a class="recommend">
-                    <span class="fa fa-heart comments-icon"></span>
-                    <span class="recommend-text">Recommend</span>
-                  </a>
-                  <a href="//twitter.com/intent/tweet?url={{ shop.url }}{{ article.url }}"
-                     target="_blank" class="social-twitter">
-                    <span class="fa fa-twitter"></span>
-                    <span class="sub-text">Tweet</span>
-                  </a>
-                  <a href="https://www.facebook.com/sharer/sharer.php?u={{ shop.url }}{{ article.url }}"
-                     target="_blank" class="social-facebook">
-                    <span class="fa fa-facebook"></span>
-                    <span class="sub-text">Share</span>
-                  </a>
                 </div>
-                <div class="sort-widget">
-                  <span class="sort-text">Sort by Best</span>
-                </div>
-              </div>
 
-              <!-- Comment Form -->
-              <div class="comment-submit-block">
-                <div class="user-info-part">
-                  <span class="fa fa-user-circle"></span>
+                <div class="social-block">
+                  <div class="social">
+                    <a class="recommend">
+                      <span class="fa fa-heart comments-icon"></span>
+                      <span class="recommend-text">Recommend</span>
+                    </a>
+                    <a href="//twitter.com/intent/tweet?url={{ shop.url }}{{ article.url }}"
+                       target="_blank" class="social-twitter">
+                      <span class="fa fa-twitter"></span>
+                      <span class="sub-text">Tweet</span>
+                    </a>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ shop.url }}{{ article.url }}"
+                       target="_blank" class="social-facebook">
+                      <span class="fa fa-facebook"></span>
+                      <span class="sub-text">Share</span>
+                    </a>
+                  </div>
+                  <div class="sort-widget">
+                    <span class="sort-text">Sort by Best</span>
+                  </div>
                 </div>
-                <div id="comment-form">
-                  {% form article %}
-                    <!-- Check if a comment has been submitted in the last request, and if yes display an appropriate message -->
-                    {% if form.posted_successfully? %}
-                      {% if blog.moderated? %}
-                        <div class="notice">
-                          {{ 'blogs.comments.success_moderated' | t }}
-                        </div>
-                      {% else %}
-                        <div class="notice">{{ 'blogs.comments.success' | t }}</div>
+
+                <!-- Comment Form -->
+                <div class="comment-submit-block">
+                  <div class="user-info-part">
+                    <span class="fa fa-user-circle"></span>
+                  </div>
+                  <div id="comment-form">
+                    {% form article %}
+                      <!-- Check if a comment has been submitted in the last request, and if yes display an appropriate message -->
+                      {% if form.posted_successfully? %}
+                        {% if blog.moderated? %}
+                          <div class="notice">
+                            {{ 'blogs.comments.success_moderated' | t }}
+                          </div>
+                        {% else %}
+                          <div class="notice">{{ 'blogs.comments.success' | t }}</div>
+                        {% endif %}
                       {% endif %}
-                    {% endif %}
 
-                    {% if form.errors %}
-                      <div class="notice error">
-                        <p>{{ 'general.forms.post_error' | t }}</p>
-                        <ul class="disc">
-                          {% for field in form.errors %}
-                            {% if field == 'form' %}
-                              <li>
-                                {{ form.errors.messages[field] }}
-                              </li>
-                            {% else %}
-                              <li>
-                                <strong>{{ field | replace: 'body', 'Message' }}</strong> {{ form.errors.messages[field] }}
-                              </li>
-                            {% endif %}
-                          {% endfor %}
-                        </ul>
-                      </div>
-                    {% endif %}
+                      {% if form.errors %}
+                        <div class="notice error">
+                          <p>{{ 'general.forms.post_error' | t }}</p>
+                          <ul class="disc">
+                            {% for field in form.errors %}
+                              {% if field == 'form' %}
+                                <li>
+                                  {{ form.errors.messages[field] }}
+                                </li>
+                              {% else %}
+                                <li>
+                                  <strong>{{ field | replace: 'body', 'Message' }}</strong> {{ form.errors.messages[field] }}
+                                </li>
+                              {% endif %}
+                            {% endfor %}
+                          </ul>
+                        </div>
+                      {% endif %}
 
-                    <div class="form-widget">
-                      <input type="text" id="comment_body"
-                             name="comment[body]" value="{{form.body}}"
-                             class="{% if form.errors contains 'body' %}input-error{% endif %}"
-                             placeholder="Join the discussion..."
-                      />
-
-                      <div class="hide-part">
-                        <input type="text" id="comment_author"
-                               name="comment[author]" size="40"
-                               value="{{form.author}}"
-                               class="{% if form.errors contains 'author' %}input-error{% endif %}"
-                               placeholder="{{ 'blogs.comments.name' | t }}"
+                      <div class="form-widget">
+                        <input type="text" id="comment_body"
+                               name="comment[body]" value="{{form.body}}"
+                               class="{% if form.errors contains 'body' %}input-error{% endif %}"
+                               placeholder="Join the discussion..."
                         />
-                        <input type="text" id="comment_email"
-                               name="comment[email]" size="40"
-                               value="{{form.email}}"
-                               class="{% if form.errors contains 'email' %}input-error{% endif %}"
-                               placeholder="{{ 'blogs.comments.email' | t }}"
-                        />
+
+                        <div class="hide-part">
+                          <input type="text" id="comment_author"
+                                 name="comment[author]" size="40"
+                                 value="{{form.author}}"
+                                 class="{% if form.errors contains 'author' %}input-error{% endif %}"
+                                 placeholder="{{ 'blogs.comments.name' | t }}"
+                          />
+                          <input type="text" id="comment_email"
+                                 name="comment[email]" size="40"
+                                 value="{{form.email}}"
+                                 class="{% if form.errors contains 'email' %}input-error{% endif %}"
+                                 placeholder="{{ 'blogs.comments.email' | t }}"
+                          />
+                        </div>
                       </div>
-                    </div>
 
-                    {% if blog.moderated? %}
-                      <p class="hint">{{ 'blogs.comments.moderated' | t }}</p>
-                    {% endif %}
+                      {% if blog.moderated? %}
+                        <p class="hint">{{ 'blogs.comments.moderated' | t }}</p>
+                      {% endif %}
 
-                    <input type="submit" class="comment-submit" value="{{ 'blogs.comments.post' | t }}" />
-                  {% endform %}
+                      <input type="submit" class="comment-submit" value="{{ 'blogs.comments.post' | t }}" />
+                    {% endform %}
+                  </div>
+                </div>
+
+                <div class="comments-list-block">
+                  <ul id="commentlist">
+                    {% for comment in article.comments %}
+                      <li>
+                        <div class="comment-single-part">
+                          <div class="user-info-part">
+                            <span class="info">{{ comment.author | slice: 0 | uppercase }}</span>
+                          </div>
+                          <div class="comment-details-part">
+                            <div class="comment-details">
+                              <span class="author">{{ comment.author }}</span>
+                              <span class="date"> {{ comment.created_at | date: "%B %d, %Y" }}</span>
+                            </div>
+                            <div class="comment">
+                              {{ comment.content }}
+                            </div>
+                            <div class="controls">
+                              <a href="mailto:{{ comment.email }}"
+                                 target="_blank" class="reply-control">
+                                Reply
+                              </a>
+                              <a href="mailto:?subject=I wanted you to see this comment - {{ article.title }}&amp;body=Check out this comment {{ shop.url }}{{ article.comment_post_url }}"
+                                 target="_blank" class="share-control">
+                                <span class="fa fa-share-square-o"></span>
+                                <span class="share-text">Share</span>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                    {% endfor %}
+                  </ul>
                 </div>
               </div>
 
-              <div class="comments-list-block">
-                <ul id="commentlist">
-                  {% for comment in article.comments %}
-                    <li>
-                      <div class="comment-single-part">
-                        <div class="user-info-part">
-                          <span class="info">{{ comment.author | slice: 0 | uppercase }}</span>
-                        </div>
-                        <div class="comment-details-part">
-                          <div class="comment-details">
-                            <span class="author">{{ comment.author }}</span>
-                            <span class="date"> {{ comment.created_at | date: "%B %d, %Y" }}</span>
-                          </div>
-                          <div class="comment">
-                            {{ comment.content }}
-                          </div>
-                          <div class="controls">
-                            <a href="mailto:{{ comment.email }}"
-                               target="_blank" class="reply-control">
-                              Reply
-                            </a>
-                            <a href="mailto:?subject=I wanted you to see this comment - {{ article.title }}&amp;body=Check out this comment {{ shop.url }}{{ article.comment_post_url }}"
-                               target="_blank" class="share-control">
-                              <span class="fa fa-share-square-o"></span>
-                              <span class="share-text">Share</span>
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                  {% endfor %}
-                </ul>
-              </div>
             </div>
 
-          </div>
-
-          <div id="pagination">
-            {% if paginate.previous %}
-              {{ '<' | link_to: paginate.previous.url }}
-            {% endif %}
-            {% for part in paginate.parts %}
-              {% if part.is_link %}
-                {{ part.title | link_to: part.url }}
-              {% else %}
-                {% if part.title == '&hellip;' %}
-                  {{ part.title }}
-                {% else %}
-                  <span class="current">{{ part.title }}</span>
-                {% endif %}
+            <div id="pagination">
+              {% if paginate.previous %}
+                {{ '<' | link_to: paginate.previous.url }}
               {% endif %}
-            {% endfor %}
-            {% if paginate.next %}
-              {{ '>' | link_to: paginate.next.url }}
-            {% endif %}
+              {% for part in paginate.parts %}
+                {% if part.is_link %}
+                  {{ part.title | link_to: part.url }}
+                {% else %}
+                  {% if part.title == '&hellip;' %}
+                    {{ part.title }}
+                  {% else %}
+                    <span class="current">{{ part.title }}</span>
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+              {% if paginate.next %}
+                {{ '>' | link_to: paginate.next.url }}
+              {% endif %}
+            </div>
           </div>
         {% endif %}
       </div>
