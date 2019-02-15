@@ -32,16 +32,15 @@
       }
 
       @include mq('phone') {
-        height: auto;
+        height: 235px;
 
         img {
-          position: relative;
-          top: 0;
-          -webkit-transform: none;
-          -moz-transform: none;
-          -ms-transform: none;
-          -o-transform: none;
-          transform: none;
+          top: 20%;
+          -webkit-transform: scale(2);
+          -moz-transform: scale(2);
+          -ms-transform: scale(2);
+          -o-transform: scale(2);
+          transform: scale(2);
         }
 
         .blog-hero-heading {
@@ -141,11 +140,6 @@
       font-weight: 500;
       width: 100%;
 
-      @include mq('phone') {
-        display: inline-flex;
-        align-items: center;
-      }
-
       .prefix {
         height: 100%;
         line-height: 61px;
@@ -191,6 +185,38 @@
           z-index: 98;
         }
       }
+
+      @include mq('phone') {
+        display: inline-flex;
+        align-items: center;
+        font-size: 13px !important;
+        letter-spacing: 0.12rem;
+
+        .prefix {
+          margin-left: 27px;
+
+          span {
+            display: table-caption;
+            line-height: 48px;
+          }
+        }
+
+        .blog-nav-menu-mobile-list-wrapper {
+          &:after {
+            top: 35%;
+          }
+
+          .blog-nav-menu-mobile-list {
+            height: 48px;
+            letter-spacing: 0.12rem;
+            font-size: 13px !important;
+
+            .blog-select-primary-link {
+              font-size: 13px !important;
+            }
+          }
+        }
+      }
     }
   }
 
@@ -199,7 +225,7 @@
 
     @include mq('phone') {
       margin-bottom: 30px;
-      padding: 20px 0;
+      padding: 0 25px;
     }
   }
 
@@ -212,6 +238,13 @@
       font-weight: 500;
       margin: 10px auto 50px;
       padding: 0 40px;
+    }
+
+    @include mq('phone') {
+      .btn-load-more {
+        margin: 10px auto 30px;
+        padding: 0 80px;
+      }
     }
   }
 
