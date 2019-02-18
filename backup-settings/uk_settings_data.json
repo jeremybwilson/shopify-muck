@@ -116,7 +116,7 @@
     "ajax_cart_method": "drawer",
     "ajax_cart_remove_text": "This will remove the item from your cart. Continue?",
     "ajax_cart_low_stock_text": "This item does not have enough stock to add to your cart.",
-    "discount_modal_enable": true,
+    "discount_modal_enable": false,
     "discount_modal_config": "eyJjb29raWVFeHBpcmVJbkRheXMiOjYwLCJjdXJyZW5jeVN5bWJvbCI6IqMiLCJ0aHJlc2hvbGREaXNjb3VudHMiOlt7ImRpc2NvdW50SWQiOjEsImRpc3BsYXlOYW1lIjoiQ2FyZCBXYWxsZXQiLCJnaWZ0SWQiOjIwNDc1Mzg3MTgzMjE3LCJncmFudFR5cGUiOiJhbGwiLCJpbnZlbnRvcnlJZCI6MjA0NzUzODcxODMyMTcsIm1pblNwZW5kIjoxMDAsInByb2R1Y3RIYW5kbGUiOiJjYXJkLXdhbGxldCJ9XX0=",
     "twittername": "",
     "facebook_url": "//www.facebook.com/muckbootco/",
@@ -244,8 +244,8 @@
           "num_of_promo_banners": "2",
           "announcement_text_one": "<div class=\"bold\">FREE DELIVERY & RETURNS ON ALL ORDERS</div>",
           "announcement_link_one": "shopify://pages/delivery-and-returns",
-          "announcement_text_two": "<div class=\"bold\">FREE MUCK CARD HOLDER ON ORDERS OVER £100</div>",
-          "announcement_link_two": "",
+          "announcement_text_two": "<div class=\"bold\">DISCOVER OUR NEW ARRIVALS</div>",
+          "announcement_link_two": "shopify://collections/new-arrivals",
           "announcement_height": 60,
           "announcement_swap_rate": 5,
           "logo_size": 24,
@@ -383,17 +383,37 @@
       "1535728526385": {
         "type": "slideshow",
         "blocks": {
+          "1550466223122": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/new-arrivals.jpg",
+              "mobile_image": "shopify://shop_images/new-arrivals-mobile.jpg",
+              "heading": "Discover Our New Arrivals",
+              "subheading": "",
+              "cta_one_link": "https://www.muckbootcompany.co.uk/collections/new-arrivals/audience_women",
+              "cta_one_button_text": "SHOP WOMEN'S",
+              "cta_two_link": "https://www.muckbootcompany.co.uk/collections/new-arrivals/audience_men",
+              "cta_two_button_text": "SHOP MEN'S",
+              "caption_color_scheme": "white",
+              "custom_slide_main_color": "#ffffff",
+              "custom_slide_alt_color": "#164732",
+              "caption_horizontal": "left",
+              "caption_vertical": 50,
+              "caption_background": "rgba(0,0,0,0)",
+              "caption_opacity": "1.0"
+            }
+          },
           "1544666970903": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/waterproof-boots-for-family-hp.jpg",
-              "mobile_image": "shopify://shop_images/waterproof-boots-for-family-hp-mobile.jpg",
+              "image": "shopify://shop_images/waterproof-boots-for-the-family.jpg",
+              "mobile_image": "shopify://shop_images/waterproof-boots-for-the-family-mobile.jpg",
               "heading": "WATERPROOF <br>BOOTS FOR THE<br> FAMILY",
               "subheading": "",
-              "cta_one_link": "shopify://collections/waterproof-boots",
-              "cta_one_button_text": "SHOP NOW",
-              "cta_two_link": "",
-              "cta_two_button_text": "",
+              "cta_one_link": "https://www.muckbootcompany.co.uk/collections/waterproof-boots?_=pf&pf_t_gender=audience_women",
+              "cta_one_button_text": "SHOP WOMEN'S",
+              "cta_two_link": "https://www.muckbootcompany.co.uk/collections/waterproof-boots?_=pf&pf_t_gender=audience_men",
+              "cta_two_button_text": "SHOP MEN'S",
               "caption_color_scheme": "white",
               "custom_slide_main_color": "#ffffff",
               "custom_slide_alt_color": "#164732",
@@ -402,52 +422,11 @@
               "caption_background": "rgba(0,0,0,0)",
               "caption_opacity": "0.1"
             }
-          },
-          "1548978505769": {
-            "type": "image",
-            "settings": {
-              "image": "shopify://shop_images/free-muck-card-holder-on-orders-over-100-hp.jpg",
-              "mobile_image": "shopify://shop_images/free-muck-card-holder-on-orders-over-100-hp-mobile-space_e359b486-d528-42e5-9ff8-2796112c6fd4.jpg",
-              "heading": "FREE MUCK CARD HOLDER ON ORDERS OVER £100*",
-              "subheading": "*Terms & Conditions apply. Valid whilst stocks last.",
-              "cta_one_link": "shopify://collections/women",
-              "cta_one_button_text": "SHOP WOMEN'S",
-              "cta_two_link": "shopify://collections/men",
-              "cta_two_button_text": "SHOP MEN'S",
-              "caption_color_scheme": "white",
-              "custom_slide_main_color": "#ffffff",
-              "custom_slide_alt_color": "#164732",
-              "caption_horizontal": "right",
-              "caption_vertical": 45,
-              "caption_background": "rgba(0,0,0,0)",
-              "caption_opacity": "0.1"
-            }
-          },
-          "1537990277479": {
-            "type": "image",
-            "settings": {
-              "image": "shopify://shop_images/women-walking-in-snow.jpg",
-              "mobile_image": "shopify://shop_images/women-walking-in-snow-mobile.jpg",
-              "heading": "Get Set <br>for Winter",
-              "subheading": "",
-              "cta_one_link": "shopify://collections/cold-weather",
-              "cta_one_button_text": "Shop Winter Boots",
-              "cta_two_link": "",
-              "cta_two_button_text": "Add a button",
-              "caption_color_scheme": "custom",
-              "custom_slide_main_color": "#ab5232",
-              "custom_slide_alt_color": "#ffffff",
-              "caption_horizontal": "right",
-              "caption_vertical": 40,
-              "caption_background": "rgba(0,0,0,0)",
-              "caption_opacity": "0.1"
-            }
           }
         },
         "block_order": [
-          "1544666970903",
-          "1548978505769",
-          "1537990277479"
+          "1550466223122",
+          "1544666970903"
         ],
         "settings": {
           "full_width": true,
