@@ -238,7 +238,7 @@
           "full_width_header": false,
           "show_announcement_text": true,
           "num_of_promo_banners": "2",
-          "announcement_text_one": "<div class=\"bold\">FREE DELIVERY & FREE RETURNS</div>",
+          "announcement_text_one": "<div class=\"bold\">FREE DELIVERY & RETURNS ON ALL ORDERS</div>",
           "announcement_link_one": "shopify://pages/delivery-and-returns",
           "announcement_text_two": "<div class=\"bold\">DISCOVER OUR NEW ARRIVALS</div>",
           "announcement_link_two": "shopify://collections/new-arrivals",
@@ -815,14 +815,6 @@
               "anchor": "orderstatus"
             }
           },
-          "1542220577233": {
-            "type": "html",
-            "settings": {
-              "title": "Do you offer special discounts for active military troops and their families?",
-              "answer": "<p>Muck Boots is proud to help outfit active troops and their families by offering a 25% discount. Discounts are currently available via phone orders only, please call our customer care center at 1-855-377-2668 for complete details.</p>",
-              "anchor": "militarydiscount"
-            }
-          },
           "1542220607549": {
             "type": "html",
             "settings": {
@@ -845,7 +837,6 @@
           "1542220481622",
           "1542220502350",
           "1542220523668",
-          "1542220577233",
           "1542220607549"
         ],
         "settings": {
