@@ -2996,9 +2996,15 @@ function debounce(fn, wait, immediate) {
   }
   $(document).ready(function() {
     var haskey = window.location.hash.substr(1);
-    if(haskey != "" && haskey != undefined){
+    if(haskey != "" && haskey != undefined && $("#" + haskey).length > 0){
       setTimeout(function(){ 
-        $("#" + haskey).parents('.toggle').find('.toggle-title').click();
+        var divobj = $("#" + haskey).parents('.toggle').find('.toggle-title')
+        divobj.click();
+        var divtop = parseInt(divobj.offset().top) - 140;
+        $('html, body').animate({
+          scrollTop: divtop
+        }, 2000);
       }, 2000);
     }
   });
+  
