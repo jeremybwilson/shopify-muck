@@ -2994,3 +2994,11 @@ function debounce(fn, wait, immediate) {
       }
     };
   }
+  $(document).ready(function() {
+    var haskey = window.location.hash.substr(1);
+    if(haskey != "" && haskey != undefined){
+      setTimeout(function(){ 
+        $("#" + haskey).parents('.toggle').find('.toggle-title').click();
+      }, 2000);
+    }
+  });
