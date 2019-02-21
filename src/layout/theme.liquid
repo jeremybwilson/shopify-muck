@@ -73,6 +73,11 @@
 
   {% include 'script-google-tag-head' %}
 
+  {% if settings.international_store_version == 'US' %}
+    <!-- Yotpo Main Script -->
+    {% include 'yotpo-main-script' %}
+  {% endif %}
+
   <!-- Favicons
 ================================================== -->
   {% if settings.favicon %}
