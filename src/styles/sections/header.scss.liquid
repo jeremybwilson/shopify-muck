@@ -93,9 +93,10 @@ $navBarDesktopHeight: 80px;
     #nav-logo,
     #nav-logo-backing {
         position: absolute;
-        @include flexbox;
-        @include justify-content( center );
-        @include align-items( center );
+        display: block;
+        //@include flexbox;
+        //@include justify-content( center );
+        //@include align-items( center );
         width: 70px;
         height: 70px;
         left: 50%;
@@ -107,11 +108,12 @@ $navBarDesktopHeight: 80px;
         a { transform: rotateZ( -45deg ); }
 
         a, svg {
-            width: 120%;
-            height: 120%;
+            display: block;
+            width: 84px;
+            height: 84px;
             position: relative;
-            left: -5px;
-            top: -3px;
+            left: -2px;
+            top: -5px;
         }
 
         // DESKTOP ( 1024+ )
@@ -122,10 +124,8 @@ $navBarDesktopHeight: 80px;
             height: 119px;
 
             a, svg {
-                width: 115%;
-                height: 115%;
-                left: -7px;
-                top: -3px;
+                width: 136.85px;
+                height: 136.85px;
             }
         }
 
@@ -141,7 +141,6 @@ $navBarDesktopHeight: 80px;
         background: {{ settings.header_background }};
         z-index: $zIndexBackingShadow; // -1, Relative to #nav-bar-wrapper, so its -1 on inner layer of nav-bar.
     }
-
 
 
     /*  NAV : ACCOUNT + CART + SEARCH + SITE PICKER (Right Elements)
@@ -478,39 +477,42 @@ $navBarDesktopHeight: 80px;
             }
 
             .nav-primary-link {
-                @include flexbox;
-                @include justify-content( flex-end ); // Space links to better match mock
+                //@include flexbox;
+                //@include justify-content( flex-end ); // Space links to better match mock
+                display: inline;
                 height: 100%;
+                padding: 0 8px;
+                margin: 0 14px;
+                text-align: center;
                 width: 100%;
-                padding-right: 26px;
 
-                &:nth-child(2),
-                &:nth-child(3) {
-                    @include justify-content( center ); // Men and Kids align Better like this with the long 4th element
-                    padding-right: 0;
-                }
-
-                &:nth-child(3) {
-                    padding-right: 9px;
-                }
-
-                &:last-child {
-                    padding-right: 0;
-                    justify-content: center;
-
-                    @include mq( 'tablet-and-up' ) {
-                        /*flex-basis: 170%;*/
-                    }
-
-                    @include mq( 'desk-and-up' ) {
-                        /*flex-basis: 200%;*/
-                    }
-                }
-
-                // New nav entry is way larger than "Sale" so it needs extra spacing
-                &.new-arrivals a {
-                    justify-content: flex-end;
-                }
+                //&:nth-child(2),
+                //&:nth-child(3) {
+                //    @include justify-content( center ); // Men and Kids align Better like this with the long 4th element
+                //    padding-right: 0;
+                //}
+                //
+                //&:nth-child(3) {
+                //    padding-right: 9px;
+                //}
+                //
+                //&:last-child {
+                //    padding-right: 0;
+                //    justify-content: center;
+                //
+                //    @include mq( 'tablet-and-up' ) {
+                //        /*flex-basis: 170%;*/
+                //    }
+                //
+                //    @include mq( 'desk-and-up' ) {
+                //        /*flex-basis: 200%;*/
+                //    }
+                //}
+                //
+                //// New nav entry is way larger than "Sale" so it needs extra spacing
+                //&.new-arrivals a {
+                //    justify-content: flex-end;
+                //}
 
                 .nav-category-header { //Center the nav link item vertically 
                     @include inline-flex;
