@@ -3000,11 +3000,10 @@ function debounce(fn, wait, immediate) {
       setTimeout(function(){ 
         var divobj = $("#" + haskey).parents('.toggle').find('.toggle-title')
         divobj.click();
-        var divtop = parseInt(divobj.offset().top) - 140;
+        var divtop = parseInt(divobj.offset().top) - 170;
         $('html, body').animate({
           scrollTop: divtop
-        }, 2000);
+        }, 500);
       }, 2000);
     }
   });
-  
