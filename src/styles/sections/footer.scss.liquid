@@ -186,13 +186,14 @@
       letter-spacing: .25em;
     }
   }
-
   .brands--list {
-    display:inline-block;
+    @include flexbox;
     @include justify-content(center);
     @include align-items(center);
   }
-  
+   a {
+    display: block;
+   }
   img {
     max-height: 40px;
 
