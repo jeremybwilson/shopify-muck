@@ -129,6 +129,7 @@
     "sizmek_company_id": "",
     "sizmek_version_num": "9",
     "sizmek_pixel_cart_start": "",
+    "criteo_account_number": "",
     "popup": true,
     "email_image": "",
     "email_popup_title": "Sign-up & Get 10% Off Your First Order!<small>*</small>",
@@ -325,7 +326,10 @@
       "blog-template": {
         "type": "blog-template",
         "settings": {
-          "image": "",
+          "image": "shopify://shop_images/1081132_51784273.jpg",
+          "heading": "Stories From The Muck",
+          "blog_nav_bg_color": "#f5f1ed",
+          "blog_nav_font_size": 14,
           "text": "<p>Add some descriptive text to your Blog page.</p>",
           "show_date": true
         }
@@ -518,17 +522,6 @@
       "1536251685211": {
         "type": "twin-promos",
         "blocks": {
-          "1536251685211-1": {
-            "type": "text_block",
-            "settings": {
-              "image": "shopify://shop_images/TB_1_-_D.jpg",
-              "mobile_image": "shopify://shop_images/TB_1_-_M.jpg",
-              "link": "https://www.muckbootcompany.eu/collections/dog-walking",
-              "heading_text": "Dog Walking Boots",
-              "text": "<p>Possibly the most comfortable wellies you'll walk the dog in.</p>",
-              "cta_text": "Shop Now"
-            }
-          },
           "1536251685211-0": {
             "type": "text_block",
             "settings": {
@@ -537,6 +530,17 @@
               "link": "https://www.muckbootcompany.eu/collections/outdoor-activity",
               "heading_text": "Unpredictable weather",
               "text": "<p>Prepare for sunny spells and sudden downpours with our 100% waterproof boots.</p>",
+              "cta_text": "Shop Now"
+            }
+          },
+          "1536251685211-1": {
+            "type": "text_block",
+            "settings": {
+              "image": "shopify://shop_images/TB_1_-_D.jpg",
+              "mobile_image": "shopify://shop_images/TB_1_-_M.jpg",
+              "link": "https://www.muckbootcompany.eu/collections/dog-walking",
+              "heading_text": "Dog Walking Boots",
+              "text": "<p>Possibly the most comfortable wellies you'll walk the dog in.</p>",
               "cta_text": "Shop Now"
             }
           }
