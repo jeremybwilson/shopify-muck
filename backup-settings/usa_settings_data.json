@@ -330,7 +330,10 @@
       "blog-template": {
         "type": "blog-template",
         "settings": {
-          "image": "",
+          "image": "shopify://shop_images/1081132_51784273_copy.jpg",
+          "heading": "Stories From The Muck",
+          "blog_nav_bg_color": "#f5f1ed",
+          "blog_nav_font_size": 14,
           "text": "<p>Add some descriptive text to your Blog page.</p>",
           "show_date": true
         }
