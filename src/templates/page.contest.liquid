@@ -1,0 +1,63 @@
+<div id="">
+{% section 'slideshow' %}
+  <div class="page-content-field">
+  {{ page.content }}
+  </div>
+{% include 'contest-form' %}
+<script type="text/javascript">
+	$( document ).ready(function() {
+	$.validator.addMethod("email_validate", function(value, element) 
+			{
+				var is_validate = true;
+				var pattern = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/
+				for(var i = 0; i < value.length; i++) {
+					if(!pattern.test(value[i]))
+					{
+						is_validate = false;
+					}
+				}
+		    	return is_validate;
+			}, "Please enter valid email address.");
+	});
+    $('#contest_form').validate({
+			rules:
+			{                   
+				full_name:{required: true},               
+            	email:{required: true,email:true},
+            	age:{required: true}, 
+            	gender:{required: true},
+			},
+            messages:
+            {
+            	full_name:{required: "Please enter your name.",},   
+            	email:{required: "Please enter email address.",},
+            	age:{required: "Please select age.",}, 
+            	gender:{required: "Please select gender.",},                
+			},                
+            submitHandler: function(form) { 
+				alert($('#gender').val());
+				alert($('#age').val());
+				alert($('#email').val());
+				alert($('#full_name').val());
+            	//zaius.subscribe({list_id: 'contest_03_2019', email:$('#email').val(),first_name:$('#full_name').val()});
+            	console.log(zaius);
+            	zaius.subscribe({         
+		              list_id: 'newsletter',
+		              email:$('#email').val(),
+		              first_name:$('#full_name').val()
+		            },
+
+		            // success state
+		            function() {
+		              alert("sadsadsad");
+		            },
+
+		            // fail state
+		            function(error) {
+		              console.log(error);
+		            }
+		          );
+			}
+		});
+		
+</script>
