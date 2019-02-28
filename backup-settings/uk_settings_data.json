@@ -531,7 +531,7 @@
             "settings": {
               "image": "shopify://shop_images/TB_2_-_D.jpg",
               "mobile_image": "shopify://shop_images/TB_2_-_M.jpg",
-              "link": "",
+              "link": "https://www.muckbootcompany.co.uk/collections/outdoor-activity",
               "heading_text": "Unpredictable weather",
               "text": "<p>Prepare for sunny spells and sudden downpours with our 100% waterproof boots.</p>",
               "cta_text": "Shop Now"
@@ -542,7 +542,7 @@
             "settings": {
               "image": "shopify://shop_images/TB_1_-_D.jpg",
               "mobile_image": "shopify://shop_images/TB_1_-_M.jpg",
-              "link": "",
+              "link": "https://www.muckbootcompany.co.uk/collections/dog-walking",
               "heading_text": "Dog Walking Boots",
               "text": "<p>Possibly the most comfortable wellies you'll walk the dog in.</p>",
               "cta_text": "Shop Now"
