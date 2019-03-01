@@ -196,6 +196,7 @@
     "tablet-image-height": "",
     "mobile-image-height": "",
     "mailchimp": "",
+    "zendesk-key":"e77b8879-586f-401d-b854-207796ae82a1",
     "sections": {
       "header": {
         "type": "header",
