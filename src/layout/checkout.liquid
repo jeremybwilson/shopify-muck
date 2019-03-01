@@ -12,9 +12,9 @@
 
     {{ checkout_stylesheets }}
     {{ checkout_scripts }}
+    
+    {% include 'script-google-tag-head' %}
   </head>
-
-
   <body>
     {{ skip_to_content_link }}
 
@@ -53,7 +53,7 @@
     </div>
 
     {{ tracking_code }}
-
     {% include 'checkout-customization-script' %}
+    {% include 'script-google-tag-body' %}
   </body>
 </html>
