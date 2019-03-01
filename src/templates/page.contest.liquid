@@ -4,6 +4,7 @@
   {{ page.content }}
   </div>
 {% include 'contest-form' %}
+</div>
 <script type="text/javascript">
 	$( document ).ready(function() {
 	$.validator.addMethod("email_validate", function(value, element) 
@@ -35,23 +36,16 @@
             	gender:{required: "Please select gender.",},                
 			},                
             submitHandler: function(form) { 
-				alert($('#gender').val());
-				alert($('#age').val());
-				alert($('#email').val());
-				alert($('#full_name').val());
-            	//zaius.subscribe({list_id: 'contest_03_2019', email:$('#email').val(),first_name:$('#full_name').val()});
             	console.log(zaius);
             	zaius.subscribe({         
 		              list_id: 'newsletter',
 		              email:$('#email').val(),
 		              first_name:$('#full_name').val()
 		            },
-
 		            // success state
 		            function() {
-		              alert("sadsadsad");
+		              window.location.href = "/pages/contest-success";
 		            },
-
 		            // fail state
 		            function(error) {
 		              console.log(error);
