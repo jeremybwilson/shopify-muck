@@ -1,0 +1,99 @@
+#page_contest {
+    #content {
+        float: none;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0 10px 50px;
+
+        .page-contest {
+            float: none !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+
+            .page-title {
+                border: none !important;
+                color: $color--dark-green-2;
+                font-family: $font-stack--heading;
+                font-size: 53px;
+                font-weight: 800;
+                letter-spacing: 0.84rem;
+                margin: 70px 0 10px !important;
+                text-align: center;
+                text-transform: uppercase;
+            }
+
+            .share-icons {
+                border: none;
+                margin: 15px auto;
+                padding: 0;
+                text-align: center;
+
+                .share-text {
+                    font-size: 14px;
+                    font-weight: 500;
+                    text-transform: uppercase;
+                }
+
+                a {
+                    color: $color--dark-green-2 !important;
+                    font-size: 12px;
+                    margin: 5px 17px;
+                }
+            }
+
+            .page-content-field {
+                border-top: 1px solid #eee;
+                margin-top: 40px;
+                padding: 50px auto 30px;
+
+                h1,h2,h3,h4,h5,h6 {
+                    margin-left: auto;
+                    margin-right: auto;
+                    margin-bottom: 32px;
+                    padding: 0 5px;
+                    text-align: center;
+                    width: 100%;
+                }
+
+                h4 {
+                    font-size: 14px;
+                    font-weight: 400;
+                    letter-spacing: 0.045rem;
+                    line-height: 1.65rem;
+                    text-align: left;
+                }
+
+                p {
+                    font-size: 14px;
+                    line-height: 1.65rem;
+                    margin-bottom: 20px;
+                    padding: 0 4px;
+                    width: 100%;
+                }
+            }
+        }
+
+        @include mq('phone') {
+            .page-contest {
+                .page-title {
+                    font-size: 22px;
+                    letter-spacing: 0.35rem;
+                    margin: 40px 0 0 !important;
+                }
+
+                .share-icons {
+                    margin: 0 auto;
+
+                    .share-text {
+                        display: none;
+                    }
+
+                    a {
+                        font-size: 10px;
+                        margin: 5px 11px;
+                    }
+                }
+            }
+        }
+    }
+}

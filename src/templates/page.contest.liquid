@@ -1,10 +1,9 @@
-<div id="">
-{% section 'slideshow' %}
-  <div class="page-content-field">
-  {{ page.content }}
-  </div>
-{% include 'contest-form' %}
+
+<div id="page_contest">
+  {% section 'slideshow' %}
+  {% section 'page-contest-template' %}
 </div>
+
 <script type="text/javascript">
 	$( document ).ready(function() {
 	$.validator.addMethod("email_validate", function(value, element) 
