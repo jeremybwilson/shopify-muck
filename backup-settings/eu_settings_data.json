@@ -148,7 +148,7 @@
     "supported_currencies": "INR GBP CAD USD AUD EUR JPY",
     "default_currency": "USD",
     "checkout_header_image": "",
-    "checkout_logo_image": "",
+    "checkout_logo_image": "shopify://shop_images/checkout-logo.png",
     "checkout_logo_position": "center",
     "checkout_logo_size": "large",
     "checkout_body_background_image": "",
@@ -318,7 +318,7 @@
           "zoom_image_position": "zoom_over_main",
           "related_products": "none",
           "free_shipping_header_text": "Free Shipping & Returns",
-          "free_shipping_text": "<p>FREE Shipping and FREE Returns for all ground orders. Orders placed before 2PM EST Monday &ndash; Friday will ship next day. For additional information, visit our <a href=\"/pages/shipping-returns\" title=\"Shipping and Return\">Shipping page</a>.</p>",
+          "free_shipping_text": "<p>FREE Delivery &amp; FREE Returns for all orders. Orders placed before 3pm Monday to Friday will dispatch next working day. For additional information, visit our <a href=\"/pages/delivery-and-returns\" title=\"Delivery and Returns\">Delivery page.</a></p>",
           "show_social": false,
           "size_chart_page": "size-chart"
         }
