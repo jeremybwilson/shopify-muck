@@ -2,12 +2,10 @@
 <!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
 <!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
 <!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
-<!--[if IE 11 ]><html class="ie ie11" lang="en"> <![endif]-->
-<html lang="en" class="no-js" > 
-
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en" class="no-js"> <!--<![endif]-->
 <head>
   <meta charset="utf-8" />
- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
   <!-- Add any tracking or verification meta content below this line -->
   <!-- Facebook or Google Analytics tracking should be placed in your Online store > Preferences and not your theme -->
 
@@ -75,6 +73,11 @@
 
   {% include 'script-google-tag-head' %}
 
+  {% if settings.international_store_version == 'US' %}
+    <!-- Yotpo Main Script -->
+    {% include 'yotpo-main-script' %}
+  {% endif %}
+
   <!-- Favicons
 ================================================== -->
   {% if settings.favicon %}
@@ -134,7 +137,7 @@
 
 
       {% comment %} :: HOME / BLOG / LIST-COLLECTIONS - No Wrapper or Breadcrumbs :: {% endcomment %}
-      {% if template == 'index' or template contains 'blog' or template contains 'list-collections' %}
+      {% if template == 'index' or template contains 'blog' or template contains 'list-collections' or template contains 'article' %}
         {{ content_for_layout }}
 
 
@@ -142,11 +145,11 @@
       {% else %}
 
         {% comment %} :: BREADCRUMBS :: {% endcomment %}
-        {% if template != 'index' %}
+        {% unless template == 'index' or template contains 'article' %}
           {% if settings.breadcrumb %}
             {% include 'breadcrumb' %}
           {% endif %}
-        {% endif %}
+        {% endunless %}
 
         {% comment %} :: PAGE CONTENT :: {% endcomment %}
         {% comment %} Note : PRODUCT DETAILS has breadcrumbs but custom wrappers {% endcomment %}
@@ -241,6 +244,13 @@
       {% endif %}
     </script>
   {% endif %}
+
+
+  <!-- ajax load more for blog-->
+  {% include 'ajax-blog-load-more' %}
+
+  <!-- supporting comment feature for article-->
+  {% include 'ajax-article-comment-support' %}
 
   <!-- Responsive Images -->
   {{ 'ls.rias.min.js' | asset_url | script_tag }}
