@@ -129,6 +129,7 @@
     "sizmek_company_id": "6795",
     "sizmek_version_num": "9",
     "sizmek_pixel_cart_start": "20769103",
+    "criteo_account_number": "",
     "popup": true,
     "email_image": "",
     "email_popup_title": "Sign-Up & Get 10% Off Your First Order!<small>*</small>",
@@ -147,7 +148,7 @@
     "supported_currencies": "INR GBP CAD USD AUD EUR JPY",
     "default_currency": "USD",
     "checkout_header_image": "",
-    "checkout_logo_image": "",
+    "checkout_logo_image": "shopify://shop_images/checkout-logo.png",
     "checkout_logo_position": "center",
     "checkout_logo_size": "large",
     "checkout_body_background_image": "",
@@ -321,7 +322,7 @@
           "zoom_image_position": "zoom_over_main",
           "related_products": "none",
           "free_shipping_header_text": "Free Shipping & Returns",
-          "free_shipping_text": "<p>FREE Shipping and FREE Returns for all ground orders. Orders placed before 2PM EST Monday &ndash; Friday will ship next day. For additional information, visit our <a href=\"/pages/shipping-returns\" title=\"Shipping and Return\">Shipping page</a>.</p>",
+          "free_shipping_text": "<p>FREE Delivery &amp; FREE Returns for all orders. Orders placed before 3pm Monday to Friday will dispatch next working day. For additional information, visit our <a href=\"/pages/delivery-and-returns\" title=\"Delivery and Returns\">Delivery page.</a></p>",
           "show_social": false,
           "size_chart_page": "size-chart"
         }
@@ -329,7 +330,10 @@
       "blog-template": {
         "type": "blog-template",
         "settings": {
-          "image": "",
+          "image": "shopify://shop_images/1081132_51784273.jpg",
+          "heading": "Stories From The Muck",
+          "blog_nav_bg_color": "#f5f1ed",
+          "blog_nav_font_size": 14,
           "text": "<p>Add some descriptive text to your Blog page.</p>",
           "show_date": true
         }
@@ -436,18 +440,6 @@
       "1536068961071": {
         "type": "columns-carousel",
         "blocks": {
-          "1536068961071-0": {
-            "type": "image",
-            "settings": {
-              "image": "shopify://shop_images/home-column-carousel-desktop-slide-1.jpg",
-              "mobile_image": "shopify://shop_images/home-column-carousel-mobile-slide-1.jpg",
-              "heading": "Cold Weather",
-              "svg_icon": "<svg class=\"icon icon-cold-weather\" xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 25.31 27.82\"><path fill=\"#ffffff\" d=\"M25.29,16.41a.68.68,0,0,0-.65-.5.47.47,0,0,0-.17,0l-4.76,1.27L14,13.91l5.72-3.3,4.76,1.27a.67.67,0,1,0,.34-1.29l-3.46-.93,3.11-1.79a.71.71,0,0,0,.31-.41A.7.7,0,0,0,24.7,7a.69.69,0,0,0-.91-.24L20.68,8.5,21.61,5a.67.67,0,0,0-.47-.82.68.68,0,0,0-.82.47L19,9.45l-5.72,3.3V6.14L16.8,2.67a.68.68,0,0,0,0-.95.68.68,0,0,0-.94,0L13.32,4.25V.67A.67.67,0,1,0,12,.67V4.25L9.45,1.72a.68.68,0,0,0-.94,0,.63.63,0,0,0-.2.47.67.67,0,0,0,.2.48L12,6.14v6.61L6.26,9.45,5,4.69A.67.67,0,1,0,3.7,5L4.63,8.5,1.52,6.71A.69.69,0,0,0,.61,7a.7.7,0,0,0-.07.51.71.71,0,0,0,.31.41L4,9.66.5,10.59a.67.67,0,1,0,.34,1.29L5.6,10.61l5.72,3.3L5.6,17.21.84,15.94a.69.69,0,0,0-.82.47.7.7,0,0,0,.07.51.68.68,0,0,0,.41.31L4,18.16.85,20a.67.67,0,0,0-.24.91.62.62,0,0,0,.41.31.62.62,0,0,0,.5-.06l3.11-1.79L3.7,22.78A.67.67,0,1,0,5,23.12l1.27-4.75L12,15.07v6.6L8.51,25.15a.66.66,0,0,0,0,1,.68.68,0,0,0,.94,0L12,23.57v3.58a.67.67,0,1,0,1.33,0V23.57l2.54,2.53a.68.68,0,0,0,.94,0,.66.66,0,0,0,0-1l-3.48-3.48v-6.6L19,18.37l1.28,4.75a.67.67,0,1,0,1.29-.34l-.93-3.46,3.11,1.79a.62.62,0,0,0,.5.06.62.62,0,0,0,.41-.31.67.67,0,0,0-.24-.91l-3.11-1.79,3.46-.93a.68.68,0,0,0,.41-.31A.7.7,0,0,0,25.29,16.41Z\"></path></svg>",
-              "png_icon": "",
-              "link": "shopify://collections/cold-weather",
-              "cta_text": "Shop Now"
-            }
-          },
           "1536068961071-1": {
             "type": "image",
             "settings": {
@@ -457,18 +449,6 @@
               "svg_icon": "<svg class=\"icon icon-dog-walking\" mlns=\"http://www.w3.org/2000/svg\" width=\"32.874\" height=\"31.937\" viewbox=\"0 0 32.874 31.937\">\n\n  <path fill=\"#ffffff\" data-name=\"dog walking icon\" d=\"M606.8,520.519c0-2.472-2.485-4.723-5.214-4.723a4.378,4.378,0,0,0-4.049,2.7,3.552,3.552,0,0,0-.048,3.415,1.969,1.969,0,0,0,2.382.743,0.742,0.742,0,0,0,.488-0.567,0.808,0.808,0,0,0,.01-0.086c0.18-.533,1.042-1.844,1.533-1.844a0.245,0.245,0,0,1,.143.053,0.835,0.835,0,0,1,.447,1.015,3.846,3.846,0,0,1-2.679,2.217c-0.907.059-1.929,0.09-2.954,0.09a25.492,25.492,0,0,1-5.486-.455,9.013,9.013,0,0,1-3.622-1.9,2.6,2.6,0,0,1-.4-0.627l0.033-.016a0.823,0.823,0,0,0,.114-0.069l12.559-9.159a0.723,0.723,0,0,0,.152-1.028,0.766,0.766,0,0,0-1.055-.148l-12.439,9.071a4.63,4.63,0,0,0-2.474-2.57,1.519,1.519,0,0,1-1.044-.965,6.991,6.991,0,0,0-.657-1.055,4.8,4.8,0,0,0-2.066-1.75,0.767,0.767,0,0,0-.665.091,0.727,0.727,0,0,0-.326.573c-0.029.62-.081,1.981-0.022,2.674a6.793,6.793,0,0,1-1.273.663,0.745,0.745,0,0,0-.385.35l-0.22.428-3.212,1.387a0.737,0.737,0,0,0-.4.418,0.717,0.717,0,0,0,.028.572,5.153,5.153,0,0,0,2.022,2.235,2.7,2.7,0,0,0,1.057.17h0a13.42,13.42,0,0,0,2.452-.314c0.014,0.173.033,0.375,0.054,0.587l-0.405.2a0.727,0.727,0,0,0-.336.986,0.755,0.755,0,0,0,.674.406,0.768,0.768,0,0,0,.276-0.056c0.387,2.291,1.257,5.344,3.221,7.2a46.1,46.1,0,0,1,1.212,6.463,0.658,0.658,0,0,1-.241.225,2.733,2.733,0,0,0-.97,1.135,4.224,4.224,0,0,0-.525,1.7,0.744,0.744,0,0,0,.753.734h3.006a0.757,0.757,0,0,0,.662-0.383l1.418-2.545a0.727,0.727,0,0,0,.092-0.351V533.2a14.516,14.516,0,0,0,7.852-1.88,2.56,2.56,0,0,1,1.783,1.255c0.134,0.261.25,0.511,0.361,0.749a4.884,4.884,0,0,0,2.5,2.831c0.206,0.133,1.486,1,1.393,2.022a10.722,10.722,0,0,0-.866,2.375,1.011,1.011,0,0,0,.248.828,2.277,2.277,0,0,0,1.788.524,9.911,9.911,0,0,0,1.2-.078,0.746,0.746,0,0,0,.623-0.528l1.475-5.09a0.735,0.735,0,0,0-.445-0.881,3.918,3.918,0,0,1-2.2-3.273,17.538,17.538,0,0,1-.13-2.271,3,3,0,0,0-.535-1.978,2.9,2.9,0,0,1-.323-1.761A5.848,5.848,0,0,0,606.8,520.519Zm-3.782,19.894a13.276,13.276,0,0,1,.7-1.705,0.728,0.728,0,0,0,.064-0.2c0.363-2.124-2.008-3.564-2.109-3.624a0.534,0.534,0,0,0-.075-0.039,3.455,3.455,0,0,1-1.812-2.129c-0.118-.254-0.242-0.52-0.384-0.8a4.117,4.117,0,0,0-2.832-2.04c-0.054-.013-0.1-0.023-0.114-0.028a0.773,0.773,0,0,0-.654.043,13.6,13.6,0,0,1-6.583,1.868,6.655,6.655,0,0,1-1.371-.117,0.767,0.767,0,0,0-.646.134,0.728,0.728,0,0,0-.29.579V538.2l-1.113,2h-1.575c0.043-.1.093-0.213,0.152-0.336a1.28,1.28,0,0,1,.5-0.578,1.988,1.988,0,0,0,.762-0.891c0.093-.218.377-0.882-1.21-7.53a0.733,0.733,0,0,0-.23-0.381c-1.886-1.651-2.666-4.777-2.987-6.95L586,521.2a3.884,3.884,0,0,0,.668,1,10.551,10.551,0,0,0,4.321,2.3,28.009,28.009,0,0,0,5.864.5c1.058,0,2.114-.032,3.054-0.093a5.285,5.285,0,0,0,4.033-3.3,2.282,2.282,0,0,0-1.055-2.616,1.77,1.77,0,0,0-.989-0.306c-1.542,0-2.572,1.982-2.868,2.631a0.375,0.375,0,0,1-.273-0.2,2.218,2.218,0,0,1,.139-2,2.888,2.888,0,0,1,2.686-1.852c1.872,0,3.708,1.612,3.708,3.254a4.369,4.369,0,0,1-3.028,4.273,0.743,0.743,0,0,0-.52.516,4.518,4.518,0,0,0,.416,3.237,1.67,1.67,0,0,1,.331,1.234,18.779,18.779,0,0,0,.139,2.44,5.469,5.469,0,0,0,2.527,4.156l-1.172,4.043A6.665,6.665,0,0,1,603.015,540.413Zm-22.03-19.242a0.73,0.73,0,0,0-.3-0.573,0.771,0.771,0,0,0-.647-0.125,15.67,15.67,0,0,1-2.966.471,1.357,1.357,0,0,1-.455-0.047,2.589,2.589,0,0,1-.873-0.868l2.692-1.162a0.747,0.747,0,0,0,.369-0.343l0.216-.423c2.183-.938,2.01-1.67,1.944-1.947a8.838,8.838,0,0,1-.026-1.137c0.122,0.133.253,0.288,0.39,0.466a5.507,5.507,0,0,1,.525.849A2.958,2.958,0,0,0,583.714,518a3.319,3.319,0,0,1,1.658,1.863l-4.341,2.116C580.993,521.488,580.985,521.185,580.985,521.171Z\" transform=\"translate(-573.938 -509.969)\"></path>\n</svg>",
               "png_icon": "",
               "link": "shopify://collections/dog-walking",
-              "cta_text": "Shop Now"
-            }
-          },
-          "1536068961071-2": {
-            "type": "image",
-            "settings": {
-              "image": "shopify://shop_images/home-column-carousel-desktop-slide-3.jpg",
-              "mobile_image": "shopify://shop_images/home-column-carousel-mobile-slide-3.jpg",
-              "heading": "Outdoor Activity",
-              "svg_icon": "<svg class=\"icon icon-outdoor-activity\" xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 34.7 25.87\"><path fill=\"#ffffff\" d=\"M34.47,23.26,25.28,6.76a1,1,0,0,0-1.74,0L17.31,18a1,1,0,0,0,.83,1.42,1,1,0,0,0,.83-.49L24.09,9.7a.37.37,0,0,1,.65,0l7.55,13.55a.49.49,0,0,1-.43.73H2.63a.14.14,0,0,1-.12-.22L14,3.14a.33.33,0,0,1,.58,0l3.35,6.42a.94.94,0,1,0,1.66-.9l-4.25-8a1.2,1.2,0,0,0-2.11,0L.15,24.07a1.22,1.22,0,0,0,1.06,1.8H32.94A1.75,1.75,0,0,0,34.47,23.26Z\"></path></svg>",
-              "png_icon": "",
-              "link": "shopify://collections/outdoor-activity",
               "cta_text": "Shop Now"
             }
           },
@@ -484,6 +464,18 @@
               "cta_text": "Shop Now"
             }
           },
+          "1536068961071-2": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/home-column-carousel-desktop-slide-3.jpg",
+              "mobile_image": "shopify://shop_images/home-column-carousel-mobile-slide-3.jpg",
+              "heading": "Outdoor Activity",
+              "svg_icon": "<svg class=\"icon icon-outdoor-activity\" xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 34.7 25.87\"><path fill=\"#ffffff\" d=\"M34.47,23.26,25.28,6.76a1,1,0,0,0-1.74,0L17.31,18a1,1,0,0,0,.83,1.42,1,1,0,0,0,.83-.49L24.09,9.7a.37.37,0,0,1,.65,0l7.55,13.55a.49.49,0,0,1-.43.73H2.63a.14.14,0,0,1-.12-.22L14,3.14a.33.33,0,0,1,.58,0l3.35,6.42a.94.94,0,1,0,1.66-.9l-4.25-8a1.2,1.2,0,0,0-2.11,0L.15,24.07a1.22,1.22,0,0,0,1.06,1.8H32.94A1.75,1.75,0,0,0,34.47,23.26Z\"></path></svg>",
+              "png_icon": "",
+              "link": "shopify://collections/outdoor-activity",
+              "cta_text": "Shop Now"
+            }
+          },
           "1536068961071-4": {
             "type": "image",
             "settings": {
@@ -493,6 +485,18 @@
               "svg_icon": "<svg class=\"icon icon-work\" viewbox=\"0 0 33.23 32.99\"><path fill=\"#ffffff\" d=\"M32.93,6.23,27,.3A1,1,0,0,0,25.5.3L23.55,2.24a5.17,5.17,0,0,0-.8,6.32L23,9,9.06,22.8a.85.85,0,0,0,0,1.2.88.88,0,0,0,1.22,0l5.6-5.56,5,5L16.31,28a11.64,11.64,0,0,1-8.14,3.32,10.58,10.58,0,0,1-5-1.2L3,30,3,29.83a11.09,11.09,0,0,1,2.14-13l4.57-4.54,3,3a.85.85,0,0,0,1.2-1.21L10.3,10.49a.89.89,0,0,0-1.28,0L3.87,15.6A12.82,12.82,0,0,0,1.66,31l.11.19.19.12A12.34,12.34,0,0,0,8.17,33a13.38,13.38,0,0,0,9.36-3.83l4.74-4.71a1.46,1.46,0,0,0,0-2.08L17.1,17.23l7.11-7.06.4.24A5.3,5.3,0,0,0,31,9.62l1.94-1.93A1,1,0,0,0,32.93,6.23ZM29.77,8.42a3.6,3.6,0,0,1-5,0,3.5,3.5,0,0,1,0-5L26.23,2l5,5Z\"></path></svg>",
               "png_icon": "",
               "link": "shopify://collections/farm-work",
+              "cta_text": "Shop Now"
+            }
+          },
+          "1536068961071-0": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/home-column-carousel-desktop-slide-1.jpg",
+              "mobile_image": "shopify://shop_images/home-column-carousel-mobile-slide-1.jpg",
+              "heading": "Cold Weather",
+              "svg_icon": "<svg class=\"icon icon-cold-weather\" xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 25.31 27.82\"><path fill=\"#ffffff\" d=\"M25.29,16.41a.68.68,0,0,0-.65-.5.47.47,0,0,0-.17,0l-4.76,1.27L14,13.91l5.72-3.3,4.76,1.27a.67.67,0,1,0,.34-1.29l-3.46-.93,3.11-1.79a.71.71,0,0,0,.31-.41A.7.7,0,0,0,24.7,7a.69.69,0,0,0-.91-.24L20.68,8.5,21.61,5a.67.67,0,0,0-.47-.82.68.68,0,0,0-.82.47L19,9.45l-5.72,3.3V6.14L16.8,2.67a.68.68,0,0,0,0-.95.68.68,0,0,0-.94,0L13.32,4.25V.67A.67.67,0,1,0,12,.67V4.25L9.45,1.72a.68.68,0,0,0-.94,0,.63.63,0,0,0-.2.47.67.67,0,0,0,.2.48L12,6.14v6.61L6.26,9.45,5,4.69A.67.67,0,1,0,3.7,5L4.63,8.5,1.52,6.71A.69.69,0,0,0,.61,7a.7.7,0,0,0-.07.51.71.71,0,0,0,.31.41L4,9.66.5,10.59a.67.67,0,1,0,.34,1.29L5.6,10.61l5.72,3.3L5.6,17.21.84,15.94a.69.69,0,0,0-.82.47.7.7,0,0,0,.07.51.68.68,0,0,0,.41.31L4,18.16.85,20a.67.67,0,0,0-.24.91.62.62,0,0,0,.41.31.62.62,0,0,0,.5-.06l3.11-1.79L3.7,22.78A.67.67,0,1,0,5,23.12l1.27-4.75L12,15.07v6.6L8.51,25.15a.66.66,0,0,0,0,1,.68.68,0,0,0,.94,0L12,23.57v3.58a.67.67,0,1,0,1.33,0V23.57l2.54,2.53a.68.68,0,0,0,.94,0,.66.66,0,0,0,0-1l-3.48-3.48v-6.6L19,18.37l1.28,4.75a.67.67,0,1,0,1.29-.34l-.93-3.46,3.11,1.79a.62.62,0,0,0,.5.06.62.62,0,0,0,.41-.31.67.67,0,0,0-.24-.91l-3.11-1.79,3.46-.93a.68.68,0,0,0,.41-.31A.7.7,0,0,0,25.29,16.41Z\"></path></svg>",
+              "png_icon": "",
+              "link": "shopify://collections/cold-weather",
               "cta_text": "Shop Now"
             }
           },
@@ -510,11 +514,11 @@
           }
         },
         "block_order": [
-          "1536068961071-0",
           "1536068961071-1",
-          "1536068961071-2",
           "1536068961071-3",
+          "1536068961071-2",
           "1536068961071-4",
+          "1536068961071-0",
           "1536068961071-5"
         ],
         "settings": {}
@@ -525,22 +529,22 @@
           "1536251685211-1": {
             "type": "text_block",
             "settings": {
-              "image": "shopify://shop_images/home-twin-promo-desktop-1.jpg",
-              "mobile_image": "shopify://shop_images/home-twin-promo-mobile-1.jpg",
-              "link": "https://www.muckbootcompany.co.uk/collections/cold-weather/audience_women",
-              "heading_text": "Winter Boots",
-              "text": "<p>Waterproof design, warm fleece lining, rugged outsole &mdash; made for winter.</p>",
-              "cta_text": "Shop Winter Boots"
+              "image": "shopify://shop_images/TB_2_-_D.jpg",
+              "mobile_image": "shopify://shop_images/TB_2_-_M.jpg",
+              "link": "https://www.muckbootcompany.co.uk/collections/outdoor-activity",
+              "heading_text": "Unpredictable weather",
+              "text": "<p>Prepare for sunny spells and sudden downpours with our 100% waterproof boots.</p>",
+              "cta_text": "Shop Now"
             }
           },
           "1536251685211-0": {
             "type": "text_block",
             "settings": {
-              "image": "shopify://shop_images/2_box_right_module_710x473.jpg",
-              "mobile_image": "shopify://shop_images/2_box_right_module_640x583_mobile.jpg",
-              "link": "shopify://collections/arctic-ice",
-              "heading_text": "ARCTIC ICE",
-              "text": "<p>Now you can tread on the iciest of pathways with&nbsp;confidence with ground-breaking sole technology.</p>",
+              "image": "shopify://shop_images/TB_1_-_D.jpg",
+              "mobile_image": "shopify://shop_images/TB_1_-_M.jpg",
+              "link": "https://www.muckbootcompany.co.uk/collections/dog-walking",
+              "heading_text": "Dog Walking Boots",
+              "text": "<p>Possibly the most comfortable wellies you'll walk the dog in.</p>",
               "cta_text": "Shop Now"
             }
           }
