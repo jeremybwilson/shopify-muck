@@ -1,0 +1,53 @@
+.top-banner {
+    .top-hero-img {
+        height: 400px;
+        position: relative;
+
+        img {
+            position: absolute;
+            top: 50%;
+            -webkit-transform: translateY(-38%);
+            -moz-transform: translateY(-38%);
+            -ms-transform: translateY(-38%);
+            -o-transform: translateY(-38%);
+            transform: translateY(-38%);
+        }
+
+        .top-hero-heading {
+            position: absolute;
+            display: block;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            text-align: center;
+            color: white;
+            font-family: $font-stack--heading;
+            font-size: 53px;
+            text-transform: uppercase;
+            letter-spacing: 0.84rem;
+            font-weight: 800;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        @include mq('phone') {
+            height: 235px;
+
+            img {
+                top: 20%;
+                -webkit-transform: scale(2);
+                -moz-transform: scale(2);
+                -ms-transform: scale(2);
+                -o-transform: scale(2);
+                transform: scale(2);
+            }
+
+            .top-hero-heading {
+                font-size: 24px;
+                letter-spacing: 6px;
+                font-weight: 500;
+                min-width: 300px;
+            }
+        }
+    }
+}

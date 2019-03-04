@@ -2,24 +2,10 @@
     .page-content-field {
         position: relative;
 
-        .contest-success-banner {
-            max-height: 600px;
-            width: 100%;
-        }
-
         .contest-success-text {
-            background: rgba(0, 0, 0, 0.6);
-            left: 50%;
-            margin: 0;
-            padding: 0 80px;
-            position: absolute;
-            text-align: center;
-            top: 50%;
-            -webkit-transform: translate(-50%, -50%);
-            -moz-transform: translate(-50%, -50%);
-            -ms-transform: translate(-50%, -50%);
-            -o-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
+            margin: 20px auto;
+            padding: 50px 80px;
+            text-align: left;
             width: 100%;
 
             h1, h2, h3, h4, h5, h6 {
@@ -30,7 +16,7 @@
             h1, h2, h3 {
                 font-weight: 800;
                 letter-spacing: 0.1rem;
-                color: white;
+                color: $color--dark-green;
             }
 
             h4, h5, h6 {
@@ -38,42 +24,24 @@
                 letter-spacing: 0.05rem;
             }
 
-            h2 {
-                font-size: 38px;
+            h3 {
+                font-size: 26px;
             }
 
-            h3 {
-                font-size: 34px;
+            p {
+                font-size: 16px;
             }
         }
         @include mq('phone') {
-            .contest-success-banner {
-                max-height: 350px;
-            }
-
             .contest-success-text {
-                background: none;
-                left: 0;
-                padding: 0 10px;
-                position: relative;
-                text-align: center;
-                top: 0;
-                -webkit-transform: none;
-                -moz-transform: none;
-                -ms-transform: none;
-                -o-transform: none;
-                transform: none;
-                width: 100%;
+                padding: 20px 10px;
+                text-align: left;
 
-                h1, h2, h3 {
-                    color: $color--dark-green;
-                }
-
-                h2 {
-                    font-size: 24px;
-                }
                 h3 {
-                    font-size: 20px;
+                    font-size: 18px;
+                }
+                p {
+                    font-size: 13px;
                 }
             }
         }
