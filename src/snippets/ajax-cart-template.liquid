@@ -105,12 +105,12 @@
         </button>
         <br/><br/>
 
-  <!-- PDM-264 Start -->
+        <!-- PDM-264 Start -->
         {% endraw %}
         {% if settings.pobox_callout_enable %}
-        {% raw %}<p class="text-center">{% endraw %}{{ 'cart.general.no_po_box_shipping' | t }}{% raw %}</p>{% endraw %}
+             {% raw %}<p class="text-center">{% endraw %}{{ 'cart.general.no_po_box_shipping' | t }}{% raw %}</p>{% endraw %}
         {% endif %}
-  <!-- PDM-264 Start -->
+        <!-- PDM-264 Start -->
 
           {% if additional_checkout_buttons %}
             <div class="additional_checkout_buttons">{{ content_for_additional_checkout_buttons }}</div>
