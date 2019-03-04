@@ -900,6 +900,11 @@
         "label": "Enable cart notes"
       },
       {
+        "type": "checkbox",
+        "id": "pobox_callout_enable",
+        "label": "Enable PO Box callout"
+      },
+      {
         "type": "select",
         "id": "ajax_cart_method",
         "label": "Cart type",
