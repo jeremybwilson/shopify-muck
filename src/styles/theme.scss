@@ -41,6 +41,9 @@
 @import url('./snippets/size-chart.scss.liquid');
 @import url('./snippets/contest-form.scss.liquid');
 
+/*================ Templates ================*/
+@import url('./templates/page-contest-success.scss.liquid');
+
 /*============= ReactComponents ============*/
 @import url('./react-components/react-swatches.scss.liquid');
 @import url('./react-components/react-badge.scss.liquid');

@@ -140,7 +140,7 @@
       {% comment %} :: HOME / BLOG / LIST-COLLECTIONS - No Wrapper or Breadcrumbs :: {% endcomment %}
       {% if template == 'index' or template contains 'blog' or
         template contains 'list-collections' or template contains 'article' or
-        template == 'page.contest' %}
+        template == 'page.contest' or template == 'page.contest-success' %}
         {{ content_for_layout }}
 
 
