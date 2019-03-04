@@ -145,6 +145,30 @@
     #nav-bar-wrapper.isStuck #nav-menu-mobile {
         height: calc( 100vh - 50px ); /* nav bar = 50px */
     }
+
+    {% if section.settings.logo_center %}
+      @media screen and (min-width: 1220px) {
+        #nav-bar-wrapper #nav-logo, #nav-bar-wrapper #nav-logo-backing {
+          left: 50% !important;
+        }
+        #nav-bar-wrapper #nav-menu-desktop #nav-menu-desktop-list-1,
+        #nav-bar-wrapper #nav-menu-desktop #nav-menu-desktop-list {
+          display: inline-block !important;
+          padding: 0 !important;
+        }
+      }
+
+      @media screen and (min-width: 1024px) {
+        #nav-bar-wrapper #nav-logo, #nav-bar-wrapper #nav-logo-backing {
+          left: 50% !important;
+        }
+        #nav-bar-wrapper #nav-menu-desktop #nav-menu-desktop-list-1,
+        #nav-bar-wrapper #nav-menu-desktop #nav-menu-desktop-list {
+          display: inline-block !important;
+          padding: 0 !important;
+        }
+      }
+    {% endif %}
   </style>
 </div>
 
@@ -275,6 +299,11 @@
           }
         ]
       },
+      {
+        "type": "checkbox",
+        "id": "logo_center",
+        "label": "Logo Center"
+      },
 
 
       {
@@ -336,10 +365,15 @@
       {
         "type": "link_list",
         "id": "main_nav",
-        "label": "Menu",
-        "default":"main-menu"
+        "label": "Main(Left) Menu",
+        "default": "main-menu"
       },
-     {
+      {
+        "type": "link_list",
+        "id": "right_nav",
+        "label": "Right Menu"
+      },
+      {
         "type": "checkbox",
         "id": "nav_center",
         "label": "Center align navigation"
