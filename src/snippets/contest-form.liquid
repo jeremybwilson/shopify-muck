@@ -57,44 +57,44 @@
 				<legend class="group-interest">Interest:</legend>
 				<div class="kilo">
 					<label class="container">Dog Walking
-						<input type="checkbox" name="interest" value="dog_walking">
+						<input type="checkbox" name="interest[]" id="interest_dog_walking" class="interest_chk" value="dog_walking">
 						<span class="checkmark"></span>
 					</label>
 					<label class="container">Gardening
-						<input type="checkbox" name="interest" value="gardening">
+						<input type="checkbox" name="interest[]" id="interest_gardening" class="interest_chk" value="gardening">
 						<span class="checkmark"></span>
 					</label>
 					<label class="container">Equestrian
-						<input type="checkbox" name="interest" value="equestrian">
+						<input type="checkbox" name="interest[]" id="interest_equestrian" class="interest_chk" value="equestrian">
 						<span class="checkmark"></span>
 					</label>
 					<label class="container">Fishing
-						<input type="checkbox" name="interest" value="fishing">
+						<input type="checkbox" name="interest[]" id="interest_fishing" class="interest_chk" value="fishing">
 						<span class="checkmark"></span>
 					</label>
 				</div>
 				<div class="kilo">
 					<label class="container">Hunting
-						<input type="checkbox" name="interest" value="hunting">
+						<input type="checkbox" name="interest[]" id="interest_hunting" class="interest_chk" value="hunting">
 						<span class="checkmark"></span>
 					</label>
 					<label class="container">Farm & Agriculture
-						<input type="checkbox" name="interest" value="farm_and_agriculture">
+						<input type="checkbox" name="interest[]" id="interest_farm_and_agriculture" class="interest_chk" value="farm_and_agriculture">
 						<span class="checkmark"></span>
 					</label>
 					<label class="container">Hiking
-						<input type="checkbox" name="interest" value="hiking">
+						<input type="checkbox" name="interest[]" id="interest_hiking" class="interest_chk" value="hiking">
 						<span class="checkmark"></span>
 					</label>
 					<label class="container">Other (specify Below)
-						<input type="checkbox" name="interest" value="other">
+						<input type="checkbox" name="interest[]" id="interest_other" class="interest_chk" value="other">
 						<span class="checkmark"></span>
 					</label>
 				</div>
 			</fieldset>
 	    </div>
 
-		<div class="clearfix large_form">
+		<div class="clearfix large_form" id="other_interest_div">
 			<label for="other_interest" class="login">Other Interests</label>
 			<input type="text" value="" name="other_interest" id="other_interest" class="large" size="30">
 			<label id="interest-error" class="error" for="interest"></label>
@@ -105,44 +105,40 @@
 				<legend class="group-interest">How would you describe our products?</legend>
 				<div class="kilo">
 					<label class="container">High Quality
-						<input type="checkbox" name="interest" value="high_quality">
+						<input type="checkbox" name="product_feedback[]" id="product_feedback_high_quality" class="product_feedback_chk" value="high_quality">
 						<span class="checkmark"></span>
 					</label>
 					<label class="container">Low Quality
-						<input type="checkbox" name="interest" value="low_quality">
+						<input type="checkbox" name="product_feedback[]" id="product_feedback_low_quality" class="product_feedback_chk" value="low_quality">
 						<span class="checkmark"></span>
 					</label>
 					<label class="container">Practical
-						<input type="checkbox" name="interest" value="practical">
+						<input type="checkbox" name="product_feedback[]" id="product_feedback_practical" class="product_feedback_chk" value="practical">
 						<span class="checkmark"></span>
 					</label>
 					<label class="container">Impractical
-						<input type="checkbox" name="interest" value="impractical">
+						<input type="checkbox" name="product_feedback[]" id="product_feedback_impractical" class="product_feedback_chk" value="impractical">
 						<span class="checkmark"></span>
 					</label>
 				</div>
 				<div class="kilo">
 					<label class="container">Good Value for Money
-						<input type="checkbox" name="interest" value="good_value_for_money">
+						<input type="checkbox" name="product_feedback[]" id="product_feedback_good_value_for_money" class="product_feedback_chk" value="good_value_for_money">
 						<span class="checkmark"></span>
 					</label>
 					<label class="container">Stylish
-						<input type="checkbox" name="interest" value="stylish">
-						<span class="checkmark"></span>
-					</label>
-					<label class="container">Hiking
-						<input type="checkbox" name="interest" value="hiking">
+						<input type="checkbox" name="product_feedback[]" id="product_feedback_stylish" class="product_feedback_chk" value="stylish">
 						<span class="checkmark"></span>
 					</label>
 					<label class="container">Other (specify Below)
-						<input type="checkbox" name="interest" value="other">
+						<input type="checkbox" name="product_feedback[]" id="product_feedback_other" class="product_feedback_chk" value="other">
 						<span class="checkmark"></span>
 					</label>
 				</div>
 			</fieldset>
 	    </div>
 
-		<div class="clearfix large_form">
+		<div class="clearfix large_form" id="other_feedback_div">
 			<label for="other_feedback" class="login">Other</label>
 			<input type="text" value="" name="other_feedback" id="other_feedback" class="large" size="30">
 			<label id="product_feedback-error" class="error" for="product_feedback"></label>
