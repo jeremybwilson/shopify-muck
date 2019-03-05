@@ -2134,7 +2134,6 @@ theme.ProductForm = function (context, events) {
         
         // Select first available variant if top row of options changed
         if (parseInt(option_position, 10) === 1) {
-          var correspondingVariants = product.variants.filter(variant => variant.option1 === element.value)
           var correspondingVariants = product.variants.reduce((acc, cur, i) => {
             if (cur.option1 === element.value) {
               acc.selected = cur
