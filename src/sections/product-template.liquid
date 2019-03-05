@@ -3,7 +3,7 @@
 {% unless current_variant.available %}
   {% assign current_variant = product.first_available_variant %}
 {% endunless %}
-
+<script>console.log('hello world')</script>
 <div itemscope itemtype="http://schema.org/Product"
   id="product-{{ product.id }}"
   class="product-page product-template"

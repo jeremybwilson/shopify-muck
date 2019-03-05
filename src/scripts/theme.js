@@ -2131,10 +2131,10 @@ theme.ProductForm = function (context, events) {
       element.addEventListener("change", function (event) {
         events.trigger("swatch:change:" + option_position, element.value);
         current_option_text_change();
-        
+
         // Select first available variant if top row of options changed
         if (parseInt(option_position, 10) === 1) {
-          var id = window.location.search.replace('variant=', '')
+          var id = window.location.search.replace('?variant=', '')
           var correspondingVariants = product.variants.reduce((acc, cur, i) => {
             if (cur.option1 === element.value) {
               if (id === cur.id.toString()) {
@@ -2147,7 +2147,7 @@ theme.ProductForm = function (context, events) {
             }
             return acc
           }, { firstAvailable: null, selected: null })
-          if (!correspondingVariants.selected.available && correspondingVariants.firstAvailable) {
+          if (correspondingVariants.selected && !correspondingVariants.selected.available && correspondingVariants.firstAvailable) {
             var id = correspondingVariants.firstAvailable.option2.toLowerCase().split(' ').join('-')
             $('#swatch-2-' + id).trigger('change').trigger('click')
           }
