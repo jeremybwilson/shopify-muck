@@ -113,11 +113,12 @@
     "details_align": "center",
     "secondary_images_hover": "image_flip",
     "cart_notes_enable": false,
+    "pobox_callout_enable": false,
     "ajax_cart_method": "drawer",
     "ajax_cart_remove_text": "This will remove the item from your cart. Continue?",
     "ajax_cart_low_stock_text": "This item does not have enough stock to add to your cart.",
     "discount_modal_enable": false,
-    "discount_modal_config": "eyJjb29raWVFeHBpcmVJbkRheXMiOjYwLCJjdXJyZW5jeVN5bWJvbCI6IqMiLCJ0aHJlc2hvbGREaXNjb3VudHMiOlt7ImRpc2NvdW50SWQiOjEsImRpc3BsYXlOYW1lIjoiQ2FyZCBXYWxsZXQiLCJnaWZ0SWQiOjIwNDc1Mzg3MTgzMjE3LCJncmFudFR5cGUiOiJhbGwiLCJpbnZlbnRvcnlJZCI6MjA0NzUzODcxODMyMTcsIm1pblNwZW5kIjoxMDAsInByb2R1Y3RIYW5kbGUiOiJjYXJkLXdhbGxldCJ9XX0=",
+    "discount_modal_config": "eyJjb29raWVFeHBpcmVJbkRheXMiOjYwLCJjdXJyZW5jeVN5bWJvbCI6IiZwb3VuZDsiLCJ0aHJlc2hvbGREaXNjb3VudHMiOlt7ImRpc2NvdW50SWQiOjEsImRpc3BsYXlOYW1lIjoiU2lsayBTY2FyZiIsImdpZnRJZCI6MjA5NTMzNzk1Njk3NzcsImdyYW50VHlwZSI6ImFsbCIsImludmVudG9yeUlkIjoyMDk1MzM3OTU2OTc3NywibWluU3BlbmQiOjEwMCwicHJvZHVjdEhhbmRsZSI6InNpbGstc2NhcmYifV19",
     "twittername": "",
     "facebook_url": "//www.facebook.com/muckbootco/",
     "pinterest_url": "",
@@ -321,7 +322,7 @@
           "thumbnails": "left",
           "zoom_image_position": "zoom_over_main",
           "related_products": "none",
-          "free_shipping_header_text": "Free Shipping & Returns",
+          "free_shipping_header_text": "Free Delivery & Returns",
           "free_shipping_text": "<p>FREE Delivery &amp; FREE Returns for all orders. Orders placed before 3pm Monday to Friday will dispatch next working day. For additional information, visit our <a href=\"/pages/delivery-and-returns\" title=\"Delivery and Returns\">Delivery page.</a></p>",
           "show_social": false,
           "size_chart_page": "size-chart"
@@ -407,22 +408,22 @@
               "caption_opacity": "1.0"
             }
           },
-          "1544666970903": {
+          "1551675459784": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/waterproof-boots-for-the-family.jpg",
-              "mobile_image": "shopify://shop_images/waterproof-boots-for-the-family-mobile.jpg",
-              "heading": "WATERPROOF <br>BOOTS FOR THE<br> FAMILY",
+              "image": "shopify://shop_images/dog-walking-boots.jpg",
+              "mobile_image": "shopify://shop_images/dog-walking-boots-mobile.jpg",
+              "heading": "Dog Walking Boots",
               "subheading": "",
-              "cta_one_link": "https://www.muckbootcompany.co.uk/collections/waterproof-boots?_=pf&pf_t_gender=audience_women",
-              "cta_one_button_text": "SHOP WOMEN'S",
-              "cta_two_link": "https://www.muckbootcompany.co.uk/collections/waterproof-boots?_=pf&pf_t_gender=audience_men",
-              "cta_two_button_text": "SHOP MEN'S",
+              "cta_one_link": "https://www.muckbootcompany.co.uk/collections/dog-walking/audience_women",
+              "cta_one_button_text": "Shop Women's",
+              "cta_two_link": "https://www.muckbootcompany.co.uk/collections/dog-walking/audience_men",
+              "cta_two_button_text": "Shop Men's",
               "caption_color_scheme": "white",
               "custom_slide_main_color": "#ffffff",
               "custom_slide_alt_color": "#164732",
               "caption_horizontal": "left",
-              "caption_vertical": 40,
+              "caption_vertical": 50,
               "caption_background": "rgba(0,0,0,0)",
               "caption_opacity": "0.1"
             }
@@ -447,22 +448,22 @@
               "caption_opacity": "0.1"
             }
           },
-          "1551675459784": {
+          "1544666970903": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/dog-walking-boots.jpg",
-              "mobile_image": "shopify://shop_images/dog-walking-boots-mobile.jpg",
-              "heading": "Dog Walking Boots",
+              "image": "shopify://shop_images/waterproof-boots-for-the-family.jpg",
+              "mobile_image": "shopify://shop_images/waterproof-boots-for-the-family-mobile.jpg",
+              "heading": "WATERPROOF <br>BOOTS FOR THE<br> FAMILY",
               "subheading": "",
-              "cta_one_link": "https://www.muckbootcompany.co.uk/collections/dog-walking/audience_women",
-              "cta_one_button_text": "Shop Women's",
-              "cta_two_link": "https://www.muckbootcompany.co.uk/collections/dog-walking/audience_men",
-              "cta_two_button_text": "Shop Men's",
+              "cta_one_link": "https://www.muckbootcompany.co.uk/collections/waterproof-boots?_=pf&pf_t_gender=audience_women",
+              "cta_one_button_text": "SHOP WOMEN'S",
+              "cta_two_link": "https://www.muckbootcompany.co.uk/collections/waterproof-boots?_=pf&pf_t_gender=audience_men",
+              "cta_two_button_text": "SHOP MEN'S",
               "caption_color_scheme": "white",
               "custom_slide_main_color": "#ffffff",
               "custom_slide_alt_color": "#164732",
               "caption_horizontal": "left",
-              "caption_vertical": 50,
+              "caption_vertical": 40,
               "caption_background": "rgba(0,0,0,0)",
               "caption_opacity": "0.1"
             }
@@ -571,8 +572,8 @@
           "1536251685211-1": {
             "type": "text_block",
             "settings": {
-              "image": "shopify://shop_images/TB_2_-_D.jpg",
-              "mobile_image": "shopify://shop_images/TB_2_-_M.jpg",
+              "image": "shopify://shop_images/2_box_left_module_710x473_1.jpg",
+              "mobile_image": "shopify://shop_images/2_box_left_module_mobile_640x583_mobile_1.jpg",
               "link": "https://www.muckbootcompany.co.uk/collections/outdoor-activity",
               "heading_text": "Unpredictable weather",
               "text": "<p>Prepare for sunny spells and sudden downpours with our 100% waterproof boots.</p>",
@@ -582,8 +583,8 @@
           "1536251685211-0": {
             "type": "text_block",
             "settings": {
-              "image": "shopify://shop_images/TB_1_-_D.jpg",
-              "mobile_image": "shopify://shop_images/TB_1_-_M.jpg",
+              "image": "shopify://shop_images/2_box_right_module_710x473_ce5c9d92-1959-4e16-a701-6197a85816de.jpg",
+              "mobile_image": "shopify://shop_images/2_box_right_module_640x583_mobile_90813bc0-b2b3-4ccf-badb-9df2497bf02e.jpg",
               "link": "https://www.muckbootcompany.co.uk/collections/dog-walking",
               "heading_text": "Dog Walking Boots",
               "text": "<p>Possibly the most comfortable wellies you'll walk the dog in.</p>",
