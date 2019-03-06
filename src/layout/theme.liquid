@@ -51,7 +51,8 @@
   {{ 'react.min.js' | asset_url | script_tag }}
   {{ 'react-dom.min.js' | asset_url | script_tag }}
   {{ 'jquery-2.2.4.min.js' | asset_url | script_tag }}
-  {{ "eventemitter3.min.js" | asset_url | script_tag }}
+  {{ 'eventemitter3.min.js' | asset_url | script_tag }}
+  {{ 'jquery.validate.min.js' | asset_url | script_tag }}
 
   {%- if settings.show_multiple_currencies -%}
     {% include 'currencies' %}
@@ -137,7 +138,9 @@
 
 
       {% comment %} :: HOME / BLOG / LIST-COLLECTIONS - No Wrapper or Breadcrumbs :: {% endcomment %}
-      {% if template == 'index' or template contains 'blog' or template contains 'list-collections' or template contains 'article' %}
+      {% if template == 'index' or template contains 'blog' or
+        template contains 'list-collections' or template contains 'article' or
+        template == 'page.contest' or template == 'page.contest-success' %}
         {{ content_for_layout }}
 
 
