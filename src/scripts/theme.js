@@ -2051,15 +2051,15 @@ theme.ProductForm = function (context, events) {
     var variants = product.variants.slice(0)
     var availableOption1 = product.variants.reduce((acc, cur) => {
       if (cur.available && acc.indexOf(cur.option1 === -1)) {
-        acc.push(cur.option1)
+        acc.push(cur.option1);
       }
       
-      return acc
+      return acc;
     }, [])
 
     availableOption1.forEach(option => {
-      $(`[data-swatch-value=${option}]`).removeClass('soldout')
-    })
+      $(`[data-swatch-value=${option}]`).removeClass('soldout');
+    });
   })();
   
   (function single_option_selectors() {
@@ -2197,7 +2197,7 @@ theme.ProductForm = function (context, events) {
           // Only cross out first option if none of its corresponding variants are available
           if (current_option === 'option1') {
             if (variant.available) {
-              available = true
+              available = true;
               return
             }
           }
