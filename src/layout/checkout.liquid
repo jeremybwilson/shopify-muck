@@ -51,6 +51,15 @@
     </div>
 
     {{ tracking_code }}
+    <script>
+      if(Shopify.Checkout.step == 'payment_method'){
+          var spanElm = document.createElement('span');
+          spanElm.setAttribute('style','color:#ff0000');
+          spanElm.innerHTML = 'Please only include 2 digits for the year';
+          var payMethodElm = document.querySelector('[data-payment-method] .section__text');
+          payMethodElm.append(spanElm);
+      }
+    </script>
     {% comment %}
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
     <script type="text/javascript">
