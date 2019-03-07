@@ -253,11 +253,13 @@
           "logo_size": 24,
           "logo_transform": "uppercase",
           "logo_weight": "bold",
+          "logo_center": false,
           "cart_icon": "cart",
           "show_site_picker": true,
           "site_picker_manifest": "UK|United Kingdom|https://www.muckbootcompany.co.uk,US|United States|https://muckbootcompany.com,EU|European Union|https://www.muckbootcompany.eu",
           "show_search": true,
           "main_nav": "main-menu",
+          "right_nav": "",
           "nav_center": true,
           "nav_height": 60,
           "linklist_breakpoint": 10
@@ -913,6 +915,22 @@
           "link": "",
           "button_text_color": "#fff",
           "button_color": "#000"
+        }
+      },
+      "page-contest-template": {
+        "type": "page-contest-template",
+        "settings": {
+          "image": "shopify://shop_images/The_Bull_Shed_Main.jpg",
+          "heading": "Your Chance to Win a Two Nights Stay in The Bull Shed Barn",
+          "text": "<p>Add some descriptive text to your Blog page.</p>"
+        }
+      },
+      "page-contest-success-banner": {
+        "type": "page-contest-success-banner",
+        "settings": {
+          "image": "shopify://shop_images/Success_Page_Image.jpg",
+          "heading": "Thank you!",
+          "text": "<p>Add some descriptive text to your Blog page.</p>"
         }
       }
     },
