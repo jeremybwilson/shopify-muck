@@ -2172,7 +2172,7 @@ theme.ProductForm = function (context, events) {
             return acc
           }, { firstAvailable: null, selected: null })
           if (selected && !selected.available && firstAvailable) {
-            var id = theme.Utils.handleize(firstAvailable.option2)
+            var id = theme.Utils.handleize(firstAvailable.option2);
             $('#swatch-2-' + id).trigger('change').trigger('click')
           }
         }
