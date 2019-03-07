@@ -901,6 +901,11 @@
       },
       {
         "type": "checkbox",
+        "id": "checkout_shipping_callout_enable",
+        "label": "Enable Shipping Calculated at Checkout callout"
+      },
+      {
+        "type": "checkbox",
         "id": "pobox_callout_enable",
         "label": "Enable PO Box callout"
       },
@@ -948,7 +953,7 @@
         "label": "Discount Config",
         "info": "(stringify config object, then base64)",
         "default": "eyJjb29raWVFeHBpcmVJbkRheXMiOjYwLCJ0aHJlc2hvbGREaXNjb3VudHMiOltdfQ=="
-      } 
+      }
     ]
   },
   {
@@ -1022,14 +1027,14 @@
         "id": "sizmek_company_id",
         "label": "Sizmek - Company ID",
         "info": "Sizmek company ID (EX: 6795), copied from sizmek dashboard"
-      }, 
+      },
       {
         "type": "text",
         "id": "sizmek_version_num",
         "label": "Sizmek - Version Number",
         "info": "EX: 9",
         "default": "9"
-      }, 
+      },
       {
         "type": "text",
         "id": "sizmek_pixel_cart_start",
@@ -1080,14 +1085,14 @@
         "id": "email_popup_input_placeholder",
         "label": "Email popup placeholder text",
         "default": "Enter Your Email Address"
-      },      
+      },
       {
         "type": "html",
         "id": "email_popup_bottom_text",
         "label": "Fine print",
         "default": "<p>By providing your email address, you agree to our <a href=\"https://www.honeywell.com/privacy-statement\">Privacy Policy</a> & <a href=\"/pages/terms-and-conditions\">Terms of Service</a>.</p>"
       },
-      { 
+      {
         "type": "text",
         "id": "email_popup_error",
         "label": "Error Text",

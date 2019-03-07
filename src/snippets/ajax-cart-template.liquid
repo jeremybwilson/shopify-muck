@@ -47,7 +47,7 @@
                 {{ else }}
                   <p class="ajaxcart__price-wrap"><strong>{{{price}}}</strong></p>
                 {{/if}}
-                {{!-- 
+                {{!--
                   :: QUANTITY SELECTORS ::
                     - If '_discountItem', hide quantity selectors (re: A free gift item from react-discounts)
                     - '_discountItem' tag comes from 'ajax-cart.js.liquid' function "addItemById" when "isGift" = true
@@ -68,7 +68,7 @@
                           <span>&minus;</span>
                         </button>
                         <input type="text" name="updates[]" class="ajaxcart__qty-num" value="{{itemQty}}" min="0" data-id="{{id}}" data-line="{{line}}" aria-label="quantity" pattern="[0-9]*">
-                        <button type="button" class="ajaxcart__qty-adjust ajaxcart__qty--plus quantity-increment" data-id="{{id}}" data-line="{{line}}" data-qty="{{itemAdd}}">                        
+                        <button type="button" class="ajaxcart__qty-adjust ajaxcart__qty--plus quantity-increment" data-id="{{id}}" data-line="{{line}}" data-qty="{{itemAdd}}">
                           <span>+</span>
                         </button>
                       </div>
@@ -99,11 +99,13 @@
             <p class="text-right"><strong>{{{totalPrice}}}</strong></p>
           </div>
 
-        <p class="text-center">{% endraw %}{{ 'cart.general.shipping_at_checkout' | t }}{% raw %}</p>
-        <button type="submit" class="cart__checkout" name="checkout">
-          {% endraw %}{{ 'cart.general.checkout' | t }}{% raw %}
-        </button>
-        <br/><br/>
+        {% if settings.checkout_shipping_callout_enable %}
+          <p class="text-center">{% endraw %}{{ 'cart.general.shipping_at_checkout' | t }}{% raw %}</p>
+        {% endif %}
+          <button type="submit" class="cart__checkout" name="checkout">
+            {% endraw %}{{ 'cart.general.checkout' | t }}{% raw %}
+          </button>
+          <br/><br/>
 
           <!-- PDM-264 Start -->
           {% endraw %}
