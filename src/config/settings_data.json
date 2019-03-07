@@ -114,6 +114,7 @@
     "details_align": "center",
     "secondary_images_hover": "image_flip",
     "cart_notes_enable": false,
+    "checkout_shipping_callout_enable": true,
     "ajax_cart_method": "drawer",
     "ajax_cart_remove_text": "This will remove the item from your cart. Continue?",
     "ajax_cart_low_stock_text": "This item does not have enough stock to add to your cart.",
