@@ -831,7 +831,15 @@ require( './react-components/discounts/DiscountParent.js' );
 
 
 
+window.theme = window.theme || {}
 
+theme.Utils = (function () {
+  return {
+    handleize: function (str) {
+      return str.toLowerCase().replace(/[^\w]+/g, '-')
+    }
+  }
+})();
 
 /*============================================================================
   Sections
@@ -2053,7 +2061,7 @@ theme.ProductForm = function (context, events) {
       if (cur.available && acc.indexOf(cur.option1 === -1)) {
         acc.push(cur.option1);
       }
-      
+
       return acc;
     }, [])
 
@@ -2164,7 +2172,7 @@ theme.ProductForm = function (context, events) {
             return acc
           }, { firstAvailable: null, selected: null })
           if (selected && !selected.available && firstAvailable) {
-            var id = firstAvailable.option2.toLowerCase().replace(/[^\w]+/g, '-')
+            var id = theme.Utils.handleize(firstAvailable.option2);
             $('#swatch-2-' + id).trigger('change').trigger('click')
           }
         }
