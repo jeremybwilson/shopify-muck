@@ -2059,7 +2059,8 @@ theme.ProductForm = function (context, events) {
     var variants = product.variants.slice(0)
     var availableOption1 = product.variants.reduce((acc, cur) => {
       if (cur.available && acc.indexOf(cur.option1 === -1)) {
-        acc.push(cur.option1);
+        var option = theme.Utils.handleize(cur.option1);
+        acc.push(option);
       }
 
       return acc;
