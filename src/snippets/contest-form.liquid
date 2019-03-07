@@ -158,11 +158,15 @@
 	    </div>
 
 		<div class="clearfix large_form action_bottom">
-	        <input class="secondary button" type="submit" value="Sign In">
+	        <input class="secondary button" type="submit" value="Sign Up">
 	    </div>
 	</form>
 
 	<div class="terms_and_conditions">
+		{% assign tAndCPage = pages['terms-and-conditions-for-contest'] %}
+		{{ tAndCPage.content }}
+		{% comment %} Sample Content for terms and conditions for contest {% endcomment %}
+		{% comment %}
 		<div>
 			<h4>TERMS AND CONDITIONS</h4>
 			<div class="paragraph">
@@ -222,7 +226,7 @@
 				<p>
 					<span class="level-1">2</span>.
 					<span class="level-2">3</span>.
-					Entries must be made between 7.00 GMT on 26.02.19 and 23:59 GMT on 18.03.19
+					Entries must be made between 7.00 GMT on 26.02.19 and 23:59 GMT on 26.03.19
 					("Competition or Competition Period") to be valid.
 				</p>
 				<p>
@@ -585,5 +589,6 @@
 			</div>
 
 		</div>
+		{% endcomment %}
 	</div>
   </div>
