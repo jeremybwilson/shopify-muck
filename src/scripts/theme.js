@@ -837,7 +837,7 @@ theme.Utils = (function () {
   return {
     handleize: function (str) {
       return str.toLowerCase().replace(/[^\w]+/g, '-')
-    },
+    }
   }
 })();
 
