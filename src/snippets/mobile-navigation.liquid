@@ -13,13 +13,12 @@
 
       {% comment %} :: LEVEL 1 : SUB-NAV : Accordion (Has nested menus) :: {% endcomment %}
       {% if link.links != blank %}
-        {% if settings.international_store_version == 'UK' or settings.international_store_version == 'EU'  %}
-        <li class="link-header"><a href="{{ link.url }}">{{ link.title | escape }}</a></li>
-        {% else %}
         <li class="accordion-header accordion-toggle" aria-haspopup="true" aria-expanded="false">{{ link.title | escape }}</li>
-        
         <div class="accordion-content">
           <ul class="sub">
+            {% if settings.international_store_version == 'UK' or settings.international_store_version == 'EU'  %}
+              <li class="view_all_class"><a href="{{ link.url }}">View all</a></li>
+            {% endif %}
             {% for sub_link in link.links %}
 
 
@@ -71,7 +70,7 @@
             {% endfor %}
           </ul>
         </div>
-        {% endif %}
+        
 
 
       {% comment %} :: LEVEL 1 : FLAT : Simple Menu (has no nested children) :: {% endcomment %}
