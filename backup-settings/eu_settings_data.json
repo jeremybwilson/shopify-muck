@@ -205,7 +205,7 @@
             "type": "mega_menu",
             "settings": {
               "menu_item": "Women",
-              "nav_image": "shopify://shop_images/nav-megamenu-1.jpg",
+              "nav_image": "shopify://shop_images/womens_dropdown_image_1.jpg",
               "nav_promo_link": "shopify://collections/women"
             }
           },
@@ -213,7 +213,7 @@
             "type": "mega_menu",
             "settings": {
               "menu_item": "Men",
-              "nav_image": "shopify://shop_images/nav-megamenu-2.jpg",
+              "nav_image": "shopify://shop_images/mens_dropdown_image_1.jpg",
               "nav_promo_link": "shopify://collections/men"
             }
           },
@@ -249,11 +249,13 @@
           "logo_size": 24,
           "logo_transform": "uppercase",
           "logo_weight": "bold",
+          "logo_center": false,
           "cart_icon": "cart",
           "show_site_picker": true,
           "site_picker_manifest": "EU|European Union|https://www.muckbootcompany.eu,UK|United Kingdom|https://www.muckbootcompany.co.uk,US|United States|https://muckbootcompany.com",
           "show_search": true,
           "main_nav": "main-menu",
+          "right_nav": "",
           "nav_center": true,
           "nav_height": 60,
           "linklist_breakpoint": 10
