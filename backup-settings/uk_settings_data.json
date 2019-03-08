@@ -117,7 +117,7 @@
     "ajax_cart_method": "drawer",
     "ajax_cart_remove_text": "This will remove the item from your cart. Continue?",
     "ajax_cart_low_stock_text": "This item does not have enough stock to add to your cart.",
-    "discount_modal_enable": false,
+    "discount_modal_enable": true,
     "discount_modal_config": "eyJjb29raWVFeHBpcmVJbkRheXMiOjYwLCJjdXJyZW5jeVN5bWJvbCI6IiZwb3VuZDsiLCJ0aHJlc2hvbGREaXNjb3VudHMiOlt7ImRpc2NvdW50SWQiOjEsImRpc3BsYXlOYW1lIjoiU2lsayBTY2FyZiIsImdpZnRJZCI6MjA5NTMzNzk1Njk3NzcsImdyYW50VHlwZSI6ImFsbCIsImludmVudG9yeUlkIjoyMDk1MzM3OTU2OTc3NywibWluU3BlbmQiOjEwMCwicHJvZHVjdEhhbmRsZSI6InNpbGstc2NhcmYifV19",
     "twittername": "",
     "facebook_url": "//www.facebook.com/muckbootco/",
@@ -205,7 +205,7 @@
             "type": "mega_menu",
             "settings": {
               "menu_item": "Women",
-              "nav_image": "shopify://shop_images/nav-megamenu-1.jpg",
+              "nav_image": "shopify://shop_images/womens_dropdown_image_1.jpg",
               "nav_promo_link": "shopify://collections/women"
             }
           },
@@ -213,7 +213,7 @@
             "type": "mega_menu",
             "settings": {
               "menu_item": "Men",
-              "nav_image": "shopify://shop_images/nav-megamenu-2.jpg",
+              "nav_image": "shopify://shop_images/mens_dropdown_image_1.jpg",
               "nav_promo_link": "shopify://collections/men"
             }
           },
@@ -221,7 +221,7 @@
             "type": "mega_menu",
             "settings": {
               "menu_item": "Kids",
-              "nav_image": "shopify://shop_images/nav-megamenu-3.jpg",
+              "nav_image": "",
               "nav_promo_link": "shopify://collections/kids"
             }
           },
@@ -246,8 +246,8 @@
           "num_of_promo_banners": "2",
           "announcement_text_one": "<div class=\"bold\">FREE DELIVERY & RETURNS ON ALL ORDERS</div>",
           "announcement_link_one": "shopify://pages/delivery-and-returns",
-          "announcement_text_two": "<div class=\"bold\">DISCOVER OUR NEW ARRIVALS</div>",
-          "announcement_link_two": "shopify://collections/new-arrivals",
+          "announcement_text_two": "<div class=\"bold\">WIN A TWO NIGHT STAY IN BULL SHED BARN</div>",
+          "announcement_link_two": "shopify://pages/contest",
           "announcement_height": 60,
           "announcement_swap_rate": 5,
           "logo_size": 24,
@@ -410,6 +410,26 @@
               "caption_opacity": "1.0"
             }
           },
+          "1544666970903": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/bull-shed-barn.jpg",
+              "mobile_image": "shopify://shop_images/bull-shed-barn-mobile.jpg",
+              "heading": "Win a Two Night Stay in Bull Shed Barn",
+              "subheading": "",
+              "cta_one_link": "shopify://pages/contest",
+              "cta_one_button_text": "SIGN UP NOW",
+              "cta_two_link": "",
+              "cta_two_button_text": "",
+              "caption_color_scheme": "white",
+              "custom_slide_main_color": "#ffffff",
+              "custom_slide_alt_color": "#164732",
+              "caption_horizontal": "center",
+              "caption_vertical": 40,
+              "caption_background": "rgba(0,0,0,0)",
+              "caption_opacity": "0.1"
+            }
+          },
           "1551675459784": {
             "type": "image",
             "settings": {
@@ -449,33 +469,13 @@
               "caption_background": "rgba(0,0,0,0)",
               "caption_opacity": "0.1"
             }
-          },
-          "1544666970903": {
-            "type": "image",
-            "settings": {
-              "image": "shopify://shop_images/waterproof-boots-for-the-family.jpg",
-              "mobile_image": "shopify://shop_images/waterproof-boots-for-the-family-mobile.jpg",
-              "heading": "WATERPROOF <br>BOOTS FOR THE<br> FAMILY",
-              "subheading": "",
-              "cta_one_link": "https://www.muckbootcompany.co.uk/collections/waterproof-boots?_=pf&pf_t_gender=audience_women",
-              "cta_one_button_text": "SHOP WOMEN'S",
-              "cta_two_link": "https://www.muckbootcompany.co.uk/collections/waterproof-boots?_=pf&pf_t_gender=audience_men",
-              "cta_two_button_text": "SHOP MEN'S",
-              "caption_color_scheme": "white",
-              "custom_slide_main_color": "#ffffff",
-              "custom_slide_alt_color": "#164732",
-              "caption_horizontal": "left",
-              "caption_vertical": 40,
-              "caption_background": "rgba(0,0,0,0)",
-              "caption_opacity": "0.1"
-            }
           }
         },
         "block_order": [
           "1550466223122",
+          "1544666970903",
           "1551675459784",
-          "1551675343628",
-          "1544666970903"
+          "1551675343628"
         ],
         "settings": {
           "full_width": true,
