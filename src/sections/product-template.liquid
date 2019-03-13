@@ -229,7 +229,7 @@
 
     {% comment %} REVIEWS {% endcomment %}
 
-    {% if settings.yotpo_enable_flag == true && settings.international_store_version != blank %}
+    {% if settings.yotpo_enable_flag == true and settings.international_store_version != blank %}
       <h2 class="yotpo-header">Reviews</h2>
       <div class="yotpo-summary-snippet">
       {% include 'yotpo-product-snippet' %}</div>

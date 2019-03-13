@@ -71,7 +71,7 @@
 
   {% include 'script-google-tag-head' %}
 
-  {% if settings.yotpo_enable_flag == true && settings.international_store_version != blank %}
+  {% if settings.yotpo_enable_flag == true and settings.international_store_version != blank %}
     <!-- Yotpo Main Script -->
     {% include 'yotpo-main-script' %}
   {% endif %}
