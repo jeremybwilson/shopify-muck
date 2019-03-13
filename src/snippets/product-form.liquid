@@ -24,7 +24,7 @@
 
   {% endcomment %}
 
-  {% if settings.yotpo_enable_flag == true && settings.international_store_version != blank %}
+  {% if settings.yotpo_enable_flag == true and settings.international_store_version != blank %}
     {% comment %} REVIEWS - STAR RATING {% endcomment %}
     {% include 'yotpo-product-snippet' %}
   {% endif %}
