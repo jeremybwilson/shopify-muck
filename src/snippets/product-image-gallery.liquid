@@ -20,7 +20,7 @@
       {% if section.settings.show_zoom %}
         <a class="product-fancybox" rel="product-images"  href="{{ image | img_url: '2400x' }}">
       {% endif %}
-          <img id="{{ product.id }}" class="product__image lazyload lazyload-fade"
+          <img id="img-{{ image.id }}" class="product__image lazyload lazyload-fade"
             src="{{ image | product_img_url: '300x' }}"
             data-src="{{ img_url }}"
             data-sizes="auto"
@@ -57,7 +57,7 @@
         data-image-id="{{ image.id }}" 
         data-color-var="{{ image.alt | escape }}">
 
-        <img class="lazyload lazyload-fade"
+        <img id="slick-slide0{{forloop.index0}}" class="lazyload lazyload-fade"
           src="{{ image | product_img_url: '200x' }}"
           data-src="{{ img_url }}"
           data-sizes="auto"
