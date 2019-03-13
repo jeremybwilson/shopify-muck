@@ -51,17 +51,19 @@
     </div>
 
     {{ tracking_code }}
+    {% if settings.show_cc_callout %}
     <script>
       if(Shopify.Checkout.step == 'payment_method'){
           var spanElm = document.createElement('span');
           spanElm.setAttribute('style','color:#ff0000');
-          spanElm.innerHTML = 'Please only include 2 digits for the year';
-          var payMethodElm = document.querySelector('[data-payment-method] .section__text');
+          spanElm.innerHTML = '{{ settings.cc_callout }}';
+          var payMethodElm = document.querySelector('[data-credit-card-expiry] .field__input-wrapper');
           payMethodElm.append(spanElm);
       }
     </script>
+    {% endif %}
     {% comment %}
-    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false"></script>
     <script type="text/javascript">
         var zip = 'NR14 3DQ';
         var lat;
