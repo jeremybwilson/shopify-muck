@@ -1196,5 +1196,28 @@
         "default": "USD"
       }
     ]
+  },
+  {
+    "name": "YOTPO",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Yotpo Integration Settings"
+      },
+      {
+        "type": "checkbox",
+        "id": "yotpo_enable_flag",
+        "label": "Enable yotpo integration for this store",
+        "default": false,
+        "info": "Check the box to enable.  A unique key value MUST also be provided."
+      },
+      {
+        "type": "text",
+        "id": "yotpo_key_value",
+        "label": "Unique key value",
+        "default": "gzejKiOGN46xeB5iurqalrS7dI7zEUIMZ9OCF4MM",
+        "info": "Insert a unique Yotpo key value here.  Enable checkbox above must also be checked."
+      }
+    ]
   }
 ]
