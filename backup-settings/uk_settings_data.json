@@ -136,7 +136,7 @@
     "email_image": "",
     "email_popup_title": "Sign-Up & Get 10% Off Your First Order!<small>*</small>",
     "email_popup_text": "*Excludes Sale Items",
-    "email_popup_input_placeholder": "Enter Your Email Address",
+    "email_popup_input_placeholder": "Enter Email Address",
     "email_popup_bottom_text": "<p>By providing your email address, you agree to our <a target=\"_blank\" href=\"https://www.honeywell.com/privacy-statement\">Privacy Policy</a> &amp; <a href=\"/pages/terms-conditions\" target=\"_blank\">Terms of Service</a>.</p>",
     "email_popup_error": "Please enter a valid e-mail address",
     "email_popup_success": "<p>You have successfully joined our newsletter</p>",
