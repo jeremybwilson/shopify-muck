@@ -164,6 +164,8 @@
     "checkout_button_color": "#ab5232",
     "checkout_error_color": "#ff6d6d",
     "international_store_version": "US",
+    "yotpo_enable_flag": true,
+    "yotpo_key_value": "gzejKiOGN46xeB5iurqalrS7dI7zEUIMZ9OCF4MM",
     "cart_links": "#000000",
     "cart_links_hover": "#000000",
     "newsletter_color": "#ffffff",
