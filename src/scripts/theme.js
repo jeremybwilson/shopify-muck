@@ -831,7 +831,15 @@ require( './react-components/discounts/DiscountParent.js' );
 
 
 
+window.theme = window.theme || {}
 
+theme.Utils = (function () {
+  return {
+    handleize: function (str) {
+      return str.toLowerCase().replace(/[^\w]+/g, '-')
+    }
+  }
+})();
 
 /*============================================================================
   Sections
@@ -2018,7 +2026,7 @@ theme.ProductForm = function (context, events) {
     return false;
   }
 
-  new Shopify.OptionSelectors("product-select-" + product.id, {
+  var optionSelectors = new Shopify.OptionSelectors("product-select-" + product.id, {
     product: product,
     onVariantSelected: function(variant, selector) {
 
@@ -2043,6 +2051,26 @@ theme.ProductForm = function (context, events) {
     enableHistoryState: config.enable_history
   });
 
+  (function initializeVariants() {
+    // Select active variant to ensure variant ID matches the URL
+    optionSelectors.selectVariantFromDropdown({ propStateCall: true });
+
+    // Set availability to only cross out option1 if all corresponding variants are unavailable
+    var variants = product.variants.slice(0)
+    var availableOption1 = product.variants.reduce((acc, cur) => {
+      if (cur.available && acc.indexOf(cur.option1 === -1)) {
+        var option = theme.Utils.handleize(cur.option1);
+        acc.push(option);
+      }
+
+      return acc;
+    }, [])
+
+    availableOption1.forEach(option => {
+      $(`[data-swatch-value=${option}]`).removeClass('soldout');
+    });
+  })();
+  
   (function single_option_selectors() {
     // function for the dropdowns
 
@@ -2128,6 +2156,27 @@ theme.ProductForm = function (context, events) {
       element.addEventListener("change", function (event) {
         events.trigger("swatch:change:" + option_position, element.value);
         current_option_text_change();
+
+        // Select first available variant if top row of options changed
+        if (parseInt(option_position, 10) === 1) {
+          var id = window.location.search.replace('?variant=', '')
+          var { firstAvailable, selected } = product.variants.reduce((acc, cur, i) => {
+            if (cur.option1 === element.value) {
+              if (id === cur.id.toString()) {
+                acc.selected = cur
+              }
+
+              if (!acc.firstAvailable && cur.available) {
+                acc.firstAvailable = cur
+              }
+            }
+            return acc
+          }, { firstAvailable: null, selected: null })
+          if (selected && !selected.available && firstAvailable) {
+            var id = theme.Utils.handleize(firstAvailable.option2);
+            $('#swatch-2-' + id).trigger('change').trigger('click')
+          }
+        }
       });
 
       events.on("variantchange:option" + option_position + ":" + element.value, select);
@@ -2152,6 +2201,14 @@ theme.ProductForm = function (context, events) {
 
           if ( variant[current_option] != element.value ) {
             return;
+          }
+
+          // Only cross out first option if none of its corresponding variants are available
+          if (current_option === 'option1') {
+            if (variant.available) {
+              available = true;
+              return
+            }
           }
 
           if ( variant[other_options[0]] != current_variant[other_options[0]] ) {

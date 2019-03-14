@@ -113,11 +113,13 @@
     "details_align": "center",
     "secondary_images_hover": "image_flip",
     "cart_notes_enable": false,
+    "checkout_shipping_callout_enable": false,
+    "pobox_callout_enable": false,
     "ajax_cart_method": "drawer",
     "ajax_cart_remove_text": "This will remove the item from your cart. Continue?",
     "ajax_cart_low_stock_text": "This item does not have enough stock to add to your cart.",
-    "discount_modal_enable": false,
-    "discount_modal_config": "eyJjb29raWVFeHBpcmVJbkRheXMiOjYwLCJjdXJyZW5jeVN5bWJvbCI6IqMiLCJ0aHJlc2hvbGREaXNjb3VudHMiOlt7ImRpc2NvdW50SWQiOjEsImRpc3BsYXlOYW1lIjoiQ2FyZCBXYWxsZXQiLCJnaWZ0SWQiOjIwNDc1Mzg3MTgzMjE3LCJncmFudFR5cGUiOiJhbGwiLCJpbnZlbnRvcnlJZCI6MjA0NzUzODcxODMyMTcsIm1pblNwZW5kIjoxMDAsInByb2R1Y3RIYW5kbGUiOiJjYXJkLXdhbGxldCJ9XX0=",
+    "discount_modal_enable": true,
+    "discount_modal_config": "eyJjb29raWVFeHBpcmVJbkRheXMiOjYwLCJjdXJyZW5jeVN5bWJvbCI6IiZwb3VuZDsiLCJ0aHJlc2hvbGREaXNjb3VudHMiOlt7ImRpc2NvdW50SWQiOjEsImRpc3BsYXlOYW1lIjoiU2lsayBTY2FyZiIsImdpZnRJZCI6MjA5NTMzNzk1Njk3NzcsImdyYW50VHlwZSI6ImFsbCIsImludmVudG9yeUlkIjoyMDk1MzM3OTU2OTc3NywibWluU3BlbmQiOjEwMCwicHJvZHVjdEhhbmRsZSI6InNpbGstc2NhcmYifV19",
     "twittername": "",
     "facebook_url": "//www.facebook.com/muckbootco/",
     "pinterest_url": "",
@@ -148,7 +150,7 @@
     "supported_currencies": "INR GBP CAD USD AUD EUR JPY",
     "default_currency": "USD",
     "checkout_header_image": "",
-    "checkout_logo_image": "",
+    "checkout_logo_image": "shopify://shop_images/checkout-logo.png",
     "checkout_logo_position": "center",
     "checkout_logo_size": "large",
     "checkout_body_background_image": "",
@@ -162,6 +164,8 @@
     "checkout_button_color": "#ab5232",
     "checkout_error_color": "#ff6d6d",
     "international_store_version": "UK",
+    "yotpo_enable_flag": true,
+    "yotpo_key_value": "SJ3umxB5zHmOe8xkHO8JF7h1LiltwUxEW5jD9nLl",
     "cart_links": "#000000",
     "cart_links_hover": "#000000",
     "newsletter_color": "#ffffff",
@@ -205,7 +209,7 @@
             "type": "mega_menu",
             "settings": {
               "menu_item": "Women",
-              "nav_image": "shopify://shop_images/nav-megamenu-1.jpg",
+              "nav_image": "shopify://shop_images/womens_dropdown_image_1.jpg",
               "nav_promo_link": "shopify://collections/women"
             }
           },
@@ -213,7 +217,7 @@
             "type": "mega_menu",
             "settings": {
               "menu_item": "Men",
-              "nav_image": "shopify://shop_images/nav-megamenu-2.jpg",
+              "nav_image": "shopify://shop_images/mens_dropdown_image_1.jpg",
               "nav_promo_link": "shopify://collections/men"
             }
           },
@@ -221,7 +225,7 @@
             "type": "mega_menu",
             "settings": {
               "menu_item": "Kids",
-              "nav_image": "shopify://shop_images/nav-megamenu-3.jpg",
+              "nav_image": "",
               "nav_promo_link": "shopify://collections/kids"
             }
           },
@@ -246,18 +250,20 @@
           "num_of_promo_banners": "2",
           "announcement_text_one": "<div class=\"bold\">FREE DELIVERY & RETURNS ON ALL ORDERS</div>",
           "announcement_link_one": "shopify://pages/delivery-and-returns",
-          "announcement_text_two": "<div class=\"bold\">DISCOVER OUR NEW ARRIVALS</div>",
-          "announcement_link_two": "shopify://collections/new-arrivals",
+          "announcement_text_two": "<div class=\"bold\">FREE MUCK SILK SCARF On orders over £100 whilst stocks last. T&Cs apply. </div>",
+          "announcement_link_two": "shopify://collections/womens-rhs-muckster-ii",
           "announcement_height": 60,
           "announcement_swap_rate": 5,
           "logo_size": 24,
           "logo_transform": "uppercase",
           "logo_weight": "bold",
+          "logo_center": false,
           "cart_icon": "cart",
           "show_site_picker": true,
           "site_picker_manifest": "UK|United Kingdom|https://www.muckbootcompany.co.uk,US|United States|https://muckbootcompany.com,EU|European Union|https://www.muckbootcompany.eu",
           "show_search": true,
           "main_nav": "main-menu",
+          "right_nav": "",
           "nav_center": true,
           "nav_height": 60,
           "linklist_breakpoint": 10
@@ -322,8 +328,8 @@
           "thumbnails": "left",
           "zoom_image_position": "zoom_over_main",
           "related_products": "none",
-          "free_shipping_header_text": "Free Shipping & Returns",
-          "free_shipping_text": "<p>FREE Shipping and FREE Returns for all ground orders. Orders placed before 2PM EST Monday &ndash; Friday will ship next day. For additional information, visit our <a href=\"/pages/shipping-returns\" title=\"Shipping and Return\">Shipping page</a>.</p>",
+          "free_shipping_header_text": "Free Delivery & Returns",
+          "free_shipping_text": "<p>FREE Delivery &amp; FREE Returns for all orders. Orders placed before 3pm Monday to Friday will dispatch next working day. For additional information, visit our <a href=\"/pages/delivery-and-returns\" title=\"Delivery and Returns\">Delivery page.</a></p>",
           "show_social": false,
           "size_chart_page": "size-chart"
         }
@@ -391,18 +397,18 @@
           "1550466223122": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/new-arrivals.jpg",
-              "mobile_image": "shopify://shop_images/new-arrivals-mobile.jpg",
-              "heading": "Discover Our New Arrivals",
-              "subheading": "",
-              "cta_one_link": "https://www.muckbootcompany.co.uk/collections/new-arrivals/audience_women",
-              "cta_one_button_text": "SHOP WOMEN'S",
-              "cta_two_link": "https://www.muckbootcompany.co.uk/collections/new-arrivals/audience_men",
-              "cta_two_button_text": "SHOP MEN'S",
+              "image": "shopify://shop_images/free-silk-scarf.jpg",
+              "mobile_image": "shopify://shop_images/free-silk-scarf-desktop.jpg",
+              "heading": "FREE MUCK SILK SCARF",
+              "subheading": "*On orders over £100 whilst stocks last. T&Cs apply.",
+              "cta_one_link": "shopify://collections/womens-rhs-muckster-ii",
+              "cta_one_button_text": "SHOP NOW",
+              "cta_two_link": "",
+              "cta_two_button_text": "",
               "caption_color_scheme": "white",
               "custom_slide_main_color": "#ffffff",
               "custom_slide_alt_color": "#164732",
-              "caption_horizontal": "left",
+              "caption_horizontal": "right",
               "caption_vertical": 50,
               "caption_background": "rgba(0,0,0,0)",
               "caption_opacity": "1.0"
@@ -411,19 +417,59 @@
           "1544666970903": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/waterproof-boots-for-the-family.jpg",
-              "mobile_image": "shopify://shop_images/waterproof-boots-for-the-family-mobile.jpg",
-              "heading": "WATERPROOF <br>BOOTS FOR THE<br> FAMILY",
+              "image": "shopify://shop_images/bull-shed-barn.jpg",
+              "mobile_image": "shopify://shop_images/bull-shed-barn-mobile.jpg",
+              "heading": "Win a Two Night Stay in Bull Shed Barn",
               "subheading": "",
-              "cta_one_link": "https://www.muckbootcompany.co.uk/collections/waterproof-boots?_=pf&pf_t_gender=audience_women",
-              "cta_one_button_text": "SHOP WOMEN'S",
-              "cta_two_link": "https://www.muckbootcompany.co.uk/collections/waterproof-boots?_=pf&pf_t_gender=audience_men",
-              "cta_two_button_text": "SHOP MEN'S",
+              "cta_one_link": "shopify://pages/contest",
+              "cta_one_button_text": "SIGN UP NOW",
+              "cta_two_link": "",
+              "cta_two_button_text": "",
+              "caption_color_scheme": "white",
+              "custom_slide_main_color": "#ffffff",
+              "custom_slide_alt_color": "#164732",
+              "caption_horizontal": "center",
+              "caption_vertical": 40,
+              "caption_background": "rgba(0,0,0,0)",
+              "caption_opacity": "0.1"
+            }
+          },
+          "1551675459784": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/dog-walking-boots.jpg",
+              "mobile_image": "shopify://shop_images/dog-walking-boots-mobile.jpg",
+              "heading": "Dog Walking Boots",
+              "subheading": "",
+              "cta_one_link": "https://www.muckbootcompany.co.uk/collections/dog-walking/audience_women",
+              "cta_one_button_text": "Shop Women's",
+              "cta_two_link": "https://www.muckbootcompany.co.uk/collections/dog-walking/audience_men",
+              "cta_two_button_text": "Shop Men's",
               "caption_color_scheme": "white",
               "custom_slide_main_color": "#ffffff",
               "custom_slide_alt_color": "#164732",
               "caption_horizontal": "left",
-              "caption_vertical": 40,
+              "caption_vertical": 50,
+              "caption_background": "rgba(0,0,0,0)",
+              "caption_opacity": "0.1"
+            }
+          },
+          "1551675343628": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/kids-collection.jpg",
+              "mobile_image": "shopify://shop_images/kids-collection-mobile.jpg",
+              "heading": "Designed With Little Loves in Mind",
+              "subheading": "",
+              "cta_one_link": "shopify://collections/kids",
+              "cta_one_button_text": "Shop Now",
+              "cta_two_link": "",
+              "cta_two_button_text": "Add a button",
+              "caption_color_scheme": "white",
+              "custom_slide_main_color": "#ffffff",
+              "custom_slide_alt_color": "#164732",
+              "caption_horizontal": "left",
+              "caption_vertical": 50,
               "caption_background": "rgba(0,0,0,0)",
               "caption_opacity": "0.1"
             }
@@ -431,7 +477,9 @@
         },
         "block_order": [
           "1550466223122",
-          "1544666970903"
+          "1544666970903",
+          "1551675459784",
+          "1551675343628"
         ],
         "settings": {
           "full_width": true,
@@ -530,8 +578,8 @@
           "1536251685211-1": {
             "type": "text_block",
             "settings": {
-              "image": "shopify://shop_images/TB_2_-_D.jpg",
-              "mobile_image": "shopify://shop_images/TB_2_-_M.jpg",
+              "image": "shopify://shop_images/2_box_left_module_710x473_1.jpg",
+              "mobile_image": "shopify://shop_images/2_box_left_module_mobile_640x583_mobile_1.jpg",
               "link": "https://www.muckbootcompany.co.uk/collections/outdoor-activity",
               "heading_text": "Unpredictable weather",
               "text": "<p>Prepare for sunny spells and sudden downpours with our 100% waterproof boots.</p>",
@@ -541,8 +589,8 @@
           "1536251685211-0": {
             "type": "text_block",
             "settings": {
-              "image": "shopify://shop_images/TB_1_-_D.jpg",
-              "mobile_image": "shopify://shop_images/TB_1_-_M.jpg",
+              "image": "shopify://shop_images/2_box_right_module_710x473_ce5c9d92-1959-4e16-a701-6197a85816de.jpg",
+              "mobile_image": "shopify://shop_images/2_box_right_module_640x583_mobile_90813bc0-b2b3-4ccf-badb-9df2497bf02e.jpg",
               "link": "https://www.muckbootcompany.co.uk/collections/dog-walking",
               "heading_text": "Dog Walking Boots",
               "text": "<p>Possibly the most comfortable wellies you'll walk the dog in.</p>",
@@ -871,6 +919,22 @@
           "link": "",
           "button_text_color": "#fff",
           "button_color": "#000"
+        }
+      },
+      "page-contest-template": {
+        "type": "page-contest-template",
+        "settings": {
+          "image": "shopify://shop_images/The_Bull_Shed_Main.jpg",
+          "heading": "Your Chance to Win a Two Nights Stay in The Bull Shed Barn",
+          "text": "<p>Add some descriptive text to your Blog page.</p>"
+        }
+      },
+      "page-contest-success-banner": {
+        "type": "page-contest-success-banner",
+        "settings": {
+          "image": "shopify://shop_images/Success_Page_Image.jpg",
+          "heading": "Thank you!",
+          "text": "<p>Add some descriptive text to your Blog page.</p>"
         }
       }
     },

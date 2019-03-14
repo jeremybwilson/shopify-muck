@@ -113,6 +113,8 @@
     "details_align": "center",
     "secondary_images_hover": "image_flip",
     "cart_notes_enable": false,
+    "checkout_shipping_callout_enable": true,
+    "pobox_callout_enable": false,
     "ajax_cart_method": "drawer",
     "ajax_cart_remove_text": "This will remove the item from your cart. Continue?",
     "ajax_cart_low_stock_text": "This item does not have enough stock to add to your cart.",
@@ -253,11 +255,13 @@
           "logo_size": 24,
           "logo_transform": "uppercase",
           "logo_weight": "bold",
+          "logo_center": false,
           "cart_icon": "cart",
           "show_site_picker": true,
           "site_picker_manifest": "US|United States|https://muckbootcompany.com,EU|European Union|https://www.muckbootcompany.eu,UK|United Kingdom|https://www.muckbootcompany.co.uk",
           "show_search": true,
           "main_nav": "main-menu",
+          "right_nav": "",
           "nav_center": true,
           "nav_height": 60,
           "linklist_breakpoint": 10
@@ -816,12 +820,12 @@
           "1548186930171": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/love-of-the-land-slide-1_04ad2088-5e8b-44a8-84bd-dd32aabe55f9.jpg",
-              "mobile_image": "shopify://shop_images/love-of-the-land-slide-1-mobile_72f5c8e8-f87d-46d6-9a32-4b8fd869d1ca.jpg",
-              "heading": "For love of the land",
+              "image": "shopify://shop_images/womens-cold-weather-boots.jpg",
+              "mobile_image": "shopify://shop_images/womens-cold-weather-boots-mobile.jpg",
+              "heading": "READY FOR UNPREDICTABLE WEATHER",
               "subheading": "",
-              "cta_one_link": "shopify://collections/best-sellers",
-              "cta_one_button_text": "Shop best sellers",
+              "cta_one_link": "shopify://collections/women-featured-cold-weather",
+              "cta_one_button_text": "Shop Now",
               "cta_two_link": "",
               "cta_two_button_text": "",
               "caption_color_scheme": "white",
@@ -852,32 +856,11 @@
               "caption_background": "rgba(0,0,0,0)",
               "caption_opacity": "0.1"
             }
-          },
-          "1549601388573": {
-            "type": "image",
-            "settings": {
-              "image": "shopify://shop_images/comfortable-waterproof-slide-3_aebfe416-8c85-4313-a720-c4609aa1f027.jpg",
-              "mobile_image": "shopify://shop_images/comfortable-waterproof-slide-3-mobile_329e89cb-6cdd-447a-aaa8-da32797a83f3.jpg",
-              "heading": "Comfortable Waterproof Winter boots",
-              "subheading": "",
-              "cta_one_link": "shopify://collections/cold-snow",
-              "cta_one_button_text": "Shop Cold & Snow",
-              "cta_two_link": "",
-              "cta_two_button_text": "",
-              "caption_color_scheme": "white",
-              "custom_slide_main_color": "#ffffff",
-              "custom_slide_alt_color": "#164732",
-              "caption_horizontal": "center",
-              "caption_vertical": 50,
-              "caption_background": "rgba(0,0,0,0)",
-              "caption_opacity": "0.1"
-            }
           }
         },
         "block_order": [
           "1548186930171",
-          "1545367874052",
-          "1549601388573"
+          "1545367874052"
         ],
         "settings": {
           "full_width": true,
