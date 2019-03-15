@@ -857,9 +857,30 @@
               "caption_background": "rgba(0,0,0,0)",
               "caption_opacity": "0.1"
             }
+          },
+          "1552632193923": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/rate-review-win.jpg",
+              "mobile_image": "shopify://shop_images/rate-review-win-mobile.jpg",
+              "heading": "RATE AND REVIEW FOR A CHANCE TO WIN FOUR PAIRS OF FREE BOOTS!",
+              "subheading": "",
+              "cta_one_link": "shopify://pages/sweeps",
+              "cta_one_button_text": "LEARN MORE",
+              "cta_two_link": "",
+              "cta_two_button_text": "Add a button",
+              "caption_color_scheme": "white",
+              "custom_slide_main_color": "#ffffff",
+              "custom_slide_alt_color": "#164732",
+              "caption_horizontal": "left",
+              "caption_vertical": 50,
+              "caption_background": "rgba(0,0,0,0)",
+              "caption_opacity": "0.1"
+            }
           }
         },
         "block_order": [
+          "1552632193923",
           "1548186930171",
           "1545367874052"
         ],
