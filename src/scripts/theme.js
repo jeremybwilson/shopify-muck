@@ -2709,10 +2709,13 @@ theme.ProductGallery = function (context, events) {
         });
       } else {
         $slideshow.slick({
+          arrows: true,
+          infinite: false,
+          nextArrow: '<button type="button" class="slick-next"><div class="bar-left"></div><div class="bar-right"></div></button>',
+          prevArrow: '<button type="button" class="slick-prev"><div class="bar-left"></div><div class="bar-right"></div></button>',
           vertical: true,
-          arrows: false,
           verticalSwiping: true,
-          slidesToShow: 7,
+          slidesToShow: 5,
           slidesToScroll: 1,
           slide: '.product-thumbnail'
         });
