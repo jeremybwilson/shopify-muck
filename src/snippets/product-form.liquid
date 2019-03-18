@@ -162,7 +162,18 @@
     </div><div class="clear"></div>
   {% endif %}
 
-  <a class="link" href="#" id="BIS_trigger">Is your size out of stock?</a>
+  {% assign has_unavailable = false %}
+  
+  {% for variant in product.variants %}
+    {% unless variant.available %}
+      {% assign has_unavailable = true %}
+      {% break %}
+    {% endunless %}
+  {% endfor %}
+
+  {% if has_unavailable %}
+     <a class="link" href="#" id="BIS_trigger">Is your size out of stock?</a>
+  {% endif %}
 
   {% if product.available %}
     <div id="product-add">
