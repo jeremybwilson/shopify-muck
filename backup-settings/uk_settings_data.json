@@ -149,6 +149,8 @@
     "currency_format": "money_with_currency_format",
     "supported_currencies": "INR GBP CAD USD AUD EUR JPY",
     "default_currency": "USD",
+    "yotpo_enable_flag": true,
+    "yotpo_key_value": "SJ3umxB5zHmOe8xkHO8JF7h1LiltwUxEW5jD9nLl",
     "checkout_header_image": "",
     "checkout_logo_image": "shopify://shop_images/checkout-logo.png",
     "checkout_logo_position": "center",
@@ -164,8 +166,6 @@
     "checkout_button_color": "#ab5232",
     "checkout_error_color": "#ff6d6d",
     "international_store_version": "UK",
-    "yotpo_enable_flag": true,
-    "yotpo_key_value": "SJ3umxB5zHmOe8xkHO8JF7h1LiltwUxEW5jD9nLl",
     "cart_links": "#000000",
     "cart_links_hover": "#000000",
     "newsletter_color": "#ffffff",
@@ -200,7 +200,6 @@
     "tablet-image-height": "",
     "mobile-image-height": "",
     "mailchimp": "",
-    "zendesk-key":"50d6a4be-16df-4a3f-a159-fb0635ad46c8",
     "sections": {
       "header": {
         "type": "header",
@@ -672,7 +671,7 @@
           "1537319921572": {
             "type": "image_picker",
             "settings": {
-              "image_picker_block": "shopify://shop_images/about-image-1.png",
+              "image_picker_block": "shopify://shop_images/IMG_4714.jpeg",
               "image_offset": "-4%",
               "block_order": "1"
             }
