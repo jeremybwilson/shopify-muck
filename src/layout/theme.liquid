@@ -277,31 +277,33 @@
 
 
   {%  unless template == 'index' %}
-    <!-- Start of muckbootcompany Zendesk Widget script -->
-    <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key={{ settings.zendesk-key }}"> </script>
-    <!-- End of muckbootcompany Zendesk Widget script --> 
-    <script type="text/javascript">
-      window.zESettings = {
-        webWidget: {
-          authenticate: {
-            jwt: '{{ settings.zendesk-key }}'
-          },
-          contactOptions: {
-            enabled: true,
-            contactButton: { '*': 'Contact Button' },
-            chatLabelOnline: { '*': 'Live Chat' },
-            chatLabelOffline: { '*': 'Chat is unavailable' },
-            contactFormLabel: { '*': 'Email Us' }
-          },
-          launcher: {
-            chatLabel: { '*': 'Help' }
-          },
-          contactForm: {
-            title: { '*': 'Email Us' }
+    {% if settings.zendesk-key != blank %}
+      <!-- Start of muckbootcompany Zendesk Widget script -->
+      <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key={{ settings.zendesk-key }}"> </script>
+      <!-- End of muckbootcompany Zendesk Widget script --> 
+      <script type="text/javascript">
+        window.zESettings = {
+          webWidget: {
+            authenticate: {
+              jwt: '{{ settings.zendesk-key }}'
+            },
+            contactOptions: {
+              enabled: true,
+              contactButton: { '*': 'Contact Button' },
+              chatLabelOnline: { '*': 'Live Chat' },
+              chatLabelOffline: { '*': 'Chat is unavailable' },
+              contactFormLabel: { '*': 'Email Us' }
+            },
+            launcher: {
+              chatLabel: { '*': 'Help' }
+            },
+            contactForm: {
+              title: { '*': 'Email Us' }
+            }
           }
-        }
-      };
-    </script>
+        };
+      </script>
+    {% endif %}
   {% endunless %}
 </body>
 </html>
