@@ -14,9 +14,11 @@
       {% comment %} :: LEVEL 1 : SUB-NAV : Accordion (Has nested menus) :: {% endcomment %}
       {% if link.links != blank %}
         <li class="accordion-header accordion-toggle" aria-haspopup="true" aria-expanded="false">{{ link.title | escape }}</li>
-        
         <div class="accordion-content">
           <ul class="sub">
+            {% if settings.international_store_version == 'UK' or settings.international_store_version == 'EU'  %}
+              <li class="view_all_class"><a href="{{ link.url }}">View All</a></li>
+            {% endif %}
             {% for sub_link in link.links %}
 
 
@@ -68,11 +70,23 @@
             {% endfor %}
           </ul>
         </div>
+        
 
 
       {% comment %} :: LEVEL 1 : FLAT : Simple Menu (has no nested children) :: {% endcomment %}
       {% elsif link.title != '-' %}
-        <li class="link-header"><a href="{{ link.url }}">{{ link.title | escape }}</a></li>
+
+        {% if link.title == "Kids" and settings.international_store_version == 'UK' or settings.international_store_version == 'EU' %}
+          <li class="accordion-header accordion-toggle" aria-haspopup="true" aria-expanded="false">{{ link.title | escape }}</li>
+          <div class="accordion-content">
+            <ul class="sub">
+              <li class="view_all_class"><a href="{{ link.url }}">View All</a></li>
+            </ul>
+          </div>
+        {% else %}
+          <li class="link-header"><a href="{{ link.url }}">{{ link.title | escape }}</a></li>
+        {% endif %}
+
       {% endif %}
 
     {% endfor %}
