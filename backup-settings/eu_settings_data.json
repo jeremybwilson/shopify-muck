@@ -149,6 +149,8 @@
     "currency_format": "money_with_currency_format",
     "supported_currencies": "INR GBP CAD USD AUD EUR JPY",
     "default_currency": "USD",
+    "yotpo_enable_flag": true,
+    "yotpo_key_value": "wnTsOXDGS8nHZ7GoxcXZzOjM68DjZRIsWQVVs0mK",
     "checkout_header_image": "",
     "checkout_logo_image": "shopify://shop_images/checkout-logo.png",
     "checkout_logo_position": "center",
@@ -164,8 +166,6 @@
     "checkout_button_color": "#ab5232",
     "checkout_error_color": "#ff6d6d",
     "international_store_version": "EU",
-    "yotpo_enable_flag": true,
-    "yotpo_key_value": "wnTsOXDGS8nHZ7GoxcXZzOjM68DjZRIsWQVVs0mK",
     "cart_links": "#000000",
     "cart_links_hover": "#000000",
     "newsletter_color": "#ffffff",
@@ -200,7 +200,6 @@
     "tablet-image-height": "",
     "mobile-image-height": "",
     "mailchimp": "",
-    "zendesk-key":"e77b8879-586f-401d-b854-207796ae82a1",
     "sections": {
       "header": {
         "type": "header",
@@ -221,23 +220,25 @@
               "nav_promo_link": "shopify://collections/men"
             }
           },
-          "1535652979932": {
-            "type": "simple_menu",
-            "settings": {
-              "menu_item": "Kids"
-            }
-          },
           "1535653033501": {
             "type": "simple_menu",
             "settings": {
               "menu_item": "New"
+            }
+          },
+          "1552958345580": {
+            "type": "mega_menu",
+            "settings": {
+              "menu_item": "Kids",
+              "nav_image": "",
+              "nav_promo_link": ""
             }
           }
         },
         "block_order": [
           "1522184323686",
           "1535652898841",
-          "1535652979932",
+          "1552958345580",
           "1535653033501"
         ],
         "settings": {
@@ -647,7 +648,7 @@
           "1537319921572": {
             "type": "image_picker",
             "settings": {
-              "image_picker_block": "shopify://shop_images/about-image-1.png",
+              "image_picker_block": "shopify://shop_images/IMG_4714.jpeg",
               "image_offset": "-4%",
               "block_order": "1"
             }
