@@ -2921,12 +2921,18 @@ theme.Collection = (function() {
       collectionWrap: $( '#shopify-section-collection-template' ), //Can store these b/c they are unaffected by the filter app JS re-renders
       mobileFilterBtn: $( '#filter-button-mobile' ),
       seoBlockWrap: $( '#collection-seo-wrap' ),
-      seoReadMoreBtn: $( '#collection-seo-read-more' )
+      seoReadMoreBtn: $( '#collection-seo-read-more' ),
+      mobileBannerImg : $('.collection_img'),
+      collectionBanner : $("#shopify-section-collection-banner")
     }
     
     // EVENTS : Bind DOM events when ready
     $(document).ready( () => {
-
+      $('.collection-banner--mobile').append(mobileBannerImg);
+      mobileBannerImg.removeClass('collection_img_hide');
+      if ($.trim(collectionBanner.html()) == ""){
+        collectionBanner.remove();
+      }
       // FILTER MENU : OPEN / CLOSE : Indicator for the whole filter menu
       ui.mobileFilterBtn.click( () => {
         ui.collectionWrap.toggleClass( 'filter-open' );
