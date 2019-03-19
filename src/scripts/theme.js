@@ -2928,10 +2928,11 @@ theme.Collection = (function() {
     
     // EVENTS : Bind DOM events when ready
     $(document).ready( () => {
-      $('.collection-banner--mobile').append(mobileBannerImg);
-      mobileBannerImg.removeClass('collection_img_hide');
-      if ($.trim(collectionBanner.html()) == ""){
-        collectionBanner.remove();
+      console.log($('.collection-banner--mobile').length);
+      $('.collection-banner--mobile').append(ui.mobileBannerImg);
+      ui.mobileBannerImg.removeClass('collection_img_hide');
+      if ($.trim(ui.collectionBanner.html()) == ""){
+        ui.collectionBanner.remove();
       }
       // FILTER MENU : OPEN / CLOSE : Indicator for the whole filter menu
       ui.mobileFilterBtn.click( () => {
