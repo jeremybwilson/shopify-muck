@@ -200,6 +200,7 @@
     "tablet-image-height": "",
     "mobile-image-height": "",
     "mailchimp": "",
+    "zendesk-key": "e77b8879-586f-401d-b854-207796ae82a1",
     "sections": {
       "header": {
         "type": "header",
@@ -220,18 +221,18 @@
               "nav_promo_link": "shopify://collections/men"
             }
           },
-          "1535653033501": {
-            "type": "simple_menu",
-            "settings": {
-              "menu_item": "New"
-            }
-          },
           "1552958345580": {
             "type": "mega_menu",
             "settings": {
               "menu_item": "Kids",
-              "nav_image": "",
-              "nav_promo_link": ""
+              "nav_image": "shopify://shop_images/kids_dropdown_image_2.jpg",
+              "nav_promo_link": "shopify://collections/kids"
+            }
+          },
+          "1535653033501": {
+            "type": "simple_menu",
+            "settings": {
+              "menu_item": "New"
             }
           }
         },
@@ -877,6 +878,10 @@
           "before_content": "<h1>FAQ</h1>",
           "after_content": "<div class=\"fineprint\">\n\t<p>AQUASEAL® is a registered symbol of the McNett Corporation</p>\n\t<p>ARMOR ALL® is a registered symbol of Armor All Products Company</p>\n</div>"
         }
+      },
+      "collection-banner": {
+        "type": "collection-banner",
+        "settings": {}
       }
     },
     "content_for_index": [
