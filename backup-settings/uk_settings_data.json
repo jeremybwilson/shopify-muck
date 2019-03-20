@@ -200,6 +200,7 @@
     "tablet-image-height": "",
     "mobile-image-height": "",
     "mailchimp": "",
+    "zendesk-key": "50d6a4be-16df-4a3f-a159-fb0635ad46c8",
     "sections": {
       "header": {
         "type": "header",
@@ -224,7 +225,7 @@
             "type": "mega_menu",
             "settings": {
               "menu_item": "Kids",
-              "nav_image": "",
+              "nav_image": "shopify://shop_images/kids_dropdown_image_2.jpg",
               "nav_promo_link": "shopify://collections/kids"
             }
           },
