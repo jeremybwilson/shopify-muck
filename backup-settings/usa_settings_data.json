@@ -149,6 +149,8 @@
     "currency_format": "money_with_currency_format",
     "supported_currencies": "INR GBP CAD USD AUD EUR JPY",
     "default_currency": "USD",
+    "yotpo_enable_flag": true,
+    "yotpo_key_value": "gzejKiOGN46xeB5iurqalrS7dI7zEUIMZ9OCF4MM",
     "checkout_header_image": "",
     "checkout_logo_image": "shopify://shop_images/checkout-logo.png",
     "checkout_logo_position": "center",
@@ -164,8 +166,6 @@
     "checkout_button_color": "#ab5232",
     "checkout_error_color": "#ff6d6d",
     "international_store_version": "US",
-    "yotpo_enable_flag": true,
-    "yotpo_key_value": "gzejKiOGN46xeB5iurqalrS7dI7zEUIMZ9OCF4MM",
     "cart_links": "#000000",
     "cart_links_hover": "#000000",
     "newsletter_color": "#ffffff",
@@ -821,11 +821,11 @@
           "1548186930171": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/womens-cold-weather-boots.jpg",
-              "mobile_image": "shopify://shop_images/womens-cold-weather-boots-mobile.jpg",
+              "image": "shopify://shop_images/waterproof-weatherproof-slide-2_df5e5ac3-4c85-45b3-bad2-adb2d6e807f5.jpg",
+              "mobile_image": "shopify://shop_images/waterproof-weatherproof-slide-2-mobile_868658e8-a143-4261-a893-ffffb8a7d8cb.jpg",
               "heading": "READY FOR UNPREDICTABLE WEATHER",
               "subheading": "",
-              "cta_one_link": "shopify://collections/women-featured-cold-weather",
+              "cta_one_link": "shopify://collections/men-featured-fairfield-leather",
               "cta_one_button_text": "Shop Now",
               "cta_two_link": "",
               "cta_two_button_text": "",
@@ -841,12 +841,12 @@
           "1545367874052": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/waterproof-weatherproof-slide-2_df5e5ac3-4c85-45b3-bad2-adb2d6e807f5.jpg",
-              "mobile_image": "shopify://shop_images/waterproof-weatherproof-slide-2-mobile_868658e8-a143-4261-a893-ffffb8a7d8cb.jpg",
-              "heading": "Waterproof, weatherproof leather",
+              "image": "shopify://shop_images/free-silk-scarf.jpg",
+              "mobile_image": "shopify://shop_images/free-silk-scarf-desktop.jpg",
+              "heading": "Step into Spring",
               "subheading": "",
-              "cta_one_link": "shopify://collections/men-featured-fairfield-leather",
-              "cta_one_button_text": "Shop Fairfield Leather collection",
+              "cta_one_link": "shopify://collections/new-arrivals",
+              "cta_one_button_text": "Shop New Arrivals",
               "cta_two_link": "",
               "cta_two_button_text": "Add a button",
               "caption_color_scheme": "white",
@@ -880,8 +880,8 @@
           }
         },
         "block_order": [
-          "1548186930171",
           "1545367874052",
+          "1548186930171",
           "1552632193923"
         ],
         "settings": {
