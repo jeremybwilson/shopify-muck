@@ -209,7 +209,7 @@
             "type": "mega_menu",
             "settings": {
               "menu_item": "Women",
-              "nav_image": "shopify://shop_images/womens_dropdown_image_1.jpg",
+              "nav_image": "",
               "nav_promo_link": "shopify://collections/women"
             }
           },
@@ -217,7 +217,7 @@
             "type": "mega_menu",
             "settings": {
               "menu_item": "Men",
-              "nav_image": "shopify://shop_images/mens_dropdown_image_1.jpg",
+              "nav_image": "",
               "nav_promo_link": "shopify://collections/men"
             }
           },
@@ -225,7 +225,7 @@
             "type": "mega_menu",
             "settings": {
               "menu_item": "Kids",
-              "nav_image": "shopify://shop_images/kids_dropdown_image_2.jpg",
+              "nav_image": "",
               "nav_promo_link": "shopify://collections/kids"
             }
           },
