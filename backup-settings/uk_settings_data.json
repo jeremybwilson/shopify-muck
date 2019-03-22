@@ -868,7 +868,7 @@
             "type": "html",
             "settings": {
               "title": "How Do I check My Order Status?",
-              "answer": "<p>If you are a registered customer, you can access your order history by logging into your account using the credentials you used to create your account. You will find the “My Account” link located at the top of each page. Once you have accessed your account, you can click on the “Track Order” link for order status. If you are not a registered user, you can contact Customer Service at 855-377-BOOT (2668) by submitting an email via the Contact Us section on our site <a href=\"/pages/contact-us\"> here</a>. Customer Service hours are 7am to 11pm (PST/PDT) Monday through Friday.</p>",
+              "answer": "<p>If you are a registered customer, you can access your order history by logging into your account using the credentials you used to create your account. You will find the “My Account” link located at the top of each page. Once you have accessed your account, you can click on the “Track Order” link for order status. If you are not a registered user, you can contact Customer Service at +44 808-281-9536, or by submitting an email via the Contact Us section on our site <a href=\"/pages/contact-us\"> here</a>. Customer Service hours are 9am to 5pm (GMT/BST) Monday through Friday.</p>",
               "anchor": "orderstatus"
             }
           },
@@ -876,7 +876,7 @@
             "type": "html",
             "settings": {
               "title": "Do you offer discounts for bulk orders?",
-              "answer": "<p>Need Mucks for the whole crew? The Original Muck Boot Company® is happy to offer bulk discounts on large orders of boots and shoes. Discounts are currently available via phone orders only, please call our customer care center at 1-855-377-2668 for complete details.</p>",
+              "answer": "<p>Need Mucks for the whole crew? The Original Muck Boot Company® is happy to offer bulk discounts on large orders of boots and shoes. Discounts are currently available via phone orders only, please call our customer care center at +44 808-281-9536 for complete details.</p>",
               "anchor": "bulkdiscount"
             }
           }
