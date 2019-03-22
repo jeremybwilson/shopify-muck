@@ -118,7 +118,7 @@
     "ajax_cart_method": "drawer",
     "ajax_cart_remove_text": "This will remove the item from your cart. Continue?",
     "ajax_cart_low_stock_text": "This item does not have enough stock to add to your cart.",
-    "discount_modal_enable": false,
+    "discount_modal_enable": true,
     "discount_modal_config": "eyJjb29raWVFeHBpcmVJbkRheXMiOjYwLCJ0aHJlc2hvbGREaXNjb3VudHMiOlt7ImRpc2NvdW50SWQiOjEsImRpc3BsYXlOYW1lIjoiV2lnd2FtIEhhdCAoQmxhY2spIiwiZ2lmdElkIjoxNTQ1OTk2NDA5MjUxMCwiZ3JhbnRUeXBlIjoicGljayIsImludmVudG9yeUlkIjoxNTQwMjIxMjk4Mjg3OCwibWluU3BlbmQiOjE1MCwicHJvZHVjdEhhbmRsZSI6IndpZ3dhbS13aW50ZXItaGF0In0seyJkaXNjb3VudElkIjoyLCJkaXNwbGF5TmFtZSI6IldpZ3dhbSBIYXQgKEdyYXkpIiwiZ2lmdElkIjoxNTQ1OTk2NTM3MDQ2MiwiZ3JhbnRUeXBlIjoicGljayIsImludmVudG9yeUlkIjoxNTQwMjIxMzAxNTY0NiwibWluU3BlbmQiOjE1MCwicHJvZHVjdEhhbmRsZSI6IndpZ3dhbS13aW50ZXItaGF0In0seyJkaXNjb3VudElkIjozLCJkaXNwbGF5TmFtZSI6IldpZ3dhbSBIYXQgKE5hdHVyYWwpIiwiZ2lmdElkIjoxNTQ1OTk2NTUwMTUzNCwiZ3JhbnRUeXBlIjoicGljayIsImludmVudG9yeUlkIjoxNTQwMjIxMzA0ODQxNCwibWluU3BlbmQiOjE1MCwicHJvZHVjdEhhbmRsZSI6IndpZ3dhbS13aW50ZXItaGF0In1dfQ==",
     "twittername": "",
     "facebook_url": "//www.facebook.com/muckbootco/",
@@ -818,26 +818,6 @@
       "1535728526385": {
         "type": "slideshow",
         "blocks": {
-          "1548186930171": {
-            "type": "image",
-            "settings": {
-              "image": "shopify://shop_images/waterproof-weatherproof-slide-2_df5e5ac3-4c85-45b3-bad2-adb2d6e807f5.jpg",
-              "mobile_image": "shopify://shop_images/waterproof-weatherproof-slide-2-mobile_868658e8-a143-4261-a893-ffffb8a7d8cb.jpg",
-              "heading": "READY FOR UNPREDICTABLE WEATHER",
-              "subheading": "",
-              "cta_one_link": "shopify://collections/men-featured-fairfield-leather",
-              "cta_one_button_text": "Shop Now",
-              "cta_two_link": "",
-              "cta_two_button_text": "",
-              "caption_color_scheme": "white",
-              "custom_slide_main_color": "#ffffff",
-              "custom_slide_alt_color": "#164732",
-              "caption_horizontal": "center",
-              "caption_vertical": 50,
-              "caption_background": "rgba(0,0,0,0)",
-              "caption_opacity": "0.1"
-            }
-          },
           "1545367874052": {
             "type": "image",
             "settings": {
@@ -849,6 +829,26 @@
               "cta_one_button_text": "Shop New Arrivals",
               "cta_two_link": "",
               "cta_two_button_text": "Add a button",
+              "caption_color_scheme": "white",
+              "custom_slide_main_color": "#ffffff",
+              "custom_slide_alt_color": "#164732",
+              "caption_horizontal": "center",
+              "caption_vertical": 50,
+              "caption_background": "rgba(0,0,0,0)",
+              "caption_opacity": "0.1"
+            }
+          },
+          "1548186930171": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/waterproof-weatherproof-slide-2_df5e5ac3-4c85-45b3-bad2-adb2d6e807f5.jpg",
+              "mobile_image": "shopify://shop_images/waterproof-weatherproof-slide-2-mobile_868658e8-a143-4261-a893-ffffb8a7d8cb.jpg",
+              "heading": "READY FOR UNPREDICTABLE WEATHER",
+              "subheading": "",
+              "cta_one_link": "shopify://collections/men-featured-fairfield-leather",
+              "cta_one_button_text": "Shop Now",
+              "cta_two_link": "",
+              "cta_two_button_text": "",
               "caption_color_scheme": "white",
               "custom_slide_main_color": "#ffffff",
               "custom_slide_alt_color": "#164732",
