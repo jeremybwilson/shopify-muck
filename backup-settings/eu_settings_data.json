@@ -256,7 +256,7 @@
           "logo_transform": "uppercase",
           "logo_weight": "bold",
           "logo_center": false,
-          "cart_icon": "cart",
+          "cart_icon": "bag",
           "show_site_picker": true,
           "site_picker_manifest": "EU|European Union|https://www.muckbootcompany.eu,UK|United Kingdom|https://www.muckbootcompany.co.uk,US|United States|https://muckbootcompany.com",
           "show_search": true,
