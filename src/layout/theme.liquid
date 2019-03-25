@@ -51,7 +51,8 @@
   {{ 'react.min.js' | asset_url | script_tag }}
   {{ 'react-dom.min.js' | asset_url | script_tag }}
   {{ 'jquery-2.2.4.min.js' | asset_url | script_tag }}
-  {{ "eventemitter3.min.js" | asset_url | script_tag }}
+  {{ 'eventemitter3.min.js' | asset_url | script_tag }}
+  {{ 'jquery.validate.min.js' | asset_url | script_tag }}
 
   {%- if settings.show_multiple_currencies -%}
     {% include 'currencies' %}
@@ -68,10 +69,12 @@
     {{ 'instafeed.js' | asset_url | script_tag }}
 	{% endif %}
 
-  <!-- Zendesk -->
-  <script src='//d3c3cq33003psk.cloudfront.net/opentag-73170-muckbootproduction.js' async defer></script>
-
   {% include 'script-google-tag-head' %}
+
+  {% if settings.yotpo_enable_flag == true and settings.international_store_version != blank %}
+    <!-- Yotpo Main Script -->
+    {% include 'yotpo-main-script' %}
+  {% endif %}
 
   <!-- Favicons
 ================================================== -->
@@ -102,8 +105,8 @@
         REACT : EXAMPLE #1
         <div id="example-global-react" data-info-passed-to-react='{ "name": "greg" }'></div>
       {% endcomment %}
-      
-      {% comment %} :: COLLECTION - Banner Image :: 
+
+      {% comment %} :: COLLECTION - Banner Image ::
 
         Notes:
         ------
@@ -114,7 +117,7 @@
         To display the banners, enter the following HTML in the collection description:
         <div class="category-banner has--category-banner banner--only"></div>
 
-        IMPORTANT: 
+        IMPORTANT:
         ----------
         If the description ONLY contains the Category Banner code above, then you need to include the classname "banner--only".
         Otherwise, enter the code below if you have other content (such as the SEO footer text)
@@ -129,10 +132,16 @@
           </div>
         {% endif %}
       {% endif %}
+      {% comment %} :: Collection Banner Functionality :: {% endcomment %}
+      {% if template contains 'collection' %}
+        {% section 'collection-banner' %}
+      {% endif %}
 
 
       {% comment %} :: HOME / BLOG / LIST-COLLECTIONS - No Wrapper or Breadcrumbs :: {% endcomment %}
-      {% if template == 'index' or template contains 'blog' or template contains 'list-collections' %}
+      {% if template == 'index' or template contains 'blog' or
+        template contains 'list-collections' or template contains 'article' or
+        template == 'page.contest' or template == 'page.contest-success' %}
         {{ content_for_layout }}
 
 
@@ -140,11 +149,11 @@
       {% else %}
 
         {% comment %} :: BREADCRUMBS :: {% endcomment %}
-        {% if template != 'index' %}
+        {% unless template == 'index' or template contains 'article' %}
           {% if settings.breadcrumb %}
             {% include 'breadcrumb' %}
           {% endif %}
-        {% endif %}
+        {% endunless %}
 
         {% comment %} :: PAGE CONTENT :: {% endcomment %}
         {% comment %} Note : PRODUCT DETAILS has breadcrumbs but custom wrappers {% endcomment %}
@@ -161,11 +170,11 @@
           {% endif %}
         {% endif %}
 
-      {% endif %} 
+      {% endif %}
       {% comment %} :: End of 'ALL OTHER PAGES' IF block :: {% endcomment %}
     </div>  <!-- close the page-wrap class -->
 
-    
+
     {% section 'newsletter' %}
     {% section 'footer' %}
   </div> <!-- close the shifter-page class -->
@@ -240,6 +249,13 @@
     </script>
   {% endif %}
 
+
+  <!-- ajax load more for blog-->
+  {% include 'ajax-blog-load-more' %}
+
+  <!-- supporting comment feature for article-->
+  {% include 'ajax-article-comment-support' %}
+
   <!-- Responsive Images -->
   {{ 'ls.rias.min.js' | asset_url | script_tag }}
   {{ 'ls.bgset.min.js' | asset_url | script_tag }}
@@ -259,8 +275,35 @@
 
   <script>Shopify.money_format = "{{ shop.money_format }}";</script>
 
-<!-- Criteo tags -->
-  {% include 'criteo-tracking' %}
 
+  {%  unless template == 'index' %}
+    {% if settings.zendesk-key != blank %}
+      <!-- Start of muckbootcompany Zendesk Widget script -->
+      <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key={{ settings.zendesk-key }}"> </script>
+      <!-- End of muckbootcompany Zendesk Widget script --> 
+      <script type="text/javascript">
+        window.zESettings = {
+          webWidget: {
+            authenticate: {
+              jwt: '{{ settings.zendesk-key }}'
+            },
+            contactOptions: {
+              enabled: true,
+              contactButton: { '*': 'Contact Button' },
+              chatLabelOnline: { '*': 'Live Chat' },
+              chatLabelOffline: { '*': 'Chat is unavailable' },
+              contactFormLabel: { '*': 'Email Us' }
+            },
+            launcher: {
+              chatLabel: { '*': 'Help' }
+            },
+            contactForm: {
+              title: { '*': 'Email Us' }
+            }
+          }
+        };
+      </script>
+    {% endif %}
+  {% endunless %}
 </body>
 </html>

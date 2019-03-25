@@ -113,10 +113,12 @@
     "details_align": "center",
     "secondary_images_hover": "image_flip",
     "cart_notes_enable": false,
+    "checkout_shipping_callout_enable": true,
+    "pobox_callout_enable": false,
     "ajax_cart_method": "drawer",
     "ajax_cart_remove_text": "This will remove the item from your cart. Continue?",
     "ajax_cart_low_stock_text": "This item does not have enough stock to add to your cart.",
-    "discount_modal_enable": false,
+    "discount_modal_enable": true,
     "discount_modal_config": "eyJjb29raWVFeHBpcmVJbkRheXMiOjYwLCJ0aHJlc2hvbGREaXNjb3VudHMiOlt7ImRpc2NvdW50SWQiOjEsImRpc3BsYXlOYW1lIjoiV2lnd2FtIEhhdCAoQmxhY2spIiwiZ2lmdElkIjoxNTQ1OTk2NDA5MjUxMCwiZ3JhbnRUeXBlIjoicGljayIsImludmVudG9yeUlkIjoxNTQwMjIxMjk4Mjg3OCwibWluU3BlbmQiOjE1MCwicHJvZHVjdEhhbmRsZSI6IndpZ3dhbS13aW50ZXItaGF0In0seyJkaXNjb3VudElkIjoyLCJkaXNwbGF5TmFtZSI6IldpZ3dhbSBIYXQgKEdyYXkpIiwiZ2lmdElkIjoxNTQ1OTk2NTM3MDQ2MiwiZ3JhbnRUeXBlIjoicGljayIsImludmVudG9yeUlkIjoxNTQwMjIxMzAxNTY0NiwibWluU3BlbmQiOjE1MCwicHJvZHVjdEhhbmRsZSI6IndpZ3dhbS13aW50ZXItaGF0In0seyJkaXNjb3VudElkIjozLCJkaXNwbGF5TmFtZSI6IldpZ3dhbSBIYXQgKE5hdHVyYWwpIiwiZ2lmdElkIjoxNTQ1OTk2NTUwMTUzNCwiZ3JhbnRUeXBlIjoicGljayIsImludmVudG9yeUlkIjoxNTQwMjIxMzA0ODQxNCwibWluU3BlbmQiOjE1MCwicHJvZHVjdEhhbmRsZSI6IndpZ3dhbS13aW50ZXItaGF0In1dfQ==",
     "twittername": "",
     "facebook_url": "//www.facebook.com/muckbootco/",
@@ -147,6 +149,8 @@
     "currency_format": "money_with_currency_format",
     "supported_currencies": "INR GBP CAD USD AUD EUR JPY",
     "default_currency": "USD",
+    "yotpo_enable_flag": true,
+    "yotpo_key_value": "gzejKiOGN46xeB5iurqalrS7dI7zEUIMZ9OCF4MM",
     "checkout_header_image": "",
     "checkout_logo_image": "shopify://shop_images/checkout-logo.png",
     "checkout_logo_position": "center",
@@ -243,8 +247,8 @@
           "full_width_header": false,
           "show_announcement_text": true,
           "num_of_promo_banners": "1",
-          "announcement_text_one": "<div class=\"bold\">Take up to 70% off select styles! Use code: TAKE70</div>",
-          "announcement_link_one": "shopify://collections/web-specials",
+          "announcement_text_one": "<div class=\"bold\">FREE SHIPPING AND RETURNS</div>",
+          "announcement_link_one": "shopify://pages/shipping-and-returns",
           "announcement_text_two": "<div class=\"bold\">FREE SHIPPING AND RETURNS</div>",
           "announcement_link_two": "shopify://pages/shipping-and-returns",
           "announcement_height": 60,
@@ -252,11 +256,13 @@
           "logo_size": 24,
           "logo_transform": "uppercase",
           "logo_weight": "bold",
+          "logo_center": false,
           "cart_icon": "cart",
           "show_site_picker": true,
           "site_picker_manifest": "US|United States|https://muckbootcompany.com,EU|European Union|https://www.muckbootcompany.eu,UK|United Kingdom|https://www.muckbootcompany.co.uk",
           "show_search": true,
           "main_nav": "main-menu",
+          "right_nav": "",
           "nav_center": true,
           "nav_height": 60,
           "linklist_breakpoint": 10
@@ -330,7 +336,10 @@
       "blog-template": {
         "type": "blog-template",
         "settings": {
-          "image": "",
+          "image": "shopify://shop_images/1081132_51784273_copy.jpg",
+          "heading": "Stories From The Muck",
+          "blog_nav_bg_color": "#f5f1ed",
+          "blog_nav_font_size": 14,
           "text": "<p>Add some descriptive text to your Blog page.</p>",
           "show_date": true
         }
@@ -384,15 +393,27 @@
       "1536068961071": {
         "type": "columns-carousel",
         "blocks": {
-          "1536068961071-0": {
+          "1536068961071-5": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/home-column-carousel-desktop-slide-1.jpg",
-              "mobile_image": "shopify://shop_images/home-column-carousel-mobile-slide-1.jpg",
-              "heading": "Cold Weather",
-              "svg_icon": "<svg class=\"icon icon-cold-weather\" xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 25.31 27.82\"><path fill=\"#ffffff\" d=\"M25.29,16.41a.68.68,0,0,0-.65-.5.47.47,0,0,0-.17,0l-4.76,1.27L14,13.91l5.72-3.3,4.76,1.27a.67.67,0,1,0,.34-1.29l-3.46-.93,3.11-1.79a.71.71,0,0,0,.31-.41A.7.7,0,0,0,24.7,7a.69.69,0,0,0-.91-.24L20.68,8.5,21.61,5a.67.67,0,0,0-.47-.82.68.68,0,0,0-.82.47L19,9.45l-5.72,3.3V6.14L16.8,2.67a.68.68,0,0,0,0-.95.68.68,0,0,0-.94,0L13.32,4.25V.67A.67.67,0,1,0,12,.67V4.25L9.45,1.72a.68.68,0,0,0-.94,0,.63.63,0,0,0-.2.47.67.67,0,0,0,.2.48L12,6.14v6.61L6.26,9.45,5,4.69A.67.67,0,1,0,3.7,5L4.63,8.5,1.52,6.71A.69.69,0,0,0,.61,7a.7.7,0,0,0-.07.51.71.71,0,0,0,.31.41L4,9.66.5,10.59a.67.67,0,1,0,.34,1.29L5.6,10.61l5.72,3.3L5.6,17.21.84,15.94a.69.69,0,0,0-.82.47.7.7,0,0,0,.07.51.68.68,0,0,0,.41.31L4,18.16.85,20a.67.67,0,0,0-.24.91.62.62,0,0,0,.41.31.62.62,0,0,0,.5-.06l3.11-1.79L3.7,22.78A.67.67,0,1,0,5,23.12l1.27-4.75L12,15.07v6.6L8.51,25.15a.66.66,0,0,0,0,1,.68.68,0,0,0,.94,0L12,23.57v3.58a.67.67,0,1,0,1.33,0V23.57l2.54,2.53a.68.68,0,0,0,.94,0,.66.66,0,0,0,0-1l-3.48-3.48v-6.6L19,18.37l1.28,4.75a.67.67,0,1,0,1.29-.34l-.93-3.46,3.11,1.79a.62.62,0,0,0,.5.06.62.62,0,0,0,.41-.31.67.67,0,0,0-.24-.91l-3.11-1.79,3.46-.93a.68.68,0,0,0,.41-.31A.7.7,0,0,0,25.29,16.41Z\"></path></svg>",
+              "image": "shopify://shop_images/home-column-carousel-desktop-slide-6.jpg",
+              "mobile_image": "shopify://shop_images/home-column-carousel-mobile-slide-6.jpg",
+              "heading": "Gardening",
+              "svg_icon": "<svg class=\"icon icon-gardening\" xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 41.83 29.2\"><path fill=\"#ffffff\" d=\"M41.57,14.27,34.49,7.18A.87.87,0,0,0,33,7.75L32.74,12l-3.92,3.61V8.12a.87.87,0,0,0-.88-.87H26.46A8.32,8.32,0,0,0,10,7.25H2.4A2.39,2.39,0,0,0,.23,10.67l7.2,13.86a.88.88,0,0,0,.19.24v3.56a.87.87,0,0,0,.87.87H27.94a.88.88,0,0,0,.75-.42l7.8-12.86L41,15.76a.88.88,0,0,0,.79-.55A.86.86,0,0,0,41.57,14.27ZM7.62,21.1,1.8,9.91a.64.64,0,0,1,.05-.62A.67.67,0,0,1,2.4,9H7.62ZM18.21,1.75a6.58,6.58,0,0,1,6.48,5.5h-13A6.59,6.59,0,0,1,18.21,1.75ZM36,14.19a.85.85,0,0,0-.72.42L27.45,27.45H9.37V9h17.7v8.62a.88.88,0,0,0,.52.8.89.89,0,0,0,.95-.15l5.65-5.21a1,1,0,0,0,.28-.59l.16-2.67,4.28,4.28Z\"></path></svg>",
               "png_icon": "",
-              "link": "shopify://collections/cold-snow",
+              "link": "shopify://collections/garden",
+              "cta_text": "Shop Now"
+            }
+          },
+          "1536068961071-4": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/home-column-carousel-desktop-slide-5.jpg",
+              "mobile_image": "shopify://shop_images/home-column-carousel-mobile-slide-5.jpg",
+              "heading": "Casual",
+              "svg_icon": "<svg class=\"icon icon-casual\" xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 27.19 33.21\"><path fill=\"#ffffff\" d=\"M24.59,18.25c3.83-15.41,2.47-17,1.88-17.69A1.59,1.59,0,0,0,25.24,0H12.09a1.26,1.26,0,0,0-1,.5c-.48.62-.46,1.7,0,3.57.78,3.68,2.29,12.68-.52,16.86a4.37,4.37,0,0,1-3.23,2L3,23.53a.56.56,0,0,0-.17,0C1.2,23.9.1,26.22,0,28.26-.07,29.88.52,31,1.59,31.38l.78.25a26.3,26.3,0,0,0,7.4,1.58,6.74,6.74,0,0,0,3.38-.76c1.89-1.07,2.92-.71,3.27-.51a3.78,3.78,0,0,0,1.53.47c1.76.2,4.87.33,6-1,1.57-1.85.75-7.19.46-8.79A10.29,10.29,0,0,1,24.59,18.25ZM3.13,25.09h0l4.41-.58A6,6,0,0,0,11.9,21.8c3-4.51,1.77-13.25.75-18,0,0,0-.07,0-.15a5.65,5.65,0,0,1-.31-2h13c.34.39,1.17,2.72-2.21,16.29a11.75,11.75,0,0,0-.18,5h0a29.73,29.73,0,0,1,.41,3.35.8.8,0,0,0-.23.18c-.6.71-3.42,1.23-4.93,1.06l-.26-.07c-.93-.25-3.38-.91-5.5.31a5.31,5.31,0,0,1-2.61.54,25,25,0,0,1-6.92-1.5l-.79-.25H2A2.36,2.36,0,0,1,3.13,25.09Zm15,5.77a2.63,2.63,0,0,1-.93-.27c-.73-.42-2.33-.92-4.82.51a5.31,5.31,0,0,1-2.61.54,25,25,0,0,1-6.92-1.5l-.79-.25c-.33-.11-.53-.73-.49-1.56,0-.11,0-.23,0-.35l.76.25a26.3,26.3,0,0,0,7.4,1.57,6.74,6.74,0,0,0,3.38-.75,5.85,5.85,0,0,1,4.32-.15A3.93,3.93,0,0,0,18,29a11.14,11.14,0,0,0,5.37-.91,4.21,4.21,0,0,1-.54,2.27C22.32,30.91,20.37,31.11,18.13,30.86Z\"></path></svg>",
+              "png_icon": "",
+              "link": "shopify://collections/lifestyle",
               "cta_text": "Shop Now"
             }
           },
@@ -432,38 +453,26 @@
               "cta_text": "Shop Now"
             }
           },
-          "1536068961071-4": {
+          "1536068961071-0": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/home-column-carousel-desktop-slide-5.jpg",
-              "mobile_image": "shopify://shop_images/home-column-carousel-mobile-slide-5.jpg",
-              "heading": "Casual",
-              "svg_icon": "<svg class=\"icon icon-casual\" xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 27.19 33.21\"><path fill=\"#ffffff\" d=\"M24.59,18.25c3.83-15.41,2.47-17,1.88-17.69A1.59,1.59,0,0,0,25.24,0H12.09a1.26,1.26,0,0,0-1,.5c-.48.62-.46,1.7,0,3.57.78,3.68,2.29,12.68-.52,16.86a4.37,4.37,0,0,1-3.23,2L3,23.53a.56.56,0,0,0-.17,0C1.2,23.9.1,26.22,0,28.26-.07,29.88.52,31,1.59,31.38l.78.25a26.3,26.3,0,0,0,7.4,1.58,6.74,6.74,0,0,0,3.38-.76c1.89-1.07,2.92-.71,3.27-.51a3.78,3.78,0,0,0,1.53.47c1.76.2,4.87.33,6-1,1.57-1.85.75-7.19.46-8.79A10.29,10.29,0,0,1,24.59,18.25ZM3.13,25.09h0l4.41-.58A6,6,0,0,0,11.9,21.8c3-4.51,1.77-13.25.75-18,0,0,0-.07,0-.15a5.65,5.65,0,0,1-.31-2h13c.34.39,1.17,2.72-2.21,16.29a11.75,11.75,0,0,0-.18,5h0a29.73,29.73,0,0,1,.41,3.35.8.8,0,0,0-.23.18c-.6.71-3.42,1.23-4.93,1.06l-.26-.07c-.93-.25-3.38-.91-5.5.31a5.31,5.31,0,0,1-2.61.54,25,25,0,0,1-6.92-1.5l-.79-.25H2A2.36,2.36,0,0,1,3.13,25.09Zm15,5.77a2.63,2.63,0,0,1-.93-.27c-.73-.42-2.33-.92-4.82.51a5.31,5.31,0,0,1-2.61.54,25,25,0,0,1-6.92-1.5l-.79-.25c-.33-.11-.53-.73-.49-1.56,0-.11,0-.23,0-.35l.76.25a26.3,26.3,0,0,0,7.4,1.57,6.74,6.74,0,0,0,3.38-.75,5.85,5.85,0,0,1,4.32-.15A3.93,3.93,0,0,0,18,29a11.14,11.14,0,0,0,5.37-.91,4.21,4.21,0,0,1-.54,2.27C22.32,30.91,20.37,31.11,18.13,30.86Z\"></path></svg>",
+              "image": "shopify://shop_images/home-column-carousel-desktop-slide-1.jpg",
+              "mobile_image": "shopify://shop_images/home-column-carousel-mobile-slide-1.jpg",
+              "heading": "Cold Weather",
+              "svg_icon": "<svg class=\"icon icon-cold-weather\" xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 25.31 27.82\"><path fill=\"#ffffff\" d=\"M25.29,16.41a.68.68,0,0,0-.65-.5.47.47,0,0,0-.17,0l-4.76,1.27L14,13.91l5.72-3.3,4.76,1.27a.67.67,0,1,0,.34-1.29l-3.46-.93,3.11-1.79a.71.71,0,0,0,.31-.41A.7.7,0,0,0,24.7,7a.69.69,0,0,0-.91-.24L20.68,8.5,21.61,5a.67.67,0,0,0-.47-.82.68.68,0,0,0-.82.47L19,9.45l-5.72,3.3V6.14L16.8,2.67a.68.68,0,0,0,0-.95.68.68,0,0,0-.94,0L13.32,4.25V.67A.67.67,0,1,0,12,.67V4.25L9.45,1.72a.68.68,0,0,0-.94,0,.63.63,0,0,0-.2.47.67.67,0,0,0,.2.48L12,6.14v6.61L6.26,9.45,5,4.69A.67.67,0,1,0,3.7,5L4.63,8.5,1.52,6.71A.69.69,0,0,0,.61,7a.7.7,0,0,0-.07.51.71.71,0,0,0,.31.41L4,9.66.5,10.59a.67.67,0,1,0,.34,1.29L5.6,10.61l5.72,3.3L5.6,17.21.84,15.94a.69.69,0,0,0-.82.47.7.7,0,0,0,.07.51.68.68,0,0,0,.41.31L4,18.16.85,20a.67.67,0,0,0-.24.91.62.62,0,0,0,.41.31.62.62,0,0,0,.5-.06l3.11-1.79L3.7,22.78A.67.67,0,1,0,5,23.12l1.27-4.75L12,15.07v6.6L8.51,25.15a.66.66,0,0,0,0,1,.68.68,0,0,0,.94,0L12,23.57v3.58a.67.67,0,1,0,1.33,0V23.57l2.54,2.53a.68.68,0,0,0,.94,0,.66.66,0,0,0,0-1l-3.48-3.48v-6.6L19,18.37l1.28,4.75a.67.67,0,1,0,1.29-.34l-.93-3.46,3.11,1.79a.62.62,0,0,0,.5.06.62.62,0,0,0,.41-.31.67.67,0,0,0-.24-.91l-3.11-1.79,3.46-.93a.68.68,0,0,0,.41-.31A.7.7,0,0,0,25.29,16.41Z\"></path></svg>",
               "png_icon": "",
-              "link": "shopify://collections/lifestyle",
-              "cta_text": "Shop Now"
-            }
-          },
-          "1536068961071-5": {
-            "type": "image",
-            "settings": {
-              "image": "shopify://shop_images/home-column-carousel-desktop-slide-6.jpg",
-              "mobile_image": "shopify://shop_images/home-column-carousel-mobile-slide-6.jpg",
-              "heading": "Gardening",
-              "svg_icon": "<svg class=\"icon icon-gardening\" xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 41.83 29.2\"><path fill=\"#ffffff\" d=\"M41.57,14.27,34.49,7.18A.87.87,0,0,0,33,7.75L32.74,12l-3.92,3.61V8.12a.87.87,0,0,0-.88-.87H26.46A8.32,8.32,0,0,0,10,7.25H2.4A2.39,2.39,0,0,0,.23,10.67l7.2,13.86a.88.88,0,0,0,.19.24v3.56a.87.87,0,0,0,.87.87H27.94a.88.88,0,0,0,.75-.42l7.8-12.86L41,15.76a.88.88,0,0,0,.79-.55A.86.86,0,0,0,41.57,14.27ZM7.62,21.1,1.8,9.91a.64.64,0,0,1,.05-.62A.67.67,0,0,1,2.4,9H7.62ZM18.21,1.75a6.58,6.58,0,0,1,6.48,5.5h-13A6.59,6.59,0,0,1,18.21,1.75ZM36,14.19a.85.85,0,0,0-.72.42L27.45,27.45H9.37V9h17.7v8.62a.88.88,0,0,0,.52.8.89.89,0,0,0,.95-.15l5.65-5.21a1,1,0,0,0,.28-.59l.16-2.67,4.28,4.28Z\"></path></svg>",
-              "png_icon": "",
-              "link": "shopify://collections/garden",
+              "link": "shopify://collections/cold-snow",
               "cta_text": "Shop Now"
             }
           }
         },
         "block_order": [
-          "1536068961071-0",
+          "1536068961071-5",
+          "1536068961071-4",
           "1536068961071-1",
           "1536068961071-2",
           "1536068961071-3",
-          "1536068961071-4",
-          "1536068961071-5"
+          "1536068961071-0"
         ],
         "settings": {}
       },
@@ -473,23 +482,23 @@
           "1536251685211-1": {
             "type": "text_block",
             "settings": {
-              "image": "shopify://shop_images/home-twin-promo-desktop-1.jpg",
-              "mobile_image": "shopify://shop_images/home-twin-promo-mobile-1.jpg",
-              "link": "shopify://collections/liberty-leather",
-              "heading_text": "New Waterproof liberty collection",
+              "image": "shopify://shop_images/Muck-MthrsDy-Email-1000x1000-Animated.gif",
+              "mobile_image": "shopify://shop_images/Muck-MthrsDy-Email-1000x1000-Animated.gif",
+              "link": "shopify://collections/women-featured-new-arrivals",
+              "heading_text": "For WOMEN THAT DO IT ALL",
               "text": "",
-              "cta_text": "Shop Women's Waterproof leather"
+              "cta_text": "SHOP GARDEN"
             }
           },
           "1536251685211-0": {
             "type": "text_block",
             "settings": {
-              "image": "shopify://shop_images/home-twin-promo-desktop-2.jpg",
-              "mobile_image": "shopify://shop_images/home-twin-promo-mobile-2.jpg",
-              "link": "shopify://collections/arctic-ice",
-              "heading_text": "TAKE ON ICE",
-              "text": "<p>Shop our warmest boot yet.</p>\n<p>Superior wet ice traction.</p>",
-              "cta_text": "Shop The Arctic Ice Collection"
+              "image": "shopify://shop_images/kids-collection-mobile_134x134_crop_center_2x_509e22c5-e1f5-409e-b174-f6588c97b32e.jpg",
+              "mobile_image": "shopify://shop_images/kids-collection-mobile_134x134_crop_center_2x_509e22c5-e1f5-409e-b174-f6588c97b32e.jpg",
+              "link": "shopify://collections/kids",
+              "heading_text": "BOOTS DESIGNED FOR LITTLE ONES",
+              "text": "",
+              "cta_text": "Shop  Kids"
             }
           }
         },
@@ -507,8 +516,8 @@
           "1536252750894-0": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/home-about-promo-desktop-1.jpg",
-              "mobile_image": "shopify://shop_images/home-about-promo-mobile-1.jpg",
+              "image": "shopify://shop_images/home-about-promo-desktop-1_0a5a8755-1f12-441c-a962-0a9100ffa1cc.jpg",
+              "mobile_image": "shopify://shop_images/home-about-promo-mobile-1_bf16c8fd-1f03-4ae2-86cc-5d4fba905509.jpg",
               "heading": "Our Purpose",
               "subheading": "Made for work (and life) in the muck",
               "cta_one_link": "shopify://pages/about",
@@ -546,11 +555,11 @@
       "1536353642475": {
         "type": "featured-collection",
         "settings": {
-          "heading": "Best Sellers",
-          "homepage_collection": "cold-snow",
+          "heading": "New Arrivals",
+          "homepage_collection": "new-arrivals",
           "homepage_product_limit": 8,
           "homepage_product_display": "carousel",
-          "products_per_row": 4
+          "products_per_row": 6
         }
       },
       "page-about-template": {
@@ -809,35 +818,15 @@
       "1535728526385": {
         "type": "slideshow",
         "blocks": {
-          "1548186930171": {
-            "type": "image",
-            "settings": {
-              "image": "shopify://shop_images/love-of-the-land-slide-1_04ad2088-5e8b-44a8-84bd-dd32aabe55f9.jpg",
-              "mobile_image": "shopify://shop_images/love-of-the-land-slide-1-mobile_72f5c8e8-f87d-46d6-9a32-4b8fd869d1ca.jpg",
-              "heading": "For love of the land",
-              "subheading": "",
-              "cta_one_link": "shopify://collections/best-sellers",
-              "cta_one_button_text": "Shop best sellers",
-              "cta_two_link": "",
-              "cta_two_button_text": "",
-              "caption_color_scheme": "white",
-              "custom_slide_main_color": "#ffffff",
-              "custom_slide_alt_color": "#164732",
-              "caption_horizontal": "center",
-              "caption_vertical": 50,
-              "caption_background": "rgba(0,0,0,0)",
-              "caption_opacity": "0.1"
-            }
-          },
           "1545367874052": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/waterproof-weatherproof-slide-2_df5e5ac3-4c85-45b3-bad2-adb2d6e807f5.jpg",
-              "mobile_image": "shopify://shop_images/waterproof-weatherproof-slide-2-mobile_868658e8-a143-4261-a893-ffffb8a7d8cb.jpg",
-              "heading": "Waterproof, weatherproof leather",
+              "image": "shopify://shop_images/free-silk-scarf.jpg",
+              "mobile_image": "shopify://shop_images/free-silk-scarf-desktop.jpg",
+              "heading": "Step into Spring",
               "subheading": "",
-              "cta_one_link": "shopify://collections/men-featured-fairfield-leather",
-              "cta_one_button_text": "Shop Fairfield Leather collection",
+              "cta_one_link": "shopify://collections/new-arrivals",
+              "cta_one_button_text": "Shop New Arrivals",
               "cta_two_link": "",
               "cta_two_button_text": "Add a button",
               "caption_color_scheme": "white",
@@ -849,15 +838,15 @@
               "caption_opacity": "0.1"
             }
           },
-          "1549601388573": {
+          "1548186930171": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/comfortable-waterproof-slide-3_aebfe416-8c85-4313-a720-c4609aa1f027.jpg",
-              "mobile_image": "shopify://shop_images/comfortable-waterproof-slide-3-mobile_329e89cb-6cdd-447a-aaa8-da32797a83f3.jpg",
-              "heading": "Comfortable Waterproof Winter boots",
+              "image": "shopify://shop_images/waterproof-weatherproof-slide-2_df5e5ac3-4c85-45b3-bad2-adb2d6e807f5.jpg",
+              "mobile_image": "shopify://shop_images/waterproof-weatherproof-slide-2-mobile_868658e8-a143-4261-a893-ffffb8a7d8cb.jpg",
+              "heading": "READY FOR UNPREDICTABLE WEATHER",
               "subheading": "",
-              "cta_one_link": "shopify://collections/cold-snow",
-              "cta_one_button_text": "Shop Cold & Snow",
+              "cta_one_link": "shopify://collections/men-featured-fairfield-leather",
+              "cta_one_button_text": "Shop Now",
               "cta_two_link": "",
               "cta_two_button_text": "",
               "caption_color_scheme": "white",
@@ -868,12 +857,32 @@
               "caption_background": "rgba(0,0,0,0)",
               "caption_opacity": "0.1"
             }
+          },
+          "1552632193923": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/rate-review-win.jpg",
+              "mobile_image": "shopify://shop_images/rate-review-win-mobile.jpg",
+              "heading": "RATE AND REVIEW FOR A CHANCE TO WIN FOUR PAIRS OF FREE BOOTS!",
+              "subheading": "",
+              "cta_one_link": "shopify://pages/sweeps",
+              "cta_one_button_text": "LEARN MORE",
+              "cta_two_link": "",
+              "cta_two_button_text": "Add a button",
+              "caption_color_scheme": "white",
+              "custom_slide_main_color": "#ffffff",
+              "custom_slide_alt_color": "#164732",
+              "caption_horizontal": "left",
+              "caption_vertical": 50,
+              "caption_background": "rgba(0,0,0,0)",
+              "caption_opacity": "0.1"
+            }
           }
         },
         "block_order": [
-          "1548186930171",
           "1545367874052",
-          "1549601388573"
+          "1548186930171",
+          "1552632193923"
         ],
         "settings": {
           "full_width": true,
