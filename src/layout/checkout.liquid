@@ -12,7 +12,6 @@
 
     {{ checkout_stylesheets }}
     {{ checkout_scripts }}
-    
     {% include 'script-google-tag-head' %}
   </head>
   <body>
@@ -53,6 +52,7 @@
     </div>
 
     {{ tracking_code }}
+    {% include 'checkout-expiry-callout' %}
     {% include 'checkout-customization-script' %}
     {% include 'script-google-tag-body' %}
   </body>

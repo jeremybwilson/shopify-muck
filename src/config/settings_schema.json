@@ -1198,6 +1198,22 @@
     ]
   },
   {
+    "name": "Checkout callout",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_cc_callout",
+        "label": "Enable CC callout",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "cc_callout",
+        "label": "Callout text",
+        "default": "Please only include 2 digits for the year"
+      }
+  },
+  {
     "name": "YOTPO",
     "settings": [
       {
