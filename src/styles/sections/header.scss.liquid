@@ -365,6 +365,28 @@ $navBarDesktopHeight: 80px;
             padding-right: 23px;
             outline: none;
         }
+        
+        .nav-search-input{
+                height: 30px;
+                line-height: 30px;
+                padding: 0 10px;
+                text-indent: 0;
+                margin-bottom: 0;             
+                border-radius: 0;
+                background: transparent;
+                color: $color--dark-green;
+                text-indent: 0;
+                padding: 0 0 0 5px;
+                font-size: 12px;
+                font-family: $sans;
+                
+        }
+        
+         .nav-search-input::-webkit-input-placeholder { color: $color--dark-green;}
+         .nav-search-input::-moz-placeholder { color: $color--dark-green;}
+         .nav-search-input:-ms-input-placeholder { color: $color--dark-green;}
+         .nav-search-input:-moz-placeholder {color:$color--dark-green;}
+
 
         .nav-search-icon-wrap {
             position: absolute;
@@ -456,6 +478,7 @@ $navBarDesktopHeight: 80px;
         position: relative;
         height: 100%;
 
+        #nav-menu-desktop-list-1,
         #nav-menu-desktop-list {
             @include inline-flex;
             @include justify-content( space-between );
@@ -954,4 +977,10 @@ $navBarDesktopHeight: 80px;
 
 .shifter {
     overflow-x: hidden;
+}
+.view_all_class{
+    text-decoration: none;
+    color: #164732;
+    font-weight: 500;
+    height:60px!important;
 }

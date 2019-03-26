@@ -5,7 +5,7 @@
 {% endunless %}
 
   <div class="product--mobile-header">
-    
+
     <div class="mobile-header--top">
       <div class="header-text">
         <span class="product-title">{{ product.title }}</span>
@@ -36,7 +36,7 @@
           {% endif %}
         </div><div class="clear"></div>
 
-        {% if settings.international_store_version == 'US' %}
+        {% if settings.yotpo_enable_flag == true and settings.international_store_version != blank %}
           {% comment %} REVIEWS - STAR RATING {% endcomment %}
           {% include 'yotpo-product-snippet' %}
         {% endif %}
@@ -45,5 +45,5 @@
 
       <input type="submit" name="button" class="add product--mobile-header--add AddtoCart{% if section.settings.show_payment_button %} secondary-button{% endif %}" value="{{ call_to_action }}" {% unless current_variant.available %}disabled{% endunless %} />
     </div><!--.mobile-header--top -->
-    
+
   </div>

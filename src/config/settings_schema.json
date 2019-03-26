@@ -900,6 +900,16 @@
         "label": "Enable cart notes"
       },
       {
+        "type": "checkbox",
+        "id": "checkout_shipping_callout_enable",
+        "label": "Enable Shipping Calculated at Checkout callout"
+      },
+      {
+        "type": "checkbox",
+        "id": "pobox_callout_enable",
+        "label": "Enable PO Box callout"
+      },
+      {
         "type": "select",
         "id": "ajax_cart_method",
         "label": "Cart type",
@@ -943,7 +953,7 @@
         "label": "Discount Config",
         "info": "(stringify config object, then base64)",
         "default": "eyJjb29raWVFeHBpcmVJbkRheXMiOjYwLCJ0aHJlc2hvbGREaXNjb3VudHMiOltdfQ=="
-      } 
+      }
     ]
   },
   {
@@ -1017,14 +1027,14 @@
         "id": "sizmek_company_id",
         "label": "Sizmek - Company ID",
         "info": "Sizmek company ID (EX: 6795), copied from sizmek dashboard"
-      }, 
+      },
       {
         "type": "text",
         "id": "sizmek_version_num",
         "label": "Sizmek - Version Number",
         "info": "EX: 9",
         "default": "9"
-      }, 
+      },
       {
         "type": "text",
         "id": "sizmek_pixel_cart_start",
@@ -1075,14 +1085,14 @@
         "id": "email_popup_input_placeholder",
         "label": "Email popup placeholder text",
         "default": "Enter Your Email Address"
-      },      
+      },
       {
         "type": "html",
         "id": "email_popup_bottom_text",
         "label": "Fine print",
         "default": "<p>By providing your email address, you agree to our <a href=\"https://www.honeywell.com/privacy-statement\">Privacy Policy</a> & <a href=\"/pages/terms-and-conditions\">Terms of Service</a>.</p>"
       },
-      { 
+      {
         "type": "text",
         "id": "email_popup_error",
         "label": "Error Text",
@@ -1187,7 +1197,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Checkout callout",
     "settings": [
       {
@@ -1201,6 +1211,28 @@
         "id": "cc_callout",
         "label": "Callout text",
         "default": "Please only include 2 digits for the year"
+      }
+  },
+  {
+    "name": "YOTPO",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Yotpo Integration Settings"
+      },
+      {
+        "type": "checkbox",
+        "id": "yotpo_enable_flag",
+        "label": "Enable yotpo integration for this store",
+        "default": false,
+        "info": "Check the box to enable.  A unique key value MUST also be provided."
+      },
+      {
+        "type": "text",
+        "id": "yotpo_key_value",
+        "label": "Unique key value",
+        "default": "gzejKiOGN46xeB5iurqalrS7dI7zEUIMZ9OCF4MM",
+        "info": "Insert a unique Yotpo key value here.  Enable checkbox above must also be checked."
       }
     ]
   }
