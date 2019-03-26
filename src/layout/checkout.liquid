@@ -51,57 +51,7 @@
     </div>
 
     {{ tracking_code }}
-    {% if settings.show_cc_callout %}
-    <script>
-      if(Shopify.Checkout.step == 'payment_method'){
-          var spanElm = document.createElement('span');
-          spanElm.setAttribute('style','color:#ff0000;font-size:11px;');
-          spanElm.innerHTML = '{{ settings.cc_callout }}';
-          var payMethodElm = document.querySelector('[data-credit-card-expiry] .field__input-wrapper');
-          payMethodElm.append(spanElm);
-      }
-    </script>
-    {% endif %}
-    {% comment %}
-    <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false"></script>
-    <script type="text/javascript">
-        var zip = 'NR14 3DQ';
-        var lat;
-        var lng;
-        var geocoder = new google.maps.Geocoder();
-        geocoder.geocode({ 'address': zip }, function (results, status) {
-            if (status == google.maps.GeocoderStatus.OK) {
-                geocoder.geocode({'latLng': results[0].geometry.location}, function(results, status) {
-                if (status == google.maps.GeocoderStatus.OK) {
-                    if (results[1]) {
-                        var loc = getCityState(results);
-                        console.log(loc);
-                    }
-                }
-            });
-            }
-        }); 
-        function getCityState(results){
-              var a = results[0].address_components;
-              var city, state;
-              for(i = 0; i <  a.length; ++i)
-              {
-                 var t = a[i].types;
-                 if(compIsType(t, 'administrative_area_level_1'))
-                    state = a[i].long_name; //store the state
-                 else if(compIsType(t, 'locality'))
-                    city = a[i].long_name; //store the city
-              }
-              return (city + ', ' + state)
-        }
-
-        function compIsType(t, s) { 
-             for(z = 0; z < t.length; ++z) 
-                if(t[z] == s)
-                   return true;
-             return false;
-        }
-    {% endcomment %}
+    {% include 'checkout-expiry-callout' %}
     </script>
   </body>
 </html>
