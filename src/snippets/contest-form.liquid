@@ -1,0 +1,594 @@
+<div id="contest_form_container">
+  	<form method="post" action="" id="contest_form" name="contest_form" accept-charset="UTF-8">
+	  	<div class="clearfix large_form">
+		    <label for="full_name" class="login">
+				Your Name<span class="clsRequiredFieldLable">*</span>
+			</label>
+		    <input type="text" value="" name="full_name" id="full_name" class="large" size="30">
+		    <label id="full_name-error" class="error" for="full_name"></label>
+	    </div>
+
+	    <div class="clearfix large_form">
+	        <label for="email" class="login">
+				Email Address<span class="clsRequiredFieldLable">*</span>
+			</label>
+	        <input type="text" value="" name="email" id="email" class="large" size="30">
+	        <label id="email-error" class="error" for="email"></label>
+	    </div>
+
+	    <div class="clearfix large_form">
+	        <label for="gender" class="login">
+				Gender<span class="clsRequiredFieldLable">*</span>
+			</label>
+			<div class="custom-select-wrapper">
+				<div class="icon-down">
+					<select id="gender" name="gender" class="gender">
+						<option selected="" disabled="">select</option>
+						<option value="M">Male</option>
+						<option value="F">Female</option>
+					</select>
+				</div>
+			</div>
+	        <label id="gender-error" class="error" for="gender"></label>
+	    </div>
+
+	    <div class="clearfix large_form">
+	        <label for="age" class="login">
+				Age<span class="clsRequiredFieldLable">*</span>
+			</label>
+			<div class="custom-select-wrapper">
+				<div class="icon-down">
+					<select id="age" name="age" class="age">
+						<option selected="" disabled="">select</option>
+						<option value="18-24">18-24</option>
+						<option value="25-34">25-34</option>
+						<option value="35-44">35-44</option>
+						<option value="45-54">45-54</option>
+						<option value="55-64">55-64</option>
+						<option value="65+">65+</option>
+					</select>
+				</div>
+			</div>
+	        <label id="age-error" class="error" for="age"></label>
+	    </div>
+
+	    <div class="clearfix large_form">
+			<fieldset>
+				<legend class="group-interest">Interest:</legend>
+				<div class="kilo">
+					<label class="container">Dog Walking
+						<input type="checkbox" name="interest[]" id="interest_dog_walking" class="interest_chk" value="dog_walking">
+						<span class="checkmark"></span>
+					</label>
+					<label class="container">Gardening
+						<input type="checkbox" name="interest[]" id="interest_gardening" class="interest_chk" value="gardening">
+						<span class="checkmark"></span>
+					</label>
+					<label class="container">Equestrian
+						<input type="checkbox" name="interest[]" id="interest_equestrian" class="interest_chk" value="equestrian">
+						<span class="checkmark"></span>
+					</label>
+					<label class="container">Fishing
+						<input type="checkbox" name="interest[]" id="interest_fishing" class="interest_chk" value="fishing">
+						<span class="checkmark"></span>
+					</label>
+				</div>
+				<div class="kilo">
+					<label class="container">Hunting
+						<input type="checkbox" name="interest[]" id="interest_hunting" class="interest_chk" value="hunting">
+						<span class="checkmark"></span>
+					</label>
+					<label class="container">Farm & Agriculture
+						<input type="checkbox" name="interest[]" id="interest_farm_and_agriculture" class="interest_chk" value="farm_and_agriculture">
+						<span class="checkmark"></span>
+					</label>
+					<label class="container">Hiking
+						<input type="checkbox" name="interest[]" id="interest_hiking" class="interest_chk" value="hiking">
+						<span class="checkmark"></span>
+					</label>
+					<label class="container">Other (specify Below)
+						<input type="checkbox" name="interest[]" id="interest_other" class="interest_chk" value="other">
+						<span class="checkmark"></span>
+					</label>
+				</div>
+			</fieldset>
+	    </div>
+
+		<div class="clearfix large_form" id="other_interest_div">
+			<label for="other_interest" class="login">Other Interests</label>
+			<input type="text" value="" name="other_interest" id="other_interest" class="large" size="30">
+			<label id="interest-error" class="error" for="interest"></label>
+		</div>
+
+	    <div class="clearfix large_form">
+			<fieldset>
+				<legend class="group-interest">How would you describe our products?</legend>
+				<div class="kilo">
+					<label class="container">High Quality
+						<input type="checkbox" name="product_feedback[]" id="product_feedback_high_quality" class="product_feedback_chk" value="high_quality">
+						<span class="checkmark"></span>
+					</label>
+					<label class="container">Low Quality
+						<input type="checkbox" name="product_feedback[]" id="product_feedback_low_quality" class="product_feedback_chk" value="low_quality">
+						<span class="checkmark"></span>
+					</label>
+					<label class="container">Practical
+						<input type="checkbox" name="product_feedback[]" id="product_feedback_practical" class="product_feedback_chk" value="practical">
+						<span class="checkmark"></span>
+					</label>
+					<label class="container">Impractical
+						<input type="checkbox" name="product_feedback[]" id="product_feedback_impractical" class="product_feedback_chk" value="impractical">
+						<span class="checkmark"></span>
+					</label>
+				</div>
+				<div class="kilo">
+					<label class="container">Good Value for Money
+						<input type="checkbox" name="product_feedback[]" id="product_feedback_good_value_for_money" class="product_feedback_chk" value="good_value_for_money">
+						<span class="checkmark"></span>
+					</label>
+					<label class="container">Stylish
+						<input type="checkbox" name="product_feedback[]" id="product_feedback_stylish" class="product_feedback_chk" value="stylish">
+						<span class="checkmark"></span>
+					</label>
+					<label class="container">Other (specify Below)
+						<input type="checkbox" name="product_feedback[]" id="product_feedback_other" class="product_feedback_chk" value="other">
+						<span class="checkmark"></span>
+					</label>
+				</div>
+			</fieldset>
+	    </div>
+
+		<div class="clearfix large_form" id="other_feedback_div">
+			<label for="other_feedback" class="login">Other</label>
+			<input type="text" value="" name="other_feedback" id="other_feedback" class="large" size="30">
+			<label id="product_feedback-error" class="error" for="product_feedback"></label>
+		</div>
+
+	    <p>
+			By providing your details and agreeing to the Terms & Conditions and Privacy Policy outlined
+			below you consent to receive information from The Original Muck® Boot Company and The Bull Shed Barn.
+		</p>
+
+	    <div class="clearfix large_form">
+			<label class="container">Tick this box to agree to the Terms & Conditions and Privacy Policy
+				<input type="checkbox" name="tandc" value="tandc">
+				<span class="checkmark"></span>
+			</label>
+			<label id="tandc-error" class="error" for="tandc"></label>
+	    </div>
+
+		<div class="clearfix large_form action_bottom">
+	        <input class="secondary button" type="submit" value="Sign Up">
+	    </div>
+	</form>
+
+	<div class="terms_and_conditions">
+		{% assign tAndCPage = pages['terms-and-conditions-for-contest'] %}
+		{{ tAndCPage.content }}
+		{% comment %} Sample Content for terms and conditions for contest {% endcomment %}
+		{% comment %}
+		<div>
+			<h4>TERMS AND CONDITIONS</h4>
+			<div class="paragraph">
+				The promoter of muckbootcompany.co.uk Muck Boot’s Facebook Giveaway is Honeywell Safety
+				Products of 115 Baker Street, 4th Floor, London, W1U 6RT ("Promoter").
+			</div>
+
+			<div class="paragraph">
+				<h5>
+					<span class="level-1">1</span>. Eligibility
+				</h5>
+				<p>
+					<span class="level-1">1</span>.
+					<span class="level-2">1</span>.
+					This Prize Draw is open to individuals in the UK only. Entrants must be over the age of 18.
+				</p>
+				<p>
+					<span class="level-1">1</span>.
+					<span class="level-2">2</span>.
+					Employees of the Promoter or any associated company and their immediate family as well as
+					sponsors of the Prize Draw and their employees and judges of the Prize Draw and their
+					immediate family, or anyone else involved in the organisation of the Prize Draw, may not
+					enter the Prize Draw.
+				</p>
+				<p>
+					<span class="level-1">1</span>.
+					<span class="level-2">3</span>.
+					Entrants will require access to the internet to enter the Prize Draw.
+				</p>
+				<p>
+					<span class="level-1">1</span>.
+					<span class="level-2">4</span>.
+					Entrants must have their own active personal Facebook Account.
+				</p>
+				<p>
+					<span class="level-1">1</span>.
+					<span class="level-2">5</span>.
+					Entrants remain subject to the terms and conditions.
+				</p>
+			</div>
+
+			<div class="paragraph">
+				<h5>
+					<span class="level-1">2</span>. How to enter
+				</h5>
+				<p>
+					<span class="level-1">2</span>.
+					<span class="level-2">1</span>.
+					To enter the Prize Draw entrants must:
+				</p>
+				<p>
+					<span class="level-1">2</span>.
+					<span class="level-2">2</span>.
+					To be in with a chance of winning a stay at Bull Shed Barn from 12-14th April complete
+					the online form on www.muckbootcompany.co.uk;
+				</p>
+				<p>
+					<span class="level-1">2</span>.
+					<span class="level-2">3</span>.
+					Entries must be made between 7.00 GMT on 26.02.19 and 23:59 GMT on 26.03.19
+					("Competition or Competition Period") to be valid.
+				</p>
+				<p>
+					<span class="level-1">2</span>.
+					<span class="level-2">4</span>.
+					Entries received after the end of the Prize Draw Period will not be valid.
+				</p>
+				<p>
+					<span class="level-1">2</span>.
+					<span class="level-2">6</span>.
+					No third party or automated entries are permitted.
+				</p>
+				<p>
+					<span class="level-1">2</span>.
+					<span class="level-2">7</span>.
+					All entrants (including the winners) must comply with any reasonable directions
+					given to him or her by the Promoter in connection with the Prize Draw. Failure
+					to comply with such directions may result in an invalid Entry and/or withdrawal of the Prize.
+				</p>
+			</div>
+
+			<div class="paragraph">
+				<h5>
+					<span class="level-1">3</span>. Winner selection and contact
+				</h5>
+				<p>
+					<span class="level-1">3</span>.
+					<span class="level-2">1</span>.
+					The Promoter will select at random at the end of the Competition Period, 1 winner of Prize
+					Draw 1. The Winners will be announced via the Muck Boot Facebook page.
+				</p>
+				<p>
+					<span class="level-1">3</span>.
+					<span class="level-2">2</span>.
+					No correspondence will be entered into respect of any decision made in connection with the Prize Draw.
+					The Judges shall have absolute discretion to choose the winning Entries and the Judges' decision
+					shall be final. The full names of the Judges are available upon written request to
+					muckbootcompany.co.uk. No correspondence will be entered into in respect of any decision
+					made in connection with this Prize Draw.
+				</p>
+				<p>
+					<span class="level-1">3</span>.
+					<span class="level-2">3</span>.
+					At the end of the Prize Draw Period, the Promoter will announce the Winner by contacting
+					the Winner via direct message on Facebook whereby the Promoter will ask the Entrant
+					for their contact details. Once the details have been provided in the manner stipulated
+					herein, the Promoter will provide further details regarding the Prize.
+				</p>
+				<p>
+					<span class="level-1">3</span>.
+					<span class="level-2">4</span>.
+					The Winners must provide their name and email address (“Details”) in order to claim the Prize.
+				</p>
+				<p>
+					<span class="level-1">3</span>.
+					<span class="level-2">5</span>.
+					If any Winner fails to provide their Details to the Promoter within 48 hours of the Promoter
+					tagging the winner in the Facebook post and direct message on Facebook, asking them to
+					provide the details in accordance with clause 3.3 then the Promoter acting in its absolute
+					discretion may:
+				</p>
+				<p>
+					<span class="level-1">3</span>.
+					<span class="level-2">5</span>.
+					<span class="level-3">1</span>.
+					make further attempts to contact that Winner; and/or
+				</p>
+				<p>
+					<span class="level-1">3</span>.
+					<span class="level-2">5</span>.
+					<span class="level-3">2</span>.
+					withdraw the Prize from that Winner.
+				</p>
+				<p>
+					<span class="level-1">3</span>.
+					<span class="level-2">6</span>.
+					If the Prize is declined by a Winner or is withdrawn from a Winner by the Promoter under clause 3.5.:
+				</p>
+				<p>
+					<span class="level-1">3</span>.
+					<span class="level-2">6</span>.
+					<span class="level-3">1</span>.
+					the declining or forfeiting Winner will continue to be subject to the provisions of
+					these Terms and Conditions; and the Promoter may offer the Prize to a new Winner
+					selected by the Judges in accordance with this clause 3.
+				</p>
+			</div>
+
+			<div class="paragraph">
+				<h5>
+					<span class="level-1">4</span>.
+					Prize
+				</h5>
+				<p>
+					<span class="level-1">4</span>.
+					<span class="level-2">1</span>.
+					Prize Draw 1 - 1 Winners will receive a 2 night stay at Bull Shed Barn from 12th-14th April.
+				</p>
+				<p>
+					<span class="level-1">4</span>.
+					<span class="level-2">2</span>.
+					The Prizes are subject to availability.
+				</p>
+				<p>
+					<span class="level-1">4</span>.
+					<span class="level-2">3</span>.
+					The Prizes are non-transferable and non-refundable and the Winners cannot request
+					any alternative prize (cash or otherwise).
+				</p>
+			</div>
+
+			<div class="paragraph">
+				<h5>
+					<span class="level-1">5</span>.
+					Winner publicity
+				</h5>
+				<p>
+					<span class="level-1">5</span>.
+					<span class="level-2">1</span>.
+					The Promoter reserves the right to publish each Winner's name and Entry on the
+					Promoter’s official social media accounts, including Twitter, Instagram and
+					Facebook and on its website found at muckbootcompany.co.uk
+				</p>
+				<p>
+					<span class="level-1">5</span>.
+					<span class="level-2">2</span>.
+					By entering the Prize Draw, if you are a Winner you agree to your Entry being
+					published in accordance with clause 5.1 and to take part in and co-operate
+					fully with all reasonable publicity accompanying or resulting from this Prize
+					Draw without further recompense.
+				</p>
+			</div>
+
+			<div class="paragraph">
+				<h5>
+					<span class="level-1">6</span>.
+					Entry requirements
+				</h5>
+				<p>
+					<span class="level-1">6</span>.
+					<span class="level-2">1</span>.
+					Any Entry that is deemed by the Promoter, in its sole discretion, to be unlawful,
+					obscene, vulgar, pornographic, hateful, threatening, discriminatory, offensive or
+					which may otherwise bring the Prize Draw or Promoter into disrepute will be excluded
+					from the Prize Draw and the Promoter reserves the right to take any further action
+					in respect of such Entry that it deems appropriate.
+				</p>
+				<p>
+					<span class="level-1">6</span>.
+					<span class="level-2">2</span>.
+					The Promoter will fully co-operate with any law enforcement authorities or court order
+					requesting or directing the Promoter to disclose the identity of or to locate anyone
+					posting or linking any content to its Facebook, Twitter or Instagram pages which infringes
+					any third party rights or is in breach of any of these Terms and Conditions or any applicable law.
+				</p>
+			</div>
+
+			<div class="paragraph">
+				<h5>
+					<span class="level-1">7</span>.
+					Use and display of Entries and copyright
+				</h5>
+				<p>
+					<span class="level-1">7</span>.
+					<span class="level-2">1</span>.
+					The copyright subsisting in the Entry must belong to the entrant. Entrants will retain
+					copyright in the Entries they submit. Entrants must not have infringed the rights of any
+					other party or breached any laws when submitting their Entries. If an Entry contains
+					reference to or images of a person, the consent of that person (or their parent or guardian
+					if they are under 18) must have been obtained.
+				</p>
+				<p>
+					<span class="level-1">7</span>.
+					<span class="level-2">2</span>.
+					By submitting an Entry:
+				</p>
+				<p>
+					<span class="level-1">7</span>.
+					<span class="level-2">2</span>.
+					<span class="level-3">1</span>.
+					you licence and grant the Promoter, its affiliates and sub-licensees an exclusive, royalty
+					free, perpetual, worldwide, irrevocable and sub-licensable right to use, reproduce, modify,
+					adapt, publish and display such content for any purpose in any media including, but not
+					limited to the Promoter’s website, social media accounts, marketing materials, newsletters
+					and promotional material without further compensation, restriction on use, attribution or liability;
+				</p>
+				<p>
+					<span class="level-1">7</span>.
+					<span class="level-2">2</span>.
+					<span class="level-3">2</span>.
+					you waive any moral rights or similar rights in respect of your entry to which you may be
+					entitled (at the time of submission or in the future) under the Copyright, Designs and
+					Patents Act 1988 as amended time to time or under any similar applicable laws in force
+					from time to time in force anywhere in the world;
+				</p>
+				<p>
+					<span class="level-1">7</span>.
+					<span class="level-2">2</span>.
+					<span class="level-3">3</span>.
+					you acknowledge that third parties will have access to and will be able to republish
+					your Entry in accordance with the terms of use of the social media platform through
+					which your Entry is submitted.
+				</p>
+			</div>
+
+			<div class="paragraph">
+				<h5>
+					<span class="level-1">8</span>.
+					Liability
+				</h5>
+				<p>
+					<span class="level-1">8</span>.
+					<span class="level-2">1</span>.
+					Except for death or personal injury caused by negligence of the Promoter or its agents or
+					representatives or for fraud or fraudulent misrepresentation, neither the Promoter, nor
+					its agents or representatives assume responsibility for:
+				</p>
+				<p>
+					<span class="level-1">8</span>.
+					<span class="level-2">1</span>.
+					<span class="level-3">1</span>.
+					any Prize that is not redeemed;
+				</p>
+				<p>
+					<span class="level-1">8</span>.
+					<span class="level-2">1</span>.
+					<span class="level-3">2</span>.
+					any personal property;
+				</p>
+				<p>
+					<span class="level-1">8</span>.
+					<span class="level-2">1</span>.
+					<span class="level-3">3</span>.
+					any loss of enjoyment or wasted expenditure;
+				</p>
+				<p>
+					<span class="level-1">8</span>.
+					<span class="level-2">1</span>.
+					<span class="level-3">4</span>.
+					any system failures or malfunctions of any third party websites;
+				</p>
+				<p>
+					<span class="level-1">8</span>.
+					<span class="level-2">1</span>.
+					<span class="level-3">5</span>.
+					any incomplete, lost, delayed or late Entries;
+				</p>
+				<p>
+					<span class="level-1">8</span>.
+					<span class="level-2">1</span>.
+					<span class="level-3">6</span>.
+					any failure to fulfil obligations of any third parties involved in this Prize Draw;
+				</p>
+				<p>
+					<span class="level-1">8</span>.
+					<span class="level-2">1</span>.
+					<span class="level-3">7</span>.
+					any fault, malfunction, damage, loss or disappointment suffered by the participants
+					in the Prize Draw howsoever arising from participating in the Prize Draw;
+				</p>
+				<p>
+					<span class="level-1">8</span>.
+					<span class="level-2">1</span>.
+					<span class="level-3">8</span>.
+					communications line failure, regardless of cause, with regard to any equipment, systems,
+					networks, lines, satellites, servers, computers or providers utilised in any aspect of this Prize Draw;
+				</p>
+				<p>
+					<span class="level-1">8</span>.
+					<span class="level-2">1</span>.
+					<span class="level-3">9</span>.
+					inaccessibility or unavailability of the internet, or any website (including without
+					limitation any social media web sites) or any combination thereof through dial up,
+					broadband, mobile internet or WAP connections;
+				</p>
+				<p>
+					<span class="level-1">8</span>.
+					<span class="level-2">1</span>.
+					<span class="level-3">10</span>.
+					any injury or damage to a participant which may be related to or arising from the
+					Prize Draw or the Prize;
+				</p>
+				<p>
+					<span class="level-1">8</span>.
+					<span class="level-2">1</span>.
+					<span class="level-3">11</span>.
+					if for any reason the Prize Draw or any website in connection with the Prize Draw
+					is not capable of running as planned for reasons which may include without limitation,
+					infection by computer, virus, tampering, unauthorised intervention, fraud, technical
+					failures or any other causes which may corrupt or affect the administration security,
+					fairness, integrity or proper conduct of this promotion; and/or
+				</p>
+				<p>
+					<span class="level-1">8</span>.
+					<span class="level-2">1</span>.
+					<span class="level-3">12</span>.
+					any other matter outside of their reasonable control.
+				</p>
+				<p>
+					<span class="level-1">8</span>.
+					<span class="level-2">2</span>.
+					Nothing in these Terms and Conditions affects your statutory rights.
+				</p>
+				<p>
+					<span class="level-1">8</span>.
+					<span class="level-2">3</span>.
+					To the extent permitted by law, all conditions, warranties and other terms which might
+					otherwise be implied by statute or common law are expressly excluded from these Terms and Conditions.
+				</p>
+				<p>
+					<span class="level-1">8</span>.
+					<span class="level-2">4</span>.
+					The Winners agree to indemnify and keep indemnified the Promoter, its group of companies
+					and their officers, employees and agents from and against all liabilities, losses,
+					damages and expenses (including legal and other professional fees) arising out of or
+					in connection with any allegations or claims resulting directly or indirectly from:
+				</p>
+				<p>
+					<span class="level-1">8</span>.
+					<span class="level-2">4</span>.
+					<span class="level-3">1</span>.
+					their Entry into this Prize Draw; and/or
+				</p>
+				<p>
+					<span class="level-1">8</span>.
+					<span class="level-2">4</span>.
+					<span class="level-3">2</span>.
+					their receipt and use of any Prize.
+				</p>
+			</div>
+
+			<div class="paragraph">
+				<h5>
+					<span class="level-1">9</span>.
+					General
+				</h5>
+				<p>
+					<span class="level-1">9</span>.
+					<span class="level-2">1</span>.
+					The Promoter reserves the right to cancel or amend the Prize Draw or these Terms and Conditions
+					if it has reasonable grounds for doing so. Any changes to the Prize Draw or these Terms and
+					Conditions will be announced by the Promoter through its Instagram account.
+				</p>
+				<p>
+					<span class="level-1">9</span>.
+					<span class="level-2">2</span>.
+					By entering the Prize Draw you accept these Terms and Conditions as in force at the time you submit your Entry.
+				</p>
+				<p>
+					<span class="level-1">9</span>.
+					<span class="level-2">3</span>.
+					Any person who provides their Details to the Promoter in connection with this Prize Draw accepts:
+				</p>
+				<p>
+					<span class="level-1">9</span>.
+					<span class="level-2">3</span>.
+					<span class="level-3">1</span>.
+					these Terms and Conditions
+				</p>
+			</div>
+
+		</div>
+		{% endcomment %}
+	</div>
+  </div>
