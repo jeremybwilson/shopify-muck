@@ -3061,3 +3061,19 @@ function debounce(fn, wait, immediate) {
       }
     };
   }
+  $(document).ready(function() {
+    if(window.location.hash){
+      var haskey = window.location.hash.substr(1);
+      if(haskey != "" && haskey != undefined && $("#" + haskey).length > 0){
+        setTimeout(function(){ 
+          var divobj = $("#" + haskey).parents('.toggle').find('.toggle-title');
+          divobj.click();
+          var header_height = parseInt($("#header-section").height()) + parseInt($('.toggle-title:first').height());
+          var divtop = parseInt(divobj.offset().top) - header_height;
+          $('html, body').animate({
+            scrollTop: divtop
+          }, 500);
+        }, 2000);
+      }
+    }
+  });
