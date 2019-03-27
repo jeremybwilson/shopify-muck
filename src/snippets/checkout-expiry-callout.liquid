@@ -1,13 +1,11 @@
-{% if settings.international_store_version == "UK" or settings.international_store_version == "EU" %}
-	{% if settings.show_cc_callout %}
-	  <script>
-	    if(Shopify.Checkout.step == 'payment_method'){
-	        var spanElm = document.createElement('span');
-	        spanElm.setAttribute('style','color:#ff0000;font-size:11px;');
-	        spanElm.innerHTML = '{{ settings.cc_callout }}';
-	        var payMethodElm = document.querySelector('[data-credit-card-expiry] .field__input-wrapper');
-	        payMethodElm.append(spanElm);
-	    }
-	  </script>
-	{% endif %}
+{% if settings.show_cc_callout %}
+  <script>
+    if(Shopify.Checkout.step == 'payment_method'){
+        var spanElm = document.createElement('span');
+        spanElm.setAttribute('style','color:#ff0000;font-size:11px;');
+        spanElm.innerHTML = '{{ settings.cc_callout }}';
+        var payMethodElm = document.querySelector('[data-credit-card-expiry] .field__input-wrapper');
+        payMethodElm.append(spanElm);
+    }
+  </script>
 {% endif %}
