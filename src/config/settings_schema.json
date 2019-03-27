@@ -1212,6 +1212,7 @@
         "label": "Callout text",
         "default": "Please only include 2 digits for the year"
       }
+    ]
   },
   {
     "name": "YOTPO",
