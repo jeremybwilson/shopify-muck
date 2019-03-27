@@ -15,7 +15,7 @@
         <span>Viewing </span>
       </div>
       <div class="blog-nav-menu-mobile-list-wrapper">
-        <select class="blog-nav-menu-mobile-list"
+        <select aria-label="Blog List" class="blog-nav-menu-mobile-list"
                 onchange="location = this.value;"
         >
           {% for link in linklists.blogs.links %}
@@ -25,7 +25,7 @@
                     {% if blog.handle == blogItem.handle %} selected{% endif %}
             >{{ blogItem.title }}</option>
           {% endfor %}
-        </select>
+        </select> 
       </div>
     </div>
   </div>

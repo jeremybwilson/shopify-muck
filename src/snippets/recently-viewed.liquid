@@ -23,8 +23,8 @@
   <div class="product-car">
     <div id="recently-product-${handle}" class="prod-container">
       <div class="prod-image">
-        <a href="${url}" class="cy">
-          <img src="${Shopify.resizeImage(featured_image, "large")}" />
+        <a href="${url}" class="cy" aria-label="Product Image">
+          <img src="${Shopify.resizeImage(featured_image, "large")}" alt="${featured_image.alt}" />
         </a>
       </div>
       <div class="product-info">

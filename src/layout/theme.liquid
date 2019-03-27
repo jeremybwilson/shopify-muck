@@ -20,7 +20,7 @@
   <meta name="description" content="{{ page_description | escape }}" />
   {% endif %}
   <link rel="canonical" href="{{ canonical_url }}" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1"> <!--maximum-scale=1, user-scalable=no-->
 
   {% if settings.international_store_version == 'UK' %}
     <!-- gs.uk--> <meta name="google-site-verification" content="Q_rdvBTmaaMZxNvPtwzObfp70UECW9MkmG2U6ldc5a8" />
@@ -188,7 +188,7 @@
   {% include 'react-discounts' %}
 
 
-  <a href="#" class="scrollup"><i class="icon-chevron-up icon-2x"></i></a>
+  <a aria-label="Scroll up" href="#" class="scrollup"><i class="icon-chevron-up icon-2x"></i></a>
 
   <!-- Begin Recently Viewed Products -->
   <script type="text/javascript" charset="utf-8">
