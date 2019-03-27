@@ -394,26 +394,6 @@
       "1535728526385": {
         "type": "slideshow",
         "blocks": {
-          "1544666970903": {
-            "type": "image",
-            "settings": {
-              "image": "shopify://shop_images/bull-shed-barn.jpg",
-              "mobile_image": "shopify://shop_images/bull-shed-barn-mobile.jpg",
-              "heading": "Win a Two Night Stay in Bull Shed Barn",
-              "subheading": "",
-              "cta_one_link": "shopify://pages/contest",
-              "cta_one_button_text": "SIGN UP NOW",
-              "cta_two_link": "",
-              "cta_two_button_text": "",
-              "caption_color_scheme": "white",
-              "custom_slide_main_color": "#ffffff",
-              "custom_slide_alt_color": "#164732",
-              "caption_horizontal": "center",
-              "caption_vertical": 40,
-              "caption_background": "rgba(0,0,0,0)",
-              "caption_opacity": "0.1"
-            }
-          },
           "1551675459784": {
             "type": "image",
             "settings": {
@@ -456,7 +436,6 @@
           }
         },
         "block_order": [
-          "1544666970903",
           "1551675459784",
           "1551675343628"
         ],
