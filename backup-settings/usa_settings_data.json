@@ -118,7 +118,7 @@
     "ajax_cart_method": "drawer",
     "ajax_cart_remove_text": "This will remove the item from your cart. Continue?",
     "ajax_cart_low_stock_text": "This item does not have enough stock to add to your cart.",
-    "discount_modal_enable": true,
+    "discount_modal_enable": false,
     "discount_modal_config": "eyJjb29raWVFeHBpcmVJbkRheXMiOjYwLCJ0aHJlc2hvbGREaXNjb3VudHMiOlt7ImRpc2NvdW50SWQiOjEsImdyYW50VHlwZSI6InBpY2siLCJwcm9kdWN0SGFuZGxlIjoid2lnd2FtLXdpbnRlci1oYXQiLCJtaW5TcGVuZCI6MTAwLCJnaWZ0SWQiOjE2MTIyMDIxNzQwNjM4LCJpbnZlbnRvcnlJZCI6MTYxMjIwMjE3NDA2MzgsImRpc3BsYXlOYW1lIjoiV2lnd2FtIFdpbnRlciBIYXQgKEJsYWNrKSJ9LHsiZGlzY291bnRJZCI6MiwiZ3JhbnRUeXBlIjoicGljayIsInByb2R1Y3RIYW5kbGUiOiJ3aWd3YW0td2ludGVyLWhhdCIsIm1pblNwZW5kIjoxMDAsImdpZnRJZCI6MTYxMjIwMjIyMzIxNTgsImludmVudG9yeUlkIjoxNjEyMjAyMjIzMjE1OCwiZGlzcGxheU5hbWUiOiJXaWd3YW0gV2ludGVyIEhhdCAoR3JheSkifSx7ImRpc2NvdW50SWQiOjMsImdyYW50VHlwZSI6InBpY2siLCJwcm9kdWN0SGFuZGxlIjoid2lnd2FtLXdpbnRlci1oYXQiLCJtaW5TcGVuZCI6MTAwLCJnaWZ0SWQiOjE2MTIyMDIyNTI3MDcwLCJpbnZlbnRvcnlJZCI6MTYxMjIwMjI1MjcwNzAsImRpc3BsYXlOYW1lIjoiV2lnd2FtIFdpbnRlciBIYXQgKE5hdHVyYWwpIn1dfQ==",
     "twittername": "",
     "facebook_url": "//www.facebook.com/muckbootco/",
