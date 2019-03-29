@@ -1,7 +1,15 @@
 {% layout none %}
 
 <div id="product-quick-view" class="row">
-  {% section 'product-template' %}
+
+  {% if product.tags contains 'promo_product_only' %}
+    {% section 'product-promo-template' %}
+
+  {% else %}
+
+    {% section 'product-template' %}
+
+  {% endif %}
 </div>
 
 {% if settings.ajax_cart_method == 'drawer' %}

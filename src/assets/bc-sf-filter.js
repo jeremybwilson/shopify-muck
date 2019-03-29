@@ -15,7 +15,7 @@ var bcSfFilterSettings = {
 var bcSfFilterTemplate = {
 
     // Grid Template
-    'productGridItemHtml':  '<div id="{{itemProductId}}" class="product-index {{itemGridWidthClass}}" data-alpha="{{itemTitle}}" data-price="{{itemPriceAttr}}">' +
+    'productGridItemHtml':  '<div id="{{itemProductId}}" class="product-index {{itemGridWidthClass}} {{itemSpecialClass}}" data-alpha="{{itemTitle}}" data-price="{{itemPriceAttr}}">' +
                                 '<div class="prod-container">' +
                                     '{{itemBadge}}' +
                                     '<div class="prod-image">' +
@@ -248,7 +248,22 @@ BCSfFilter.prototype.buildProductGridItem = function(data, index, totalProduct) 
         }
     }
     itemHtml = itemHtml.replace(/{{itemSwatch}}/g, itemSwatchHtml);
-  
+
+    // ADD SPECIAL CLASSES
+
+    var itemSpecialClass = '';
+
+    if ( data.tags ) {
+        var productPromoOnly = data.tags.filter(function (tag) {
+            return tag === 'promo_product_only'
+        }).length
+
+        if ( productPromoOnly ) {
+            itemSpecialClass = 'promo-product-only';
+            
+        }
+    }
+    itemHtml = itemHtml.replace(/{{itemSpecialClass}}/g, itemSpecialClass);
 
     // INFO : Add main attributes for product data
     itemHtml = itemHtml.replace(/{{itemPriceAttr}}/g, data.price_min);

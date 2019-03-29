@@ -124,6 +124,17 @@ $loadMoreBgHover: {{ settings.collection_load_more_bg_hover }};
     }
 }
 
+// PROMO PRODUCTS : Wrapper around price block
+
+.product-index {
+    &.promo-product-only {
+        .product-title-wrap,
+        .product-price-wrap {
+            display: none;
+        }
+    }
+}
+
 .bc-sf-filter-load-more-button {
     @include h6;
     @include fontSize( 16px );
@@ -143,3 +154,5 @@ $loadMoreBgHover: {{ settings.collection_load_more_bg_hover }};
       padding: 20px 70px;
     }
 }
+
+

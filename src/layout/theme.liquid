@@ -92,7 +92,7 @@
 
 </head>
 
-<body class="gridlock shifter {% if template contains 'product' %}product{% elsif template contains 'collection' %}collection{% else %}{{ template }}{% endif %}">
+<body class="gridlock shifter {% if template contains 'product' %}product{% elsif template contains 'collection' %}collection{% else %}{{ template }}{% endif %}{% if template == 'product.promo' %} product-promo{% endif %}">
   {% include 'script-google-tag-body' %}
   {% include 'timber-cart' %}
 
@@ -158,7 +158,7 @@
 
         {% comment %} :: PAGE CONTENT :: {% endcomment %}
         {% comment %} Note : PRODUCT DETAILS has breadcrumbs but custom wrappers {% endcomment %}
-        <div id="content" {% if template !='product' %}class="row"{% endif %} />
+        <div id="content" {% unless template contains 'product' %}class="row"{% endunless %} />
           {{ content_for_layout }}
         </div>
 

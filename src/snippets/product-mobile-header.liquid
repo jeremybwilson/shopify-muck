@@ -25,25 +25,33 @@
 
         {% endcomment %}
 
-        <div id="product-price--mobile">
-          <span class="product-price" itemprop="price">
-            <span class="money">{{ price }}</span>
-          </span>
-          {% if current_variant.compare_at_price > current_variant.price %}
-            <span class="was">
-              <span class="money">{{ compare_price }}</span>
-            </span>
-          {% endif %}
-        </div><div class="clear"></div>
+        {% unless template contains 'promo' %}
 
-        {% if settings.yotpo_enable_flag == true and settings.international_store_version != blank %}
-          {% comment %} REVIEWS - STAR RATING {% endcomment %}
-          {% include 'yotpo-product-snippet' %}
-        {% endif %}
+          <div id="product-price--mobile">
+            <span class="product-price" itemprop="price">
+              <span class="money">{{ price }}</span>
+            </span>
+            {% if current_variant.compare_at_price > current_variant.price %}
+              <span class="was">
+                <span class="money">{{ compare_price }}</span>
+              </span>
+            {% endif %}
+          </div><div class="clear"></div>
+
+          {% if settings.yotpo_enable_flag == true and settings.international_store_version != blank %}
+            {% comment %} REVIEWS - STAR RATING {% endcomment %}
+            {% include 'yotpo-product-snippet' %}
+          {% endif %}
+
+        {% endunless %}
 
       </div>
 
-      <input type="submit" name="button" class="add product--mobile-header--add AddtoCart{% if section.settings.show_payment_button %} secondary-button{% endif %}" value="{{ call_to_action }}" {% unless current_variant.available %}disabled{% endunless %} />
+      {% unless template contains 'promo' %}
+
+        <input type="submit" name="button" class="add product--mobile-header--add AddtoCart{% if section.settings.show_payment_button %} secondary-button{% endif %}" value="{{ call_to_action }}" {% unless current_variant.available %}disabled{% endunless %} />
+
+      {% endunless %}
     </div><!--.mobile-header--top -->
 
   </div>
