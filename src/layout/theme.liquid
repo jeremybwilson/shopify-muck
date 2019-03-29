@@ -90,7 +90,11 @@
 
   {{ content_for_header }}
 
-</head>
+  {% include 'pagefly-header' %}
+  {% if settings.nosto_id != blank %}
+    {% include 'nosto-script' %}
+  {% endif %}
+</head> 
 
 <body class="gridlock shifter {% if template contains 'product' %}product{% elsif template contains 'collection' %}collection{% else %}{{ template }}{% endif %}{% if template == 'product.promo' %} product-promo{% endif %}">
   {% include 'script-google-tag-body' %}
@@ -306,5 +310,8 @@
       </script>
     {% endif %}
   {% endunless %}
+  {% if settings.nosto_id != blank %}
+    {% include 'nosto-tagging' %}
+  {% endif %}
 </body>
 </html>

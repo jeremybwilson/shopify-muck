@@ -1016,8 +1016,15 @@
         "label": "Container ID",
         "info": "Add the container ID (GTM-XXXXXXX) associated with the Google Tag Manager Account."
       },
-
-
+      {
+        "type": "header",
+        "content": "Nosto"
+      },
+      {
+        "type": "text",
+        "id": "nosto_id",
+        "label": "ID"
+      },
       {
         "type": "header",
         "content": "Sizmek Tracking Info"
