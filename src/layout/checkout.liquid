@@ -54,5 +54,22 @@
     {% include 'checkout-expiry-callout' %}
     {% include 'checkout-customization-script' %}
     {% include 'script-google-tag-body' %}
+    <script>
+      var jquery = null;
+      if (window.jQuery) {
+        jquery = window.jQuery;
+      } else if (window.Checkout && window.Checkout.$) {
+        jquery = window.Checkout.$;
+      }
+      jquery(document).on('page:load', function() {
+        var countries_arr= ['IE','GB','LV','LT'];
+        jquery("#checkout_shipping_address_country option").each(function() {
+            if(jquery.inArray(jquery(this).attr('data-code'),countries_arr) > -1)
+            {
+                jquery(this).remove();
+            }
+        });
+      });
+    </script>
   </body>
 </html>
