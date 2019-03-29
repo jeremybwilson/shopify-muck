@@ -101,7 +101,8 @@ jobs:
               theme_id: "live"
               store: muckboot-uk.myshopify.com
               ignore_files:
-                - settings_data.json' > ./config.yml
+                - settings_data.json
+                - en.default.json' > ./config.yml
       - run:
           name: Deploy
           command: slate deploy -e production
@@ -123,7 +124,8 @@ jobs:
               theme_id: "live"
               store: muckboot-eu.myshopify.com
               ignore_files:
-                - settings_data.json' > ./config.yml
+                - settings_data.json
+                - en.default.json' > ./config.yml
       - run:
           name: Deploy
           command: slate deploy -e production
@@ -145,7 +147,8 @@ jobs:
               theme_id: "live"
               store: muckboot-ca.myshopify.com
               ignore_files:
-                - settings_data.json' > ./config.yml
+                - settings_data.json
+                - en.default.json' > ./config.yml
       - run:
           name: Deploy
           command: slate deploy -e production
