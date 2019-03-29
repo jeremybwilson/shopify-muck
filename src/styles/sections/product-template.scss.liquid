@@ -81,7 +81,8 @@
   }
 }
 
-#shopify-section-product-template {
+#shopify-section-product-template,
+#shopify-section-product-promo-template {
   margin-top: 60px;
 
   @include mq('tablet-and-up') {
@@ -185,6 +186,43 @@
 /* Product Form Snippet
  * ---------------------------------------------- */
 @import url('../snippets/product-form.scss.liquid');
+
+/* Product - Promo Description
+ * ---------------------------------------------- */
+
+.product-promo-desc {
+  margin-top: 0;
+
+  p, ul {
+    color: $color--dark-green-1;
+    @include fontDim(14px,24px,.025em);
+    text-align: left;
+
+    @include mq('tablet-and-up') {
+      @include fontSize(16px);
+      line-height: 30px / 16px * 1em;
+      text-align: left;
+    }
+  
+    li {
+      position: relative;
+      padding-left: 20px;
+      text-align: left;
+      list-style: none;
+  
+      &:before {
+        content: '';
+        position: absolute;
+        top: 10px;
+        left: 0;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background-color: $color--orange-1;
+      }
+    }
+  } 
+}
 
 
 /* Free Shipping
@@ -477,4 +515,12 @@
       color: $color--dark-green;
     }
   }  
+}
+
+// Promo template addons
+
+body.product-promo {
+  #breadcrumb {
+    display: none;
+  }
 }
