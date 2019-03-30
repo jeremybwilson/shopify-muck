@@ -128,6 +128,7 @@
     "googleplus_url": "",
     "instagram_id": "muckbootco",
     "gtm_container_id": "GTM-MXBM66P",
+    "nosto_id": "1525252190",
     "sizmek_company_id": "6795",
     "sizmek_version_num": "9",
     "sizmek_pixel_cart_start": "20720632",
@@ -149,6 +150,8 @@
     "currency_format": "money_with_currency_format",
     "supported_currencies": "INR GBP CAD USD AUD EUR JPY",
     "default_currency": "USD",
+    "show_cc_callout": false,
+    "cc_callout": "Please only include 2 digits for the year",
     "yotpo_enable_flag": true,
     "yotpo_key_value": "gzejKiOGN46xeB5iurqalrS7dI7zEUIMZ9OCF4MM",
     "checkout_header_image": "",
@@ -818,6 +821,26 @@
       "1535728526385": {
         "type": "slideshow",
         "blocks": {
+          "1548186930171": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/WeAreMuckproof-HPG-1920x828.jpg",
+              "mobile_image": "shopify://shop_images/WeAreMuckproof-MobileHPG-768x835-2.jpg",
+              "heading": "JOIN US IN SUPPORTING THE Nebraska Cattleman Disaster Relief Fund",
+              "subheading": "",
+              "cta_one_link": "https://teespring.com/we-are-muckproof#pid=2&cid=581&sid=front",
+              "cta_one_button_text": "Donate NOW",
+              "cta_two_link": "",
+              "cta_two_button_text": "",
+              "caption_color_scheme": "white",
+              "custom_slide_main_color": "#080808",
+              "custom_slide_alt_color": "#164732",
+              "caption_horizontal": "left",
+              "caption_vertical": 45,
+              "caption_background": "rgba(0,0,0,0)",
+              "caption_opacity": "0.9"
+            }
+          },
           "1545367874052": {
             "type": "image",
             "settings": {
@@ -829,26 +852,6 @@
               "cta_one_button_text": "Shop New Arrivals",
               "cta_two_link": "",
               "cta_two_button_text": "Add a button",
-              "caption_color_scheme": "white",
-              "custom_slide_main_color": "#ffffff",
-              "custom_slide_alt_color": "#164732",
-              "caption_horizontal": "center",
-              "caption_vertical": 50,
-              "caption_background": "rgba(0,0,0,0)",
-              "caption_opacity": "0.1"
-            }
-          },
-          "1548186930171": {
-            "type": "image",
-            "settings": {
-              "image": "shopify://shop_images/waterproof-weatherproof-slide-2_df5e5ac3-4c85-45b3-bad2-adb2d6e807f5.jpg",
-              "mobile_image": "shopify://shop_images/waterproof-weatherproof-slide-2-mobile_868658e8-a143-4261-a893-ffffb8a7d8cb.jpg",
-              "heading": "READY FOR UNPREDICTABLE WEATHER",
-              "subheading": "",
-              "cta_one_link": "shopify://collections/men-featured-fairfield-leather",
-              "cta_one_button_text": "Shop Now",
-              "cta_two_link": "",
-              "cta_two_button_text": "",
               "caption_color_scheme": "white",
               "custom_slide_main_color": "#ffffff",
               "custom_slide_alt_color": "#164732",
@@ -880,8 +883,8 @@
           }
         },
         "block_order": [
-          "1545367874052",
           "1548186930171",
+          "1545367874052",
           "1552632193923"
         ],
         "settings": {
