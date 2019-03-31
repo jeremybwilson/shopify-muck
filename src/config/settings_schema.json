@@ -1221,6 +1221,25 @@
       }
     ]
   },
+  {  
+    "name": "Cart discounts executed in checkout [Plus]",  
+    "settings": [ 
+      { 
+        "type": "header",  
+        "content": "Enable cart page / drawer discount code input field." 
+      },  
+      { 
+        "type": "paragraph",  
+        "content": "Adds a discount code input field to the cart page / drawer." 
+      },  
+      { 
+        "type": "checkbox",  
+        "id": "plus_display_discount_code", 
+        "label": "Show discount code input field on cart page / drawer.", 
+        "default": true 
+      } 
+    ]  
+  },
   {
     "name": "YOTPO",
     "settings": [

@@ -98,8 +98,13 @@
           <div class="desktop-half tablet-half mobile-half">
             <p class="text-right"><strong>{{{totalPrice}}}</strong></p>
           </div>
+        {% endraw %}
 
-        {% endraw %}{% if settings.checkout_shipping_callout_enable %}{% raw %}
+        <!-- PDM-218 Start -->
+            {% include 'plus_cart_discount_code' with settings.plus_display_discount_code %}
+        <!-- PDM-218 END -->
+          
+        {% if settings.checkout_shipping_callout_enable %}{% raw %}
           <p class="text-center">{% endraw %}{{ 'cart.general.shipping_at_checkout' | t }}{% raw %}</p>
         {% endraw %}{% endif %}{% raw %}
           <button type="submit" class="cart__checkout" name="checkout">
@@ -152,5 +157,4 @@
     </div>
   {% endraw %}
 </script>
-
 
