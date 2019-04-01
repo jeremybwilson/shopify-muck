@@ -253,8 +253,8 @@
           "num_of_promo_banners": "2",
           "announcement_text_one": "<div class=\"bold\">FREE DELIVERY & RETURNS ON ALL ORDERS</div>",
           "announcement_link_one": "shopify://pages/delivery-and-returns",
-          "announcement_text_two": "<div class=\"bold\">DISCOVER OUR NEW ARRIVALS</div>",
-          "announcement_link_two": "shopify://collections/new-arrivals",
+          "announcement_text_two": "<div class=\"bold\">REVIEW OUR BOOTS & WIN RHS CHELSEA TICKETS</div>",
+          "announcement_link_two": "",
           "announcement_height": 60,
           "announcement_swap_rate": 5,
           "logo_size": 24,
@@ -400,18 +400,18 @@
           "1551675459784": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/dog-walking-boots.jpg",
-              "mobile_image": "shopify://shop_images/dog-walking-boots-mobile.jpg",
-              "heading": "Dog Walking Boots",
-              "subheading": "",
-              "cta_one_link": "https://www.muckbootcompany.co.uk/collections/dog-walking/audience_women",
-              "cta_one_button_text": "Shop Women's",
-              "cta_two_link": "https://www.muckbootcompany.co.uk/collections/dog-walking/audience_men",
-              "cta_two_button_text": "Shop Men's",
+              "image": "shopify://shop_images/wellie-egg-hunt.jpg",
+              "mobile_image": "shopify://shop_images/wellie-egg-hunt-mobile.jpg",
+              "heading": "JOIN OUR WELLIE EGG HUNT!",
+              "subheading": "Find the eggs hidden throughout our site and win boots. T&Cs apply.",
+              "cta_one_link": "",
+              "cta_one_button_text": "",
+              "cta_two_link": "",
+              "cta_two_button_text": "",
               "caption_color_scheme": "white",
               "custom_slide_main_color": "#ffffff",
               "custom_slide_alt_color": "#164732",
-              "caption_horizontal": "left",
+              "caption_horizontal": "right",
               "caption_vertical": 50,
               "caption_background": "rgba(0,0,0,0)",
               "caption_opacity": "0.1"
@@ -420,18 +420,38 @@
           "1551675343628": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/kids-collection.jpg",
-              "mobile_image": "shopify://shop_images/kids-collection-mobile.jpg",
-              "heading": "Designed With Little Loves in Mind",
+              "image": "shopify://shop_images/waterproof.jpg",
+              "mobile_image": "shopify://shop_images/waterproof-mobile.jpg",
+              "heading": "100% WATERPROOF",
               "subheading": "",
-              "cta_one_link": "shopify://collections/kids",
-              "cta_one_button_text": "Shop Now",
+              "cta_one_link": "https://www.muckbootcompany.co.uk/collections/liberty-leather/audience_women",
+              "cta_one_button_text": "SHOP LIBERTY",
               "cta_two_link": "",
               "cta_two_button_text": "Add a button",
               "caption_color_scheme": "white",
               "custom_slide_main_color": "#ffffff",
               "custom_slide_alt_color": "#164732",
-              "caption_horizontal": "left",
+              "caption_horizontal": "center",
+              "caption_vertical": 50,
+              "caption_background": "rgba(0,0,0,0)",
+              "caption_opacity": "0.1"
+            }
+          },
+          "1554093824503": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/rhs-chelsea.jpg",
+              "mobile_image": "shopify://shop_images/rhs-chelsea-mobile.jpg",
+              "heading": "WIN A PAIR OF RHS CHELSEA FLOWER SHOW TICKETS",
+              "subheading": "Entries are automatic with every product review on our site. T&Cs apply.",
+              "cta_one_link": "",
+              "cta_one_button_text": "Add a button",
+              "cta_two_link": "",
+              "cta_two_button_text": "Add a button",
+              "caption_color_scheme": "white",
+              "custom_slide_main_color": "#ffffff",
+              "custom_slide_alt_color": "#164732",
+              "caption_horizontal": "center",
               "caption_vertical": 50,
               "caption_background": "rgba(0,0,0,0)",
               "caption_opacity": "0.1"
@@ -440,7 +460,8 @@
         },
         "block_order": [
           "1551675459784",
-          "1551675343628"
+          "1551675343628",
+          "1554093824503"
         ],
         "settings": {
           "full_width": true,
@@ -521,15 +542,28 @@
               "link": "shopify://collections/horse-stable",
               "cta_text": "Shop Now"
             }
+          },
+          "1554094143526": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/warm-weather-mobile_aab9f62f-a7bc-4417-86b2-540df7924853.jpg",
+              "mobile_image": "shopify://shop_images/warm-weather_85150ead-ebec-4a65-a0d4-34dd4c394ac3.jpg",
+              "heading": "WARM WEATHER",
+              "svg_icon": "",
+              "png_icon": "",
+              "link": "shopify://collections/warm-weather",
+              "cta_text": "Shop Now"
+            }
           }
         },
         "block_order": [
           "1536068961071-1",
           "1536068961071-3",
           "1536068961071-2",
+          "1554094143526",
           "1536068961071-4",
-          "1536068961071-0",
-          "1536068961071-5"
+          "1536068961071-5",
+          "1536068961071-0"
         ],
         "settings": {}
       },
@@ -539,23 +573,23 @@
           "1536251685211-1": {
             "type": "text_block",
             "settings": {
-              "image": "shopify://shop_images/2_box_left_module_710x473_1.jpg",
-              "mobile_image": "shopify://shop_images/2_box_left_module_mobile_640x583_mobile_1.jpg",
-              "link": "https://www.muckbootcompany.co.uk/collections/outdoor-activity",
-              "heading_text": "Unpredictable weather",
-              "text": "<p>Prepare for sunny spells and sudden downpours with our 100% waterproof boots.</p>",
+              "image": "shopify://shop_images/puddles-please.jpg",
+              "mobile_image": "shopify://shop_images/puddles-please-mobile.jpg",
+              "link": "shopify://collections/outdoor-activity",
+              "heading_text": "PUDDLES PLEASE!",
+              "text": "<p>Springtime is here, gear up for April Showers with our 100% waterproof boots.</p>",
               "cta_text": "Shop Now"
             }
           },
           "1536251685211-0": {
             "type": "text_block",
             "settings": {
-              "image": "shopify://shop_images/2_box_right_module_710x473_ce5c9d92-1959-4e16-a701-6197a85816de.jpg",
-              "mobile_image": "shopify://shop_images/2_box_right_module_640x583_mobile_90813bc0-b2b3-4ccf-badb-9df2497bf02e.jpg",
-              "link": "https://www.muckbootcompany.co.uk/collections/dog-walking",
-              "heading_text": "Dog Walking Boots",
-              "text": "<p>Possibly the most comfortable wellies you'll walk the dog in.</p>",
-              "cta_text": "Shop Now"
+              "image": "shopify://shop_images/national-pet-day.jpg",
+              "mobile_image": "shopify://shop_images/national-pet-day-mobile.jpg",
+              "link": "shopify://collections/dog-walking",
+              "heading_text": "NATIONAL PET DAY",
+              "text": "<p>Indulge them with their favourite treats and a long walk in the park!</p>",
+              "cta_text": "SHOP DOG WALKING BOOTS"
             }
           }
         },
