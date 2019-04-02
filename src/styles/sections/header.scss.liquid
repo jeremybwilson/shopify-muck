@@ -296,21 +296,21 @@ $navBarDesktopHeight: 80px;
             // ACCOUNT : User account item
             .nav-account {
                 width: 46px;
-                
+
                 &:hover {
-                    .icon-account {
+                    .icon-account, .icon-shopping-bag {
                         fill: {{ settings.nav_links_hover }};
                     }
                 }
 
-                .icon-account {
+                .icon-account, .icon-shopping-bag {
                     transition: fill 0.35s ease-in-out;
                     fill: {{ settings.nav_links }};
                 }
             }
 
 
-            // CART 
+            // CART
             .nav-cart {
                 color: {{ settings.nav_links }}; //Legacy font-icon support for "bag" font icon
 
