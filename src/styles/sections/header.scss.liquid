@@ -301,16 +301,9 @@ $navBarDesktopHeight: 80px;
                 .icon-account {
                   fill: {{ settings.nav_links_hover }};
                 }
-                .icon-shopping-bag {
-                  fill: {{ settings.nav_links_hover }};
-                }
               }
 
               .icon-account {
-                transition: fill 0.35s ease-in-out;
-                fill: {{ settings.nav_links }};
-              }
-              .icon-shopping-bag {
                 transition: fill 0.35s ease-in-out;
                 fill: {{ settings.nav_links }};
               }
@@ -319,20 +312,26 @@ $navBarDesktopHeight: 80px;
 
             // CART
             .nav-cart {
-                color: {{ settings.nav_links }}; //Legacy font-icon support for "bag" font icon
+                color: {{ settings.nav_links }}; // Legacy font-icon support for "bag" font icon
 
                 &:hover {
-                    .fa-shopping-bag { color: {{ settings.nav_links_hover }}; }
-                    .icon-cart  { fill:  {{ settings.nav_links_hover }}; }
-                    .cart-count { color: {{ settings.nav_links_hover }}; }
+                  .fa-shopping-bag { color: {{ settings.nav_links_hover }}; }
+                  .icon-cart  { fill:  {{ settings.nav_links_hover }}; }
+                  .cart-count { color: {{ settings.nav_links_hover }}; }
+                  .icon-shopping-bag { fill: {{ settings.nav_links_hover }}; }
                 }
 
                 i.fa, // Support bag font-icon for now..
                 .icon-cart {
-                    margin-right: 8px; // Space icon from cart #
-                    fill: {{ settings.nav_links }};
-                    color: {{ settings.nav_links }}; //For "Bag" insteaed of Cart icon (font icon)
-                    transition: fill 0.35s ease-in-out;
+                  margin-right: 8px; // Space icon from cart #
+                  fill: {{ settings.nav_links }};
+                  color: {{ settings.nav_links }}; //For "Bag" insteaed of Cart icon (font icon)
+                  transition: fill 0.35s ease-in-out;
+                }
+
+                .icon-shopping-bag { // Support bag svg icon for now
+                  transition: fill 0.35s ease-in-out;
+                  fill: {{ settings.nav_links }};
                 }
 
                 .cart-count {
