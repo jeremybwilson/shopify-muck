@@ -2093,10 +2093,18 @@ theme.ProductForm = function (context, events) {
     var elements = context.querySelectorAll("[type=radio]");
     var states = {
       sold_out: function (element) {
-        element.parentElement.classList.add("soldout");
+        var var_type = element.getAttribute('name');
+        if(var_type == "size"){
+          element.setAttribute('disabled',true);
+          element.parentElement.classList.add("soldout");
+        }
       },
 
       available: function (element) {
+        var var_type = element.getAttribute('name');
+        if(var_type == "size"){
+          element.removeAttribute('disabled');
+        }
         element.parentElement.classList.remove("soldout");
       }
     };
@@ -3075,5 +3083,21 @@ function debounce(fn, wait, immediate) {
           }, 500);
         }, 2000);
       }
+    }
+  });
+  $(document).on('change','.swatch.color input',function(){
+    var var_type = $(this).attr('name');
+    var var_value = $(this).attr('value');
+    if(var_type == "color"){
+      var product = document.querySelector(".product-json").innerHTML,
+        product = JSON.parse(product || '{}');
+      var variants = product.variants;
+      $.each(variants, function(key,value) {
+        if(value.option1 == var_value && value.available){
+          $('#swatch-2-'+ value.option2.toLowerCase()).prop('checked', true);
+          $('[data-option="option2"').val(value.option2).trigger('change');
+          return false;
+        }
+      });
     }
   });
