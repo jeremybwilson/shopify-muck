@@ -519,18 +519,6 @@
               "cta_text": "Shop Now"
             }
           },
-          "1554094143526": {
-            "type": "image",
-            "settings": {
-              "image": "shopify://shop_images/warm-weather-mobile_aab9f62f-a7bc-4417-86b2-540df7924853.jpg",
-              "mobile_image": "shopify://shop_images/warm-weather_85150ead-ebec-4a65-a0d4-34dd4c394ac3.jpg",
-              "heading": "WARM WEATHER",
-              "svg_icon": "",
-              "png_icon": "",
-              "link": "shopify://collections/warm-weather",
-              "cta_text": "Shop Now"
-            }
-          },
           "1536068961071-4": {
             "type": "image",
             "settings": {
@@ -573,7 +561,6 @@
           "1536068961071-1",
           "1536068961071-3",
           "1536068961071-2",
-          "1554094143526",
           "1536068961071-4",
           "1536068961071-5",
           "1536068961071-0"
