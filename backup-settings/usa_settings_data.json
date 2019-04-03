@@ -485,23 +485,23 @@
           "1536251685211-1": {
             "type": "text_block",
             "settings": {
-              "image": "shopify://shop_images/Muck-MthrsDy-Email-1000x1000-Animated.gif",
-              "mobile_image": "shopify://shop_images/Muck-MthrsDy-Email-1000x1000-Animated.gif",
-              "link": "shopify://collections/women-featured-new-arrivals",
+              "image": "shopify://shop_images/2_box_left_module_mobile_640x583_mobile_1.jpg",
+              "mobile_image": "shopify://shop_images/2_box_left_module_710x473_1.jpg",
+              "link": "shopify://collections/farm-work",
               "heading_text": "For WOMEN THAT DO IT ALL",
-              "text": "",
-              "cta_text": "SHOP GARDEN"
+              "text": "<p>Living life in the muck&nbsp;</p>",
+              "cta_text": "SHOP FARM"
             }
           },
           "1536251685211-0": {
             "type": "text_block",
             "settings": {
-              "image": "shopify://shop_images/kids-collection-mobile_134x134_crop_center_2x_509e22c5-e1f5-409e-b174-f6588c97b32e.jpg",
-              "mobile_image": "shopify://shop_images/kids-collection-mobile_134x134_crop_center_2x_509e22c5-e1f5-409e-b174-f6588c97b32e.jpg",
-              "link": "shopify://collections/kids",
-              "heading_text": "BOOTS DESIGNED FOR LITTLE ONES",
-              "text": "",
-              "cta_text": "Shop  Kids"
+              "image": "shopify://shop_images/product_WCXF-333T_1_2400x_d854c771-226b-483f-bd4c-98fa30807a20.jpg",
+              "mobile_image": "shopify://shop_images/product_WCXF-333T_1_2400x_d854c771-226b-483f-bd4c-98fa30807a20.jpg",
+              "link": "shopify://products/womens-chore-wide-calf-boots",
+              "heading_text": "boots that are made for chores",
+              "text": "<p>New adjustable waterproof gusset&nbsp;</p>",
+              "cta_text": "Shop Wide CALF"
             }
           }
         },
@@ -821,31 +821,11 @@
       "1535728526385": {
         "type": "slideshow",
         "blocks": {
-          "1548186930171": {
-            "type": "image",
-            "settings": {
-              "image": "shopify://shop_images/WeAreMuckproof-HPG-1920x828.jpg",
-              "mobile_image": "shopify://shop_images/WeAreMuckproof-MobileHPG-768x835-2.jpg",
-              "heading": "JOIN US IN SUPPORTING THE Nebraska Cattlemen Disaster Relief Fund",
-              "subheading": "",
-              "cta_one_link": "https://teespring.com/we-are-muckproof#pid=2&cid=581&sid=front",
-              "cta_one_button_text": "Donate NOW",
-              "cta_two_link": "",
-              "cta_two_button_text": "",
-              "caption_color_scheme": "white",
-              "custom_slide_main_color": "#080808",
-              "custom_slide_alt_color": "#164732",
-              "caption_horizontal": "left",
-              "caption_vertical": 45,
-              "caption_background": "rgba(0,0,0,0)",
-              "caption_opacity": "0.9"
-            }
-          },
           "1545367874052": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/free-silk-scarf.jpg",
-              "mobile_image": "shopify://shop_images/free-silk-scarf-desktop.jpg",
+              "image": "shopify://shop_images/waterproof.jpg",
+              "mobile_image": "shopify://shop_images/waterproof-mobile.jpg",
               "heading": "Step into Spring",
               "subheading": "",
               "cta_one_link": "shopify://collections/new-arrivals",
@@ -859,6 +839,26 @@
               "caption_vertical": 50,
               "caption_background": "rgba(0,0,0,0)",
               "caption_opacity": "0.1"
+            }
+          },
+          "1548186930171": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/WeAreMuckproof-HPG-1920x828.jpg",
+              "mobile_image": "shopify://shop_images/2_box_left_module_mobile_640x583_mobile_1.jpg",
+              "heading": "JOIN US IN SUPPORTING THE Nebraska Cattlemen Disaster Relief Fund",
+              "subheading": "",
+              "cta_one_link": "https://teespring.com/we-are-muckproof#pid=2&cid=581&sid=front",
+              "cta_one_button_text": "Donate NOW",
+              "cta_two_link": "",
+              "cta_two_button_text": "",
+              "caption_color_scheme": "white",
+              "custom_slide_main_color": "#080808",
+              "custom_slide_alt_color": "#164732",
+              "caption_horizontal": "left",
+              "caption_vertical": 45,
+              "caption_background": "rgba(0,0,0,0)",
+              "caption_opacity": "0.9"
             }
           },
           "1552632193923": {
@@ -880,12 +880,33 @@
               "caption_background": "rgba(0,0,0,0)",
               "caption_opacity": "0.1"
             }
+          },
+          "1554211635120": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/pattern.gif",
+              "mobile_image": "shopify://shop_images/new-arrivals-mobile_134x134_crop_center_2x_85f15b6d-87ae-4452-a66e-b8c758021f6d.jpg",
+              "heading": "Roll them up or down",
+              "subheading": "\"Perfect for working in the muck. I bought the boots for the farm, especially working in the muck with the horses. Best thing I ever did!\"",
+              "cta_one_link": "shopify://products/womens-muckster-2-short-boots",
+              "cta_one_button_text": "SHOP BEST SELLER",
+              "cta_two_link": "",
+              "cta_two_button_text": "Add a button",
+              "caption_color_scheme": "white",
+              "custom_slide_main_color": "#ffffff",
+              "custom_slide_alt_color": "#164732",
+              "caption_horizontal": "center",
+              "caption_vertical": 50,
+              "caption_background": "rgba(0,0,0,0)",
+              "caption_opacity": "0.3"
+            }
           }
         },
         "block_order": [
-          "1548186930171",
           "1545367874052",
-          "1552632193923"
+          "1548186930171",
+          "1552632193923",
+          "1554211635120"
         ],
         "settings": {
           "full_width": true,
