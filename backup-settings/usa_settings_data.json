@@ -880,33 +880,12 @@
               "caption_background": "rgba(0,0,0,0)",
               "caption_opacity": "0.1"
             }
-          },
-          "1554211635120": {
-            "type": "image",
-            "settings": {
-              "image": "shopify://shop_images/pattern.gif",
-              "mobile_image": "shopify://shop_images/new-arrivals-mobile_134x134_crop_center_2x_85f15b6d-87ae-4452-a66e-b8c758021f6d.jpg",
-              "heading": "Roll them up or down",
-              "subheading": "\"Perfect for working in the muck. I bought the boots for the farm, especially working in the muck with the horses. Best thing I ever did!\"",
-              "cta_one_link": "shopify://products/womens-muckster-2-short-boots",
-              "cta_one_button_text": "SHOP BEST SELLER",
-              "cta_two_link": "",
-              "cta_two_button_text": "Add a button",
-              "caption_color_scheme": "white",
-              "custom_slide_main_color": "#ffffff",
-              "custom_slide_alt_color": "#164732",
-              "caption_horizontal": "center",
-              "caption_vertical": 50,
-              "caption_background": "rgba(0,0,0,0)",
-              "caption_opacity": "0.3"
-            }
           }
         },
         "block_order": [
           "1545367874052",
           "1548186930171",
-          "1552632193923",
-          "1554211635120"
+          "1552632193923"
         ],
         "settings": {
           "full_width": true,
