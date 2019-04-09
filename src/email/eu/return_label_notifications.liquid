@@ -40,7 +40,6 @@
                               </h1>
                             {%- endif %}
                             </td>
-
                             <td class="order-number__cell">
                               <span class="order-number__text">
                                 Order {{ order.name }}
@@ -52,12 +51,10 @@
                       </td>
                     </tr>
                   </table>
-
                 </center>
               </td>
             </tr>
           </table>
-
           <table class="row content">
             <tr>
               <td class="content__cell">
@@ -65,32 +62,36 @@
                   <table class="container">
                     <tr>
                       <td>
-                        <h2>Your return label is ready</h2>
-                        <table class="row actions">
-                          <tr>
-                            <td class="actions__cell">
-                              <table class="button main-action-cell">
-                                <tr>
-                                  <td class="button__cell"><a href="{{ return_label.public_file_url }}" class="button__text">Print return label</a></td>
-                                </tr>
-                              </table>
-                            {% if shop.url %}
-                              <table class="link secondary-action-cell">
-                                <tr>
-                                  <td class="link__cell">or <a href="{{ shop.url }}">Visit our store</a></td>
-                                </tr>
-                              </table>
-                            {% endif %}
-                            </td>
-                          </tr>
-                        </table>
-                      </td>
-                    </tr>
-                  </table>
-                </center>
-              </td>
-            </tr>
-          </table>
+
+                      <h2>Your return label is ready</h2>
+                      <table class="row actions">
+  <tr>
+    <td class="actions__cell">
+      <table class="button main-action-cell">
+        <tr>
+          <td class="button__cell"><a href="{{ return_label.public_file_url }}" class="button__text">Print return label</a></td>
+        </tr>
+      </table>
+      {% if shop.url %}
+    <table class="link secondary-action-cell">
+      <tr>
+        <td class="link__cell">or <a href="{{ shop.url }}">Visit our store</a></td>
+      </tr>
+    </table>
+{% endif %}
+
+    </td>
+  </tr>
+</table>
+
+
+            </td>
+          </tr>
+        </table>
+      </center>
+    </td>
+  </tr>
+</table>
           <table class="row section">
   <tr>
     <td class="section__cell">
