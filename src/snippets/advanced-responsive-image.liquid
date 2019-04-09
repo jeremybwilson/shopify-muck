@@ -8,7 +8,7 @@
 
       {%- if mobile_image.size > 0 -%}
         {% assign mobile_img_url = mobile_image | img_url: '767x' %}
-        <source srcset="{{ mobile_img_url }}" media="(max-width: 767px)">
+        <source srcset="{{ mobile_img_url | split:'?' | first}}" media="(max-width: 767px)">
       {%- endif -%}
 
       {% comment %} :: DESKTOP IMAGE :: {% endcomment %}

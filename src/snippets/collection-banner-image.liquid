@@ -11,7 +11,7 @@
 
 <div class="asset-desk">
   <img class="lazyload lazyload-fade"
-    data-src="{{ banner | file_img_url: '2000x' }}"
+    data-src="{{ banner | file_img_url: '2000x' | split:'?' | first}}"
     alt="{{ collection.title | escape }}">
 </div>
 
@@ -19,6 +19,6 @@
 
 <div class="asset-mob">
   <img class="lazyload lazyload-fade"
-    data-src="{{ banner_mobile | file_img_url: '800x' }}"
+    data-src="{{ banner_mobile | file_img_url: '800x' | split:'?' | first}}"
     alt="{{ collection.title | escape }}">
 </div>
