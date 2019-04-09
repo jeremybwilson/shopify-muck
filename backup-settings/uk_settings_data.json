@@ -863,7 +863,7 @@
             "type": "html",
             "settings": {
               "title": "How Do I check My Order Status?",
-              "answer": "<p>If you are a registered customer, you can access your order history by logging into your account using the credentials you used to create your account. You will find the “My Account” link located at the top of each page. Once you have accessed your account, you can click on the “Track Order” link for order status. If you are not a registered user, you can contact Customer Service at +44 808-281-9536, or by submitting an email via the Contact Us section on our site <a href=\"/pages/contact-us\"> here</a>. Customer Service hours are 9am to 5pm (GMT/BST) Monday through Friday.</p>",
+              "answer": "<p>If you are a registered customer, you can access your order history by logging into your account using the credentials you used to create your account. You will find the “My Account” link located at the top of each page. Once you have accessed your account, you can click on the “Track Order” link for order status. If you are not a registered user, you can contact Customer Service at +44 808-281-9536, or by submitting an email via the Contact Us section on our site <a href=\"/pages/contact-us\"> here</a>. Customer Service hours are 9am to 5pm (GMT/GMT+1) Monday through Friday.</p>",
               "anchor": "orderstatus"
             }
           },
