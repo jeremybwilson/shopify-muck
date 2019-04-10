@@ -99,11 +99,7 @@
             <p class="text-right"><strong>{{{totalPrice}}}</strong></p>
           </div>
         {% endraw %}
-
-        <!-- PDM-218 Start -->
-            {% include 'plus_cart_discount_code' with settings.plus_display_discount_code %}
-        <!-- PDM-218 END -->
-          
+  
         {% if settings.checkout_shipping_callout_enable %}{% raw %}
           <p class="text-center">{% endraw %}{{ 'cart.general.shipping_at_checkout' | t }}{% raw %}</p>
         {% endraw %}{% endif %}{% raw %}

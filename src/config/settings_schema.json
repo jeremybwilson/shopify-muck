@@ -1222,21 +1222,31 @@
     ]
   },
   {  
-    "name": "Cart discounts executed in checkout [Plus]",  
+    "name": "Discount code callout executed in checkout [Plus]",  
     "settings": [ 
       { 
         "type": "header",  
-        "content": "Enable cart page / drawer discount code input field." 
+        "content": "Enable discount custom message." 
       },  
       { 
         "type": "paragraph",  
-        "content": "Adds a discount code input field to the cart page / drawer." 
+        "content": "Set a discount code and their related custom message." 
       },  
       { 
         "type": "checkbox",  
-        "id": "plus_display_discount_code", 
-        "label": "Show discount code input field on cart page / drawer.", 
+        "id": "display_discount_msg", 
+        "label": "Show discount code custom message on checkout.", 
         "default": true 
+      },
+      { 
+        "type": "text",  
+        "id": "discount_code", 
+        "label": "Employee discount code"
+      },
+      { 
+        "type": "text",  
+        "id": "discount_msg", 
+        "label": "Custom message"
       } 
     ]  
   },
