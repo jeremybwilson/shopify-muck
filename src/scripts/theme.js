@@ -2029,6 +2029,11 @@ theme.ProductForm = function (context, events) {
   var optionSelectors = new Shopify.OptionSelectors("product-select-" + product.id, {
     product: product,
     onVariantSelected: function(variant, selector) {
+      
+      $('.variant-inventory-one-unit').html("");
+      if(inv_qty[ variant.id ] == 1){
+        $('.variant-inventory-one-unit').html("Only 1 left!"); 
+      }
 
       if ( !variant ) {
         events.trigger("variantunavailable");
