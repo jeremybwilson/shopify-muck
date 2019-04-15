@@ -1,5 +1,6 @@
-{% capture email_title %}You have a message from {{shop.name}}{% endcapture %}
-{% assign shop_custom_name = "The Original Muck Boot Company&reg;" %}
+{% capture shop_custom_name %}The Original Muck Boot Company&reg;{% endcapture %}
+{% capture email_title %}You have a message from {{shop_custom_name}}{% endcapture %}
+{% capture shop_url_email_params %}?utm_source=tran&utm_medium=email&utm_campaign=contact_customer{% endcapture %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +26,7 @@
 
             <!-- LOGO  -->
 
-            <a href="{{ shop.url }}?utm_source=tran&utm_medium=email&utm_campaign=contact_customer" title="{{ shop_custom_name }}" target="_blank">
+            <a href="{{ shop.url }}{{ shop_url_email_params }}" title="{{ shop_custom_name }}" target="_blank">
               <img class="center fixedwidth" align="center" border="0" src="https://cdn.shopify.com/s/files/1/0032/6480/7010/files/muck-logo.png?5524665369218808649" alt="{{ shop_custom_name }}" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;width: 100%;max-width: 90px" width="90">
             </a>
 
