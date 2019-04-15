@@ -395,6 +395,26 @@
       "1535728526385": {
         "type": "slideshow",
         "blocks": {
+          "1555302246216": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/survey-monkey-free-boots.jpg",
+              "mobile_image": "shopify://shop_images/survey-monkey-free-boots-mobile.jpg",
+              "heading": "WHAT DO YOU THINK?",
+              "subheading": "Complete this short survey for a chance to win FREE Muck Boots!",
+              "cta_one_link": "https://www.surveymonkey.com/r/L3VMBKR",
+              "cta_one_button_text": "START SURVEY",
+              "cta_two_link": "",
+              "cta_two_button_text": "Add a button",
+              "caption_color_scheme": "white",
+              "custom_slide_main_color": "#ffffff",
+              "custom_slide_alt_color": "#164732",
+              "caption_horizontal": "center",
+              "caption_vertical": 50,
+              "caption_background": "rgba(0,0,0,0)",
+              "caption_opacity": "0.1"
+            }
+          },
           "1550466783821": {
             "type": "image",
             "settings": {
@@ -457,6 +477,7 @@
           }
         },
         "block_order": [
+          "1555302246216",
           "1550466783821",
           "1551674921955",
           "1544669188958"
