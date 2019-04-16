@@ -1,7 +1,6 @@
 {% capture shop_custom_name %}The Original Muck Boot Company&reg;{% endcapture %}
 {% capture email_title %}Activate your account{% endcapture %}
 {% capture email_body %}Hi {{ customer.first_name }}, you've created a new customer account at <a href="{{ shop.url }}{{ shop_url_email_params }}" style="color: #ab5232; text-decoration: underline; font-weight: bold;">{{shop.name}}</a>. All you have to do is activate it.{% endcapture %}
-{% endcapture %}
 {% capture shop_url_email_params %}?utm_source=tran&utm_medium=email&utm_campaign=customer_account_invite{% endcapture %}
 
 <!DOCTYPE html>
