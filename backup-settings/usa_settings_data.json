@@ -864,12 +864,12 @@
           "1552632193923": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/rate-review-win.jpg",
-              "mobile_image": "shopify://shop_images/rate-review-win-mobile.jpg",
-              "heading": "RATE AND REVIEW",
-              "subheading": "FOR A CHANCE TO WIN FOUR PAIRS OF FREE BOOTS!",
-              "cta_one_link": "shopify://pages/sweeps",
-              "cta_one_button_text": "LEARN MORE",
+              "image": "shopify://shop_images/free-silk-scarf.jpg",
+              "mobile_image": "shopify://shop_images/free-silk-scarf-desktop.jpg",
+              "heading": "APRIL SHOWERS",
+              "subheading": "Bring May flowers",
+              "cta_one_link": "shopify://collections/garden",
+              "cta_one_button_text": "SHOP GARDEN",
               "cta_two_link": "",
               "cta_two_button_text": "Add a button",
               "caption_color_scheme": "white",
