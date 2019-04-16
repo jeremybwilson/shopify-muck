@@ -225,3 +225,31 @@
         }
     }
 }
+
+// page.returns-gate.liquid
+
+#form--gate--submit-return {
+	padding: 0;
+
+	#checkbox--submit-return {
+		display: inline;
+		margin-right: 12px;
+	}
+	label {
+		display: inline;
+	}
+	#button--submit-return {
+		display: inline-block;
+		margin-top: .5em;
+		background-color: $color--orange-1;
+
+		&:disabled {
+			opacity: .5;
+			pointer-events: none;
+		}
+
+		&:hover {
+			background-color: $color--dark-green-1;
+		}
+	}
+}
