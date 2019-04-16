@@ -1,0 +1,86 @@
+{% comment %} CONTENT :: Before Questions {% endcomment %}
+
+{% comment %} Capture the code {% endcomment %}
+{% capture returns_gate_code %}
+
+    <div id="form--gate--submit-return">
+    <p><input type="checkbox" id="checkbox--submit-return"/><label for="checkbox--submit-return">{{ section.settings.checkbox_text }}</label><br/>
+    <button class="button" id="button--submit-return" data-href="{{ section.settings.button_url }}" data-error-text="{{ section.settings.error_text }}" title="Submit a Return" disabled>{{ section.settings.submit_text }}</button></p>
+    </div>
+
+    {% comment %} Here's the script! {% endcomment %}
+    <script>  
+    (function($){
+
+        // if element exists
+        if ( $('#form--gate--submit-return').length > 0 ) {
+
+        // initializers
+        var ui = {
+            checkbox: $( '#checkbox--submit-return'),
+            button:   $( '#button--submit-return')
+        }
+
+        // on check, undisable button
+        ui.checkbox.on( 'change', this, function() {
+            if ( this.checked ) {
+            ui.button.prop( 'disabled', false );
+            } else {
+            ui.button.prop( 'disabled', true );
+            }
+        });
+
+        // check if checked          
+        ui.button.on( 'click', this, function( e ) {
+            if ( ui.checkbox.is( ':checked' ) ) {
+
+            // if true, go to the href
+            window.location = ui.button.attr( 'data-href' );
+            } else {
+
+            // if not, show alert
+            alert( ui.button.attr( 'data-error-text' ) )
+            }
+        });
+        }
+
+    })(jQuery);
+    
+    </script>
+
+{% endcapture %}
+
+{{ page.content | replace: "[[returns_gate_code]]", returns_gate_code }}
+
+{% schema %}
+  {
+    "name": "Returns - Gate Page",
+    "settings": [
+    { 
+        "type": "url",
+        "id": "button_url",
+        "label": "Button URL"
+    },
+    {
+        "type": "text",
+        "id": "checkbox_text",
+        "label": "Checkbox text",
+        "default": "I accept and agree to the online return policy."
+    },
+    {
+        "type": "text",
+        "id": "submit_text",
+        "label": "Submit Button text",
+        "default": "Submit A Return"
+    },
+    {
+        "type": "text",
+        "id": "error_text",
+        "label": "Error text",
+        "default": "Please agree to the online return policy by checking the checkbox"
+    }
+    ]
+  }
+
+{% endschema %}
+
