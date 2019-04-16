@@ -118,7 +118,7 @@
     "ajax_cart_method": "drawer",
     "ajax_cart_remove_text": "This will remove the item from your cart. Continue?",
     "ajax_cart_low_stock_text": "This item does not have enough stock to add to your cart.",
-    "discount_modal_enable": true,
+    "discount_modal_enable": false,
     "discount_modal_config": "eyJjb29raWVFeHBpcmVJbkRheXMiOjYwLCJjdXJyZW5jeVN5bWJvbCI6IiZldXJvOyIsInRocmVzaG9sZERpc2NvdW50cyI6W3siZGlzY291bnRJZCI6MSwiZGlzcGxheU5hbWUiOiJDYXJkIFdhbGxldCIsImdpZnRJZCI6MjE0NTQ5NTAzMDE4MDEsImdyYW50VHlwZSI6ImFsbCIsImludmVudG9yeUlkIjoyMTQ1NDk1MDMwMTgwMSwibWluU3BlbmQiOjEwMCwicHJvZHVjdEhhbmRsZSI6ImNhcmQtd2FsbGV0In1dfQ==",
     "twittername": "",
     "facebook_url": "//www.facebook.com/muckbootco/",
@@ -251,9 +251,9 @@
           "num_of_promo_banners": "2",
           "announcement_text_one": "<div class=\"bold\">FREE DELIVERY & RETURNS ON ALL ORDERS</div>",
           "announcement_link_one": "shopify://pages/delivery-and-returns",
-          "announcement_text_two": "<div class=\"bold\">REVIEW OUR BOOTS & WIN RHS CHELSEA TICKETS</div>",
-          "announcement_link_two": "",
-          "announcement_height": 60,
+          "announcement_text_two": "<div class=\"bold\">ENTER TO WIN: TAKE OUR SURVEY</div>",
+          "announcement_link_two": "https://www.surveymonkey.com/r/PCVY5QH",
+          "announcement_height": 50,
           "announcement_swap_rate": 5,
           "logo_size": 24,
           "logo_transform": "uppercase",
@@ -395,26 +395,6 @@
       "1535728526385": {
         "type": "slideshow",
         "blocks": {
-          "1555302246216": {
-            "type": "image",
-            "settings": {
-              "image": "shopify://shop_images/survey-monkey-free-boots.jpg",
-              "mobile_image": "shopify://shop_images/survey-monkey-free-boots-mobile.jpg",
-              "heading": "WHAT DO YOU THINK?",
-              "subheading": "Complete this short survey for a chance to win FREE Muck Boots!",
-              "cta_one_link": "https://www.surveymonkey.com/r/L3VMBKR",
-              "cta_one_button_text": "START SURVEY",
-              "cta_two_link": "",
-              "cta_two_button_text": "Add a button",
-              "caption_color_scheme": "white",
-              "custom_slide_main_color": "#ffffff",
-              "custom_slide_alt_color": "#164732",
-              "caption_horizontal": "center",
-              "caption_vertical": 50,
-              "caption_background": "rgba(0,0,0,0)",
-              "caption_opacity": "0.1"
-            }
-          },
           "1550466783821": {
             "type": "image",
             "settings": {
@@ -477,7 +457,6 @@
           }
         },
         "block_order": [
-          "1555302246216",
           "1550466783821",
           "1551674921955",
           "1544669188958"
