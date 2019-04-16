@@ -1,6 +1,8 @@
+{% capture shop_custom_name %}The Original Muck Boot Company&reg;{% endcapture %}
 {% capture email_title %}Activate your account{% endcapture %}
-{% capture email_body %}Hi {{ customer.first_name }}, you've created a new customer account at <a href="{{ shop.url }}?utm_source=tran&utm_medium=email&utm_campaign=customer_account_invite?utm_source=tran&utm_medium=email&utm_campaign=customer_account_invite" style="color: #ab5232; text-decoration: underline; font-weight: bold;">{{shop.name}}</a>. All you have to do is activate it.{% endcapture %}
-{% assign shop_custom_name = "The Original Muck Boot Company&reg;" %}
+{% capture email_body %}Hi {{ customer.first_name }}, you've created a new customer account at <a href="{{ shop.url }}{{ shop_url_email_params }}" style="color: #ab5232; text-decoration: underline; font-weight: bold;">{{shop.name}}</a>. All you have to do is activate it.{% endcapture %}
+{% endcapture %}
+{% capture shop_url_email_params %}?utm_source=tran&utm_medium=email&utm_campaign=customer_account_invite{% endcapture %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -26,7 +28,7 @@
 
             <!-- LOGO  -->
 
-            <a href="{{ shop.url }}?utm_source=tran&utm_medium=email&utm_campaign=customer_account_invite" title="{{ shop_custom_name }}" target="_blank">
+            <a href="{{ shop.url }}{{ shop_url_email_params }}" title="{{ shop_custom_name }}" target="_blank">
               <img class="center fixedwidth" align="center" border="0" src="https://cdn.shopify.com/s/files/1/0032/6480/7010/files/muck-logo.png?5524665369218808649" alt="{{ shop_custom_name }}" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;width: 100%;max-width: 90px" width="90">
             </a>
 
@@ -102,7 +104,7 @@
                     <!-- LINK -->
 
                     <div style="color:#164632;line-height:120%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
-                      <div style="font-size:12px;line-height:14px;color:#164632;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 12px; line-height: 14px; letter-spacing: .125em;"><a style="color:#164632;text-decoration: none;" title="Visit Live Site" href="{{ shop.url }}?utm_source=tran&utm_medium=email&utm_campaign=customer_account_invite?utm_source=tran&utm_medium=email&utm_campaign=customer_account_invite" target="_blank" rel="noopener">VISIT OUR STORE</a></span></p></div>
+                      <div style="font-size:12px;line-height:14px;color:#164632;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 12px; line-height: 14px; letter-spacing: .125em;"><a style="color:#164632;text-decoration: none;" title="Visit Live Site" href="{{ shop.url }}{{ shop_url_email_params }}" target="_blank" rel="noopener">VISIT OUR STORE</a></span></p></div>
                     </div>
 
                   </div>
@@ -169,7 +171,7 @@
                 <td>
 
                   <div style="color:#798d85;line-height:120%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
-                    <div style="font-size:12px;line-height:14px;color:#798d85;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 12px; line-height: 14px;"><a style="color:#798d85;text-decoration: none;" title="Contact Us" href="https://www.muckbootcompany.com/pages/contact-us?utm_source=tran&utm_medium=email&utm_campaign=customer_account_invite" target="_blank" rel="noopener">CONTACT US</a>&#160;&#160;&#160;&#160; <a style="color:#798d85;text-decoration: none;" title="Contact Us" href="tel:18553772668" target="_blank" rel="noopener">855-377-BOOT (2668)</a><br></span></p></div>
+                    <div style="font-size:12px;line-height:14px;color:#798d85;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 12px; line-height: 14px;"><a style="color:#798d85;text-decoration: none;" title="Contact Us" href="{{ shop.url }}/pages/contact-us{{ shop_url_email_params }}" target="_blank" rel="noopener">CONTACT US</a>&#160;&#160;&#160;&#160; <a style="color:#798d85;text-decoration: none;" title="Contact Us" href="tel:18553772668" target="_blank" rel="noopener">855-377-BOOT (2668)</a><br></span></p></div>
                   </div>
 
                 </td>
@@ -207,7 +209,7 @@
                 <td>
 
                   <div style="color:#798d85;line-height:120%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
-                    <div style="font-size:12px;line-height:14px;color:#798d85;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 12px; line-height: 14px;"><a style="color:#798d85;text-decoration: none;" href="https://www.muckbootcompany.com/pages/terms-conditions?utm_source=tran&utm_medium=email&utm_campaign=customer_account_invite" target="_blank" rel="noopener">Terms &amp; <span style="line-height: 14px; font-size: 12px;">Conditions</span></a> | <a style="color:#798d85;text-decoration: none;" href="https://www.muckbootcompany.com/pages/privacy-policy?utm_source=tran&utm_medium=email&utm_campaign=customer_account_invite" target="_blank" rel="noopener">Privacy Policy</a></span><span style="font-size: 12px; line-height: 14px;"><br></span></p></div>
+                    <div style="font-size:12px;line-height:14px;color:#798d85;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 12px; line-height: 14px;"><a style="color:#798d85;text-decoration: none;" href="{{shop.url }}/pages/terms-conditions{{ shop_url_email_params }}" target="_blank" rel="noopener">Terms &amp; <span style="line-height: 14px; font-size: 12px;">Conditions</span></a> | <a style="color:#798d85;text-decoration: none;" href="{{ shop.url }}/pages/privacy-policy{{ shop_url_email_params }}" target="_blank" rel="noopener">Privacy Policy</a></span><span style="font-size: 12px; line-height: 14px;"><br></span></p></div>
                   </div>
 
                 </td>
