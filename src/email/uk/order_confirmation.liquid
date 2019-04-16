@@ -3,8 +3,9 @@
   {% if requires_shipping %}
     Hi {{ customer.first_name }}, we're getting your order ready for delivery. We will notify you when it has been sent.
   {% endif %}
-{% endcapture %}
-{% assign shop_custom_name = "The Original Muck Boot Company&reg;" %}
+{% endcapture %}{% capture shop_custom_name %}The Original Muck Boot Company&reg;{% endcapture %}
+{% capture shop_url_email_params %}?utm_source=tran&utm_medium=email&utm_campaign=order_confirmation{% endcapture %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -29,7 +30,7 @@
 
             <!-- LOGO  -->
 
-            <a href="{{ shop.url }}?utm_source=tran&utm_medium=email&utm_campaign=order_confirmation" target="_blank" title="{{ shop_custom_name }}">
+            <a href="{{ shop.url }}{{ shop_url_email_params }}" target="_blank" title="{{ shop_custom_name }}">
               <img class="center fixedwidth" align="center" border="0" src="https://cdn.shopify.com/s/files/1/0032/6480/7010/files/muck-logo.png?5524665369218808649" alt="{{ shop_custom_name }}" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;width: 100%;max-width: 90px" width="90">
             </a>
 
@@ -408,7 +409,7 @@
                 <td>
 
                   <div style="color:#798d85;line-height:120%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
-                    <div style="font-size:12px;line-height:14px;color:#798d85;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 12px; line-height: 14px;"><a style="color:#798d85;text-decoration: none;" title="Contact Us" href="https://muckboot-uk.myshopify.com/pages/terms-conditions/pages/contact-us?utm_source=tran&utm_medium=email&utm_campaign=order_confirmation" target="_blank" rel="noopener">CONTACT US</a>&#160;&#160;&#160;&#160; <a style="color:#798d85;text-decoration: none;" title="Contact Us" href="tel:+44 808 281 9536" target="_blank" rel="noopener">+44 808 281 9536</a><br></span></p></div>
+                    <div style="font-size:12px;line-height:14px;color:#798d85;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 12px; line-height: 14px;"><a style="color:#798d85;text-decoration: none;" title="Contact Us" href="{{ shop.url }}/pages/contact-us{{ shop_url_email_params }}" target="_blank" rel="noopener">CONTACT US</a>&#160;&#160;&#160;&#160; <a style="color:#798d85;text-decoration: none;" title="Contact Us" href="tel:+44 808 281 9536" target="_blank" rel="noopener">+44 808 281 9536</a><br></span></p></div>
                   </div>
 
                 </td>
@@ -446,7 +447,7 @@
                 <td>
 
                   <div style="color:#798d85;line-height:120%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
-                    <div style="font-size:12px;line-height:14px;color:#798d85;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 12px; line-height: 14px;"><a style="color:#798d85;text-decoration: none;" href="https://muckboot-uk.myshopify.com/pages/terms-conditions/pages/terms-conditions?utm_source=tran&utm_medium=email&utm_campaign=order_confirmation" target="_blank" rel="noopener">Terms &amp; <span style="line-height: 14px; font-size: 12px;">Conditions</span></a> | <a style="color:#798d85;text-decoration: none;" href="https://www.honeywell.com/privacy-statement" target="_blank" rel="noopener">Privacy Policy</a></span><span style="font-size: 12px; line-height: 14px;"><br></span></p></div>
+                    <div style="font-size:12px;line-height:14px;color:#798d85;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 12px; line-height: 14px;"><a style="color:#798d85;text-decoration: none;" href="{{ shop.url }}/pages/terms-conditions{{ shop_url_email_params }}" target="_blank" rel="noopener">Terms &amp; <span style="line-height: 14px; font-size: 12px;">Conditions</span></a> | <a style="color:#798d85;text-decoration: none;" href="{{ shop.url }}/pages/privacy-statement{{ shop_url_email_params }}" target="_blank" rel="noopener">Privacy Policy</a></span><span style="font-size: 12px; line-height: 14px;"><br></span></p></div>
                   </div>
 
                 </td>
