@@ -1,3 +1,4 @@
+{% capture shop_custom_name %}The Original Muck Boot Company&reg;{% endcapture %}
 {% capture email_title %}Complete your purchase{% endcapture %}
 {% capture email_body %}
   {% if item_count > 1 %}
@@ -6,8 +7,6 @@
     This item will be reserved for you until: <strong>{{ reserve_inventory_until | date: "%A, %B %-d, %Y at %-l:%M %P %z" }}</strong>
   {% endif %}
 {% endcapture %}
-
-{% assign shop_custom_name = "The Original Muck Boot Company<sup>&reg;</sup>" %}
 
 <!DOCTYPE html>
 <html lang="en">
