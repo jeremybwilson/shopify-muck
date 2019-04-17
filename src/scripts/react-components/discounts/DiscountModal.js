@@ -14,17 +14,17 @@ class DiscountModal extends React.Component {
 		this.addItemToCart = this.addItemToCart.bind( this );
 		this.getDiscountById = this.getDiscountById.bind( this );
 		this.handleSelection = this.handleSelection.bind( this );
-		this.modalShowHide = this.modalShowHide.bind( this );
+		this.updateModal = this.updateModal.bind( this );
 		this.onAddItemError = this.onAddItemError.bind( this );
 		this.toggleButtonEnable = this.toggleButtonEnable.bind( this );
 	}
 
 	componentDidMount() {
-		this.modalShowHide();
+		this.updateModal();
 	}
 
 	componentDidUpdate() {
-		this.modalShowHide();
+		this.updateModal();
 	}
 
 
@@ -69,12 +69,34 @@ class DiscountModal extends React.Component {
 		}
 	}
 
-	modalShowHide() {
+	updateModal() {
 		const { discountsToApply, doNotShowAgain, removedDiscounts } = this.props;
+		let showModal = false;
 		
-		let showHide = !doNotShowAgain && ( discountsToApply.length > 0 || removedDiscounts.length > 0 ) ? true : false;
-		if ( this.state.showModal !== showHide ) {
-			this.setState({ showModal: showHide });
+		// CHECK #1 : Discounts to Apply : Check for auto-add status and handle accordingly
+		if ( !doNotShowAgain && discountsToApply.length > 0 ) {
+			discountsToApply.forEach( discountObj => {
+
+				// AUTO-ADD : Only add automatically if proper setting + grantType are set
+				if ( discountObj.autoAddToCart && discountObj.grantType === 'all' ) {
+					this.handleSelection( [ discountObj.discountId ], true );
+				
+				// SHOW DISCOUNT : If not, show the discount modal so user can pick their item to add to cart 
+				} else {
+					showModal = true;
+				} 
+			});
+		}
+
+		// CHECK #2 : Discounts to Remove : If already set to show, skip check, otherwise check this array as well
+		if ( !doNotShowAgain && !showModal && removedDiscounts.length > 0 ) {
+			showModal = true;
+		}
+
+ 
+		// STATE : SHOW MODAL : If already shown no need to update state again, just update on show changes
+		if ( this.state.showModal !== showModal ) {
+			this.setState({ showModal: showModal });
 		}
 	}
 
