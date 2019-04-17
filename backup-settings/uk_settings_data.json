@@ -931,6 +931,15 @@
           "heading": "Thank you!",
           "text": "<p>Add some descriptive text to your Blog page.</p>"
         }
+      },
+      "page-returns-gate-template": {
+        "type": "page-returns-gate-template",
+        "settings": {
+          "button_url": "/a/returns",
+          "checkbox_text": "I accept and agree to the online return policy.",
+          "submit_text": "Submit A Return",
+          "error_text": "Please agree to the online return policy by checking the checkbox"
+        }
       }
     },
     "content_for_index": [
