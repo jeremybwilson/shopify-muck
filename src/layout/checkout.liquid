@@ -62,9 +62,9 @@
         jquery = window.Checkout.$;
       }
       jquery(document).on('page:load', function() {
-        var countries_arr= ['IE','GB','LV','LT'];
+        var countries_arr= ['GB'];
         jquery("#checkout_shipping_address_country option").each(function() {
-            if(jquery.inArray(jquery(this).attr('data-code'),countries_arr) > -1)
+            if(jquery.inArray(jquery(this).attr('data-code'),countries_arr) <= -1)
             {
                 jquery(this).remove();
             }
