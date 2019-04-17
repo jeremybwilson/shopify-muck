@@ -110,13 +110,7 @@
       {% section 'header' %}
       <div class="clear"></div>
 
-      {% comment %}
-        REACT : EXAMPLE #1
-        <div id="example-global-react" data-info-passed-to-react='{ "name": "greg" }'></div>
-      {% endcomment %}
-
       {% comment %} :: COLLECTION - Banner Image ::
-
         Notes:
         ------
         To activate a collection banner, you'll need the following images uploaded to the "Files" section:
@@ -133,7 +127,6 @@
         <div class="category-banner has--category-banner"></div>
 
       {% endcomment %}
-
       {% if template contains 'collection' %}
         {% if collection.description contains 'has--category-banner' %}
           <div class="collection-banner">
@@ -141,6 +134,7 @@
           </div>
         {% endif %}
       {% endif %}
+
       {% comment %} :: Collection Banner Functionality :: {% endcomment %}
       {% if template contains 'collection' %}
         {% section 'collection-banner' %}
@@ -183,7 +177,7 @@
       {% comment %} :: End of 'ALL OTHER PAGES' IF block :: {% endcomment %}
     </div>  <!-- close the page-wrap class -->
 
-
+    {% section 'gift-with-purchase' %}
     {% section 'newsletter' %}
     {% section 'footer' %}
   </div> <!-- close the shifter-page class -->
@@ -193,8 +187,6 @@
   ================================================== -->
   {% include 'cookie-banner' %}
   {% include 'popup' %}
-  {% include 'react-discounts' %}
-
 
   <a aria-label="Scroll up" href="#" class="scrollup"><i class="icon-chevron-up icon-2x"></i></a>
 

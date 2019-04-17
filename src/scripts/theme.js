@@ -2944,7 +2944,6 @@ theme.Collection = (function() {
     
     // EVENTS : Bind DOM events when ready
     $(document).ready( () => {
-      console.log($('.collection-banner--mobile').length);
       $('.collection-banner--mobile').append(ui.mobileBannerImg);
       ui.mobileBannerImg.removeClass('collection_img_hide');
       if ($.trim(ui.collectionBanner.html()) == ""){
