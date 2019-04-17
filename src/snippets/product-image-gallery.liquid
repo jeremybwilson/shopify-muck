@@ -59,13 +59,13 @@
 
         <img id="slick-slide0{{forloop.index0}}" class="lazyload lazyload-fade"
           src="{{ image | product_img_url: '200x' }}"
-          data-src="{{ img_url | split:'?' | first}}"
+          data-src="{{ img_url }}"
           data-sizes="auto"
           data-image-id="{{ image.id }}"
           alt="{{ image.alt | escape }}">
 
         <noscript>
-          <img src="{{ image | img_url: '200x' | split:'?' | first}}" alt="{{ image.alt | escape }}" />
+          <img src="{{ image | img_url: '200x' }}" alt="{{ image.alt | escape }}" />
         </noscript>
       </div>
     {% endfor %}

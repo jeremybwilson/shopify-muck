@@ -27,21 +27,21 @@
                 {% if block.settings.mobile_image != blank %}
                   {% assign mobile_img_url = block.settings.mobile_image | img_url: '767x' %}
 
-                  <source srcset="{{ mobile_img_url | split:'?' | first}}" media="(max-width: 767px)">
+                  <source srcset="{{ mobile_img_url }}" media="(max-width: 767px)">
 
                 {% endif %}
 
                 {% assign desktop_img_url = block.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
 
                 <img class="slideshow__image slideshow__image__{{ block.id }} lazyload lazyload-fade" 
-                  data-src="{{ desktop_img_url | split:'?' | first}}" 
+                  data-src="{{ desktop_img_url }}" 
                   data-sizes="auto"
                   data-parent-fit="cover"
                   alt="{{ block.settings.image.alt | escape }}">
               </picture>
 
               <noscript>
-                <img src="{{ block.settings.image | img_url: '1024x' | split:'?' | first}}" alt="{{ block.settings.image.alt | escape }}" class="slideshow__image slideshow__image--{{ block.id }}">
+                <img src="{{ block.settings.image | img_url: '1024x' }}" alt="{{ block.settings.image.alt | escape }}" class="slideshow__image slideshow__image--{{ block.id }}">
               </noscript>
 
             </div><!-- .box-ratio -->

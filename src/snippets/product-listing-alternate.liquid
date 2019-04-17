@@ -27,14 +27,14 @@
 
            <div class="box-ratio" style="padding-bottom: {{ image_box_ratio }};">
              <img class="lazyload lazyload-fade {% if settings.secondary_images_hover == 'image_flip' and product.images.size > 1 %}first-image{% endif %}"
-               data-src="{{ img_url | split:'?' | first}}"
+               data-src="{{ img_url }}"
                data-sizes="auto"
-               data-original="{{ product.featured_image | img_url: '500x' | split:'?' | first}}"
+               data-original="{{ product.featured_image | img_url: '500x' }}"
                alt="{{ product.featured_image.alt | escape }}">
            </div>
 
            <noscript>
-             <img src="{{ product.featured_image | img_url: '1024x' | split:'?' | first}}" alt="{{ product.featured_image.alt | escape }}">
+             <img src="{{ product.featured_image | img_url: '1024x' }}" alt="{{ product.featured_image.alt | escape }}">
            </noscript>
            {% if settings.secondary_images_hover == 'image_flip' and product.images.size > 1 %}
              <div class="hidden">

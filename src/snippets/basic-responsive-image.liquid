@@ -11,7 +11,7 @@
   <div class="box-ratio" style="padding-bottom: {{ image_box_ratio }};">
     <img class="lazyload lazyload-fade"
       id="{{ imageid }}"
-      data-src="{{ img_url | split:'?' | first}}"
+      data-src="{{ img_url }}"
       data-sizes="auto"
       alt="{{ type.alt | escape }}">
   </div>
