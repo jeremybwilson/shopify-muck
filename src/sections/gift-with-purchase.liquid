@@ -14,16 +14,6 @@
 
 
 
-
-
-BRAD - REMEMBER TO RE-ADD THE SILK SCARF TO THE ONLINE STORE CHANNEL BEFORE CONTINUING TESTING
-
-
-
-
-
-
-
 {% comment %} :: CONFIG BUILDER :: (Creates json object from customizer blocks for react component) {% endcomment %}
 {%- capture discountConfig -%}
   {
@@ -49,11 +39,9 @@ BRAD - REMEMBER TO RE-ADD THE SILK SCARF TO THE ONLINE STORE CHANNEL BEFORE CONT
 {%- endcapture -%}
 
 
+
 {% comment %} :: COMPONENT ROOT :: (Mount point for global react component) {% endcomment %}
 {% if section.settings.discount_modal_enable == true %}
-  <script>
-    console.log( '::: DEBUG : React-discounts modal placed' );
-  </script>
   <div id="react-discounts" data-discount-config='{{ discountConfig }}'></div>
 {% endif %}
 
@@ -147,15 +135,15 @@ BRAD - REMEMBER TO RE-ADD THE SILK SCARF TO THE ONLINE STORE CHANNEL BEFORE CONT
             "type": "text",
             "id": "time_start",
             "label": "Start Date",
-            "info": "( DD MMM YYYY 16:00 PST )",
-            "placeholder": "Ex: 17 Mar 2019 15:32 PST"
+            "info": "( DD MMM YYYY 16:00 GMT-7 ) *GMT-7 = LA Time",
+            "placeholder": "Ex: 17 Mar 2019 15:32 GMT-7"
           },
           {
             "type": "text",
             "id": "time_end",
             "label": "Start Date",
-            "info": "( DD MMM YYYY 21:00 PST )",
-            "placeholder": "Ex: 17 Jan 2019 15:32 PST"
+            "info": "( DD MMM YYYY 21:00 GMT+1 ) *GMT+1 = UK Time",
+            "placeholder": "Ex: 17 Jan 2019 15:32 GMT+1"
           },
           {
             "type": "select",

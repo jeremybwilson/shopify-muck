@@ -870,16 +870,15 @@
           "silk-scarf-discount": {
             "type": "discount_object",
             "settings": {
-              "autoAddToCart": true,
+              "auto_add_to_cart": true,
               "display_name": "Silk Scarf",
               "min_spend": 100,
               "grant_type": "all",
-              "auto_add_to_cart": true,
               "gift_id": "21920429572201",
               "inventory_id": "21920429572201",
               "product_handle": "silk-scarf",
-              "time_start": "16 apr 2019 13:10 PDT",
-              "time_end": "31 apr 2019 15:00 PDT"
+              "time_start": "16 apr 2019 13:10 GMT-7",
+              "time_end": "31 apr 2019 15:00 UTC-7"
             }
           }
         },
