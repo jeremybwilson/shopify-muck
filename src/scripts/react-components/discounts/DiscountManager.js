@@ -108,12 +108,14 @@ class DiscountManager extends React.Component {
 		this.markDiscountUsed = this.markDiscountUsed.bind( this );
 		this.onCartUpdate = this.onCartUpdate.bind( this );
 		this.rejectDiscount = this.rejectDiscount.bind( this );
+		this.rejectOnGiftRemoval = this.rejectOnGiftRemoval.bind( this );
 		this.removeCartItem = this.removeCartItem.bind( this );
 		this.updateInFlightIds = this.updateInFlightIds.bind( this );
 	}
 
 	componentDidMount() {
-		$( document ).on( "cartUpdated", this.onCartUpdate ); //Listen for cart updates
+		$( document ).on( "cartUpdated", this.onCartUpdate ); // Listen for cart updates
+		$( document ).on( "giftItemRemoved", this.rejectOnGiftRemoval ); // Listen for user manually removing gift, mark as rejected
 
 		// INIT : If on /cart, must gather cart data to adjust any deals potentially
 		const onCartPage = window.location.pathname.indexOf( '/cart' ) !== -1;
@@ -148,13 +150,13 @@ class DiscountManager extends React.Component {
 
 	calcThresholdDiscounts( cartTotal, cartItems ) {
 		var { thresholdDiscounts } = this.config;
-		const { rejectedDiscounts } = this.state;
+		const { rejectedDiscounts, usedDiscounts } = this.state;
 		var metDiscounts = [];
 
 		// CHECK : Did we meet any discount thresholds? (Safety, as this evolves..)
 		if ( thresholdDiscounts.length > 0 ) {
 
-			// SCAN CART : Check cart items to ensure no other discounts are met, if they are lets remove their competition (ones set to grantType: 'pick' that are also met)
+			// SCAN CART : Check cart items to ensure no other discounts are met, if they are lets remove their other pick choices (ones set to grantType: 'pick' that are also met)
 			cartItems.forEach( item => {
 				const discountInCart = thresholdDiscounts.find( rule => rule.giftId === item.variant_id );
 
@@ -176,10 +178,23 @@ class DiscountManager extends React.Component {
 
 			// BUILD : ARRAY : Discounts NOT used yet + Past "minSpend" Threshold + No other "Pick" discounts at same minSpend are met
 			metDiscounts = thresholdDiscounts.filter( rule => {
+				const hasBeenUsed = usedDiscounts.find( discountObj => discountObj.discountId === rule.discountId );
 				const hasBeenRejected = rejectedDiscounts.find( rejectId => rejectId === rule.discountId );
 				const hasBeenMet = rule.minSpend <= cartTotal;
+				
+				// TIME RANGE : Ensure discount is currently in its active time window
+				if ( rule.time_start && rule.time_end ) {
+					const now = new Date();
+					const start = new Date( rule.time_start );
+					const end = new Date( rule.time_end );
+					const meetsTimeWindow = now >= start && now < end;
 
-				return !hasBeenRejected && hasBeenMet;
+					return !hasBeenUsed && !hasBeenRejected && hasBeenMet && meetsTimeWindow;
+				
+				} else {
+					console.log( `ERROR : [ GWP - DiscountManager.js ] : Time range on discount '${rule.displayName}' is invalid:\n   Start: ${rule.time_start}\n   End: ${rule.time_end}` );
+					return false; // Skip this discount
+				}
 			});
 		}
 		return metDiscounts; //Extra protection is all here..
@@ -193,7 +208,10 @@ class DiscountManager extends React.Component {
 	}
 
 	enableDoNotShowAgain() {
-		$.cookie( 'BOL_hide_discounts_modal','true', { expires: 90 } ); //Expire in days
+		$.cookie( 'BOL_hide_discounts_modal','true', { 
+			expires: 90,
+			path: '/'
+		}); //Expire in days
 		this.setState({ doNotShowAgain: true });
 	}
 
@@ -235,12 +253,39 @@ class DiscountManager extends React.Component {
 		    	const discountsToApply = [].concat( updatedApplyList );
 
 		    	// SAVE : Save our data before updating the app, in case user leaves site
-		    	$.cookie( 'BOL_used_discounts', JSON.stringify( updatedUsedList ), { expires: this.config.cookieExpireInDays } );
+		    	$.cookie( 'BOL_used_discounts', JSON.stringify( updatedUsedList ), { 
+		    		expires: this.config.cookieExpireInDays,
+		    		path: '/'
+		    	});
 		    	
 		    	return { 
 		    		discountsToApply,
 		    		usedDiscounts: updatedUsedList
 		    	};
+		    });
+		}
+	}
+
+	markDiscountUnused( discountId ) {
+		const { usedDiscounts } = this.state;
+		var isOnList = usedDiscounts.find( used => used.discountId === discountId );
+
+		if ( isOnList ) {
+
+			// UPDATE : Create new array to for state-based render update
+			this.setState( state => {
+
+				// FILTER : Find matching ID and remove from the list of used IDs
+				const filteredUsed = usedDiscounts.filter( usedObj => usedObj.discountId !== discountId );
+				const updatedUsedList = [].concat( filteredUsed );
+
+		    	// UPDATE STATE + COOKIE : Save our data before updating the app, in case user leaves site
+		    	$.cookie( 'BOL_used_discounts', JSON.stringify( updatedUsedList ), { 
+		    		expires: this.config.cookieExpireInDays,
+		    		path: '/'
+		    	});
+
+		    	return { usedDiscounts: updatedUsedList };
 		    });
 		}
 	}
@@ -270,7 +315,7 @@ class DiscountManager extends React.Component {
 				discountsToApply = this.calcThresholdDiscounts( newCartTotal, cartItems );
 			}
 
-			// ADD CHECK : IN STOCK : Are the 'discountsToApply' in stock? 
+			// ADD CHECK : IN STOCK : Are the 'discountsToApply' in stock?
 			if ( discountsToApply.length !== this.state.discountsToApply.length || discountsToApply.length > 0 ) {
 				var inStockDiscounts = [];
 
@@ -355,13 +400,32 @@ class DiscountManager extends React.Component {
 				).then( res => {
 					// NOTE : Each individual removal resolution call then pulls that ID from the usedDiscounts array above in the promise.all
 					// REMOVE CHECK : UPDATE : Save our data in cookie and state
-	    			$.cookie( 'BOL_used_discounts', JSON.stringify( usedDiscounts ), { expires: this.config.cookieExpireInDays } );
+	    			$.cookie( 'BOL_used_discounts', JSON.stringify( usedDiscounts ), { 
+	    				expires: this.config.cookieExpireInDays,
+	    				path: '/'
+	    			});
 					this.setState({ 
 						removedDiscounts,
 						usedDiscounts
 					});
 				});
 			}
+
+
+
+			// USED SYNC : If user manually removed item, and now we are under the threshold, re-enable that discount and remove from used list.
+			//			   If its in the discountsToRemove array we will take care of it after showing the user we did, so skip any on that list.
+			usedDiscounts.forEach( ( item, index ) => {
+				var removalInFlight = discountsToRemove.find( discountObj => discountObj.discountId === item.discountId );
+
+				// If not slated to remove, check if cart total is back below threshold, as it means the user manually removed the item.
+				// This way if they remove the item and go back below the threshold, we can re-offer them the item when they add stuff back in cart
+				if ( !removalInFlight ) {
+					if ( newCartTotal < item.minSpend ) {
+						this.markDiscountUnused( item.discountId );
+					}
+				}
+			});
 		}
 
 		catch (err) {
@@ -391,20 +455,45 @@ class DiscountManager extends React.Component {
 
 		this.setState( state => {
 			const updatedRejectList = rejectedDiscounts.concat( discountIds ); // ADD : Rejected ID to the list
-			const updatedApplyList = discountsToApply.filter( discount => {
+			const updatedApplyList = discountsToApply.filter( discount => {    // REMOVE : Discount from queue of ones to apply
 				const matchedDiscount = discountIds.find( discountId => discountId === discount.discountId )
 				if ( !matchedDiscount ) {
 					return discount;
 				}
-			}); // REMOVE : Discount from queue of ones to apply
+			}); 
 
 			// SAVE : Save our data before updating the app, in case user leaves site
-	    	$.cookie( 'BOL_rejected_discounts', JSON.stringify( updatedRejectList ), { expires: this.config.cookieExpireInDays } );
+	    	$.cookie( 'BOL_rejected_discounts', JSON.stringify( updatedRejectList ), { 
+	    		expires: this.config.cookieExpireInDays,
+	    		path: '/'
+	    	});
 			return {
 				discountsToApply: updatedApplyList,
 				rejectedDiscounts: updatedRejectList
 			}
 		});
+	}
+
+	rejectOnGiftRemoval( event ) {
+		if ( event && event.discountId ) {
+			var discountId = event.discountId;
+
+			// CONVERT : make into number if string
+			if ( typeof discountId === 'string' ){
+				try {
+					discountId = JSON.parse( discountId );
+				}
+				catch( err ) {
+					console.log( `ERROR : [ DiscountManager.js - rejectOnGiftRemoval ] : Unable to parse removed Discount ID of '${event.discountId}` );
+				}
+			}
+
+			// REJECT : Add to reject list
+			this.rejectDiscount([ discountId ]);
+
+		} else {
+			console.log( `ERROR : [ DiscountManager.js - rejectOnGiftRemoval ] : Discount ID was missing from data attributes from ajax-cart.js.liquid @ 'giftItemRemoved' event trigger.` );
+		}
 	}
 
 	removeCartItem( line_item, discount ) {

@@ -935,24 +935,6 @@
         "id": "ajax_cart_low_stock_text",
         "label": "Low stock alert text",
         "default": "This item does not have enough stock to add to your cart."
-      },
-      {
-        "type": "header",
-        "content": "Gift w/ Purchase Modal"
-      },
-      {
-        "type": "checkbox",
-        "default" : false,
-        "id": "discount_modal_enable",
-        "label": "Enable Gift with Purchase Modal",
-        "info" : "(Powers the 'Spend X, Pick Free Gift' component)"
-      },
-      {
-        "type": "text",
-        "id": "discount_modal_config",
-        "label": "Discount Config",
-        "info": "(stringify config object, then base64)",
-        "default": "eyJjb29raWVFeHBpcmVJbkRheXMiOjYwLCJ0aHJlc2hvbGREaXNjb3VudHMiOltdfQ=="
       }
     ]
   },

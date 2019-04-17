@@ -29,9 +29,9 @@ $(document).ready( function(){
     var parsedConfig = null;
 
     // SAFETY : Attempt to parse config from dom data
-    if ( discountConfig && discountConfig.length > 0 && window.atob ) {
+    if ( discountConfig && discountConfig.length > 0 ) {
       try {
-        parsedConfig = JSON.parse( window.atob( discountConfig ) );
+        parsedConfig = JSON.parse( discountConfig );
       }
 
       catch( err ) {

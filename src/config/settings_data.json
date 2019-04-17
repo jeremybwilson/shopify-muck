@@ -863,6 +863,33 @@
           "before_content": "<h1>FAQ<\/h1>",
           "after_content": "<div class=\"fineprint\">\n\t<p>AQUASEAL® is a registered symbol of the McNett Corporation<\/p>\n\t<p>ARMOR ALL® is a registered symbol of Armor All Products Company<\/p>\n<\/div>"
         }
+      },
+      "gift-with-purchase": {
+        "type": "gift-with-purchase",
+        "blocks": {
+          "silk-scarf-discount": {
+            "type": "discount_object",
+            "settings": {
+              "auto_add_to_cart": true,
+              "display_name": "Silk Scarf",
+              "min_spend": 100,
+              "grant_type": "all",
+              "gift_id": "21920429572201",
+              "inventory_id": "21920429572201",
+              "product_handle": "silk-scarf",
+              "time_start": "16 apr 2019 13:10 GMT-7",
+              "time_end": "31 apr 2019 15:00 UTC-7"
+            }
+          }
+        },
+        "block_order": [
+          "silk-scarf-discount"
+        ],
+        "settings": {
+          "discount_modal_enable": true,
+          "cookie_expire_in_days": 60,
+          "currency_symbol": "&#36;"
+        }
       }
     },
     "content_for_index": [
