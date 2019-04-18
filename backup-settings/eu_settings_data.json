@@ -118,8 +118,6 @@
     "ajax_cart_method": "drawer",
     "ajax_cart_remove_text": "This will remove the item from your cart. Continue?",
     "ajax_cart_low_stock_text": "This item does not have enough stock to add to your cart.",
-    "discount_modal_enable": false,
-    "discount_modal_config": "eyJjb29raWVFeHBpcmVJbkRheXMiOjYwLCJjdXJyZW5jeVN5bWJvbCI6IiZldXJvOyIsInRocmVzaG9sZERpc2NvdW50cyI6W3siZGlzY291bnRJZCI6MSwiZGlzcGxheU5hbWUiOiJDYXJkIFdhbGxldCIsImdpZnRJZCI6MjE0NTQ5NTAzMDE4MDEsImdyYW50VHlwZSI6ImFsbCIsImludmVudG9yeUlkIjoyMTQ1NDk1MDMwMTgwMSwibWluU3BlbmQiOjEwMCwicHJvZHVjdEhhbmRsZSI6ImNhcmQtd2FsbGV0In1dfQ==",
     "twittername": "",
     "facebook_url": "//www.facebook.com/muckbootco/",
     "pinterest_url": "",
@@ -168,6 +166,8 @@
     "checkout_accent_color": "#164632",
     "checkout_button_color": "#ab5232",
     "checkout_error_color": "#ff6d6d",
+    "discount_modal_enable": false,
+    "discount_modal_config": "eyJjb29raWVFeHBpcmVJbkRheXMiOjYwLCJjdXJyZW5jeVN5bWJvbCI6IiZldXJvOyIsInRocmVzaG9sZERpc2NvdW50cyI6W3siZGlzY291bnRJZCI6MSwiZGlzcGxheU5hbWUiOiJDYXJkIFdhbGxldCIsImdpZnRJZCI6MjE0NTQ5NTAzMDE4MDEsImdyYW50VHlwZSI6ImFsbCIsImludmVudG9yeUlkIjoyMTQ1NDk1MDMwMTgwMSwibWluU3BlbmQiOjEwMCwicHJvZHVjdEhhbmRsZSI6ImNhcmQtd2FsbGV0In1dfQ==",
     "international_store_version": "EU",
     "cart_links": "#000000",
     "cart_links_hover": "#000000",
@@ -919,6 +919,33 @@
           "checkbox_text": "I accept and agree to the online return policy.",
           "submit_text": "Submit A Return",
           "error_text": "Please agree to the online return policy by checking the checkbox"
+        }
+      },
+      "gift-with-purchase": {
+        "type": "gift-with-purchase",
+        "blocks": {
+          "1555533214737": {
+            "type": "discount_object",
+            "settings": {
+              "display_name": "Silk Scarf",
+              "min_spend": 100,
+              "time_start": "22 Apr 2019 00:01 GMT+1",
+              "time_end": "6 May 2019 00:01 GMT+1",
+              "grant_type": "all",
+              "auto_add_to_cart": true,
+              "gift_id": "21920429572201",
+              "inventory_id": "21920429572201",
+              "product_handle": "silk-scarf"
+            }
+          }
+        },
+        "block_order": [
+          "1555533214737"
+        ],
+        "settings": {
+          "discount_modal_enable": true,
+          "cookie_expire_in_days": 60,
+          "currency_symbol": "&euro;"
         }
       }
     },
