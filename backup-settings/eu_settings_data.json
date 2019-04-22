@@ -251,8 +251,8 @@
           "num_of_promo_banners": "2",
           "announcement_text_one": "<div class=\"bold\">FREE DELIVERY & RETURNS ON ALL ORDERS</div>",
           "announcement_link_one": "shopify://pages/delivery-and-returns",
-          "announcement_text_two": "<div class=\"bold\">ENTER TO WIN: TAKE OUR SURVEY</div>",
-          "announcement_link_two": "https://www.surveymonkey.com/r/PCVY5QH",
+          "announcement_text_two": "<div class=\"bold\"> FREE MUCK SILK SCARF on orders over €100. T&Cs apply</div>",
+          "announcement_link_two": "shopify://collections/womens-rhd-muckster-ii",
           "announcement_height": 50,
           "announcement_swap_rate": 5,
           "logo_size": 24,
@@ -395,26 +395,6 @@
       "1535728526385": {
         "type": "slideshow",
         "blocks": {
-          "1550466783821": {
-            "type": "image",
-            "settings": {
-              "image": "shopify://shop_images/wellie-egg-hunt.jpg",
-              "mobile_image": "shopify://shop_images/wellie-egg-hunt-mobile.jpg",
-              "heading": "JOIN OUR WELLIE EGG HUNT!",
-              "subheading": "Find the eggs hidden throughout our site and win boots. T&Cs apply.",
-              "cta_one_link": "",
-              "cta_one_button_text": "",
-              "cta_two_link": "",
-              "cta_two_button_text": "",
-              "caption_color_scheme": "white",
-              "custom_slide_main_color": "#ffffff",
-              "custom_slide_alt_color": "#164732",
-              "caption_horizontal": "right",
-              "caption_vertical": 50,
-              "caption_background": "rgba(0,0,0,0)",
-              "caption_opacity": "1.0"
-            }
-          },
           "1551674921955": {
             "type": "image",
             "settings": {
@@ -438,18 +418,18 @@
           "1544669188958": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/rhs-chelsea.jpg",
-              "mobile_image": "shopify://shop_images/rhs-chelsea-mobile.jpg",
-              "heading": "WIN A PAIR OF RHS CHELSEA FLOWER SHOW TICKETS",
-              "subheading": "Entries are automatic with every product review on our site. T&Cs apply.",
-              "cta_one_link": "",
-              "cta_one_button_text": "",
+              "image": "shopify://shop_images/free-muck-silk-scarf-desktop.jpg",
+              "mobile_image": "shopify://shop_images/free-muck-silk-scarf-mobile.jpg",
+              "heading": "FREE MUCK <br>SILK SCARF*",
+              "subheading": "IN NAVY FLORAL PRINT <p style=\"font-size: 13px;\">*On orders over €100 whilst stocks last. T&Cs apply.</p>",
+              "cta_one_link": "shopify://collections/womens-rhd-muckster-ii",
+              "cta_one_button_text": "SHOP NOW",
               "cta_two_link": "",
               "cta_two_button_text": "",
               "caption_color_scheme": "white",
               "custom_slide_main_color": "#ffffff",
               "custom_slide_alt_color": "#164732",
-              "caption_horizontal": "center",
+              "caption_horizontal": "right",
               "caption_vertical": 40,
               "caption_background": "rgba(0,0,0,0)",
               "caption_opacity": "0.1"
@@ -457,9 +437,8 @@
           }
         },
         "block_order": [
-          "1550466783821",
-          "1551674921955",
-          "1544669188958"
+          "1544669188958",
+          "1551674921955"
         ],
         "settings": {
           "full_width": true,
@@ -657,8 +636,8 @@
       "1536353642475": {
         "type": "featured-collection",
         "settings": {
-          "heading": "New Arrivals",
-          "homepage_collection": "new-arrivals",
+          "heading": "GARDENING BOOTS",
+          "homepage_collection": "garden",
           "homepage_product_limit": 8,
           "homepage_product_display": "carousel",
           "products_per_row": 4
