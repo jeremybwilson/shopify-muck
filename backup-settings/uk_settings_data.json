@@ -118,8 +118,6 @@
     "ajax_cart_method": "drawer",
     "ajax_cart_remove_text": "This will remove the item from your cart. Continue?",
     "ajax_cart_low_stock_text": "This item does not have enough stock to add to your cart.",
-    "discount_modal_enable": true,
-    "discount_modal_config": "eyJjb29raWVFeHBpcmVJbkRheXMiOjYwLCJjdXJyZW5jeVN5bWJvbCI6IiZwb3VuZDsiLCJ0aHJlc2hvbGREaXNjb3VudHMiOlt7ImRpc2NvdW50SWQiOjEsImRpc3BsYXlOYW1lIjoiU2lsayBTY2FyZiIsImdpZnRJZCI6MjA5NTMzNzk1Njk3NzcsImdyYW50VHlwZSI6ImFsbCIsImludmVudG9yeUlkIjoyMDk1MzM3OTU2OTc3NywibWluU3BlbmQiOjEwMCwicHJvZHVjdEhhbmRsZSI6InNpbGstc2NhcmYifV19",
     "twittername": "",
     "facebook_url": "//www.facebook.com/muckbootco/",
     "pinterest_url": "",
@@ -168,6 +166,8 @@
     "checkout_accent_color": "#164632",
     "checkout_button_color": "#ab5232",
     "checkout_error_color": "#ff6d6d",
+    "discount_modal_enable": true,
+    "discount_modal_config": "eyJjb29raWVFeHBpcmVJbkRheXMiOjYwLCJjdXJyZW5jeVN5bWJvbCI6IiZwb3VuZDsiLCJ0aHJlc2hvbGREaXNjb3VudHMiOlt7ImRpc2NvdW50SWQiOjEsImRpc3BsYXlOYW1lIjoiU2lsayBTY2FyZiIsImdpZnRJZCI6MjA5NTMzNzk1Njk3NzcsImdyYW50VHlwZSI6ImFsbCIsImludmVudG9yeUlkIjoyMDk1MzM3OTU2OTc3NywibWluU3BlbmQiOjEwMCwicHJvZHVjdEhhbmRsZSI6InNpbGstc2NhcmYifV19",
     "international_store_version": "UK",
     "cart_links": "#000000",
     "cart_links_hover": "#000000",
@@ -397,26 +397,6 @@
       "1535728526385": {
         "type": "slideshow",
         "blocks": {
-          "1551675459784": {
-            "type": "image",
-            "settings": {
-              "image": "shopify://shop_images/wellie-egg-hunt.jpg",
-              "mobile_image": "shopify://shop_images/wellie-egg-hunt-mobile.jpg",
-              "heading": "JOIN OUR WELLIE EGG HUNT!",
-              "subheading": "Find the eggs hidden throughout our site and win boots. T&Cs apply.",
-              "cta_one_link": "",
-              "cta_one_button_text": "",
-              "cta_two_link": "",
-              "cta_two_button_text": "",
-              "caption_color_scheme": "white",
-              "custom_slide_main_color": "#ffffff",
-              "custom_slide_alt_color": "#164732",
-              "caption_horizontal": "right",
-              "caption_vertical": 50,
-              "caption_background": "rgba(0,0,0,0)",
-              "caption_opacity": "0.1"
-            }
-          },
           "1551675343628": {
             "type": "image",
             "settings": {
@@ -437,21 +417,21 @@
               "caption_opacity": "0.1"
             }
           },
-          "1554093824503": {
+          "1555903546550": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/rhs-chelsea.jpg",
-              "mobile_image": "shopify://shop_images/rhs-chelsea-mobile.jpg",
-              "heading": "WIN A PAIR OF RHS CHELSEA FLOWER SHOW TICKETS",
-              "subheading": "Entries are automatic with every product review on our site. T&Cs apply.",
-              "cta_one_link": "",
-              "cta_one_button_text": "Add a button",
-              "cta_two_link": "",
-              "cta_two_button_text": "Add a button",
+              "image": "shopify://shop_images/national-gardening-week-desktop.jpg",
+              "mobile_image": "shopify://shop_images/national-gardening-week-mobile.jpg",
+              "heading": "NATIONAL GARDENING WEEK",
+              "subheading": "",
+              "cta_one_link": "/collections/garden/audience_women",
+              "cta_one_button_text": "SHOP WOMEN'S",
+              "cta_two_link": "/collections/garden/audience_men",
+              "cta_two_button_text": "SHOP MEN'S",
               "caption_color_scheme": "white",
               "custom_slide_main_color": "#ffffff",
               "custom_slide_alt_color": "#164732",
-              "caption_horizontal": "center",
+              "caption_horizontal": "right",
               "caption_vertical": 50,
               "caption_background": "rgba(0,0,0,0)",
               "caption_opacity": "0.1"
@@ -459,9 +439,8 @@
           }
         },
         "block_order": [
-          "1551675459784",
-          "1551675343628",
-          "1554093824503"
+          "1555903546550",
+          "1551675343628"
         ],
         "settings": {
           "full_width": true,
@@ -646,8 +625,8 @@
       "1536353642475": {
         "type": "featured-collection",
         "settings": {
-          "heading": "NEW ARRIVALS",
-          "homepage_collection": "new-arrivals",
+          "heading": "GARDENING BOOTS",
+          "homepage_collection": "garden",
           "homepage_product_limit": 8,
           "homepage_product_display": "carousel",
           "products_per_row": 4
@@ -939,6 +918,14 @@
           "checkbox_text": "I accept and agree to the online return policy.",
           "submit_text": "Submit A Return",
           "error_text": "Please agree to the online return policy by checking the checkbox"
+        }
+      },
+      "gift-with-purchase": {
+        "type": "gift-with-purchase",
+        "settings": {
+          "discount_modal_enable": false,
+          "cookie_expire_in_days": 60,
+          "currency_symbol": "&#36;"
         }
       }
     },
