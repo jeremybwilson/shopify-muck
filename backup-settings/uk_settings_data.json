@@ -254,7 +254,7 @@
           "announcement_text_one": "<div class=\"bold\">FREE DELIVERY & RETURNS ON ALL ORDERS</div>",
           "announcement_link_one": "shopify://pages/delivery-and-returns",
           "announcement_text_two": "<div class=\"bold\">ENTER TO WIN: TAKE OUR SURVEY</div>",
-          "announcement_link_two": "https://www.surveymonkey.com/r/L3VMBKR",
+          "announcement_link_two": "https://www.muckbootcompany.co.uk/pages/we-want-to-hear-from-you",
           "announcement_height": 50,
           "announcement_swap_rate": 5,
           "logo_size": 24,
@@ -397,26 +397,6 @@
       "1535728526385": {
         "type": "slideshow",
         "blocks": {
-          "1551675343628": {
-            "type": "image",
-            "settings": {
-              "image": "shopify://shop_images/waterproof.jpg",
-              "mobile_image": "shopify://shop_images/waterproof-mobile.jpg",
-              "heading": "100% WATERPROOF",
-              "subheading": "",
-              "cta_one_link": "https://www.muckbootcompany.co.uk/collections/liberty-leather/audience_women",
-              "cta_one_button_text": "SHOP LIBERTY",
-              "cta_two_link": "",
-              "cta_two_button_text": "Add a button",
-              "caption_color_scheme": "white",
-              "custom_slide_main_color": "#ffffff",
-              "custom_slide_alt_color": "#164732",
-              "caption_horizontal": "center",
-              "caption_vertical": 50,
-              "caption_background": "rgba(0,0,0,0)",
-              "caption_opacity": "0.1"
-            }
-          },
           "1555903546550": {
             "type": "image",
             "settings": {
@@ -432,6 +412,26 @@
               "custom_slide_main_color": "#ffffff",
               "custom_slide_alt_color": "#164732",
               "caption_horizontal": "right",
+              "caption_vertical": 50,
+              "caption_background": "rgba(0,0,0,0)",
+              "caption_opacity": "0.1"
+            }
+          },
+          "1551675343628": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/waterproof.jpg",
+              "mobile_image": "shopify://shop_images/waterproof-mobile.jpg",
+              "heading": "100% WATERPROOF",
+              "subheading": "",
+              "cta_one_link": "https://www.muckbootcompany.co.uk/collections/liberty-leather/audience_women",
+              "cta_one_button_text": "SHOP LIBERTY",
+              "cta_two_link": "",
+              "cta_two_button_text": "Add a button",
+              "caption_color_scheme": "white",
+              "custom_slide_main_color": "#ffffff",
+              "custom_slide_alt_color": "#164732",
+              "caption_horizontal": "center",
               "caption_vertical": 50,
               "caption_background": "rgba(0,0,0,0)",
               "caption_opacity": "0.1"
