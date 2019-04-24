@@ -118,8 +118,6 @@
     "ajax_cart_method": "drawer",
     "ajax_cart_remove_text": "This will remove the item from your cart. Continue?",
     "ajax_cart_low_stock_text": "This item does not have enough stock to add to your cart.",
-    "discount_modal_enable": false,
-    "discount_modal_config": "eyJjb29raWVFeHBpcmVJbkRheXMiOjYwLCJ0aHJlc2hvbGREaXNjb3VudHMiOlt7ImRpc2NvdW50SWQiOjEsImdyYW50VHlwZSI6InBpY2siLCJwcm9kdWN0SGFuZGxlIjoid2lnd2FtLXdpbnRlci1oYXQiLCJtaW5TcGVuZCI6MTAwLCJnaWZ0SWQiOjE2MTIyMDIxNzQwNjM4LCJpbnZlbnRvcnlJZCI6MTYxMjIwMjE3NDA2MzgsImRpc3BsYXlOYW1lIjoiV2lnd2FtIFdpbnRlciBIYXQgKEJsYWNrKSJ9LHsiZGlzY291bnRJZCI6MiwiZ3JhbnRUeXBlIjoicGljayIsInByb2R1Y3RIYW5kbGUiOiJ3aWd3YW0td2ludGVyLWhhdCIsIm1pblNwZW5kIjoxMDAsImdpZnRJZCI6MTYxMjIwMjIyMzIxNTgsImludmVudG9yeUlkIjoxNjEyMjAyMjIzMjE1OCwiZGlzcGxheU5hbWUiOiJXaWd3YW0gV2ludGVyIEhhdCAoR3JheSkifSx7ImRpc2NvdW50SWQiOjMsImdyYW50VHlwZSI6InBpY2siLCJwcm9kdWN0SGFuZGxlIjoid2lnd2FtLXdpbnRlci1oYXQiLCJtaW5TcGVuZCI6MTAwLCJnaWZ0SWQiOjE2MTIyMDIyNTI3MDcwLCJpbnZlbnRvcnlJZCI6MTYxMjIwMjI1MjcwNzAsImRpc3BsYXlOYW1lIjoiV2lnd2FtIFdpbnRlciBIYXQgKE5hdHVyYWwpIn1dfQ==",
     "twittername": "",
     "facebook_url": "//www.facebook.com/muckbootco/",
     "pinterest_url": "",
@@ -168,6 +166,8 @@
     "checkout_accent_color": "#164632",
     "checkout_button_color": "#ab5232",
     "checkout_error_color": "#ff6d6d",
+    "discount_modal_enable": false,
+    "discount_modal_config": "eyJjb29raWVFeHBpcmVJbkRheXMiOjYwLCJ0aHJlc2hvbGREaXNjb3VudHMiOlt7ImRpc2NvdW50SWQiOjEsImdyYW50VHlwZSI6InBpY2siLCJwcm9kdWN0SGFuZGxlIjoid2lnd2FtLXdpbnRlci1oYXQiLCJtaW5TcGVuZCI6MTAwLCJnaWZ0SWQiOjE2MTIyMDIxNzQwNjM4LCJpbnZlbnRvcnlJZCI6MTYxMjIwMjE3NDA2MzgsImRpc3BsYXlOYW1lIjoiV2lnd2FtIFdpbnRlciBIYXQgKEJsYWNrKSJ9LHsiZGlzY291bnRJZCI6MiwiZ3JhbnRUeXBlIjoicGljayIsInByb2R1Y3RIYW5kbGUiOiJ3aWd3YW0td2ludGVyLWhhdCIsIm1pblNwZW5kIjoxMDAsImdpZnRJZCI6MTYxMjIwMjIyMzIxNTgsImludmVudG9yeUlkIjoxNjEyMjAyMjIzMjE1OCwiZGlzcGxheU5hbWUiOiJXaWd3YW0gV2ludGVyIEhhdCAoR3JheSkifSx7ImRpc2NvdW50SWQiOjMsImdyYW50VHlwZSI6InBpY2siLCJwcm9kdWN0SGFuZGxlIjoid2lnd2FtLXdpbnRlci1oYXQiLCJtaW5TcGVuZCI6MTAwLCJnaWZ0SWQiOjE2MTIyMDIyNTI3MDcwLCJpbnZlbnRvcnlJZCI6MTYxMjIwMjI1MjcwNzAsImRpc3BsYXlOYW1lIjoiV2lnd2FtIFdpbnRlciBIYXQgKE5hdHVyYWwpIn1dfQ==",
     "international_store_version": "US",
     "cart_links": "#000000",
     "cart_links_hover": "#000000",
@@ -824,10 +824,10 @@
           "1545367874052": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/waterproof.jpg",
-              "mobile_image": "shopify://shop_images/waterproof-mobile.jpg",
+              "image": "shopify://shop_images/national-gardening-week-desktop.jpg",
+              "mobile_image": "shopify://shop_images/national-gardening-week-mobile.jpg",
               "heading": "Step into Spring",
-              "subheading": "",
+              "subheading": "boots that roll up or down",
               "cta_one_link": "shopify://collections/new-arrivals",
               "cta_one_button_text": "Shop New Arrivals",
               "cta_two_link": "",
@@ -860,36 +860,23 @@
               "caption_background": "rgba(0,0,0,0)",
               "caption_opacity": "0.1"
             }
-          },
-          "1552632193923": {
-            "type": "image",
-            "settings": {
-              "image": "shopify://shop_images/free-silk-scarf.jpg",
-              "mobile_image": "shopify://shop_images/free-silk-scarf-desktop.jpg",
-              "heading": "APRIL SHOWERS",
-              "subheading": "Bring May flowers",
-              "cta_one_link": "shopify://collections/garden",
-              "cta_one_button_text": "SHOP GARDEN",
-              "cta_two_link": "",
-              "cta_two_button_text": "Add a button",
-              "caption_color_scheme": "white",
-              "custom_slide_main_color": "#ffffff",
-              "custom_slide_alt_color": "#164732",
-              "caption_horizontal": "left",
-              "caption_vertical": 45,
-              "caption_background": "rgba(0,0,0,0)",
-              "caption_opacity": "0.1"
-            }
           }
         },
         "block_order": [
           "1545367874052",
-          "1554827005125",
-          "1552632193923"
+          "1554827005125"
         ],
         "settings": {
           "full_width": true,
-          "slider_speed": 4
+          "slider_speed": 3
+        }
+      },
+      "gift-with-purchase": {
+        "type": "gift-with-purchase",
+        "settings": {
+          "discount_modal_enable": false,
+          "cookie_expire_in_days": 60,
+          "currency_symbol": "&#36;"
         }
       }
     },
