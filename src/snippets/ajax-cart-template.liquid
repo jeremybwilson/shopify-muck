@@ -16,14 +16,14 @@
 
               {{!-- :: PRODUCT IMAGE :: --}}
               <div class="ajaxcart__product-img grid__item desktop-4 tablet-2 mobile-1">
-                <a aria-label="Product Image" href="{{url}}" class="ajaxcart__product-image"><img src="{{img}}" alt=""></a>
+                  <a aria-label="Product Image" {{#if_not_eq properties._discountItem "true" }} href="{{url}}" {{/if_not_eq}} class="ajaxcart__product-image {{#if properties._discountItem }}no-click{{/if}}"><img src="{{img}}" alt=""></a>
               </div>
 
               {{!-- :: PRODUCT CONTENT (Name, Meta, Price, Quantity) :: --}}
               <div class="ajaxcart__product-details desktop-8 tablet-4 mobile-2">
 
                 <p class="ajaxcart__name-wrap">
-                  <a href="{{url}}" class="ajaxcart__product-name">{{name}}</a>
+                  <a {{#if_not_eq properties._discountItem "true" }} href="{{url}}" {{/if_not_eq}} class="ajaxcart__product-name {{#if properties._discountItem }}no-click{{/if}}">{{name}}</a>
                   {{#if variation}}
                     <span class="ajaxcart__product-meta">{{variation}}</span>
                   {{/if}}
