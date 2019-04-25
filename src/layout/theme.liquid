@@ -70,6 +70,9 @@
     {{ 'instafeed.js' | asset_url | script_tag }}
 	{% endif %}
 
+  <!--PDM-216-->
+  <script src='{{ 'jquery.waypoints.min.js' | asset_url }}' async defer></script> 
+
   {% include 'script-google-tag-head' %}
 
   {% if settings.yotpo_enable_flag == true and settings.international_store_version != blank %}
