@@ -1239,16 +1239,18 @@
         "default": true 
       },
       { 
-        "type": "text",  
+        "type": "textarea",  
         "id": "discount_code", 
-        "label": "Employee discount code"
+        "label": "Employee discount code",
+        "info": "Multiple code separate by comma (,)"
       },
       { 
-        "type": "text",  
+        "type": "textarea",  
         "id": "discount_msg", 
-        "label": "Custom message"
+        "label": "Custom message",
+        "info": "Multiple code message separate by comma (,)"
       } 
-    ]  
+    ]
   },
   {
     "name": "YOTPO",
