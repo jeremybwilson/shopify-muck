@@ -252,8 +252,8 @@
           "num_of_promo_banners": "2",
           "announcement_text_one": "<div class=\"bold\">FREE SHIPPING AND RETURNS</div>",
           "announcement_link_one": "shopify://pages/shipping-and-returns",
-          "announcement_text_two": "<div class=\"bold\">WE ARE MUCKPROOF! DONATE TO HELP IN THE FLOOD RELIEF  </div>",
-          "announcement_link_two": "shopify://pages/we-are-muckproof",
+          "announcement_text_two": "<div class=\"bold\">SHOP MOTHER'S DAY </div>",
+          "announcement_link_two": "shopify://collections/women-function-garden",
           "announcement_height": 54,
           "announcement_swap_rate": 5,
           "logo_size": 24,
@@ -344,7 +344,7 @@
           "blog_nav_bg_color": "#f5f1ed",
           "blog_nav_font_size": 14,
           "text": "<p>Add some descriptive text to your Blog page.</p>",
-          "show_date": true
+          "show_date": false
         }
       },
       "mobile-navigation": {
@@ -485,23 +485,23 @@
           "1536251685211-1": {
             "type": "text_block",
             "settings": {
-              "image": "shopify://shop_images/2_box_left_module_mobile_640x583_mobile_1.jpg",
-              "mobile_image": "shopify://shop_images/2_box_left_module_710x473_1.jpg",
-              "link": "shopify://collections/farm-work",
-              "heading_text": "For WOMEN THAT DO IT ALL",
-              "text": "<p>Living life in the muck&nbsp;</p>",
-              "cta_text": "SHOP FARM"
+              "image": "shopify://shop_images/market.jpg",
+              "mobile_image": "shopify://shop_images/market.jpg",
+              "link": "shopify://collections/women-featured-liberty-leather",
+              "heading_text": "FROM THE FIELD TO THE MARKET",
+              "text": "",
+              "cta_text": "SHOP WOMEN'S BOOTS"
             }
           },
           "1536251685211-0": {
             "type": "text_block",
             "settings": {
-              "image": "shopify://shop_images/product_WCXF-333T_1_2400x_d854c771-226b-483f-bd4c-98fa30807a20.jpg",
-              "mobile_image": "shopify://shop_images/product_WCXF-333T_1_2400x_d854c771-226b-483f-bd4c-98fa30807a20.jpg",
-              "link": "shopify://products/womens-chore-wide-calf-boots",
+              "image": "shopify://shop_images/farm_ade6893f-5e4a-49fe-a24a-ed0e419f3184.jpg",
+              "mobile_image": "shopify://shop_images/farm_ade6893f-5e4a-49fe-a24a-ed0e419f3184.jpg",
+              "link": "shopify://collections/farm-work",
               "heading_text": "boots that are made for chores",
-              "text": "<p>New adjustable waterproof gusset&nbsp;</p>",
-              "cta_text": "Shop Wide CALF"
+              "text": "",
+              "cta_text": "Shop FARM"
             }
           }
         },
@@ -821,15 +821,15 @@
       "1535728526385": {
         "type": "slideshow",
         "blocks": {
-          "1545367874052": {
+          "1556295728129": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/national-gardening-week-desktop.jpg",
-              "mobile_image": "shopify://shop_images/national-gardening-week-mobile.jpg",
-              "heading": "Step into Spring",
-              "subheading": "boots that roll up or down",
-              "cta_one_link": "shopify://collections/new-arrivals",
-              "cta_one_button_text": "Shop New Arrivals",
+              "image": "shopify://shop_images/O11A2695.jpg",
+              "mobile_image": "shopify://shop_images/new-arrivals-mobile_134x134_crop_center_2x_85f15b6d-87ae-4452-a66e-b8c758021f6d.jpg",
+              "heading": "Garden ready",
+              "subheading": "\"They're great! I love that they roll down to view the pattern inside!\"",
+              "cta_one_link": "shopify://collections/garden",
+              "cta_one_button_text": "SHOP BEST SELLERS",
               "cta_two_link": "",
               "cta_two_button_text": "Add a button",
               "caption_color_scheme": "white",
@@ -844,7 +844,7 @@
           "1554827005125": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/home-about-promo-desktop-1_0a5a8755-1f12-441c-a962-0a9100ffa1cc.jpg",
+              "image": "shopify://shop_images/desk.jpg",
               "mobile_image": "shopify://shop_images/home-about-promo-mobile-1_bf16c8fd-1f03-4ae2-86cc-5d4fba905509.jpg",
               "heading": "Boots for living life in the muck",
               "subheading": "No matter what work lies ahead",
@@ -863,7 +863,7 @@
           }
         },
         "block_order": [
-          "1545367874052",
+          "1556295728129",
           "1554827005125"
         ],
         "settings": {
@@ -878,6 +878,10 @@
           "cookie_expire_in_days": 60,
           "currency_symbol": "&#36;"
         }
+      },
+      "collection-banner": {
+        "type": "collection-banner",
+        "settings": {}
       }
     },
     "content_for_index": [
