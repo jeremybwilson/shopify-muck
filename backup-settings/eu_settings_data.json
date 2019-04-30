@@ -381,6 +381,33 @@
           "button_text_color": "#ffffff"
         }
       },
+      "gift-with-purchase": {
+        "type": "gift-with-purchase",
+        "blocks": {
+          "1555533214737": {
+            "type": "discount_object",
+            "settings": {
+              "display_name": "Silk Scarf",
+              "min_spend": 100,
+              "time_start": "22 Apr 2019 00:01 GMT+1",
+              "time_end": "6 May 2019 00:01 GMT+1",
+              "grant_type": "all",
+              "auto_add_to_cart": true,
+              "gift_id": "21920429572201",
+              "inventory_id": "21920429572201",
+              "product_handle": "silk-scarf"
+            }
+          }
+        },
+        "block_order": [
+          "1555533214737"
+        ],
+        "settings": {
+          "discount_modal_enable": true,
+          "cookie_expire_in_days": 60,
+          "currency_symbol": "&euro;"
+        }
+      },
       "newsletter": {
         "type": "newsletter",
         "settings": {
@@ -919,33 +946,6 @@
           "checkbox_text": "I accept and agree to the online return policy.",
           "submit_text": "Submit A Return",
           "error_text": "Please agree to the online return policy by checking the checkbox"
-        }
-      },
-      "gift-with-purchase": {
-        "type": "gift-with-purchase",
-        "blocks": {
-          "1555533214737": {
-            "type": "discount_object",
-            "settings": {
-              "display_name": "Silk Scarf",
-              "min_spend": 100,
-              "time_start": "22 Apr 2019 00:01 GMT+1",
-              "time_end": "6 May 2019 00:01 GMT+1",
-              "grant_type": "all",
-              "auto_add_to_cart": true,
-              "gift_id": "21920429572201",
-              "inventory_id": "21920429572201",
-              "product_handle": "silk-scarf"
-            }
-          }
-        },
-        "block_order": [
-          "1555533214737"
-        ],
-        "settings": {
-          "discount_modal_enable": true,
-          "cookie_expire_in_days": 60,
-          "currency_symbol": "&euro;"
         }
       }
     },
