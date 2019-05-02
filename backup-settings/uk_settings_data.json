@@ -922,10 +922,29 @@
       },
       "gift-with-purchase": {
         "type": "gift-with-purchase",
+        "blocks": {
+          "1556741658202": {
+            "type": "discount_object",
+            "settings": {
+              "display_name": "Boot Bag",
+              "min_spend": 100,
+              "time_start": "20 May 2019 00:01 GMT+0",
+              "time_end": "3 Jun 2019 00:01 GMT+0",
+              "grant_type": "all",
+              "auto_add_to_cart": true,
+              "gift_id": "21560091410545",
+              "inventory_id": "21560091410545",
+              "product_handle": "free-muck-boot-bag"
+            }
+          }
+        },
+        "block_order": [
+          "1556741658202"
+        ],
         "settings": {
-          "discount_modal_enable": false,
+          "discount_modal_enable": true,
           "cookie_expire_in_days": 60,
-          "currency_symbol": "&#36;"
+          "currency_symbol": "&pound;"
         }
       }
     },
