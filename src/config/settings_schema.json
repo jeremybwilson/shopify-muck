@@ -21,7 +21,6 @@
   {
     "name": "Colors",
     "settings": [
-
       {
         "type": "header",
         "content": "Announcement Header"
@@ -44,8 +43,6 @@
         "label": "Announcement BG - #2",
         "default": "#073322"
       },
-
-
       {
         "type": "header",
         "content": "Navigation Header"
@@ -98,8 +95,6 @@
         "label": "Social icons hover",
         "default": "#000000"
       },
-
-
       {
         "type": "header",
         "content": "General"
@@ -218,9 +213,6 @@
         "label": "Badge Text Color",
         "default": "#FEFFFE"
       },
-
-
-
       {
         "type": "header",
         "content": "Collection + Filters"
@@ -327,8 +319,6 @@
         "label": "Load More Button BG on Hover",
         "default": "#9b492b"
       },
-
-
       {
         "type": "header",
         "content": "Modals + Fancybox"
@@ -352,8 +342,6 @@
         "label": "Modal Close Hover Color",
         "default": "#9B492B"
       },
-
-
       {
         "type": "header",
         "content": "Gift w/ Purchase Modal"
@@ -400,8 +388,6 @@
         "label": "Secondary button Text",
         "default": "#fefffe"
       },
-
-
       {
         "type": "header",
         "content": "Navigation"
@@ -483,8 +469,6 @@
         "label": "Text hover",
         "default": "#000000"
       },
-
-
       {
         "type": "header",
         "content": "Product variant swatches"
@@ -525,8 +509,6 @@
         "label": "Swatch selected border",
         "default": "#000000"
       },
-
-
       {
         "type": "header",
         "content": "Product icons"
@@ -579,8 +561,6 @@
         "label": "Social share hover",
         "default": "#000000"
       },
-
-
       {
         "type": "header",
         "content": "Footer"
@@ -635,14 +615,14 @@
         "content": "Sizes"
       },
       {
-        "type":      "range",
-        "id":        "announcement_text_size",
-        "min":       12,
-        "max":       24,
-        "step":      1,
-        "unit":      "px",
-        "label":     "Announcement Promo Text",
-        "default":   18
+        "type": "range",
+        "id": "announcement_text_size",
+        "min": 12,
+        "max": 24,
+        "step": 1,
+        "unit": "px",
+        "label": "Announcement Promo Text",
+        "default": 18
       },
       {
         "type": "range",
@@ -818,10 +798,10 @@
       },
       {
         "type": "checkbox",
-        "default" : true,
+        "default": true,
         "id": "enable_nav_name_styling",
         "label": "Stylize Key Nav Items",
-        "info" : "(Adds bold/color-selection to nav items like 'Sale' in the menu)"
+        "info": "(Adds bold/color-selection to nav items like 'Sale' in the menu)"
       }
     ]
   },
@@ -1040,7 +1020,6 @@
         "label": "Criteo Account Number",
         "info": "Enter a 5 digit number."
       }
-
     ]
   },
   {
@@ -1122,6 +1101,16 @@
         "id": "cookie_banner_mobile_button_text",
         "label": "Mobile - privacy policy button text",
         "default": "More Info"
+      },
+      {
+        "type": "range",
+        "id": "cookie_banner_expire",
+        "min": 5,
+        "max": 365,
+        "step": 5,
+        "unit": "Day",
+        "label": "Expires in days",
+        "default": 180
       },
       {
         "type": "header",
