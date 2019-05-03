@@ -9,6 +9,8 @@
 <script id="CartTemplate" type="text/template">
   {% raw %}
     <form action="/cart" method="post" novalidate class="cart ajaxcart">
+      <input type="hidden" id="domain-locale-attr" name="" value="{{ cart.attributes.domain-locale }}" />
+
       <div class="ajaxcart__inner">
         {{#items}}
         <div class="ajaxcart__product">
