@@ -142,6 +142,7 @@
     "cookie_banner_mobile_text": "<p>We use cookies.</p>",
     "cookie_banner_mobile_button": "http://www.honeywell.com/privacy-statement",
     "cookie_banner_mobile_button_text": "More Info",
+    "cookie_banner_expire": 180,
     "cookie_banner_desktop_text": "<p>This site uses cookies to simplify and improve your usage and experience of this website. Cookies are small text files stored on the device you are using to access this website. If you ignore this message and continue without changing your browser settings, we will assume that you are consenting to our use of cookies. For further information on our use of cookies, please see our <a href=\"https://www.honeywell.com/privacy-statement\" target=\"_blank\">Privacy Statement</a></p>",
     "cookie_banner_accept_button_text": "Accept",
     "show_multiple_currencies": false,
