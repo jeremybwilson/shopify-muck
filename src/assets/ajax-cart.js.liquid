@@ -246,40 +246,43 @@ var ajaxCart = (function(module, $) {
     }
   }
 
+  // UTIL : SET LOCALE ATTRIBUTE : Sets domain attribute when appropiate
+  function setDomainLocaleAttribute(){
+
+    // GET : Domain Locale Info Based on Domain Ending
+    function getDomainLocale(){
+      const domainSuffix = window.location.hostname.split(".");
+      let domainLocale = { 'domain_locale' : null };
+
+      // ATTRIBUTE : Determine Attribute based on ending string (Only for EU/DE Muck)
+      if(domainSuffix[domainSuffix.length - 1] == "de"){
+        domainLocale = { 'domain_locale' : 'DE' };
+      
+      } else if(domainSuffix[domainSuffix.length - 1] == "eu") {
+        domainLocale = { 'domain_locale' : 'EU' };
+      }
+
+      return domainLocale;
+    }
+
+    // SETUP : Grab Domain Info + Dom Node for Attribute
+    const localeObj = getDomainLocale();
+
+    if ( localeObj ) {
+      Shopify.updateCartAttributes( localeObj, function( cart ) {
+        console.log( '::: DEBUG : CART ATTRIBUTE ADDED -- ' + cart.attributes.domain_locale );
+      });
+
+    } else {
+      console.log( `::: DEBUG : DATA UNAVAILABLE :\n    localeObj: ${localeObj}` );
+    }
+  }
+
 
   /*============================================================================
     Initialise plugin + define global options   (DO NOT INVOKE MORE THAN ONCE!!)
   ==============================================================================*/
   init = function (options) {
-
-    function getDomainLocale(){
-      const domainSuffix = window.location.hostname.split(".");
-      let domainLocale;
-      if(domainSuffix[domainSuffix.length - 1] == "de"){
-        // assign a variable with the domain value of de or DE
-        // example => attributes[domain-locale]
-        // domainLocale = 'DE';
-        domainLocale = 'attributes[EU]';
-      } else if(domainSuffix[domainSuffix.length - 1] == "eu") {
-        // assign a variable with the domain value of eu or EU
-        // domainLocale = 'EU';
-        domainLocale = 'attributes[EU]';
-      } else {
-        // else leave blank because other MUCK stores don't need this
-        domainLocale = 'attributes[EU]';
-      }
-      // return locale string of 'EU' or 'DE' or ''
-      return domainLocale;
-    }
-    // getDomainLocale();
-
-    function setDomainLocaleAttribute(){
-      var domainLocale = getDomainLocale();
-      // $("#domain-locale-attr").attr("name", domainLocale)
-      document.getElementById("#domain-locale-attr").setAttribute("name", domainLocale)
-    }
-    // execute the function to set the hidden input name attribute
-    setDomainLocaleAttribute();
 
     // Default settings
     settings = {
@@ -533,6 +536,13 @@ var ajaxCart = (function(module, $) {
   cartCallback = function(cart) {
     $body.removeClass('drawer--is-loading');
     $body.trigger('ajaxCart.afterCartLoad', cart);
+
+    console.log( `::: DEBUG : cart.attributes === ${JSON.stringify( cart.attributes )}` );
+
+    // DOMAIN ATTRIBUTE : Set locale attribute in the hidden cart input node
+    if ( cart.attributes && typeof( cart.attributes.domain_locale ) === 'undefined' ) {
+      setDomainLocaleAttribute();
+    }
   };
 
   adjustCart = function () {
