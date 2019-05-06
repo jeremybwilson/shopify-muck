@@ -252,8 +252,8 @@
           "num_of_promo_banners": "2",
           "announcement_text_one": "<div class=\"bold\">FREE DELIVERY & RETURNS ON ALL ORDERS</div>",
           "announcement_link_one": "shopify://pages/delivery-and-returns",
-          "announcement_text_two": "<div class=\"bold\"> FREE MUCK SILK SCARF on orders over €100. T&Cs apply</div>",
-          "announcement_link_two": "shopify://collections/womens-rhd-muckster-ii",
+          "announcement_text_two": "<div class=\"bold\">FREE MUCK BOOT BAG on orders over €100. T&Cs apply</div>",
+          "announcement_link_two": "shopify://collections/new-arrivals",
           "announcement_height": 50,
           "announcement_swap_rate": 5,
           "logo_size": 24,
@@ -404,7 +404,7 @@
             "settings": {
               "display_name": "Boot Bag",
               "min_spend": 100,
-              "time_start": "6 May 2019 00:02 GMT+1",
+              "time_start": "6 May 2019 00:03 GMT+1",
               "time_end": "20 May 2019 00:01 GMT+1",
               "grant_type": "all",
               "auto_add_to_cart": true,
@@ -441,19 +441,19 @@
           "1544669188958": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/free-muck-silk-scarf-desktop.jpg",
-              "mobile_image": "shopify://shop_images/free-muck-silk-scarf-mobile.jpg",
-              "heading": "FREE MUCK <br>SILK SCARF*",
-              "subheading": "IN NAVY FLORAL PRINT <p style=\"font-size: 13px;\">*On orders over €100 whilst stocks last. T&Cs apply.</p>",
-              "cta_one_link": "shopify://collections/womens-rhd-muckster-ii",
-              "cta_one_button_text": "SHOP NOW",
-              "cta_two_link": "",
-              "cta_two_button_text": "",
+              "image": "shopify://shop_images/free-muck-boot-bag-desktop.jpg",
+              "mobile_image": "shopify://shop_images/free-muck-boot-bag-mobile.jpg",
+              "heading": "FREE MUCK <br>BOOT BAG*",
+              "subheading": "<p style=\"font-size: 13px;\">*On orders over €100 whilst stocks last. T&Cs apply.</p>",
+              "cta_one_link": "shopify://collections/women",
+              "cta_one_button_text": "SHOP WOMEN'S",
+              "cta_two_link": "shopify://collections/men",
+              "cta_two_button_text": "SHOP MEN'S",
               "caption_color_scheme": "white",
               "custom_slide_main_color": "#ffffff",
               "custom_slide_alt_color": "#164732",
-              "caption_horizontal": "right",
-              "caption_vertical": 40,
+              "caption_horizontal": "left",
+              "caption_vertical": 50,
               "caption_background": "rgba(0,0,0,0)",
               "caption_opacity": "0.1"
             }
@@ -461,14 +461,14 @@
           "1551674921955": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/waterproof.jpg",
-              "mobile_image": "shopify://shop_images/waterproof-mobile.jpg",
-              "heading": "100% WATERPROOF",
+              "image": "shopify://shop_images/best-in-gardening-hp.jpg",
+              "mobile_image": "shopify://shop_images/best-in-gardening-hp-mobile.jpg",
+              "heading": "THE BEST IN GARDENING",
               "subheading": "",
-              "cta_one_link": "https://www.muckbootcompany.eu/collections/liberty-leather/audience_women",
-              "cta_one_button_text": "SHOP LIBERTY",
-              "cta_two_link": "",
-              "cta_two_button_text": "Add a button",
+              "cta_one_link": "/collections/garden/audience_women",
+              "cta_one_button_text": "SHOP WOMENS",
+              "cta_two_link": "/collections/garden/audience_men",
+              "cta_two_button_text": "SHOP MENS",
               "caption_color_scheme": "white",
               "custom_slide_main_color": "#ffffff",
               "custom_slide_alt_color": "#164732",
@@ -477,32 +477,11 @@
               "caption_background": "rgba(0,0,0,0)",
               "caption_opacity": "0.1"
             }
-          },
-          "1556040882559": {
-            "type": "image",
-            "settings": {
-              "image": "shopify://shop_images/win-a-pair-of-garten-festival-tickets-desktop.jpg",
-              "mobile_image": "shopify://shop_images/win-a-pair-of-garten-festival-tickets-mobile.jpg",
-              "heading": "WIN A PAIR OF GARTEN FESTIVAL TICKETS",
-              "subheading": "& 2 PAIRS OF FREE MUCK BOOTS <p style=\"font-size= 12px;\">Simply sign-up for our emails and you'll be entered into our prize draw</p>",
-              "cta_one_link": "https://www.muckbootcompany.eu/",
-              "cta_one_button_text": "Enter Your Email Address",
-              "cta_two_link": "",
-              "cta_two_button_text": "Add a button",
-              "caption_color_scheme": "white",
-              "custom_slide_main_color": "#ffffff",
-              "custom_slide_alt_color": "#164732",
-              "caption_horizontal": "right",
-              "caption_vertical": 45,
-              "caption_background": "#124431",
-              "caption_opacity": "0.3"
-            }
           }
         },
         "block_order": [
           "1544669188958",
-          "1551674921955",
-          "1556040882559"
+          "1551674921955"
         ],
         "settings": {
           "full_width": true,
@@ -627,11 +606,11 @@
           "1536251685211-0": {
             "type": "text_block",
             "settings": {
-              "image": "shopify://shop_images/puddles-please.jpg",
-              "mobile_image": "shopify://shop_images/puddles-please-mobile.jpg",
-              "link": "shopify://collections/outdoor-activity",
-              "heading_text": "PUDDLES PLEASE!",
-              "text": "<p>Springtime is here, gear up for April Showers with our 100% waterproof boots.</p>",
+              "image": "shopify://shop_images/gardening-season-twin.jpg",
+              "mobile_image": "shopify://shop_images/gardening-season-twin-mobile.jpg",
+              "link": "shopify://collections/garden",
+              "heading_text": "GARDENING SEASON",
+              "text": "<p>Designed with high-traction rubber outsoles that hold in muddy conditions</p>",
               "cta_text": "Shop Now"
             }
           },
