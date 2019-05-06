@@ -257,7 +257,7 @@ var ajaxCart = (function(module, $) {
       // ATTRIBUTE : Determine Attribute based on ending string (Only for EU/DE Muck)
       if(domainSuffix[domainSuffix.length - 1] == "de"){
         domainLocale = { 'domain_locale' : 'DE' };
-      
+
       } else if(domainSuffix[domainSuffix.length - 1] == "eu") {
         domainLocale = { 'domain_locale' : 'EU' };
       }
@@ -269,12 +269,7 @@ var ajaxCart = (function(module, $) {
     const localeObj = getDomainLocale();
 
     if ( localeObj ) {
-      Shopify.updateCartAttributes( localeObj, function( cart ) {
-        console.log( '::: DEBUG : CART ATTRIBUTE ADDED -- ' + cart.attributes.domain_locale );
-      });
-
-    } else {
-      console.log( `::: DEBUG : DATA UNAVAILABLE :\n    localeObj: ${localeObj}` );
+      Shopify.updateCartAttributes( localeObj );
     }
   }
 
@@ -536,8 +531,6 @@ var ajaxCart = (function(module, $) {
   cartCallback = function(cart) {
     $body.removeClass('drawer--is-loading');
     $body.trigger('ajaxCart.afterCartLoad', cart);
-
-    console.log( `::: DEBUG : cart.attributes === ${JSON.stringify( cart.attributes )}` );
 
     // DOMAIN ATTRIBUTE : Set locale attribute in the hidden cart input node
     if ( cart.attributes && typeof( cart.attributes.domain_locale ) === 'undefined' ) {
