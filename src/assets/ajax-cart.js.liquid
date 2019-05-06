@@ -269,7 +269,9 @@ var ajaxCart = (function(module, $) {
     const localeObj = getDomainLocale();
 
     if ( localeObj ) {
-      Shopify.updateCartAttributes( localeObj );
+      Shopify.updateCartAttributes( localeObj, function( cart ) {
+        console.log( '::: DEBUG : CART ATTRIBUTE ADDED -- ' + cart.attributes.domain_locale );
+      });
     }
   }
 
