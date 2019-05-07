@@ -443,8 +443,8 @@
             "settings": {
               "image": "shopify://shop_images/free-muck-boot-bag-desktop.jpg",
               "mobile_image": "shopify://shop_images/free-muck-boot-bag-mobile.jpg",
-              "heading": "FREE MUCK <br>BOOT BAG*",
-              "subheading": "<p style=\"font-size: 13px;\">*On orders over €100 whilst stocks last. T&Cs apply.</p>",
+              "heading": "FREE MUCK BOOT BAG*",
+              "subheading": "<p style=\"font-size: 14px;\">*On orders over €100 whilst stocks last. T&Cs apply.</p>",
               "cta_one_link": "shopify://collections/women",
               "cta_one_button_text": "SHOP WOMEN'S",
               "cta_two_link": "shopify://collections/men",
@@ -454,8 +454,8 @@
               "custom_slide_alt_color": "#164732",
               "caption_horizontal": "left",
               "caption_vertical": 50,
-              "caption_background": "rgba(0,0,0,0)",
-              "caption_opacity": "0.1"
+              "caption_background": "#000000",
+              "caption_opacity": "0.3"
             }
           },
           "1551674921955": {
@@ -620,8 +620,8 @@
               "image": "shopify://shop_images/national-pet-day.jpg",
               "mobile_image": "shopify://shop_images/national-pet-day-mobile.jpg",
               "link": "shopify://collections/dog-walking",
-              "heading_text": "NATIONAL PET DAY",
-              "text": "<p>Indulge them with their favourite treats and a long walk in the park!</p>",
+              "heading_text": "DOG WALKING BOOTS",
+              "text": "<p>Designed to keep you comfortable and supported during those muddy dog walks</p>",
               "cta_text": "SHOP DOG WALKING BOOTS"
             }
           }
