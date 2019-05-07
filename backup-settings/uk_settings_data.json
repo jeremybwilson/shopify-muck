@@ -254,8 +254,8 @@
           "num_of_promo_banners": "2",
           "announcement_text_one": "<div class=\"bold\">FREE DELIVERY & RETURNS ON ALL ORDERS</div>",
           "announcement_link_one": "shopify://pages/delivery-and-returns",
-          "announcement_text_two": "<div class=\"bold\">COME JOIN US!</div>",
-          "announcement_link_two": "https://www.muckbootcompany.co.uk/blogs/events",
+          "announcement_text_two": "<div class=\"bold\">COME JOIN US AT RHS MALVERN!</div>",
+          "announcement_link_two": "https://www.muckbootcompany.co.uk/blogs/events/rhs-malvern",
           "announcement_height": 50,
           "announcement_swap_rate": 5,
           "logo_size": 24,
@@ -413,7 +413,7 @@
               "custom_slide_main_color": "#ffffff",
               "custom_slide_alt_color": "#164732",
               "caption_horizontal": "left",
-              "caption_vertical": 35,
+              "caption_vertical": 40,
               "caption_background": "rgba(0,0,0,0)",
               "caption_opacity": "0.1"
             }
@@ -567,8 +567,8 @@
               "image": "shopify://shop_images/national-pet-day.jpg",
               "mobile_image": "shopify://shop_images/national-pet-day-mobile.jpg",
               "link": "shopify://collections/dog-walking",
-              "heading_text": "NATIONAL PET DAY",
-              "text": "<p>Indulge them with their favourite treats and a long walk in the park!</p>",
+              "heading_text": "DOG WALKING BOOTS",
+              "text": "<p>Designed to keep you comfortable and supported during those muddy dog walks</p>",
               "cta_text": "SHOP DOG WALKING BOOTS"
             }
           }
