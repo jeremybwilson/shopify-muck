@@ -12,6 +12,7 @@
 			{% endcomment %}
 
 			{%- assign siteData = item | split: '|' -%}
+      {%- assign siteData1 = false -%}
 			{% if siteData[0] and siteData[0] contains '-' %}
 				{%- assign siteData1 = siteData[0] | split: '-' -%}
 			{% endif %}
