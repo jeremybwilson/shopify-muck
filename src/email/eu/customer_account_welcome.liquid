@@ -1,51 +1,46 @@
 {% capture notification_template_name %}customer_account_welcome{% endcapture %}
 {% capture full_email_template_params %}?utm_source=tran&utm_medium=email&utm_campaign={{ notification_template_name }}{% endcapture %}
+{% capture domain_local_var %}{{ attributes.domain_locale }}{% endcapture %}
 
-{% capture shop_custom_name %}The Original Muck Boot Company&reg;{% endcapture %}
-{% capture email_title %}Welcome to Muck{% endcapture %}
+{% if domain_local_var %}
+  {% if domain_local_var == 'EU' or domain_local_var == 'COM' %}
+    {% capture shop_locale %}en{% endcapture %}
+    {% comment %} PASS THE ENGLISH STRINGS HERE, YES! {% endcomment %}
 
-{% capture email_body %}You've activated your customer account. Next time you shop with us, log in for faster checkout.{% endcapture %}
+    {% capture shop_custom_name %}The Original Muck Boot Company&reg;{% endcapture %}
+    {% capture email_title %}Welcome to Muck{% endcapture %}
 
-{% capture visit_our_store_text %}VISIT OUR STORE{% endcapture %}
-{% capture contact_us_text %}CONTACT US{% endcapture %}
-{% capture contact_us_telephone %}+44 808 281 9536{% endcapture %}
-{% capture terms_and_conditions %}Terms &amp; <span style="line-height: 14px; font-size: 12px;">Conditions</span>{% endcapture %}
-{% capture privacy_policy_text %}Privacy Policy{% endcapture %}
+    {% capture email_body %}You've activated your customer account. Next time you shop with us, log in for faster checkout.{% endcapture %}
 
-{% comment %}
+    {% capture visit_our_store_text %}VISIT OUR STORE{% endcapture %}
+    {% capture contact_us_text %}CONTACT US{% endcapture %}
+    {% capture contact_us_telephone %}+44 808 281 9536{% endcapture %}
+    {% capture terms_and_conditions %}Terms &amp; <span style="line-height: 14px; font-size: 12px;">Conditions</span>{% endcapture %}
+    {% capture privacy_policy_text %}Privacy Policy{% endcapture %}
 
-// wrap in some logic to alternate between English strings above
-// an German strings below
+  {% elsif domain_local_var == 'DE'%}
+    {% capture shop_locale %}de{% endcapture %}
+    {% comment %} PASS ZIE GERMAN STRINGS HERE, JA! {% endcomment %}
 
-{% if store_name or store_locale == 'something' %}
-  {% capture shop_locale %}EN{% endcapture %}
-{% else %}
-  {% capture shop_locale %}DE{% endcapture %}
+    {% capture shop_custom_name %}Die Ursprüngliche Muck Boot Company&reg;{% endcapture %}
+    {% capture email_title %}Willkommen bei Muck{% endcapture %}
+
+    {% capture email_body %}Sie haben Ihr Kundenkonto aktiviert. Bei Ihrem nächsten Einkauf können Sie sich anmelden und schneller bezahlen.{% endcapture %}
+
+    {% capture visit_our_store_text %}BESUCHEN SIE UNSEREN STORE{% endcapture %}
+    {% capture contact_us_text %}KONTAKTIEREN SIE UNS:{% endcapture %}
+    {% capture contact_us_telephone %}+44 808 281 9536{% endcapture %}
+    {% capture terms_and_conditions %}AGB<span style="line-height: 14px; font-size: 12px;"></span>{% endcapture %}
+    {% capture privacy_policy_text %}Datenschutzbestimmungen{% endcapture %}
+
+  {% else  %}
+    {% comment %}Nothing to see here{% endcomment %}
+  {% endif %}
 {% endif %}
 
-{% if shop_locale == 'DE' %}
-
-  {% capture shop_custom_name %}The Original Muck Boot Company&reg;{% endcapture %}
-  {% capture email_title %}Willkommen bei Muck{% endcapture %}
-
-  {% capture email_body %}Sie haben Ihr Kundenkonto aktiviert. Bei Ihrem nächsten Einkauf können Sie sich anmelden und schneller bezahlen.{% endcapture %}
-
-  {% capture visit_our_store_text %}BESUCHEN SIE UNSEREN STORE{% endcapture %}
-  {% capture contact_us_text %}KONTAKTIEREN SIE UNS:{% endcapture %}
-  {% capture contact_us_telephone %}+44 808 281 9536{% endcapture %}
-  {% capture terms_and_conditions %}AGB<span style="line-height: 14px; font-size: 12px;"></span>{% endcapture %}
-  {% capture privacy_policy_text %}Datenschutzbestimmungen{% endcapture %}
-{% endif %}
-
-{% endcomment %}
-
-{% comment %}
-  // wrap the this block in EN locale check logic
-  // or just feed it the dynamic string values from above?
-{% endcomment %}
-
+{% comment %} :: TEMPLATE MARKUP STARTS HERE:  no static strings should exist in the below markup  {% endcomment %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ shop_locale }}">
   <head>
   <title>{{ email_title }}</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -170,7 +165,7 @@
                     <table align="left" border="0" cellspacing="0" cellpadding="0" width="32" height="32" style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;Margin-right: 20px">
                       <tbody><tr style="vertical-align: top"><td align="left" valign="middle" style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
                         <a href="https://www.facebook.com/muckbootco/" title="Facebook" target="_blank">
-                          <img src="https://cdn.shopify.com/s/files/1/0015/2525/2190/files/facebook_2x_af60cbec-cd0a-4a73-a7b6-c929538ac6ad.png?9131003845000148457" alt="Facebook" title="Facebook" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
+                          <img src="https://cdn.shopify.com/s/files/1/0015/2525/2190/files/facebook_2x_af60cbec-cd0a-4a73-a7b6-c929538ac6ad.png?9131003845000148457" alt="Facebook" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
                         </a>
                       <div style="line-height:5px;font-size:1px">&#160;</div>
                       </td></tr>
@@ -179,7 +174,7 @@
                     <table align="left" border="0" cellspacing="0" cellpadding="0" width="32" height="32" style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;Margin-right: 20px">
                       <tbody><tr style="vertical-align: top"><td align="left" valign="middle" style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
                         <a href="https://instagram.com/muckbootco" title="Instagram" target="_blank">
-                          <img src="https://cdn.shopify.com/s/files/1/0015/2525/2190/files/instagram_2x_631ec28e-2aa5-405c-a1b2-42b3280cb039.png?9131003845000148457" alt="Instagram" title="Instagram" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
+                          <img src="https://cdn.shopify.com/s/files/1/0015/2525/2190/files/instagram_2x_631ec28e-2aa5-405c-a1b2-42b3280cb039.png?9131003845000148457" alt="Instagram" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
                         </a>
                       <div style="line-height:5px;font-size:1px">&#160;</div>
                       </td></tr>
@@ -188,7 +183,7 @@
                     <table align="left" border="0" cellspacing="0" cellpadding="0" width="32" height="32" style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;Margin-right: 0">
                       <tbody><tr style="vertical-align: top"><td align="left" valign="middle" style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
                         <a href="https://www.youtube.com/channel/UCDojhS0yZvveLz5JlHOwdhQ" title="YouTube" target="_blank">
-                          <img src="https://cdn.shopify.com/s/files/1/0015/2525/2190/files/youtube_2x_90c5b067-99c2-4489-a649-307a3283c97f.png?9131003845000148457" alt="YouTube" title="YouTube" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
+                          <img src="https://cdn.shopify.com/s/files/1/0015/2525/2190/files/youtube_2x_90c5b067-99c2-4489-a649-307a3283c97f.png?9131003845000148457" alt="YouTube" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
                         </a>
                       <div style="line-height:5px;font-size:1px">&#160;</div>
                       </td></tr>

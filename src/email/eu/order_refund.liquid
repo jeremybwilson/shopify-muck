@@ -1,66 +1,65 @@
 {% capture notification_template_name %}order_refund{% endcapture %}
 {% capture full_email_template_params %}?utm_source=tran&utm_medium=email&utm_campaign={{ notification_template_name }}{% endcapture %}
+{% capture domain_local_var %}{{ attributes.domain_locale }}{% endcapture %}
 
-{% capture shop_custom_name %}The Original Muck Boot Company&reg;{% endcapture %}
+{% if domain_local_var %}
+  {% if domain_local_var == 'EU' or domain_local_var == 'COM' %}
+    {% capture shop_locale %}en{% endcapture %}
+    {% comment %} PASS THE ENGLISH STRINGS HERE, YES! {% endcomment %}
 
-{% if refund_line_items.size == item_count %}
-  {% capture email_subtitle %}{% endcapture %}
-  {% capture email_title %}Your order has been refunded{% endcapture %}
-{% elsif refund_line_items.size == 0 %}
-  {% capture email_subtitle %}{% endcapture %}
-  {% capture email_title %}You have received a refund{% endcapture %}
-{% else %}
-  {% capture email_subtitle %}Some items in your order have been refunded{% endcapture %}
-  {% capture email_title %}Your order has been refunded{% endcapture %}
-{% endif %}
-{% capture email_body %}Your order has been refunded<br>Total amount refunded: <strong style="color:#ab5232">{{ amount | money_with_currency }}</strong>{% endcapture %}
+    {% capture shop_custom_name %}The Original Muck Boot Company&reg;{% endcapture %}
+    {% if refund_line_items.size == item_count %}
+      {% capture email_subtitle %}{% endcapture %}
+      {% capture email_title %}Your order has been refunded{% endcapture %}
+    {% elsif refund_line_items.size == 0 %}
+      {% capture email_subtitle %}{% endcapture %}
+      {% capture email_title %}You have received a refund{% endcapture %}
+    {% else %}
+      {% capture email_subtitle %}Some items in your order have been refunded{% endcapture %}
+      {% capture email_title %}Your order has been refunded{% endcapture %}
+    {% endif %}
+    {% capture email_body %}Your order has been refunded<br>Total amount refunded: <strong style="color:#ab5232">{{ amount | money_with_currency }}</strong>{% endcapture %}
 
-{% capture visit_our_store_text %}VISIT OUR STORE{% endcapture %}
-{% capture contact_us_text %}CONTACT US{% endcapture %}
-{% capture contact_us_telephone %}+44 808 281 9536{% endcapture %}
-{% capture terms_and_conditions %}Terms &amp; <span style="line-height: 14px; font-size: 12px;">Conditions</span>{% endcapture %}
-{% capture privacy_policy_text %}Privacy Policy{% endcapture %}
+    {% capture order_summary_text %}ORDER SUMMARY{% endcapture %}
+    {% capture visit_our_store_text %}VISIT OUR STORE{% endcapture %}
+    {% capture contact_us_text %}CONTACT US{% endcapture %}
+    {% capture contact_us_telephone %}+44 808 281 9536{% endcapture %}
+    {% capture terms_and_conditions %}Terms &amp; <span style="line-height: 14px; font-size: 12px;">Conditions</span>{% endcapture %}
+    {% capture privacy_policy_text %}Privacy Policy{% endcapture %}
 
-{% comment %}
 
-// wrap in some logic to alternate between English strings above
-// an German strings below
+  {% elsif domain_local_var == 'DE'%}
+    {% capture shop_locale %}de{% endcapture %}
+    {% comment %} PASS ZIE GERMAN STRINGS HERE, JA! {% endcomment %}
 
-{% if store_name or store_locale == 'something' %}
-  {% capture shop_locale %}EN{% endcapture %}
-{% else %}
-  {% capture shop_locale %}DE{% endcapture %}
-{% endif %}
+    {% capture shop_custom_name %}Die Ursprüngliche Muck Boot Company&reg;{% endcapture %}
+    {% if refund_line_items.size == item_count %}
+      {% capture email_subtitle %}{% endcapture %}
+      {% capture email_title %}Ihre Bestellung wurde erstattet{% endcapture %}
+    {% elsif refund_line_items.size == 0 %}
+      {% capture email_subtitle %}{% endcapture %}
+      {% capture email_title %}Sie haben eine Rückerstattung erhalten{% endcapture %}
+    {% else %}
+      {% capture email_subtitle %}Einige Artikel Ihrer Bestellung wurden erstattet{% endcapture %}
+      {% capture email_title %}Ihre Bestellung wurde erstattet{% endcapture %}
+    {% endif %}
+    {% capture email_body %}Ihre Bestellung wurde erstattet<br>Erstattete Gesamtsumme: <strong style="color:#ab5232">{{ amount | money_with_currency }}</strong>{% endcapture %}
 
-{% if shop_locale == 'DE' %}
+    {% capture order_summary_text %}BESTELLÜBERSICHT{% endcapture %}
+    {% capture visit_our_store_text %}BESUCHEN SIE UNSEREN STORE{% endcapture %}
+    {% capture contact_us_text %}KONTAKTIEREN SIE UNS:{% endcapture %}
+    {% capture contact_us_telephone %}+44 808 281 9536{% endcapture %}
+    {% capture terms_and_conditions %}AGB<span style="line-height: 14px; font-size: 12px;"></span>{% endcapture %}
+    {% capture privacy_policy_text %}Datenschutzbestimmungen{% endcapture %}
 
-  {% if refund_line_items.size == item_count %}
-    {% capture email_subtitle %}{% endcapture %}
-    {% capture email_title %}Ihre Bestellung wurde erstattet{% endcapture %}
-  {% elsif refund_line_items.size == 0 %}
-    {% capture email_subtitle %}{% endcapture %}
-    {% capture email_title %}Sie haben eine Rückerstattung erhalten{% endcapture %}
-  {% else %}
-    {% capture email_subtitle %}Einige Artikel Ihrer Bestellung wurden erstattet{% endcapture %}
-    {% capture email_title %}Ihre Bestellung wurde erstattet{% endcapture %}
+  {% else  %}
+    {% comment %}Nothing to see here{% endcomment %}
   {% endif %}
-  {% capture email_body %}Ihre Bestellung wurde erstattet<br>Erstattete Gesamtsumme: <strong style="color:#ab5232">{{ amount | money_with_currency }}</strong>{% endcapture %}
-
-  {% capture visit_our_store_text %}BESUCHEN SIE UNSEREN STORE{% endcapture %}
-  {% capture contact_us_text %}KONTAKTIEREN SIE UNS:{% endcapture %}
-  {% capture contact_us_telephone %}+44 808 281 9536{% endcapture %}
-  {% capture terms_and_conditions %}AGB<span style="line-height: 14px; font-size: 12px;"></span>{% endcapture %}
-  {% capture privacy_policy_text %}Datenschutzbestimmungen{% endcapture %}
 {% endif %}
 
-{% endcomment %}
-
-{% comment %}
-  // wrap the this block in EN locale check logic
-  // or just feed it the dynamic string values from above?
-{% endcomment %}
+{% comment %} :: TEMPLATE MARKUP STARTS HERE:  no static strings should exist in the below markup  {% endcomment %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ shop_locale }}">
   <head>
   <title>{{ email_title }}</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -73,11 +72,8 @@
   <tr>
     <td style="text-align: center" align="center">
       <!-- LAYOUT -->
-
       <table class="main-layout" style="width: 500px; min-width: 500px; max-width: 500px; background-color: #ffffff; margin: 20px auto; border-collapse: collapse;">
-
         <!-- HEADER -->
-
         <tr>
           <td align="center" style="padding-top: 5px; padding-bottom: 5px; padding-left: 0; padding-right: 0; text-align: center; background-color: #ffffff; width: 100%;">
 
@@ -89,39 +85,25 @@
 
           </td>
         </tr>
-
         <!-- BODY -->
-
         <tr>
           <td style="padding: 0">
-
             <table class="body-layout" style="width: 100%; border-collapse: collapse;">
-
               <!-- BODY :: INTRO -->
-
               <tr>
                 <td style="background-color: #f5f1ed; padding: 20px;">
-
                   <div style="padding: 60px 20px 50px">
-
                     <!-- SUBHEADLINE -->
-
                     {% if email_subtitle != blank %}
-
                     <div style="color:#ab5232;line-height:120%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
                       <div style="font-size:12px;line-height:14px;font-family:inherit;color:#ab5232;text-align:center;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><strong><span style="font-size: 14px; line-height: 25px; letter-spacing: .25em;"><span style="font-size: 14px; line-height: 25px; text-transform:uppercase;">{{ email_subtitle }}</span><br></span></strong></p></div>
                     </div>
-
                     {% endif %}
-
                     <!-- HEADLINE -->
-
                     <div style="color:#164632;line-height:120%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
                       <div style="font-size:12px;line-height:14px;font-family:inherit;color:#164632;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><strong><span style="font-size: 28px; line-height: 33px; letter-spacing: .15em; text-transform: uppercase;">{{ email_title }}</span></p></div>
                     </div>
-
                     <!-- COPY -->
-
                     <div style="color:#164632;line-height:180%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
                       <div style="font-size:14px;line-height:25px;font-family:inherit;color:#164632;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 25px;text-align: center">{{ email_body }}</p></div>
                     </div>
@@ -130,24 +112,16 @@
 
                 </td>
               </tr>
-
               <!-- BODY :: TABLE -->
-
               <tr>
                 <td style="padding: 60px 40px 50px">
-
                   <!-- TITLE -->
-
                   <div style="color:#164632;line-height:120%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
-                    <div style="font-size:12px;line-height:14px;color:#164632;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center;"><span style="font-size: 18px; line-height: 21px; letter-spacing: .15em;"><strong>ORDER SUMMARY</strong></span></p></div>
+                    <div style="font-size:12px;line-height:14px;color:#164632;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center;"><span style="font-size: 18px; line-height: 21px; letter-spacing: .15em;"><strong>{{ order_summary_text }}</strong></span></p></div>
                   </div>
 
                   <!-- TABLE -->
-
-
-                  <!--
-                  PRODUCT ITEM
-                  -->
+                  <!-- PRODUCT ITEM -->
 
                   <table class="row" style="border-collapse: collapse; width: 100%;">
                     {% for line in subtotal_line_items %}
@@ -334,7 +308,7 @@
                     <table align="left" border="0" cellspacing="0" cellpadding="0" width="32" height="32" style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;Margin-right: 20px">
                       <tbody><tr style="vertical-align: top"><td align="left" valign="middle" style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
                         <a href="https://www.facebook.com/muckbootco/" title="Facebook" target="_blank">
-                          <img src="https://cdn.shopify.com/s/files/1/0015/2525/2190/files/facebook_2x_af60cbec-cd0a-4a73-a7b6-c929538ac6ad.png?9131003845000148457" alt="Facebook" title="Facebook" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
+                          <img src="https://cdn.shopify.com/s/files/1/0015/2525/2190/files/facebook_2x_af60cbec-cd0a-4a73-a7b6-c929538ac6ad.png?9131003845000148457" alt="Facebook" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
                         </a>
                       <div style="line-height:5px;font-size:1px">&#160;</div>
                       </td></tr>
@@ -343,7 +317,7 @@
                     <table align="left" border="0" cellspacing="0" cellpadding="0" width="32" height="32" style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;Margin-right: 20px">
                       <tbody><tr style="vertical-align: top"><td align="left" valign="middle" style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
                         <a href="https://instagram.com/muckbootco" title="Instagram" target="_blank">
-                          <img src="https://cdn.shopify.com/s/files/1/0015/2525/2190/files/instagram_2x_631ec28e-2aa5-405c-a1b2-42b3280cb039.png?9131003845000148457" alt="Instagram" title="Instagram" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
+                          <img src="https://cdn.shopify.com/s/files/1/0015/2525/2190/files/instagram_2x_631ec28e-2aa5-405c-a1b2-42b3280cb039.png?9131003845000148457" alt="Instagram" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
                         </a>
                       <div style="line-height:5px;font-size:1px">&#160;</div>
                       </td></tr>
@@ -352,7 +326,7 @@
                     <table align="left" border="0" cellspacing="0" cellpadding="0" width="32" height="32" style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;Margin-right: 0">
                       <tbody><tr style="vertical-align: top"><td align="left" valign="middle" style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
                         <a href="https://www.youtube.com/channel/UCDojhS0yZvveLz5JlHOwdhQ" title="YouTube" target="_blank">
-                          <img src="https://cdn.shopify.com/s/files/1/0015/2525/2190/files/youtube_2x_90c5b067-99c2-4489-a649-307a3283c97f.png?9131003845000148457" alt="YouTube" title="YouTube" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
+                          <img src="https://cdn.shopify.com/s/files/1/0015/2525/2190/files/youtube_2x_90c5b067-99c2-4489-a649-307a3283c97f.png?9131003845000148457" alt="YouTube"  width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
                         </a>
                       <div style="line-height:5px;font-size:1px">&#160;</div>
                       </td></tr>
@@ -371,7 +345,7 @@
 
                   <div style="color:#798d85;line-height:120%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
                     <div style="font-size:12px;line-height:14px;color:#798d85;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center">
-                      <span style="font-size: 12px; line-height: 14px;"><a style="color:#798d85;text-decoration: none;" title="{{ contact_us_text }}" href="{{ shop.url }}/pages/contact-us{{ full_email_template_params }}" target="_blank" rel="noopener">{{ contact_us_text }}</a>&#160;&#160;&#160;&#160; <a style="color:#798d85;text-decoration: none;" title="{{ contact_us_text }}" href="tel:{{ contact_us_telephone }}" target="_blank" rel="noopener">+44 808 281 9536</a></span></p></div>
+                      <span style="font-size: 12px; line-height: 14px;"><a style="color:#798d85;text-decoration: none;" title="{{ contact_us_text }}" href="{{ shop.url }}/pages/contact-us{{ full_email_template_params }}" target="_blank" rel="noopener">{{ contact_us_text }}</a>&#160;&#160;&#160;&#160; <a style="color:#798d85;text-decoration: none;" title="{{ contact_us_text }}" href="tel:{{ contact_us_telephone }}" target="_blank" rel="noopener">{{ contact_us_telephone }}</a></span></p></div>
                   </div>
 
                 </td>
@@ -428,8 +402,8 @@
 </html>
 
 {% comment %}
-// wrap in some logic to alternate between English strings above
-// and German strings below
+ // STORING the German translated template files (markup) below here but
+ // DO NOT ACTUALLY UPLOAD THE BELOW CODE INTO SHOPIFY
 {% endcomment %}
 
 {% comment %}
