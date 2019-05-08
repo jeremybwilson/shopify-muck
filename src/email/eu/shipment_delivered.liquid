@@ -1,88 +1,86 @@
 {% capture notification_template_name %}shipment_delivered{% endcapture %}
 {% capture full_email_template_params %}?utm_source=tran&utm_medium=email&utm_campaign={{ notification_template_name }}{% endcapture %}
+{% capture domain_local_var %}{{ attributes.domain_locale }}{% endcapture %}
 
-{% capture shop_custom_name %}The Original Muck Boot Company&reg;{% endcapture %}
+{% if domain_local_var %}
+  {% if domain_local_var == 'EU' or domain_local_var == 'COM' %}
+    {% capture shop_locale %}en{% endcapture %}
+    {% comment %} PASS THE ENGLISH STRINGS HERE, YES! {% endcomment %}
 
-{% if fulfillment.item_count == item_count %}
-  {% capture email_title %}Your order has been delivered{% endcapture %}
-  {% capture email_body %}Your order has been delivered. Track your shipment to see the delivery status.{% endcapture %}
-{% elsif fulfillment.item_count > 1 %}
-  {% if fulfillment_status == 'fulfilled' %}
-    {% capture email_title %}The last items in your order has been delivered{% endcapture %}
-    {% capture email_body %}The last items in your order has been delivered. Track your shipment to see the delivery status.{% endcapture %}
-  {% else %}
-    {% capture email_title %}Some items in your order have been delivered{% endcapture %}
-    {% capture email_body %}Some items in your order have been delivered. Track your shipment to see the delivery status.{% endcapture %}
-  {% endif %}
-{% else %}
-  {% if fulfillment_status == 'fulfilled' %}
-    {% capture email_title %}The last item in your order has been delivered{% endcapture %}
-    {% capture email_body %}The last item in your order has been delivered. Track your shipment to see the delivery status.{% endcapture %}
-  {% else %}
-    {% capture email_title %}One item in your order has been delivered{% endcapture %}
-    {% capture email_body %}One item in your order has been delivered. Track your shipment to see the delivery status.{% endcapture %}
-  {% endif %}
-{% endif %}
+    {% capture shop_custom_name %}The Original Muck Boot Company&reg;{% endcapture %}
 
-{% capture items_in_this_delivery %}ITEMS IN THIS DELIVERY{% endcapture %}
-{% capture view_your_order_text %}VIEW YOUR ORDER{% endcapture %}
-{% capture visit_our_store_text %}VISIT OUR STORE{% endcapture %}
-{% capture contact_us_text %}CONTACT US{% endcapture %}
-{% capture contact_us_telephone %}+44 808 281 9536{% endcapture %}
-{% capture terms_and_conditions %}Terms &amp; <span style="line-height: 14px; font-size: 12px;">Conditions</span>{% endcapture %}
-{% capture privacy_policy_text %}Privacy Policy{% endcapture %}
-
-{% comment %}
-
-// wrap in some logic to alternate between English strings above
-// an German strings below
-
-{% if store_name or store_locale == 'something' %}
-  {% capture shop_locale %}EN{% endcapture %}
-{% else %}
-  {% capture shop_locale %}DE{% endcapture %}
-{% endif %}
-
-{% if shop_locale == 'DE' %}
-
-  {% if fulfillment.item_count == item_count %}
-    {% capture email_title %}Ihre Bestellung wurde zugestellt{% endcapture %}
-    {% capture email_body %}Ihre Bestellung wurde zugestellt. In der Sendungsverfolgung sehen Sie den aktuellen Versandstatus.{% endcapture %}
-  {% elsif fulfillment.item_count > 1 %}
-    {% if fulfillment_status == 'fulfilled' %}
-      {% capture email_title %}Der letzte Artikel Ihrer Bestellung wurde zugestellt{% endcapture %}
-      {% capture email_body %}Der letzte Artikel Ihrer Bestellung wurde zugestellt. In der Sendungsverfolgung sehen Sie den aktuellen Versandstatus.{% endcapture %}
+    {% if fulfillment.item_count == item_count %}
+      {% capture email_title %}Your order has been delivered{% endcapture %}
+      {% capture email_body %}Your order has been delivered. Track your shipment to see the delivery status.{% endcapture %}
+    {% elsif fulfillment.item_count > 1 %}
+      {% if fulfillment_status == 'fulfilled' %}
+        {% capture email_title %}The last items in your order has been delivered{% endcapture %}
+        {% capture email_body %}The last items in your order has been delivered. Track your shipment to see the delivery status.{% endcapture %}
+      {% else %}
+        {% capture email_title %}Some items in your order have been delivered{% endcapture %}
+        {% capture email_body %}Some items in your order have been delivered. Track your shipment to see the delivery status.{% endcapture %}
+      {% endif %}
     {% else %}
-      {% capture email_title %}Einige Artikel Ihrer Bestellung wurden zugestellt{% endcapture %}
-      {% capture email_body %}Einige Artikel Ihrer Bestellung wurden zugestellt. In der Sendungsverfolgung sehen Sie den aktuellen Versandstatus.{% endcapture %}
+      {% if fulfillment_status == 'fulfilled' %}
+        {% capture email_title %}The last item in your order has been delivered{% endcapture %}
+        {% capture email_body %}The last item in your order has been delivered. Track your shipment to see the delivery status.{% endcapture %}
+      {% else %}
+        {% capture email_title %}One item in your order has been delivered{% endcapture %}
+        {% capture email_body %}One item in your order has been delivered. Track your shipment to see the delivery status.{% endcapture %}
+      {% endif %}
     {% endif %}
-  {% else %}
-    {% if fulfillment_status == 'fulfilled' %}
-      {% capture email_title %}Der letzte Artikel Ihrer Bestellung wurde zugestellt{% endcapture %}
-      {% capture email_body %}Der letzte Artikel Ihrer Bestellung wurde zugestellt. In der Sendungsverfolgung sehen Sie den aktuellen Versandstatus.{% endcapture %}
-    {% else %}
-      {% capture email_title %}Ein Artikel Ihrer Bestellung wurde zugestellt{% endcapture %}
-      {% capture email_body %}Ein Artikel Ihrer Bestellung wurde zugestellt. In der Sendungsverfolgung sehen Sie den aktuellen Versandstatus.{% endcapture %}
-    {% endif %}
-  {% endif %}
 
-  {% capture items_in_this_delivery %}ARTIKEL IN DIESER SENDUNG{% endcapture %}
-  {% capture view_your_order_text %}BESTELLUNG ANZEIGEN{% endcapture %}
-  {% capture visit_our_store_text %}BESUCHEN SIE UNSEREN STORE{% endcapture %}
-  {% capture contact_us_text %}KONTAKTIEREN SIE UNS:{% endcapture %}
-  {% capture contact_us_telephone %}+44 808 281 9536{% endcapture %}
-  {% capture terms_and_conditions %}AGB<span style="line-height: 14px; font-size: 12px;"></span>{% endcapture %}
-  {% capture privacy_policy_text %}Datenschutzbestimmungen{% endcapture %}
+    {% capture items_in_this_delivery %}ITEMS IN THIS DELIVERY{% endcapture %}
+    {% capture view_your_order_text %}VIEW YOUR ORDER{% endcapture %}
+    {% capture visit_our_store_text %}VISIT OUR STORE{% endcapture %}
+    {% capture contact_us_text %}CONTACT US{% endcapture %}
+    {% capture contact_us_telephone %}+44 808 281 9536{% endcapture %}
+    {% capture terms_and_conditions %}Terms &amp; <span style="line-height: 14px; font-size: 12px;">Conditions</span>{% endcapture %}
+    {% capture privacy_policy_text %}Privacy Policy{% endcapture %}
+
+  {% elsif domain_local_var == 'DE'%}
+    {% capture shop_locale %}de{% endcapture %}
+    {% comment %} PASS ZIE GERMAN STRINGS HERE, JA! {% endcomment %}
+
+    {% capture shop_custom_name %}Die Ursprüngliche Muck Boot Company&reg;{% endcapture %}
+
+    {% if fulfillment.item_count == item_count %}
+      {% capture email_title %}Ihre Bestellung wurde zugestellt{% endcapture %}
+      {% capture email_body %}Ihre Bestellung wurde zugestellt. In der Sendungsverfolgung sehen Sie den aktuellen Versandstatus.{% endcapture %}
+    {% elsif fulfillment.item_count > 1 %}
+      {% if fulfillment_status == 'fulfilled' %}
+        {% capture email_title %}Der letzte Artikel Ihrer Bestellung wurde zugestellt{% endcapture %}
+        {% capture email_body %}Der letzte Artikel Ihrer Bestellung wurde zugestellt. In der Sendungsverfolgung sehen Sie den aktuellen Versandstatus.{% endcapture %}
+      {% else %}
+        {% capture email_title %}Einige Artikel Ihrer Bestellung wurden zugestellt{% endcapture %}
+        {% capture email_body %}Einige Artikel Ihrer Bestellung wurden zugestellt. In der Sendungsverfolgung sehen Sie den aktuellen Versandstatus.{% endcapture %}
+      {% endif %}
+    {% else %}
+      {% if fulfillment_status == 'fulfilled' %}
+        {% capture email_title %}Der letzte Artikel Ihrer Bestellung wurde zugestellt{% endcapture %}
+        {% capture email_body %}Der letzte Artikel Ihrer Bestellung wurde zugestellt. In der Sendungsverfolgung sehen Sie den aktuellen Versandstatus.{% endcapture %}
+      {% else %}
+        {% capture email_title %}Ein Artikel Ihrer Bestellung wurde zugestellt{% endcapture %}
+        {% capture email_body %}Ein Artikel Ihrer Bestellung wurde zugestellt. In der Sendungsverfolgung sehen Sie den aktuellen Versandstatus.{% endcapture %}
+      {% endif %}
+    {% endif %}
+
+    {% capture items_in_this_delivery %}ARTIKEL IN DIESER SENDUNG{% endcapture %}
+    {% capture view_your_order_text %}BESTELLUNG ANZEIGEN{% endcapture %}
+    {% capture visit_our_store_text %}BESUCHEN SIE UNSEREN STORE{% endcapture %}
+    {% capture contact_us_text %}KONTAKTIEREN SIE UNS:{% endcapture %}
+    {% capture contact_us_telephone %}+44 808 281 9536{% endcapture %}
+    {% capture terms_and_conditions %}AGB{% endcapture %}
+    {% capture privacy_policy_text %}Datenschutzbestimmungen{% endcapture %}
+
+  {% else  %}
+    {% comment %}Nothing to see here{% endcomment %}
+  {% endif %}
 {% endif %}
 
-{% endcomment %}
-
-{% comment %}
-  // wrap the this block in EN locale check logic
-  // or just feed it the dynamic string values from above?
-{% endcomment %}
+{% comment %} :: TEMPLATE MARKUP STARTS HERE:  no static strings should exist in the below markup  {% endcomment %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ shop_locale }}">
   <head>
   <title>{{ email_title }}</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -226,7 +224,7 @@
                     <table align="left" border="0" cellspacing="0" cellpadding="0" width="32" height="32" style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;Margin-right: 20px">
                       <tbody><tr style="vertical-align: top"><td align="left" valign="middle" style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
                         <a href="https://www.facebook.com/muckbootco/" title="Facebook" target="_blank">
-                          <img src="https://cdn.shopify.com/s/files/1/0015/2525/2190/files/facebook_2x_af60cbec-cd0a-4a73-a7b6-c929538ac6ad.png?9131003845000148457" alt="Facebook" title="Facebook" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
+                          <img src="https://cdn.shopify.com/s/files/1/0015/2525/2190/files/facebook_2x_af60cbec-cd0a-4a73-a7b6-c929538ac6ad.png?9131003845000148457" alt="Facebook" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
                         </a>
                       <div style="line-height:5px;font-size:1px">&#160;</div>
                       </td></tr>
@@ -235,7 +233,7 @@
                     <table align="left" border="0" cellspacing="0" cellpadding="0" width="32" height="32" style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;Margin-right: 20px">
                       <tbody><tr style="vertical-align: top"><td align="left" valign="middle" style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
                         <a href="https://instagram.com/muckbootco" title="Instagram" target="_blank">
-                          <img src="https://cdn.shopify.com/s/files/1/0015/2525/2190/files/instagram_2x_631ec28e-2aa5-405c-a1b2-42b3280cb039.png?9131003845000148457" alt="Instagram" title="Instagram" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
+                          <img src="https://cdn.shopify.com/s/files/1/0015/2525/2190/files/instagram_2x_631ec28e-2aa5-405c-a1b2-42b3280cb039.png?9131003845000148457" alt="Instagram" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
                         </a>
                       <div style="line-height:5px;font-size:1px">&#160;</div>
                       </td></tr>
@@ -244,7 +242,7 @@
                     <table align="left" border="0" cellspacing="0" cellpadding="0" width="32" height="32" style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;Margin-right: 0">
                       <tbody><tr style="vertical-align: top"><td align="left" valign="middle" style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
                         <a href="https://www.youtube.com/channel/UCDojhS0yZvveLz5JlHOwdhQ" title="YouTube" target="_blank">
-                          <img src="https://cdn.shopify.com/s/files/1/0015/2525/2190/files/youtube_2x_90c5b067-99c2-4489-a649-307a3283c97f.png?9131003845000148457" alt="YouTube" title="YouTube" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
+                          <img src="https://cdn.shopify.com/s/files/1/0015/2525/2190/files/youtube_2x_90c5b067-99c2-4489-a649-307a3283c97f.png?9131003845000148457" alt="YouTube" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
                         </a>
                       <div style="line-height:5px;font-size:1px">&#160;</div>
                       </td></tr>
