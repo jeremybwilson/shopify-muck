@@ -7,10 +7,16 @@
 			{% comment %} 
 				:: FORMAT NOTES ::
 					Example: 
-						- US|United States|http://www.google.com, UK|United Kingdom... etc
+						- US|United States|http://www.google.com, UK|United Kingdom,
+							CA-EN|Canada EN|https://www.xxx.ca,CA-FR|Canada FR|https://fr.xxx.ca... etc
 			{% endcomment %}
+
 			{%- assign siteData = item | split: '|' -%}
-			{%- assign flag = 'svg-icon-flag-' | append:siteData[0] -%}
+			{% if siteData[0] and siteData[0] contains '-' %}
+				{%- assign siteData1 = siteData[0] | split: '-' -%}
+			{% endif %}
+      {%- assign flag = 'svg-icon-flag-' | append:siteData[0] -%}
+
 			<li class="site-picker-item">
 
 
@@ -22,7 +28,11 @@
 							{% if showFullName == true %}
 								{{ siteData[1] }}
 							{% else %}
-								{{ siteData[0] }}
+								{% if siteData1 %}
+									{{ siteData1[1] }}
+								{% else %}
+									{{ siteData[0] }}
+								{% endif %}
 							{% endif %}
 						</div>
 
@@ -39,7 +49,11 @@
 							{% if showFullName == true %}
 								{{ siteData[1] }}
 							{% else %}
-								{{ siteData[0] }}
+								{% if siteData1 %}
+									{{ siteData1[1] }}
+								{% else %}
+									{{ siteData[0] }}
+								{% endif %}
 							{% endif %}
 						</div>
 					</a>
