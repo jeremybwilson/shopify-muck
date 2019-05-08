@@ -235,6 +235,16 @@
       {% include 'yotpo-product-snippet' %}</div>
       {% include 'yotpo-product-summary' %}
 
+      {% if product.metafields.yotpo.reviews_count and product.metafields.yotpo.reviews_count != "0" %}
+        <div class="row yotpo-aggregate-rating-text">
+          <div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+          <span itemprop="itemReviewed">{{ product.title }}</span>
+          has a rating of <span itemprop="ratingValue">{{ product.metafields.yotpo.reviews_average }}</span> stars
+          based on <span itemprop="ratingCount">{{ product.metafields.yotpo.reviews_count }}</span> reviews.
+          </div>
+        </div>
+      {% endif %}
+
     {% endif %}
 
     {% comment %} RECENTLY VIEWED {% endcomment %}
@@ -242,6 +252,7 @@
     {% include 'recently-viewed' %}
 
   {% endunless %}
+
 </div>
 
 {% include 'product-size-chart' %}
