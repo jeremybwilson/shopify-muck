@@ -3,7 +3,7 @@
 {% capture domain_local_var %}{{ attributes.domain_locale }}{% endcapture %}
 
 {% if domain_local_var %}
-  {% if domain_local_var == 'EU' or domain_local_var == 'COM' %}
+  {% if domain_local_var == 'EU' or domain_local_var == 'COM' or domain_local_var == '' %}
     {% capture shop_locale %}en{% endcapture %}
     {% comment %} PASS THE ENGLISH STRINGS HERE, YES! {% endcomment %}
 
@@ -34,7 +34,7 @@
     {% capture visit_our_store_text %}BESUCHEN SIE UNSEREN STORE{% endcapture %}
     {% capture contact_us_text %}KONTAKTIEREN SIE UNS:{% endcapture %}
     {% capture contact_us_telephone %}+44 808 281 9536{% endcapture %}
-    {% capture terms_and_conditions %}AGB<span style="line-height: 14px; font-size: 12px;"></span>{% endcapture %}
+    {% capture terms_and_conditions %}AGB{% endcapture %}
     {% capture privacy_policy_text %}Datenschutzbestimmungen{% endcapture %}
 
   {% else  %}
@@ -91,14 +91,14 @@
                     <!-- BUTTON -->
                     <div align="center" class="button-container center " style="padding-right: 10px; padding-left: 10px; padding-top:10px; padding-bottom:10px;">
                       <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top:10px; padding-bottom:10px;" align="center"><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="view_your_order_link" style="height:31pt; v-text-anchor:middle; width:121pt;" arcsize="0%" strokecolor="#ab5232" fillcolor="#ab5232"><w:anchorlock/><v:textbox inset="0,0,0,0"><center style="color:#ffffff; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; font-size:16px;"><![endif]-->
-                        <a href="{{ order_status_url }}&utm_source=tran&utm_medium=email&utm_campaign=shipping_update" target="_blank" style="display: block;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #ffffff; background-color: #ab5232; border-radius: 0px; -webkit-border-radius: 0px; -moz-border-radius: 0px; max-width: 162px; width: 132px;width: auto; border-top: 0px solid transparent; border-right: 0px solid transparent; border-bottom: 0px solid transparent; border-left: 0px solid transparent; padding-top: 5px; padding-right: 15px; padding-bottom: 5px; padding-left: 15px; font-family: 'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;mso-border-alt: none">
+                        <a href="{{ order_status_url }}{{ full_email_template_params }}" target="_blank" style="display: block;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #ffffff; background-color: #ab5232; border-radius: 0px; -webkit-border-radius: 0px; -moz-border-radius: 0px; max-width: 162px; width: 132px;width: auto; border-top: 0px solid transparent; border-right: 0px solid transparent; border-bottom: 0px solid transparent; border-left: 0px solid transparent; padding-top: 5px; padding-right: 15px; padding-bottom: 5px; padding-left: 15px; font-family: 'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;mso-border-alt: none">
                           <span style="font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;font-size:16px;line-height:32px;"><span style="font-size: 12px; line-height: 24px; letter-spacing: .125em;"><strong>{{ view_your_order_text }}</strong></span></span>
                         </a>
                       <!--[if mso]></center></v:textbox></v:roundrect></td></tr></table><![endif]-->
                     </div>
                     <!-- LINK -->
                     <div style="color:#ffffff;line-height:120%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
-                      <div style="font-size:12px;line-height:14px;color:#ffffff;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 12px; line-height: 14px; letter-spacing: .125em;"><a style="color:#ffffff;text-decoration: none;" title="Visit Live Site" href="{{ shop.url }}?utm_source=tran{{ full_email_template_params }}" target="_blank" rel="noopener">VISIT OUR STORE</a></span></p></div>
+                      <div style="font-size:12px;line-height:14px;color:#ffffff;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 12px; line-height: 14px; letter-spacing: .125em;"><a style="color:#ffffff;text-decoration: none;" title="Visit Live Site" href="{{ shop.url }}{{ full_email_template_params }}" target="_blank" rel="noopener">{{ visit_our_store_text }}</a></span></p></div>
                     </div>
                   </div>
                 </td>
@@ -324,7 +324,7 @@
 
                     <div align="center" class="button-container center " style="padding-right: 10px; padding-left: 10px; padding-top:10px; padding-bottom:10px;">
                       <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top:10px; padding-bottom:10px;" align="center"><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="view_your_order_link" style="height:31pt; v-text-anchor:middle; width:121pt;" arcsize="0%" strokecolor="#ab5232" fillcolor="#ab5232"><w:anchorlock/><v:textbox inset="0,0,0,0"><center style="color:#ffffff; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; font-size:16px;"><![endif]-->
-                        <a href="{{ order_status_url }}&utm_source=tran&utm_medium=email&utm_campaign=shipping_update" target="_blank" style="display: block;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #ffffff; background-color: #ab5232; border-radius: 0px; -webkit-border-radius: 0px; -moz-border-radius: 0px; max-width: 162px; width: 132px;width: auto; border-top: 0px solid transparent; border-right: 0px solid transparent; border-bottom: 0px solid transparent; border-left: 0px solid transparent; padding-top: 5px; padding-right: 15px; padding-bottom: 5px; padding-left: 15px; font-family: 'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;mso-border-alt: none">
+                        <a href="{{ order_status_url }}{{ full_email_template_params }}" target="_blank" style="display: block;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #ffffff; background-color: #ab5232; border-radius: 0px; -webkit-border-radius: 0px; -moz-border-radius: 0px; max-width: 162px; width: 132px;width: auto; border-top: 0px solid transparent; border-right: 0px solid transparent; border-bottom: 0px solid transparent; border-left: 0px solid transparent; padding-top: 5px; padding-right: 15px; padding-bottom: 5px; padding-left: 15px; font-family: 'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;mso-border-alt: none">
                           <span style="font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;font-size:16px;line-height:32px;"><span style="font-size: 12px; line-height: 24px; letter-spacing: .125em;"><strong>{{ view_your_order_text }}</strong></span></span>
                         </a>
                       <!--[if mso]></center></v:textbox></v:roundrect></td></tr></table><![endif]-->

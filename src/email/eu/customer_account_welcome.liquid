@@ -2,41 +2,40 @@
 {% capture full_email_template_params %}?utm_source=tran&utm_medium=email&utm_campaign={{ notification_template_name }}{% endcapture %}
 {% capture domain_local_var %}{{ attributes.domain_locale }}{% endcapture %}
 
-{% if domain_local_var %}
-  {% if domain_local_var == 'EU' or domain_local_var == 'COM' %}
-    {% capture shop_locale %}en{% endcapture %}
-    {% comment %} PASS THE ENGLISH STRINGS HERE, YES! {% endcomment %}
+{% if domain_local_var == 'EU' or domain_local_var == 'COM' or domain_local_var == '' %}
+  {% capture shop_locale %}en{% endcapture %}
+  {% comment %} PASS THE ENGLISH STRINGS HERE, YES! {% endcomment %}
 
-    {% capture shop_custom_name %}The Original Muck Boot Company&reg;{% endcapture %}
-    {% capture email_title %}Welcome to Muck{% endcapture %}
+  {% capture shop_custom_name %}The Original Muck Boot Company&reg;{% endcapture %}
+  {% capture email_title %}Welcome to Muck{% endcapture %}
 
-    {% capture email_body %}You've activated your customer account. Next time you shop with us, log in for faster checkout.{% endcapture %}
+  {% capture email_body %}You've activated your customer account. Next time you shop with us, log in for faster checkout.{% endcapture %}
 
-    {% capture visit_our_store_text %}VISIT OUR STORE{% endcapture %}
-    {% capture contact_us_text %}CONTACT US{% endcapture %}
-    {% capture contact_us_telephone %}+44 808 281 9536{% endcapture %}
-    {% capture terms_and_conditions %}Terms &amp; <span style="line-height: 14px; font-size: 12px;">Conditions</span>{% endcapture %}
-    {% capture privacy_policy_text %}Privacy Policy{% endcapture %}
+  {% capture visit_our_store_text %}VISIT OUR STORE{% endcapture %}
+  {% capture contact_us_text %}CONTACT US{% endcapture %}
+  {% capture contact_us_telephone %}+44 808 281 9536{% endcapture %}
+  {% capture terms_and_conditions %}Terms &amp; <span style="line-height: 14px; font-size: 12px;">Conditions</span>{% endcapture %}
+  {% capture privacy_policy_text %}Privacy Policy{% endcapture %}
 
-  {% elsif domain_local_var == 'DE'%}
-    {% capture shop_locale %}de{% endcapture %}
-    {% comment %} PASS ZIE GERMAN STRINGS HERE, JA! {% endcomment %}
+{% elsif domain_local_var == 'DE'%}
+  {% capture shop_locale %}de{% endcapture %}
+  {% comment %} PASS ZIE GERMAN STRINGS HERE, JA! {% endcomment %}
 
-    {% capture shop_custom_name %}Die Ursprüngliche Muck Boot Company&reg;{% endcapture %}
-    {% capture email_title %}Willkommen bei Muck{% endcapture %}
+  {% capture shop_custom_name %}Die Ursprüngliche Muck Boot Company&reg;{% endcapture %}
+  {% capture email_title %}Willkommen bei Muck{% endcapture %}
 
-    {% capture email_body %}Sie haben Ihr Kundenkonto aktiviert. Bei Ihrem nächsten Einkauf können Sie sich anmelden und schneller bezahlen.{% endcapture %}
+  {% capture email_body %}Sie haben Ihr Kundenkonto aktiviert. Bei Ihrem nächsten Einkauf können Sie sich anmelden und schneller bezahlen.{% endcapture %}
 
-    {% capture visit_our_store_text %}BESUCHEN SIE UNSEREN STORE{% endcapture %}
-    {% capture contact_us_text %}KONTAKTIEREN SIE UNS:{% endcapture %}
-    {% capture contact_us_telephone %}+44 808 281 9536{% endcapture %}
-    {% capture terms_and_conditions %}AGB{% endcapture %}
-    {% capture privacy_policy_text %}Datenschutzbestimmungen{% endcapture %}
+  {% capture visit_our_store_text %}BESUCHEN SIE UNSEREN STORE{% endcapture %}
+  {% capture contact_us_text %}KONTAKTIEREN SIE UNS:{% endcapture %}
+  {% capture contact_us_telephone %}+44 808 281 9536{% endcapture %}
+  {% capture terms_and_conditions %}AGB{% endcapture %}
+  {% capture privacy_policy_text %}Datenschutzbestimmungen{% endcapture %}
 
-  {% else  %}
-    {% comment %}Nothing to see here{% endcomment %}
-  {% endif %}
+{% else  %}
+  {% comment %}Nothing to see here{% endcomment %}
 {% endif %}
+
 
 {% comment %} :: TEMPLATE MARKUP STARTS HERE:  no static strings should exist in the below markup  {% endcomment %}
 <!DOCTYPE html>

@@ -3,7 +3,7 @@
 {% capture domain_local_var %}{{ attributes.domain_locale }}{% endcapture %}
 
 {% if domain_local_var %}
-  {% if domain_local_var == 'EU' or domain_local_var == 'COM' %}
+  {% if domain_local_var == 'EU' or domain_local_var == 'COM' or domain_local_var == '' %}
     {% capture shop_locale %}en{% endcapture %}
     {% comment %} PASS THE ENGLISH STRINGS HERE, YES! {% endcomment %}
 
