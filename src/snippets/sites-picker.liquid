@@ -14,10 +14,8 @@
 			{%- assign siteData = item | split: '|' -%}
 			{% if siteData[0] and siteData[0] contains '-' %}
 				{%- assign siteData1 = siteData[0] | split: '-' -%}
-				{%- assign flag = 'svg-icon-flag-' | append:siteData1[0] -%}
-			{% else %}
-				{%- assign flag = 'svg-icon-flag-' | append:siteData[0] -%}
 			{% endif %}
+      {%- assign flag = 'svg-icon-flag-' | append:siteData[0] -%}
 
 			<li class="site-picker-item">
 
