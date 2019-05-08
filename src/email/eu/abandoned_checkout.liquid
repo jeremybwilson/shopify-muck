@@ -1,3 +1,10 @@
+{% capture notification_template_name %}abandoned_checkout{% endcapture %}
+{% capture full_email_template_params %}?utm_source=tran&utm_medium=email&utm_campaign={{ notification_template_name }}{% endcapture %}
+{% capture domain_local_var %}{{ attributes.domain_locale }}{% endcapture %}
+
+{% capture shop_locale %}en{% endcapture %}
+{% comment %} PASS THE ENGLISH STRINGS HERE, YES! {% endcomment %}
+
 {% capture shop_custom_name %}The Original Muck Boot Company&reg;{% endcapture %}
 {% capture email_title %}
   {% if item_count == 1 %}
@@ -21,10 +28,52 @@
     {% endif %}
   {% endif %}
 {% endcapture %}
-{% capture shop_url_email_params %}?utm_source=tran&utm_medium=email&utm_campaign=abandoned_checkout{% endcapture %}
 
+{% capture shop_now_text %}SHOP NOW{% endcapture %}
+{% capture complete_your_purchase_text %}Complete Your Purchase{% endcapture %}
+{% capture contact_us_text %}CONTACT US{% endcapture %}
+{% capture terms_and_conditions %}Terms &amp; <span style="line-height: 14px; font-size: 12px;">Conditions</span>{% endcapture %}
+{% capture privacy_policy_text %}Privacy Policy{% endcapture %}
+
+{% if domain_local_var == 'DE'%}
+  {% capture shop_locale %}de{% endcapture %}
+  {% comment %} PASS ZIE GERMAN STRINGS HERE, JA! {% endcomment %}
+
+  {% capture shop_custom_name %}Die Ursprüngliche Muck Boot Company&reg;{% endcapture %}
+  {% capture email_title %}
+    {% if item_count == 1 %}
+  Es ist noch ein Artikel in Ihrem Einkaufskorb
+    {% else %}
+  Es sind noch Artikel in Ihrem Einkaufskorb
+    {% endif %}
+  {% endcapture %}
+  {% capture email_body %}
+    {% if billing_address.first_name %}
+      {% if item_count == 1 %}
+  Hallo {{ billing_address.first_name }}, Sie haben einen Artikel in Ihren Einkaufskorb gelegt und den Kauf noch nicht abgeschlossen. Sie können den Kauf jetzt abschließen, solange er noch verfügbar ist.
+      {% else %}
+  Hallo {{ billing_address.first_name }}, Sie haben Artikel in Ihren Einkaufskorb gelegt und den Kauf noch nicht abgeschlossen. Sie können den Kauf jetzt abschließen, solange sie noch verfügbar sind.
+      {% endif %}
+    {% else %}
+      {% if item_count == 1 %}
+  Hallo, Sie haben einen Artikel in Ihren Einkaufskorb gelegt und den Kauf noch nicht abgeschlossen. Sie können den Kauf jetzt abschließen, solange er noch verfügbar ist.
+      {% else %}
+  Hallo, Sie haben Artikel in Ihren Einkaufskorb gelegt und den Kauf noch nicht abgeschlossen. Sie können den Kauf jetzt abschließen, solange sie noch verfügbar sind.
+      {% endif %}
+    {% endif %}
+  {% endcapture %}
+
+  {% capture shop_now_text %}JETZT KAUFEN{% endcapture %}
+  {% capture complete_your_purchase_text %}Bestellung abschließen{% endcapture %}
+  {% capture contact_us_text %}KONTAKTIEREN SIE UNS:{% endcapture %}
+  {% capture terms_and_conditions %}AGB<span style="line-height: 14px; font-size: 12px;"></span>{% endcapture %}
+  {% capture privacy_policy_text %}Datenschutzbestimmungen{% endcapture %}
+
+{% endif %}
+
+{% comment %} :: TEMPLATE MARKUP STARTS HERE:  no static strings should exist in the below markup  {% endcomment %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ shop_locale }}">
   <head>
   <title>{{ email_title }}</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -37,64 +86,45 @@
   <tr>
     <td style="text-align: center" align="center">
       <!-- LAYOUT -->
-
       <table class="main-layout" style="width: 500px; min-width: 500px; max-width: 500px; background-color: #ffffff; margin: 20px auto; border-collapse: collapse;">
-
         <!-- HEADER -->
-
         <tr>
           <td align="center" style="padding-top: 5px; padding-bottom: 5px; padding-left: 0; padding-right: 0; text-align: center; background-color: #ffffff; width: 100%;">
-
             <!-- LOGO  -->
-
-            <a href="{{ shop.url }}{{ shop_url_email_params }}" title="{{ shop_custom_name }}" target="_blank">
+            <a href="{{ shop.url }}{{ full_email_template_params }}" title="{{ shop_custom_name }}" target="_blank">
               <img class="center fixedwidth" align="center" border="0" src="https://cdn.shopify.com/s/files/1/0032/6480/7010/files/muck-logo.png?5524665369218808649" alt="{{ shop_custom_name }}" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;width: 100%;max-width: 90px" width="90">
             </a>
           </td>
         </tr>
-
         <!-- BODY -->
-
         <tr>
           <td style="padding: 0">
-
             <table class="body-layout" style="width: 100%; border-collapse: collapse;">
-
               <!-- BODY :: INTRO -->
-
               <tr>
                 <td style="background-color: #164632; padding: 20px;">
-
                   <div style="padding: 60px 20px 50px">
-
                     <!-- HEADLINE -->
-
                     <div style="color:#FFFFFF;line-height:120%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
                       <div style="font-size:12px;line-height:14px;font-family:inherit;color:#FFFFFF;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><strong><span style="font-size: 38px; line-height: 45px; letter-spacing: .15em;"><span style="font-size: 28px; line-height: 33px; text-transform: uppercase;">{{ email_title }}</span></span></strong></p></div>
                     </div>
 
                     <!-- COPY -->
-
                     {% if custom_message != blank %}
-
                       <div style="color:#FFFFFF;line-height:180%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
                       <div style="font-size:14px;line-height:25px;font-family:inherit;color:#FFFFFF;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 25px;text-align: center">{{ custom_message }}</p></div>
                     </div>
-
                     {% else %}
-
                     <div style="color:#FFFFFF;line-height:180%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
                       <div style="font-size:14px;line-height:25px;font-family:inherit;color:#FFFFFF;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 25px;text-align: center">{{ email_body }}</p></div>
                     </div>
 
                     {% endif %}
-
                     <!-- BUTTON -->
-
                     <div align="center" class="button-container center " style="padding-right: 10px; padding-left: 10px; padding-top:10px; padding-bottom:10px;">
                       <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top:10px; padding-bottom:10px;" align="center"><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="view_your_order_link" style="height:31pt; v-text-anchor:middle; width:121pt;" arcsize="0%" strokecolor="#ab5232" fillcolor="#ab5232"><w:anchorlock/><v:textbox inset="0,0,0,0"><center style="color:#ffffff; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; font-size:16px;"><![endif]-->
-                        <a href="{{ shop.url }}{{ shop_url_email_params }}" target="_blank" style="display: block;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #ffffff; background-color: #ab5232; border-radius: 0px; -webkit-border-radius: 0px; -moz-border-radius: 0px; max-width: 162px; width: 132px;width: auto; border-top: 0px solid transparent; border-right: 0px solid transparent; border-bottom: 0px solid transparent; border-left: 0px solid transparent; padding-top: 5px; padding-right: 15px; padding-bottom: 5px; padding-left: 15px; font-family: 'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;mso-border-alt: none">
-                          <span style="font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;font-size:16px;line-height:32px;"><span style="font-size: 12px; line-height: 24px; letter-spacing: .125em; text-transform: uppercase;"><strong>SHOP NOW</strong></span></span>
+                        <a href="{{ shop.url }}{{ full_email_template_params }}" target="_blank" style="display: block;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #ffffff; background-color: #ab5232; border-radius: 0px; -webkit-border-radius: 0px; -moz-border-radius: 0px; max-width: 162px; width: 132px;width: auto; border-top: 0px solid transparent; border-right: 0px solid transparent; border-bottom: 0px solid transparent; border-left: 0px solid transparent; padding-top: 5px; padding-right: 15px; padding-bottom: 5px; padding-left: 15px; font-family: 'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;mso-border-alt: none">
+                          <span style="font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;font-size:16px;line-height:32px;"><span style="font-size: 12px; line-height: 24px; letter-spacing: .125em; text-transform: uppercase;"><strong>{{ shop_now_text }}</strong></span></span>
                         </a>
                       <!--[if mso]></center></v:textbox></v:roundrect></td></tr></table><![endif]-->
                     </div>
@@ -105,23 +135,16 @@
               </tr>
 
               <!-- BODY :: TABLE -->
-
               <tr>
                 <td style="padding: 60px 40px 50px">
 
                   <!-- TITLE -->
-
                   <div style="color:#164632;line-height:120%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
-                    <div style="font-size:12px;line-height:14px;color:#164632;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center;"><span style="font-size: 18px; line-height: 21px; letter-spacing: .15em; text-transform: uppercase;"><strong>Complete Your Purchase</strong></span></p></div>
+                    <div style="font-size:12px;line-height:14px;color:#164632;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center;"><span style="font-size: 18px; line-height: 21px; letter-spacing: .15em; text-transform: uppercase;"><strong>{{ complete_your_purchase_text }}</strong></span></p></div>
                   </div>
-
                   <!-- TABLE -->
 
-
-                  <!--
-                  PRODUCT ITEM
-                  -->
-
+                  <!-- PRODUCT ITEM -->
                   <table class="row" style="border-collapse: collapse; width: 100%;">
                     {% for line in subtotal_line_items %}
                     <tr class="order-list__item">
@@ -221,7 +244,7 @@
 
                   <div style="color:#798d85;line-height:120%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
                     <div style="font-size:12px;line-height:14px;color:#798d85;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center">
-                      <span style="font-size: 12px; line-height: 14px;"><a style="color:#798d85;text-decoration: none;" title="Contact Us" href="https://muckboot-eu.myshopify.com/pages/terms-conditions/pages/contact-us?utm_source=tran&utm_medium=email&utm_campaign=abondoned_checkout" target="_blank" rel="noopener">CONTACT US</a>&#160;&#160;&#160;&#160; <a style="color:#798d85;text-decoration: none;" title="Contact Us" href="tel:+44 808 281 9536" target="_blank" rel="noopener">+44 808 281 9536</a></span></p></div>
+                      <span style="font-size: 12px; line-height: 14px;"><a style="color:#798d85;text-decoration: none;" title="Contact Us" href="{{ shop.url }}pages/contact-us{{ full_email_template_params }}" target="_blank" rel="noopener">{{ contact_us_text }}</a>&#160;&#160;&#160;&#160; <a style="color:#798d85;text-decoration: none;" title="Contact Us" href="tel:{{ contact_us_telephone }}" target="_blank" rel="noopener">{{ contact_us_telephone }}</a></span></p></div>
                   </div>
 
                 </td>
@@ -259,7 +282,7 @@
                 <td>
 
                   <div style="color:#798d85;line-height:120%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
-                    <div style="font-size:12px;line-height:14px;color:#798d85;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 12px; line-height: 14px;"><a style="color:#798d85;text-decoration: none;" href="{{ shop.url }}/pages/terms-conditions{{ shop_url_email_params }}" target="_blank" rel="noopener">Terms &amp; <span style="line-height: 14px; font-size: 12px;">Conditions</span></a> | <a style="color:#798d85;text-decoration: none;" href="https://www.honeywell.com/privacy-statement{{ shop_url_email_params }}" target="_blank" rel="noopener">Privacy Policy</a></span><span style="font-size: 12px; line-height: 14px;"><br></span></p></div>
+                    <div style="font-size:12px;line-height:14px;color:#798d85;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 12px; line-height: 14px;"><a style="color:#798d85;text-decoration: none;" href="{{ shop.url }}/pages/terms-conditions{{ full_email_template_params }}" target="_blank" rel="noopener">{{ terms_and_conditions }}</a> | <a style="color:#798d85;text-decoration: none;" href="https://www.honeywell.com/privacy-statement{{ full_email_template_params }}" target="_blank" rel="noopener">{{ privacy_policy_text }}</a></span><br></p></div>
                   </div>
 
                 </td>
@@ -276,3 +299,264 @@
 
 </body>
 </html>
+
+{% comment %}
+// wrap in some logic to alternate between English strings above
+// and German strings below
+{% endcomment %}
+
+{% comment %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <title>{{ email_title }}</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width">
+
+</head>
+<body>
+
+<table class="full-container" style="background: #fafafa; width: 100%; border-collapse: collapse;">
+  <tr>
+    <td style="text-align: center" align="center">
+      <!-- LAYOUT -->
+
+      <table class="main-layout" style="width: 500px; min-width: 500px; max-width: 500px; background-color: #ffffff; margin: 20px auto; border-collapse: collapse;">
+
+        <!-- HEADER -->
+
+        <tr>
+          <td align="center" style="padding-top: 5px; padding-bottom: 5px; padding-left: 0; padding-right: 0; text-align: center; background-color: #ffffff; width: 100%;">
+
+            <!-- LOGO  -->
+
+            <a href="{{ shop.url }}{{ full_email_template_params }}" title="{{ shop_custom_name }}" target="_blank">
+              <img class="center fixedwidth" align="center" border="0" src="https://cdn.shopify.com/s/files/1/0032/6480/7010/files/muck-logo.png?5524665369218808649" alt="{{ shop_custom_name }}" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;width: 100%;max-width: 90px" width="90">
+            </a>
+          </td>
+        </tr>
+
+        <!-- BODY -->
+
+        <tr>
+          <td style="padding: 0">
+
+            <table class="body-layout" style="width: 100%; border-collapse: collapse;">
+
+              <!-- BODY :: INTRO -->
+
+              <tr>
+                <td style="background-color: #164632; padding: 20px;">
+
+                  <div style="padding: 60px 20px 50px">
+
+                    <!-- HEADLINE -->
+
+                    <div style="color:#FFFFFF;line-height:120%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
+                      <div style="font-size:12px;line-height:14px;font-family:inherit;color:#FFFFFF;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><strong><span style="font-size: 38px; line-height: 45px; letter-spacing: .15em;"><span style="font-size: 28px; line-height: 33px; text-transform: uppercase;">{{ email_title }}</span></span></strong></p></div>
+                    </div>
+
+                    <!-- COPY -->
+
+                    {% if custom_message != blank %}
+
+                      <div style="color:#FFFFFF;line-height:180%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
+                      <div style="font-size:14px;line-height:25px;font-family:inherit;color:#FFFFFF;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 25px;text-align: center">{{ custom_message }}</p></div>
+                    </div>
+
+                    {% else %}
+
+                    <div style="color:#FFFFFF;line-height:180%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
+                      <div style="font-size:14px;line-height:25px;font-family:inherit;color:#FFFFFF;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 25px;text-align: center">{{ email_body }}</p></div>
+                    </div>
+
+                    {% endif %}
+
+                    <!-- BUTTON -->
+
+                    <div align="center" class="button-container center " style="padding-right: 10px; padding-left: 10px; padding-top:10px; padding-bottom:10px;">
+                      <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top:10px; padding-bottom:10px;" align="center"><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="view_your_order_link" style="height:31pt; v-text-anchor:middle; width:121pt;" arcsize="0%" strokecolor="#ab5232" fillcolor="#ab5232"><w:anchorlock/><v:textbox inset="0,0,0,0"><center style="color:#ffffff; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; font-size:16px;"><![endif]-->
+                        <a href="{{ shop.url }}{{ full_email_template_params }}" target="_blank" style="display: block;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #ffffff; background-color: #ab5232; border-radius: 0px; -webkit-border-radius: 0px; -moz-border-radius: 0px; max-width: 162px; width: 132px;width: auto; border-top: 0px solid transparent; border-right: 0px solid transparent; border-bottom: 0px solid transparent; border-left: 0px solid transparent; padding-top: 5px; padding-right: 15px; padding-bottom: 5px; padding-left: 15px; font-family: 'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;mso-border-alt: none">
+                          <span style="font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;font-size:16px;line-height:32px;"><span style="font-size: 12px; line-height: 24px; letter-spacing: .125em; text-transform: uppercase;"><strong>JETZT KAUFEN</strong></span></span>
+                        </a>
+                      <!--[if mso]></center></v:textbox></v:roundrect></td></tr></table><![endif]-->
+                    </div>
+
+                  </div>
+
+                </td>
+              </tr>
+
+              <!-- BODY :: TABLE -->
+
+              <tr>
+                <td style="padding: 60px 40px 50px">
+
+                  <!-- TITLE -->
+
+                  <div style="color:#164632;line-height:120%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
+                    <div style="font-size:12px;line-height:14px;color:#164632;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center;"><span style="font-size: 18px; line-height: 21px; letter-spacing: .15em; text-transform: uppercase;"><strong>Bestellung abschließen</strong></span></p></div>
+                  </div>
+
+                  <!-- TABLE -->
+
+
+                  <!-- PRODUCT ITEM -->
+
+                  <table class="row" style="border-collapse: collapse; width: 100%;">
+                    {% for line in subtotal_line_items %}
+                    <tr class="order-list__item">
+                      <td style="border-bottom: solid 1px #999999; width: 45%;">
+                        {% if line.image %}
+                          <img src="{{ line | img_url: '180x180' }}" align="left"/>
+                        {% endif %}
+                      </td>
+                      <td class="order-list__product-description-cell" style="vertical-align: middle; width: 55%; padding-left: 40px; padding-right: 10px; border-bottom: solid 1px #999999;">
+                        {% if line.product.title %}
+                          {% assign line_title = line.product.title %}
+                        {% else %}
+                          {% assign line_title = line.title %}
+                        {% endif %}
+
+                        {% if line.quantity < line.quantity %}
+                          {% capture line_display %} {{ line.quantity }} von {{ line.quantity }} {% endcapture %}
+                        {% else %}
+                          {% assign line_display = line.quantity  %}
+                        {% endif %}
+
+                        <span style="font-weight: bold; font-size: 14px; color: #164632; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;" class="order-list__item-title">{{ line_title }} × {{ line_display }}</span>
+
+                        {% if line.variant.title != 'Default Title' %}
+                          <br/><span style="color: #164632; font-size: 14px; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;" class="order-list__item-variant">{{ line.variant.title }}</span>
+                        {% endif %}
+
+                        {% if line.refunded_quantity > 0 %}
+                          <br/><span style="color: #164632; font-size: 14px; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;" class="order-list__item-refunded">Erstattet</span>
+                        {% endif %}
+                      </td>
+                    </tr>{% endfor %}
+                  </table>
+
+
+
+                </td>
+              </tr>
+
+            </table>
+
+          </td>
+        </tr>
+
+        <!-- FOOTER -->
+
+        <tr>
+          <td style="background: #164632; padding: 40px 40px 20px;">
+            <table style="width: 100%;">
+
+              <!-- SOCIAL -->
+
+              <tr>
+                <td>
+
+                  <div align="center" style="padding-right: 10px; padding-left: 10px; padding-bottom: 10px; opacity: .5" class="">
+                  <div style="line-height:10px;font-size:1px">&#160;</div>
+                  <div style="display: table; max-width:181px;">
+                  <!--[if (mso)|(IE)]><table width="161" cellpadding="0" cellspacing="0" border="0"><tr><td style="border-collapse:collapse; padding-right: 10px; padding-left: 10px; padding-bottom: 10px;"  align="center"><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; mso-table-lspace: 0pt;mso-table-rspace: 0pt; width:161px;"><tr><td width="32" style="width:32px; padding-right: 20px;" valign="top"><![endif]-->
+                    <table align="left" border="0" cellspacing="0" cellpadding="0" width="32" height="32" style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;Margin-right: 20px">
+                      <tbody><tr style="vertical-align: top"><td align="left" valign="middle" style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
+                        <a href="https://www.facebook.com/muckbootco/" title="Facebook" target="_blank">
+                          <img src="https://cdn.shopify.com/s/files/1/0015/2525/2190/files/facebook_2x_af60cbec-cd0a-4a73-a7b6-c929538ac6ad.png?9131003845000148457" alt="Facebook" title="Facebook" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
+                        </a>
+                      <div style="line-height:5px;font-size:1px">&#160;</div>
+                      </td></tr>
+                    </tbody></table>
+                      <!--[if (mso)|(IE)]></td><td width="32" style="width:32px; padding-right: 20px;" valign="top"><![endif]-->
+                    <table align="left" border="0" cellspacing="0" cellpadding="0" width="32" height="32" style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;Margin-right: 20px">
+                      <tbody><tr style="vertical-align: top"><td align="left" valign="middle" style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
+                        <a href="https://instagram.com/muckbootco" title="Instagram" target="_blank">
+                          <img src="https://cdn.shopify.com/s/files/1/0015/2525/2190/files/instagram_2x_631ec28e-2aa5-405c-a1b2-42b3280cb039.png?9131003845000148457" alt="Instagram" title="Instagram" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
+                        </a>
+                      <div style="line-height:5px;font-size:1px">&#160;</div>
+                      </td></tr>
+                    </tbody></table>
+                      <!--[if (mso)|(IE)]></td><td width="32" style="width:32px; padding-right: 0;" valign="top"><![endif]-->
+                    <table align="left" border="0" cellspacing="0" cellpadding="0" width="32" height="32" style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;Margin-right: 0">
+                      <tbody><tr style="vertical-align: top"><td align="left" valign="middle" style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
+                        <a href="https://www.youtube.com/channel/UCDojhS0yZvveLz5JlHOwdhQ" title="YouTube" target="_blank">
+                          <img src="https://cdn.shopify.com/s/files/1/0015/2525/2190/files/youtube_2x_90c5b067-99c2-4489-a649-307a3283c97f.png?9131003845000148457" alt="YouTube" title="YouTube" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
+                        </a>
+                      <div style="line-height:5px;font-size:1px">&#160;</div>
+                      </td></tr>
+                    </tbody></table>
+                    <!--[if (mso)|(IE)]></td></tr></table></td></tr></table><![endif]-->
+                  </div>
+                </div>
+
+                </td>
+              </tr>
+
+              <!-- CONTACT -->
+
+              <tr>
+                <td>
+
+                  <div style="color:#798d85;line-height:120%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
+                    <div style="font-size:12px;line-height:14px;color:#798d85;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center">
+                      <span style="font-size: 12px; line-height: 14px;"><a style="color:#798d85;text-decoration: none;" title="Kontaktieren Sie uns" href="{{ shop.url }}/pages/terms-conditions/pages/contact-us{{ full_email_template_params }}" target="_blank" rel="noopener">{{ contact_us_text }}</a>&#160;&#160;&#160;&#160; <a style="color:#798d85;text-decoration: none;" title="Kontaktieren Sie uns" href="tel:+44 808 281 9536" target="_blank" rel="noopener">+44 808 281 9536</a></span></p></div>
+                  </div>
+
+                </td>
+              </tr>
+
+              <!-- DIVIDER -->
+
+              <tr>
+                <td>
+
+                  <table border="0" cellpadding="0" cellspacing="0" width="100%" class="divider " style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;min-width: 100%;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%">
+                      <tbody>
+                          <tr style="vertical-align: top">
+                              <td class="divider_inner" style="word-break: break-word;border-collapse: collapse !important;vertical-align: top;padding-right: 0px;padding-left: 0px;padding-top: 15px;padding-bottom: 10px;min-width: 100%;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%">
+                                  <table class="divider_content" height="0px" align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;border-top: 1px solid #597268;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%">
+                                      <tbody>
+                                          <tr style="vertical-align: top">
+                                              <td style="word-break: break-word;border-collapse: collapse !important;vertical-align: top;font-size: 0px;line-height: 0px;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%">
+                                                  <span>&#160;</span>
+                                              </td>
+                                          </tr>
+                                      </tbody>
+                                  </table>
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+
+                </td>
+              </tr>
+
+              <!-- TERMS -->
+
+              <tr>
+                <td>
+
+                  <div style="color:#798d85;line-height:120%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
+                    <div style="font-size:12px;line-height:14px;color:#798d85;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 12px; line-height: 14px;"><a style="color:#798d85;text-decoration: none;" href="{{ shop.url }}/pages/terms-conditions{{ full_email_template_params }}" target="_blank" rel="noopener">{{ terms_and_conditions }}<span style="line-height: 14px; font-size: 12px;"></span></a> | <a style="color:#798d85;text-decoration: none;" href="https://www.honeywell.com/privacy-statement{{ full_email_template_params }}" target="_blank" rel="noopener">{{ privacy_policy_text}}</a></span><span style="font-size: 12px; line-height: 14px;"><br></span></p></div>
+                  </div>
+
+                </td>
+              </tr>
+
+            </table>
+          </td>
+        </tr>
+
+      </table>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>
+
+{% endcomment %}
