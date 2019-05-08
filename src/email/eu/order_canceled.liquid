@@ -3,88 +3,83 @@
 {% capture shop_custom_name %}The Original Muck Boot Company&reg;{% endcapture %}
 {% capture domain_local_var %}{{ attributes.domain_locale }}{% endcapture %}
 
-{% if domain_local_var %}
-  {% if domain_local_var == 'EU' or domain_local_var == 'COM' or domain_local_var == '' %}
-    {% capture shop_locale %}en{% endcapture %}
-    {% comment %} PASS THE ENGLISH STRINGS HERE, YES! {% endcomment %}
+{% capture shop_locale %}en{% endcapture %}
+{% comment %} PASS THE ENGLISH STRINGS HERE, YES! {% endcomment %}
 
-    {% capture email_title %}Your order has been cancelled{% endcapture %}
-    {% capture email_body %}
-      {% if financial_status == 'voided' %}
-        {% case cancel_reason %}
-        {% when 'customer' %}
-          Order {{ name }} was cancelled at your request and your payment has been voided.
-        {% when 'inventory' %}
-          Order {{ name }} was cancelled because we did not have enough stock to fulfill your order and your payment has been voided.
-        {% when 'fraud' %}
-          Order {{ name }} was cancelled because we suspect it is fraudulent and your payment has been voided.
-        {% when 'other' %}
-          Order {{ name }} was cancelled because of unforseen circumstances and your payment has been voided.
-        {% endcase %}
-      {% elsif financial_status == 'refunded' %}
-        {% case cancel_reason %}
-        {% when 'customer' %}
-          Order {{ name }} was cancelled at your request and your payment has been refunded.
-        {% when 'inventory' %}
-          Order {{ name }} was cancelled because we did not have enough stock to fulfill your order and your payment has been refunded.
-        {% when 'fraud' %}
-          Order {{ name }} was cancelled because we suspect it is fraudulent and your payment has been refunded.
-        {% when 'other' %}
-          Order {{ name }} was cancelled because of unforseen circumstances and your payment has been refunded.
-        {% endcase %}
-      {% endif %}
-    {% endcapture %}
-
-    {% capture refunded_items_text %}REFUNDED ITEMS{% endcapture %}
-    {% capture order_summary_text %}ORDER SUMMARY{% endcapture %}
-    {% capture visit_our_store_text %}VISIT OUR STORE{% endcapture %}
-    {% capture contact_us_text %}CONTACT US{% endcapture %}
-    {% capture contact_us_telephone %}+44 808 281 9536{% endcapture %}
-    {% capture terms_and_conditions %}Terms &amp; <span style="line-height: 14px; font-size: 12px;">Conditions</span>{% endcapture %}
-    {% capture privacy_policy_text %}Privacy Policy{% endcapture %}
-
-  {% elsif domain_local_var == 'DE'%}
-    {% capture shop_locale %}de{% endcapture %}
-
-    {% capture shop_custom_name %}Die Ursprüngliche Muck Boot Company&reg;{% endcapture %}
-    {% capture email_title %}Ihre Bestellung wurde storniert{% endcapture %}
-    {% capture email_body %}
-      {% if financial_status == 'voided' %}
-        {% case cancel_reason %}
-        {% when 'customer' %}
-    Bestellung {{ name }} wurde auf Ihre Anfrage storniert und Ihre Zahlung wurde annulliert.
-        {% when 'inventory' %}
-    Bestellung {{ name }} wurde wegen mangelnden Lagerbestands storniert, und Ihre Zahlung wurde annulliert.
-        {% when 'fraud' %}
-    Bestellung {{ name }} wurde aufgrund von Betrugsverdacht storniert, und Ihre Zahlung wurde annulliert.
-        {% when 'other' %}
-    Bestellung {{ name }} wurde aufgrund unvorhergesehener Umstände storniert, und Ihre Zahlung wurde annulliert.
-        {% endcase %}
-      {% elsif financial_status == 'refunded' %}
-        {% case cancel_reason %}
-        {% when 'customer' %}
-    Bestellung {{ name }} wurde auf Ihre Anfrage storniert und Ihre Zahlung wurde erstattet.
-        {% when 'inventory' %}
-    Bestellung {{ name }} wurde wegen mangelnden Lagerbestands storniert, und Ihre Zahlung wurde erstattet.
-        {% when 'fraud' %}
-    Bestellung {{ name }} wurde aufgrund von Betrugsverdacht storniert, und Ihre Zahlung wurde erstattet.
-        {% when 'other' %}
-    Bestellung {{ name }} wurde aufgrund unvorhergesehener Umstände storniert, und Ihre Zahlung wurde erstattet.
-        {% endcase %}
-      {% endif %}
-    {% endcapture %}
-
-    {% capture refunded_items_text %}REFUNDED ITEMS{% endcapture %}
-    {% capture order_summary_text %}BESTELLÜBERSICHT{% endcapture %}
-    {% capture visit_our_store_text %}BESUCHEN SIE UNSEREN STORE{% endcapture %}
-    {% capture contact_us_text %}KONTAKTIEREN SIE UNS:{% endcapture %}
-    {% capture contact_us_telephone %}+44 808 281 9536{% endcapture %}
-    {% capture terms_and_conditions %}AGB<span style="line-height: 14px; font-size: 12px;"></span>{% endcapture %}
-    {% capture privacy_policy_text %}Datenschutzbestimmungen{% endcapture %}
-
-  {% else  %}
-    {% comment %}Nothing to see here{% endcomment %}
+{% capture email_title %}Your order has been cancelled{% endcapture %}
+{% capture email_body %}
+  {% if financial_status == 'voided' %}
+    {% case cancel_reason %}
+    {% when 'customer' %}
+      Order {{ name }} was cancelled at your request and your payment has been voided.
+    {% when 'inventory' %}
+      Order {{ name }} was cancelled because we did not have enough stock to fulfill your order and your payment has been voided.
+    {% when 'fraud' %}
+      Order {{ name }} was cancelled because we suspect it is fraudulent and your payment has been voided.
+    {% when 'other' %}
+      Order {{ name }} was cancelled because of unforseen circumstances and your payment has been voided.
+    {% endcase %}
+  {% elsif financial_status == 'refunded' %}
+    {% case cancel_reason %}
+    {% when 'customer' %}
+      Order {{ name }} was cancelled at your request and your payment has been refunded.
+    {% when 'inventory' %}
+      Order {{ name }} was cancelled because we did not have enough stock to fulfill your order and your payment has been refunded.
+    {% when 'fraud' %}
+      Order {{ name }} was cancelled because we suspect it is fraudulent and your payment has been refunded.
+    {% when 'other' %}
+      Order {{ name }} was cancelled because of unforseen circumstances and your payment has been refunded.
+    {% endcase %}
   {% endif %}
+{% endcapture %}
+
+{% capture refunded_items_text %}REFUNDED ITEMS{% endcapture %}
+{% capture order_summary_text %}ORDER SUMMARY{% endcapture %}
+{% capture visit_our_store_text %}VISIT OUR STORE{% endcapture %}
+{% capture contact_us_text %}CONTACT US{% endcapture %}
+{% capture contact_us_telephone %}+44 808 281 9536{% endcapture %}
+{% capture terms_and_conditions %}Terms &amp; <span style="line-height: 14px; font-size: 12px;">Conditions</span>{% endcapture %}
+{% capture privacy_policy_text %}Privacy Policy{% endcapture %}
+
+{% if domain_local_var == 'DE'%}
+  {% capture shop_locale %}de{% endcapture %}
+
+  {% capture shop_custom_name %}Die Ursprüngliche Muck Boot Company&reg;{% endcapture %}
+  {% capture email_title %}Ihre Bestellung wurde storniert{% endcapture %}
+  {% capture email_body %}
+    {% if financial_status == 'voided' %}
+      {% case cancel_reason %}
+      {% when 'customer' %}
+  Bestellung {{ name }} wurde auf Ihre Anfrage storniert und Ihre Zahlung wurde annulliert.
+      {% when 'inventory' %}
+  Bestellung {{ name }} wurde wegen mangelnden Lagerbestands storniert, und Ihre Zahlung wurde annulliert.
+      {% when 'fraud' %}
+  Bestellung {{ name }} wurde aufgrund von Betrugsverdacht storniert, und Ihre Zahlung wurde annulliert.
+      {% when 'other' %}
+  Bestellung {{ name }} wurde aufgrund unvorhergesehener Umstände storniert, und Ihre Zahlung wurde annulliert.
+      {% endcase %}
+    {% elsif financial_status == 'refunded' %}
+      {% case cancel_reason %}
+      {% when 'customer' %}
+  Bestellung {{ name }} wurde auf Ihre Anfrage storniert und Ihre Zahlung wurde erstattet.
+      {% when 'inventory' %}
+  Bestellung {{ name }} wurde wegen mangelnden Lagerbestands storniert, und Ihre Zahlung wurde erstattet.
+      {% when 'fraud' %}
+  Bestellung {{ name }} wurde aufgrund von Betrugsverdacht storniert, und Ihre Zahlung wurde erstattet.
+      {% when 'other' %}
+  Bestellung {{ name }} wurde aufgrund unvorhergesehener Umstände storniert, und Ihre Zahlung wurde erstattet.
+      {% endcase %}
+    {% endif %}
+  {% endcapture %}
+
+  {% capture refunded_items_text %}REFUNDED ITEMS{% endcapture %}
+  {% capture order_summary_text %}BESTELLÜBERSICHT{% endcapture %}
+  {% capture visit_our_store_text %}BESUCHEN SIE UNSEREN STORE{% endcapture %}
+  {% capture contact_us_text %}KONTAKTIEREN SIE UNS:{% endcapture %}
+  {% capture contact_us_telephone %}+44 808 281 9536{% endcapture %}
+  {% capture terms_and_conditions %}AGB<span style="line-height: 14px; font-size: 12px;"></span>{% endcapture %}
+  {% capture privacy_policy_text %}Datenschutzbestimmungen{% endcapture %}
+
 {% endif %}
 
 {% comment %} :: TEMPLATE MARKUP STARTS HERE:  no static strings should exist in the below markup  {% endcomment %}

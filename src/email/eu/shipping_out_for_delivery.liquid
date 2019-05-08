@@ -2,83 +2,79 @@
 {% capture full_email_template_params %}?utm_source=tran&utm_medium=email&utm_campaign={{ notification_template_name }}{% endcapture %}
 {% capture domain_local_var %}{{ attributes.domain_locale }}{% endcapture %}
 
-{% if domain_local_var %}
-  {% if domain_local_var == 'EU' or domain_local_var == 'COM' or domain_local_var == '' %}
-    {% capture shop_locale %}en{% endcapture %}
-    {% comment %} PASS THE ENGLISH STRINGS HERE, YES! {% endcomment %}
+{% capture shop_locale %}en{% endcapture %}
+{% comment %} PASS THE ENGLISH STRINGS HERE, YES! {% endcomment %}
 
-    {% capture shop_custom_name %}The Original Muck Boot Company&reg;{% endcapture %}
+{% capture shop_custom_name %}The Original Muck Boot Company&reg;{% endcapture %}
 
-    {% if fulfillment.item_count == item_count %}
-      {% capture email_title %}Your order is out for delivery{% endcapture %}
-      {% capture email_body %}Your order is out for delivery. Track your delivery to see the status.{% endcapture %}
-    {% elsif fulfillment.item_count > 1 %}
-      {% if fulfillment_status == 'fulfilled' %}
-        {% capture email_title %}The last items in your order are out for delivery{% endcapture %}
-        {% capture email_body %}The last items in your order are out for delivery. Track your delivery to see the status.{% endcapture %}
-      {% else %}
-        {% capture email_title %}Some items in your order are out for delivery{% endcapture %}
-        {% capture email_body %}Some items in your order are out for delivery. Track your delivery to see the status.{% endcapture %}
-      {% endif %}
-    {% else %}
-      {% if fulfillment_status == 'fulfilled' %}
-        {% capture email_title %}The last item in your order is out for delivery{% endcapture %}
-        {% capture email_body %}The last item in your order is out for delivery. Track your delivery to see the status.{% endcapture %}
-      {% else %}
-        {% capture email_title %}One item in your order is out for delivery{% endcapture %}
-        {% capture email_body %}One item in your order is out for delivery. Track your delivery to see the status.{% endcapture %}
-      {% endif %}
-    {% endif %}
-
-    {% capture order_text %}ORDER{% endcapture %}
-    {% capture items_in_this_delivery %}ITEMS IN THIS DELIVERY{% endcapture %}
-    {% capture view_your_order_text %}VIEW YOUR ORDER{% endcapture %}
-    {% capture visit_our_store_text %}VISIT OUR STORE{% endcapture %}
-    {% capture contact_us_text %}CONTACT US{% endcapture %}
-    {% capture contact_us_telephone %}+44 808 281 9536{% endcapture %}
-    {% capture terms_and_conditions %}Terms &amp; <span style="line-height: 14px; font-size: 12px;">Conditions</span>{% endcapture %}
-    {% capture privacy_policy_text %}Privacy Policy{% endcapture %}
-
-  {% elsif domain_local_var == 'DE'%}
-    {% capture shop_locale %}de{% endcapture %}
-    {% comment %} PASS ZIE GERMAN STRINGS HERE, JA! {% endcomment %}
-
-    {% capture shop_custom_name %}Die Ursprüngliche Muck Boot Company&reg;{% endcapture %}
-
-    {% if fulfillment.item_count == item_count %}
-      {% capture email_title %}Ihre Bestellung wurde versandt{% endcapture %}
-      {% capture email_body %}Ihre Bestellung wurde versandt. In der Sendungsverfolgung sehen Sie den aktuellen Versandstatus.{% endcapture %}
-    {% elsif fulfillment.item_count > 1 %}
-      {% if fulfillment_status == 'fulfilled' %}
-        {% capture email_title %}Die letzten Artikel Ihrer Bestellung wurden versandt{% endcapture %}
-        {% capture email_body %}Die letzten Artikel Ihrer Bestellung wurden versandt. In der Sendungsverfolgung sehen Sie den aktuellen Versandstatus.{% endcapture %}
-      {% else %}
-        {% capture email_title %}Einige Artikel Ihrer Bestellung wurden versandt{% endcapture %}
-        {% capture email_body %}Einige Artikel Ihrer Bestellung wurden versandt. In der Sendungsverfolgung sehen Sie den aktuellen Versandstatus.{% endcapture %}
-      {% endif %}
-    {% else %}
-      {% if fulfillment_status == 'fulfilled' %}
-        {% capture email_title %}Der letzte Artikel Ihrer Bestellung wurde versandt{% endcapture %}
-        {% capture email_body %}Der letzte Artikel Ihrer Bestellung wurde versandt. In der Sendungsverfolgung sehen Sie den aktuellen Versandstatus.{% endcapture %}
-      {% else %}
-        {% capture email_title %}Ein Artikel Ihrer Bestellung wurde versandt{% endcapture %}
-        {% capture email_body %}Ein Artikel Ihrer Bestellung wurde versandt. In der Sendungsverfolgung sehen Sie den aktuellen Versandstatus.{% endcapture %}
-      {% endif %}
-    {% endif %}
-
-    {% capture order_text %}BESTELLUNG{% endcapture %}
-    {% capture items_in_this_delivery %}ARTIKEL IN DIESER SENDUNG{% endcapture %}
-    {% capture view_your_order_text %}BESTELLUNG ANZEIGEN{% endcapture %}
-    {% capture visit_our_store_text %}BESUCHEN SIE UNSEREN STORE{% endcapture %}
-    {% capture contact_us_text %}KONTAKTIEREN SIE UNS:{% endcapture %}
-    {% capture contact_us_telephone %}+44 808 281 9536{% endcapture %}
-    {% capture terms_and_conditions %}AGB{% endcapture %}
-    {% capture privacy_policy_text %}Datenschutzbestimmungen{% endcapture %}
-
-  {% else  %}
-    {% comment %}Nothing to see here{% endcomment %}
+{% if fulfillment.item_count == item_count %}
+  {% capture email_title %}Your order is out for delivery{% endcapture %}
+  {% capture email_body %}Your order is out for delivery. Track your delivery to see the status.{% endcapture %}
+{% elsif fulfillment.item_count > 1 %}
+  {% if fulfillment_status == 'fulfilled' %}
+    {% capture email_title %}The last items in your order are out for delivery{% endcapture %}
+    {% capture email_body %}The last items in your order are out for delivery. Track your delivery to see the status.{% endcapture %}
+  {% else %}
+    {% capture email_title %}Some items in your order are out for delivery{% endcapture %}
+    {% capture email_body %}Some items in your order are out for delivery. Track your delivery to see the status.{% endcapture %}
+  {% endif %}
+{% else %}
+  {% if fulfillment_status == 'fulfilled' %}
+    {% capture email_title %}The last item in your order is out for delivery{% endcapture %}
+    {% capture email_body %}The last item in your order is out for delivery. Track your delivery to see the status.{% endcapture %}
+  {% else %}
+    {% capture email_title %}One item in your order is out for delivery{% endcapture %}
+    {% capture email_body %}One item in your order is out for delivery. Track your delivery to see the status.{% endcapture %}
   {% endif %}
 {% endif %}
+
+{% capture order_text %}ORDER{% endcapture %}
+{% capture items_in_this_delivery %}ITEMS IN THIS DELIVERY{% endcapture %}
+{% capture view_your_order_text %}VIEW YOUR ORDER{% endcapture %}
+{% capture visit_our_store_text %}VISIT OUR STORE{% endcapture %}
+{% capture contact_us_text %}CONTACT US{% endcapture %}
+{% capture contact_us_telephone %}+44 808 281 9536{% endcapture %}
+{% capture terms_and_conditions %}Terms &amp; <span style="line-height: 14px; font-size: 12px;">Conditions</span>{% endcapture %}
+{% capture privacy_policy_text %}Privacy Policy{% endcapture %}
+
+{% if domain_local_var == 'DE'%}
+  {% capture shop_locale %}de{% endcapture %}
+  {% comment %} PASS ZIE GERMAN STRINGS HERE, JA! {% endcomment %}
+
+  {% capture shop_custom_name %}Die Ursprüngliche Muck Boot Company&reg;{% endcapture %}
+
+  {% if fulfillment.item_count == item_count %}
+    {% capture email_title %}Ihre Bestellung wurde versandt{% endcapture %}
+    {% capture email_body %}Ihre Bestellung wurde versandt. In der Sendungsverfolgung sehen Sie den aktuellen Versandstatus.{% endcapture %}
+  {% elsif fulfillment.item_count > 1 %}
+    {% if fulfillment_status == 'fulfilled' %}
+      {% capture email_title %}Die letzten Artikel Ihrer Bestellung wurden versandt{% endcapture %}
+      {% capture email_body %}Die letzten Artikel Ihrer Bestellung wurden versandt. In der Sendungsverfolgung sehen Sie den aktuellen Versandstatus.{% endcapture %}
+    {% else %}
+      {% capture email_title %}Einige Artikel Ihrer Bestellung wurden versandt{% endcapture %}
+      {% capture email_body %}Einige Artikel Ihrer Bestellung wurden versandt. In der Sendungsverfolgung sehen Sie den aktuellen Versandstatus.{% endcapture %}
+    {% endif %}
+  {% else %}
+    {% if fulfillment_status == 'fulfilled' %}
+      {% capture email_title %}Der letzte Artikel Ihrer Bestellung wurde versandt{% endcapture %}
+      {% capture email_body %}Der letzte Artikel Ihrer Bestellung wurde versandt. In der Sendungsverfolgung sehen Sie den aktuellen Versandstatus.{% endcapture %}
+    {% else %}
+      {% capture email_title %}Ein Artikel Ihrer Bestellung wurde versandt{% endcapture %}
+      {% capture email_body %}Ein Artikel Ihrer Bestellung wurde versandt. In der Sendungsverfolgung sehen Sie den aktuellen Versandstatus.{% endcapture %}
+    {% endif %}
+  {% endif %}
+
+  {% capture order_text %}BESTELLUNG{% endcapture %}
+  {% capture items_in_this_delivery %}ARTIKEL IN DIESER SENDUNG{% endcapture %}
+  {% capture view_your_order_text %}BESTELLUNG ANZEIGEN{% endcapture %}
+  {% capture visit_our_store_text %}BESUCHEN SIE UNSEREN STORE{% endcapture %}
+  {% capture contact_us_text %}KONTAKTIEREN SIE UNS:{% endcapture %}
+  {% capture contact_us_telephone %}+44 808 281 9536{% endcapture %}
+  {% capture terms_and_conditions %}AGB{% endcapture %}
+  {% capture privacy_policy_text %}Datenschutzbestimmungen{% endcapture %}
+
+{% endif %}
+
 
 {% comment %} :: TEMPLATE MARKUP STARTS HERE:  no static strings should exist in the below markup  {% endcomment %}
 <!DOCTYPE html>

@@ -2,22 +2,20 @@
 {% capture full_email_template_params %}?utm_source=tran&utm_medium=email&utm_campaign={{ notification_template_name }}{% endcapture %}
 {% capture domain_local_var %}{{ attributes.domain_locale }}{% endcapture %}
 
-{% if domain_local_var == 'EU' or domain_local_var == 'COM' or domain_local_var == '' %}
-  {% capture shop_locale %}en{% endcapture %}
-  {% comment %} PASS THE ENGLISH STRINGS HERE, YES! {% endcomment %}
+{% capture shop_locale %}en{% endcapture %}
+{% comment %} PASS THE ENGLISH STRINGS HERE, YES! {% endcomment %}
 
-  {% capture shop_custom_name %}The Original Muck Boot Company&reg;{% endcapture %}
-  {% capture email_title %}Welcome to Muck{% endcapture %}
+{% capture shop_custom_name %}The Original Muck Boot Company&reg;{% endcapture %}
+{% capture email_title %}Welcome to Muck{% endcapture %}
+{% capture email_body %}You've activated your customer account. Next time you shop with us, log in for faster checkout.{% endcapture %}
 
-  {% capture email_body %}You've activated your customer account. Next time you shop with us, log in for faster checkout.{% endcapture %}
+{% capture visit_our_store_text %}VISIT OUR STORE{% endcapture %}
+{% capture contact_us_text %}CONTACT US{% endcapture %}
+{% capture contact_us_telephone %}+44 808 281 9536{% endcapture %}
+{% capture terms_and_conditions %}Terms &amp; <span style="line-height: 14px; font-size: 12px;">Conditions</span>{% endcapture %}
+{% capture privacy_policy_text %}Privacy Policy{% endcapture %}
 
-  {% capture visit_our_store_text %}VISIT OUR STORE{% endcapture %}
-  {% capture contact_us_text %}CONTACT US{% endcapture %}
-  {% capture contact_us_telephone %}+44 808 281 9536{% endcapture %}
-  {% capture terms_and_conditions %}Terms &amp; <span style="line-height: 14px; font-size: 12px;">Conditions</span>{% endcapture %}
-  {% capture privacy_policy_text %}Privacy Policy{% endcapture %}
-
-{% elsif domain_local_var == 'DE'%}
+{% if domain_local_var == 'DE'%}
   {% capture shop_locale %}de{% endcapture %}
   {% comment %} PASS ZIE GERMAN STRINGS HERE, JA! {% endcomment %}
 
@@ -32,8 +30,6 @@
   {% capture terms_and_conditions %}AGB{% endcapture %}
   {% capture privacy_policy_text %}Datenschutzbestimmungen{% endcapture %}
 
-{% else  %}
-  {% comment %}Nothing to see here{% endcomment %}
 {% endif %}
 
 

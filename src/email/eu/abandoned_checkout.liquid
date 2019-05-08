@@ -2,78 +2,73 @@
 {% capture full_email_template_params %}?utm_source=tran&utm_medium=email&utm_campaign={{ notification_template_name }}{% endcapture %}
 {% capture domain_local_var %}{{ attributes.domain_locale }}{% endcapture %}
 
-{% if domain_local_var %}
-  {% if domain_local_var == 'EU' or domain_local_var == 'COM' or domain_local_var == '' %}
-    {% capture shop_locale %}en{% endcapture %}
-    {% comment %} PASS THE ENGLISH STRINGS HERE, YES! {% endcomment %}
+{% capture shop_locale %}en{% endcapture %}
+{% comment %} PASS THE ENGLISH STRINGS HERE, YES! {% endcomment %}
 
-    {% capture shop_custom_name %}The Original Muck Boot Company&reg;{% endcapture %}
-    {% capture email_title %}
-      {% if item_count == 1 %}
-        You left an item in your bag
-      {% else %}
-        You left items in your bag
-      {% endif %}
-    {% endcapture %}
-    {% capture email_body %}
-      {% if billing_address.first_name %}
-        {% if item_count == 1 %}
-          Hi {{ billing_address.first_name }}, you added an item to your shopping bag and haven't completed your purchase. You can complete it now while it's still available.
-        {% else %}
-          Hi {{ billing_address.first_name }}, you added items to your shopping bag and haven't completed your purchase. You can complete it now while they're still available.
-        {% endif %}
-      {% else %}
-        {% if item_count == 1 %}
-          Hi, you added an item to your shopping bag and haven't completed your purchase. You can complete it now while it's still available.
-        {% else %}
-          Hi, you added items to your shopping bag and haven't completed your purchase. You can complete it now while they're still available.
-        {% endif %}
-      {% endif %}
-    {% endcapture %}
-
-    {% capture shop_now_text %}SHOP NOW{% endcapture %}
-    {% capture complete_your_purchase_text %}Complete Your Purchase{% endcapture %}
-    {% capture contact_us_text %}CONTACT US{% endcapture %}
-    {% capture terms_and_conditions %}Terms &amp; <span style="line-height: 14px; font-size: 12px;">Conditions</span>{% endcapture %}
-    {% capture privacy_policy_text %}Privacy Policy{% endcapture %}
-
-  {% elsif domain_local_var == 'DE'%}
-    {% capture shop_locale %}de{% endcapture %}
-    {% comment %} PASS ZIE GERMAN STRINGS HERE, JA! {% endcomment %}
-
-    {% capture shop_custom_name %}Die Ursprüngliche Muck Boot Company&reg;{% endcapture %}
-    {% capture email_title %}
-      {% if item_count == 1 %}
-    Es ist noch ein Artikel in Ihrem Einkaufskorb
-      {% else %}
-    Es sind noch Artikel in Ihrem Einkaufskorb
-      {% endif %}
-    {% endcapture %}
-    {% capture email_body %}
-      {% if billing_address.first_name %}
-        {% if item_count == 1 %}
-    Hallo {{ billing_address.first_name }}, Sie haben einen Artikel in Ihren Einkaufskorb gelegt und den Kauf noch nicht abgeschlossen. Sie können den Kauf jetzt abschließen, solange er noch verfügbar ist.
-        {% else %}
-    Hallo {{ billing_address.first_name }}, Sie haben Artikel in Ihren Einkaufskorb gelegt und den Kauf noch nicht abgeschlossen. Sie können den Kauf jetzt abschließen, solange sie noch verfügbar sind.
-        {% endif %}
-      {% else %}
-        {% if item_count == 1 %}
-    Hallo, Sie haben einen Artikel in Ihren Einkaufskorb gelegt und den Kauf noch nicht abgeschlossen. Sie können den Kauf jetzt abschließen, solange er noch verfügbar ist.
-        {% else %}
-    Hallo, Sie haben Artikel in Ihren Einkaufskorb gelegt und den Kauf noch nicht abgeschlossen. Sie können den Kauf jetzt abschließen, solange sie noch verfügbar sind.
-        {% endif %}
-      {% endif %}
-    {% endcapture %}
-
-    {% capture shop_now_text %}JETZT KAUFEN{% endcapture %}
-    {% capture complete_your_purchase_text %}Bestellung abschließen{% endcapture %}
-    {% capture contact_us_text %}KONTAKTIEREN SIE UNS:{% endcapture %}
-    {% capture terms_and_conditions %}AGB<span style="line-height: 14px; font-size: 12px;"></span>{% endcapture %}
-    {% capture privacy_policy_text %}Datenschutzbestimmungen{% endcapture %}
-
-  {% else  %}
-    {% comment %}Nothing to see here{% endcomment %}
+{% capture shop_custom_name %}The Original Muck Boot Company&reg;{% endcapture %}
+{% capture email_title %}
+  {% if item_count == 1 %}
+    You left an item in your bag
+  {% else %}
+    You left items in your bag
   {% endif %}
+{% endcapture %}
+{% capture email_body %}
+  {% if billing_address.first_name %}
+    {% if item_count == 1 %}
+      Hi {{ billing_address.first_name }}, you added an item to your shopping bag and haven't completed your purchase. You can complete it now while it's still available.
+    {% else %}
+      Hi {{ billing_address.first_name }}, you added items to your shopping bag and haven't completed your purchase. You can complete it now while they're still available.
+    {% endif %}
+  {% else %}
+    {% if item_count == 1 %}
+      Hi, you added an item to your shopping bag and haven't completed your purchase. You can complete it now while it's still available.
+    {% else %}
+      Hi, you added items to your shopping bag and haven't completed your purchase. You can complete it now while they're still available.
+    {% endif %}
+  {% endif %}
+{% endcapture %}
+
+{% capture shop_now_text %}SHOP NOW{% endcapture %}
+{% capture complete_your_purchase_text %}Complete Your Purchase{% endcapture %}
+{% capture contact_us_text %}CONTACT US{% endcapture %}
+{% capture terms_and_conditions %}Terms &amp; <span style="line-height: 14px; font-size: 12px;">Conditions</span>{% endcapture %}
+{% capture privacy_policy_text %}Privacy Policy{% endcapture %}
+
+{% if domain_local_var == 'DE'%}
+  {% capture shop_locale %}de{% endcapture %}
+  {% comment %} PASS ZIE GERMAN STRINGS HERE, JA! {% endcomment %}
+
+  {% capture shop_custom_name %}Die Ursprüngliche Muck Boot Company&reg;{% endcapture %}
+  {% capture email_title %}
+    {% if item_count == 1 %}
+  Es ist noch ein Artikel in Ihrem Einkaufskorb
+    {% else %}
+  Es sind noch Artikel in Ihrem Einkaufskorb
+    {% endif %}
+  {% endcapture %}
+  {% capture email_body %}
+    {% if billing_address.first_name %}
+      {% if item_count == 1 %}
+  Hallo {{ billing_address.first_name }}, Sie haben einen Artikel in Ihren Einkaufskorb gelegt und den Kauf noch nicht abgeschlossen. Sie können den Kauf jetzt abschließen, solange er noch verfügbar ist.
+      {% else %}
+  Hallo {{ billing_address.first_name }}, Sie haben Artikel in Ihren Einkaufskorb gelegt und den Kauf noch nicht abgeschlossen. Sie können den Kauf jetzt abschließen, solange sie noch verfügbar sind.
+      {% endif %}
+    {% else %}
+      {% if item_count == 1 %}
+  Hallo, Sie haben einen Artikel in Ihren Einkaufskorb gelegt und den Kauf noch nicht abgeschlossen. Sie können den Kauf jetzt abschließen, solange er noch verfügbar ist.
+      {% else %}
+  Hallo, Sie haben Artikel in Ihren Einkaufskorb gelegt und den Kauf noch nicht abgeschlossen. Sie können den Kauf jetzt abschließen, solange sie noch verfügbar sind.
+      {% endif %}
+    {% endif %}
+  {% endcapture %}
+
+  {% capture shop_now_text %}JETZT KAUFEN{% endcapture %}
+  {% capture complete_your_purchase_text %}Bestellung abschließen{% endcapture %}
+  {% capture contact_us_text %}KONTAKTIEREN SIE UNS:{% endcapture %}
+  {% capture terms_and_conditions %}AGB<span style="line-height: 14px; font-size: 12px;"></span>{% endcapture %}
+  {% capture privacy_policy_text %}Datenschutzbestimmungen{% endcapture %}
+
 {% endif %}
 
 {% comment %} :: TEMPLATE MARKUP STARTS HERE:  no static strings should exist in the below markup  {% endcomment %}
