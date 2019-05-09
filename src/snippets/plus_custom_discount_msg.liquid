@@ -12,11 +12,15 @@
 		  	if(empCodesArr.length > 0 && empCodesArr.indexOf(appliedCode) > -1){
 	  			var empCode = empCodesArr[empCodesArr.indexOf(appliedCode)];
 			  	var empCustMsg = empCustMsgsArr[empCodesArr.indexOf(appliedCode)];
-			  	$('<p>'+empCustMsg+'</p>').insertAfter('.tags-list');
+			  	$('<p id="discount-msg">'+empCustMsg+'</p>').insertAfter('.tags-list');
 		  	}
 		  	isShowOnce=1;
 		  }else{
-		  	isShowOnce=0;
+		  	if($('#discount-msg').length > 0){
+		  		isShowOnce=1;
+		  	}else{
+		  		isShowOnce=0;
+		  	}
 		  }
 		});
 		$(document).on('page:load', function() {
@@ -29,11 +33,15 @@
 		  	if(empCodesArr.length > 0 && empCodesArr.indexOf(appliedCode) > -1){
 	  			var empCode = empCodesArr[empCodesArr.indexOf(appliedCode)];
 			  	var empCustMsg = empCustMsgsArr[empCodesArr.indexOf(appliedCode)];
-			  	$('<p>'+empCustMsg+'</p>').insertAfter('.tags-list');
+			  	$('<p id="discount-msg">'+empCustMsg+'</p>').insertAfter('.tags-list');
 		  	}
 		  	isShowOnce=1;
 		  }else{
-		  	isShowOnce=0;
+		  	if($('#discount-msg').length > 0){
+		  		isShowOnce=1;
+		  	}else{
+		  		isShowOnce=0;
+		  	}
 		  }
 		});
 	</script>
