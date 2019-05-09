@@ -3135,7 +3135,7 @@ function debounce(fn, wait, immediate) {
       $.each(variants, function(key,value) {
         if(value.option1 == var_value && value.available){
           $('#swatch-2-'+ value.option2.toLowerCase()).prop('checked', true);
-          $('[data-option="option2"').val(value.option2).trigger('change');
+          $('[data-option="option2"]').val(value.option2).trigger('change');
           return false;
         }
       });
