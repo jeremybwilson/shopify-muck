@@ -3098,6 +3098,31 @@ function debounce(fn, wait, immediate) {
         }, 2000);
       }
     }
+
+    // sites-picker for locale, header country selector
+    var siteHost = window.location.hostname;
+    var availableLocales = 'fr'; // it can be a string. ex: fr, en, eu ... etc
+    var siteHostArr = siteHost.split('.');
+
+    if (siteHostArr.length > 2 && availableLocales.indexOf(siteHostArr[0]) !== -1) {
+      var currentLocale = siteHostArr[0];
+
+      if ($('.site-flag-' + currentLocale).length) {
+
+        var currentId = $('.site-flag-' + currentLocale).closest('.site-picker-item').data('id');
+        $('.site-flag-' + currentLocale).css('display', 'inherit');
+        $('.site-flag-' + currentId).css('display', 'none');
+        var currentHTML = $('.site-flag-' + currentLocale).closest('.inner-center').html();
+        var wrongHTML = $('li.site-picker-item:first .inner-center').html();
+        var wrongHref = $('li.site-picker-item:first .inner-center').data('href');
+
+        // replace the position of two list elements
+        $('li.site-picker-item:first .inner-center').html(currentHTML);
+        $('li.site-picker-item-' + currentId + ' .inner-center').attr('href', wrongHref);
+        $('li.site-picker-item-' + currentId + ' .inner-center').html(wrongHTML);
+      }
+    }
+    $('ul.sites-picker').css('display', 'inherit');
   });
   $(document).on('change','.swatch.color input',function(){
     var var_type = $(this).attr('name');
