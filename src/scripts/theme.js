@@ -3110,8 +3110,6 @@ function debounce(fn, wait, immediate) {
       if ($('.site-flag-' + currentLocale).length) {
 
         var currentId = $('.site-flag-' + currentLocale).closest('.site-picker-item').data('id');
-        $('.site-flag-' + currentLocale).css('display', 'inherit');
-        $('.site-flag-' + currentId).css('display', 'none');
         var currentHTML = $('.site-flag-' + currentLocale).closest('.inner-center').html();
         var wrongHTML = $('li.site-picker-item:first .inner-center').html();
         var wrongHref = $('li.site-picker-item:first .inner-center').data('href');

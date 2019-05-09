@@ -24,14 +24,13 @@
 				{% comment %} ..:: FIRST SLOT ITEM ::.. {% endcomment %}
 				{% if item == sites[0] %}
 					<div class="inner-center" data-href="{{ siteData[2] }}">
-						<div class="site-flag site-flag-{{ siteData[0] | downcase }}">{% include flag %}</div>
-						{% if siteData1 and siteData1[1] != 'EN' %}
-							{%- assign flag1 = 'svg-icon-flag-' | append:siteData1[1] -%}
-							<div class="site-flag site-flag-{{ siteData1[1] | downcase }}"
-									 style="display: none;">
-								{% include flag1 %}
-							</div>
-						{% endif %}
+						<div class="site-flag
+							{% if siteData1 and siteData1[1] != 'EN' %}
+								site-flag-{{ siteData1[1] | downcase }}
+							{% else %}
+								site-flag-{{ siteData[0] | downcase }}
+							{% endif %}
+							">{% include flag %}</div>
 						<div class="site-name">
 							{% if showFullName == true %}
 								{{ siteData[1] }}
@@ -52,14 +51,13 @@
 				{% comment %} ..:: ALL SUBSEQUENT SLOTS ::.. {% endcomment %}
 				{% else %}
 					<a class="inner-center" href="{{ siteData[2] }}">
-						<div class="site-flag site-flag-{{ siteData[0] | downcase }}">{% include flag %}</div>
-						{% if siteData1 and siteData1[1] != 'EN' %}
-							{%- assign flag1 = 'svg-icon-flag-' | append:siteData1[1] -%}
-							<div class="site-flag site-flag-{{ siteData1[1] | downcase }}"
-									 style="display: none;">
-								{% include flag1 %}
-							</div>
-						{% endif %}
+						<div class="site-flag
+							{% if siteData1 and siteData1[1] != 'EN' %}
+								site-flag-{{ siteData1[1] | downcase }}
+							{% else %}
+								site-flag-{{ siteData[0] | downcase }}
+							{% endif %}
+							">{% include flag %}</div>
 						<div class="site-name">
 							{% if showFullName == true %}
 								{{ siteData[1] }}
