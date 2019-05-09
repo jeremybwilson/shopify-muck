@@ -3,28 +3,34 @@
 	{% if section.settings.site_picker_manifest != blank %}
 		{%- assign sites = section.settings.site_picker_manifest | split: ',' -%}
 		{% for item in sites %}
-			
-			{% comment %} 
+
+			{% comment %}
 				:: FORMAT NOTES ::
-					Example: 
-						- US|United States|http://www.google.com, UK|United Kingdom,
-							CA-EN|Canada EN|https://www.xxx.ca,CA-FR|Canada FR|https://fr.xxx.ca... etc
+				Example:
+				- US|United States|http://www.google.com, UK|United Kingdom,
+				CA-EN|Canada EN|https://www.xxx.ca,CA-FR|Canada FR|https://fr.xxx.ca... etc
 			{% endcomment %}
 
 			{%- assign siteData = item | split: '|' -%}
-      {%- assign siteData1 = false -%}
+			{%- assign siteData1 = false -%}
 			{% if siteData[0] and siteData[0] contains '-' %}
 				{%- assign siteData1 = siteData[0] | split: '-' -%}
 			{% endif %}
-      {%- assign flag = 'svg-icon-flag-' | append:siteData[0] -%}
+			{%- assign flag = 'svg-icon-flag-' | append:siteData[0] -%}
 
-			<li class="site-picker-item">
+			<li class="site-picker-item site-picker-item-{{ siteData[0] | downcase }}" data-id="{{ siteData[0] | downcase }}">
 
 
 				{% comment %} ..:: FIRST SLOT ITEM ::.. {% endcomment %}
 				{% if item == sites[0] %}
-					<div class="inner-center">
-						<div class="site-flag">{% include flag %}</div>
+					<div class="inner-center" data-href="{{ siteData[2] }}">
+						<div class="site-flag
+							{% if siteData1 and siteData1[1] != 'EN' %}
+								site-flag-{{ siteData1[1] | downcase }}
+							{% else %}
+								site-flag-{{ siteData[0] | downcase }}
+							{% endif %}
+							">{% include flag %}</div>
 						<div class="site-name">
 							{% if showFullName == true %}
 								{{ siteData[1] }}
@@ -37,7 +43,7 @@
 							{% endif %}
 						</div>
 
-					{% comment %} Add arrow indicator to first item in list only {% endcomment %}
+						{% comment %} Add arrow indicator to first item in list only {% endcomment %}
 						<div class="site-arrow">{% include 'svg-icon-caret-down' %}</div>
 					</div>
 
@@ -45,7 +51,13 @@
 				{% comment %} ..:: ALL SUBSEQUENT SLOTS ::.. {% endcomment %}
 				{% else %}
 					<a class="inner-center" href="{{ siteData[2] }}">
-						<div class="site-flag">{% include flag %}</div>
+						<div class="site-flag
+							{% if siteData1 and siteData1[1] != 'EN' %}
+								site-flag-{{ siteData1[1] | downcase }}
+							{% else %}
+								site-flag-{{ siteData[0] | downcase }}
+							{% endif %}
+							">{% include flag %}</div>
 						<div class="site-name">
 							{% if showFullName == true %}
 								{{ siteData[1] }}
@@ -60,10 +72,10 @@
 					</a>
 				{% endif %}
 
-				
+
 			</li>
 
 		{% endfor %}
-  {% endif %}
+	{% endif %}
 
 </ul>
