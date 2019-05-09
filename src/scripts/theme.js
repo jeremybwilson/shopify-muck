@@ -3122,8 +3122,9 @@ function debounce(fn, wait, immediate) {
         $('li.site-picker-item-' + currentId + ' .inner-center').html(wrongHTML);
       }
     }
-    $('ul.sites-picker').css('display', 'inherit');
+    $('ul.sites-picker').css('display', 'block');
   });
+
   $(document).on('change','.swatch.color input',function(){
     var var_type = $(this).attr('name');
     var var_value = $(this).attr('value');
