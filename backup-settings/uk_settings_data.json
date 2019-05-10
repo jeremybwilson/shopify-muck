@@ -207,6 +207,7 @@
     "mobile-image-height": "",
     "mailchimp": "",
     "zendesk-key": "50d6a4be-16df-4a3f-a159-fb0635ad46c8",
+    "delivery_country_codes": "GB",
     "sections": {
       "header": {
         "type": "header",
