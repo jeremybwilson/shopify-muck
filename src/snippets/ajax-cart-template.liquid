@@ -98,8 +98,9 @@
           <div class="desktop-half tablet-half mobile-half">
             <p class="text-right"><strong>{{{totalPrice}}}</strong></p>
           </div>
-
-        {% endraw %}{% if settings.checkout_shipping_callout_enable %}{% raw %}
+        {% endraw %}
+  
+        {% if settings.checkout_shipping_callout_enable %}{% raw %}
           <p class="text-center">{% endraw %}{{ 'cart.general.shipping_at_checkout' | t }}{% raw %}</p>
         {% endraw %}{% endif %}{% raw %}
           <button type="submit" class="cart__checkout" name="checkout">
@@ -152,5 +153,4 @@
     </div>
   {% endraw %}
 </script>
-
 

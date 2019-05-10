@@ -24,7 +24,6 @@
     </div>
 
     {{ order_summary_toggle }}
-
     <div class="content" data-content>
       <div class="wrap">
         <div class="main" role="main">
@@ -51,6 +50,7 @@
       </div>
     </div>
     {{ tracking_code }} 
+    {% include 'plus_custom_discount_msg'%}
     {% include 'checkout-expiry-callout' %}
     {% include 'checkout-customization-script' %}
     {% include 'script-google-tag-body' %}
