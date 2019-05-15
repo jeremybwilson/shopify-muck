@@ -76,7 +76,7 @@
               {% comment %} :: MEGA-MENU - IMAGE :: {% endcomment %}
               {% if block.settings.nav_image != blank %}
                 <span class="mega-image mm-image">
-                  <a href="{{ block.settings.nav_promo_link }}" style="background-image: url( '{{ block.settings.nav_image | img_url: '300x' | split:'?' | first}}' );" alt="block.settings.nav_image.alt"></a>
+                  <a href="{{ block.settings.nav_promo_link }}" style="background-image: url( '{{ block.settings.nav_image | img_url: '300x' }}' );" alt="block.settings.nav_image.alt"></a>
                 </span>
               {% endif %}
 
