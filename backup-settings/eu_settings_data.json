@@ -211,6 +211,7 @@
     "mailchimp": "",
     "zendesk-key": "e77b8879-586f-401d-b854-207796ae82a1",
     "delivery_country_codes": "AT,BE,BG,CZ,DK,EE,FI,FR,DE,GR,HU,IE,IT,LT,LU,NL,PL,PT,RO,SK,SI,ES,SE",
+    "billing_country_codes": "DE,GB,IE,NL,FR,BE,AT,FI,PL,IT,DK,CZ,EE,SE,ES,SK,RO,HU,GR,SI,LT,PT,BG,LU",
     "sections": {
       "header": {
         "type": "header",

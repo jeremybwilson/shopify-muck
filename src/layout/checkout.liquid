@@ -63,26 +63,34 @@
       }
       jquery(document).on('page:load', function() {
         var country_string = '{{ settings.delivery_country_codes }}';
+        var billing_country_string = '{{ settings.billing_country_codes }}';
         if (country_string != '') {
-          var countries_arr= country_string.split(',');
-          if (countries_arr.length != 0) {
-            jquery("#checkout_shipping_address_country option").each(function() {
-                if(jquery.inArray(jquery(this).attr('data-code'),countries_arr) <= -1)
-                {
-                    jquery(this).remove();
-                }
-            });
-            var code = {};
-            jquery("select[id='checkout_shipping_address_country'] > option").each(function () {
-                if(code[this.text]) {
-                    jquery(this).remove();
-                } else {
-                    code[this.text] = this.value;
-                }
-            });
-          }
+          remove_coutry_from_dropdown(country_string,'checkout_shipping_address_country');
+        }
+        if (billing_country_string != '') {
+          remove_coutry_from_dropdown(billing_country_string,'checkout_billing_address_country');
         }
       });
+      function remove_coutry_from_dropdown(country_string,select_id)
+      {
+        var countries_arr= country_string.split(',');
+        if (countries_arr.length != 0) {
+          jquery("#"+select_id+" option").each(function() {
+              if(jquery.inArray(jquery(this).attr('data-code'),countries_arr) <= -1)
+              {
+                  jquery(this).remove();
+              }
+          });
+          var code = {};
+          jquery("select[id='"+select_id+"'] > option").each(function () {
+              if(code[this.text]) {
+                  jquery(this).remove();
+              } else {
+                  code[this.text] = this.value;
+              }
+          });
+        }
+      }
     </script>
   </body>
 </html>
