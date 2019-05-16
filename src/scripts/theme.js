@@ -1859,28 +1859,6 @@ $(document).ready(function() {
     });
 
   /*============================================================================
-   Domain Cookie for reading into HTML email templates
-  ==============================================================================*/
-  (function domain_cookie(){
-    const domainSuffix = window.location.hostname.split(".");
-    let domainLocale = domainSuffix[domainSuffix.length - 1];
-    $.cookie('domain_suffix_value', domainLocale, { expires: 365, path: '/' });
-
-    let check_domain_suffix_cookie = $.cookie('domain_suffix_value');
-    let check_banner_cookie_test = $.cookie('gdpr_banner_read');
-
-    console.log('DEBUG :: check_popup_cookie value is: ', check_domain_suffix_cookie);
-    console.log('DEBUG :: check_banner_cookie value is: ', check_banner_cookie_test);
-
-    const domainInputElement = document.getElementById( 'customer_tags' );
-    console.log('DEBUG :: domainInputElement value is: ', domainInputElement);
-
-    if(check_domain_suffix_cookie != null){
-      domainInputElement.setAttribute("value", domainInputElement);
-    }
-  })();
-
-  /*============================================================================
    Cookie Banner
   ==============================================================================*/
 
