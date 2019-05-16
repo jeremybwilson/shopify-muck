@@ -29,6 +29,7 @@
   {% endif %}
 {% endcapture %}
 
+{% capture refunded_text %}Refunded{% endcapture %}
 {% capture shop_now_text %}SHOP NOW{% endcapture %}
 {% capture complete_your_purchase_text %}Complete Your Purchase{% endcapture %}
 {% capture contact_us_text %}CONTACT US{% endcapture %}
@@ -42,31 +43,32 @@
   {% capture shop_custom_name %}Die Ursprüngliche Muck Boot Company&reg;{% endcapture %}
   {% capture email_title %}
     {% if item_count == 1 %}
-  Es ist noch ein Artikel in Ihrem Einkaufskorb
+      Es ist noch ein Artikel in Ihrem Einkaufskorb
     {% else %}
-  Es sind noch Artikel in Ihrem Einkaufskorb
+      Es sind noch Artikel in Ihrem Einkaufskorb
     {% endif %}
   {% endcapture %}
   {% capture email_body %}
     {% if billing_address.first_name %}
       {% if item_count == 1 %}
-  Hallo {{ billing_address.first_name }}, Sie haben einen Artikel in Ihren Einkaufskorb gelegt und den Kauf noch nicht abgeschlossen. Sie können den Kauf jetzt abschließen, solange er noch verfügbar ist.
+        Hallo {{ billing_address.first_name }}, Sie haben einen Artikel in Ihren Einkaufskorb gelegt und den Kauf noch nicht abgeschlossen. Sie können den Kauf jetzt abschließen, solange er noch verfügbar ist.
       {% else %}
-  Hallo {{ billing_address.first_name }}, Sie haben Artikel in Ihren Einkaufskorb gelegt und den Kauf noch nicht abgeschlossen. Sie können den Kauf jetzt abschließen, solange sie noch verfügbar sind.
+        Hallo {{ billing_address.first_name }}, Sie haben Artikel in Ihren Einkaufskorb gelegt und den Kauf noch nicht abgeschlossen. Sie können den Kauf jetzt abschließen, solange sie noch verfügbar sind.
       {% endif %}
     {% else %}
       {% if item_count == 1 %}
-  Hallo, Sie haben einen Artikel in Ihren Einkaufskorb gelegt und den Kauf noch nicht abgeschlossen. Sie können den Kauf jetzt abschließen, solange er noch verfügbar ist.
+        Hallo, Sie haben einen Artikel in Ihren Einkaufskorb gelegt und den Kauf noch nicht abgeschlossen. Sie können den Kauf jetzt abschließen, solange er noch verfügbar ist.
       {% else %}
-  Hallo, Sie haben Artikel in Ihren Einkaufskorb gelegt und den Kauf noch nicht abgeschlossen. Sie können den Kauf jetzt abschließen, solange sie noch verfügbar sind.
+        Hallo, Sie haben Artikel in Ihren Einkaufskorb gelegt und den Kauf noch nicht abgeschlossen. Sie können den Kauf jetzt abschließen, solange sie noch verfügbar sind.
       {% endif %}
     {% endif %}
   {% endcapture %}
 
+  {% capture refunded_text %}Refunded{% endcapture %}
   {% capture shop_now_text %}JETZT KAUFEN{% endcapture %}
   {% capture complete_your_purchase_text %}Bestellung abschließen{% endcapture %}
   {% capture contact_us_text %}KONTAKTIEREN SIE UNS:{% endcapture %}
-  {% capture terms_and_conditions %}AGB<span style="line-height: 14px; font-size: 12px;"></span>{% endcapture %}
+  {% capture terms_and_conditions %}AGB{% endcapture %}
   {% capture privacy_policy_text %}Datenschutzbestimmungen{% endcapture %}
 
 {% endif %}
@@ -128,16 +130,12 @@
                         </a>
                       <!--[if mso]></center></v:textbox></v:roundrect></td></tr></table><![endif]-->
                     </div>
-
                   </div>
-
                 </td>
               </tr>
-
               <!-- BODY :: TABLE -->
               <tr>
                 <td style="padding: 60px 40px 50px">
-
                   <!-- TITLE -->
                   <div style="color:#164632;line-height:120%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
                     <div style="font-size:12px;line-height:14px;color:#164632;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center;"><span style="font-size: 18px; line-height: 21px; letter-spacing: .15em; text-transform: uppercase;"><strong>{{ complete_your_purchase_text }}</strong></span></p></div>
@@ -165,41 +163,29 @@
                         {% else %}
                           {% assign line_display = line.quantity  %}
                         {% endif %}
-
                         <span style="font-weight: bold; font-size: 14px; color: #164632; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;" class="order-list__item-title">{{ line_title }} × {{ line_display }}</span>
-
                         {% if line.variant.title != 'Default Title' %}
                           <br/><span style="color: #164632; font-size: 14px; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;" class="order-list__item-variant">{{ line.variant.title }}</span>
                         {% endif %}
-
                         {% if line.refunded_quantity > 0 %}
-                          <br/><span style="color: #164632; font-size: 14px; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;" class="order-list__item-refunded">Refunded</span>
+                          <br/><span style="color: #164632; font-size: 14px; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;" class="order-list__item-refunded">{{ refunded_text }}</span>
                         {% endif %}
                       </td>
                     </tr>{% endfor %}
                   </table>
-
-
-
                 </td>
               </tr>
-
             </table>
-
           </td>
         </tr>
 
         <!-- FOOTER -->
-
         <tr>
           <td style="background: #164632; padding: 40px 40px 20px;">
             <table style="width: 100%;">
-
               <!-- SOCIAL -->
-
               <tr>
                 <td>
-
                   <div align="center" style="padding-right: 10px; padding-left: 10px; padding-bottom: 10px; opacity: .5" class="">
                   <div style="line-height:10px;font-size:1px">&#160;</div>
                   <div style="display: table; max-width:181px;">
@@ -207,7 +193,7 @@
                     <table align="left" border="0" cellspacing="0" cellpadding="0" width="32" height="32" style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;Margin-right: 20px">
                       <tbody><tr style="vertical-align: top"><td align="left" valign="middle" style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
                         <a href="https://www.facebook.com/muckbootco/" title="Facebook" target="_blank">
-                          <img src="https://cdn.shopify.com/s/files/1/0015/2525/2190/files/facebook_2x_af60cbec-cd0a-4a73-a7b6-c929538ac6ad.png?9131003845000148457" alt="Facebook" title="Facebook" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
+                          <img src="https://cdn.shopify.com/s/files/1/0015/2525/2190/files/facebook_2x_af60cbec-cd0a-4a73-a7b6-c929538ac6ad.png?9131003845000148457" alt="Facebook" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
                         </a>
                       <div style="line-height:5px;font-size:1px">&#160;</div>
                       </td></tr>
@@ -216,7 +202,7 @@
                     <table align="left" border="0" cellspacing="0" cellpadding="0" width="32" height="32" style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;Margin-right: 20px">
                       <tbody><tr style="vertical-align: top"><td align="left" valign="middle" style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
                         <a href="https://instagram.com/muckbootco" title="Instagram" target="_blank">
-                          <img src="https://cdn.shopify.com/s/files/1/0015/2525/2190/files/instagram_2x_631ec28e-2aa5-405c-a1b2-42b3280cb039.png?9131003845000148457" alt="Instagram" title="Instagram" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
+                          <img src="https://cdn.shopify.com/s/files/1/0015/2525/2190/files/instagram_2x_631ec28e-2aa5-405c-a1b2-42b3280cb039.png?9131003845000148457" alt="Instagram" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
                         </a>
                       <div style="line-height:5px;font-size:1px">&#160;</div>
                       </td></tr>
@@ -225,7 +211,7 @@
                     <table align="left" border="0" cellspacing="0" cellpadding="0" width="32" height="32" style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;Margin-right: 0">
                       <tbody><tr style="vertical-align: top"><td align="left" valign="middle" style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
                         <a href="https://www.youtube.com/channel/UCDojhS0yZvveLz5JlHOwdhQ" title="YouTube" target="_blank">
-                          <img src="https://cdn.shopify.com/s/files/1/0015/2525/2190/files/youtube_2x_90c5b067-99c2-4489-a649-307a3283c97f.png?9131003845000148457" alt="YouTube" title="YouTube" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
+                          <img src="https://cdn.shopify.com/s/files/1/0015/2525/2190/files/youtube_2x_90c5b067-99c2-4489-a649-307a3283c97f.png?9131003845000148457" alt="YouTube" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
                         </a>
                       <div style="line-height:5px;font-size:1px">&#160;</div>
                       </td></tr>
@@ -233,28 +219,22 @@
                     <!--[if (mso)|(IE)]></td></tr></table></td></tr></table><![endif]-->
                   </div>
                 </div>
-
                 </td>
               </tr>
-
               <!-- CONTACT -->
 
               <tr>
                 <td>
-
                   <div style="color:#798d85;line-height:120%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
                     <div style="font-size:12px;line-height:14px;color:#798d85;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center">
-                      <span style="font-size: 12px; line-height: 14px;"><a style="color:#798d85;text-decoration: none;" title="Contact Us" href="{{ shop.url }}pages/contact-us{{ full_email_template_params }}" target="_blank" rel="noopener">{{ contact_us_text }}</a>&#160;&#160;&#160;&#160; <a style="color:#798d85;text-decoration: none;" title="Contact Us" href="tel:{{ contact_us_telephone }}" target="_blank" rel="noopener">{{ contact_us_telephone }}</a></span></p></div>
+                      <span style="font-size: 12px; line-height: 14px;"><a style="color:#798d85;text-decoration: none;" title="{{ contact_us_text }}" href="{{ shop.url }}pages/contact-us{{ full_email_template_params }}" target="_blank" rel="noopener">{{ contact_us_text }}</a>&#160;&#160;&#160;&#160; <a style="color:#798d85;text-decoration: none;" title="{{ contact_us_text }}" href="tel:{{ contact_us_telephone }}" target="_blank" rel="noopener">{{ contact_us_telephone }}</a></span></p></div>
                   </div>
-
                 </td>
               </tr>
-
               <!-- DIVIDER -->
 
               <tr>
                 <td>
-
                   <table border="0" cellpadding="0" cellspacing="0" width="100%" class="divider " style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;min-width: 100%;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%">
                       <tbody>
                           <tr style="vertical-align: top">
@@ -277,21 +257,16 @@
               </tr>
 
               <!-- TERMS -->
-
               <tr>
                 <td>
-
                   <div style="color:#798d85;line-height:120%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
                     <div style="font-size:12px;line-height:14px;color:#798d85;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 12px; line-height: 14px;"><a style="color:#798d85;text-decoration: none;" href="{{ shop.url }}/pages/terms-conditions{{ full_email_template_params }}" target="_blank" rel="noopener">{{ terms_and_conditions }}</a> | <a style="color:#798d85;text-decoration: none;" href="https://www.honeywell.com/privacy-statement{{ full_email_template_params }}" target="_blank" rel="noopener">{{ privacy_policy_text }}</a></span><br></p></div>
                   </div>
-
                 </td>
               </tr>
-
             </table>
           </td>
         </tr>
-
       </table>
     </td>
   </tr>
