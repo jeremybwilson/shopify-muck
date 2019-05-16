@@ -63,17 +63,17 @@
         <input class="secondary button" type="submit" value="{{ 'customer.recover_password.submit' | t }}" />
         <span class="note"><a href="#" onclick="hideRecoverPasswordForm();return false;">{{ 'customer.recover_password.cancel' | t }}</a></span>
       </div>
-
+      <input type="hidden" id="customer_tags" name="customer[tags]" value />
       {% endform %}
     </div>
 
   </div>
 
-  <!-- End Left Side -->  
+  <!-- End Left Side -->
 
 
-  <!-- End Password Recovery -->    
-  <!-- Create Account -->    
+  <!-- End Password Recovery -->
+  <!-- Create Account -->
 
 
   <!-- Create Customer -->
@@ -110,11 +110,12 @@
     <div class="action_bottom">
       <input class="secondary button" type="submit" value="{{ 'customer.register.submit' | t }}"/>
     </div>
+      <input type="hidden" id="customer_tags" name="customer[tags]" value />
     {% endform %}
   </div>
 
 
-  <!-- End Create Account -->     
+  <!-- End Create Account -->
 
 
 </div>
