@@ -157,31 +157,18 @@
 
   if (window.location.hash == '#recover') { showRecoverPasswordForm() }
 
-  /*============================================================================
-   Domain Cookie for reading into HTML email templates
-  ==============================================================================*/
-  (function domain_cookie(){
-    const domainSuffix = window.location.hostname.split(".");
-    let domainLocale = domainSuffix[domainSuffix.length - 1];
-    $.cookie('domain_suffix_value', domainLocale, { expires: 365, path: '/' });
 
-    let check_domain_suffix_cookie = $.cookie('domain_suffix_value');
-    console.log('DEBUG :: check_popup_cookie value is: ', check_domain_suffix_cookie);
+  const domainInputElement1 = document.getElementById( 'customer_tags_login' );
+  const domainInputElement2 = document.getElementById( 'customer_tags_register' );
 
-    const domainInputElement1 = document.getElementById( 'customer_tags_login' );
-    const domainInputElement2 = document.getElementById( 'customer_tags_register' );
+  if(check_domain_suffix_cookie != null){
+    domainInputElement1.setAttribute("value", domainLocale);
+    domainInputElement2.setAttribute("value", domainLocale);
+    console.log('Trying to pass the domain suffix to the element attribute.');
+  } else {
+    console.log('check_domain_suffix_cookie value was null.');
+  }
 
-    console.log('DEBUG :: domainInputElement1 value is: ', domainInputElement1);
-    console.log('DEBUG :: domainInputElement2 value is: ', domainInputElement2);
-
-    if(check_domain_suffix_cookie != null){
-      domainInputElement1.setAttribute("value", domainLocale);
-      domainInputElement2.setAttribute("value", domainLocale);
-      console.log('Trying to pass the domain suffix to the element attribute.');
-    } else {
-      console.log('check_domain_suffix_cookie value was null.');
-    }
-  })();
 </script>
 
 
