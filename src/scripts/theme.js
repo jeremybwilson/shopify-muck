@@ -837,6 +837,19 @@ theme.Utils = (function () {
   return {
     handleize: function (str) {
       return str.toLowerCase().replace(/[^\w]+/g, '-')
+    },
+
+    domainCookie: function() {
+      var domainLocale = $.cookie('domain_suffix_value');
+
+      if ( !domainLocale ) {
+        const domainSuffix = window.location.hostname.split(".");
+        domainLocale = domainSuffix[domainSuffix.length - 1];
+        $.cookie('domain_suffix_value', domainLocale, { expires: 365, path: '/' });
+      }
+      
+      console.log('DEBUG :: Domain Locale value is: ' + domainLocale );
+      return domainLocale;
     }
   }
 })();
@@ -1857,19 +1870,6 @@ $(document).ready(function() {
     $(document).ready( function() {
       $('#nav-bar-wrapper').stickUp();
     });
-
-
-  /*============================================================================
-   Domain Cookie for reading into HTML email templates
-  ==============================================================================*/
-  (function domain_cookie(){
-    const domainSuffix = window.location.hostname.split(".");
-    let domainLocale = domainSuffix[domainSuffix.length - 1];
-    $.cookie('domain_suffix_value', domainLocale, { expires: 365, path: '/' });
-
-    let check_domain_suffix_cookie = $.cookie('domain_suffix_value');
-    console.log('DEBUG :: check_popup_cookie value is: ', check_domain_suffix_cookie);
-  })();
 
 
   /*============================================================================

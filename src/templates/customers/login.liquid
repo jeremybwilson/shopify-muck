@@ -159,15 +159,16 @@
   if (window.location.hash == '#recover') { showRecoverPasswordForm() }
 
 
-  const domainInputElement1 = document.getElementById( 'customer_tags_login' );
-  const domainInputElement2 = document.getElementById( 'customer_tags_register' );
+  var domainInputElement1 = document.getElementById( 'customer_tags_login' );
+  var domainInputElement2 = document.getElementById( 'customer_tags_register' );
+  var domainLocale = window.theme.Utils.domainCookie();
 
-  if(check_domain_suffix_cookie != null){
+  if( domainLocale ){
     domainInputElement1.setAttribute("value", domainLocale);
     domainInputElement2.setAttribute("value", domainLocale);
     console.log('Trying to pass the domain suffix to the element attribute.');
   } else {
-    console.log('check_domain_suffix_cookie value was null.');
+    console.log('domainLocale value was null.');
   }
 
 </script>
