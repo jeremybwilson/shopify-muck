@@ -67,10 +67,10 @@
     "nav_dropdown_color": "#ffffff",
     "dropdown_hover_background_color": "#282828",
     "dropdown_hover_link_color": "#ffffff",
-    "directional_background": "#000000",
-    "directional_hover_background": "#ffffff",
+    "directional_background": "#164632",
+    "directional_hover_background": "#ab5232",
     "directional_color": "#ffffff",
-    "directional_hover_color": "#000000",
+    "directional_hover_color": "#ffffff",
     "swatch_color": "#000000",
     "swatch_background": "#ffffff",
     "swatch_border": "#000000",
@@ -887,6 +887,19 @@
       },
       "collection-banner": {
         "type": "collection-banner",
+        "blocks": {
+          "1557938312363": {
+            "type": "image",
+            "settings": {
+              "collection": "women-function-garden",
+              "image": "",
+              "mobile_image": ""
+            }
+          }
+        },
+        "block_order": [
+          "1557938312363"
+        ],
         "settings": {}
       }
     },
