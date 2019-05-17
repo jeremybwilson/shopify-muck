@@ -12,7 +12,7 @@
   }
 
   #nosto-block {
-  	/*clear: both;*/
+  	clear: both;
     margin-top: 60px;
     padding-top: 60px;
     margin-bottom: 60px;
@@ -38,8 +38,8 @@
       text-align: center;
       margin-bottom: 12px;
 		
-	  #cartpage-nosto & {
-	    @include fontDim(18px,18px,.15em);
+	    #cartpage-nosto-1 & {
+	     @include fontSize(26px);
       }      
 
       @include mq('tablet-and-up') {
@@ -49,12 +49,22 @@
         letter-spacing: .25em;  
       }
     }
+
+    .slick-track {
+      #cartpage-nosto-1 & {
+        width: 200px !important;
+      }
+    }
      
     .slick-initialized .slick-slide {
       display: block;
       padding: 0;
       margin-bottom: 0;
       width: 100%;
+
+      #cartpage-nosto-1 & {
+        width: 200px !important;
+      }
     }
   
     .item {
@@ -63,6 +73,7 @@
       padding-right: 3px;
       width: 100%;
       margin-bottom: 25px;
+
 
        @include mq('phone') {
        		width: 33.33333%;
@@ -98,6 +109,10 @@
 		        @include fontSize(16px);
 		        letter-spacing: .15em;
 	    	}
+
+        #cartpage-nosto-1 & {
+            @include fontSize(14px);
+          }
 	  	}
 
 		.price {
