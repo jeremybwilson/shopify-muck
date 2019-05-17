@@ -895,10 +895,19 @@
               "image": "",
               "mobile_image": ""
             }
+          },
+          "1558048314646": {
+            "type": "image",
+            "settings": {
+              "collection": "web-specials",
+              "image": "shopify://shop_images/Category_Banner_desktop.jpg",
+              "mobile_image": "shopify://shop_images/Category_Banner_mobile.jpg"
+            }
           }
         },
         "block_order": [
-          "1557938312363"
+          "1557938312363",
+          "1558048314646"
         ],
         "settings": {}
       }
