@@ -58,7 +58,7 @@
       <div class="action_bottom">
         <input class="secondary button" type="submit" value="{{ 'customer.login.sign_in' | t }}" />
       </div>
-      <input type="hidden" id="customer_tags_login" name="customer[tags]" value />
+      <input type="hidden" id="customer_tags" name="customer[tags]" value />
 
       {% endform %}
     </div>
@@ -87,7 +87,7 @@
         <input class="secondary button" type="submit" value="{{ 'customer.recover_password.submit' | t }}" />
         <span class="note"><a href="#" onclick="hideRecoverPasswordForm();return false;">{{ 'customer.recover_password.cancel' | t }}</a></span>
       </div>
-      <input type="hidden" id="customer_tags_pwreset" name="customer[tags]" value />
+      <input type="hidden" id="customer_tags" name="customer[tags]" value />
 
       {% endform %}
     </div>
@@ -135,7 +135,7 @@
     <div class="action_bottom">
       <input class="secondary button" type="submit" value="{{ 'customer.register.submit' | t }}"/>
     </div>
-      <input type="hidden" id="customer_tags_register" name="customer[tags]" value />
+      <input type="hidden" id="customer_tags" name="customer[tags]" value />
     {% endform %}
   </div>
 
@@ -158,17 +158,15 @@
 
   if (window.location.hash == '#recover') { showRecoverPasswordForm() }
 
-
-  var domainInputElement1 = document.getElementById( 'customer_tags_login' );
-  var domainInputElement2 = document.getElementById( 'customer_tags_register' );
+  var customerTagInputs = document.querySelectorAll("#customer_tags");
   var domainLocale = window.theme.Utils.domainCookie();
 
   if( domainLocale ){
-    domainInputElement1.setAttribute("value", domainLocale);
-    domainInputElement2.setAttribute("value", domainLocale);
-    console.log('Trying to pass the domain suffix to the element attribute.');
+    customerTagInputs.forEach((e) => {
+      e.setAttribute("value", domainLocale);
+    });
   } else {
-    console.log('domainLocale value was null.');
+      console.log('DEBUG :: domainLocale value was null.');
   }
 
 </script>
