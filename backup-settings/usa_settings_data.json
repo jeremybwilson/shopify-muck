@@ -268,7 +268,7 @@
           "logo_center": false,
           "cart_icon": "cart",
           "show_site_picker": true,
-          "site_picker_manifest": "US|United States|https://muckbootcompany.com,EU|European Union|https://www.muckbootcompany.eu,UK|United Kingdom|https://www.muckbootcompany.co.uk,CA-EN|Canada EN|https://www.muckbootcompany.ca,CA-FR|Canada FR|https://fr.muckbootcompany.ca",
+          "site_picker_manifest": "US|United States|https://muckbootcompany.com,EU|European Union|https://www.muckbootcompany.eu,DE|German|https://www.muckbootcompany.de,UK|United Kingdom|https://www.muckbootcompany.co.uk,CA-EN|Canada EN|https://www.muckbootcompany.ca,CA-FR|Canada FR|https://fr.muckbootcompany.ca",
           "show_search": true,
           "main_nav": "main-menu",
           "right_nav": "",
@@ -900,8 +900,8 @@
             "type": "image",
             "settings": {
               "collection": "web-specials",
-              "image": "shopify://shop_images/Category_Banner_desktop.jpg",
-              "mobile_image": "shopify://shop_images/Category_Banner_mobile.jpg"
+              "image": "",
+              "mobile_image": ""
             }
           }
         },
