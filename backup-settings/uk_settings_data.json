@@ -211,6 +211,7 @@
     "mailchimp": "",
     "zendesk-key": "50d6a4be-16df-4a3f-a159-fb0635ad46c8",
     "delivery_country_codes": "GB",
+    "billing_country_codes": "DE,GB,IE,NL,FR,BE,AT,FI,PL,IT,DK,CZ,EE,SE,ES,SK,RO,HU,GR,SI,LT,PT,BG,LU",
     "sections": {
       "header": {
         "type": "header",
@@ -260,8 +261,8 @@
           "num_of_promo_banners": "2",
           "announcement_text_one": "<div class=\"bold\">FREE DELIVERY & RETURNS ON ALL ORDERS</div>",
           "announcement_link_one": "shopify://pages/delivery-and-returns",
-          "announcement_text_two": "<div class=\"bold\">COME JOIN US AT RHS MALVERN!</div>",
-          "announcement_link_two": "https://www.muckbootcompany.co.uk/blogs/events/rhs-malvern",
+          "announcement_text_two": "<div class=\"bold\">FREE MUCK BOOT BAG on orders over £100. T&Cs apply</div>",
+          "announcement_link_two": "shopify://collections/new-arrivals",
           "announcement_height": 50,
           "announcement_swap_rate": 5,
           "logo_size": 24,
@@ -407,21 +408,21 @@
           "1555903546550": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/no-need-to-stay-indoors-hp.jpg",
-              "mobile_image": "shopify://shop_images/no-need-to-stay-indoors-hp-mobile.jpg",
-              "heading": "NO NEED TO STAY INDOORS",
-              "subheading": "",
-              "cta_one_link": "/collections/liberty-leather/audience_women",
+              "image": "shopify://shop_images/free-muck-boot-bag-desktop-uk.jpg",
+              "mobile_image": "shopify://shop_images/free-muck-boot-bag-desktop-uk-mobile.jpg",
+              "heading": "FREE MUCK BOOT BAG*",
+              "subheading": "<p style=\"font-size: 14px;\">*On orders over €100 whilst stocks last. T&Cs apply.</p>",
+              "cta_one_link": "shopify://collections/women",
               "cta_one_button_text": "SHOP WOMEN'S",
-              "cta_two_link": "/collections/fairfield-leather/audience_men",
+              "cta_two_link": "shopify://collections/men",
               "cta_two_button_text": "SHOP MEN'S",
               "caption_color_scheme": "white",
               "custom_slide_main_color": "#ffffff",
               "custom_slide_alt_color": "#164732",
               "caption_horizontal": "left",
-              "caption_vertical": 40,
-              "caption_background": "rgba(0,0,0,0)",
-              "caption_opacity": "0.1"
+              "caption_vertical": 50,
+              "caption_background": "#000000",
+              "caption_opacity": "0.3"
             }
           },
           "1551675343628": {
