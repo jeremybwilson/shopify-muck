@@ -89,7 +89,25 @@
                   code[this.text] = this.value;
               }
           });
+          sort_options(select_id);
         }
+      }
+      function sort_options(select_id)
+      {
+        var options = jquery("#"+select_id+" option");
+        var arr = options.map(function(_, o) {
+            return {
+                t: jquery(o).text(),
+                v: o.value
+            };
+        }).get();
+        arr.sort(function(o1, o2) {
+            return o1.t > o2.t ? 1 : o1.t < o2.t ? -1 : 0;
+        });
+        options.each(function(i, o) {
+            o.value = arr[i].v;
+            jquery(o).text(arr[i].t);
+        });
       }
     </script>
   </body>
