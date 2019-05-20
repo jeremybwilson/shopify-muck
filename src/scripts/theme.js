@@ -847,8 +847,6 @@ theme.Utils = (function () {
         domainLocale = domainSuffix[domainSuffix.length - 1];
         $.cookie('domain_suffix_value', domainLocale, { expires: 365, path: '/' });
       }
-      
-      console.log('DEBUG :: Domain Locale value is: ' + domainLocale );
       return domainLocale;
     }
   }
