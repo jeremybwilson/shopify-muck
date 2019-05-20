@@ -1,8 +1,17 @@
 {% capture notification_template_name %}customer_account_invite{% endcapture %}
 {% capture full_email_template_params %}?utm_source=tran&utm_medium=email&utm_campaign={{ notification_template_name }}{% endcapture %}
 {% capture domain_local_var %}{{ attributes.domain_locale }}{% endcapture %}
+{% capture domain_local_var1 %}{{ customer.tags }}{% endcapture %}
 
-{% capture shop_locale %}en{% endcapture %}
+{% if customer %}
+  {% for tag in customer.tags %}
+    {% if tag contains "com" or tag contains "eu" %}
+      {% capture shop_locale %}en{% endcapture %}
+    {% elsif tag contains "de" %}
+      {% capture shop_locale %}de{% endcapture %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
 {% comment %} PASS THE ENGLISH STRINGS HERE, YES! {% endcomment %}
 
 {% capture shop_custom_name %}The Original Muck Boot Company&reg;{% endcapture %}
@@ -17,8 +26,7 @@
 {% capture terms_and_conditions %}Terms &amp; <span style="line-height: 14px; font-size: 12px;">Conditions</span>{% endcapture %}
 {% capture privacy_policy_text %}Privacy Policy{% endcapture %}
 
-{% if domain_local_var == 'DE'%}
-  {% capture shop_locale %}de{% endcapture %}
+{% if shop_locale == 'de'%}
   {% comment %} PASS ZIE GERMAN STRINGS HERE, JA! {% endcomment %}
 
   {% capture shop_custom_name %}Die Ursprüngliche Muck Boot Company&reg;{% endcapture %}
