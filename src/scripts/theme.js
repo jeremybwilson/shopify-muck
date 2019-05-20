@@ -837,6 +837,17 @@ theme.Utils = (function () {
   return {
     handleize: function (str) {
       return str.toLowerCase().replace(/[^\w]+/g, '-')
+    },
+
+    domainCookie: function() {
+      var domainLocale = $.cookie('domain_suffix_value');
+
+      if ( !domainLocale ) {
+        const domainSuffix = window.location.hostname.split(".");
+        domainLocale = domainSuffix[domainSuffix.length - 1];
+        $.cookie('domain_suffix_value', domainLocale, { expires: 365, path: '/' });
+      }
+      return domainLocale;
     }
   }
 })();
@@ -1857,6 +1868,7 @@ $(document).ready(function() {
     $(document).ready( function() {
       $('#nav-bar-wrapper').stickUp();
     });
+
 
   /*============================================================================
    Cookie Banner
