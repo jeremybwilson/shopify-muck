@@ -64,11 +64,18 @@
       jquery(document).on('page:load', function() {
         var country_string = '{{ settings.delivery_country_codes }}';
         var billing_country_string = '{{ settings.billing_country_codes }}';
+        var billing_country_default = '{{ settings.billing_country_defult }}';
         if (country_string != '') {
           remove_coutry_from_dropdown(country_string,'checkout_shipping_address_country');
         }
         if (billing_country_string != '') {
           remove_coutry_from_dropdown(billing_country_string,'checkout_billing_address_country');
+          if (billing_country_default != '') {
+            jquery("#checkout_billing_address_country option[data-code='"+billing_country_default+"']").prop('selected',true);
+          }
+          else{
+            jquery("#checkout_billing_address_country").prepend("<option selected='selected' disabled='disabled'>"+jquery("label[for='checkout_billing_address_country']").html()+"</option>");
+          }
         }
       });
       function remove_coutry_from_dropdown(country_string,select_id)
@@ -94,20 +101,10 @@
       }
       function sort_options(select_id)
       {
-        var options = jquery("#"+select_id+" option");
-        var arr = options.map(function(_, o) {
-            return {
-                t: jquery(o).text(),
-                v: o.value
-            };
-        }).get();
-        arr.sort(function(o1, o2) {
-            return o1.t > o2.t ? 1 : o1.t < o2.t ? -1 : 0;
-        });
-        options.each(function(i, o) {
-            o.value = arr[i].v;
-            jquery(o).text(arr[i].t);
-        });
+        var select =  jquery("#"+select_id);
+        select.html(select.find('option').sort(function(x, y) {
+          return jquery(x).text() > jquery(y).text() ? 1 : -1;
+        }));     
       }
     </script>
   </body>
