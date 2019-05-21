@@ -251,11 +251,10 @@ var ajaxCart = (function(module, $) {
 
     // GET : Domain Locale Info Based on Domain Ending
     function getDomainLocale(){
-      // const domainSuffix = window.location.hostname.split(".");
-      const domainNameValues = window.location.hostname.split(".");
-      const domainPrefix = domainNameValues[domainNameValues.length - 3];
-      const domainSuffix = domainNameValues[domainNameValues.length - 1];
-      let domainLocale = { 'domain_locale' : null };
+      var domainNameValues = window.location.hostname.split(".");
+      var domainPrefix = domainNameValues[0];
+      var domainSuffix = domainNameValues[domainNameValues.length - 1];
+      var domainLocale = { 'domain_locale' : null };
 
       // ATTRIBUTE : Determine Attribute based on ending string (Only for EU/DE Muck)
       if(domainSuffix == "de"){
@@ -272,7 +271,7 @@ var ajaxCart = (function(module, $) {
     }
 
     // SETUP : Grab Domain Info + Dom Node for Attribute
-    const localeObj = getDomainLocale();
+    var localeObj = getDomainLocale();
 
     if ( localeObj ) {
       Shopify.updateCartAttributes( localeObj );

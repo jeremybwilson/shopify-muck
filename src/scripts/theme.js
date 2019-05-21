@@ -844,7 +844,7 @@ theme.Utils = (function () {
 
       if ( !domainLocale ) {
         const domainNameValues = window.location.hostname.split(".");
-        const domainPrefix = domainNameValues[domainNameValues.length - 3];
+        const domainPrefix = domainNameValues[0];
         const domainSuffix = domainNameValues[domainNameValues.length - 1];
 
         if(domainSuffix == 'CA') {     // checking the suffix value for CA site
