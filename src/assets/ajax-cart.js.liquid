@@ -251,22 +251,27 @@ var ajaxCart = (function(module, $) {
 
     // GET : Domain Locale Info Based on Domain Ending
     function getDomainLocale(){
-      const domainSuffix = window.location.hostname.split(".");
-      let domainLocale = { 'domain_locale' : null };
+      var domainNameValues = window.location.hostname.split(".");
+      var domainPrefix = domainNameValues[0];
+      var domainSuffix = domainNameValues[domainNameValues.length - 1];
+      var domainLocale = { 'domain_locale' : null };
 
       // ATTRIBUTE : Determine Attribute based on ending string (Only for EU/DE Muck)
-      if(domainSuffix[domainSuffix.length - 1] == "de"){
+      if(domainSuffix == "de"){
         domainLocale = { 'domain_locale' : 'DE' };
 
-      } else if(domainSuffix[domainSuffix.length - 1] == "eu") {
+      } else if(domainSuffix == "eu") {
         domainLocale = { 'domain_locale' : 'EU' };
+
+      } else if(domainPrefix == "fr") {
+        domainLocale = { 'domain_locale' : 'FR' };
       }
 
       return domainLocale;
     }
 
     // SETUP : Grab Domain Info + Dom Node for Attribute
-    const localeObj = getDomainLocale();
+    var localeObj = getDomainLocale();
 
     if ( localeObj ) {
       Shopify.updateCartAttributes( localeObj );
