@@ -116,6 +116,7 @@ input, select {
     @media #{$phone} {
       min-width:100% !important;
       max-width:100% !important;
+      margin-top:15px;
     }
 }
 
@@ -126,7 +127,7 @@ button#submitBtn {
     line-height: 33px;
     text-shadow: none;
     float: left;
-    margin-top:31px;
+    margin-top:51px;
     margin-bottom: 0px !important;
     border: 0px;
     font-size: 16px;
@@ -153,6 +154,7 @@ button#submitBtn {
     width: 100% !important;
     margin-bottom: 12px;
     text-align: left;
+    min-height: 40px;
 
     @media #{$tablet} {
      font-size: 0.8rem;
@@ -161,6 +163,7 @@ button#submitBtn {
 
     @media #{$phone} {
       text-align:center;
+       min-height:unset;
     }
 }
 
@@ -246,7 +249,9 @@ span.name {
     font-family: "Gotham A","Gotham B",sans-serif;
    }
 }
-
+.directions{
+    display:none;
+}
 .directions a {
     color: #ae5431;
     font-weight: 500;
