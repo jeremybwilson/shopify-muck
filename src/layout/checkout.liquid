@@ -62,11 +62,19 @@
         jquery = window.Checkout.$;
       }
       jquery(document).on('page:load', function() {
-        var country_string = '{{ settings.delivery_country_codes }}';
+        var delivery_country_string = '{{ settings.delivery_country_codes }}';
+        var delivery_country_defult = '{{ settings.delivery_country_defult }}';
         var billing_country_string = '{{ settings.billing_country_codes }}';
         var billing_country_default = '{{ settings.billing_country_defult }}';
-        if (country_string != '') {
-          remove_coutry_from_dropdown(country_string,'checkout_shipping_address_country');
+
+        if (delivery_country_string != '') {
+          remove_coutry_from_dropdown(delivery_country_string,'checkout_shipping_address_country');
+          if (delivery_country_defult != '') {
+            jquery("#checkout_shipping_address_country option[data-code='"+delivery_country_defult+"']").prop('selected',true);
+          }
+          else{
+            jquery("#checkout_shipping_address_country").prepend("<option selected='selected' disabled='disabled'>"+jquery("label[for='checkout_shipping_address_country']").html()+"</option>");
+          }
         }
         if (billing_country_string != '') {
           remove_coutry_from_dropdown(billing_country_string,'checkout_billing_address_country');
