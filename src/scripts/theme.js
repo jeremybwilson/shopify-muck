@@ -843,10 +843,20 @@ theme.Utils = (function () {
       var domainLocale = $.cookie('domain_suffix_value');
 
       if ( !domainLocale ) {
-        const domainSuffix = window.location.hostname.split(".");
-        domainLocale = domainSuffix[domainSuffix.length - 1];
-        $.cookie('domain_suffix_value', domainLocale, { expires: 365, path: '/' });
+        const domainNameValues = window.location.hostname.split(".");
+        const domainPrefix = domainNameValues[domainNameValues.length - 3];
+        const domainSuffix = domainNameValues[domainNameValues.length - 1];
+
+        if(domainSuffix == 'CA') {     // checking the suffix value for CA site
+          domainLocale = domainPrefix;  // Will return the domain prefix, eg. fr or www
+          $.cookie('domain_suffix_value', domainLocale, { expires: 180, path: '/' });
+
+        } else {                        // checking the prefix value for .COM or .EU sites
+          domainLocale = domainSuffix;  // Will return the domain suffix, eg. .com, .eu
+          $.cookie('domain_suffix_value', domainLocale, { expires: 180, path: '/' });
+        }
       }
+
       return domainLocale;
     }
   }
