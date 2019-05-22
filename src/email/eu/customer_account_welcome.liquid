@@ -1,6 +1,5 @@
 {% capture notification_template_name %}customer_account_welcome{% endcapture %}
 {% capture full_email_template_params %}?utm_source=tran&utm_medium=email&utm_campaign={{ notification_template_name }}{% endcapture %}
-
 {% capture domain_local_var %}{{ attributes.domain_locale }}{% endcapture %}
 {% capture domain_local_var1 %}{{ customer.tags }}{% endcapture %}
 {% comment %} {% capture domain_local_var2 %}{{ customer.domain }}{% endcapture %} {% endcomment %}
@@ -21,7 +20,7 @@
 {% capture email_title %}Welcome to Muck{% endcapture %}
 {% capture email_body %}You've activated your customer account. Next time you shop with us, log in for faster checkout.{% endcapture %}
 
-{% capture visit_our_store_text %}VISIT OUR STORE{% endcapture %}
+{% capture visit_our_store_text %}Visit our Store{% endcapture %}
 {% capture contact_us_text %}CONTACT US{% endcapture %}
 {% capture contact_us_telephone %}+44 808 281 9536{% endcapture %}
 {% capture terms_and_conditions %}Terms &amp; <span style="line-height: 14px; font-size: 12px;">Conditions</span>{% endcapture %}
@@ -36,7 +35,7 @@
 
   {% capture email_body %}Sie haben Ihr Kundenkonto aktiviert. Bei Ihrem nächsten Einkauf können Sie sich anmelden und schneller bezahlen.{% endcapture %}
 
-  {% capture visit_our_store_text %}BESUCHEN SIE UNSEREN STORE{% endcapture %}
+  {% capture visit_our_store_text %}Besuchen Sie Unseren Store{% endcapture %}
   {% capture contact_us_text %}KONTAKTIEREN SIE UNS:{% endcapture %}
   {% capture contact_us_telephone %}+44 808 281 9536{% endcapture %}
   {% capture terms_and_conditions %}AGB{% endcapture %}
