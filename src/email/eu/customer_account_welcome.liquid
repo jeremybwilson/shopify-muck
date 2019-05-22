@@ -2,7 +2,6 @@
 {% capture full_email_template_params %}?utm_source=tran&utm_medium=email&utm_campaign={{ notification_template_name }}{% endcapture %}
 {% capture domain_local_var %}{{ attributes.domain_locale }}{% endcapture %}
 {% capture domain_local_var1 %}{{ customer.tags }}{% endcapture %}
-{% comment %} {% capture domain_local_var2 %}{{ customer.domain }}{% endcapture %} {% endcomment %}
 
 {% if customer %}
   {% for tag in customer.tags %}
