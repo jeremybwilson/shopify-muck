@@ -847,7 +847,7 @@ theme.Utils = (function () {
         const domainPrefix = domainNameValues[0];
         const domainSuffix = domainNameValues[domainNameValues.length - 1];
 
-        if(domainSuffix == 'CA') {     // checking the suffix value for CA site
+        if(domainSuffix == 'ca') {      // checking the suffix value for CA site
           domainLocale = domainPrefix;  // Will return the domain prefix, eg. fr or www
           $.cookie('domain_suffix_value', domainLocale, { expires: 180, path: '/' });
 
