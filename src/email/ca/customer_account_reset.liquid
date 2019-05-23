@@ -28,7 +28,7 @@
   {% capture shop_locale %}fr{% endcapture %}
   {% comment %} PASS THE FRENCH STRINGS HERE, Oui! {% endcomment %}
   {% capture shop_custom_name %}La société d'origine Muckboot&reg;{% endcapture %}
-
+  {% capture email_body %}Suivez ce lien pour réinitialiser le mot de passe de votre compte client à <a style = "color: # ab5232; text-decoration: none; font-weight: bold;" href="{{shop.url}}{{full_email_template_params}}">{{ shop_custom_name }}</a>. Si vous n'avez pas demandé de nouveau mot de passe, vous pouvez supprimer cet email en toute sécurité.{% endcapture %}
 {% endif %}
 
 {% comment %} :: TEMPLATE MARKUP STARTS HERE:  no static strings should exist in the below markup  {% endcomment %}

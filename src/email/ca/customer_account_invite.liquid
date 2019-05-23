@@ -27,6 +27,9 @@
 {% if shop_locale == 'fr'%}
   {% comment %} PASS THE FRENCH STRINGS HERE, Oui! {% endcomment %}
   {% capture shop_custom_name %}La société d'origine Muckboot&reg;{% endcapture %}
+  {% capture email_body %}Bonjour {{customer.first_name}}, vous avez créé un nouveau compte client à <a href="{{shop.url}}{{ full_email_template_params }}" style="color: #ab5232; text-decoration: underline; font-weight: bold;">{{ shop_custom_name }}</a>.
+ Tout ce que vous avez à faire est de l'activer.{% endcapture %}
+  {% capture email_title %}Bienvenue chez Muck{% endcapture %}
 
 {% endif %}
 
