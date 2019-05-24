@@ -1,0 +1,158 @@
+/*CSS STYLE FOR NOSTO*/
+
+.shopify-section:last-child {
+  margin-bottom: 0 !important;
+}
+
+#nosto-block {
+  	clear: both;
+    margin: 60px 1.04166667%;
+    padding-top: 60px;
+    padding-bottom: 30px;
+
+
+   	#cartpage-nosto-1 & {
+	    margin-top: 0;
+    }   
+
+    .container {
+    	max-width: 1400px;
+    	margin: 0 auto;
+    }
+
+    /* HEADER STYLE */
+
+	.title {
+      margin-bottom: 0px;
+      color: $color--dark-green-1;
+      @include fontSize(22px);
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 12px;
+		
+	    #cartpage-nosto-1 & {
+	     @include fontSize(20px);
+      }      
+
+      @include mq('tablet-and-up') {
+        margin-bottom: 50px;
+        @include fontSize(30px);
+        font-weight: $font-weight--black;
+        letter-spacing: .25em;  
+      }
+  }
+
+  .slick-track {
+    #cartpage-nosto-1 & {
+      width: 200px !important;
+    }
+  }
+     
+  .slick-initialized .slick-slide {
+    display: block;
+    padding: 0;
+    margin-bottom: 0;
+    width: 100%;
+
+    #cartpage-nosto-1 & {
+      width: 200px !important;
+    }
+  }
+  
+  .item {
+    float: left;
+    padding-left: 3px;
+    padding-right: 3px;
+    width: 100%;
+    margin-bottom: 25px;
+
+     @include mq('phone') {
+     		width: 33.33333%;
+  	}
+  }
+
+	.product-image {
+    #cartpage-nosto-1 & {
+      width: 40%;
+      float: left;
+    }
+  }
+  
+  .product-info {
+  	text-align: center;
+
+  	.name {
+        max-width: 250px;
+        margin: 0 auto;
+        color: $color--dark-green-1;
+        @include fontSize(14px);
+        font-weight: $font-weight--bold;
+        text-transform: uppercase;
+        letter-spacing: .2em;
+        line-height: 24px / 16px * 1em;
+
+        	@include mq('tablet-and-up') {
+  	        @include fontSize(16px);
+  	        letter-spacing: .15em;
+      	  }
+
+      #cartpage-nosto-1 & {
+        @include fontSize(14px);
+      }
+    }
+
+  	.price {
+      	margin-top: 0;
+      	color: $color--dark-gray;
+      	@include fontSize(14px);
+      	letter-spacing: .26em;
+
+      		@include mq('tablet-and-up') {
+      			display: block;
+  	        margin-top: 12px;
+  	        @include fontSize(16px);
+  	        letter-spacing: .15em;
+      		}
+    }
+
+    #cartpage-nosto-1 & {
+      width: 55%;
+      float: right;
+      text-align: left;
+    }
+  }
+    
+
+ /* CONTROLS : Arrows and slider dots
+ * ------------------------------------------ */
+
+  .slick-arrow {
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    z-index: 2;
+
+    &:hover { text-decoration: none; }
+
+    &.prev {
+    	left: 0px;
+    }
+
+    &.next {
+    	right: 0px;
+    }
+
+    .label { display: none; }
+
+    .icon-caret_right,
+    .icon-caret_left { width: 25px; }
+  }
+
+
+  .nosto-ribbon {
+   display:none !important;
+  }
+}
+
+
