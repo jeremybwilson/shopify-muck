@@ -54,6 +54,49 @@
   {% comment %} PASS THE FRENCH STRINGS HERE, Oui! {% endcomment %}
   {% capture shop_custom_name %}La société d'origine Muckboot&reg;{% endcapture %}
 
+  {% capture email_title %}Votre Commande a ÉTÉ ANNULÉE{% endcapture %}
+  {% capture email_body %}
+    {% if financial_status == 'voided' %}
+      {% case cancel_reason %}
+      {% when 'customer' %}
+        La commande {{ name }} a été annulée sur demande et votre paiement a été annulé.
+      {% when 'inventory' %}
+        Order {{ name }} was canceled because we did not have enough stock to fulfill your order and your payment has been voided.
+      {% when 'fraud' %}
+        Order {{ name }} was canceled because we suspect it is fraudulent and your payment has been voided.
+      {% when 'other' %}
+        Order {{ name }} was canceled because of unforseen circumstances and your payment has been voided.
+      {% endcase %}
+    {% elsif financial_status == 'refunded' %}
+      {% case cancel_reason %}
+      {% when 'customer' %}
+        La commande {{ name }} a été annulée sur demande et votre paiement a été annulé.
+      {% when 'inventory' %}
+        Order {{ name }} was canceled because we did not have enough stock to fulfill your order and your payment has been refunded.
+      {% when 'fraud' %}
+        Order {{ name }} was canceled because we suspect it is fraudulent and your payment has been refunded.
+      {% when 'other' %}
+        Order {{ name }} was canceled because of unforseen circumstances and your payment has been refunded.
+      {% endcase %}
+    {% endif %}
+  {% endcapture %}
+
+  {% capture total_text %}Total{% endcapture %}
+  {% capture subtotal_text %}Sous-total{% endcapture %}
+  {% capture discount_text %}Discount{% endcapture %}
+  {% capture refund_text %}Refund{% endcapture %}
+  {% capture order_text %}Order{% endcapture %}
+  {% capture shipping_text %}Expédition{% endcapture %}
+
+  {% capture view_your_order_text %}Voir la commande{% endcapture %}
+  {% capture customer_info_text %}Coordonnées du client{% endcapture %}
+  {% capture visit_our_store_text %}Visitez notre magasin{% endcapture %}
+  {% capture order_summary_text %}Résumé de la commande{% endcapture %}
+  {% capture contact_us_text %}Contactez nous{% endcapture %}
+  {% capture contact_us_telephone %}855-468-7404{% endcapture %}
+  {% capture terms_and_conditions %}Termes et conditions{% endcapture %}
+  {% capture privacy_policy_text %}Politique de confidentialité{% endcapture %}
+
 {% endif %}
 
 {% comment %} :: TEMPLATE MARKUP STARTS HERE:  no static strings should exist in the below markup  {% endcomment %}
@@ -351,7 +394,7 @@
                 <td>
                   <div style="color:#798d85;line-height:120%;{{ font_family_css }} padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
                     <div style="font-size:12px;line-height:14px;color:#798d85;{{ font_family_css }}text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center">
-                      <span style="font-size: 12px; line-height: 14px;"><a style="color:#798d85;text-decoration: none;" title="{{ contact_us }}" href="{{ shop.url }}/pages/contact-us{{ full_email_template_params }}" target="_blank" rel="noopener">{{ contact_us_text}}</a>&#160;&#160;&#160;&#160; <a style="color:#798d85;text-decoration: none;" title="{{ contact_us }}" href="tel:{{ contact_us_telephone }}" target="_blank" rel="noopener">{{ contact_us_telephone }}</a></span></p></div>
+                      <span style="font-size: 12px; line-height: 14px; text-transform: uppercase;"><a style="color:#798d85;text-decoration: none;" title="{{ contact_us }}" href="{{ shop.url }}/pages/contact-us{{ full_email_template_params }}" target="_blank" rel="noopener">{{ contact_us_text}}</a>&#160;&#160;&#160;&#160; <a style="color:#798d85;text-decoration: none;" title="{{ contact_us }}" href="tel:{{ contact_us_telephone }}" target="_blank" rel="noopener">{{ contact_us_telephone }}</a></span></p></div>
                   </div>
                 </td>
               </tr>
@@ -383,7 +426,7 @@
               <tr>
                 <td>
                   <div style="color:#798d85;line-height:120%;{{ font_family_css }} padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
-                    <div style="font-size:12px;line-height:14px;color:#798d85;{{ font_family_css }}text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 12px; line-height: 14px;"><a style="color:#798d85;text-decoration: none;" href="{{ shop.url }}/pages/terms-conditions{{ full_email_template_params }}" target="_blank" rel="noopener">{{ terms_and_conditions}}</a> | <a style="color:#798d85;text-decoration: none;" href="https://www.honeywell.com/privacy-statement" target="_blank" rel="noopener">{{ privacy_policy_text }}</a></span><br></p></div>
+                    <div style="font-size:12px;line-height:14px;color:#798d85;{{ font_family_css }}text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 12px; line-height: 14px; text-transform: uppercase;"><a style="color:#798d85;text-decoration: none;" href="{{ shop.url }}/pages/terms-conditions{{ full_email_template_params }}" target="_blank" rel="noopener">{{ terms_and_conditions}}</a> | <a style="color:#798d85;text-decoration: none;" href="https://www.honeywell.com/privacy-statement" target="_blank" rel="noopener">{{ privacy_policy_text }}</a></span><br></p></div>
                   </div>
                 </td>
               </tr>

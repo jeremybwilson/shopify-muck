@@ -14,7 +14,7 @@
   {% endif %}
 {% endcapture %}
 
-{% capture thanks_for_purchase_text %}<span style="font-size: 28px; line-height: 33px;">Thank you for</span><br><span style="font-size: 28px; line-height: 33px;">your purchase!</span>{% endcapture %}
+{% capture thanks_for_purchase_text %}Thank you for<br>your purchase!{% endcapture %}
 {% capture shipping_address_text %}Shipping Address{% endcapture %}
 {% capture billing_address_text %}Billing Address{% endcapture %}
 {% capture shipping_method_text %}Shipping Method{% endcapture %}
@@ -32,7 +32,7 @@
 {% capture order_summary_text %}Order Summary{% endcapture %}
 {% capture contact_us_text %}Contact Us{% endcapture %}
 {% capture contact_us_telephone %}+44 808 281 9536{% endcapture %}
-{% capture terms_and_conditions %}Terms &amp; <span style="line-height: 14px; font-size: 12px;">Conditions</span>{% endcapture %}
+{% capture terms_and_conditions %}Terms &amp; Conditions{% endcapture %}
 {% capture privacy_policy_text %}Privacy Policy{% endcapture %}
 
 
@@ -40,6 +40,34 @@
   {% capture shop_locale %}fr{% endcapture %}
   {% comment %} PASS THE FRENCH STRINGS HERE, Oui! {% endcomment %}
   {% capture shop_custom_name %}La société d'origine Muckboot&reg;{% endcapture %}
+
+  {% capture email_title %}Merci de votre achat!{% endcapture %}
+  {% capture email_body %}
+    {% if requires_shipping %}
+      Bonjour {{ customer.first_name }}, Nous préparons votre commande pour l’expédition. Nous vous aviserons lorsqu’elle aura été envoyée.
+    {% endif %}
+  {% endcapture %}
+
+  {% capture thanks_for_purchase_text %}Merci de<br>votre achat!{% endcapture %}
+  {% capture shipping_address_text %}Adresse d’expédition{% endcapture %}
+  {% capture billing_address_text %}Adresse de facturation{% endcapture %}
+  {% capture shipping_method_text %}Mode d’expédition{% endcapture %}
+  {% capture payment_method_text %}Mode de paiement{% endcapture %}
+  {% capture total_text %}Total{% endcapture %}
+  {% capture subtotal_text %}Sous-total{% endcapture %}
+  {% capture discount_text %}Discount{% endcapture %}
+  {% capture refund_text %}Refund{% endcapture %}
+  {% capture order_text %}Order{% endcapture %}
+  {% capture shipping_text %}Expédition﻿{% endcapture %}
+
+  {% capture view_your_order_text %}Voir la commande{% endcapture %}
+  {% capture customer_info_text %}Coordonnées du client{% endcapture %}
+  {% capture visit_our_store_text %}Visitez notre magasin{% endcapture %}
+  {% capture order_summary_text %}Résumé de la commande{% endcapture %}
+  {% capture contact_us_text %}Contactez nous{% endcapture %}
+  {% capture contact_us_telephone %}855-468-7404{% endcapture %}
+  {% capture terms_and_conditions %}Termes et conditions{% endcapture %}
+  {% capture privacy_policy_text %}Politique de confidentialité{% endcapture %}
 
 {% endif %}
 
@@ -82,7 +110,7 @@
                     </div
                     <!-- HEADLINE -->
                     <div style="color:#FFFFFF;line-height:120%;{{ font_family_css }} padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
-                      <div style="font-size:12px;line-height:14px;font-family:inherit;color:#FFFFFF;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><strong><span style="font-size: 38px; line-height: 45px; letter-spacing: .15em; text-transform: uppercase;">{{ thanks_for_purchase_text }}<br></span></strong></p></div>
+                      <div style="font-size:12px;line-height:14px;font-family:inherit;color:#FFFFFF;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><strong><span style="font-size: 28px; line-height: 33px; letter-spacing: .15em; text-transform: uppercase;">{{ thanks_for_purchase_text }}<br></span></strong></p></div>
                     </div>
                     <!-- COPY -->
                     {% if requires_shipping %}
@@ -101,7 +129,7 @@
 
                     <!-- LINK -->
                     <div style="color:#FFFFFF;line-height:120%;{{ font_family_css }} padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
-                      <div style="font-size:12px;line-height:14px;color:#FFFFFF;{{ font_family_css }}text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 12px; line-height: 14px; letter-spacing: .125em;"><a style="color:#FFFFFF;text-decoration: none; text-transform: uppercase;" title="{{ visit_our_store_text }}" href="{{ shop.url }}{{ full_email_template_params }}" target="_blank" rel="noopener">{{ visit_our_store_text }}</a></span></p></div>
+                      <div style="font-size:12px;line-height:14px;color:#FFFFFF;{{ font_family_css }}text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 12px; line-height: 14px; letter-spacing: .125em; text-transform: uppercase;"><a style="color:#FFFFFF;text-decoration: none;" title="{{ visit_our_store_text }}" href="{{ shop.url }}{{ full_email_template_params }}" target="_blank" rel="noopener">{{ visit_our_store_text }}</a></span></p></div>
                     </div>
 
                   </div>
@@ -425,7 +453,7 @@
               <tr>
                 <td>
                   <div style="color:#798d85;line-height:120%;{{ font_family_css }} padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
-                    <div style="font-size:12px;line-height:14px;color:#798d85;{{ font_family_css }}text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 12px; line-height: 14px;"><a style="color:#798d85;text-decoration: none;" href="{{ shop.url }}/pages/terms-conditions{{ full_email_template_params }}" target="_blank" rel="noopener">{{terms_and_conditions}}</a> | <a style="color:#798d85;text-decoration: none;" href="https://www.honeywell.com/privacy-statement" target="_blank" rel="noopener">{{ privacy_policy_text }}</a></span><br></p></div>
+                    <div style="font-size:12px;line-height:14px;color:#798d85;{{ font_family_css }}text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 12px; line-height: 14px; text-transform: uppercase;"><a style="color:#798d85;text-decoration: none;" href="{{ shop.url }}/pages/terms-conditions{{ full_email_template_params }}" target="_blank" rel="noopener">{{terms_and_conditions}}</a> | <a style="color:#798d85;text-decoration: none;" href="https://www.honeywell.com/privacy-statement" target="_blank" rel="noopener">{{ privacy_policy_text }}</a></span><br></p></div>
                   </div>
                 </td>
               </tr>

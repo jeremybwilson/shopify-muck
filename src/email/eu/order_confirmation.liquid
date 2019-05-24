@@ -14,7 +14,7 @@
   {% endif %}
 {% endcapture %}
 
-{% capture thanks_for_purchase_text %}<span style="font-size: 28px; line-height: 33px;">Thank you for</span><br><span style="font-size: 28px; line-height: 33px;">your purchase!</span>{% endcapture %}
+{% capture thanks_for_purchase_text %}Thank you for<br>your purchase!{% endcapture %}
 {% capture shipping_address_text %}Shipping Address{% endcapture %}
 {% capture billing_address_text %}Billing Address{% endcapture %}
 {% capture shipping_method_text %}Shipping Method{% endcapture %}
@@ -32,7 +32,7 @@
 {% capture order_summary_text %}Order Summary{% endcapture %}
 {% capture contact_us_text %}Contact Us{% endcapture %}
 {% capture contact_us_telephone %}+44 808 281 9536{% endcapture %}
-{% capture terms_and_conditions %}Terms &amp; <span style="line-height: 14px; font-size: 12px;">Conditions</span>{% endcapture %}
+{% capture terms_and_conditions %}Terms &amp; Conditions{% endcapture %}
 {% capture privacy_policy_text %}Privacy Policy{% endcapture %}
 
 {% if domain_local_var == 'DE'%}
@@ -48,7 +48,7 @@
     {% endif %}
   {% endcapture %}
 
-  {% capture thanks_for_purchase_text %}<span style="font-size: 28px; line-height: 33px;">VIELEN DANK FÜR</span><br><span style="font-size: 28px; line-height: 33px;">IHREN EINKAUF!</span>{% endcapture %}
+  {% capture thanks_for_purchase_text %}VIELEN DANK FÜR<br>IHREN EINKAUF!{% endcapture %}
   {% capture shipping_address_text %}Versandadresse{% endcapture %}
   {% capture billing_address_text %}Rechnungsadresse{% endcapture %}
   {% capture shipping_method_text %}Versandart{% endcapture %}
@@ -110,7 +110,7 @@
                     </div
                     <!-- HEADLINE -->
                     <div style="color:#FFFFFF;line-height:120%;{{ font_family_css }} padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
-                      <div style="font-size:12px;line-height:14px;font-family:inherit;color:#FFFFFF;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><strong><span style="font-size: 38px; line-height: 45px; letter-spacing: .15em; text-transform: uppercase;">{{ thanks_for_purchase_text }}<br></span></strong></p></div>
+                      <div style="font-size:12px;line-height:14px;font-family:inherit;color:#FFFFFF;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><strong><span style="font-size: 28px; line-height: 33px; letter-spacing: .15em; text-transform: uppercase;">{{ thanks_for_purchase_text }}<br></span></strong></p></div>
                     </div>
                     <!-- COPY -->
                     {% if requires_shipping %}
@@ -453,7 +453,7 @@
               <tr>
                 <td>
                   <div style="color:#798d85;line-height:120%;{{ font_family_css }} padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
-                    <div style="font-size:12px;line-height:14px;color:#798d85;{{ font_family_css }}text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 12px; line-height: 14px;"><a style="color:#798d85;text-decoration: none;" href="{{ shop.url }}/pages/terms-conditions{{ full_email_template_params }}" target="_blank" rel="noopener">{{terms_and_conditions}}</a> | <a style="color:#798d85;text-decoration: none;" href="https://www.honeywell.com/privacy-statement" target="_blank" rel="noopener">{{ privacy_policy_text }}</a></span><br></p></div>
+                    <div style="font-size:12px;line-height:14px;color:#798d85;{{ font_family_css }}text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 12px; line-height: 14px; text-transform: uppercase;"><a style="color:#798d85;text-decoration: none;" href="{{ shop.url }}/pages/terms-conditions{{ full_email_template_params }}" target="_blank" rel="noopener">{{terms_and_conditions}}</a> | <a style="color:#798d85;text-decoration: none;" href="https://www.honeywell.com/privacy-statement" target="_blank" rel="noopener">{{ privacy_policy_text }}</a></span><br></p></div>
                   </div>
                 </td>
               </tr>
