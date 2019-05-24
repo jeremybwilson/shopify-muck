@@ -214,7 +214,11 @@
 
     {% if section.settings.related_products == 'bottom' %}
       <div id="related" class="bottom-related">
-        {% include 'related-products' %}
+        {% if settings.nosto_id != blank %}
+          {% include 'nosto-element' with 'productpage-nosto-1' %}
+          {% include 'nosto-element' with 'productpage-nosto-2' %}
+        {% endif %}
+
       </div>
       <div class="clear"></div>
     {% endif %}
