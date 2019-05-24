@@ -1,5 +1,6 @@
 {% capture notification_template_name %}order_canceled{% endcapture %}
 {% capture full_email_template_params %}?utm_source=tran&utm_medium=email&utm_campaign={{ notification_template_name }}{% endcapture %}
+{% capture font_family_css %}font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;{% endcapture %}
 {% capture shop_custom_name %}The Original Muck Boot Company&reg;{% endcapture %}
 {% capture domain_local_var %}{{ attributes.domain_locale }}{% endcapture %}
 
@@ -38,10 +39,9 @@
 {% capture discount_text %}Discount{% endcapture %}
 {% capture refund_text %}Refund{% endcapture %}
 {% capture shipping_text %}Shipping{% endcapture %}
-{% capture order_text %}ORDER{% endcapture %}
+{% capture order_text %}Order{% endcapture %}
 
 {% capture refunded_items_text %}REFUNDED ITEMS{% endcapture %}
-{% capture order_summary_text %}ORDER SUMMARY{% endcapture %}
 {% capture visit_our_store_text %}VISIT OUR STORE{% endcapture %}
 {% capture contact_us_text %}CONTACT US{% endcapture %}
 {% capture contact_us_telephone %}+44 808 281 9536{% endcapture %}
@@ -130,11 +130,11 @@
                 <td style="background-color: #ab5232; padding: 20px;">
                   <div style="border: solid 3px #ab5232; padding: 60px 20px 50px">
                     <!-- ORDER # -->
-                    <div style="color:#FFFFFF;line-height:120%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 0px;">
-                      <div style="font-size:16px;line-height:19px;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;color:#FFFFFF;text-align:left;"><p style="margin: 0;font-size: 16px;line-height: 19px;text-align: center">{{ order_text }} {{ order_name }}</p></div>
+                    <div style="color:#FFFFFF;line-height:120%;{{ font_family_css }} padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 0px;">
+                      <div style="font-size:16px;line-height:19px;{{ font_family_css }}color:#FFFFFF;text-align:left;"><p style="margin: 0;font-size: 16px;line-height: 19px;text-align: center; text-transform: uppercase;">{{ order_text }} {{ order_name }}</p></div>
                     </div>
                     <!-- HEADLINE -->
-                    <div style="color:#FFFFFF;line-height:120%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
+                    <div style="color:#FFFFFF;line-height:120%;{{ font_family_css }} padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
                       <div style="font-size:12px;line-height:14px;font-family:inherit;color:#FFFFFF;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><strong><span style="font-size: 38px; line-height: 45px; letter-spacing: .15em;"><span style="font-size: 28px; line-height: 33px; text-transform:uppercase;">{{ email_title }}</span><br></span></strong></p></div>
                     </div>
                     <!-- DIVIDER -->
@@ -158,22 +158,19 @@
 
                     <!-- COPY -->
 
-                    <div style="color:#FFFFFF;line-height:180%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
+                    <div style="color:#FFFFFF;line-height:180%;{{ font_family_css }} padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
                       <div style="font-size:14px;line-height:25px;font-family:inherit;color:#FFFFFF;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 25px;text-align: center">{{ email_body }}</p></div>
                     </div>
-
                   </div>
-
                 </td>
               </tr>
 
               <!-- BODY :: TABLE -->
               <tr>
                 <td style="padding: 60px 40px 50px">
-
                   <!-- TITLE -->
-                  <div style="color:#164632;line-height:120%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
-                    <div style="font-size:12px;line-height:14px;color:#164632;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center;"><span style="font-size: 18px; line-height: 21px; letter-spacing: .15em;"><strong>{{ refunded_items_text }}</strong></span></p></div>
+                  <div style="color:#164632;line-height:120%;{{ font_family_css }} padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
+                    <div style="font-size:12px;line-height:14px;color:#164632;{{ font_family_css }}text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center;"><span style="font-size: 18px; line-height: 21px; letter-spacing: .15em; text-transform: uppercase;"><strong>{{ refunded_items_text }}</strong></span></p></div>
                   </div>
 
                   <!-- TABLE -->
@@ -199,23 +196,23 @@
                           {% assign line_display = line.quantity  %}
                         {% endif %}
 
-                        <span style="font-weight: bold; font-size: 14px; color: #164632; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;" class="order-list__item-title">{{ line_title }} × {{ line_display }}</span>
+                        <span style="font-weight: bold; font-size: 14px; color: #164632; {{ font_family_css }}" class="order-list__item-title">{{ line_title }} × {{ line_display }}</span>
 
                         {% if line.variant.title != 'Default Title' %}
-                          <br/><span style="color: #164632; font-size: 14px; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;" class="order-list__item-variant">{{ line.variant.title }}</span>
+                          <br/><span style="color: #164632; font-size: 14px; {{ font_family_css }}" class="order-list__item-variant">{{ line.variant.title }}</span>
                         {% endif %}
 
                         {% if line.refunded_quantity > 0 %}
-                          <br/><span style="color: #164632; font-size: 14px; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;" class="order-list__item-refunded">Refunded</span>
+                          <br/><span style="color: #164632; font-size: 14px; {{ font_family_css }}" class="order-list__item-refunded">Refunded</span>
                         {% endif %}
                       </td>
                       <td class="order-list__price-cell" style="vertical-align: middle; text-align: right; width: 20%; border-bottom: solid 1px #999999;">
                         {% if line.original_line_price != line.line_price %}
-                          <p style="font-size: 14px; color: #bc0000; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;" class="order-list__item-price">{{ line.line_price | money }}
-                            <del style="font-size: 14px; color: #164632; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;" class="order-list__item-original-price">{{ line.original_line_price | money }}</del>
+                          <p style="font-size: 14px; color: #bc0000; {{ font_family_css }}" class="order-list__item-price">{{ line.line_price | money }}
+                            <del style="font-size: 14px; color: #164632; {{ font_family_css }}" class="order-list__item-original-price">{{ line.original_line_price | money }}</del>
                           </p>
                         {% else %}
-                          <p style="font-size: 14px; color: #164632; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;" class="order-list__item-price">{{ line.line_price | money }}</p>
+                          <p style="font-size: 14px; color: #164632; {{ font_family_css }}" class="order-list__item-price">{{ line.line_price | money }}</p>
                         {% endif %}
 
                       </td>
@@ -232,10 +229,10 @@
 
                       <tr class="subtotal-line">
                         <td class="subtotal-line__title" style="vertical-align: bottom;">
-                          <span style="color: #164632; font-size: 14px; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;">{{ discount_title }}</span>
+                          <span style="color: #164632; font-size: 14px; {{ font_family_css }}">{{ discount_title }}</span>
                         </td>
                         <td class="subtotal-line__value" style="vertical-align: bottom; width: 40%; text-align: right;">
-                          <span style="color: #164632; font-size: 14px; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;">{{ discounts_savings | money }}</span>
+                          <span style="color: #164632; font-size: 14px; {{ font_family_css }}">{{ discounts_savings | money }}</span>
                         </td>
                       </tr>
 
@@ -244,19 +241,19 @@
 
                     <tr class="subtotal-line">
                       <td class="subtotal-line__title" style="vertical-align: bottom;">
-                        <span style="color: #164632; font-size: 14px; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;">{{ subtotal_text }}</span>
+                        <span style="color: #164632; font-size: 14px; {{ font_family_css }}">{{ subtotal_text }}</span>
                       </td>
                       <td style="color: #164632; vertical-align: bottom; width: 40%; text-align: right;" class="subtotal-line__value">
-                        <span style="color: #164632; font-size: 14px; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;">{{ subtotal_price | money }}</span>
+                        <span style="color: #164632; font-size: 14px; {{ font_family_css }}">{{ subtotal_price | money }}</span>
                       </td>
                     </tr>
 
                     <tr class="subtotal-line">
                       <td class="subtotal-line__title" style="vertical-align: bottom;">
-                        <span style="color: #164632; font-size: 14px; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;">{{ shipping_text }}</span>
+                        <span style="color: #164632; font-size: 14px; {{ font_family_css }}">{{ shipping_text }}</span>
                       </td>
                       <td style="color: #164632; vertical-align: bottom; width: 40%; text-align: right;" class="subtotal-line__value">
-                        <span style="color: #164632; font-size: 14px; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;">{{ shipping_price | money }}</span>
+                        <span style="color: #164632; font-size: 14px; {{ font_family_css }}">{{ shipping_price | money }}</span>
                       </td>
                     </tr>
 
@@ -264,10 +261,10 @@
 
                       <tr class="subtotal-line">
                         <td class="subtotal-line__title" style="vertical-align: bottom;">
-                          <span style="color: #164632; font-size: 14px; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;">{{ line.title }}</span>
+                          <span style="color: #164632; font-size: 14px; {{ font_family_css }}">{{ line.title }}</span>
                         </td>
                         <td style="color: #164632; vertical-align: bottom; width: 40%; text-align: right;" class="subtotal-line__value">
-                          <span style="color: #164632; font-size: 14px; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;">{{ line.price | money }}</span>
+                          <span style="color: #164632; font-size: 14px; {{ font_family_css }}">{{ line.price | money }}</span>
                         </td>
                       </tr>
 
@@ -279,11 +276,11 @@
                     <tr class="subtotal-line">
                       <td class="subtotal-line__title" style="vertical-align: bottom;">
                         <p>
-                          <span style="color: #164632; font-size: 14px; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;">{{ total_text }}</span>
+                          <span style="color: #164632; font-size: 14px; {{ font_family_css }}">{{ total_text }}</span>
                         </p>
                       </td>
                       <td style="color: #164632; vertical-align: bottom; width: 40%; text-align: right;" class="subtotal-line__value">
-                        <p><strong style="color: #164632; font-size: 20px; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;">{{ total_price | money_with_currency }}</strong></p>
+                        <p><strong style="color: #164632; font-size: 20px; {{ font_family_css }}">{{ total_price | money_with_currency }}</strong></p>
                       </td>
                     </tr>
 
@@ -308,9 +305,9 @@
 
                           <tr class="subtotal-line">
                             <td class="subtotal-line__title" style="vertical-align: bottom;">
-                              <span style="color: #164632; font-size: 14px; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;" >{{transaction_name}}</span>
+                              <span style="color: #164632; font-size: 14px; {{ font_family_css }}" >{{transaction_name}}</span>
                             </td>
-                            <td style="color: #164632; vertical-align: bottom; width: 40%; text-align: right; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;" class="subtotal-line__value">
+                            <td style="color: #164632; vertical-align: bottom; width: 40%; text-align: right; {{ font_family_css }}" class="subtotal-line__value">
                               <span style="color: #164632;">{{ transaction.amount | money }}</span>
                             </td>
                           </tr>
@@ -327,26 +324,22 @@
                           <tr class="subtotal-line">
                             <td class="subtotal-line__title" style="vertical-align: bottom;">
                               <p>
-                                <span style="color: #164632; font-size: 14px; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;">{{ refund_text }}</span>
+                                <span style="color: #164632; font-size: 14px; {{ font_family_css }} text-transform: uppercase;">{{ refund_text }}</span>
                                   <br>
                                   <small style="color: #164632;">{{ refund_method_title | capitalize }}</small>
                               </p>
                             </td>
                             <td style="color: #164632; vertical-align: bottom; width: 40%; text-align: right;" class="subtotal-line__value">
-                              <p><span style="color: #164632; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;">- {{ transaction.amount | money }}</span></p>
+                              <p><span style="color: #164632; {{ font_family_css }}">- {{ transaction.amount | money }}</span></p>
                             </td>
                           </tr>
-
                         {% endif %}
                       {% endfor %}
                     {% endif %}
                   </table>
-
                 </td>
               </tr>
-
             </table>
-
           </td>
         </tr>
 
@@ -396,8 +389,8 @@
               <!-- CONTACT -->
               <tr>
                 <td>
-                  <div style="color:#798d85;line-height:120%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
-                    <div style="font-size:12px;line-height:14px;color:#798d85;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center">
+                  <div style="color:#798d85;line-height:120%;{{ font_family_css }} padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
+                    <div style="font-size:12px;line-height:14px;color:#798d85;{{ font_family_css }}text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center">
                       <span style="font-size: 12px; line-height: 14px;"><a style="color:#798d85;text-decoration: none;" title="{{ contact_us }}" href="{{ shop.url }}/pages/contact-us{{ full_email_template_params }}" target="_blank" rel="noopener">{{ contact_us_text}}</a>&#160;&#160;&#160;&#160; <a style="color:#798d85;text-decoration: none;" title="{{ contact_us }}" href="tel:{{ contact_us_telephone }}" target="_blank" rel="noopener">{{ contact_us_telephone }}</a></span></p></div>
                   </div>
                 </td>
@@ -429,8 +422,8 @@
               <!-- TERMS -->
               <tr>
                 <td>
-                  <div style="color:#798d85;line-height:120%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
-                    <div style="font-size:12px;line-height:14px;color:#798d85;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 12px; line-height: 14px;"><a style="color:#798d85;text-decoration: none;" href="{{ shop.url }}/pages/terms-conditions{{ full_email_template_params }}" target="_blank" rel="noopener">{{ terms_and_conditions}}</a> | <a style="color:#798d85;text-decoration: none;" href="https://www.honeywell.com/privacy-statement" target="_blank" rel="noopener">{{ privacy_policy_text }}</a></span><br></p></div>
+                  <div style="color:#798d85;line-height:120%;{{ font_family_css }} padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
+                    <div style="font-size:12px;line-height:14px;color:#798d85;{{ font_family_css }}text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 12px; line-height: 14px;"><a style="color:#798d85;text-decoration: none;" href="{{ shop.url }}/pages/terms-conditions{{ full_email_template_params }}" target="_blank" rel="noopener">{{ terms_and_conditions}}</a> | <a style="color:#798d85;text-decoration: none;" href="https://www.honeywell.com/privacy-statement" target="_blank" rel="noopener">{{ privacy_policy_text }}</a></span><br></p></div>
                   </div>
                 </td>
               </tr>
@@ -497,13 +490,13 @@
 
                     <!-- ORDER # -->
 
-                    <div style="color:#FFFFFF;line-height:120%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 0px;">
-                      <div style="font-size:16px;line-height:19px;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;color:#FFFFFF;text-align:left;"><p style="margin: 0;font-size: 16px;line-height: 19px;text-align: center">BESTELLUNG {{ order_name }}</p></div>
+                    <div style="color:#FFFFFF;line-height:120%;{{ font_family_css }} padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 0px;">
+                      <div style="font-size:16px;line-height:19px;{{ font_family_css }}color:#FFFFFF;text-align:left;"><p style="margin: 0;font-size: 16px;line-height: 19px;text-align: center">BESTELLUNG {{ order_name }}</p></div>
                     </div>
 
                     <!-- HEADLINE -->
 
-                    <div style="color:#FFFFFF;line-height:120%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
+                    <div style="color:#FFFFFF;line-height:120%;{{ font_family_css }} padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
                       <div style="font-size:12px;line-height:14px;font-family:inherit;color:#FFFFFF;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><strong><span style="font-size: 38px; line-height: 45px; letter-spacing: .15em;"><span style="font-size: 28px; line-height: 33px; text-transform:uppercase;">{{ email_title }}</span><br></span></strong></p></div>
                     </div>
 
@@ -529,7 +522,7 @@
 
                     <!-- COPY -->
 
-                    <div style="color:#FFFFFF;line-height:180%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
+                    <div style="color:#FFFFFF;line-height:180%;{{ font_family_css }} padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
                       <div style="font-size:14px;line-height:25px;font-family:inherit;color:#FFFFFF;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 25px;text-align: center">{{ email_body }}</p></div>
                     </div>
 
@@ -545,8 +538,8 @@
 
                   <!-- TITLE -->
 
-                  <div style="color:#164632;line-height:120%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
-                    <div style="font-size:12px;line-height:14px;color:#164632;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center;"><span style="font-size: 18px; line-height: 21px; letter-spacing: .15em;"><strong>{{ refunded_items_text }}</strong></span></p></div>
+                  <div style="color:#164632;line-height:120%;{{ font_family_css }} padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
+                    <div style="font-size:12px;line-height:14px;color:#164632;{{ font_family_css }}text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center;"><span style="font-size: 18px; line-height: 21px; letter-spacing: .15em;"><strong>{{ refunded_items_text }}</strong></span></p></div>
                   </div>
 
                   <!-- TABLE -->
@@ -575,23 +568,23 @@
                           {% assign line_display = line.quantity  %}
                         {% endif %}
 
-                        <span style="font-weight: bold; font-size: 14px; color: #164632; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;" class="order-list__item-title">{{ line_title }} × {{ line_display }}</span>
+                        <span style="font-weight: bold; font-size: 14px; color: #164632; {{ font_family_css }}" class="order-list__item-title">{{ line_title }} × {{ line_display }}</span>
 
                         {% if line.variant.title != 'Default Title' %}
-                          <br/><span style="color: #164632; font-size: 14px; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;" class="order-list__item-variant">{{ line.variant.title }}</span>
+                          <br/><span style="color: #164632; font-size: 14px; {{ font_family_css }}" class="order-list__item-variant">{{ line.variant.title }}</span>
                         {% endif %}
 
                         {% if line.refunded_quantity > 0 %}
-                          <br/><span style="color: #164632; font-size: 14px; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;" class="order-list__item-refunded">Erstattet</span>
+                          <br/><span style="color: #164632; font-size: 14px; {{ font_family_css }}" class="order-list__item-refunded">Erstattet</span>
                         {% endif %}
                       </td>
                       <td class="order-list__price-cell" style="vertical-align: middle; text-align: right; width: 20%; border-bottom: solid 1px #999999;">
                         {% if line.original_line_price != line.line_price %}
-                          <p style="font-size: 14px; color: #bc0000; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;" class="order-list__item-price">{{ line.line_price | money }}
-                            <del style="font-size: 14px; color: #164632; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;" class="order-list__item-original-price">{{ line.original_line_price | money }}</del>
+                          <p style="font-size: 14px; color: #bc0000; {{ font_family_css }}" class="order-list__item-price">{{ line.line_price | money }}
+                            <del style="font-size: 14px; color: #164632; {{ font_family_css }}" class="order-list__item-original-price">{{ line.original_line_price | money }}</del>
                           </p>
                         {% else %}
-                          <p style="font-size: 14px; color: #164632; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;" class="order-list__item-price">{{ line.line_price | money }}</p>
+                          <p style="font-size: 14px; color: #164632; {{ font_family_css }}" class="order-list__item-price">{{ line.line_price | money }}</p>
                         {% endif %}
 
                       </td>
@@ -608,10 +601,10 @@
 
                       <tr class="subtotal-line">
                         <td class="subtotal-line__title" style="vertical-align: bottom;">
-                          <span style="color: #164632; font-size: 14px; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;">{{ discount_title }}</span>
+                          <span style="color: #164632; font-size: 14px; {{ font_family_css }}">{{ discount_title }}</span>
                         </td>
                         <td class="subtotal-line__value" style="vertical-align: bottom; width: 40%; text-align: right;">
-                          <span style="color: #164632; font-size: 14px; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;">{{ discounts_savings | money }}</span>
+                          <span style="color: #164632; font-size: 14px; {{ font_family_css }}">{{ discounts_savings | money }}</span>
                         </td>
                       </tr>
 
@@ -620,19 +613,19 @@
 
                     <tr class="subtotal-line">
                       <td class="subtotal-line__title" style="vertical-align: bottom;">
-                        <span style="color: #164632; font-size: 14px; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;">Zwischensumme</span>
+                        <span style="color: #164632; font-size: 14px; {{ font_family_css }}">Zwischensumme</span>
                       </td>
                       <td style="color: #164632; vertical-align: bottom; width: 40%; text-align: right;" class="subtotal-line__value">
-                        <span style="color: #164632; font-size: 14px; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;">{{ subtotal_price | money }}</span>
+                        <span style="color: #164632; font-size: 14px; {{ font_family_css }}">{{ subtotal_price | money }}</span>
                       </td>
                     </tr>
 
                     <tr class="subtotal-line">
                       <td class="subtotal-line__title" style="vertical-align: bottom;">
-                        <span style="color: #164632; font-size: 14px; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;">Versand</span>
+                        <span style="color: #164632; font-size: 14px; {{ font_family_css }}">Versand</span>
                       </td>
                       <td style="color: #164632; vertical-align: bottom; width: 40%; text-align: right;" class="subtotal-line__value">
-                        <span style="color: #164632; font-size: 14px; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;">{{ shipping_price | money }}</span>
+                        <span style="color: #164632; font-size: 14px; {{ font_family_css }}">{{ shipping_price | money }}</span>
                       </td>
                     </tr>
 
@@ -640,10 +633,10 @@
 
                       <tr class="subtotal-line">
                         <td class="subtotal-line__title" style="vertical-align: bottom;">
-                          <span style="color: #164632; font-size: 14px; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;">{{ line.title }}</span>
+                          <span style="color: #164632; font-size: 14px; {{ font_family_css }}">{{ line.title }}</span>
                         </td>
                         <td style="color: #164632; vertical-align: bottom; width: 40%; text-align: right;" class="subtotal-line__value">
-                          <span style="color: #164632; font-size: 14px; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;">{{ line.price | money }}</span>
+                          <span style="color: #164632; font-size: 14px; {{ font_family_css }}">{{ line.price | money }}</span>
                         </td>
                       </tr>
 
@@ -655,11 +648,11 @@
                     <tr class="subtotal-line">
                       <td class="subtotal-line__title" style="vertical-align: bottom;">
                         <p>
-                          <span style="color: #164632; font-size: 14px; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;">Summe</span>
+                          <span style="color: #164632; font-size: 14px; {{ font_family_css }}">Summe</span>
                         </p>
                       </td>
                       <td style="color: #164632; vertical-align: bottom; width: 40%; text-align: right;" class="subtotal-line__value">
-                        <p><strong style="color: #164632; font-size: 20px; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;">{{ total_price | money_with_currency }}</strong></p>
+                        <p><strong style="color: #164632; font-size: 20px; {{ font_family_css }}">{{ total_price | money_with_currency }}</strong></p>
                       </td>
                     </tr>
 
@@ -684,9 +677,9 @@
 
                           <tr class="subtotal-line">
                             <td class="subtotal-line__title" style="vertical-align: bottom;">
-                              <span style="color: #164632; font-size: 14px; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;">{{transaction_name}}</span>
+                              <span style="color: #164632; font-size: 14px; {{ font_family_css }}">{{transaction_name}}</span>
                             </td>
-                            <td style="color: #164632; vertical-align: bottom; width: 40%; text-align: right; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;" class="subtotal-line__value">
+                            <td style="color: #164632; vertical-align: bottom; width: 40%; text-align: right; {{ font_family_css }}" class="subtotal-line__value">
                               <span style="color: #164632;">{{ transaction.amount | money }}</span>
                             </td>
                           </tr>
@@ -703,13 +696,13 @@
                           <tr class="subtotal-line">
                             <td class="subtotal-line__title" style="vertical-align: bottom;">
                               <p>
-                                <span style="color: #164632; font-size: 14px; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;">Erstattung</span>
+                                <span style="color: #164632; font-size: 14px; {{ font_family_css }}">Erstattung</span>
                                   <br>
                                   <small style="color: #164632;">{{ refund_method_title | capitalize }}</small>
                               </p>
                             </td>
                             <td style="color: #164632; vertical-align: bottom; width: 40%; text-align: right;" class="subtotal-line__value">
-                              <p><span style="color: #164632; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;">- {{ transaction.amount | money }}</span></p>
+                              <p><span style="color: #164632; {{ font_family_css }}">- {{ transaction.amount | money }}</span></p>
                             </td>
                           </tr>
 
@@ -779,8 +772,8 @@
               <tr>
                 <td>
 
-                  <div style="color:#798d85;line-height:120%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
-                    <div style="font-size:12px;line-height:14px;color:#798d85;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center">
+                  <div style="color:#798d85;line-height:120%;{{ font_family_css }} padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
+                    <div style="font-size:12px;line-height:14px;color:#798d85;{{ font_family_css }}text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center">
                       <span style="font-size: 12px; line-height: 14px;"><a style="color:#798d85;text-decoration: none;" title="Kontaktieren Sie uns" href="{{ shop.url }}/pages/contact-us{{ full_email_template_params }}" target="_blank" rel="noopener">KONTAKTIEREN SIE UNS:</a>&#160;&#160;&#160;&#160; <a style="color:#798d85;text-decoration: none;" title="Kontaktieren Sie uns" href="tel:{{ contact_us_telephone }}" target="_blank" rel="noopener">+44 808 281 9536</a></span></p></div>
                   </div>
 
@@ -818,8 +811,8 @@
               <tr>
                 <td>
 
-                  <div style="color:#798d85;line-height:120%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
-                    <div style="font-size:12px;line-height:14px;color:#798d85;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 12px; line-height: 14px;"><a style="color:#798d85;text-decoration: none;" href="{{ shop.url }}/pages/terms-conditions{{ full_email_template_params }}" target="_blank" rel="noopener">{{ terms_and_conditions }}<span style="line-height: 14px; font-size: 12px;"></span></a> | <a style="color:#798d85;text-decoration: none;" href="https://www.honeywell.com/privacy-statement" target="_blank" rel="noopener">{{ privacy_policy_text }}</a></span><span style="font-size: 12px; line-height: 14px;"><br></span></p></div>
+                  <div style="color:#798d85;line-height:120%;{{ font_family_css }} padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
+                    <div style="font-size:12px;line-height:14px;color:#798d85;{{ font_family_css }}text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 12px; line-height: 14px;"><a style="color:#798d85;text-decoration: none;" href="{{ shop.url }}/pages/terms-conditions{{ full_email_template_params }}" target="_blank" rel="noopener">{{ terms_and_conditions }}<span style="line-height: 14px; font-size: 12px;"></span></a> | <a style="color:#798d85;text-decoration: none;" href="https://www.honeywell.com/privacy-statement" target="_blank" rel="noopener">{{ privacy_policy_text }}</a></span><span style="font-size: 12px; line-height: 14px;"><br></span></p></div>
                   </div>
 
                 </td>
