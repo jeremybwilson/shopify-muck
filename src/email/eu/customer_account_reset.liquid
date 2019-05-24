@@ -1,5 +1,6 @@
 {% capture notification_template_name %}customer_account_reset{% endcapture %}
 {% capture full_email_template_params %}?utm_source=tran&utm_medium=email&utm_campaign={{ notification_template_name }}{% endcapture %}
+{% capture font_family_css %}font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;{% endcapture %}
 {% capture domain_local_var %}{{ attributes.domain_locale }}{% endcapture %}
 {% capture domain_local_var1 %}{{ customer.tags }}{% endcapture %}
 
@@ -22,7 +23,7 @@
 {% capture visit_our_store_text %}Visit our Store{% endcapture %}
 {% capture contact_us_text %}CONTACT US{% endcapture %}
 {% capture contact_us_telephone %}+44 808 281 9536{% endcapture %}
-{% capture terms_and_conditions %}Terms &amp; <span style="line-height: 14px; font-size: 12px;">Conditions</span>{% endcapture %}
+{% capture terms_and_conditions %}Terms &amp; Conditions{% endcapture %}
 {% capture privacy_policy_text %}Privacy Policy{% endcapture %}
 
 {% if shop_locale == 'de'%}
@@ -30,7 +31,6 @@
 
   {% capture shop_custom_name %}Die Ursprüngliche Muck Boot Company&reg;{% endcapture %}
   {% capture email_title %}Passwort zurücksetzen{% endcapture %}
-
   {% capture email_body %}Über diesen Link können Sie das Passwort Ihres Kundenkontos auf <a style="color: #ab5232; text-decoration: none;" href="{{ shop.url }}{{ full_email_template_params }}">{{ shop_custom_name }}</a> zurücksetzen. Wenn Sie kein neues Passwort angefragt haben, können Sie diese E-Mail einfach löschen.{% endcapture %}
 
   {% capture visit_our_store_text %}Besuchen Sie Unseren Store{% endcapture %}
@@ -75,7 +75,7 @@
                   <td style="background-color: #f5f1ed; padding: 20px;">
                     <div style="border: solid 6px #eee2dc; padding: 60px 20px 50px">
                       <!-- HEADLINE -->
-                      <div style="color:#164632;line-height:120%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
+                      <div style="color:#164632;line-height:120%;{{ font_family_css }} padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
                         <div style="font-size:12px;line-height:14px;font-family:inherit;color:#164632;text-align:left;">
                           <p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><strong><span style="font-size: 28px; line-height: 33px; letter-spacing: .15em; text-transform: uppercase;">{{ email_title }}</span>
                           </p>
@@ -105,7 +105,7 @@
                         </tbody>
                       </table>
                       <!-- COPY -->
-                      <div style="color:#164632;line-height:180%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
+                      <div style="color:#164632;line-height:180%;{{ font_family_css }} padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
                         <div style="font-size:14px;line-height:25px;font-family:inherit;color:#164632;text-align:left;">
                           <p style="margin: 0;font-size: 14px;line-height: 25px;text-align: center">{{ email_body }}</p>
                         </div>
@@ -113,40 +113,32 @@
                       <!-- BUTTON -->
                       <div align="center" class="button-container center "
                         style="padding-right: 10px; padding-left: 10px; padding-top:10px; padding-bottom:10px;">
-                        <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top:10px; padding-bottom:10px;" align="center"><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{ customer.reset_password_url }}" style="height:31pt; v-text-anchor:middle; width:121pt;" arcsize="0%" strokecolor="#ab5232" fillcolor="#ab5232"><w:anchorlock/><v:textbox inset="0,0,0,0"><center style="color:#ffffff; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; font-size:16px;"><![endif]-->
+                        <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top:10px; padding-bottom:10px;" align="center"><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{ customer.reset_password_url }}" style="height:31pt; v-text-anchor:middle; width:121pt;" arcsize="0%" strokecolor="#ab5232" fillcolor="#ab5232"><w:anchorlock/><v:textbox inset="0,0,0,0"><center style="color:#ffffff; {{ font_family_css }} font-size:16px;"><![endif]-->
                         <a href="{{ customer.reset_password_url }}" target="_blank"
-                          style="display: block;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #ffffff; background-color: #ab5232; border-radius: 0px; -webkit-border-radius: 0px; -moz-border-radius: 0px; max-width: 200px; width: 172px;width: auto; border-top: 0px solid transparent; border-right: 0px solid transparent; border-bottom: 0px solid transparent; border-left: 0px solid transparent; padding-top: 5px; padding-right: 15px; padding-bottom: 5px; padding-left: 15px; font-family: 'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;mso-border-alt: none">
-                          <span style="font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;font-size:16px;line-height:32px;"><span style="font-size: 12px; line-height: 24px; letter-spacing: .125em; text-transform: uppercase;"><strong>{{ email_title }}</strong></span></span>
+                          style="display: block;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #ffffff; background-color: #ab5232; border-radius: 0px; -webkit-border-radius: 0px; -moz-border-radius: 0px; max-width: 200px; width: 172px;width: auto; border-top: 0px solid transparent; border-right: 0px solid transparent; border-bottom: 0px solid transparent; border-left: 0px solid transparent; padding-top: 5px; padding-right: 15px; padding-bottom: 5px; padding-left: 15px; {{ font_family_css }}mso-border-alt: none">
+                          <span style="{{ font_family_css }}font-size:16px;line-height:32px;"><span style="font-size: 12px; line-height: 24px; letter-spacing: .125em; text-transform: uppercase;"><strong>{{ email_title }}</strong></span></span>
                         </a>
                         <!--[if mso]></center></v:textbox></v:roundrect></td></tr></table><![endif]-->
                       </div>
 
                       <!-- LINK -->
-
-                      <div style="color:#164632;line-height:120%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
-                        <div style="font-size:12px;line-height:14px;color:#164632;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;">
+                      <div style="color:#164632;line-height:120%;{{ font_family_css }} padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
+                        <div style="font-size:12px;line-height:14px;color:#164632;{{ font_family_css }}text-align:left;">
                           <p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 12px; line-height: 14px; letter-spacing: .125em;"><a style="color:#164632;text-decoration: none; text-transform: uppercase;" title="{{ visit_our_store_text }}" href="{{ shop.url }}{{ full_email_template_params }}" target="_blank" rel="noopener">{{ visit_our_store_text }}</a></span></p>
                         </div>
                       </div>
-
                     </div>
-
                   </td>
                 </tr>
-
               </table>
-
             </td>
           </tr>
 
           <!-- FOOTER -->
-
           <tr>
             <td style="background: #164632; padding: 40px 40px 20px;">
               <table style="width: 100%;">
-
                 <!-- SOCIAL -->
-
                 <tr>
                   <td>
 
@@ -196,29 +188,23 @@
                         <!--[if (mso)|(IE)]></td></tr></table></td></tr></table><![endif]-->
                       </div>
                     </div>
-
                   </td>
                 </tr>
 
                 <!-- CONTACT -->
-
                 <tr>
                   <td>
-
-                    <div style="color:#798d85;line-height:120%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
-                      <div style="font-size:12px;line-height:14px;color:#798d85;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;">
-                        <p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 12px; line-height: 14px;"><a style="color:#798d85;text-decoration: none;" title="{{ contact_us_text" href="{{ shop.url }}pages/contact-us{{ full_email_template_params }}" target="_blank" rel="noopener">{{ contact_us_text }}</a>&#160;&#160;&#160;&#160; <a style="color:#798d85;text-decoration: none;" title="{{ contact_us_text }}" href="tel:{{ contact_us_telephone }}" target="_blank" rel="noopener">{{ contact_us_telephone }}</a><br></span></p>
+                    <div style="color:#798d85;line-height:120%;{{ font_family_css }} padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
+                      <div style="font-size:12px;line-height:14px;color:#798d85;{{ font_family_css }}text-align:left;">
+                        <p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 12px; line-height: 14px; text-transform: uppercase;"><a style="color:#798d85;text-decoration: none;" title="{{ contact_us_text" href="{{ shop.url }}pages/contact-us{{ full_email_template_params }}" target="_blank" rel="noopener">{{ contact_us_text }}</a>&#160;&#160;&#160;&#160; <a style="color:#798d85;text-decoration: none;" title="{{ contact_us_text }}" href="tel:{{ contact_us_telephone }}" target="_blank" rel="noopener">{{ contact_us_telephone }}</a><br></span></p>
                       </div>
                     </div>
-
                   </td>
                 </tr>
 
                 <!-- DIVIDER -->
-
                 <tr>
                   <td>
-
                     <table border="0" cellpadding="0" cellspacing="0" width="100%" class="divider "
                       style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;min-width: 100%;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%">
                       <tbody>
@@ -241,30 +227,24 @@
                         </tr>
                       </tbody>
                     </table>
-
                   </td>
                 </tr>
 
                 <!-- TERMS -->
-
                 <tr>
                   <td>
-
                     <div
-                      style="color:#798d85;line-height:120%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
+                      style="color:#798d85;line-height:120%;{{ font_family_css }} padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
                       <div
-                        style="font-size:12px;line-height:14px;color:#798d85;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;">
-                        <p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 12px; line-height: 14px;"><a style="color:#798d85;text-decoration: none;" href="{{ shop.url }}/pages/terms-conditions{{ full_email_template_params }}" target="_blank" rel="noopener">{{ terms_and_conditions }}</a> | <a style="color:#798d85;text-decoration: none;" href="https://www.honeywell.com/privacy-statement" target="_blank" rel="noopener">{{ privacy_policy_text }}</a></span><br></p>
+                        style="font-size:12px;line-height:14px;color:#798d85;{{ font_family_css }}text-align:left;">
+                        <p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 12px; line-height: 14px; text-transform: uppercase;"><a style="color:#798d85;text-decoration: none;" href="{{ shop.url }}/pages/terms-conditions{{ full_email_template_params }}" target="_blank" rel="noopener">{{ terms_and_conditions }}</a> | <a style="color:#798d85;text-decoration: none;" href="https://www.honeywell.com/privacy-statement" target="_blank" rel="noopener">{{ privacy_policy_text }}</a></span><br></p>
                       </div>
                     </div>
-
                   </td>
                 </tr>
-
               </table>
             </td>
           </tr>
-
         </table>
       </td>
     </tr>
@@ -336,7 +316,7 @@
                       <!-- HEADLINE -->
 
                       <div
-                        style="color:#164632;line-height:120%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
+                        style="color:#164632;line-height:120%;{{ font_family_css }} padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
                         <div style="font-size:12px;line-height:14px;font-family:inherit;color:#164632;text-align:left;">
                           <p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><strong><span
                                 style="font-size: 28px; line-height: 33px; letter-spacing: .15em; text-transform: uppercase;">{{ email_title }}</span>
@@ -372,7 +352,7 @@
                       <!-- COPY -->
 
                       <div
-                        style="color:#164632;line-height:180%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
+                        style="color:#164632;line-height:180%;{{ font_family_css }} padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
                         <div style="font-size:14px;line-height:25px;font-family:inherit;color:#164632;text-align:left;">
                           <p style="margin: 0;font-size: 14px;line-height: 25px;text-align: center">{{ email_body }}</p>
                         </div>
@@ -382,11 +362,11 @@
 
                       <div align="center" class="button-container center "
                         style="padding-right: 10px; padding-left: 10px; padding-top:10px; padding-bottom:10px;">
-                        <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top:10px; padding-bottom:10px;" align="center"><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{ customer.reset_password_url }}" style="height:31pt; v-text-anchor:middle; width:121pt;" arcsize="0%" strokecolor="#ab5232" fillcolor="#ab5232"><w:anchorlock/><v:textbox inset="0,0,0,0"><center style="color:#ffffff; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; font-size:16px;"><![endif]-->
+                        <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top:10px; padding-bottom:10px;" align="center"><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{ customer.reset_password_url }}" style="height:31pt; v-text-anchor:middle; width:121pt;" arcsize="0%" strokecolor="#ab5232" fillcolor="#ab5232"><w:anchorlock/><v:textbox inset="0,0,0,0"><center style="color:#ffffff; {{ font_family_css }} font-size:16px;"><![endif]-->
                         <a href="{{ customer.reset_password_url }}" target="_blank"
-                          style="display: block;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #ffffff; background-color: #ab5232; border-radius: 0px; -webkit-border-radius: 0px; -moz-border-radius: 0px; max-width: 200px; width: 172px;width: auto; border-top: 0px solid transparent; border-right: 0px solid transparent; border-bottom: 0px solid transparent; border-left: 0px solid transparent; padding-top: 5px; padding-right: 15px; padding-bottom: 5px; padding-left: 15px; font-family: 'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;mso-border-alt: none">
+                          style="display: block;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #ffffff; background-color: #ab5232; border-radius: 0px; -webkit-border-radius: 0px; -moz-border-radius: 0px; max-width: 200px; width: 172px;width: auto; border-top: 0px solid transparent; border-right: 0px solid transparent; border-bottom: 0px solid transparent; border-left: 0px solid transparent; padding-top: 5px; padding-right: 15px; padding-bottom: 5px; padding-left: 15px; {{ font_family_css }}mso-border-alt: none">
                           <span
-                            style="font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;font-size:16px;line-height:32px;"><span
+                            style="{{ font_family_css }}font-size:16px;line-height:32px;"><span
                               style="font-size: 12px; line-height: 24px; letter-spacing: .125em;"><strong>PASSWORT
                                 ZURÜCKSETZEN</strong></span></span>
                         </a>
@@ -396,9 +376,9 @@
                       <!-- LINK -->
 
                       <div
-                        style="color:#164632;line-height:120%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
+                        style="color:#164632;line-height:120%;{{ font_family_css }} padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
                         <div
-                          style="font-size:12px;line-height:14px;color:#164632;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;">
+                          style="font-size:12px;line-height:14px;color:#164632;{{ font_family_css }}text-align:left;">
                           <p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span
                               style="font-size: 12px; line-height: 14px; letter-spacing: .125em;"><a
                                 style="color:#164632;text-decoration: none;" title="Besuchen Sie unsere Website"
@@ -500,9 +480,9 @@
                   <td>
 
                     <div
-                      style="color:#798d85;line-height:120%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
+                      style="color:#798d85;line-height:120%;{{ font_family_css }} padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
                       <div
-                        style="font-size:12px;line-height:14px;color:#798d85;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;">
+                        style="font-size:12px;line-height:14px;color:#798d85;{{ font_family_css }}text-align:left;">
                         <p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span
                             style="font-size: 12px; line-height: 14px;"><a style="color:#798d85;text-decoration: none;"
                               title="Kontaktieren Sie uns"
@@ -554,9 +534,9 @@
                   <td>
 
                     <div
-                      style="color:#798d85;line-height:120%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
+                      style="color:#798d85;line-height:120%;{{ font_family_css }} padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
                       <div
-                        style="font-size:12px;line-height:14px;color:#798d85;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;">
+                        style="font-size:12px;line-height:14px;color:#798d85;{{ font_family_css }}text-align:left;">
                         <p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span
                             style="font-size: 12px; line-height: 14px;"><a style="color:#798d85;text-decoration: none;"
                               href="{{ shop.url }}/pages/terms-conditions{{ shop_url_email_params }}" target="_blank"
