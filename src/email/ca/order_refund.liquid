@@ -40,13 +40,13 @@
 
   {% if refund_line_items.size == item_count %}
     {% capture email_subtitle %}{% endcapture %}
-    {% capture email_title %}Your order has been refunded{% endcapture %}
+    {% capture email_title %}Votre commande a été remboursée{% endcapture %}
   {% elsif refund_line_items.size == 0 %}
     {% capture email_subtitle %}{% endcapture %}
-    {% capture email_title %}You have received a refund{% endcapture %}
+    {% capture email_title %}Vous avez reçu un remboursement{% endcapture %}
   {% else %}
-    {% capture email_subtitle %}Some items in your order have been refunded{% endcapture %}
-    {% capture email_title %}Your order has been refunded{% endcapture %}
+    {% capture email_subtitle %}Quelques articles de votre commande ont été remboursés{% endcapture %}
+    {% capture email_title %}Votre commande a été remboursée{% endcapture %}
   {% endif %}
   {% capture email_body %}Votre commande a été remboursée<br>Montant total remboursé: <strong style="color:#ab5232">{{ amount | money_with_currency }}</strong>{% endcapture %}
 
@@ -374,7 +374,7 @@
               <tr>
                 <td>
                   <div style="color:#798d85;line-height:120%;{{ font_family_css }} padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
-                    <div style="font-size:12px;line-height:14px;color:#798d85;{{ font_family_css }}text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 12px; line-height: 14px;"><a style="color:#798d85;text-decoration: none;" href="{{ shop.url }}/pages/terms-conditions{{ full_email_template_params }}" target="_blank" rel="noopener">{{ terms_and_conditions}}</a> | <a style="color:#798d85;text-decoration: none;" href="https://www.honeywell.com/privacy-statement" target="_blank" rel="noopener">{{ privacy_policy_text }}</a></span><br></p></div>
+                    <div style="font-size:12px;line-height:14px;color:#798d85;{{ font_family_css }}text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 12px; line-height: 14px; text-transform: uppercase;"><a style="color:#798d85;text-decoration: none;" href="{{ shop.url }}/pages/terms-conditions{{ full_email_template_params }}" target="_blank" rel="noopener">{{ terms_and_conditions}}</a> | <a style="color:#798d85;text-decoration: none;" href="https://www.honeywell.com/privacy-statement" target="_blank" rel="noopener">{{ privacy_policy_text }}</a></span><br></p></div>
                   </div>
                 </td>
               </tr>
