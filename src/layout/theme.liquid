@@ -279,30 +279,18 @@
 
   <script>Shopify.money_format = "{{ shop.money_format }}";</script>
 
-  {% comment %} Capture value of domain_suffix_cookie {% endcomment %}
-  {% comment %} Compare domain suffix value to match on 'DE' => if not 'DE' then do this {% endcomment %}
   <script type="text/javascript">
     // run existing utility function to get cookie value for muckboot domain
     var domainLocale = window.theme.Utils.domainCookie();
     console.log(':: DEBUG :: Successfully read the value of domainLocale cookie: ', domainLocale);
 
     if(domainLocale != 'de'){ // if the domain is anything other than DE, then embed ZenDesk
-      console.log(':: DEBUG :: Domain cookie value is NOT de and we are inside the zendesk logic ');
       {% capture allow_bis_and_zendesk %}true{% endcapture %}
-      console.log(':: DEBUG :: allow_bis_and_zendesk: ', {{ allow_bis_and_zendesk }});
     }
-
   </script>
 
   {%  unless template == 'index' %}
-    <script>
-        console.log(':: DEBUG :: inside the template type check');
-    </script>
-    {% if settings.zendesk-key != blank and allow_bis_and_zendesk  == true %}
-      <script>
-          console.log(':: DEBUG :: inside the allow_bis_and_zendesk check', {{ allow_bis_and_zendesk }});
-      </script>
-
+    {% if settings.zendesk-key != blank and allow_bis_and_zendesk == 'true' %}
       <!-- run the zenDeskWidgetandScript function -->
       <!-- Start of muckbootcompany Zendesk Widget script -->
       <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key={{ settings.zendesk-key }}"> </script>
