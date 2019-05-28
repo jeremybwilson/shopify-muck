@@ -2,7 +2,7 @@
 <!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
 <!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
 <!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
-<html lang="en" class="no-js"> 
+<html lang="en" class="no-js">
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -71,7 +71,7 @@
   {% endif %}
 
   <!--PDM-216-->
-  <script src='{{ 'jquery.waypoints.min.js' | asset_url }}' async defer></script> 
+  <script src='{{ 'jquery.waypoints.min.js' | asset_url }}' async defer></script>
 
   {% include 'script-google-tag-head' %}
 
@@ -101,7 +101,7 @@
     <!-- To avoid having additional server to handle this redirect from non www to www, we are using javascript to handle this -->
      <script>if(location.hostname.startsWith("muckbootcompany.")){window.location = document.URL.replace("//muckbootcompany","//www.muckbootcompany");}</script>
   {% endif %}
-</head> 
+</head>
 
 <body class="gridlock shifter {% if template contains 'product' %}product{% elsif template contains 'collection' %}collection{% else %}{{ template }}{% endif %}{% if template == 'product.promo' %} product-promo{% endif %}">
   {% include 'script-google-tag-body' %}
@@ -279,12 +279,34 @@
 
   <script>Shopify.money_format = "{{ shop.money_format }}";</script>
 
+  {% comment %} Capture value of domain_suffix_cookie {% endcomment %}
+  {% comment %} Compare domain suffix value to match on 'DE' => if not 'DE' then do this {% endcomment %}
+  <script type="text/javascript">
+    // run existing utility function to get cookie value for muckboot domain
+    var domainLocale = window.theme.Utils.domainCookie();
+    console.log(':: DEBUG :: Successfully read the value of domainLocale cookie: ', domainLocale);
+
+    if(domainLocale != 'de'){ // if the domain is anything other than DE, then embed ZenDesk
+      console.log(':: DEBUG :: Domain cookie value is NOT de and we are inside the zendesk logic ');
+      {% capture allow_bis_and_zendesk %}true{% endcapture %}
+      console.log(':: DEBUG :: allow_bis_and_zendesk: ', {{ allow_bis_and_zendesk }});
+    }
+
+  </script>
 
   {%  unless template == 'index' %}
-    {% if settings.zendesk-key != blank %}
+    <script>
+        console.log(':: DEBUG :: inside the template type check');
+    </script>
+    {% if settings.zendesk-key != blank and allow_bis_and_zendesk  == true %}
+      <script>
+          console.log(':: DEBUG :: inside the allow_bis_and_zendesk check', {{ allow_bis_and_zendesk }});
+      </script>
+
+      <!-- run the zenDeskWidgetandScript function -->
       <!-- Start of muckbootcompany Zendesk Widget script -->
       <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key={{ settings.zendesk-key }}"> </script>
-      <!-- End of muckbootcompany Zendesk Widget script --> 
+      <!-- End of muckbootcompany Zendesk Widget script -->
       <script type="text/javascript">
         window.zESettings = {
           webWidget: {
@@ -307,8 +329,11 @@
           }
         };
       </script>
+
     {% endif %}
   {% endunless %}
+
+
   {% if settings.nosto_id != blank %}
     {% include 'nosto-tagging' %}
   {% endif %}
