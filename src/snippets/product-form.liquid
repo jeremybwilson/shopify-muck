@@ -163,7 +163,7 @@
   {% endif %}
 
   {% assign has_unavailable = false %}
-  
+
   {% for variant in product.variants %}
     {% unless variant.available %}
       {% assign has_unavailable = true %}
@@ -171,7 +171,9 @@
     {% endunless %}
   {% endfor %}
 
-  {% if has_unavailable %}
+  {% comment %} use allow_bis_and_zendesk variable to disable for DE domain  {% endcomment %}
+  {% comment %} allow_bis_and_zendesk will be set to false if domain is DE {% endcomment %}
+  {% if has_unavailable and allow_bis_and_zendesk == 'true'%}
      <a class="link" href="#" id="BIS_trigger">Is your size out of stock?</a>
   {% endif %}
 

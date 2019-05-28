@@ -2,7 +2,7 @@
 <!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
 <!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
 <!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
-<html lang="en" class="no-js"> 
+<html lang="en" class="no-js">
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -71,7 +71,7 @@
   {% endif %}
 
   <!--PDM-216-->
-  <script src='{{ 'jquery.waypoints.min.js' | asset_url }}' async defer></script> 
+  <script src='{{ 'jquery.waypoints.min.js' | asset_url }}' async defer></script>
 
   {% include 'script-google-tag-head' %}
 
@@ -106,7 +106,7 @@
   {% if settings.yottaa_key != blank %}
     {% include 'yottaa-script' %}
   {% endif %}
-</head> 
+</head>
 
 <body class="gridlock shifter {% if template contains 'product' %}product{% elsif template contains 'collection' %}collection{% else %}{{ template }}{% endif %}{% if template == 'product.promo' %} product-promo{% endif %}">
   {% include 'script-google-tag-body' %}
@@ -284,12 +284,21 @@
 
   <script>Shopify.money_format = "{{ shop.money_format }}";</script>
 
+  <script type="text/javascript">
+    // run existing utility function to get cookie value for muckboot domain
+    var domainLocale = window.theme.Utils.domainCookie();
+
+    if(domainLocale != 'de'){ // if the domain is anything other than DE, then embed ZenDesk
+      {% capture allow_bis_and_zendesk %}true{% endcapture %}
+    }
+  </script>
 
   {%  unless template == 'index' %}
-    {% if settings.zendesk-key != blank %}
+    {% if settings.zendesk-key != blank and allow_bis_and_zendesk == 'true' %}
+      <!-- run the zenDeskWidgetandScript function -->
       <!-- Start of muckbootcompany Zendesk Widget script -->
       <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key={{ settings.zendesk-key }}"> </script>
-      <!-- End of muckbootcompany Zendesk Widget script --> 
+      <!-- End of muckbootcompany Zendesk Widget script -->
       <script type="text/javascript">
         window.zESettings = {
           webWidget: {
