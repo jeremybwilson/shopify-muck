@@ -4,12 +4,6 @@
   {% assign call_to_action = 'products.product.sold_out' | t %}
 {% endunless %}
 
-<script type="text/javascript">
-  if(domainLocale != 'de'){ // if the domain is anything other than DE, then embed ZenDesk
-    {% capture allow_bis_and_zendesk %}true{% endcapture %}
-  }
-</script>
-
 {% form 'product', product, id: "AddToCartForm", class: "product_form", data-product-form:product_form_config %}
   <script class="product-json" type="application/json">
     {{ product | json }}
@@ -177,10 +171,25 @@
     {% endunless %}
   {% endfor %}
 
-  {% comment %} use allow_bis_and_zendesk variable to disable for DE domain  {% endcomment %}
-  {% comment %} allow_bis_and_zendesk will be set to false if domain is DE {% endcomment %}
-  {% if has_unavailable and allow_bis_and_zendesk == 'true'%}
-     <a class="link" href="#" id="BIS_trigger">Is your size out of stock?</a>
+  {% if has_unavailable %}
+     {% comment %} <a class="link" href="#" id="BIS_trigger">Is your size out of stock?</a> {% endcomment %}
+
+     <script type="text/javascript">
+      // Check to see which domain we are currently on
+      var domainLocale = window.theme.Utils.domainCookie();
+
+      // BUILD : Append zendesk + widget config if we aren't on german tld
+      if(domainLocale != 'de'){ // if the domain is anything other than DE, then embed ZenDesk
+        // we won't disable the Back in Stock link here if the domain is not DE
+        var a = document.createElement('a');
+        var linkText = document.createTextNode("Is your size out of stock?");
+        a.appendChild(linkText);
+        a.class = "link";
+        a.id = "BIS_trigger"
+        a.href = "#";
+        document.body.appendChild(a);
+      }
+    </script>
   {% endif %}
 
   {% if product.available %}
