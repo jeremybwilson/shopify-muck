@@ -4,6 +4,12 @@
   {% assign call_to_action = 'products.product.sold_out' | t %}
 {% endunless %}
 
+<script type="text/javascript">
+  if(domainLocale != 'de'){ // if the domain is anything other than DE, then embed ZenDesk
+    {% capture allow_bis_and_zendesk %}true{% endcapture %}
+  }
+</script>
+
 {% form 'product', product, id: "AddToCartForm", class: "product_form", data-product-form:product_form_config %}
   <script class="product-json" type="application/json">
     {{ product | json }}
