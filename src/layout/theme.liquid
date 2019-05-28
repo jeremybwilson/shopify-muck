@@ -101,6 +101,11 @@
     <!-- To avoid having additional server to handle this redirect from non www to www, we are using javascript to handle this -->
      <script>if(location.hostname.startsWith("muckbootcompany.")){window.location = document.URL.replace("//muckbootcompany","//www.muckbootcompany");}</script>
   {% endif %}
+
+  {% comment %} Yottaa Rapid CTRL {% endcomment %}
+  {% if settings.yottaa_key != blank %}
+    {% include 'yottaa-script' %}
+  {% endif %}
 </head> 
 
 <body class="gridlock shifter {% if template contains 'product' %}product{% elsif template contains 'collection' %}collection{% else %}{{ template }}{% endif %}{% if template == 'product.promo' %} product-promo{% endif %}">

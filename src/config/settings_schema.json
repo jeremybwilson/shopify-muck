@@ -1039,6 +1039,16 @@
         "id": "criteo_account_number",
         "label": "Criteo Account Number",
         "info": "Enter a 5 digit number."
+      },
+      {
+        "type": "header",
+        "content": "Yottaa Rapid CTRL"
+      },
+      {
+        "type": "text",
+        "id": "yottaa_key",
+        "label": "Yottaa Key",
+        "info": "Enter a key for Rapid."
       }
     ]
   },
