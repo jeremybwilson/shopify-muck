@@ -287,7 +287,6 @@
   <script type="text/javascript">
     // run existing utility function to get cookie value for muckboot domain
     var domainLocale = window.theme.Utils.domainCookie();
-    console.log(':: DEBUG :: Successfully read the value of domainLocale cookie: ', domainLocale);
 
     if(domainLocale != 'de'){ // if the domain is anything other than DE, then embed ZenDesk
       {% capture allow_bis_and_zendesk %}true{% endcapture %}
