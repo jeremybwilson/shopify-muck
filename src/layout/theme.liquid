@@ -284,22 +284,25 @@
 
   <script>Shopify.money_format = "{{ shop.money_format }}";</script>
 
-  <script type="text/javascript">
-    // run existing utility function to get cookie value for muckboot domain
-    var domainLocale = window.theme.Utils.domainCookie();
-
-    if(domainLocale != 'de'){ // if the domain is anything other than DE, then embed ZenDesk
-      {% capture allow_bis_and_zendesk %}true{% endcapture %}
-    }
-  </script>
-
   {%  unless template == 'index' %}
-    {% if settings.zendesk-key != blank and allow_bis_and_zendesk == 'true' %}
+    {% if settings.zendesk-key != blank %}
       <!-- run the zenDeskWidgetandScript function -->
       <!-- Start of muckbootcompany Zendesk Widget script -->
-      <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key={{ settings.zendesk-key }}"> </script>
-      <!-- End of muckbootcompany Zendesk Widget script -->
+
       <script type="text/javascript">
+      // Check to see which domain we are currently on
+      var domainLocale = window.theme.Utils.domainCookie();
+
+      // BUILD : Append zendesk + widget config if we aren't on german tld
+      if(domainLocale != 'de'){ // if the domain is anything other than DE, then embed ZenDesk
+        var script = document.createElement('script');
+        script.onload = function () {
+        };
+        script.src = "https://static.zdassets.com/ekr/snippet.js?key={{ settings.zendesk-key }}";
+        script.id = "ze-snippet";
+        document.head.appendChild(script);
+
+      // CONFIG : Zendesk Widget Config
         window.zESettings = {
           webWidget: {
             authenticate: {
@@ -320,6 +323,7 @@
             }
           }
         };
+      }
       </script>
     {% endif %}
   {% endunless %}

@@ -171,10 +171,19 @@
     {% endunless %}
   {% endfor %}
 
-  {% comment %} use allow_bis_and_zendesk variable to disable for DE domain  {% endcomment %}
-  {% comment %} allow_bis_and_zendesk will be set to false if domain is DE {% endcomment %}
-  {% if has_unavailable and allow_bis_and_zendesk == 'true'%}
+  {% if has_unavailable %}
      <a class="link" href="#" id="BIS_trigger">Is your size out of stock?</a>
+
+     <script type="text/javascript">
+      // Check to see which domain we are currently on
+      var domainLocale = window.theme.Utils.domainCookie();
+
+      // BUILD : Append the 'hide' class if we are on DE
+      if(domainLocale == 'de'){
+        var bisLink = document.querySelector('#BIS_trigger');
+        bisLink = bisLink.classList.add("hide");
+      }
+    </script>
   {% endif %}
 
   {% if product.available %}
