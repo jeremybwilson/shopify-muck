@@ -93,8 +93,23 @@
 
   {{ content_for_header }}
 
-  {% if settings.nosto_id != blank %}
+ <!--  {% if settings.nosto_id != blank %}
     {% include 'nosto-script' %}
+  {% endif %} -->
+
+  {% if settings.nosto_id != blank %}
+    <script type="text/javascript">
+    // Check to see which domain we are currently on
+    var domainLocale = window.theme.Utils.domainCookie();
+
+    if (domainLocale != 'de') { // if the domain is anything other than DE, then embed Nosto
+        var script = document.createElement('script');
+        script.onload = function () {
+        };
+        script.src = "//connect.nosto.com/include/shopify-{{ settings.nosto_id }}";
+        document.head.appendChild(script);
+    }
+    </script>
   {% endif %}
 
   {% if settings.international_store_version == 'EU' %}

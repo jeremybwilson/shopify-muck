@@ -24,6 +24,15 @@
   {% endif %}
 
 </style>
+<script type="text/javascript">
+  // Check to see which domain we are currently on
+  var domainLocale = window.theme.Utils.domainCookie();
+  // BUILD : Append the 'hide' class if we are not on DE
+  if(domainLocale != 'de'){
+    var featuredCollection = document.querySelector('.featured-collection');
+    featuredCollection = featuredCollection.classList.add("hide");
+  }
+</script>
 {% schema %}
 {
   "name": "Featured collection",
