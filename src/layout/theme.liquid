@@ -93,8 +93,10 @@
 
   {{ content_for_header }}
 
-  {% if settings.nosto_id != blank %}
-    {% include 'nosto-script' %}
+  {% if settings.international_store_version == 'EU' %}
+    {% if settings.nosto_id != blank %}
+      {% include 'nosto-script' %}
+    {% endif %}
   {% endif %}
 
   {% if settings.international_store_version == 'EU' %}
