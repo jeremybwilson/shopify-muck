@@ -102,7 +102,7 @@
     // Check to see which domain we are currently on
     var domainLocale = window.theme.Utils.domainCookie();
 
-    if (domainLocale != 'de' || 'fr') { // if the domain is anything other than DE or FR, then embed Nosto
+    if (domainLocale != 'de' || domainLocale != 'fr') { // if the domain is anything other than DE or FR, then embed Nosto
         var script = document.createElement('script');
         script.src = "//connect.nosto.com/include/shopify-{{ settings.nosto_id }}";
         document.head.appendChild(script);
