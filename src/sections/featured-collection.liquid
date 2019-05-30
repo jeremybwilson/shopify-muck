@@ -28,9 +28,13 @@
   // Check to see which domain we are currently on
   var domainLocale = window.theme.Utils.domainCookie();
   // BUILD : Append the 'hide' class if we are not on DE or FR
-  if(domainLocale != 'de' || domainLocale != 'fr'){
+  if(domainLocale != 'de'){
     var featuredCollection = document.querySelector('.featured-collection');
     featuredCollection = featuredCollection.classList.add("hide");
+  }
+  if(domainLocale =='fr'){
+    var featuredCollection = document.querySelector('.featured-collection');
+    featuredCollection = featuredCollection.classList.remove("hide");
   }
 </script>
 {% schema %}
