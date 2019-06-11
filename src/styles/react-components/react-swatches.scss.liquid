@@ -18,6 +18,11 @@
     position: relative;
     width: auto;
     max-width: 100%;
+    {% if settings.international_store_version == 'US' or settings.international_store_version == 'CA' %} 
+        height: 55px; 
+    {% else %} 
+        height: 0; 
+    {% endif %}
     height: 55px;
     margin: 0;
 }
