@@ -3122,26 +3122,49 @@ function debounce(fn, wait, immediate) {
     }
 
     // sites-picker for locale, header country selector
+    var replaceFlagPosition = function (currentLocale) {
+      var currentId = $('.nav-sites .site-flag-' + currentLocale).closest('.site-picker-item').data('id');
+      var currentHTML = $('.nav-sites .site-flag-' + currentLocale).closest('.inner-center').html();
+      var wrongHTML = $('.nav-sites li.site-picker-item:first .inner-center').html();
+      var wrongHref = $('.nav-sites li.site-picker-item:first .inner-center').data('href');
+
+      // replace the position of two list elements
+      $('.nav-sites li.site-picker-item:first .inner-center').html(currentHTML);
+      $('.nav-sites li.site-picker-item-' + currentId + ' .inner-center').attr('href', wrongHref);
+      $('.nav-sites li.site-picker-item-' + currentId + ' .inner-center').html(wrongHTML);
+    };
+
+    var replaceFlagPositionMobile = function (currentLocale) {
+      var currentId = $('#nav-sites-picker-mobile .site-flag-' + currentLocale).closest('.site-picker-item').data('id');
+      var currentHTML = $('#nav-sites-picker-mobile .site-flag-' + currentLocale).closest('.inner-center').html();
+      var wrongHTML = $('#nav-sites-picker-mobile li.site-picker-item:first .inner-center').html();
+      var wrongHref = $('#nav-sites-picker-mobile li.site-picker-item:first .inner-center').data('href');
+
+      // replace the position of two list elements
+      $('#nav-sites-picker-mobile li.site-picker-item:first .inner-center').html(currentHTML);
+      $('#nav-sites-picker-mobile li.site-picker-item-' + currentId + ' .inner-center').attr('href', wrongHref);
+      $('#nav-sites-picker-mobile li.site-picker-item-' + currentId + ' .inner-center').html(wrongHTML);
+    };
+
     var siteHost = window.location.hostname;
-    var availableLocales = 'fr'; // it can be a string. ex: fr, en, eu ... etc
+    var availableLocalesLeft = 'fr'; // it can be a string. ex: fr, en, eu ... etc (fr.muckbootcompany.ca)
+    var availableLocalesRight = 'de'; // it can be a string. ex: de, en, eu ... etc (www.muckbootcompany.de)
     var siteHostArr = siteHost.split('.');
+    var currentLocale = '';
 
-    if (siteHostArr.length > 2 && availableLocales.indexOf(siteHostArr[0]) !== -1) {
-      var currentLocale = siteHostArr[0];
+    if (siteHostArr.length > 2) {
+      if (availableLocalesLeft.indexOf(siteHostArr[0]) !== -1) {
+        currentLocale = siteHostArr[0];
+      } else if (availableLocalesRight.indexOf(siteHostArr[siteHostArr.length - 1]) !== -1) {
+        currentLocale = siteHostArr[siteHostArr.length - 1];
+      }
 
-      if ($('.site-flag-' + currentLocale).length) {
-
-        var currentId = $('.site-flag-' + currentLocale).closest('.site-picker-item').data('id');
-        var currentHTML = $('.site-flag-' + currentLocale).closest('.inner-center').html();
-        var wrongHTML = $('li.site-picker-item:first .inner-center').html();
-        var wrongHref = $('li.site-picker-item:first .inner-center').data('href');
-
-        // replace the position of two list elements
-        $('li.site-picker-item:first .inner-center').html(currentHTML);
-        $('li.site-picker-item-' + currentId + ' .inner-center').attr('href', wrongHref);
-        $('li.site-picker-item-' + currentId + ' .inner-center').html(wrongHTML);
+      if (currentLocale && $('.site-flag-' + currentLocale).length) {
+        replaceFlagPosition(currentLocale);
+        replaceFlagPositionMobile(currentLocale);
       }
     }
+
     $('ul.sites-picker').css('display', 'block');
   });
 
