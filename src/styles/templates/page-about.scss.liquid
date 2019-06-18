@@ -1,0 +1,641 @@
+.col-12 {
+  width: 100%;
+  margin: 0;
+  padding: 0 15px;
+  box-sizing: border-box;
+  display: inline-block;
+  float: left;
+}
+.col-8 {
+  width: 75%;
+  margin: 0;
+  padding: 0 15px;
+  box-sizing: border-box;
+  display: inline-block;
+  float: left;
+}
+.col-60 {
+  width: 60%;
+  margin: 0;
+  padding: 0 15px;
+  box-sizing: border-box;
+  display: inline-block;
+  float: left;
+}
+.col-6 {
+  width: 50%;
+  margin: 0;
+  padding: 0 15px;
+  box-sizing: border-box;
+  display: inline-block;
+  float: left;
+}
+.col-40 {
+  width: 40%;
+  margin: 0;
+  padding: 0 15px;
+  box-sizing: border-box;
+  display: inline-block;
+  float: left;
+}
+.col-3 {
+  width: 25%;
+  margin: 0;
+  padding: 0 15px;
+  box-sizing: border-box;
+  display: inline-block;
+  float: left;
+}
+.float-right, .float-left {
+  float: right;
+}
+.video-banner-wrapper .row.banner-inner-width {
+  max-width: 760px;
+  margin: 0 auto;
+  display: flex;
+  width: 100%;
+  .anniversary-image-wrapper {
+    padding: 10px 40px;
+    img {
+      max-width: 120px;
+    }
+  }
+  .caption-wrapper {
+    padding: 0 40px;
+    h1 {
+      font-size: 100px;
+      font-family: 'Gotham Black Regular';
+      color: #fff;
+      line-height: 1;
+      border-bottom: none !important;
+      text-transform: uppercase;
+    }
+  }
+}
+.our-story-body div#breadcrumb {
+  display: none;
+}
+.video-banner-wrapper .row.banner-inner-width .caption-wrapper .vid-ply-btn {
+  cursor:pointer;
+  background-color: #ae522d;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 20px 20px;
+  text-align: center;
+  width: 100%;
+  max-width: 200px;
+  display: inline-block;
+  font-size: 16px;
+}
+section.shopify-section.video-banner-wrapper {
+  position: relative;
+  overflow: hidden;
+  padding: 150px 0;
+}
+#BgVideo {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
+section.shopify-section.video-banner-wrapper .index-section {
+  position: relative;
+  z-index: 1;
+}
+#content.our-story-page-wrapper {
+  padding: 0;
+  width: 100%;
+}
+#page.our-story-new {
+  margin: 0;
+  width: 100%;
+}
+.our-story-new section {
+  padding: 100px 0;
+}
+section.shopify-section.osn-intro {
+  background-color: #983820;
+}
+.video-banner-wrapper .row.banner-inner-width .caption-wrapper {
+  padding: 0 40px;
+  border-left: 1px solid #fff;
+}
+.our-story-new section .index-section {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  /*     display: inline-block; */
+  padding-left: 1.04166667%;
+  padding-right: 1.04166667%;
+  z-index: 1;
+  position: relative;
+}
+section.shopify-section.osn-intro .osn-intro-text {
+  padding: 0 30px;
+  p {
+    font-size: 16px;
+    font-family: "Gotham";
+    color: #e5efeb;
+    line-height: 1.875;
+    text-align: left;
+    letter-spacing: 0;
+  }
+}
+.osn-img-wrapper img {
+  margin: 0 auto;
+  float: none;
+  display: block;
+  max-width: 100%;
+  margin-top: -133px;
+}
+section {
+  &.img-text-combo {
+    padding: 0 !important;
+    .row {
+      display: flex;
+      &::after {
+        display: none;
+      }
+      &.row-inverse {
+        flex-flow: row-reverse;
+      }
+      .combo-text {
+        padding: 10% 10%;
+        min-height: 525px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        .combo-ttl {
+          font-size: 33px;
+          color: #164632;
+          font-family: 'Gotham Black Regular';
+          position: relative;
+          margin-bottom: 30px;
+          text-transform: uppercase;
+          letter-spacing: 6px;
+          &::before {
+            content: "";
+            position: absolute;
+            background-color: #ae522d;
+            height: 2px;
+            width: 57px;
+            left: 50%;
+            margin-left: -28px;
+            bottom: -15px;
+          }
+          + p {
+            font-size: 16px;
+            font-family: "Gotham Book";
+            line-height: 2.187;
+            color: #717171;
+            letter-spacing: 0;
+          }
+        }
+      }
+      .combo-img {
+        padding: 0;
+        position: relative;
+        img {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
+        }
+      }
+      .combo-text {
+        &.green-bg {
+          background-color: #004735;
+          .combo-ttl {
+            color: #fff;
+            + p {
+              color: #fff;
+            }
+          }
+        }
+        &.combo-text.beige-bg {
+          background-color: #f5f2ed;
+          p {
+            color: #595959;
+            font-size: 16px;
+            font-family: 'Gotham Book';
+          }
+          .combo-ttl + p strong {
+            color: #5f5f5f;
+            text-transform: uppercase;
+            font-size: 16px;
+            font-family: 'gotham bold';
+          }
+        }
+      }
+    }
+  }
+  &.shopify-section {
+    &.img-text-combo.our-core-values {
+      /*     margin-bottom: 100px !important; */
+    }
+    &.product-promise {
+      background-image: url(https://cdn.shopify.com/s/files/1/0068/5454/1425/t/41/assets/Layer-4.jpg?112150);
+      background-size: cover;
+      background-position: center right;
+      background-repeat: no-repeat;
+      padding: 140px 0;
+    }
+    &.what-goes-to {
+      padding: 0;
+      margin-bottom: 100px !important;
+      .index-section {
+        background-color: #a33e27;
+        padding: 45px 10%;
+        .row {
+          display: flex;
+          align-items: center;
+        }
+        .combo-text .combo-ttl {
+          font-size: 33px;
+          color: #ffffff;
+          font-family: 'Gotham Black Regular';
+          position: relative;
+          margin-bottom: 30px;
+          text-transform: uppercase;
+          letter-spacing: 6px;
+        }
+      }
+      img {
+        &.desktop {
+          display: block;
+        }
+        &.mobile {
+          display: none;
+        }
+      }
+    }
+    &.product-promise {
+      .col-6 {
+        max-width: 460px;
+        padding: 0 15px;
+      }
+      h2.big {
+        font-size: 50px;
+        font-family: 'Gotham Black Regular';
+        letter-spacing: 7px;
+        text-transform: uppercase;
+        text-align: center;
+        color: #fff;
+        position: relative;
+        margin-bottom: 50px;
+        &::before {
+          content: "";
+          position: absolute;
+          background-color: #ae522d;
+          height: 2px;
+          width: 57px;
+          left: 50%;
+          margin-left: -28px;
+          bottom: -23px;
+        }
+      }
+      .big + p {
+        font-family: 'Gotham Book';
+        text-align: center;
+        font-size: 16px;
+        color: #fff;
+        line-height: 2;
+        letter-spacing: 0;
+        strong {
+          font-family: 'Gotham Black Regular';
+        }
+      }
+      a.btn.shop-product-button {
+        background-color: #ab5232;
+        font-family: 'Gotham Bold';
+        color: #fff;
+        text-transform: uppercase;
+        padding: 21px;
+        line-height: 1;
+        display: block;
+        text-align: center;
+        max-width: 220px;
+        margin: 0 auto;
+        margin-top: 20px;
+      }
+    }
+  }
+}
+#headerPopup {
+  width: 75%;
+  /*   margin:0 auto; */
+  display: none;
+  iframe {
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+.mfp-content div#headerPopup {
+  display: block !important;
+}
+.mfp-wrap.mfp-close-btn-in.mfp-auto-cursor.mfp-ready {
+  position: fixed;
+  z-index: 99999999999;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #000000c9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .mfp-container.mfp-s-ready.mfp-inline-holder {
+    max-width: 640px;
+    width: 100%;
+    padding: 10px 20px;
+    iframe {
+      height: auto;
+    }
+  }
+}
+.mfp-content div#headerPopup button.mfp-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+section.shopify-section.our-stories {
+  background-color: #f5f1ed;
+  margin-bottom: 0 !important;
+  clear: both;
+  .stories-from {
+    h3 {
+      font-size: 24px;
+      font-family: 'Gotham Black Regular';
+      color: #164732;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    padding: 0 20px;
+    &.left {
+      padding-right: 5.5%;
+    }
+    &.right {
+      padding-left: 5.5%;
+    }
+    a {
+      font-size: 16px;
+      font-family: 'Gotham Medium';
+      color: #164732;
+      text-transform: uppercase;
+      text-align: center;
+      display: block;
+      margin-top: 20px;
+    }
+    > img.thumb {
+      width: 100%;
+    }
+  }
+}
+@include mq('lap') {
+  section.shopify-section.img-text-combo.our-core-values {
+    margin-bottom: 0px !important;
+  }
+}
+@include mq('tablet-landscape') {
+  .osn-img-wrapper img {
+    max-width: 85%;
+  }
+  section.shopify-section.product-promise {
+    background-position: center right -80px;
+  }
+}
+@include mq('tablet-portrait') {
+  .osn-img-wrapper.col-6 {
+    width: 100%;
+  }
+  .osn-intro-text {
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+  }
+  section {
+    &.shopify-section {
+      &.osn-intro .osn-intro-text p {
+        text-align: center;
+        line-height: 2;
+        max-width: 400px;
+        margin: 0 auto;
+      }
+      &.product-promise {
+        background: #fff;
+        h2.big {
+          color: #124532;
+          font-size: 28px;
+        }
+        .big + p {
+          color: #5a5a5a;
+        }
+        .col-6 {
+          width: 100%;
+          max-width: 100%;
+          padding-top: 50px;
+          padding-bottom: 35px;
+        }
+        background: #fff;
+        padding: 0;
+        &::after {
+          content: "";
+          background-image: url(https://cdn.shopify.com/s/files/1/0068/5454/1425/t/41/assets/Layer-5.jpg?112233);
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+          width: 100%;
+          padding-bottom: 100%;
+          position: relative;
+          float: left;
+        }
+      }
+    }
+    &.img-text-combo .row .combo-text {
+      padding: 10% 11%;
+      min-height: 350px;
+    }
+  }
+  .video-banner-wrapper .row.banner-inner-width {
+    padding: 0 40px;
+    justify-content: center;
+    .anniversary-image-wrapper img {
+      width: 100px;
+      height: auto;
+    }
+    .caption-wrapper h1 {
+      font-size: 72px;
+    }
+  }
+  section {
+    &.img-text-combo .row .combo-text .combo-ttl {
+      font-size: 24px;
+    }
+    &.shopify-section {
+      &.what-goes-to .index-section .combo-text .combo-ttl, &.product-promise h2.big {
+        font-size: 24px;
+      }
+      &.our-stories .stories-from h3 {
+        font-size: 22px;
+      }
+      &.what-goes-to {
+        margin-bottom: 0px !important;
+      }
+    }
+  }
+}
+@include mq('phone') {
+  .our-story-new section {
+    float: left;
+    width: 100%;
+    padding: 55px 0;
+    .index-section {
+      display: inline-block;
+      float: left;
+      padding: 0;
+      .row {
+        display: inline-block;
+        float: left;
+        width: 100%;
+      }
+    }
+  }
+  .our-story-page-wrapper .row {
+    padding: 0;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100% !important;
+  }
+  section {
+    &.img-text-combo .row {
+      display: inline-block;
+      clear: both;
+      float: left;
+      .combo-text {
+        width: 100%;
+        padding: 50px 40px 35px 40px;
+        min-height: auto;
+      }
+      .combo-img {
+        width: 100%;
+        img {
+          position: relative;
+          float: right;
+        }
+      }
+      .combo-text {
+        .combo-ttl {
+          font-size: 24px;
+          letter-spacing: 3px;
+          + p {
+            font-size: 13px;
+          }
+        }
+        p {
+          letter-spacing: 0px;
+        }
+      }
+    }
+    &.shopify-section {
+      &.product-promise .col-6 {
+        padding-left: 20px;
+        padding-right: 20px;
+        p {
+          line-height: 1.7;
+        }
+      }
+      &.osn-intro .osn-intro-text {
+        padding: 0 31px;
+        p {
+          font-size: 14px;
+          letter-spacing: 0;
+        }
+      }
+    }
+  }
+  .row.banner-inner-width {
+    display: flex !important;
+    justify-content: center !important;
+  }
+  .video-banner-wrapper .row.banner-inner-width {
+    .anniversary-image-wrapper img {
+      width: 60px;
+      height: auto;
+    }
+    .caption-wrapper h1 {
+      font-size: 48px;
+    }
+  }
+  section.shopify-section {
+    &.what-goes-to .index-section {
+      background-color: #a33e27;
+      padding: 45px 20px;
+      .row {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+        .col-40, .col-60 {
+          width: 100%;
+          text-align: center;
+        }
+      }
+      .combo-text .combo-ttl {
+        font-size: 24px;
+      }
+    }
+    &.our-stories .stories-from {
+      width: 100%;
+      padding-right: 20px !important;
+      padding-left: 20px !important;
+      h3 {
+        font-size: 22px;
+        padding: 0 25px;
+        margin-bottom: 20px;
+      }
+      &.left {
+        margin-bottom: 50px;
+      }
+    }
+    &.what-goes-to img {
+      &.desktop {
+        display: none;
+      }
+      &.mobile {
+        display: block;
+      }
+    }
+  }
+}
+@include mq('phone') {
+  .osn-img-wrapper img {
+    max-width: 100%;
+    width: calc(100% - 40px);
+  }
+  .video-banner-wrapper .row.banner-inner-width {
+    .anniversary-image-wrapper {
+      padding: 10px 0px;
+      padding-right: 18px;
+    }
+    .caption-wrapper {
+      padding: 0 0 0 18px;
+      .vid-ply-btn {
+        padding: 10px 10px;
+        font-size: 12px;
+      }
+      h1 {
+        font-size: 34px;
+      }
+    }
+  }
+  @include mq('phone') {
+    .mfp-wrap.mfp-close-btn-in.mfp-auto-cursor.mfp-ready .mfp-container.mfp-s-ready.mfp-inline-holder iframe {
+      height: auto;
+    }
+  }
+}
