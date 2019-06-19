@@ -59,24 +59,24 @@
     {% if financial_status == 'voided' %}
       {% case cancel_reason %}
       {% when 'customer' %}
-        La commande {{ name }} a été annulée sur demande et votre paiement a été annulé.
+        La commande {{ name }} a été annulée à votre demande et votre paiement a été annulé.
       {% when 'inventory' %}
-        Order {{ name }} was canceled because we did not have enough stock to fulfill your order and your payment has been voided.
+        La commande {{ name }} a été annulée parce que nous ne disposions pas de stocks suffisants pour la remplir et votre paiement a été annulé.
       {% when 'fraud' %}
-        Order {{ name }} was canceled because we suspect it is fraudulent and your payment has been voided.
+        La commande {{ name }} a été annulée parce que nous pensons qu’elle est frauduleuse et votre paiement a été annulé.
       {% when 'other' %}
-        Order {{ name }} was canceled because of unforseen circumstances and your payment has been voided.
+        La commande {{ name }} a été annulée en raison de circonstances imprévues et votre paiement a été annulé.
       {% endcase %}
     {% elsif financial_status == 'refunded' %}
       {% case cancel_reason %}
       {% when 'customer' %}
-        La commande {{ name }} a été annulée sur demande et votre paiement a été annulé.
+        La commande {{ name }} a été annulée à votre demande et votre paiement a été remboursé.
       {% when 'inventory' %}
-        Order {{ name }} was canceled because we did not have enough stock to fulfill your order and your payment has been refunded.
+        La commande {{ name }} a été annulée parce que nous ne disposions pas des stocks pour la remplir et votre paiement a été remboursé.
       {% when 'fraud' %}
-        Order {{ name }} was canceled because we suspect it is fraudulent and your payment has been refunded.
+        La commande {{ name }} a été annulée parce que nous pensons qu’elle est frauduleuse et votre paiement a été remboursé.
       {% when 'other' %}
-        Order {{ name }} was canceled because of unforseen circumstances and your payment has been refunded.
+        La commande {{ name }} a été annulée en raison de circonstances imprévues et votre paiement a été remboursé.
       {% endcase %}
     {% endif %}
   {% endcapture %}
@@ -84,8 +84,9 @@
   {% capture total_text %}Total{% endcapture %}
   {% capture subtotal_text %}Sous-total{% endcapture %}
   {% capture discount_text %}Discount{% endcapture %}
-  {% capture refund_text %}Refund{% endcapture %}
-  {% capture order_text %}Order{% endcapture %}
+  {% capture refund_text %}Remboursement{% endcapture %}
+  {% capture refunded_text %}Remboursé{% endcapture %}
+  {% capture order_text %}La commande{% endcapture %}
   {% capture shipping_text %}Expédition{% endcapture %}
 
   {% capture view_your_order_text %}Voir la commande{% endcapture %}
