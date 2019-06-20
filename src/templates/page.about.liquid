@@ -1,27 +1,5 @@
 <div id="page" class="desktop-12 tablet-6 mobile-3 our-story-new" data-section-id="{{ section.id }}">
-  	<section class="shopify-section video-banner-wrapper">
-      <video autoplay muted loop id="BgVideo">
-        <source src="https://cdn.shopify.com/s/files/1/0068/5454/1425/files/videoplayback.mp4?112347" type="video/mp4">
-        Your browser does not support HTML5 video.
-      </video>
-      <div class="index-section">
-        <div class="row banner-inner-width">
-          <div class="anniversary-image-wrapper">
-          	<img class="" src="{{ 'Muck-20Years-Logo-Reverse.png' | asset_url }}">
-          </div>
-          <div class="caption-wrapper">
-            <h1>Our<br/>Story</h1>
-            <a href="#headerPopup" id="headerVideoLink" target="_blank" class="vid-ply-btn btn btn-outline-danger popup-modal">Play Video</a>
-          </div>
-        </div>
-      </div>
-  	</section>
-  	<div id="headerPopup" class="mfp-hide embed-responsive embed-responsive-21by9">
-      <video id="BgVideo_1" controls="true">
-        <source src="https://cdn.shopify.com/s/files/1/0068/5454/1425/files/videoplayback.mp4?112347" type="video/mp4">
-        Your browser does not support HTML5 video.
-      </video>
-    </div>
+  	{% section 'about-us-video' %}
     <section class="shopify-section osn-intro">
       <div class="index-section">
         <div class="row">
