@@ -136,7 +136,7 @@ section.shopify-section.osn-intro .osn-intro-text {
   padding: 0 30px;
   p {
     font-size: 16px;
-    font-family: "Gotham";
+    font-family: "Gotham Book";
     color: #e5efeb;
     line-height: 1.875;
     text-align: left;
@@ -250,7 +250,10 @@ section {
       margin-bottom: 100px !important;
       .index-section {
         background-color: #a33e27;
-        padding: 45px 10%;
+        padding-left: 1.04166667%;
+        padding-right: 1.04166667%;
+        padding-top: 0;
+        padding-bottom: 0;
         .row {
           display: flex;
           align-items: center;
@@ -410,6 +413,39 @@ section.shopify-section.our-stories {
   }
 }
 @include mq('tablet-portrait') {
+  section.shopify-section.what-goes-to {
+    margin-bottom: 0px !important;
+  }
+  section.shopify-section.product-promise {
+      background: #fff;
+      padding: 0;
+      .col-6 {
+          width: 100%;
+          max-width: 100%;
+          padding-top: 50px;
+          padding-bottom: 35px;
+
+          h2.big {
+            font-size: 24px;
+            color: #124532;
+          }
+          p{
+            color: #5a5a5a;
+            line-height:1.7;
+          }
+      }
+  }
+  section.shopify-section.product-promise::after {
+    content: "";
+    background-image: url(https://cdn.shopify.com/s/files/1/0068/5454/1425/t/41/assets/Layer-5.jpg?112233);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    padding-bottom: 100%;
+    position: relative;
+    float: left;
+  }
   .osn-img-wrapper.col-6 {
     width: 100%;
   }
@@ -490,6 +526,55 @@ section.shopify-section.our-stories {
   }
 }
 @include mq('phone') {
+  .col-6 {
+    width: 100%;
+  }
+  section.shopify-section.what-goes-to {
+    margin-bottom: 0px !important;
+  }
+  section.shopify-section.product-promise {
+      background: #fff;
+      padding: 0;
+
+      .index-section{
+
+        .row{
+
+          .col-6 {
+              padding-left: 20px;
+              padding-right: 20px;
+              padding-top: 50px;
+              padding-bottom: 35px;
+              margin: 0 auto;
+              display: block;
+              float: none;
+
+              h2.big {
+                font-size: 24px;
+                color: #124532;
+              }
+              p{
+                color: #5a5a5a;
+                line-height:1.7;
+              }
+          }
+
+        }
+      }
+
+      
+  }
+  section.shopify-section.product-promise::after {
+    content: "";
+    background-image: url(https://cdn.shopify.com/s/files/1/0068/5454/1425/t/41/assets/Layer-5.jpg?112233);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    padding-bottom: 100%;
+    position: relative;
+    float: left;
+  }
   .our-story-new section {
     float: left;
     width: 100%;
@@ -507,8 +592,8 @@ section.shopify-section.our-stories {
   }
   .our-story-page-wrapper .row {
     padding: 0;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
+    {% comment %} margin-left: 0 !important;
+    margin-right: 0 !important; {% endcomment %}
     width: 100% !important;
   }
   section {
@@ -551,9 +636,14 @@ section.shopify-section.our-stories {
       }
       &.osn-intro .osn-intro-text {
         padding: 0 31px;
+        width: 100%;
+        text-align: center;
+        margin-top: 30px;
+
         p {
           font-size: 14px;
           letter-spacing: 0;
+          text-align: center;
         }
       }
     }
@@ -636,6 +726,24 @@ section.shopify-section.our-stories {
   @include mq('phone') {
     .mfp-wrap.mfp-close-btn-in.mfp-auto-cursor.mfp-ready .mfp-container.mfp-s-ready.mfp-inline-holder iframe {
       height: auto;
+    }
+  }
+}
+.our-story-new {
+  .what-goes-to{
+    background-color: transparent !important;
+    
+    .index-section{  
+      padding-left: 1.04166667%;
+      padding-right: 1.04166667%;
+      padding-top: 0;
+      padding-bottom: 0;
+      background-color:transparent !important;
+      .row {
+        width: 102.08333333% !important;
+        background-color: #a33e27;
+        padding: 45px 10%;
+      }
     }
   }
 }

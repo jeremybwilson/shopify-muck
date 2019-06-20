@@ -17,7 +17,7 @@
       </div>
   	</section>
   	<div id="headerPopup" class="mfp-hide embed-responsive embed-responsive-21by9">
-      <video muted loop id="BgVideo_1" controls="true">
+      <video id="BgVideo_1" controls="true">
         <source src="https://cdn.shopify.com/s/files/1/0068/5454/1425/files/videoplayback.mp4?112347" type="video/mp4">
         Your browser does not support HTML5 video.
       </video>
@@ -29,7 +29,7 @@
           	<img class="" src="{{ 'our-story-1.jpg' | asset_url }}">
           </div>
           <div class="osn-intro-text col-6">
-          	<p>Its all started with universal problem-Muck. Wet, Messy, Muddy, Dirty Muck, and we determind to find a solution for keeping our feet warm and dry through it all. So we set out to build a most protective, most confortable, most reliable boots on the planet - no matter what the conditiona. And the original Muck Boot Company was born providing 100% waterproof boots and footwear that withstand the muckiest solutions in every season.<br/><br/>Over the past two decades we have had the freedom to innovate, experiment, and test our products in every single element - because outside, there are way more than four seasons. That’s why we’ve designed each of our styles to work hard for every task and brave every condition - so you can be protected, productive, and always in your comfort zone, no matter what the weather.</p>
+          	<p>It all started with a universal proble—muck. Wet, messy, muddy, dirty muck, and we determined to find a solution for keeping our feet warm and dry through it all. So we set out to build the most protective, most comfortable, most reliable boots on the planet - no matter what the conditions. And The Orignal Muck Boot Company® was born providing 100% waterproof boots and footwear that withstand the muckiest situations in every season.<br/><br/>Over the past two decades we have had the freedom to innovate, experiment, and test our products in every single element - because outside, there are way more than four seasons. That’s why we’ve designed each of our styles to work hard for every task and brave every condition - so you can be protected, productive, and always in your comfort zone, no matter what the weather.</p>
           </div>
         </div>
       </div>
@@ -39,7 +39,7 @@
         <div class="row">
           <div class="combo-text col-6">
             <h2 class="combo-ttl">Our Purpose</h2>
-            <p>Muck is rooted in necessity, grounded in community, built to protect, worn with prid, and made for work (and life) in muck.</p>            
+            <p>Muck is rooted in necessity, grounded in community, built to protect, worn with pride, and made for work (and life) in the muck.</p>
           </div>
           <div class="combo-img col-6">
           	<img class="" src="{{ 'our-story-2.jpg' | asset_url }}">
@@ -52,7 +52,7 @@
         <div class="row row-inverse">
           <div class="combo-text col-6 green-bg">
             <h2 class="combo-ttl">100% Muckproof</h2>
-            <p>Fully protected from wet, windy, snow, mud, and sticky situations. </p>            
+            <p>Fully protected from wet, windy, snow, mud, and sticky situations.</p>            
           </div>
           <div class="combo-img col-6">
           	<img class="" src="{{ 'Layer-2.jpg' | asset_url }}">
@@ -65,7 +65,7 @@
         <div class="row">
           <div class="combo-text beige-bg col-6">
             <h2 class="combo-ttl">Our Core Values</h2>
-            <p><strong>Rural Spirit<br/>Grounded<br/>Hard Working<br/>Reliable<br/>Purposeful</strong></p><br/><p>These are the things that defines us...</p>            
+            <p><strong>Rural Spirit<br/>Grounded<br/>Hard Working<br/>Reliable<br/>Purposeful</strong></p><br/><p>These are the things that define us...</p>            
           </div>
           <div class="combo-img col-6">
           	<img class="" src="{{ 'our-story-3.jpg' | asset_url }}">
@@ -77,7 +77,7 @@
       <div class="index-section">
         <div class="row">
           <div class="combo-text beige-bg col-40">
-            <h2 class="combo-ttl">what goes into our product</h2>            
+            <h2 class="combo-ttl">What goes into our product</h2>            
           </div>
           <div class="combo-img col-60">
           	<img class="desktop" src="{{ 'what-goes-into-img.png' | asset_url }}">
@@ -91,8 +91,8 @@
         <div class="row">
           <div class="col-6 float-right">
             <h2 class="big">Product<br/>Promise</h2>
-            <p>We are dedicated to delivering boots and footwear that are <strong>100% MUCKPROOF</strong>: remarkably protective, exeptionally comfortable, and tottaly waterproof made with premium neoprene and rubber, and desugned to brave every element. </p>
-            <a class="btn shop-product-button" href="#">Shop Best Product</a>
+            <p>We are dedicated to delivering boots and footwear that are <strong>100% MUCKPROOF</strong>: remarkably protective, exceptionally comfortable, and totally waterproof, made with premium neoprene and rubber, and designed to brave every element.</p>
+            <a class="btn shop-product-button" href="#">Shop Best sellers</a>
           </div>
         </div>
       </div>
@@ -103,12 +103,12 @@
           <div class="col-6 stories-from left">
             <h3>stories from the muck</h3>
           	<img class="thumb" src="{{ 'blogs.png' | asset_url }}">
-            <a class="goto-link" href="#">View The Blog <img src="{{ 'right-arrow.png' | asset_url }}"></a>
+            <a class="goto-link" href="#">view the blog <img src="{{ 'right-arrow.png' | asset_url }}"></a>
           </div>
           <div class="col-6 stories-from right">
           	<h3>Share your story</h3>
           	<img class="thumb" src="{{ 'view-gallery.png' | asset_url }}">
-            <a class="goto-link" href="#">View All <img src="{{ 'right-arrow.png' | asset_url }}"></a>
+            <a class="goto-link" href="#">view all <img src="{{ 'right-arrow.png' | asset_url }}"></a>
           </div>
         </div>
       </div>
@@ -131,10 +131,12 @@ $( document ).ready(function() {
       open: function() {
         // Start Video when popup open
         $('.embed-responsive').find('video').get(0).play();
+        $('body').addClass('modal-open');
       },
       close: function() {
         // Will pause the video when popup is closed
         $('.embed-responsive').find('video').get(0).pause();
+        $('body').removeClass('modal-open');
       }
     }
   });
