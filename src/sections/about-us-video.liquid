@@ -1,26 +1,33 @@
 <section class="shopify-section video-banner-wrapper">
-    <video autoplay muted loop id="BgVideo">
-    <source src="{{section.settings.video_url}}" type="video/mp4">
-    Your browser does not support HTML5 video.
-    </video>
+    <div id="BgVideo">
+      <iframe src="https://player.vimeo.com/video/344426772?background=1&autoplay=1&loop=0&byline=0&title=0"
+              frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+    </div>
     <div class="index-section">
     <div class="row banner-inner-width">
         <div class="anniversary-image-wrapper">
         <img class="" src="{{ 'Muck-20Years-Logo-Reverse.png' | asset_url }}">
         </div>
         <div class="caption-wrapper">
-        <h1>Who We are</h1>
-        <a href="#headerPopup" id="headerVideoLink" target="_blank" class="vid-ply-btn btn btn-outline-danger popup-modal">Play Video</a>
+          <h1>Who We are</h1>
+          <a id="headerVideoLink" aria-label="youtube video link" class="fancybox-media vid-ply-btn btn btn-outline-danger popup-modal" href="https://www.youtube.com/watch?v=pVg2C2CAUS4?rel=0" title="youtube">Play Video</a>
         </div>
     </div>
     </div>
 </section>
-<div id="headerPopup" class="mfp-hide embed-responsive embed-responsive-21by9">
-    <video id="BgVideo_1" controls="true">
-    <source src="{{section.settings.video_url}}" type="video/mp4">
-    Your browser does not support HTML5 video.
-    </video>
-</div>
+<script>
+	jQuery(document).ready(function($){
+    $('.fancybox-media').fancybox({
+      openEffect  : 'none',
+      closeEffect : 'none',
+      maxWidth: 1200,
+      helpers : {
+        media : {}
+      }
+    });
+	}); // ready
+</script>
+
 {% schema %}
   {
     "name": "Video",

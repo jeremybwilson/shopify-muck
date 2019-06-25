@@ -8,7 +8,8 @@
           </div>
           <div class="osn-intro-text col-6">
             <h2> Our Story</h2>
-          	<p>It all started with a universal proble—muck. Wet, messy, muddy, dirty muck, and we determined to find a solution for keeping our feet warm and dry through it all. So we set out to build the most protective, most comfortable, most reliable boots on the planet - no matter what the conditions. And The Orignal Muck Boot Company® was born providing 100% waterproof boots and footwear that withstand the muckiest situations in every season.<br/><br/>Over the past two decades we have had the freedom to innovate, experiment, and test our products in every single element - because outside, there are way more than four seasons. That’s why we’ve designed each of our styles to work hard for every task and brave every condition - so you can be protected, productive, and always in your comfort zone, no matter what the weather.</p>
+          	<p>It all started with a universal problem&mdash;muck. Wet, messy, muddy, dirty muck, and we determined to find a solution for keeping our feet warm and dry through it all. So we set out to build the most protective, most comfortable, most reliable boots on the planet&mdash;no matter what the conditions. And The Orignal Muck Boot Company® was born providing 100% waterproof boots and footwear that withstand the muckiest situations in every season.</p>
+            <p>Over the past two decades we have had the freedom to innovate, experiment, and test our products in every single element&mdash;because outside, there are way more than four seasons. That&rsquo;s why we&rsquo;ve designed each of our styles to work hard for every task and brave every condition&mdash;so you can be protected, productive, and always in your comfort zone, no matter what the weather.</p>
           </div>
         </div>
       </div>
@@ -81,12 +82,16 @@
         <div class="row">
           <div class="col-6 stories-from left">
             <h3>stories from the muck</h3>
-          	<img class="thumb" src="{{ 'blogs.png' | asset_url }}">
-            <a class="goto-link" href="#">view the blog <img src="{{ 'right-arrow.png' | asset_url }}"></a>
+            <a href="/blogs/all-posts" title="View the Blog">
+          	  <img class="thumb" src="{{ 'blogs.png' | asset_url }}">
+            </a>
+            <a class="goto-link" href="/blogs/all-posts">view the blog <img src="{{ 'right-arrow.png' | asset_url }}"></a>
           </div>
           <div class="col-6 stories-from right">
           	<h3>Share your story</h3>
-          	<img class="thumb" src="{{ 'view-gallery.png' | asset_url }}">
+            <a href="#">
+          	  <img class="thumb" src="{{ 'view-gallery.png' | asset_url }}">
+            </a>
             <a class="goto-link" href="#">view all <img src="{{ 'right-arrow.png' | asset_url }}"></a>
           </div>
         </div>
@@ -98,26 +103,4 @@
     $("#content").addClass('our-story-page-wrapper');
     $("body").addClass('our-story-body');
   });
-</script>
-<script src="{{ 'jquery.magnific-popup.js' | asset_url }}"></script>
-<script>
-$( document ).ready(function() {
-  $('#headerVideoLink').magnificPopup({
-    type:'inline',
-    midClick: true, // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
-    mainClass: 'mfg-addvideo',
-    callbacks: {
-      open: function() {
-        // Start Video when popup open
-        $('.embed-responsive').find('video').get(0).play();
-        $('body').addClass('modal-open');
-      },
-      close: function() {
-        // Will pause the video when popup is closed
-        $('.embed-responsive').find('video').get(0).pause();
-        $('body').removeClass('modal-open');
-      }
-    }
-  });
-});
 </script>

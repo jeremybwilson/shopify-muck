@@ -181,7 +181,7 @@
 
         {% comment %} :: PAGE CONTENT :: {% endcomment %}
         {% comment %} Note : PRODUCT DETAILS has breadcrumbs but custom wrappers {% endcomment %}
-        <div id="content" {% unless template contains 'product' %}class="row"{% endunless %} />
+        <div id="content" {% unless template contains 'product' or unless template contains 'page.about' %}class="row"{% endunless %} />
           {{ content_for_layout }}
         </div>
 
