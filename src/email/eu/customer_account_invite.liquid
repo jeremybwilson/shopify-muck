@@ -21,9 +21,9 @@
 {% capture activate_your_account_text %}<span style="text-transform: uppercase;">{{ email_title }}{% endcapture %}
 
 {% capture visit_our_store_text %}Visit Our Store{% endcapture %}
-{% capture contact_us_text %}CONTACT US{% endcapture %}
+{% capture contact_us_text %}Contact Us{% endcapture %}
 {% capture contact_us_telephone %}+44 808 281 9536{% endcapture %}
-{% capture terms_and_conditions %}Terms &amp; <span style="line-height: 14px; font-size: 12px;">Conditions</span>{% endcapture %}
+{% capture terms_and_conditions %}Terms &amp; Conditions{% endcapture %}
 {% capture privacy_policy_text %}Privacy Policy{% endcapture %}
 
 {% if shop_locale == 'de'%}
@@ -35,7 +35,7 @@
 
   {% capture activate_your_account_text %}<span style="text-transform: uppercase;">{{ email_title }}{% endcapture %}
   {% capture visit_our_store_text %}Besuchen Sie Unseren Store{% endcapture %}
-  {% capture contact_us_text %}KONTAKTIEREN SIE UNS:{% endcapture %}
+  {% capture contact_us_text %}Konktaktieren Sie Uns:{% endcapture %}
   {% capture contact_us_telephone %}+44 808 281 9536{% endcapture %}
   {% capture terms_and_conditions %}AGB{% endcapture %}
   {% capture privacy_policy_text %}Datenschutzbestimmungen{% endcapture %}
@@ -100,7 +100,6 @@
                     </table>
 
                     <!-- COPY -->
-
                     {% if custom_message != blank %}
 
                       <div style="color:#164632;line-height:180%;{{ font_family_css }} padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
@@ -130,28 +129,20 @@
                     <div style="color:#164632;line-height:120%;{{ font_family_css }} padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
                       <div style="font-size:12px;line-height:14px;color:#164632;{{ font_family_css }}text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 12px; line-height: 14px; letter-spacing: .125em; text-transform: uppercase;"><a style="color:#164632;text-decoration: none;" title="{{ visit_our_store_text }}" href="{{ shop.url }}{{ full_email_template_params }}" target="_blank" rel="noopener">{{ visit_our_store_text }}</a></span></p></div>
                     </div>
-
                   </div>
-
                 </td>
               </tr>
-
             </table>
-
           </td>
         </tr>
 
         <!-- FOOTER -->
-
         <tr>
           <td style="background: #164632; padding: 40px 40px 20px;">
             <table style="width: 100%;">
-
               <!-- SOCIAL -->
-
               <tr>
                 <td>
-
                   <div align="center" style="padding-right: 10px; padding-left: 10px; padding-bottom: 10px; opacity: .5" class="">
                   <div style="line-height:10px;font-size:1px">&#160;</div>
                   <div style="display: table; max-width:181px;">
@@ -185,28 +176,22 @@
                     <!--[if (mso)|(IE)]></td></tr></table></td></tr></table><![endif]-->
                   </div>
                 </div>
-
                 </td>
               </tr>
 
               <!-- CONTACT -->
-
               <tr>
                 <td>
-
                   <div style="color:#798d85;line-height:120%;{{ font_family_css }} padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
                     <div style="font-size:12px;line-height:14px;color:#798d85;{{ font_family_css }}text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center">
                       <span style="font-size: 12px; line-height: 14px; text-transform: uppercase;"><a style="color:#798d85;text-decoration: none;" title="{{ contact_us_text }}" href="{{ shop.url }}/pages/contact-us{{ full_email_template_params }}" target="_blank" rel="noopener">{{ contact_us_text }}</a>&#160;&#160;&#160;&#160; <a style="color:#798d85;text-decoration: none;" title="{{ contact_us_text }}" href="tel:{{ contact_us_telephone}}" target="_blank" rel="noopener">{{ contact_us_telephone}}</a></span></p></div>
                   </div>
-
                 </td>
               </tr>
 
               <!-- DIVIDER -->
-
               <tr>
                 <td>
-
                   <table border="0" cellpadding="0" cellspacing="0" width="100%" class="divider " style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;min-width: 100%;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%">
                       <tbody>
                           <tr style="vertical-align: top">
@@ -224,26 +209,20 @@
                           </tr>
                       </tbody>
                   </table>
-
                 </td>
               </tr>
 
               <!-- TERMS -->
-
               <tr>
                 <td>
-
                   <div style="color:#798d85;line-height:120%;{{ font_family_css }} padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
                     <div style="font-size:12px;line-height:14px;color:#798d85;{{ font_family_css }}text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 12px; line-height: 14px; text-transform: uppercase;"><a style="color:#798d85;text-decoration: none;" href="{{ shop.url }}/pages/terms-conditions{{ full_email_template_params }}" target="_blank" rel="noopener">{{ terms_and_conditions }}</a> | <a style="color:#798d85;text-decoration: none;" href="https://www.honeywell.com/privacy-statement" target="_blank" rel="noopener">{{ privacy_policy_text }}</a></span><br></p></div>
                   </div>
-
                 </td>
               </tr>
-
             </table>
           </td>
         </tr>
-
       </table>
     </td>
   </tr>

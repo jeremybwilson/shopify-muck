@@ -17,13 +17,13 @@
 {% comment %} PASS THE ENGLISH STRINGS HERE, YES! {% endcomment %}
 {% capture shop_custom_name %}The Original Muck Boot Company&reg;{% endcapture %}
 
+{% capture email_title %}Activate your account{% endcapture %}
 {% capture email_body %}Hi {{ customer.first_name }}, you've created a new customer account at <a href="{{shop.url}}{{ full_email_template_params }}" style="color: #ab5232; text-decoration: underline; font-weight: bold;">{{ shop_custom_name }}</a>. All you have to do is activate it.{% endcapture %}
 
-{% capture email_title %}Activate your account{% endcapture %}
 {% capture visit_our_store_text %}Visit Our Store{% endcapture %}
-{% capture contact_us_text %}CONTACT US{% endcapture %}
+{% capture contact_us_text %}Contact Us{% endcapture %}
 {% capture contact_us_telephone %}855-468-7404{% endcapture %}
-{% capture terms_and_conditions %}Terms &amp; <span style="line-height: 14px; font-size: 12px;">Conditions</span>{% endcapture %}
+{% capture terms_and_conditions %}Terms &amp; Conditions{% endcapture %}
 {% capture privacy_policy_text %}Privacy Policy{% endcapture %}
 
 {% if shop_locale == 'fr'%}

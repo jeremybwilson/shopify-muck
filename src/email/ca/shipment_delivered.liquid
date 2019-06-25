@@ -44,27 +44,27 @@
   {% capture shop_custom_name %}La société d'origine Muckboot&reg;{% endcapture %}
 
   {% if fulfillment.item_count == item_count %}
-    {% capture email_title %}Your order has been delivered{% endcapture %}
-    {% capture email_body %}Your order has been delivered. Track your shipment to see the delivery status.{% endcapture %}
+    {% capture email_title %}Votre commande a été livrée{% endcapture %}
+    {% capture email_body %}Votre commande a été livrée. Suivez votre envoi pour connaître l’état de la livraison.{% endcapture %}
   {% elsif fulfillment.item_count > 1 %}
     {% if fulfillment_status == 'fulfilled' %}
-      {% capture email_title %}The last items in your order has been delivered{% endcapture %}
-      {% capture email_body %}The last items in your order has been delivered. Track your shipment to see the delivery status.{% endcapture %}
+      {% capture email_title %}Les derniers articles de votre commande ont été livrés{% endcapture %}
+      {% capture email_body %}Les derniers articles de votre commande ont été livrés. Suivez votre envoi pour connaître l’état de la livraison.{% endcapture %}
     {% else %}
-      {% capture email_title %}Some items in your order have been delivered{% endcapture %}
-      {% capture email_body %}Some items in your order have been delivered. Track your shipment to see the delivery status.{% endcapture %}
+      {% capture email_title %}Les derniers articles de votre commande ont été livrés. Suivez votre envoi pour connaître l’état de la livraison.{% endcapture %}
+      {% capture email_body %}Certains articles de votre commande ont été livrés. Suivez votre envoi pour connaître l’état de la livraison.{% endcapture %}
     {% endif %}
   {% else %}
     {% if fulfillment_status == 'fulfilled' %}
-      {% capture email_title %}The last item in your order has been delivered{% endcapture %}
-      {% capture email_body %}The last item in your order has been delivered. Track your shipment to see the delivery status.{% endcapture %}
+      {% capture email_title %}Le dernier article de votre commande a été livré{% endcapture %}
+      {% capture email_body %}Le dernier article de votre commande a été livré. Suivez votre envoi pour connaître l’état de la livraison.{% endcapture %}
     {% else %}
-      {% capture email_title %}One item in your order has been delivered{% endcapture %}
-      {% capture email_body %}One item in your order has been delivered. Track your shipment to see the delivery status.{% endcapture %}
+      {% capture email_title %}Un article de votre commande a été livré{% endcapture %}
+      {% capture email_body %}Un article de votre commande a été livré. Suivez votre envoi pour connaître l’état de la livraison.{% endcapture %}
     {% endif %}
   {% endif %}
 
-  {% capture order_text %}Order{% endcapture %}
+  {% capture order_text %}La commande{% endcapture %}
   {% capture items_in_this_delivery %}Articles envoyés{% endcapture %}
   {% capture view_your_order_text %}Voir la commande{% endcapture %}
 

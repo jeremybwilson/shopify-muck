@@ -17,11 +17,10 @@
 
 {% capture shop_custom_name %}The Original Muck Boot Company&reg;{% endcapture %}
 {% capture email_title %}Reset your password{% endcapture %}
-
 {% capture email_body %}Follow this link to reset your customer account password at <a style="color: #ab5232; text-decoration: none;" href="{{ shop.url }}{{ full_email_template_params }}">{{ shop_custom_name }}</a>. If you didn't request a new password, you can safely delete this email.{% endcapture %}
 
 {% capture visit_our_store_text %}Visit our Store{% endcapture %}
-{% capture contact_us_text %}CONTACT US{% endcapture %}
+{% capture contact_us_text %}Contact Us{% endcapture %}
 {% capture contact_us_telephone %}+44 808 281 9536{% endcapture %}
 {% capture terms_and_conditions %}Terms &amp; Conditions{% endcapture %}
 {% capture privacy_policy_text %}Privacy Policy{% endcapture %}
@@ -34,7 +33,7 @@
   {% capture email_body %}Über diesen Link können Sie das Passwort Ihres Kundenkontos auf <a style="color: #ab5232; text-decoration: none;" href="{{ shop.url }}{{ full_email_template_params }}">{{ shop_custom_name }}</a> zurücksetzen. Wenn Sie kein neues Passwort angefragt haben, können Sie diese E-Mail einfach löschen.{% endcapture %}
 
   {% capture visit_our_store_text %}Besuchen Sie Unseren Store{% endcapture %}
-  {% capture contact_us_text %}KONTAKTIEREN SIE UNS:{% endcapture %}
+  {% capture contact_us_text %}Konktaktieren Sie Uns:{% endcapture %}
   {% capture contact_us_telephone %}+44 808 281 9536{% endcapture %}
   {% capture terms_and_conditions %}AGB{% endcapture %}
   {% capture privacy_policy_text %}Datenschutzbestimmungen{% endcapture %}
@@ -51,7 +50,7 @@
 
 </head>
 
-<body>
+<body data-domain-suffix="{{ domain_local_var }}">
   <table class="full-container" style="background: #fafafa; width: 100%; border-collapse: collapse;">
     <tr>
       <td style="text-align: center" align="center">
