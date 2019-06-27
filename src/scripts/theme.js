@@ -3184,3 +3184,13 @@ function debounce(fn, wait, immediate) {
       });
     }
   });
+  function isTouchDevice() {
+    return true == ("ontouchstart" in window || window.DocumentTouch && document instanceof DocumentTouch);
+  }
+  if (isTouchDevice() === true) {
+      $(document).ready(function () {
+        $('a.nav-category-header').click(function () {
+            return false;
+        });
+      });
+  } 
