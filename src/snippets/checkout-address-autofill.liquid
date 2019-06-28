@@ -1,5 +1,5 @@
 {%- if settings.address_autofill_enable_flag and settings.googlegeo_key_value != '' -%}
-	<script type="">
+<script type=""text/javascript">
 	$( document ).ready(function() {
 		$.support.cors = true;
 		$.ajaxSetup({ cache: false });
@@ -60,6 +60,6 @@
 				var hassub = 0;
 			});
 		}
-	});
-	</script>
+	});	
+</script>
 {%- endif -%}
