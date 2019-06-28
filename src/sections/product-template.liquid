@@ -153,38 +153,6 @@
           </div>
         {% endif %}
       {% endunless %}
-      {% unless template == 'product.quick' %}
-        <div class="sidebr-video">
-          <img class="sidebr-video-img" src="https://cdn.shopify.com/s/files/1/0068/5454/1425/t/41/assets/video-screen.jpg?130941">
-          <a href="#headerPopup" id="headerVideoLink" target="_blank" class="vid-ply-btn btn btn-outline-danger popup-modal"><span>Play</span></a> 
-            </div>
-        <div id="headerPopup" class="mfp-hide embed-responsive embed-responsive-21by9">
-          <video id="BgVideo_1" controls="true">
-            <source src="https://cdn.shopify.com/s/files/1/0068/5454/1425/files/videoplayback.mp4?112347" type="video/mp4">
-            Your browser does not support HTML5 video.
-          </video>
-        </div>
-        <script src="{{ 'jquery.magnific-popup.js' | asset_url }}"></script>
-        <script>
-          $( document ).ready(function() {
-            $('#headerVideoLink').magnificPopup({
-              type:'inline',
-              midClick: true, // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
-              mainClass: 'mfg-addvideo',
-              callbacks: {
-                open: function() {
-                  // Start Video when popup open
-                  $('.embed-responsive').find('video').get(0).play();
-                },
-                close: function() {
-                  // Will pause the video when popup is closed
-                  $('.embed-responsive').find('video').get(0).pause();
-                }
-              }
-            });
-          });
-        </script>
-      {% endunless %}
     </div>
   </div><!-- .row -->
 
@@ -240,88 +208,6 @@
   {% endunless %}
 
   <div class="clear"></div>
-  {% unless template == 'product.quick' %}
-  <div class="pdpv1">  
-      <section class="shopify-section quick-boots">
-          <div class="index-section static">
-            <div class="row row-flex spacing-lr">
-              <div class="quick-boot-item col-4">
-                <a class="quick-boot-link" href="#">
-                  <img class="quick-boot-img" src="{{ 'extended-rubber-coverage.png' | asset_url }}">
-                  <h3>extended rubber<br/>coverage</h3>
-                </a>
-              </div>
-              <div class="quick-boot-item col-4">
-                <a class="quick-boot-link" href="#">
-                  <img class="quick-boot-img" src="{{ 'vibram_arctic_grip.png' | asset_url }}">
-                  <h3>vibraM arctic<br/>grip</h3>
-                </a>
-              </div>
-              <div class="quick-boot-item col-4">
-                <a class="quick-boot-link" href="#">
-                  <img class="quick-boot-img" src="{{ 'rugged_spandura.png' | asset_url }}">
-                  <h3>rugged<br/>spandura</h3>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="index-section slider">
-            <script>
-              $(document).on('ready', function() {
-                $(".quick-boots-slider").slick({
-                  dots: true,
-                  infinite: true,
-                  centerMode: true,
-                  slidesToShow: 1,
-                  slidesToScroll: 1
-                });  
-              });
-            </script>
-            <div class="row spacing-lr">
-                <div class="quick-boots-slider center slider">
-                  <div>
-                    <div class="quick-boot-item col-4">
-                      <a class="quick-boot-link" href="#">
-                        <img class="quick-boot-img" src="{{ 'extended-rubber-coverage.png' | asset_url }}">
-                        <h3>extended rubber<br/>coverage</h3>
-                      </a>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="quick-boot-item col-4">
-                      <a class="quick-boot-link" href="#">
-                        <img class="quick-boot-img" src="{{ 'vibram_arctic_grip.png' | asset_url }}">
-                        <h3>vibraM arctic<br/>grip</h3>
-                      </a>
-                    </div>
-                  </div>
-                  <div>
-                   <div class="quick-boot-item col-4">
-                      <a class="quick-boot-link" href="#">
-                        <img class="quick-boot-img" src="{{ 'rugged_spandura.png' | asset_url }}">
-                        <h3>rugged<br/>spandura</h3>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-            </div>
-          </div>
-      </section>
-      <section class="shopify-section no-padding what-goes-to">
-        <div class="index-section">
-          <div class="row">
-            <div class="combo-text beige-bg col-40">
-              <h2 class="combo-ttl">what goes into our product</h2>            
-            </div>
-            <div class="combo-img col-60">
-              <img class="desktop" src="{{ 'what-goes-into-img.png' | asset_url }}">
-              <img class="mobile" src="{{ 'warm-fleece-responsive.png' | asset_url }}">
-            </div>
-          </div>
-        </div>
-      </section>
-  </div> 
-  {% endunless %}
   {% unless template == 'product.quick' %}
     {% comment %} BOTTOM CONTENT {% endcomment %}
 

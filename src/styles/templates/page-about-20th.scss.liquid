@@ -1,0 +1,574 @@
+// column divisions
+
+$width-unit: ( 25 / 24 ) * 1%;
+
+.col {
+  display: inline-block;
+  box-sizing: border-box;
+  float: left;
+  margin: 0;
+  padding: 0 15px;
+}
+.col-3 {  @extend .col; width: 25%; }
+.col-6 {  
+  @extend .col; width: 50%;
+
+  @include mq( 'phone' ) {
+    width: 100%;
+  }
+}
+.col-8 {  @extend .col; width: 75%; }
+.col-12 { @extend .col; width: 100%; }
+.col-60 { @extend .col; width: 60%; }
+.col-40 { @extend .col; width: 40%; }
+
+.float-left { float: left; }
+.float-right { float: right; }
+
+.headline-rule {
+  content: '';
+  position: absolute;
+  height: 2px;
+  width: 57px;
+  left: 50%;
+  background-color: $color--orange-1;
+  margin-left: -28px;
+  bottom: -23px;    
+}
+
+.our-story-body {
+  #breadcrumb {
+    display: none;
+  }
+
+  // page-wrapper 
+
+  #content {
+    padding: 0;
+
+    #page {
+      margin-bottom: 0;
+      
+      .shopify-section {
+        clear: both;
+      }  
+
+      section {
+        &.img-text-combo {
+          padding: 0 !important;
+    
+          .row {
+            @include flexbox;
+
+            @include mq('phone') {
+              display: inline-block;
+              clear: both;
+              float: left;
+              width: 100%;
+              margin-left: 0;
+              margin-right: 0;
+              padding-left: 0;
+              padding-right: 0;
+            }
+            
+            &::after {
+              display: none;
+            }
+    
+            &.row-inverse {
+              @include flex-flow( row-reverse );
+            }
+          }
+          .combo-text {
+            @include flexbox;
+            @include flex-direction( column );
+            @include align-items( center );
+            @include justify-content( center );
+            min-height: 525px;
+            padding: 10%;
+            text-align: center;
+
+            @include mq('phone') {
+              width: 100%;
+              min-height: auto;
+              padding: 50px 40px 35px;
+            }
+
+            .combo-ttl {
+              position: relative;
+              margin-bottom: 40px;
+              @include fontSize( 33px );
+              letter-spacing: .25em;
+              color: $color--dark-green-1;
+              font-family: $sans;
+              font-weight: $font-weight--black;
+
+              @include mq('phone') {
+                @include fontSize( 24px );
+                letter-spacing: .15em;
+              }
+              @include mq('tablet') {
+                @include fontSize( 24px );
+                letter-spacing: .15em;
+              }
+
+              &:before {
+                @extend .headline-rule;
+              }
+            }
+            p {
+              color: $color--gray-2;
+            }
+            &.green-bg {
+              background-color: #004735;
+              h2, p {
+                color: $color--white;
+              }
+            }
+
+            &.beige-bg {
+              background-color: #f5f1ed;
+              p { 
+                color: $color--gray-1;
+
+                strong {
+                  color: $color--gray-3;
+                  font-weight: $font-weight--bold;
+                  letter-spacing: 0.07em;
+                  text-transform: uppercase;
+                }
+              }
+            }
+          }
+          .combo-img {
+            position: relative;
+            padding: 0;
+
+            @include mq('phone') {
+              width: 100%;
+            }
+            
+            img {
+              position: absolute;
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              object-position: center;
+
+              @include mq('phone') {
+                position: relative;
+                float: right;
+              }
+            }
+          }
+        }
+      }
+      .index-section {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding-left: $width-unit;
+        padding-right: $width-unit;
+
+        @include mq('phone') {
+          padding-left: 0;
+          padding-right: 0;
+        }
+
+        .row {
+          width: 100 + ( $width-unit * 2 );
+          margin-left: -$width-unit;
+          margin-left: -$width-unit;
+        }
+      }
+
+      h2 {
+        font-weight: $font-weight--black;
+        letter-spacing: 0.15em;
+        line-height: 1;
+        text-transform: uppercase;
+        text-align: center;
+
+        @include mq('tablet-and-up') {
+          letter-spacing: .25em;
+        }
+      }
+      p {
+        @include fontSize( 16px );
+        letter-spacing: .025em;
+        line-height: 2.1875em;
+        text-align: center;
+
+        @include mq( 'phone' ) {
+          @include fontSize( 14px );
+          line-height: ( 24px / 14px ) * 1em;
+        }
+
+        strong {
+          font-weight: $font-weight--black;
+        }
+      }
+      .btn {
+        display: block;
+        max-width: 240px;
+        margin: 20px auto 0;
+        padding: 12px;
+        background-color: $color--orange-1;
+        color: $color--white;
+        @include fontSize( 12px );
+        font-weight: $font-weight--bold;
+        line-height: 1;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        text-align: center;
+
+        @include mq( 'lap-and-up' ) {
+          max-width: 280px;
+          padding: 21px;
+          @include fontSize( 16px );
+        }
+
+        &:hover {
+          background-color: $color--dark-green-1;
+        }
+      }
+
+      // top section - Video Banner
+
+      .video-banner-wrapper {
+        position: relative;
+        overflow: hidden;
+        padding: 150px 0;
+        background: #f5f1ed;
+
+        #BgVideo {
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          min-width: 100%;
+          min-height: 100%;
+
+          pointer-events: none;
+          overflow: hidden;
+          
+          iframe {
+            width: 100vw;
+            height: 56.25vw;
+            min-height: 100vh;
+            min-width: 177.77vh;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+          }
+        }
+
+        .index-section {
+          position: relative;
+          z-index: 1;
+        }
+        
+        .banner-inner-width {
+          @include flexbox;
+          width: 100%;
+          max-width: 320px;
+          margin: 0 auto;
+
+          @include mq( 'tablet-and-up' ) {
+            max-width: 470px;
+          }
+          @include mq('lap-and-up') {
+            max-width: 760px;
+          }
+
+          .anniversary-image-wrapper {
+            padding: 10px 18px 10px 0;
+            
+            @include mq( 'lap-and-up' ) {
+              padding: 10px 50px;
+            }
+
+            img {
+              max-width: 60px;
+              height: auto;
+
+              @include mq('tablet-and-up') {
+                max-width: 100px;
+              }
+
+              @include mq('lap-and-up') {
+                max-width: 120px;
+              }
+            }
+          }
+          .caption-wrapper {
+            padding: 0 0 0 18px;
+            border-left: solid 1px $color--white;
+
+            @include mq('lap-and-up') {
+              padding: 0 50px;
+            }
+
+            h1 {
+              @include fontSize( 38px );
+              margin-bottom: 8px;
+              color: $color--white;
+              font-weight: $font-weight--black;
+              line-height: 1;
+              border-bottom: none !important;
+              text-transform: uppercase;
+
+              @include mq('tablet-and-up') {
+                margin-bottom: 20px;
+                @include fontSize( 72px );
+              }
+              @include mq('lap-and-up') {
+                @include fontSize( 100px );
+              }
+            }
+
+            .btn {
+              max-width: 134px;
+              margin-top: 0;
+              margin-left: 0;
+              margin-right: 0;
+
+              @include mq('lap-and-up') {
+                max-width: 200px;
+                margin-top: 20px;
+              }
+            }
+          }
+        }
+      }
+
+      // section 2 ( Our Story )
+
+      .osn-intro {
+        padding: 100px 0;
+        background-color: #983820;
+
+        @include mq( 'phone' ) {
+          padding-bottom: 35px;
+        }
+
+        .osn-img-wrapper img {
+          margin: 0 auto;
+          float: none;
+          display: block;
+          max-width: 100%;
+          margin-top: -133px;
+        }
+
+        .osn-intro-text {
+          padding: 0 30px;
+        }
+
+        h2 {
+          position: relative;
+          margin-bottom: 40px;
+          color: $color--white;
+
+          @include fontSize( 33px );
+
+          @include mq('phone') {
+            margin-top: 35px;
+            @include fontSize(24px);
+          }
+
+          &:before {
+            @extend .headline-rule;
+            background-color: $color--white;
+          }
+        }
+
+        p {
+          margin-bottom: 20px;
+          color: $color--white;
+          text-align: left;
+
+          @include mq('phone') {
+            text-align: center;
+          }
+        }
+      }
+
+      // what goes into
+
+      .what-goes-to {
+        @include mq('tablet-and-up') {
+          margin-bottom: 100px !important;
+        }
+        background: none;
+    
+        .index-section {
+          padding: 0 $width-unit;
+    
+          .row {
+            display: flex;
+            width: 100 + ( $width-unit * 2);
+            padding: 45px 10%;
+            align-items: center;
+            background-color: $color--orange-1;        
+          }  
+          h2 {
+            text-align: left;
+            line-height: ( 38px / 33px ) * 1em;
+
+            @include mq('phone') {
+              text-align: center;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// product promise
+
+.product-promise {
+  padding: 140px 0;
+  background-image: url(https://cdn.shopify.com/s/files/1/0068/5454/1425/t/41/assets/Layer-4.jpg?112150);
+  background-size: cover;
+  background-position: center right;
+  background-repeat: no-repeat;
+
+  @include mq('phone') {
+    padding: 0;
+    background: none;
+
+    &:after {
+      content: "";
+      background-image: url(https://cdn.shopify.com/s/files/1/0068/5454/1425/t/41/assets/Layer-5.jpg?112233);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      width: 100%;
+      padding-bottom: 100%;
+      position: relative;
+      float: left;
+    }      
+  }
+
+  .col-6 {
+    max-width: 460px;
+    padding: 0 15px;
+
+    @include mq('phone') {
+      float: none;
+      display: block;
+      padding: 50px 20px 35px;
+      margin: 0 auto;
+    }
+  }
+
+  h2 {
+    position: relative;
+    margin-bottom: 40px;
+    color: $color--white;
+    @include fontSize( 50px );
+
+    @include mq('phone') {
+      color: $color--dark-green-1;
+      @include fontSize( 24px );
+    }
+
+    &:before {
+      @extend .headline-rule;
+    }
+  }
+  p {
+    color: $color--white;
+
+    @include mq('phone') {
+      color: $color--gray-1;
+    }
+  }
+}
+
+// final section ( Stories From )
+
+.our-stories {
+  margin-bottom: 0 !important;
+  padding: 112px 0 100px;
+  background-color: #f5f1ed;
+
+  @include mq('phone') {
+    padding: 50px 0;
+  }
+
+  .stories-from {
+    padding: 0 20px;
+    text-transform: uppercase;
+    text-align: center;
+
+    &.left {
+      padding-right: 5.5%;
+    }
+    &.right {
+      padding-left: 5.5%;
+
+      @include mq('phone') {
+        margin-top: 50px;
+      }
+    }
+
+    h3 {
+      // header
+      margin-bottom: 30px;
+      color: $color--dark-green-1;
+      @include fontSize(24px);
+      font-weight: $font-weight--black;
+      letter-spacing: .15em;
+      line-height: 1;
+
+      @include mq('phone') {
+        @include fontSize( 22px );
+      }
+    }
+
+    > img {
+      width: 100%;
+    }
+
+    a {
+      // cta link
+      display: block;
+      margin-top: 20px;
+      color: $color--dark-green-1;
+      @include fontSize( 16px );
+      font-weight: $font-weight--medium;
+      letter-spacing: 0.2em;
+    }
+  }
+}
+
+// popup
+
+#headerPopup {
+  width: 75%;
+  /*   margin:0 auto; */
+  display: none;
+  iframe {
+    width: 100vw;
+    height: 56.25vw;
+    min-height: 100vh;
+    min-width: 177.77vh;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+  }
+}
+.mfp-content div#headerPopup {
+  display: block !important;
+}
+.mfp-content div#headerPopup button.mfp-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
