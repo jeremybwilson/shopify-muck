@@ -61,15 +61,31 @@
   }
   
   .item {
+    position:relative;
     float: left;
     padding-left: 3px;
     padding-right: 3px;
     width: 100%;
     margin-bottom: 25px;
-
+    .product-modal {
+      font-weight: 500;
+      line-height: 1.6875em;
+      letter-spacing: .025em;
+      font-size: 16px;
+      font-size: 1rem;
+      background: #aa5131;
+      color: #fefffe;
+      border-radius: 0;
+      transition: opacity 0.25s ease-in-out;
+    }
      @include mq('phone') {
      		width: 33.33333%;
   	}
+  }
+  .item:hover{
+    .product-modal{
+      display:block;
+    }
   }
 
 	.product-image {
@@ -154,5 +170,14 @@
    display:none !important;
   }
 }
-
-
+.nosto-carousel{
+  .hidden{
+    max-width: 400px;
+    width: 100%;
+  }
+}
+.fancybox-skin {
+  #product-quick-view{
+    background : {{ settings.background }};
+  }
+}
