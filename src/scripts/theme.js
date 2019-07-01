@@ -2090,7 +2090,7 @@ theme.ProductForm = function (context, events) {
 
   (function initializeVariants() {
     // Select active variant to ensure variant ID matches the URL
-    optionSelectors.selectVariantFromDropdown({ propStateCall: true });
+    // optionSelectors.selectVariantFromDropdown({ propStateCall: true });
 
     // Set availability to only cross out option1 if all corresponding variants are unavailable
     var variants = product.variants.slice(0)
@@ -2103,9 +2103,9 @@ theme.ProductForm = function (context, events) {
       return acc;
     }, [])
 
-    availableOption1.forEach(option => {
-      $(`[data-swatch-value=${option}]`).removeClass('soldout');
-    });
+    // availableOption1.forEach(option => {
+    //   $(`[data-swatch-value=${option}]`).removeClass('soldout');
+    // });
   })();
 
   (function single_option_selectors() {
@@ -3169,21 +3169,34 @@ function debounce(fn, wait, immediate) {
   });
 
   $(document).on('change','.swatch.color input',function(){
-    var var_type = $(this).attr('name');
-    var var_value = $(this).attr('value');
-    if(var_type == "color"){
-      var product = document.querySelector(".product-json").innerHTML,
-        product = JSON.parse(product || '{}');
-      var variants = product.variants;
-      $.each(variants, function(key,value) {
-        if(value.option1 == var_value && value.available){
-          $('#swatch-2-'+ value.option2.toLowerCase()).prop('checked', true);
-          $('[data-option="option2"]').val(value.option2).trigger('change');
-          return false;
-        }
-      });
-    }
+    $('.swatch.size input:checked').each(function(){
+      $(this).prop('checked',false);
+    });
+    $('.add.AddtoCart').attr('type','button');
+    $('.add.AddtoCart').addClass('disable');
+    $(".variant-size-select-error").html('Please select a size');
+    $(".variant-size-select-error").removeClass('hide');
+    $(".swatch.size .current-option").html('');
   });
+  $(document).ready(function(){
+      $('.swatch.size input:checked').each(function(){
+        $(this).prop('checked',false);
+      });
+      $('.add.AddtoCart').attr('type','button');
+      $('.add.AddtoCart').addClass('disable');
+      $(".variant-size-select-error").html('Please select a size');
+  });
+  $(document).on('change','.swatch.size input',function(){
+    $('.add.AddtoCart').attr('type','submit');
+    $('.add.AddtoCart').removeClass('disable');
+    $(".variant-size-select-error").addClass('hide');
+  });
+
+  $(document).on('click','input[type=button].add.AddtoCart',function(){
+    $(".variant-size-select-error").html('Please select a size to add to cart');
+    $(".variant-size-select-error").removeClass('hide');
+  });
+
   function isTouchDevice() {
     return true == ("ontouchstart" in window || window.DocumentTouch && document instanceof DocumentTouch);
   }
