@@ -72,7 +72,7 @@
         <div class="col-6 float-right">
           <h2 class="big">Product<br/>Promise</h2>
           <p>We are dedicated to delivering boots and footwear that are <strong>100% MUCKPROOF</strong>: remarkably protective, exceptionally comfortable, and totally waterproof, made with premium neoprene and rubber, and designed to brave every element.</p>
-          <a class="btn shop-product-button" href="#">Shop Best sellers</a>
+          <a class="btn shop-product-button" title="Shop Best Sellers" href="/collections/best-sellers">Shop Best sellers</a>
         </div>
       </div>
     </div>
@@ -82,17 +82,21 @@
       <div class="row">
         <div class="col-6 stories-from left">
           <h3>stories from the muck</h3>
-          <a href="/blogs/all-posts" title="View the Blog">
+          {% if settings.international_store_version == "CA" %}
+            <a href="https://www.muckbootcompany.com/blogs/all-posts" target="_blank" title="View the Blog">
+          {% else %}
+            <a href="/blogs/all-posts" title="View the Blog">
+          {% endif %}
             <img class="thumb" src="{{ 'blogs.png' | asset_url }}">
           </a>
           <a class="goto-link" href="/blogs/all-posts">view the blog <img src="{{ 'right-arrow.png' | asset_url }}"></a>
         </div>
         <div class="col-6 stories-from right">
           <h3>Share your story</h3>
-          <a href="#">
+          <a href="https://www.instagram.com/muckbootco" target="_blank" title="Share Your Story">
             <img class="thumb" src="{{ 'view-gallery.png' | asset_url }}">
           </a>
-          <a class="goto-link" href="#">view all <img src="{{ 'right-arrow.png' | asset_url }}"></a>
+          <a class="goto-link" href="https://www.instagram.com/muckbootco" target="_blank" title="Share Your Story">view all <img src="{{ 'right-arrow.png' | asset_url }}"></a>
         </div>
       </div>
     </div>
