@@ -3191,7 +3191,19 @@ function debounce(fn, wait, immediate) {
     $('.add.AddtoCart').removeClass('disable');
     $(".variant-size-select-error").addClass('hide');
   });
+
   $(document).on('click','input[type=button].add.AddtoCart',function(){
     $(".variant-size-select-error").html('Please select a size to add to cart');
     $(".variant-size-select-error").removeClass('hide');
   });
+
+  function isTouchDevice() {
+    return true == ("ontouchstart" in window || window.DocumentTouch && document instanceof DocumentTouch);
+  }
+  if (isTouchDevice() === true) {
+      $(document).ready(function () {
+        $('a.nav-category-header').click(function () {
+            return false;
+        });
+      });
+  } 
