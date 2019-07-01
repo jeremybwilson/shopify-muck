@@ -581,40 +581,34 @@ body.product-promo {
     }
     h3 {
       color: #124831;
-      font-size: 18px;
+      @include fontSize( 18px );
       margin-top: 20px;
       text-transform: uppercase;
       letter-spacing: 4px;
-      font-weight: 600;
-      font-family: 'Gotham Bold';
+      font-weight: $font-weight--bold;
     }
   }
 }
 .product-description--area {
   .rte {
-    font-size: 16px;
-    /* font-size: 1rem; */
+    @include fontSize( 16px );
     line-height: 1.875em;
     text-align: left;
-    font-family: 'Gotham Book';
-    font-weight: lighter;
+    font-weight: $font-weight--book;
     color: #e5efeb;
     p {
-      font-size: 16px;
-      /* font-size: 1rem; */
+      @include fontSize( 16px );
       line-height: 1.875em;
       text-align: left;
-      font-family: 'Gotham Book';
-      font-weight: lighter;
+      font-weight: $font-weight--book;
       color: #e5efeb;
     }
   }
   h3 {
     padding-left: 10%;
-    font-size: 22px;
-    font-size: 1.375rem;
+    @include fontSize( 22px );
     text-align: left;
-    font-family: 'Gotham Black Regular';
+    font-weight: $font-weight--book;
   }
 }
 section.shopify-section.what-goes-to {
@@ -630,9 +624,9 @@ section.shopify-section.what-goes-to {
       align-items: center;
     }
     .combo-text .combo-ttl {
-      font-size: 33px;
+      @include fontSize( 33px );
       color: #ffffff;
-      font-family: 'Gotham Black Regular';
+      font-weight: $font-weight--black;
       position: relative;
       margin-bottom: 30px;
       text-transform: uppercase;
@@ -756,7 +750,7 @@ section.quick-boots .index-section {
     margin-top: -25px;
     transform: rotate(45deg);
     text-transform: uppercase;
-    font-family: 'Gotham Bold';
+    font-weight: $font-weight--bold;
     span {
       transform: rotate(-45deg);
     }
@@ -782,7 +776,7 @@ section.quick-boots .index-section {
 }
 @include mq('tablet-landscape') {
   .pdpv1 .quick-boot-item a.quick-boot-link h3 {
-    font-size: 16px;
+    @include fontSize( 16px );
   }
   section.shopify-section {
     &.what-goes-into {
@@ -790,12 +784,12 @@ section.quick-boots .index-section {
         transform: scale(1);
       }
       .left h2.indent {
-        font-size: 28px;
+        @include fontSize( 28px );
       }
     }
     &.what-goes-to {
       .index-section .combo-text .combo-ttl {
-        font-size: 24px;
+        @include fontSize( 24px );
       }
       margin-bottom: 0px !important;
     }
@@ -822,7 +816,7 @@ section.quick-boots .index-section {
       }
     }
     .quick-boot-item a.quick-boot-link h3 {
-      font-size: 14px;
+      @include fontSize( 14px );
     }
     section.quick-boots {
       padding: 50px 0;
@@ -870,7 +864,7 @@ section.quick-boots .index-section {
           }
         }
         .combo-text .combo-ttl {
-          font-size: 24px;
+          @include fontSize( 24px );
         }
       }
       img {
@@ -888,15 +882,15 @@ section.quick-boots .index-section {
     h3 {
       padding-left: 0;
       text-align: center;
-      font-size: 18px;
+      @include fontSize( 18px );
     }
     .rte p {
       text-align: center;
-      font-size: 14px;
+      @include fontSize( 14px );
     }
   }
   .pdpv1 .quick-boot-item a.quick-boot-link h3 {
-    font-size: 18px;
+    @include fontSize( 18px );
   }
   section.shopify-section.what-goes-to .index-section {
     padding: 45px 0px;
@@ -918,7 +912,7 @@ section.quick-boots .index-section {
     }
   }
   section.shopify-section.what-goes-into .left h2.indent {
-    font-size: 14px;
+    @include fontSize( 14px );
   }
   .mfp-wrap.mfp-close-btn-in.mfp-auto-cursor.mfp-ready .mfp-container.mfp-s-ready.mfp-inline-holder iframe {
     height: auto;
