@@ -19,8 +19,11 @@
   {% if page_description %}
   <meta name="description" content="{{ page_description | escape }}" />
   {% endif %}
-  <link rel="canonical" href="{{ canonical_url }}" />
+
+  {% include 'head-meta-robots' %}
   <meta name="format-detection" content="telephone=no">
+  {% comment %} canonical link is found in the head-meta-robots {% endcomment %}
+  
   <meta name="viewport" content="width=device-width, initial-scale=1"> <!--maximum-scale=1, user-scalable=no-->
 
   {% if settings.international_store_version == 'UK' %}
