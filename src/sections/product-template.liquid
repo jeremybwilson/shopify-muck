@@ -91,9 +91,11 @@
           <h2>{{ product.vendor }}</h2>
         {% endif %}
 
-        <h1>
-          {{ product.title }}
-        </h1>
+        {% if template != 'product.quick' %}
+          <h1>{{ product.title }}</h1>
+        {% else %}
+          <h2>{{ product.title }}</h2>
+        {% endif %}
 
         {% comment %}
           REACT EXAMPLE #2:
