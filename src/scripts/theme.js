@@ -3193,7 +3193,7 @@ function debounce(fn, wait, immediate) {
   });
 
   $(document).on('click','input[type=button].add.AddtoCart',function(){
-    $(".variant-size-select-error").html('Please select a size to add to cart');
+    $(".variant-size-select-error").html(window.variant_size_select_error);
     $(".variant-size-select-error").removeClass('hide');
   });
 

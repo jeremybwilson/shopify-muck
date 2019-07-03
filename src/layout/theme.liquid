@@ -49,6 +49,10 @@
   {% comment %}
     NOTE : Remove the .min on react to get better error messaging
   {% endcomment %}
+  <script type="text/javascript">
+    // global variable
+    window.variant_size_select_error = "{{ settings.variant_size_select_error }}";
+  </script>
   <script src="{{ 'react.min.js' | asset_url }}"></script>
   <script src="{{ 'react-dom.min.js' | asset_url }}"></script>
   <script src="{{ 'jquery-2.2.4.min.js' | asset_url }}"></script>
