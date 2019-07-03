@@ -83,8 +83,9 @@
 
 
     {% comment %} :: ROW #2 -- Telephone, Payment and Trust Icons :: {% endcomment %}
-    <div class="row footer--bottom-row">
-      <div class="brands--telephone">
+    <div class="row footer--bottom-row" itemscope itemtype="http://schema.org/LocalBusiness">
+      <h6 itemprop="name">{{ shop.name }}</h6>
+      <div class="brands--telephone" itemprop="telephone">
         <a href="tel:{{ section.settings.tel_number }}"><h4>TEL</h4><span>{{ section.settings.tel_text }}</span></a>
       </div><!-- .brands--telephone -->
 
