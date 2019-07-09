@@ -98,7 +98,7 @@
             "position": 2,
             "name": "{{ blog.title }}",
             "item": "{{ shop.url }}{{ blog.url }}"
-        },
+        }
     {% elsif template contains "collection" %}
 
         {% if current_tags.size > 0 %}
@@ -113,7 +113,7 @@
                 "position": 3,
                 "name": "{{ current_tags.first }}",
                 "item": "{{ shop.url }}{{ collection.url }}"
-            },
+            }
         {% else %}
             {
                 "@type": "ListItem",
