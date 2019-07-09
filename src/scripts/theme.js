@@ -3198,6 +3198,7 @@ function debounce(fn, wait, immediate) {
     $(".variant-size-select-error").removeClass('hide');
     $(".swatch.size .current-option").html('');
   });
+  
   $(document).ready(function(){
       $('.swatch.size input:checked').each(function(){
         $(this).prop('checked',false);
@@ -3206,14 +3207,17 @@ function debounce(fn, wait, immediate) {
       $('.add.AddtoCart').addClass('disable');
       $(".variant-size-select-error").html('Please select a size');
   });
+
   $(document).on('change','.swatch.size input',function(){
     $('.add.AddtoCart').attr('type','submit');
     $('.add.AddtoCart').removeClass('disable');
     $(".variant-size-select-error").addClass('hide');
   });
 
+  // this event call when user is select size and click on add to cart button
+  // for display "select size" related error on frontstore
   $(document).on('click','input[type=button].add.AddtoCart',function(){
-    $(".variant-size-select-error").html('Please select a size to add to cart');
+    $(".variant-size-select-error").html(window.variant_size_select_error);
     $(".variant-size-select-error").removeClass('hide');
   });
 
