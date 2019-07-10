@@ -45,23 +45,23 @@
 
   {% capture email_title %}
     {% if item_count == 1 %}
-      You left an item in your cart
+      Vous avez laissé un article dans votre panier
     {% else %}
-      You left items in your cart
+      Vous avez laissé des articles dans votre panier
     {% endif %}
   {% endcapture %}
   {% capture email_body %}
     {% if billing_address.first_name %}
       {% if item_count == 1 %}
-        Hi {{ billing_address.first_name }}, you added an item to your shopping cart and haven't completed your purchase. You can complete it now while it's still available.
+        Bonjour {{ billing_address.first_name }}, vous avez ajouté un article à votre panier de magasinage et n’avez pas conclu votre achat. Vous pouvez conclure l’achat tant que l’article est disponible.
       {% else %}
-        Hi {{ billing_address.first_name }}, you added items to your shopping cart and haven't completed your purchase. You can complete it now while they're still available.
+        Bonjour {{ billing_address.first_name }}, vous avez ajouté des articles à votre panier de magasinage et n’avez pas conclu votre achat. Vous pouvez conclure l’achat tant que les articles sont disponibles.
       {% endif %}
     {% else %}
       {% if item_count == 1 %}
-        Hi, you added an item to your shopping cart and haven't completed your purchase. You can complete it now while it's still available.
+        Bonjour,  vous avez ajouté un article à votre panier de magasinage et n’avez pas conclu votre achat. Vous pouvez conclure l’achat tant que l’article est disponible.
       {% else %}
-        Hi, you added items to your shopping cart and haven't completed your purchase. You can complete it now while they're still available.
+        Bonjour, vous avez ajouté des articles à votre panier de magasinage et n’avez pas conclu votre achat. Vous pouvez conclure l’achat tant que les articles sont disponibles.
       {% endif %}
     {% endif %}
   {% endcapture %}
