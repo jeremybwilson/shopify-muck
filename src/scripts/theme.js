@@ -2090,7 +2090,7 @@ theme.ProductForm = function (context, events) {
 
   (function initializeVariants() {
     // Select active variant to ensure variant ID matches the URL
-    optionSelectors.selectVariantFromDropdown({ propStateCall: true });
+    // optionSelectors.selectVariantFromDropdown({ propStateCall: true });
 
     // Set availability to only cross out option1 if all corresponding variants are unavailable
     var variants = product.variants.slice(0)
@@ -2103,9 +2103,9 @@ theme.ProductForm = function (context, events) {
       return acc;
     }, [])
 
-    availableOption1.forEach(option => {
-      $(`[data-swatch-value=${option}]`).removeClass('soldout');
-    });
+    // availableOption1.forEach(option => {
+    //   $(`[data-swatch-value=${option}]`).removeClass('soldout');
+    // });
   })();
 
   (function single_option_selectors() {
@@ -3051,6 +3051,25 @@ theme.Search = (function() {
   return Search;
 })();
 
+/*============================================================================
+  Blog template
+==============================================================================*/
+theme.Blog = (function() {
+  function Blog(container) {
+    $(document).ready( () => {
+      // Sorting blog article based on created_at 
+      $(".article-loop-container-sort").html($(".article-loop-container-sort .article-index").sort(function (a, b) {
+        var a_no = parseInt(a.getAttribute('data-time'));
+        var b_no = parseInt(b.getAttribute('data-time'));
+        return a_no == b_no ? 0 : a_no >  b_no ? -1 : 1
+      }));
+    });
+  }
+
+  Blog.prototype = _.assignIn({}, Blog.prototype, {});
+  return Blog;
+})();
+
 
 
 /*============================================================================
@@ -3072,6 +3091,7 @@ $(document).ready(function() {
   sections.register('mobile-navigation', theme.mobileNav);
   sections.register('product-section', theme.Product);
   sections.register('search-template', theme.Search);
+  sections.register('blog-template', theme.Blog);
 });
 
 /*============================================================================
@@ -3169,21 +3189,38 @@ function debounce(fn, wait, immediate) {
   });
 
   $(document).on('change','.swatch.color input',function(){
-    var var_type = $(this).attr('name');
-    var var_value = $(this).attr('value');
-    if(var_type == "color"){
-      var product = document.querySelector(".product-json").innerHTML,
-        product = JSON.parse(product || '{}');
-      var variants = product.variants;
-      $.each(variants, function(key,value) {
-        if(value.option1 == var_value && value.available){
-          $('#swatch-2-'+ value.option2.toLowerCase()).prop('checked', true);
-          $('[data-option="option2"]').val(value.option2).trigger('change');
-          return false;
-        }
-      });
-    }
+    $('.swatch.size input:checked').each(function(){
+      $(this).prop('checked',false);
+    });
+    $('.add.AddtoCart').attr('type','button');
+    $('.add.AddtoCart').addClass('disable');
+    $(".variant-size-select-error").html('Please select a size');
+    $(".variant-size-select-error").removeClass('hide');
+    $(".swatch.size .current-option").html('');
   });
+  
+  $(document).ready(function(){
+      $('.swatch.size input:checked').each(function(){
+        $(this).prop('checked',false);
+      });
+      $('.add.AddtoCart').attr('type','button');
+      $('.add.AddtoCart').addClass('disable');
+      $(".variant-size-select-error").html('Please select a size');
+  });
+
+  $(document).on('change','.swatch.size input',function(){
+    $('.add.AddtoCart').attr('type','submit');
+    $('.add.AddtoCart').removeClass('disable');
+    $(".variant-size-select-error").addClass('hide');
+  });
+
+  // this event call when user is select size and click on add to cart button
+  // for display "select size" related error on frontstore
+  $(document).on('click','input[type=button].add.AddtoCart',function(){
+    $(".variant-size-select-error").html(window.variant_size_select_error);
+    $(".variant-size-select-error").removeClass('hide');
+  });
+
   function isTouchDevice() {
     return true == ("ontouchstart" in window || window.DocumentTouch && document instanceof DocumentTouch);
   }
