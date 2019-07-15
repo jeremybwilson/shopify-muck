@@ -959,4 +959,40 @@ div#related.bottom-related {
 }
 @include mq( 'phone' ){
   .quick-boot-img{margin:0 auto;margin-bottom:30px !important;}
-} 
+}
+.row ul#social-icons {
+  text-align: center;
+  z-index: 5;
+  position: relative;
+  list-style: none;
+  min-height: 1px;
+  margin: -50px 40px;
+  width: 100%;
+  font-size: 10px;
+  li {
+    text-align: left;
+    display: inline-block;
+    padding: 0 0 0 20px;
+    vertical-align: middle;
+    .fa-2x {
+      font-size: 2em;
+      color: #164732;
+    }
+  }
+}
+
+.mobile-product-photos--wrapper ul#social-icons {
+    text-align: center;
+    font-size: 10px;
+    margin: 35px 0px;
+}
+@include mq('tablet') {
+  .row ul#social-icons {
+    margin: 0px;
+  }
+ }
+ @include mq('lap') {
+  .row ul#social-icons {
+    margin: -20px 10px;
+  }
+ }
