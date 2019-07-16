@@ -1,0 +1,29 @@
+<ul id="social-icons" class="social-share desktop-4 tablet-2 mobile-3">
+    <li>
+        <a aria-label="Facebook" href="https://www.facebook.com/sharer/sharer.php?u={{ shop.url | append: share_permalink }}" target="_blank">
+            <i class="fa fa-facebook fa-2x"></i>
+        </a>
+    </li>
+    <li>
+        <a aria-label="Twitter" href="https://twitter.com/intent/tweet?url={{ shop.url | append: share_permalink }}" target="_blank">
+            <i class="fa fa-twitter fa-2x"></i>
+        </a>
+    </li>
+    <li>
+        <a aria-label="Pintrest" href="//pinterest.com/pin/create/button/?url={{ shop.url | append: share_permalink }}&amp;media={{ share_image | img_url: '1024x1024' }}&amp;description={{ share_title | url_param_escape }}" target="_blank">
+        <i class="fa fa-pinterest-p fa-2x"></i>
+        </a>
+    </li>
+    <li>
+        <a aria-label="Google+" href="https://plus.google.com/share?url={{ shop.url | append: share_permalink }}" target="_blank">
+        <i class="fa fa-google-plus fa-2x"></i>
+        </a>
+    </li>
+    <li>
+        <a aria-label="Mail to" href="mailto:?body={{ shop.url | append: share_permalink }}" target="_blank">
+        <i class="fa fa-envelope fa-2x"></i>
+        </a>
+    </li>
+    
+</ul>
+<div class="clear"></div>

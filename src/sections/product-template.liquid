@@ -7,6 +7,16 @@
 {% unless current_variant.available %}
   {% assign current_variant = product.first_available_variant %}
 {% endunless %}
+{% assign tag_exist = false %}
+{% assign anniversary_tag_exist = false %}
+{% for tag in product.tags %}
+  {% if tag == settings.bis_hide_tag %}
+    {% assign tag_exist = true %}
+  {% endif %}
+  {% if tag == settings.anniversary_tag %}
+    {% assign anniversary_tag_exist = true %}
+  {% endif %}
+{% endfor %}
 <div 
   id="product-{{ product.id }}"
   class="product-page product-template"
@@ -51,6 +61,9 @@
     <a class="mobile-product-carousel--next">
       {% include 'svg-icon-caret-right' %}
     </a>
+    {%- if anniversary_tag_exist == true -%}
+      {% include'social-sharing',share_title: product.title, share_permalink: product.url, share_image: product %}
+    {%- endif -%}
 
   </div><!-- .mobile-product-photos--wrapper -->
 
@@ -67,18 +80,12 @@
         {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
         {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
       {%- endif -%}
+      {%- if anniversary_tag_exist == true -%}
+        {% include'social-sharing',share_title: product.title, share_permalink: product.url, share_image: product %}
+      {%- endif -%}
     </div>
 
     <div id="product-right" class="{% if section.settings.related_products == 'right' %}desktop-7{% else %}desktop-6{% endif %}">
-      <div>
-      {% assign tag_exist = false %}
-      {% for tag in product.tags %}
-        {% if tag == settings.bis_hide_tag %}
-          {% assign tag_exist = true %}
-        {% endif %}
-      {% endfor %}
-      </div>
-
       <div id="product-description" class="{% if section.settings.related_products == 'right' %}desktop-10 tablet-6 mobile-3 {% endif %} {% if tag_exist %} hide_bis {% endif %}">
         {% if collection and section.settings.product_nav %}
           <div class="product-navigation">
@@ -161,6 +168,38 @@
           </div>
         {% endif %}
       {% endunless %}
+      {% if template != 'product.quick' and section.settings.video_url != "" and anniversary_tag_exist == true %}
+        <div class="sidebr-video">
+          <img class="sidebr-video-img" src="{{ 'video-screen.jpg' | asset_url }}">
+          <a href="#headerPopup" id="headerVideoLink" target="_blank" class="vid-ply-btn btn btn-outline-danger popup-modal"><span>Play</span></a> 
+            </div>
+        <div id="headerPopup" class="mfp-hide embed-responsive embed-responsive-21by9">
+          <video id="BgVideo_1" controls="true">
+            <source src="{{ section.settings.video_url }}" type="video/mp4">
+            Your browser does not support HTML5 video.
+          </video>
+        </div>
+        <script src="{{ 'jquery.magnific-popup.js' | asset_url }}"></script>
+        <script>
+          $( document ).ready(function() {
+            $('#headerVideoLink').magnificPopup({
+              type:'inline',
+              midClick: true, // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
+              mainClass: 'mfg-addvideo',
+              callbacks: {
+                open: function() {
+                  // Start Video when popup open
+                  $('.embed-responsive').find('video').get(0).play();
+                },
+                close: function() {
+                  // Will pause the video when popup is closed
+                  $('.embed-responsive').find('video').get(0).pause();
+                }
+              }
+            });
+          });
+        </script>
+      {% endif %}
     </div>
 
   </div><!-- .row -->
@@ -217,6 +256,11 @@
   {% endunless %}
 
   <div class="clear"></div>
+  {% if template != 'product.quick' and anniversary_tag_exist == true %}
+    <div id="anniversary-content">
+      {{ pages.pdp-anniversary.content }}
+    </div>
+  {% endif %}
   {% unless template == 'product.quick' %}
     {% comment %} BOTTOM CONTENT {% endcomment %}
 
@@ -509,6 +553,11 @@
         "type": "page",
         "id": "size_chart_page",
         "label": "Size Chart Page"
+      },
+      {
+        "type": "url",
+        "id": "video_url",
+        "label": "Video URL For 20th Anniversary"
       }
     ]
   }
