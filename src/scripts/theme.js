@@ -194,7 +194,7 @@ require( 'es6-object-assign/auto' ); //812 bytes, pretty safe and small :D
         return false;
       });
 
-      this.$nodes.page.on('click.drawer', $.proxy(function () {
+      this.$nodes.page.on('click.drawer, .PageOverlay', $.proxy(function () {
         this.close();
         return false;
       }, this));

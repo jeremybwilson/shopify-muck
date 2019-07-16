@@ -130,6 +130,7 @@
   {% include 'timber-cart' %}
 
   <div class="shifter-page{% if settings.ajax_cart_method == 'drawer' %} is-moved-by-drawer{% endif %}" id="PageContainer">
+    <div class="PageOverlay"></div>
     <div class="page-wrap">
 
       {% section 'header' %}
@@ -206,7 +207,6 @@
     {% section 'newsletter' %}
     {% section 'footer' %}
   </div> <!-- close the shifter-page class -->
-  <div class="PageOverlay"></div>
 
 
   <!-- Global Components
