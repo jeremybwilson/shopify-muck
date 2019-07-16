@@ -409,9 +409,9 @@ $width-unit: ( 25 / 24 ) * 1%;
           .row {
             display: flex;
             width: 100 + ( $width-unit * 2);
-            padding: 45px 10%;
+            padding:75px 5%;
             align-items: center;
-            background-color: $color--orange-1;        
+            background-color: #983820;
           }  
           h2 {
             text-align: left;
@@ -573,6 +573,49 @@ $width-unit: ( 25 / 24 ) * 1%;
 }
 .mobile{
   ol {
-    list-style-type: upper-alpha;
+    list-style-type:none;
+  }
+}
+.what-goes-to{
+  .mobile{
+    display:none;
+    ol{
+      list-style-position:none;
+      margin-top: 30px;
+      counter-reset: item;
+    }
+  }
+}
+
+@include mq('phone'){
+  .what-goes-to{
+    .mobile{
+      display:block;
+      li {
+        color: rgba(255, 255, 255, 0.7);
+        text-align: left;
+        margin-bottom: 17px;
+        font-size: 14px;
+        padding-left:8px;
+        position: relative;
+        &:before {
+          position: absolute;
+          width: 29px;
+          height: 29px;
+          border: 1px solid rgba(255, 255, 255, 0.7);
+          border-radius: 50%;
+          left: -29px;
+          top: -4px;
+          display: inline-block;
+          content: counter(item,upper-alpha);
+          counter-increment: item;
+          text-align: center;
+          padding: 2px 0;
+        }
+      }
+    }
+    .desktop{
+      display:none;
+    }
   }
 }
