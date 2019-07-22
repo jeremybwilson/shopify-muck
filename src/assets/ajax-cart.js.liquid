@@ -150,6 +150,7 @@ ShopifyAPI.addItemById = function( variantId, callback, errorCallback, isGift ) 
 
 // Get from cart.js returns the cart in JSON
 ShopifyAPI.getCart = function(callback) {
+  jQuery('.PageOverlay').addClass('active');
   jQuery.getJSON('/cart.js', function (cart, textStatus) {
     if ((typeof callback) === 'function') {
       callback(cart);
