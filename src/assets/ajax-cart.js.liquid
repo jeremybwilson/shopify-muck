@@ -544,7 +544,7 @@ var ajaxCart = (function(module, $) {
   };
 
   adjustCart = function () {
-    var removeText = '{{ settings.ajax_cart_remove_text }}';
+    // var removeText = '{{ settings.ajax_cart_remove_text }}';
     // Delegate all events because elements reload with the cart
 
     // Add or remove from the quantity
@@ -563,13 +563,13 @@ var ajaxCart = (function(module, $) {
       } else {
         qty -= 1;
 
-        if ( qty <= 0 ) {
-          if ( confirm(removeText) ) {
-            qty = 0;
-          } else {
-            return false;
-          }
-        }
+        // if ( qty <= 0 ) {
+        //   if ( confirm(removeText) ) {
+        //     qty = 0;
+        //   } else {
+        //     return false;
+        //   }
+        // }
       }
 
       // If it has a data-line, update the cart.
@@ -586,7 +586,7 @@ var ajaxCart = (function(module, $) {
       var $el = $(this),
           line = $el.data('line');
 
-      if (confirm(removeText) && line) {
+      if (line) {
         updateQuantity(line, 0);
       } else {
         return false;
