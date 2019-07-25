@@ -2063,22 +2063,43 @@ theme.ProductForm = function (context, events) {
     return false;
   }
 
-  var optionSelectors = new Shopify.OptionSelectors("product-select-" + product.id, {
+  new Shopify.OptionSelectors("product-select-" + product.id, {
     product: product,
     onVariantSelected: function(variant, selector) {
 
-      $('.variant-inventory-one-unit').html("");
-      if(inv_qty[ variant.id ] == 1){
-        $('.variant-inventory-one-unit').html($('.variant-inventory-one-unit').attr("data-callout"));
-      }
-
       if ( !variant ) {
-        events.trigger("variantunavailable");
+        var mainOption = $(selector.selectors[0].element).val()
+        var option = $(selector.variantIdField).find('option').filter(function () {
+          return $(this).text().indexOf(mainOption) !== -1
+        })[0]
+
+        if (option) {
+          var $option = $(option)
+          var optionValue = $option.val()
+          var correspondingVariant = selector.product.variants.filter(function (variant) {
+            return variant.id.toString() === optionValue.toString()
+          })[0]
+
+          events.trigger("variantunavailable", correspondingVariant);
+
+          if (correspondingVariant.featured_image) {
+            events.trigger('variantchange:image', correspondingVariant.featured_image.id);
+          }
+        } else {
+          events.trigger("variantunavailable");
+        }
+
+        events.trigger("variantchange", correspondingVariant);
         return;
       }
 
       if ( product.variants.length == 1 ) {
         return;
+      }
+
+      $('.variant-inventory-one-unit').html("");
+        if(inv_qty[ variant.id ] == 1){
+          $('.variant-inventory-one-unit').html($('.variant-inventory-one-unit').attr("data-callout"));
       }
 
       events.trigger("variantchange", variant);
@@ -2092,26 +2113,6 @@ theme.ProductForm = function (context, events) {
     },
     enableHistoryState: config.enable_history
   });
-
-  (function initializeVariants() {
-    // Select active variant to ensure variant ID matches the URL
-    // optionSelectors.selectVariantFromDropdown({ propStateCall: true });
-
-    // Set availability to only cross out option1 if all corresponding variants are unavailable
-    var variants = product.variants.slice(0)
-    var availableOption1 = product.variants.reduce((acc, cur) => {
-      if (cur.available && acc.indexOf(cur.option1 === -1)) {
-        var option = theme.Utils.handleize(cur.option1);
-        acc.push(option);
-      }
-
-      return acc;
-    }, [])
-
-    // availableOption1.forEach(option => {
-    //   $(`[data-swatch-value=${option}]`).removeClass('soldout');
-    // });
-  })();
 
   (function single_option_selectors() {
     // function for the dropdowns
