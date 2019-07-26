@@ -1,3 +1,7 @@
+{% capture notification_template_name %}gift_card_notification{% endcapture %}
+{% capture full_email_template_params %}?utm_source=tran&utm_medium=email&utm_campaign={{ notification_template_name }}{% endcapture %}
+{% capture font_family_css %}font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;{% endcapture %}
+
 {% capture email_title %}Your gift card is now available! {% endcapture %}
 {% capture email_body %}
   {% if gift_card.customer %}
