@@ -36,7 +36,7 @@
     <div class="yotpo-custom__summary">
       <div class="yotpo-custom__chart">
         <div class="yotpo-custom__chart--recommend">
-          100% of customers recommend this product
+          <span class="yotpo-custom__chart--recommend-percent">100</span>% of customers recommend this product
         </div>
 
         <div class="yotpo-custom__chart--widget yotpo-custom__chart--size">
@@ -97,7 +97,7 @@
       <div class="yotpo-custom__reviews">
         <div class="yotpo-custom__divider">
           <div class="yotpo-custom__tab--reviews">
-            Reviews (4)
+            Reviews (<span class="yotpo-custom__tab--reviews-count">0</span>)
           </div>
         </div>
 
@@ -177,6 +177,7 @@
       var totalReviewsCount = bottomLine && bottomLine.total_review;
       var totalReviewsCountTxt = totalReviewsCount ? totalReviewsCount + ' Review' + (totalReviewsCount > 1 ? 's' : ''): '0 Review';
       $('.yotpo-custom__reviews-count .yotpo-custom__link').text(totalReviewsCountTxt);
+      $('.yotpo-custom__tab--reviews-count').text(totalReviewsCount || 0);
 
       // average score by 5 stars
       var averageScore = bottomLine && bottomLine.average_score;
@@ -185,6 +186,14 @@
         averageStarPercentage = (averageScore / 5) * 100 + '%';
       }
       $('.yotpo-custom__stars .stars-outer .stars-inner').css('width', averageStarPercentage);
+
+      // calculate recommendation percent for scores higher than 3 stars and 3 star.
+      var countHigher3 = bottomLine && bottomLine.star_distribution && (bottomLine.star_distribution['5'] + bottomLine.star_distribution['4'] + bottomLine.star_distribution['3']);
+      var recommendPercent = 0;
+      if (countHigher3 && totalReviewsCount) {
+        recommendPercent = countHigher3 / totalReviewsCount * 100;
+      }
+      $('.yotpo-custom__chart--recommend-percent').text(recommendPercent);
     };
 
 
