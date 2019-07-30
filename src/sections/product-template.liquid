@@ -288,8 +288,11 @@
     {% if settings.yotpo_enable_flag == true and settings.international_store_version != blank %}
       <h2 class="yotpo-header">Reviews</h2>
       <div class="yotpo-summary-snippet">
-      {% include 'yotpo-product-snippet' %}</div>
+      {% include 'yotpo-product-snippet' %}
+      </div>
       {% include 'yotpo-product-summary' %}
+
+      {% include 'yotpo-product-snippet-custom-design' %}
 
       {% if product.metafields.yotpo.reviews_count and product.metafields.yotpo.reviews_count != "0" %}	
         <div class="row yotpo-aggregate-rating-text">	

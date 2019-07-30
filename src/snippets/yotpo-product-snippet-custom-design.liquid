@@ -1,0 +1,72 @@
+<!--requirements:-->
+<!--Font-awesome-->
+
+<div class="yotpo-product-snippet-custom-design"
+     data-appkey="gzejKiOGN46xeB5iurqalrS7dI7zEUIMZ9OCF4MM"
+     data-domain="{{shop.permanent_domain | escape }}"
+     data-product-id="{{ product.id }}"
+     data-product-models="{{ product.id }}"
+     data-name="{{ product.title | escape }}"
+     data-url="{{ shop.url }}{{ product.url }}"
+     data-image-url="{{ product.featured_image | product_img_url: 'large' |replace: '?', '%3F' | replace: '&','%26'}}"
+     data-description="{{ product.description | escape }}"
+     data-bread-crumbs="{% for tag in product.tags %}{{ tag | escape }};{% endfor %}">
+  <div class="yotpo-custom__wrapper">
+    <div class="yotpo-custom__header">
+      <h2>
+        Reviews
+      </h2>
+      <div class="yotpo-custom__stars">
+        <div class="stars-outer">
+          <div class="stars-inner"></div>
+        </div>
+      </div>
+      <div class="yotpo-custom__reviews-count">
+        <a href="#" class="yotpo-custom__link">1 Review</a>
+      </div>
+    </div>
+
+    <div class="yotpo-custom__divider">
+      <a class="yotpo-custom__link yotpo-custom__btn--write-review">
+        <span class="fa fa-pencil-square-o"></span>
+        <span class="text">Write a Review</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  function ready(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading"){
+      fn();
+    } else {
+      document.addEventListener('DOMContentLoaded', fn);
+    }
+  }
+  ready(function () {
+    var $customYotpo = $('.yotpo-product-snippet-custom-design');
+    var yotpoAppKey = $customYotpo.data('appkey');
+    var pId = $customYotpo.data('product-id');
+
+// total number of stars
+    var starTotal = 5;
+
+    var starPercentage = (2.8 / starTotal) * 100 + '%';
+    // var starPercentageRounded = (Math.round(starPercentage / 10) * 10) + '%';
+    document.querySelector(`.yotpo-custom__stars .stars-outer .stars-inner`).style.width = starPercentage;
+
+
+    console.log('Debug:', yotpoAppKey);
+    $.ajax({
+      url: 'https://api.yotpo.com/v1/widget/'  + yotpoAppKey + '/products/' + pId + '/reviews.json',
+      type: 'GET',
+      success: function (response) {
+        console.log('API success: ', response);
+      },
+      error: function (err) {
+        console.log('can\'t get reviews data');
+      }
+    });
+  });
+</script>
