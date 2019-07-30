@@ -22,7 +22,7 @@
         </div>
       </div>
       <div class="yotpo-custom__reviews-count">
-        <a href="#" class="yotpo-custom__link">1 Review</a>
+        <a href="#" class="yotpo-custom__link">0 Review</a>
       </div>
     </div>
 
@@ -170,23 +170,33 @@
     var yotpoAppKey = $customYotpo.data('appkey');
     var pId = $customYotpo.data('product-id');
 
-// total number of stars
-    var starTotal = 5;
+    var updateReviewWidget = function (response) {
+      var bottomLine = response && response.response && response.response.bottomline;
 
-    var starPercentage = (2.8 / starTotal) * 100 + '%';
-    // var starPercentageRounded = (Math.round(starPercentage / 10) * 10) + '%';
-    document.querySelector(`.yotpo-custom__stars .stars-outer .stars-inner`).style.width = starPercentage;
+      // reviews count
+      var totalReviewsCount = bottomLine && bottomLine.total_review;
+      var totalReviewsCountTxt = totalReviewsCount ? totalReviewsCount + ' Review' + (totalReviewsCount > 1 ? 's' : ''): '0 Review';
+      $('.yotpo-custom__reviews-count .yotpo-custom__link').text(totalReviewsCountTxt);
+
+      // average score by 5 stars
+      var averageScore = bottomLine && bottomLine.average_score;
+      var averageStarPercentage = '0%';
+      if (averageScore) {
+        averageStarPercentage = (averageScore / 5) * 100 + '%';
+      }
+      $('.yotpo-custom__stars .stars-outer .stars-inner').css('width', averageStarPercentage);
+    };
 
 
-    console.log('Debug:', yotpoAppKey);
     $.ajax({
       url: 'https://api.yotpo.com/v1/widget/'  + yotpoAppKey + '/products/' + pId + '/reviews.json',
       type: 'GET',
       success: function (response) {
         console.log('API success: ', response);
+        updateReviewWidget(response);
       },
       error: function (err) {
-        console.log('can\'t get reviews data');
+        console.log('can\'t get reviews data', err);
       }
     });
   });
