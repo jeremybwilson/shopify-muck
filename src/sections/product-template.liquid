@@ -17,7 +17,7 @@
     {% assign anniversary_tag_exist = true %}
   {% endif %}
 {% endfor %}
-<div 
+<div
   id="product-{{ product.id }}"
   class="product-page product-template"
   data-product-id="{{ product.id }}"
@@ -170,9 +170,10 @@
       {% endunless %}
       {% if template != 'product.quick' and section.settings.video_url != "" and anniversary_tag_exist == true %}
         <div class="sidebr-video">
-          <img class="sidebr-video-img" src="{{ 'video-screen.jpg' | asset_url }}">
-          <a href="#headerPopup" id="headerVideoLink" target="_blank" class="vid-ply-btn btn btn-outline-danger popup-modal"><span>Play</span></a> 
-            </div>
+          {% comment %} <img class="sidebr-video-img" src="{{ 'video-screen.jpg' | asset_url }}"> {% endcomment %}
+          <img src="{{ 'video-screen.jpg'| file_url }}" class="sidebr-video-img" />
+          <a href="#headerPopup" id="headerVideoLink" target="_blank" class="vid-ply-btn btn btn-outline-danger popup-modal"><span>Play</span></a>
+        </div>
         <div id="headerPopup" class="mfp-hide embed-responsive embed-responsive-21by9">
           <video id="BgVideo_1" controls="true">
             <source src="{{ section.settings.video_url }}" type="video/mp4">
@@ -291,15 +292,15 @@
       {% include 'yotpo-product-snippet' %}</div>
       {% include 'yotpo-product-summary' %}
 
-      {% if product.metafields.yotpo.reviews_count and product.metafields.yotpo.reviews_count != "0" %}	
-        <div class="row yotpo-aggregate-rating-text">	
-          <div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">	
-          <span itemprop="itemReviewed">{{ product.title }}</span>	
-          has a rating of <span itemprop="ratingValue">{{ product.metafields.yotpo.reviews_average }}</span> stars	
-          based on <span itemprop="ratingCount">{{ product.metafields.yotpo.reviews_count }}</span> reviews.	
-          </div>	
-        </div>	
-      {% endif %}	
+      {% if product.metafields.yotpo.reviews_count and product.metafields.yotpo.reviews_count != "0" %}
+        <div class="row yotpo-aggregate-rating-text">
+          <div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+          <span itemprop="itemReviewed">{{ product.title }}</span>
+          has a rating of <span itemprop="ratingValue">{{ product.metafields.yotpo.reviews_average }}</span> stars
+          based on <span itemprop="ratingCount">{{ product.metafields.yotpo.reviews_count }}</span> reviews.
+          </div>
+        </div>
+      {% endif %}
 
     {% endif %}
 
