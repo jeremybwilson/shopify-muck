@@ -174,9 +174,9 @@
           {%- if section.settings.anniv_thumbnail_img != blank -%}
             {%- assign thumbnail_img_url = section.settings.anniv_thumbnail_img -%}
             {% comment %} <source srcset="{{ mobile_img_url }}" media="(max-width: 767px)"> {% endcomment %}
-            <img src="{{ thumbnail_img_url | file_url }}" class="sidebr-video-img this-is-test" />
+            <img src="{{ thumbnail_img_url }}" class="sidebr-video-img uploaded-image-link" />
           {%- else -%}
-            <img src="{{ 'video-screen-2.jpg'| file_url }}" class="sidebr-video-img" />
+            <img src="{{ 'video-screen-2.jpg'| file_url }}" class="sidebr-video-img static-image-link" />
           {%- endif -%}
           {% comment %} <img src="{{ 'video-screen.jpg'| file_url }}" class="sidebr-video-img" /> {% endcomment %}
 
