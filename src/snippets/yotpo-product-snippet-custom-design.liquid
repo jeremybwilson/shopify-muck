@@ -103,53 +103,53 @@
 
         <div class="yotpo-custom__reviews-list">
           <!--start reviews list-->
-          <div class="yotpo-custom__review-item">
-            <div class="yotpo-custom__review-item--header">
-              <div class="yotpo-custom__review-item--header-info">
-                <div class="yotpo-custom__review-item--header-photo-container">
-                  <div class="yotpo-custom__review-item--header-photo">C</div>
-                  <div class="yotpo-custom__review-item--header-badge">
-                    <span class="fa fa-check-circle"></span>
-                  </div>
-                </div>
-                <div class="yotpo-custom__review-item--header-data">
-                  <div class="yotpo-custom__review-item--header-name-wrapper">
-                    <div class="yotpo-custom__review-item--header-name">Chris</div>
-                    <div class="yotpo-custom__review-item--header-verified">Verified Buyer</div>
-                  </div>
+          <!--<div class="yotpo-custom__review-item">-->
+            <!--<div class="yotpo-custom__review-item&#45;&#45;header">-->
+              <!--<div class="yotpo-custom__review-item&#45;&#45;header-info">-->
+                <!--<div class="yotpo-custom__review-item&#45;&#45;header-photo-container">-->
+                  <!--<div class="yotpo-custom__review-item&#45;&#45;header-photo">C</div>-->
+                  <!--<div class="yotpo-custom__review-item&#45;&#45;header-badge">-->
+                    <!--<span class="fa fa-check-circle"></span>-->
+                  <!--</div>-->
+                <!--</div>-->
+                <!--<div class="yotpo-custom__review-item&#45;&#45;header-data">-->
+                  <!--<div class="yotpo-custom__review-item&#45;&#45;header-name-wrapper">-->
+                    <!--<div class="yotpo-custom__review-item&#45;&#45;header-name">Chris</div>-->
+                    <!--<div class="yotpo-custom__review-item&#45;&#45;header-verified">Verified Buyer</div>-->
+                  <!--</div>-->
 
-                  <div class="yotpo-custom__review-item--header-stars">
-                    <div class="stars-outer">
-                      <div class="stars-inner"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="yotpo-custom__review-item--header-date">
-                01/28/19
-              </div>
-            </div>
+                  <!--<div class="yotpo-custom__review-item&#45;&#45;header-stars">-->
+                    <!--<div class="stars-outer">-->
+                      <!--<div class="stars-inner"></div>-->
+                    <!--</div>-->
+                  <!--</div>-->
+                <!--</div>-->
+              <!--</div>-->
+              <!--<div class="yotpo-custom__review-item&#45;&#45;header-date">-->
+                <!--01/28/19-->
+              <!--</div>-->
+            <!--</div>-->
 
-            <div class="yotpo-custom__review-item--body">
-              <div class="yotpo-custom__review-item--body-title">
-                Awesome boots!
-              </div>
-              <p class="yotpo-custom__review-item--body-content">
-                Easy to slip on, comfortable to wear, and perfect for rain, muddy conditions, or snow. Love these boots!
-              </p>
-              <div class="yotpo-custom__review-item--body-vote">
-                <div class="yotpo-custom__review-item--body-vote-text">Was this Review Helpful?</div>
-                <div class="yotpo-custom__review-item--body-vote-up">
-                  <span class="fa fa-thumbs-up"></span>
-                  <span class="yotpo-custom__review-item--body-vote-upcount">0</span>
-                </div>
-                <div class="yotpo-custom__review-item--body-vote-down">
-                  <span class="fa fa-thumbs-down"></span>
-                  <span class="yotpo-custom__review-item--body-vote-downcount">0</span>
-                </div>
-              </div>
-            </div>
-          </div>
+            <!--<div class="yotpo-custom__review-item&#45;&#45;body">-->
+              <!--<div class="yotpo-custom__review-item&#45;&#45;body-title">-->
+                <!--Awesome boots!-->
+              <!--</div>-->
+              <!--<p class="yotpo-custom__review-item&#45;&#45;body-content">-->
+                <!--Easy to slip on, comfortable to wear, and perfect for rain, muddy conditions, or snow. Love these boots!-->
+              <!--</p>-->
+              <!--<div class="yotpo-custom__review-item&#45;&#45;body-vote">-->
+                <!--<div class="yotpo-custom__review-item&#45;&#45;body-vote-text">Was this Review Helpful?</div>-->
+                <!--<div class="yotpo-custom__review-item&#45;&#45;body-vote-up">-->
+                  <!--<span class="fa fa-thumbs-up"></span>-->
+                  <!--<span class="yotpo-custom__review-item&#45;&#45;body-vote-upcount">0</span>-->
+                <!--</div>-->
+                <!--<div class="yotpo-custom__review-item&#45;&#45;body-vote-down">-->
+                  <!--<span class="fa fa-thumbs-down"></span>-->
+                  <!--<span class="yotpo-custom__review-item&#45;&#45;body-vote-downcount">0</span>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
           <!--end reviews list-->
         </div>
 
@@ -215,8 +215,15 @@
     * Param: review (object)
     * */
     var catchFirstLetter = function (review) {
-      var letter = '';
-      return letter;
+      return review.user && review.user.display_name && review.user.display_name.charAt(0);
+    };
+    /*
+    * date formatter
+    * Param: review (object)
+    * */
+    var dateFormatter = function (review) {
+      var newDate = new Date(review.created_at);
+      return newDate.getMonth() + '/' + newDate.getDate() + '/' + newDate.getFullYear();
     };
     /*
     * generating review item
@@ -227,10 +234,36 @@
       reviewItem +=      '<div class="yotpo-custom__review-item--header">';
       reviewItem +=        '<div class="yotpo-custom__review-item--header-info">';
       reviewItem +=          '<div class="yotpo-custom__review-item--header-photo-container">';
-      reviewItem +=            '<div class="yotpo-custom__review-item--header-photo">';
-
-
+      reviewItem +=            '<div class="yotpo-custom__review-item--header-photo">' + catchFirstLetter(review) + '</div>';
+      reviewItem +=            '<div class="yotpo-custom__review-item--header-badge"><span class="fa fa-check-circle"></span></div>';
+      reviewItem +=          '</div>';
+      reviewItem +=          '<div class="yotpo-custom__review-item--header-data">';
+      reviewItem +=            '<div class="yotpo-custom__review-item--header-name-wrapper">';
+      reviewItem +=              '<div class="yotpo-custom__review-item--header-name">' + review.user.display_name + '</div>';
+      reviewItem +=              '<div class="yotpo-custom__review-item--header-verified">' + (review.verified_buyer ? 'Verified Buyer' : '') + '</div>';
       reviewItem +=            '</div>';
+      reviewItem +=            '<div class="yotpo-custom__review-item--header-stars">';
+      reviewItem +=              '<div class="yotpo-custom__review-item--header-name"><div class="stars-outer"><div class="stars-inner"></div></div></div>';
+      reviewItem +=            '</div>';
+      reviewItem +=          '</div>';
+      reviewItem +=        '</div>';
+      reviewItem +=        '<div class="yotpo-custom__review-item--header-date">' + dateFormatter(review);
+      reviewItem +=        '</div>';
+      reviewItem +=      '</div>';
+      reviewItem +=      '<div class="yotpo-custom__review-item--body">';
+      reviewItem +=        '<div class="yotpo-custom__review-item--body-title">' + review.title || 'Awesome!';
+      reviewItem +=        '</div>';
+      reviewItem +=        '<p class="yotpo-custom__review-item--body-content">' + review.content || 'This product is very good.';
+      reviewItem +=        '</p>';
+      reviewItem +=        '<div class="yotpo-custom__review-item--body-vote">';
+      reviewItem +=          '<div class="yotpo-custom__review-item--body-vote-text">Was this Review Helpful?</div>';
+      reviewItem +=          '<div class="yotpo-custom__review-item--body-vote-up">';
+      reviewItem +=            '<span class="fa fa-thumbs-up"></span>';
+      reviewItem +=            '<span class="yotpo-custom__review-item--body-vote-upcount">' + review.votes_up || 0 + '</span>';
+      reviewItem +=          '</div>';
+      reviewItem +=          '<div class="yotpo-custom__review-item--body-vote-down">';
+      reviewItem +=            '<span class="fa fa-thumbs-down"></span>';
+      reviewItem +=            '<span class="yotpo-custom__review-item--body-vote-downcount">' + review.votes_down || 0 + '</span>';
       reviewItem +=          '</div>';
       reviewItem +=        '</div>';
       reviewItem +=      '</div>';
@@ -240,6 +273,7 @@
 
     var updateReviewWidget = function (response) {
       var bottomLine = response && response.response && response.response.bottomline;
+      var reviews = response && response.response && response.response.reviews;
 
       // reviews count
       var totalReviewsCount = bottomLine && bottomLine.total_review;
@@ -275,7 +309,9 @@
       }
 
       // generating reviews list
-
+      reviews.forEach(function (review, index) {
+        $('.yotpo-custom__reviews-list').append(generateReviewItem(review));
+      });
 
     };
 
