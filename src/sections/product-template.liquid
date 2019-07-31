@@ -172,9 +172,9 @@
         <div class="sidebr-video">
           {% comment %} <img class="sidebr-video-img" src="{{ 'video-screen.jpg' | asset_url }}"> {% endcomment %}
           {%- if section.settings.anniv_thumbnail_img != blank -%}
-            {%- assign thumbnail_img_url = section.settings.image -%}
+            {%- assign thumbnail_img_url = section.settings.anniv_thumbnail_img -%}
             {% comment %} <source srcset="{{ mobile_img_url }}" media="(max-width: 767px)"> {% endcomment %}
-            <img src="{{ thumbnail_img_url }}" class="sidebr-video-img" />
+            <img src="{{ thumbnail_img_url | file_url }}" class="sidebr-video-img this-is-test" />
           {%- else -%}
             <img src="{{ 'video-screen-2.jpg'| file_url }}" class="sidebr-video-img" />
           {%- endif -%}
@@ -576,12 +576,12 @@
       {
         "type": "url",
         "id": "video_url",
-        "label": "Video URL For 20th Anniversary"
+        "label": "Video URL for 20th Anniversary"
       },
       {
         "type": "image_picker",
         "id": "anniv_thumbnail_img",
-        "label": "20th Anniversary Image Thumbnail (Desktop)"
+        "label": "Image Thumbnail for 20th Anniversary"
       }
     ]
   }
