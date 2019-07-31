@@ -170,7 +170,6 @@
       {% endunless %}
       {% if template != 'product.quick' and section.settings.video_url != "" and anniversary_tag_exist == true %}
         <div class="sidebr-video">
-          {% comment %} <img class="sidebr-video-img" src="{{ 'video-screen.jpg' | asset_url }}"> {% endcomment %}
           {% comment %} 20th Anniversary Video Thumbnail Optional Upload {% endcomment %}
           {%- if section.settings.anniv_thumbnail_img != blank -%}
             {%- assign thumbnail_img_url = section.settings.anniv_thumbnail_img | img_url: '500x' -%}
