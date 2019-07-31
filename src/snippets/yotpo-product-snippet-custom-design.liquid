@@ -152,6 +152,12 @@
           <!--</div>-->
           <!--end reviews list-->
         </div>
+        <div class="yotpo-custom__reviews-loadmore">
+          <a class="yotpo-custom__link yotpo-custom__reviews-btn--loadmore">
+            More reviews
+            <span class="fa fa-caret-up"></span>
+          </a>
+        </div>
 
       </div>
     </div>
@@ -226,6 +232,17 @@
       return newDate.getMonth() + '/' + newDate.getDate() + '/' + newDate.getFullYear();
     };
     /*
+    * get percent for 5 stars
+    * Param: score (number)
+    * */
+    var getPercentForStars = function (score) {
+      var averageStarPercentage = '0%';
+      if (score) {
+        averageStarPercentage = (score / 5) * 100 + '%';
+      }
+      return averageStarPercentage;
+    };
+    /*
     * generating review item
     * Param: review (object)
     * */
@@ -243,7 +260,9 @@
       reviewItem +=              '<div class="yotpo-custom__review-item--header-verified">' + (review.verified_buyer ? 'Verified Buyer' : '') + '</div>';
       reviewItem +=            '</div>';
       reviewItem +=            '<div class="yotpo-custom__review-item--header-stars">';
-      reviewItem +=              '<div class="yotpo-custom__review-item--header-name"><div class="stars-outer"><div class="stars-inner"></div></div></div>';
+      reviewItem +=              '<div class="yotpo-custom__review-item--header-name">';
+      reviewItem +=                '<div class="stars-outer"><div class="stars-inner" style="width: ' + getPercentForStars(review.score) + '"></div></div>';
+      reviewItem +=              '</div>';
       reviewItem +=            '</div>';
       reviewItem +=          '</div>';
       reviewItem +=        '</div>';
@@ -253,7 +272,7 @@
       reviewItem +=      '<div class="yotpo-custom__review-item--body">';
       reviewItem +=        '<div class="yotpo-custom__review-item--body-title">' + review.title || 'Awesome!';
       reviewItem +=        '</div>';
-      reviewItem +=        '<p class="yotpo-custom__review-item--body-content">' + review.content || 'This product is very good.';
+      reviewItem +=        '<p class="yotpo-custom__revyotpo-custom__linkiew-item--body-content">' + review.content || 'This product is very good.';
       reviewItem +=        '</p>';
       reviewItem +=        '<div class="yotpo-custom__review-item--body-vote">';
       reviewItem +=          '<div class="yotpo-custom__review-item--body-vote-text">Was this Review Helpful?</div>';
@@ -283,11 +302,7 @@
 
       // average score by 5 stars
       var averageScore = bottomLine && bottomLine.average_score;
-      var averageStarPercentage = '0%';
-      if (averageScore) {
-        averageStarPercentage = (averageScore / 5) * 100 + '%';
-      }
-      $('.yotpo-custom__stars .stars-outer .stars-inner').css('width', averageStarPercentage);
+      $('.yotpo-custom__stars .stars-outer .stars-inner').css('width', getPercentForStars(averageScore));
 
       // calculate recommendation percent for scores higher than 3 stars and 3 star.
       var countHigher3 = bottomLine && bottomLine.star_distribution && (bottomLine.star_distribution['5'] + bottomLine.star_distribution['4'] + bottomLine.star_distribution['3']);

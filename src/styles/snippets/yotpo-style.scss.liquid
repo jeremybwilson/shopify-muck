@@ -184,6 +184,9 @@ $font-family--yotpo-main: "Gotham A","Gotham B",sans-serif;
             }
 
             .yotpo-custom__reviews-list {
+                max-height: 600px;
+                overflow-y: auto;
+
                 .yotpo-custom__review-item {
                     border-bottom: 1px solid $color--yotpo-font1;
                     padding: 25px 0;
@@ -280,6 +283,23 @@ $font-family--yotpo-main: "Gotham A","Gotham B",sans-serif;
                                 margin-right: 10px;
                             }
                         }
+                    }
+                }
+            }
+
+            .yotpo-custom__reviews-loadmore {
+                margin: 20px 0;
+                text-align: center;
+
+                .yotpo-custom__reviews-btn--loadmore {
+                    font-size: 16px;
+                    font-weight: bold;
+                    letter-spacing: .1rem;
+                    text-transform: uppercase;
+
+                    .fa {
+                        color: $color--yotpo-icon;
+                        margin-left: 10px;
                     }
                 }
             }
