@@ -305,7 +305,7 @@
           "visit_brand_image_one": "shopify:\/\/shop_images\/visit-brand-image-1.png",
           "visit_brand_link_two": "",
           "visit_brand_image_two": "",
-          "visit_brand_link_three": "http:\/\/www.howardleight.com",
+          "visit_brand_link_three": "https:\/\/www.howardleightshootingsports.com\/password",
           "visit_brand_image_three": "shopify:\/\/shop_images\/visit-brand-image-3.png",
           "trust_icon_image_one": "",
           "trust_icon_image_two": "",
@@ -341,19 +341,23 @@
           "show_zoom": true,
           "thumbnails": "left",
           "zoom_image_position": "zoom_over_main",
-          "related_products": "none",
+          "related_products": "bottom",
           "free_shipping_header_text": "Free Shipping & Returns",
           "free_shipping_text": "<p>FREE Shipping and FREE Returns for all ground orders. Orders placed before 2PM EST Monday &ndash; Friday will ship next day. For additional information, visit our <a href=\"\/pages\/shipping-returns\" title=\"Shipping and Return\">Shipping page<\/a>.<\/p>",
-          "show_social": false,
-          "size_chart_page": "size-chart"
+          "show_social": true,
+          "size_chart_page": "size-chart",
+          "video_url": "https:\/\/cdn.shopify.com\/s\/files\/1\/0015\/2525\/2190\/files\/MUCK_BOOTS_ANTHEM_2019.mp4?220827"
         }
       },
       "blog-template": {
         "type": "blog-template",
         "settings": {
-          "image": "",
+          "image": "shopify:\/\/shop_images\/homepage_muckproof_5.31.jpg",
+          "heading": "Stories From The Muck",
+          "blog_nav_bg_color": "#f5f1ed",
+          "blog_nav_font_size": 14,
           "text": "<p>Add some descriptive text to your Blog page.<\/p>",
-          "show_date": true
+          "show_date": false
         }
       },
       "mobile-navigation": {
