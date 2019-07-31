@@ -39,7 +39,7 @@
           <span class="yotpo-custom__chart--recommend-percent">100</span>% of customers recommend this product
         </div>
 
-        <div class="yotpo-custom__chart--widget yotpo-custom__chart--size">
+        <div class="yotpo-custom__chart--widget yotpo-custom__chart--Size">
           <div class="yotpo-custom__chart--widget-header">
             Size
           </div>
@@ -53,7 +53,7 @@
           </div>
         </div>
 
-        <div class="yotpo-custom__chart--widget yotpo-custom__chart--width">
+        <div class="yotpo-custom__chart--widget yotpo-custom__chart--Width">
           <div class="yotpo-custom__chart--widget-header">
             Width
           </div>
@@ -67,7 +67,7 @@
           </div>
         </div>
 
-        <div class="yotpo-custom__chart--widget yotpo-custom__chart--comfort">
+        <div class="yotpo-custom__chart--widget yotpo-custom__chart--Comfort">
           <div class="yotpo-custom__chart--widget-header">
             Comfort
           </div>
@@ -80,7 +80,7 @@
           </div>
         </div>
 
-        <div class="yotpo-custom__chart--widget yotpo-custom__chart--quality">
+        <div class="yotpo-custom__chart--widget yotpo-custom__chart--Quality">
           <div class="yotpo-custom__chart--widget-header">
             Quality
           </div>
@@ -102,6 +102,7 @@
         </div>
 
         <div class="yotpo-custom__reviews-list">
+          <!--start reviews list-->
           <div class="yotpo-custom__review-item">
             <div class="yotpo-custom__review-item--header">
               <div class="yotpo-custom__review-item--header-info">
@@ -149,6 +150,7 @@
               </div>
             </div>
           </div>
+          <!--end reviews list-->
         </div>
 
       </div>
@@ -169,6 +171,72 @@
     var $customYotpo = $('.yotpo-product-snippet-custom-design');
     var yotpoAppKey = $customYotpo.data('appkey');
     var pId = $customYotpo.data('product-id');
+
+    /*
+      * logic for Size, Width, Comfort, Quality
+      * Param: customField (object)
+    */
+    var logicForFeedbackCharts = function (customField) {
+      var leftPosition = '40%';
+      if (customField.title === 'Size' || customField.title === 'Width') {
+        leftPosition = '40%';
+        if (customField.score >= 1 && customField.score < 1.33) {
+          leftPosition = '0';
+        } else if (customField.score >= 1.33 && customField.score < 1.66) {
+          leftPosition = '20%';
+        } else if (customField.score >= 2.33 && customField.score < 2.66) {
+          leftPosition = '60%';
+        } else if (customField.score >= 2.66) {
+          leftPosition = '80%';
+        }
+      }
+
+      if (customField.title === 'Comfort' || customField.title === 'Quality') {
+        leftPosition = '80%';
+        if (customField.score >= 1 && customField.score < 1.2) {
+          leftPosition = '0';
+        } else if (customField.score >= 1.2 && customField.score < 1.4) {
+          leftPosition = '20%';
+        } else if (customField.score >= 1.4 && customField.score < 1.6) {
+          leftPosition = '40%';
+        } else if (customField.score >= 1.6 && customField.score < 1.8) {
+          leftPosition = '60%';
+        }
+      }
+
+      if (customField.title) {
+        $('.yotpo-custom__chart--' + customField.title + ' .yotpo-custom__chart--widget-bar-control').css('left', leftPosition);
+      }
+
+    };
+
+    /*
+    * catch first letter of user's name
+    * Param: review (object)
+    * */
+    var catchFirstLetter = function (review) {
+      var letter = '';
+      return letter;
+    };
+    /*
+    * generating review item
+    * Param: review (object)
+    * */
+    var generateReviewItem = function (review) {
+      var reviewItem = '<div class="yotpo-custom__review-item">';
+      reviewItem +=      '<div class="yotpo-custom__review-item--header">';
+      reviewItem +=        '<div class="yotpo-custom__review-item--header-info">';
+      reviewItem +=          '<div class="yotpo-custom__review-item--header-photo-container">';
+      reviewItem +=            '<div class="yotpo-custom__review-item--header-photo">';
+
+
+      reviewItem +=            '</div>';
+      reviewItem +=          '</div>';
+      reviewItem +=        '</div>';
+      reviewItem +=      '</div>';
+      reviewItem +=    '</div>';
+      return reviewItem;
+    };
 
     var updateReviewWidget = function (response) {
       var bottomLine = response && response.response && response.response.bottomline;
@@ -192,13 +260,28 @@
       var recommendPercent = 0;
       if (countHigher3 && totalReviewsCount) {
         recommendPercent = countHigher3 / totalReviewsCount * 100;
+        recommendPercent = recommendPercent.toFixed(2);
       }
       $('.yotpo-custom__chart--recommend-percent').text(recommendPercent);
+
+      // calculate 4 chart widget's percents
+      var customFields = bottomLine && bottomLine.custom_fields_bottomline;
+      if (customFields && typeof customFields === 'object') {
+        for (var field in customFields) {
+          if (customFields[field]) {
+            logicForFeedbackCharts(customFields[field]);
+          }
+        }
+      }
+
+      // generating reviews list
+
+
     };
 
 
     $.ajax({
-      url: 'https://api.yotpo.com/v1/widget/'  + yotpoAppKey + '/products/' + pId + '/reviews.json',
+      url: 'https://api.yotpo.com/v1/widget/'  + yotpoAppKey + '/products/' + pId + '/reviews.json?page=1&per_page=10',
       type: 'GET',
       success: function (response) {
         console.log('API success: ', response);
