@@ -171,15 +171,13 @@
       {% if template != 'product.quick' and section.settings.video_url != "" and anniversary_tag_exist == true %}
         <div class="sidebr-video">
           {% comment %} <img class="sidebr-video-img" src="{{ 'video-screen.jpg' | asset_url }}"> {% endcomment %}
+          {% comment %} 20th Anniversary Video Thumbnail Optional Upload {% endcomment %}
           {%- if section.settings.anniv_thumbnail_img != blank -%}
-            {%- assign thumbnail_img_url = section.settings.anniv_thumbnail_img -%}
-            {% comment %} <source srcset="{{ mobile_img_url }}" media="(max-width: 767px)"> {% endcomment %}
-            <img src="{{ thumbnail_img_url }}" class="sidebr-video-img uploaded-image-link" />
+            {%- assign thumbnail_img_url = section.settings.anniv_thumbnail_img | img_url: '500x' -%}
+            <img src="{{ thumbnail_img_url }}" class="sidebr-video-img" />
           {%- else -%}
-            <img src="{{ 'video-screen-2.jpg'| file_url }}" class="sidebr-video-img static-image-link" />
+            <img src="{{ 'video-screen-2.jpg'| file_url }}" class="sidebr-video-img" />
           {%- endif -%}
-          {% comment %} <img src="{{ 'video-screen.jpg'| file_url }}" class="sidebr-video-img" /> {% endcomment %}
-
           <a href="#headerPopup" id="headerVideoLink" target="_blank" class="vid-ply-btn btn btn-outline-danger popup-modal"><span>Play</span></a>
         </div>
         <div id="headerPopup" class="mfp-hide embed-responsive embed-responsive-21by9">
