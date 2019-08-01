@@ -17,7 +17,7 @@
     {% assign anniversary_tag_exist = true %}
   {% endif %}
 {% endfor %}
-<div 
+<div
   id="product-{{ product.id }}"
   class="product-page product-template"
   data-product-id="{{ product.id }}"
@@ -170,9 +170,15 @@
       {% endunless %}
       {% if template != 'product.quick' and section.settings.video_url != "" and anniversary_tag_exist == true %}
         <div class="sidebr-video">
-          <img class="sidebr-video-img" src="{{ 'video-screen.jpg' | asset_url }}">
-          <a href="#headerPopup" id="headerVideoLink" target="_blank" class="vid-ply-btn btn btn-outline-danger popup-modal"><span>Play</span></a> 
-            </div>
+          {% comment %} 20th Anniversary Video Thumbnail Optional Upload {% endcomment %}
+          {%- if section.settings.anniv_thumbnail_img != blank -%}
+            {%- assign thumbnail_img_url = section.settings.anniv_thumbnail_img | img_url: '500x' -%}
+            <img src="{{ thumbnail_img_url }}" class="sidebr-video-img" />
+          {%- else -%}
+            <img src="{{ 'video-screen-2.jpg'| file_url }}" class="sidebr-video-img" />
+          {%- endif -%}
+          <a href="#headerPopup" id="headerVideoLink" target="_blank" class="vid-ply-btn btn btn-outline-danger popup-modal"><span>Play</span></a>
+        </div>
         <div id="headerPopup" class="mfp-hide embed-responsive embed-responsive-21by9">
           <video id="BgVideo_1" controls="true">
             <source src="{{ section.settings.video_url }}" type="video/mp4">
@@ -291,15 +297,15 @@
       {% include 'yotpo-product-snippet' %}</div>
       {% include 'yotpo-product-summary' %}
 
-      {% if product.metafields.yotpo.reviews_count and product.metafields.yotpo.reviews_count != "0" %}	
-        <div class="row yotpo-aggregate-rating-text">	
-          <div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">	
-          <span itemprop="itemReviewed">{{ product.title }}</span>	
-          has a rating of <span itemprop="ratingValue">{{ product.metafields.yotpo.reviews_average }}</span> stars	
-          based on <span itemprop="ratingCount">{{ product.metafields.yotpo.reviews_count }}</span> reviews.	
-          </div>	
-        </div>	
-      {% endif %}	
+      {% if product.metafields.yotpo.reviews_count and product.metafields.yotpo.reviews_count != "0" %}
+        <div class="row yotpo-aggregate-rating-text">
+          <div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+          <span itemprop="itemReviewed">{{ product.title }}</span>
+          has a rating of <span itemprop="ratingValue">{{ product.metafields.yotpo.reviews_average }}</span> stars
+          based on <span itemprop="ratingCount">{{ product.metafields.yotpo.reviews_count }}</span> reviews.
+          </div>
+        </div>
+      {% endif %}
 
     {% endif %}
 
@@ -567,7 +573,12 @@
       {
         "type": "url",
         "id": "video_url",
-        "label": "Video URL For 20th Anniversary"
+        "label": "Video URL for 20th Anniversary"
+      },
+      {
+        "type": "image_picker",
+        "id": "anniv_thumbnail_img",
+        "label": "Image Thumbnail for 20th Anniversary"
       }
     ]
   }
