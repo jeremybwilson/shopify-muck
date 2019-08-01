@@ -157,6 +157,9 @@
             More reviews
             <span class="fa fa-caret-up"></span>
           </a>
+          <div class="yotpo-custom__reviews-btn--loading">
+            <span class="fa fa-spinner fa-spin"></span>
+          </div>
         </div>
 
       </div>
@@ -177,6 +180,8 @@
     var $customYotpo = $('.yotpo-product-snippet-custom-design');
     var yotpoAppKey = $customYotpo.data('appkey');
     var pId = $customYotpo.data('product-id');
+    var currentPage = 1;
+    var perPage = 10;
 
     /*
       * logic for Size, Width, Comfort, Quality
@@ -290,9 +295,23 @@
       return reviewItem;
     };
 
+    var showHideMoreReviewsBtn = function (pagination) {
+      if (pagination && pagination.page * pagination.per_page < pagination.total) {
+        $('.yotpo-custom__reviews-loadmore').show();
+        $('.yotpo-custom__reviews-btn--loadmore').show();
+        $('.yotpo-custom__reviews-btn--loading').hide();
+      } else {
+        $('.yotpo-custom__reviews-loadmore').hide();
+      }
+    };
+
     var updateReviewWidget = function (response) {
       var bottomLine = response && response.response && response.response.bottomline;
       var reviews = response && response.response && response.response.reviews;
+      var pagination = response && response.response && response.response.pagination;
+
+      // show/hide more_reviews button
+      showHideMoreReviewsBtn(pagination);
 
       // reviews count
       var totalReviewsCount = bottomLine && bottomLine.total_review;
@@ -327,20 +346,45 @@
       reviews.forEach(function (review, index) {
         $('.yotpo-custom__reviews-list').append(generateReviewItem(review));
       });
-
     };
 
+    var callReviewsAPI = function (page, perPage, loadMore) {
+      $.ajax({
+        url: 'https://api.yotpo.com/v1/widget/'  + yotpoAppKey + '/products/' + pId + '/reviews.json?page=' + page + '&per_page=' + perPage,
+        type: 'GET',
+        success: function (response) {
+          console.log('API success: ', response);
+          if (loadMore) {
+            var pagination = response && response.response && response.response.pagination;
+            var reviews = response && response.response && response.response.reviews;
 
-    $.ajax({
-      url: 'https://api.yotpo.com/v1/widget/'  + yotpoAppKey + '/products/' + pId + '/reviews.json?page=1&per_page=10',
-      type: 'GET',
-      success: function (response) {
-        console.log('API success: ', response);
-        updateReviewWidget(response);
-      },
-      error: function (err) {
-        console.log('can\'t get reviews data', err);
-      }
+            // show/hide more_reviews button
+            showHideMoreReviewsBtn(pagination);
+
+            // generating reviews list
+            (reviews || []).forEach(function (review, index) {
+              $('.yotpo-custom__reviews-list').append(generateReviewItem(review));
+            });
+          } else {
+            updateReviewWidget(response);
+          }
+        },
+        error: function (err) {
+          console.log('can\'t get reviews data', err);
+        }
+      });
+    };
+
+    // listenning clicking more_reviews button
+    $(document).on('click', '.yotpo-custom__reviews-btn--loadmore', function (e) {
+      e.preventDefault();
+      $('.yotpo-custom__reviews-btn--loadmore').hide();
+      $('.yotpo-custom__reviews-btn--loading').show();
+      currentPage++;
+      callReviewsAPI(currentPage, perPage, true);
     });
+
+    // load initial reviews widget
+    callReviewsAPI(currentPage, perPage);
   });
 </script>
