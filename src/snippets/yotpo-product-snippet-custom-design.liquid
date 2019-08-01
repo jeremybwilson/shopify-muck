@@ -252,7 +252,7 @@
     * Param: review (object)
     * */
     var generateReviewItem = function (review) {
-      var reviewItem = '<div class="yotpo-custom__review-item">';
+      var reviewItem = '<div class="yotpo-custom__review-item" data-review-id="' + review.id + '">';
       reviewItem +=      '<div class="yotpo-custom__review-item--header">';
       reviewItem +=        '<div class="yotpo-custom__review-item--header-info">';
       reviewItem +=          '<div class="yotpo-custom__review-item--header-photo-container">';
@@ -281,13 +281,13 @@
       reviewItem +=        '</p>';
       reviewItem +=        '<div class="yotpo-custom__review-item--body-vote">';
       reviewItem +=          '<div class="yotpo-custom__review-item--body-vote-text">Was this Review Helpful?</div>';
-      reviewItem +=          '<div class="yotpo-custom__review-item--body-vote-up">';
+      reviewItem +=          '<div class="yotpo-custom__review-item--body-vote-btn" data-type="up">';
       reviewItem +=            '<span class="fa fa-thumbs-up"></span>';
-      reviewItem +=            '<span class="yotpo-custom__review-item--body-vote-upcount">' + review.votes_up || 0 + '</span>';
+      reviewItem +=            '<span class="yotpo-custom__review-item--body-vote-count">' + review.votes_up || 0 + '</span>';
       reviewItem +=          '</div>';
-      reviewItem +=          '<div class="yotpo-custom__review-item--body-vote-down">';
+      reviewItem +=          '<div class="yotpo-custom__review-item--body-vote-btn" data-type="down">';
       reviewItem +=            '<span class="fa fa-thumbs-down"></span>';
-      reviewItem +=            '<span class="yotpo-custom__review-item--body-vote-downcount">' + review.votes_down || 0 + '</span>';
+      reviewItem +=            '<span class="yotpo-custom__review-item--body-vote-count">' + review.votes_down || 0 + '</span>';
       reviewItem +=          '</div>';
       reviewItem +=        '</div>';
       reviewItem +=      '</div>';
@@ -382,6 +382,18 @@
       $('.yotpo-custom__reviews-btn--loading').show();
       currentPage++;
       callReviewsAPI(currentPage, perPage, true);
+    });
+
+    $(document).on('click', '.yotpo-custom__review-item--body-vote-btn', function (e) {
+      var voteType = $(this).data('type');
+      var yotpoVoteStatus = localStorage.getItem('yotpoReviewsVotes');
+      // var parentTotal = $(this).parent()
+      //
+      // if (yotpoVoteStatus) {
+      //   if (yotpoVoteStatus.yotpoVote && yotpoVoteStatus.yotpoVote[]) {
+      //   }
+      //   localStorage.setItem();
+      // }
     });
 
     // load initial reviews widget
