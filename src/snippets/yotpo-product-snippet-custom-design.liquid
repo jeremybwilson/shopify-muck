@@ -384,16 +384,63 @@
       callReviewsAPI(currentPage, perPage, true);
     });
 
+    // vote on review
     $(document).on('click', '.yotpo-custom__review-item--body-vote-btn', function (e) {
       var voteType = $(this).data('type');
       var yotpoVoteStatus = localStorage.getItem('yotpoReviewsVotes');
-      // var parentTotal = $(this).parent()
-      //
-      // if (yotpoVoteStatus) {
-      //   if (yotpoVoteStatus.yotpoVote && yotpoVoteStatus.yotpoVote[]) {
-      //   }
-      //   localStorage.setItem();
-      // }
+      if (yotpoVoteStatus) {
+        yotpoVoteStatus = JSON.parse(yotpoVoteStatus);
+      }
+
+      var $reviewItem = $(this).closest('.yotpo-custom__review-item');
+      var reviewId = $reviewItem.data('review-id');
+      var alreadyVoted = false;
+      var $voteCount = $(this).find('.yotpo-custom__review-item--body-vote-count');
+      var voteCount = parseInt($voteCount.text());
+
+      if (yotpoVoteStatus) {
+        if (yotpoVoteStatus.yotpoVote && yotpoVoteStatus.yotpoVote[reviewId] && yotpoVoteStatus.yotpoVote[reviewId][voteType]) {
+          $voteCount.text(voteCount - 1);
+          alreadyVoted = true;
+          yotpoVoteStatus.yotpoVote[reviewId][voteType] = false;
+        }
+
+        if (!yotpoVoteStatus.yotpoVote) {
+          yotpoVoteStatus.yotpoVote = {};
+        }
+        if (!yotpoVoteStatus.yotpoVote[reviewId]) {
+          yotpoVoteStatus.yotpoVote[reviewId] = {};
+        }
+        if (!yotpoVoteStatus.yotpoVote[reviewId][voteType] && !alreadyVoted) {
+          yotpoVoteStatus.yotpoVote[reviewId][voteType] = true;
+          $voteCount.text(voteCount + 1);
+        }
+      } else {
+        yotpoVoteStatus = {
+          yotpoVote: {}
+        };
+        yotpoVoteStatus.yotpoVote[reviewId] = {};
+        yotpoVoteStatus.yotpoVote[reviewId][voteType] = true;
+        $voteCount.text(voteCount + 1);
+      }
+      localStorage.setItem('yotpoReviewsVotes', JSON.stringify(yotpoVoteStatus));
+
+      // post vote API
+      var voteUrl = 'https://api.yotpo.com/reviews/'  + reviewId + '/vote/' + voteType;
+      if (alreadyVoted) {
+        voteUrl += '/' + alreadyVoted;
+      }
+      $.ajax({
+        url: voteUrl,
+        type: 'POST',
+        success: function (response) {
+          console.log('Voted: ', response);
+        },
+        error: function (err) {
+          console.log('Error on Vote:', err);
+        }
+      });
+
     });
 
     // load initial reviews widget
