@@ -312,3 +312,36 @@ $font-family--yotpo-main: "Gotham A","Gotham B",sans-serif;
         }
     }
 }
+
+.yotpo-custom__write-form {
+    background-color: #fff;
+    border: 1px solid $color--yotpo-font1;
+    border-radius: 5px;
+    padding: 20px 10px;
+    position: fixed;
+    height: 600px;
+    width: 700px;
+    z-index: 9998;
+    top: 150px;
+    left: calc(50vw - 350px);
+    overflow-y: auto;
+    -webkit-box-shadow: 0 11px 30px 10px rgba(0,0,0,0.8);
+    -moz-box-shadow: 0 11px 30px 10px rgba(0,0,0,0.8);
+    box-shadow: 0 11px 30px 10px rgba(0,0,0,0.8);
+    display: none;
+}
+
+.yotpo-custom__write-form--close {
+    background-color: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 3px;
+    position: fixed;
+    height: 30px;
+    width: 30px;
+    z-index: 9999;
+    top: 155px;
+    left: calc(50vw - 340px);
+    display: none;
+}

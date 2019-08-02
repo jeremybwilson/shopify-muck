@@ -167,6 +167,11 @@
   </div>
 </div>
 
+<!--close button to hide write-form-->
+<div class="yotpo-custom__write-form--close" style="display: none;">
+  <span class="fa fa-close"></span>
+</div>
+
 
 <script>
   function ready(fn) {
@@ -445,5 +450,49 @@
 
     // load initial reviews widget
     callReviewsAPI(currentPage, perPage);
+
+    // finding loaded write-form from default review widget
+    // setup write form style as popup format
+    var findFormInterval;
+    findFormInterval = setInterval(function () {
+      var $defaultWriteForm = $('.write-review-wrapper.write-form');
+      if ($defaultWriteForm && $defaultWriteForm.length) {
+        clearInterval(findFormInterval);
+
+        // make write-form as popup
+        $defaultWriteForm.css({
+          'background-color': '#fff',
+          'border': '1px solid #000',
+          'border-radius': '5px',
+          'padding': '20px 10px',
+          'position': 'fixed',
+          'height': '600px',
+          'width': '700px',
+          'z-index': '9998',
+          'top': '150px',
+          'left': 'calc(50vw - 350px)',
+          'overflow-y': 'auto',
+          '-webkit-box-shadow': '0 11px 30px 10px rgba(0,0,0,0.8)',
+          '-moz-box-shadow': '0 11px 30px 10px rgba(0,0,0,0.8)',
+          'box-shadow': '0 11px 30px 10px rgba(0,0,0,0.8)',
+          'display': 'none'
+        });
+
+        // listenning clicking the new review-write button
+        $(document).on('click', '.yotpo-custom__btn--write-review', function (e) {
+          e.preventDefault();
+          $defaultWriteForm.show();
+          $('.yotpo-custom__write-form--close').show();
+        });
+
+        // close popup on clicking new close-button
+        $(document).on('click', '.yotpo-custom__write-form--close', function (e) {
+          e.preventDefault();
+          $defaultWriteForm.hide();
+          $(this).hide();
+        });
+      }
+    }, 500);
+
   });
 </script>
