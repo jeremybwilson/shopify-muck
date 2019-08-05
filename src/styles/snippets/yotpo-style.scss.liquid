@@ -363,3 +363,75 @@ $font-family--yotpo-main: "Gotham A","Gotham B",sans-serif;
     }
 }
 
+@include mq( 'phone' ) {
+    .yotpo-custom__wrapper {
+        padding: 0 20px;
+
+        .yotpo-custom__header {
+            h2 {
+                margin: 15px 0;
+            }
+        }
+
+        .yotpo-custom__summary {
+            flex-direction: column;
+
+            .yotpo-custom__chart {
+                margin: 0 auto;
+                width: 100%;
+
+                .yotpo-custom__chart--recommend {
+                    font-size: 18px;
+                    text-align: center;
+                }
+
+                .yotpo-custom__chart--widget {
+                    .yotpo-custom__chart--widget-header,
+                    .yotpo-custom__chart--widget-label {
+                        font-size: 16px;
+                    }
+                }
+            }
+
+            .yotpo-custom__reviews {
+                margin: 0 auto;
+                width: 100%;
+
+                .yotpo-custom__reviews-list {
+                    .yotpo-custom__review-item {
+                        .yotpo-custom__review-item--header {
+                            .yotpo-custom__review-item--header-info {
+                                .yotpo-custom__review-item--header-data {
+                                    .yotpo-custom__review-item--header-name-wrapper {
+                                        flex-direction: column;
+                                        .yotpo-custom__review-item--header-verified {
+                                            font-size: 14px;
+                                            letter-spacing: 0;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        .yotpo-custom__review-item--body {
+                            padding: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .write-review-wrapper.write-form {
+        width: 100% !important;
+        left: 0 !important;
+    }
+
+    .yotpo-custom__write-form--close {
+        height: 30px;
+        width: 30px;
+        top: 125px;
+        left: 0;
+    }
+}
+

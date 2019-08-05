@@ -3,14 +3,7 @@
 
 <div class="yotpo-product-snippet-custom-design"
      data-appkey="gzejKiOGN46xeB5iurqalrS7dI7zEUIMZ9OCF4MM"
-     data-domain="{{shop.permanent_domain | escape }}"
-     data-product-id="{{ product.id }}"
-     data-product-models="{{ product.id }}"
-     data-name="{{ product.title | escape }}"
-     data-url="{{ shop.url }}{{ product.url }}"
-     data-image-url="{{ product.featured_image | product_img_url: 'large' |replace: '?', '%3F' | replace: '&','%26'}}"
-     data-description="{{ product.description | escape }}"
-     data-bread-crumbs="{% for tag in product.tags %}{{ tag | escape }};{% endfor %}">
+     data-product-id="{{ product.id }}">
   <div class="yotpo-custom__wrapper">
     <div class="yotpo-custom__header">
       <h2>
@@ -258,6 +251,23 @@
       }
       return averageStarPercentage;
     };
+
+    /*
+    * get user type
+    * Param: review (object)
+    * */
+    var getUserType = function (review) {
+      if (review.verified_buyer) {
+        return 'Verified Buyer';
+      }
+
+      if (review.user && review.user.user_type && review.user.user_type !== 'AnonymousUser') {
+        return 'Verified Reviewer';
+      }
+
+      return '';
+    };
+
     /*
     * generating review item
     * Param: review (object)
@@ -273,7 +283,7 @@
       reviewItem +=          '<div class="yotpo-custom__review-item--header-data">';
       reviewItem +=            '<div class="yotpo-custom__review-item--header-name-wrapper">';
       reviewItem +=              '<div class="yotpo-custom__review-item--header-name">' + review.user.display_name + '</div>';
-      reviewItem +=              '<div class="yotpo-custom__review-item--header-verified">' + (review.verified_buyer ? 'Verified Buyer' : '') + '</div>';
+      reviewItem +=              '<div class="yotpo-custom__review-item--header-verified">' + getUserType(review) + '</div>';
       reviewItem +=            '</div>';
       reviewItem +=            '<div class="yotpo-custom__review-item--header-stars">';
       reviewItem +=              '<div class="yotpo-custom__review-item--header-name">';
