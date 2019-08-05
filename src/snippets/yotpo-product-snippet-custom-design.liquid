@@ -167,11 +167,6 @@
   </div>
 </div>
 
-<!--close button to hide write-form-->
-<div class="yotpo-custom__write-form--close" style="display: none;">
-  <span class="fa fa-close"></span>
-</div>
-
 
 <script>
   function ready(fn) {
@@ -245,10 +240,21 @@
     * get percent for 5 stars
     * Param: score (number)
     * */
-    var getPercentForStars = function (score) {
+    var getPercentForStars = function (score, letterSpacing) {
       var averageStarPercentage = '0%';
       if (score) {
-        averageStarPercentage = (score / 5) * 100 + '%';
+        var spacing = letterSpacing;
+        averageStarPercentage = (score / 5) * 100;
+        if (averageStarPercentage >= 0 && averageStarPercentage < 20) {
+          spacing = 5 * letterSpacing;
+        } else if (averageStarPercentage >= 20 && averageStarPercentage < 40) {
+          spacing = 4 * letterSpacing;
+        } else if (averageStarPercentage >= 40 && averageStarPercentage < 60) {
+          spacing = 3 * letterSpacing;
+        } else if (averageStarPercentage >= 60 && averageStarPercentage < 80) {
+          spacing = 2 * letterSpacing;
+        }
+        averageStarPercentage = 'calc(' + averageStarPercentage + '% - ' + spacing + 'px)';
       }
       return averageStarPercentage;
     };
@@ -271,7 +277,7 @@
       reviewItem +=            '</div>';
       reviewItem +=            '<div class="yotpo-custom__review-item--header-stars">';
       reviewItem +=              '<div class="yotpo-custom__review-item--header-name">';
-      reviewItem +=                '<div class="stars-outer"><div class="stars-inner" style="width: ' + getPercentForStars(review.score) + '"></div></div>';
+      reviewItem +=                '<div class="stars-outer"><div class="stars-inner" style="width: ' + getPercentForStars(review.score, 10) + '"></div></div>';
       reviewItem +=              '</div>';
       reviewItem +=            '</div>';
       reviewItem +=          '</div>';
@@ -326,7 +332,7 @@
 
       // average score by 5 stars
       var averageScore = bottomLine && bottomLine.average_score;
-      $('.yotpo-custom__stars .stars-outer .stars-inner').css('width', getPercentForStars(averageScore));
+      $('.yotpo-custom__stars .stars-outer .stars-inner').css('width', getPercentForStars(averageScore, 15));
 
       // calculate recommendation percent for scores higher than 3 stars and 3 star.
       var countHigher3 = bottomLine && bottomLine.star_distribution && (bottomLine.star_distribution['5'] + bottomLine.star_distribution['4'] + bottomLine.star_distribution['3']);
@@ -466,10 +472,10 @@
           'border-radius': '5px',
           'padding': '20px 10px',
           'position': 'fixed',
-          'height': '600px',
+          'height': '400px',
           'width': '700px',
           'z-index': '9998',
-          'top': '150px',
+          'top': '120px',
           'left': 'calc(50vw - 350px)',
           'overflow-y': 'auto',
           '-webkit-box-shadow': '0 11px 30px 10px rgba(0,0,0,0.8)',
@@ -478,18 +484,20 @@
           'display': 'none'
         });
 
+        // close button to hide write-form
+        $defaultWriteForm.append('<div class="yotpo-custom__write-form--close">' +
+          '<span class="fa fa-close"></span></div>');
+
         // listenning clicking the new review-write button
         $(document).on('click', '.yotpo-custom__btn--write-review', function (e) {
           e.preventDefault();
           $defaultWriteForm.show();
-          $('.yotpo-custom__write-form--close').show();
         });
 
         // close popup on clicking new close-button
         $(document).on('click', '.yotpo-custom__write-form--close', function (e) {
           e.preventDefault();
           $defaultWriteForm.hide();
-          $(this).hide();
         });
       }
     }, 500);

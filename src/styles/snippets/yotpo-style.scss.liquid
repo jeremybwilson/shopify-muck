@@ -50,7 +50,7 @@ $font-family--yotpo-main: "Gotham A","Gotham B",sans-serif;
         position: relative;
         font-family: FontAwesome;
         font-size: 25px;
-        letter-spacing: .9rem;
+        letter-spacing: 15px;
 
         &::before {
             content: "\f006 \f006 \f006 \f006 \f006";
@@ -250,7 +250,7 @@ $font-family--yotpo-main: "Gotham A","Gotham B",sans-serif;
                                 .yotpo-custom__review-item--header-stars {
                                     .stars-outer {
                                         font-size: 14px;
-                                        letter-spacing: .5rem;
+                                        letter-spacing: 10px;
                                     }
                                 }
                             }
@@ -334,14 +334,32 @@ $font-family--yotpo-main: "Gotham A","Gotham B",sans-serif;
 .yotpo-custom__write-form--close {
     background-color: #fff;
     border-radius: 50%;
+    color: #000 !important;
     cursor: pointer;
-    font-size: 20px;
-    padding: 3px;
+    font-size: 20px !important;
+    padding: 3px !important;
     position: fixed;
+    text-align: center !important;
     height: 30px;
     width: 30px;
     z-index: 9999;
-    top: 155px;
+    top: 125px;
     left: calc(50vw - 340px);
-    display: none;
+
+    span {
+        font: normal normal normal 14px/1 FontAwesome !important;
+        font-size: inherit !important;
+    }
 }
+
+.yotpo-default-widget {
+    .yotpo-label-container,
+    span.yotpo-display-wrapper,
+    .write-question-review-buttons-container,
+    .yotpo-messages,
+    .new-yotpo-small-box,
+    .yotpo-nav-content {
+        display: none !important;
+    }
+}
+
