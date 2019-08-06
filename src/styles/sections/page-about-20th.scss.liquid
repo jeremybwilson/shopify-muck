@@ -348,7 +348,7 @@ $width-unit: ( 25 / 24 ) * 1%;
 
       .osn-intro {
         padding: 100px 0;
-        background-color: #983820;
+        background-color: $color--dark-brown-1;
 
         @include mq( 'phone' ) {
           padding-bottom: 35px;
@@ -411,7 +411,7 @@ $width-unit: ( 25 / 24 ) * 1%;
             width: 100 + ( $width-unit * 2);
             padding:75px 5%;
             align-items: center;
-            background-color: #983820;
+            background-color: $color--dark-brown-1;
           }
           h2 {
             text-align: left;
@@ -427,12 +427,10 @@ $width-unit: ( 25 / 24 ) * 1%;
   }
 }
 
-// product promise
-// COMMENT - Hiding because someone has deleted Layer-4 and Layer-5 images from the assets subfolder
+// Product Promise section
+// COMMENT :: PDM-835 :: Hiding because someone has deleted Layer-4 and Layer-5 images from the assets subfolder
 .product-promise {
-  display: none;
   padding: 140px 0;
-  // background-image: url(https://cdn.shopify.com/s/files/1/0068/5454/1425/t/41/assets/Layer-4.jpg?112150);
   background-size: cover;
   background-position: center right;
   background-repeat: no-repeat;
