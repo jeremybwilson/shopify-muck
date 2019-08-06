@@ -977,7 +977,7 @@
 {% endif %}
 
 /* iOS 9 and lower fix for scrolling page */
-html.menu-open { 
+html.menu-open {
   padding: 0 !important; /* override inline style being set by js too often */
   overflow: hidden;
 }
@@ -1002,7 +1002,7 @@ html.menu-open {
   display: none;
 }
 
-#pageContainer { 
+#pageContainer {
   overflow-x: hidden;
   overflow-y: auto;
 }
@@ -2524,8 +2524,8 @@ ul#sortme li.current a {
   position: relative;
 }
 
-@media (min-width: 320px) and (max-width: 1023px) { 
-  .product-index { margin-bottom:5px; } 
+@media (min-width: 320px) and (max-width: 1023px) {
+  .product-index { margin-bottom:5px; }
 }
 .product-index img {
   display: block;
@@ -2540,9 +2540,9 @@ ul#sortme li.current a {
   text-align: {{ settings.details_align }};
   margin-top: 10px;
 }
-@media (min-width: 320px) and (max-width: 1023px) { 
-  .product-info  { margin-top: 5px; } 
-} 
+@media (min-width: 320px) and (max-width: 1023px) {
+  .product-info  { margin-top: 5px; }
+}
 @media (min-width: 320px) and (max-width: 1023px) {
   #shopify-section-collection-template .collection-template #product-loop{ padding-top: 0px!important; }
 }
@@ -3925,15 +3925,20 @@ footer img {
     padding-top: 20px;
 }
 
+{% comment %} // PDM-826
 .share-icons a {
   margin: 0 10px;
   color: {{ settings.icons }} !important;
   display: inline-block;
 }
+{% endcomment %}
 
+{% comment %}
 .share-icons a:hover {
   color: {{ settings.icons_hover }} !important;
 }
+{% endcomment %}
+
 
 .scrollup {
   width:40px;
