@@ -1,5 +1,6 @@
 {% for block in section.blocks %}
   {% assign collection_handle = block.settings.collection %}
+  {% if collection_handle == collection.handle %}
     {% comment %} Desktop Image {% endcomment%}
     {% if block.settings.image != blank %}
     <div class="collection-banner tablet-and-down--hide">
@@ -19,6 +20,7 @@
         alt="{{ collection.title | escape }}">
       </div> 
       {% endif %}
+  {% endif %}
       
 {% endfor %}
 

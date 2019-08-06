@@ -146,13 +146,15 @@
         To display the banners, enter the following HTML in the collection description:
         <div class="category-banner has--category-banner banner--only"></div>
 
-        IMPORTANT:
+        IMPORTANT:  
         ----------
         If the description ONLY contains the Category Banner code above, then you need to include the classname "banner--only".
         Otherwise, enter the code below if you have other content (such as the SEO footer text)
         <div class="category-banner has--category-banner"></div>
 
       {% endcomment %}
+      <div class="collection-banner collection-banner--mobile tablet-and-up--hide">
+      </div>
       {% if template contains 'collection' %}
         {% if collection.description contains 'has--category-banner' %}
           <div class="collection-banner">
