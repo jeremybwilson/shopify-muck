@@ -3925,13 +3925,13 @@ footer img {
     padding-top: 20px;
 }
 
-{% comment %} // PDM-826
+{% comment %} // PDM-826  {% endcomment %}
 .share-icons a {
   margin: 0 10px;
-  color: {{ settings.icons }} !important;
+  {% comment %} color: {{ settings.icons }} !important; {% endcomment %}
   display: inline-block;
 }
-{% endcomment %}
+
 
 {% comment %}
 .share-icons a:hover {
