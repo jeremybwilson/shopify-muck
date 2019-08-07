@@ -19,21 +19,13 @@
         {% assign size_chart_type = 'kids' %}
       {% when 'babies' %}
         {% assign size_chart_type = 'babies' %}
-      {% when 'neos-mens-non-insulated' %}
+      {% when 'neos_non_insulated' %}
         {% if is_ca %}
-          {% assign size_chart_type = 'neos-mens-non-insulated' %}
+          {% assign size_chart_type = 'neos_non_insulated' %}
         {% endif %}
-      {% when 'neos-womens-non-insulated' %}
+      {% when 'neos_insulated' %}
         {% if is_ca %}
-          {% assign size_chart_type = 'neos-womens-non-insulated' %}
-        {% endif %}
-      {% when 'neos-mens-insulated' %}
-        {% if is_ca %}
-          {% assign size_chart_type = 'neos-mens-insulated' %}
-        {% endif %}
-      {% when 'neos-womens-insulated' %}
-        {% if is_ca %}
-          {% assign size_chart_type = 'neos-womens-insulated' %}
+          {% assign size_chart_type = 'neos_insulated' %}
         {% endif %}
       {% when 'men' %}
         {% assign size_chart_type = 'mens' %}
