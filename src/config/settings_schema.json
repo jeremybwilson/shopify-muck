@@ -1281,11 +1281,18 @@
     "settings": [
       {
         "type": "header",
-        "content": "Address Autofill Integration Settings (Auto fill the city and state in the address fields)."
+        "content": "Address Autofill Integration Settings (You can have one setting enable at a time from below)."
       },
       {
         "type": "checkbox",
         "id": "address_autofill_enable_flag",
+        "label": "Enable city and state autofill based on zip integration for this store",
+        "default": false,
+        "info": "Check the box to enable. A unique key value MUST also be provided."
+      },
+      {
+        "type": "checkbox",
+        "id": "full_address_autofill_enable_flag",
         "label": "Enable address autofill integration for this store",
         "default": false,
         "info": "Check the box to enable. A unique key value MUST also be provided."
