@@ -1,4 +1,4 @@
-//Sample : 
+//Sample :
 //$sample-color: {{ settings.dotted_color }};
 
 // colors
@@ -17,8 +17,10 @@ $color--gray-1: #595959;
 $color--gray-2: #7f7f7f;
 $color--gray-3: #5b5b5b;
 $color--gray-4: #5f7c7d; // PDM-273
+$color--dark-brown-1: #983820; // PDM-835
 
 $color--dark-gray: #3e3e3e;
+$color--dark-gray-2: #272727; // PDM-826
 $color--light-gray: #e5e5e5;
 $color--border-gray: #d7d7d7;
 
@@ -115,7 +117,7 @@ $form-element-width: 590px;
   line-height: 24px / 16px * 1em;
   letter-spacing: .05em;
 
-  @include fontSize(16px); 
+  @include fontSize(16px);
 }
 @mixin h7 {
   font-weight: $font-weight--medium;
@@ -334,11 +336,11 @@ $retina:           "(-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi)
   } @else if $alias == "tablet-portrait" {
     @media #{$tablet-portrait} {
       @content;
-    }    
+    }
   } @else if $alias == "tablet-landscape" {
     @media #{$tablet-landscape} {
       @content;
-    }        
+    }
   } @else if $alias == "lap" {
     @media #{$lap} {
       @content;

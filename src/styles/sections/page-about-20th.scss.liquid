@@ -10,7 +10,7 @@ $width-unit: ( 25 / 24 ) * 1%;
   padding: 0 15px;
 }
 .col-3 {  @extend .col; width: 25%; }
-.col-6 {  
+.col-6 {
   @extend .col; width: 50%;
 
   @include mq( 'phone' ) {
@@ -33,7 +33,7 @@ $width-unit: ( 25 / 24 ) * 1%;
   left: 50%;
   background-color: $color--orange-1;
   margin-left: -28px;
-  bottom: -23px;    
+  bottom: -23px;
 }
 
 .our-story-body {
@@ -41,22 +41,22 @@ $width-unit: ( 25 / 24 ) * 1%;
     display: none;
   }
 
-  // page-wrapper 
+  // page-wrapper
 
   #content {
     padding: 0;
 
     #page {
       margin-bottom: 0;
-      
+
       .shopify-section {
         clear: both;
-      }  
+      }
 
       section {
         &.img-text-combo {
           padding: 0 !important;
-    
+
           .row {
             @include flexbox;
 
@@ -70,11 +70,11 @@ $width-unit: ( 25 / 24 ) * 1%;
               padding-left: 0;
               padding-right: 0;
             }
-            
+
             &::after {
               display: none;
             }
-    
+
             &.row-inverse {
               @include flex-flow( row-reverse );
             }
@@ -128,7 +128,7 @@ $width-unit: ( 25 / 24 ) * 1%;
 
             &.beige-bg {
               background-color: #f5f1ed;
-              p { 
+              p {
                 color: $color--gray-1;
 
                 strong {
@@ -147,7 +147,7 @@ $width-unit: ( 25 / 24 ) * 1%;
             @include mq('phone') {
               width: 100%;
             }
-            
+
             img {
               position: absolute;
               width: 100%;
@@ -252,7 +252,7 @@ $width-unit: ( 25 / 24 ) * 1%;
 
           pointer-events: none;
           overflow: hidden;
-          
+
           iframe {
             width: 100vw;
             height: 56.25vw;
@@ -269,7 +269,7 @@ $width-unit: ( 25 / 24 ) * 1%;
           position: relative;
           z-index: 1;
         }
-        
+
         .banner-inner-width {
           @include flexbox;
           width: 100%;
@@ -285,7 +285,7 @@ $width-unit: ( 25 / 24 ) * 1%;
 
           .anniversary-image-wrapper {
             padding: 10px 18px 10px 0;
-            
+
             @include mq( 'lap-and-up' ) {
               padding: 10px 50px;
             }
@@ -348,7 +348,7 @@ $width-unit: ( 25 / 24 ) * 1%;
 
       .osn-intro {
         padding: 100px 0;
-        background-color: #983820;
+        background-color: $color--dark-brown-1;
 
         @include mq( 'phone' ) {
           padding-bottom: 35px;
@@ -402,17 +402,17 @@ $width-unit: ( 25 / 24 ) * 1%;
           margin-bottom: 100px !important;
         }
         background: none;
-    
+
         .index-section {
           padding: 0 $width-unit;
-    
+
           .row {
             display: flex;
             width: 100 + ( $width-unit * 2);
             padding:75px 5%;
             align-items: center;
-            background-color: #983820;
-          }  
+            background-color: $color--dark-brown-1;
+          }
           h2 {
             text-align: left;
             line-height: ( 38px / 33px ) * 1em;
@@ -427,11 +427,10 @@ $width-unit: ( 25 / 24 ) * 1%;
   }
 }
 
-// product promise
-
+// Product Promise section
+// COMMENT :: PDM-835 :: Hiding because someone has deleted Layer-4 and Layer-5 images from the assets subfolder
 .product-promise {
   padding: 140px 0;
-  background-image: url(https://cdn.shopify.com/s/files/1/0068/5454/1425/t/41/assets/Layer-4.jpg?112150);
   background-size: cover;
   background-position: center right;
   background-repeat: no-repeat;
@@ -442,7 +441,7 @@ $width-unit: ( 25 / 24 ) * 1%;
 
     &:after {
       content: "";
-      background-image: url(https://cdn.shopify.com/s/files/1/0068/5454/1425/t/41/assets/Layer-5.jpg?112233);
+      // background-image: url(https://cdn.shopify.com/s/files/1/0068/5454/1425/t/41/assets/Layer-5.jpg?112233);
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -450,7 +449,7 @@ $width-unit: ( 25 / 24 ) * 1%;
       padding-bottom: 100%;
       position: relative;
       float: left;
-    }      
+    }
   }
 
   .col-6 {
