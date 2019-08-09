@@ -61,7 +61,6 @@ var bcSfFilterTemplate = {
 
 
 BCSfFilter.prototype.buildProductGridItem = function(data, index, totalProduct) {
-    window.total_display_product = totalProduct;
     /*** Prepare data ***/
     var images = data.images_info;
     
@@ -279,6 +278,7 @@ BCSfFilter.prototype.buildProductGridItem = function(data, index, totalProduct) 
 
 
     // RENDER : Return out our built template!
+    window.total_display_product = window.total_display_product+1;
     return itemHtml;
 }
 
