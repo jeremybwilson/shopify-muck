@@ -3269,5 +3269,6 @@ $(document).on('DOMSubtreeModified', "#product-loop", function() {
       var rhtml = $(this).html().replace(' Reviews','').replace(' Review','');
       $(this).html(rhtml);
     });
+    window.total_display_product = 0;
   }
 }); 
