@@ -27,14 +27,19 @@ $loadMoreBgHover: {{ settings.collection_load_more_bg_hover }};
     .full-height-promo{
         .prod-container{
             height:100%;
-        }
-
-        img{
-            height:100%;
+          
+          .reveal{
+              display:table;
+          }
+              
+          img{
             object-fit: cover;
+            display: table-cell;
+            height: 100%;
+            width: 100%;
+          }
         }
     }
-
     // IMAGE : Product Image containment and layers
     .prod-container {
         position: relative;
