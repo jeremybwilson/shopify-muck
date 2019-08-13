@@ -241,3 +241,10 @@
     }
   }
 }
+.mobile-disable{
+  display: none !important;
+
+  @include mq('tablet-and-up'){
+    display: block !important;
+  }
+}
