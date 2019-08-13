@@ -1,0 +1,25 @@
+{% comment %}
+<div id="page" class="desktop-12 tablet-6 mobile-3" data-section-id="{{ section.id }}">
+  <h1>{{ page.title }}</h1>
+  {{ page.content }}
+</div>
+{% endcomment %}
+
+{% schema %}
+  {
+    "name": "ViralSweep Settings",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Background"
+      },
+      {
+        "type":   "checkbox",
+        "id":     "enable_viralsweep",
+        "label":  "Enable full page ViralSweep page",
+        "info":   "This setting enables or disables the overall full page ViralSweep page template.",
+        "default": false
+      }
+    ]
+  }
+{% endschema %}
