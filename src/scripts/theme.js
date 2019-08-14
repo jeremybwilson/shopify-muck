@@ -2027,11 +2027,11 @@ $(document).ready(function() {
     }
 
     $.cookie('mailing_list_delay_popup', 'expires_in_days', { expires: expireInDays, path: '/' });
-
+    var mobile_hide_div_length = $(".mobile-disable").length;
     $.fancybox({
       href: "#subscribe--popup",
       tpl: {
-        wrap : '<div class="fancybox-wrap" tabIndex="-1" id="subscribe--popup-wrapper"><div class="fancybox-skin"><div class="fancybox-outer"><div class="fancybox-inner"></div></div></div></div>',
+        wrap : '<div class="fancybox-wrap '+ ((mobile_hide_div_length == 1 )?'mobile-disable':'') +' " tabIndex="-1" id="subscribe--popup-wrapper"><div class="fancybox-skin"><div class="fancybox-outer"><div class="fancybox-inner"></div></div></div></div>',
       },
       helpers: {
         overlay: null
