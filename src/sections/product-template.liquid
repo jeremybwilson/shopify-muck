@@ -296,7 +296,9 @@
                       {% if block.settings.what_goes_image_redirect_url %}
                         </a>
                       {% endif %}
-                      {{ block.settings.what_goes_mobile_description }}
+                      {% if block.settings.what_goes_show_mobile_description %}
+                        {{ block.settings.what_goes_mobile_description }}
+                      {% endif %}
                   </div>
                   <!-- ./mobile -->
                 </div>
@@ -622,7 +624,7 @@
     ],
     "blocks": [
       {
-        "name": "What Goes into Product",
+        "name": "Add PDP content section",
         "type": "what-goes-into-product",
         "settings": [
 
@@ -650,6 +652,12 @@
             "type": "html",
             "id": "what_goes_mobile_description",
             "label": "Mobiled Description"
+          },
+          {
+            "type": "checkbox",
+            "id": "what_goes_show_mobile_description",
+            "label": "Show Mobile Description",
+            "default": true
           }
         ]
       }
