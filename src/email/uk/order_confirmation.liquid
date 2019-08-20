@@ -1,10 +1,13 @@
+{% capture notification_template_name %}order_confirmation{% endcapture %}
+{% capture full_email_template_params %}?utm_source=tran&utm_medium=email&utm_campaign={{ notification_template_name }}{% endcapture %}
+{% capture font_family_css %}font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;{% endcapture %}
+
 {% capture email_title %}Thank you for your purchase! {% endcapture %}
 {% capture email_body %}
   {% if requires_shipping %}
     Hi {{ customer.first_name }}, we're getting your order ready for delivery. We will notify you when it has been sent.
   {% endif %}
 {% endcapture %}{% capture shop_custom_name %}The Original Muck Boot Company&reg;{% endcapture %}
-{% capture shop_url_email_params %}?utm_source=tran&utm_medium=email&utm_campaign=order_confirmation{% endcapture %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -30,7 +33,7 @@
 
             <!-- LOGO  -->
 
-            <a href="{{ shop.url }}{{ shop_url_email_params }}" target="_blank" title="{{ shop_custom_name }}">
+            <a href="{{ shop.url }}{{ full_email_template_params }}" target="_blank" title="{{ shop_custom_name }}">
               <img class="center fixedwidth" align="center" border="0" src="https://cdn.shopify.com/s/files/1/0032/6480/7010/files/muck-logo.png?5524665369218808649" alt="{{ shop_custom_name }}" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;width: 100%;max-width: 90px" width="90">
             </a>
 
@@ -53,13 +56,13 @@
 
                     <!-- ORDER # -->
 
-                    <div style="color:#FFFFFF;line-height:120%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 0px;">
-                      <div style="font-size:16px;line-height:19px;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;color:#FFFFFF;text-align:left;"><p style="margin: 0;font-size: 16px;line-height: 19px;text-align: center">ORDER {{ order_name }}</p></div>
+                    <div style="color:#FFFFFF;line-height:120%;{{ font_family_css }} padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 0px;">
+                      <div style="font-size:16px;line-height:19px;{{ font_family_css }}color:#FFFFFF;text-align:left;"><p style="margin: 0;font-size: 16px;line-height: 19px;text-align: center">ORDER {{ order_name }}</p></div>
                     </div>
 
                     <!-- HEADLINE -->
 
-                    <div style="color:#FFFFFF;line-height:120%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
+                    <div style="color:#FFFFFF;line-height:120%;{{ font_family_css }} padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
                       <div style="font-size:12px;line-height:14px;font-family:inherit;color:#FFFFFF;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><strong><span style="font-size: 38px; line-height: 45px; letter-spacing: .15em;"><span style="font-size: 28px; line-height: 33px;">THANK YOU FOR</span><br><span style="font-size: 28px; line-height: 33px;">YOUR PURCHASE!</span><br></span></strong></p></div>
                     </div>
 
@@ -67,7 +70,7 @@
 
                     {% if requires_shipping %}
 
-                    <div style="color:#FFFFFF;line-height:180%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
+                    <div style="color:#FFFFFF;line-height:180%;{{ font_family_css }} padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
                       <div style="font-size:14px;line-height:25px;font-family:inherit;color:#FFFFFF;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 25px;text-align: center">{{ email_body }}</p></div>
                     </div>
 
@@ -76,17 +79,17 @@
                     <!-- BUTTON -->
 
                     <div align="center" class="button-container center " style="padding-right: 10px; padding-left: 10px; padding-top:10px; padding-bottom:10px;">
-                      <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top:10px; padding-bottom:10px;" align="center"><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{ order_status_url }}&utm_source=tran&utm_medium=email&utm_campaign=order_confirmation" style="height:31pt; v-text-anchor:middle; width:121pt;" arcsize="0%" strokecolor="#ab5232" fillcolor="#ab5232"><w:anchorlock/><v:textbox inset="0,0,0,0"><center style="color:#ffffff; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; font-size:16px;"><![endif]-->
-                        <a href="{{ order_status_url }}{{ shop_url_email_params }}" target="_blank" style="display: block;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #ffffff; background-color: #ab5232; border-radius: 0px; -webkit-border-radius: 0px; -moz-border-radius: 0px; max-width: 162px; width: 132px;width: auto; border-top: 0px solid transparent; border-right: 0px solid transparent; border-bottom: 0px solid transparent; border-left: 0px solid transparent; padding-top: 5px; padding-right: 15px; padding-bottom: 5px; padding-left: 15px; font-family: 'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;mso-border-alt: none">
-                          <span style="font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;font-size:16px;line-height:32px;"><span style="font-size: 12px; line-height: 24px; letter-spacing: .125em;"><strong>VIEW YOUR ORDER</strong></span></span>
+                      <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top:10px; padding-bottom:10px;" align="center"><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{ order_status_url }}&utm_source=tran&utm_medium=email&utm_campaign=order_confirmation" style="height:31pt; v-text-anchor:middle; width:121pt;" arcsize="0%" strokecolor="#ab5232" fillcolor="#ab5232"><w:anchorlock/><v:textbox inset="0,0,0,0"><center style="color:#ffffff; {{ font_family_css }} font-size:16px;"><![endif]-->
+                        <a href="{{ order_status_url }}{{ full_email_template_params }}" target="_blank" style="display: block;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #ffffff; background-color: #ab5232; border-radius: 0px; -webkit-border-radius: 0px; -moz-border-radius: 0px; max-width: 162px; width: 132px;width: auto; border-top: 0px solid transparent; border-right: 0px solid transparent; border-bottom: 0px solid transparent; border-left: 0px solid transparent; padding-top: 5px; padding-right: 15px; padding-bottom: 5px; padding-left: 15px; font-family: 'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;mso-border-alt: none">
+                          <span style="{{ font_family_css }}font-size:16px;line-height:32px;"><span style="font-size: 12px; line-height: 24px; letter-spacing: .125em;"><strong>VIEW YOUR ORDER</strong></span></span>
                         </a>
                       <!--[if mso]></center></v:textbox></v:roundrect></td></tr></table><![endif]-->
                     </div>
 
                     <!-- LINK -->
 
-                    <div style="color:#FFFFFF;line-height:120%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
-                      <div style="font-size:12px;line-height:14px;color:#FFFFFF;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 12px; line-height: 14px; letter-spacing: .125em;"><a style="color:#FFFFFF;text-decoration: none;" title="Visit Live Site" href="{{ shop.url }}{{ shop_url_email_params }}" target="_blank" rel="noopener">VISIT OUR STORE</a></span></p></div>
+                    <div style="color:#FFFFFF;line-height:120%;{{ font_family_css }} padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
+                      <div style="font-size:12px;line-height:14px;color:#FFFFFF;{{ font_family_css }}text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 12px; line-height: 14px; letter-spacing: .125em;"><a style="color:#FFFFFF;text-decoration: none;" title="Visit Live Site" href="{{ shop.url }}{{ full_email_template_params }}" target="_blank" rel="noopener">VISIT OUR STORE</a></span></p></div>
                     </div>
 
                   </div>
@@ -101,8 +104,8 @@
 
                   <!-- TITLE -->
 
-                  <div style="color:#164632;line-height:120%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
-                    <div style="font-size:12px;line-height:14px;color:#164632;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center;"><span style="font-size: 18px; line-height: 21px; letter-spacing: .15em;"><strong>ORDER SUMMARY</strong></span></p></div>
+                  <div style="color:#164632;line-height:120%;{{ font_family_css }} padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
+                    <div style="font-size:12px;line-height:14px;color:#164632;{{ font_family_css }}text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center;"><span style="font-size: 18px; line-height: 21px; letter-spacing: .15em;"><strong>ORDER SUMMARY</strong></span></p></div>
                   </div>
 
                   <!-- TABLE -->
@@ -133,23 +136,23 @@
                           {% assign line_display = line.quantity  %}
                         {% endif %}
 
-                        <span style="font-weight: bold; font-size: 14px; color: #164632; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;" class="order-list__item-title">{{ line_title }} × {{ line_display }}</span>
+                        <span style="font-weight: bold; font-size: 14px; color: #164632; {{ font_family_css }}" class="order-list__item-title">{{ line_title }} × {{ line_display }}</span>
 
                         {% if line.variant.title != 'Default Title' %}
-                          <br/><span style="color: #164632; font-size: 14px; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;" class="order-list__item-variant">{{ line.variant.title }}</span>
+                          <br/><span style="color: #164632; font-size: 14px; {{ font_family_css }}" class="order-list__item-variant">{{ line.variant.title }}</span>
                         {% endif %}
 
                         {% if line.refunded_quantity > 0 %}
-                          <br/><span style="color: #164632; font-size: 14px; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;" class="order-list__item-refunded">Refunded</span>
+                          <br/><span style="color: #164632; font-size: 14px; {{ font_family_css }}" class="order-list__item-refunded">Refunded</span>
                         {% endif %}
                       </td>
                       <td class="order-list__price-cell" style="vertical-align: middle; text-align: right; width: 20%; border-bottom: solid 1px #999999;">
                         {% if line.original_line_price != line.line_price %}
-                          <p style="font-size: 14px; color: #bc0000; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;" class="order-list__item-price">{{ line.line_price | money }}
-                            <del style="font-size: 14px; color: #164632; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;" class="order-list__item-original-price">{{ line.original_line_price | money }}</del>
+                          <p style="font-size: 14px; color: #bc0000; {{ font_family_css }}" class="order-list__item-price">{{ line.line_price | money }}
+                            <del style="font-size: 14px; color: #164632; {{ font_family_css }}" class="order-list__item-original-price">{{ line.original_line_price | money }}</del>
                           </p>
                         {% else %}
-                          <p style="font-size: 14px; color: #164632; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;" class="order-list__item-price">{{ line.line_price | money }}</p>
+                          <p style="font-size: 14px; color: #164632; {{ font_family_css }}" class="order-list__item-price">{{ line.line_price | money }}</p>
                         {% endif %}
 
                       </td>
@@ -166,10 +169,10 @@
 
                       <tr class="subtotal-line">
                         <td class="subtotal-line__title" style="vertical-align: bottom;">
-                          <span style="color: #164632; font-size: 14px; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;">{{ discount_title }}</span>
+                          <span style="color: #164632; font-size: 14px; {{ font_family_css }}">{{ discount_title }}</span>
                         </td>
                         <td class="subtotal-line__value" style="vertical-align: bottom; width: 40%; text-align: right;">
-                          <span style="color: #164632; font-size: 14px; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;">{{ discounts_savings | money }}</span>
+                          <span style="color: #164632; font-size: 14px; {{ font_family_css }}">{{ discounts_savings | money }}</span>
                         </td>
                       </tr>
 
@@ -178,19 +181,19 @@
 
                     <tr class="subtotal-line">
                       <td class="subtotal-line__title" style="vertical-align: bottom;">
-                        <span style="color: #164632; font-size: 14px; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;">Subtotal</span>
+                        <span style="color: #164632; font-size: 14px; {{ font_family_css }}">Subtotal</span>
                       </td>
                       <td style="color: #164632; vertical-align: bottom; width: 40%; text-align: right;" class="subtotal-line__value">
-                        <span style="color: #164632; font-size: 14px; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;">{{ subtotal_price | money }}</span>
+                        <span style="color: #164632; font-size: 14px; {{ font_family_css }}">{{ subtotal_price | money }}</span>
                       </td>
                     </tr>
 
                     <tr class="subtotal-line">
                       <td class="subtotal-line__title" style="vertical-align: bottom;">
-                        <span style="color: #164632; font-size: 14px; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;">Shipping</span>
+                        <span style="color: #164632; font-size: 14px; {{ font_family_css }}">Shipping</span>
                       </td>
                       <td style="color: #164632; vertical-align: bottom; width: 40%; text-align: right;" class="subtotal-line__value">
-                        <span style="color: #164632; font-size: 14px; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;">{{ shipping_price | money }}</span>
+                        <span style="color: #164632; font-size: 14px; {{ font_family_css }}">{{ shipping_price | money }}</span>
                       </td>
                     </tr>
 
@@ -198,10 +201,10 @@
 
                       <tr class="subtotal-line">
                         <td class="subtotal-line__title" style="vertical-align: bottom;">
-                          <span style="color: #164632; font-size: 14px; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;">{{ line.title }}</span>
+                          <span style="color: #164632; font-size: 14px; {{ font_family_css }}">{{ line.title }}</span>
                         </td>
                         <td style="color: #164632; vertical-align: bottom; width: 40%; text-align: right;" class="subtotal-line__value">
-                          <span style="color: #164632; font-size: 14px; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;">{{ line.price | money }}</span>
+                          <span style="color: #164632; font-size: 14px; {{ font_family_css }}">{{ line.price | money }}</span>
                         </td>
                       </tr>
 
@@ -213,11 +216,11 @@
                     <tr class="subtotal-line">
                       <td class="subtotal-line__title" style="vertical-align: bottom;">
                         <p>
-                          <span style="color: #164632; font-size: 14px; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;">Total</span>
+                          <span style="color: #164632; font-size: 14px; {{ font_family_css }}">Total</span>
                         </p>
                       </td>
                       <td style="color: #164632; vertical-align: bottom; width: 40%; text-align: right;" class="subtotal-line__value">
-                        <p><strong style="color: #164632; font-size: 20px; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;">{{ total_price | money_with_currency }}</strong></p>
+                        <p><strong style="color: #164632; font-size: 20px; {{ font_family_css }}">{{ total_price | money_with_currency }}</strong></p>
                       </td>
                     </tr>
 
@@ -242,9 +245,9 @@
 
                           <tr class="subtotal-line">
                             <td class="subtotal-line__title" style="vertical-align: bottom;">
-                              <span style="color: #164632; font-size: 14px; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;" >{{transaction_name}}</span>
+                              <span style="color: #164632; font-size: 14px; {{ font_family_css }}" >{{transaction_name}}</span>
                             </td>
-                            <td style="color: #164632; vertical-align: bottom; width: 40%; text-align: right; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;" class="subtotal-line__value">
+                            <td style="color: #164632; vertical-align: bottom; width: 40%; text-align: right; {{ font_family_css }}" class="subtotal-line__value">
                               <span style="color: #164632;">{{ transaction.amount | money }}</span>
                             </td>
                           </tr>
@@ -261,13 +264,13 @@
                           <tr class="subtotal-line">
                             <td class="subtotal-line__title" style="vertical-align: bottom;">
                               <p>
-                                <span style="color: #164632; font-size: 14px; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;">Refund</span>
+                                <span style="color: #164632; font-size: 14px; {{ font_family_css }}">Refund</span>
                                   <br>
                                   <small style="color: #164632;">{{ refund_method_title | capitalize }}</small>
                               </p>
                             </td>
                             <td style="color: #164632; vertical-align: bottom; width: 40%; text-align: right;" class="subtotal-line__value">
-                              <p><span style="color: #164632; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;">- {{ transaction.amount | money }}</span></p>
+                              <p><span style="color: #164632; {{ font_family_css }}">- {{ transaction.amount | money }}</span></p>
                             </td>
                           </tr>
 
@@ -286,7 +289,7 @@
 
                   <!-- TITLE -->
 
-                  <div style="font-size:12px;line-height:14px;color:#164632;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 18px; line-height: 21px; letter-spacing: .15em;"><strong>CUSTOMER INFORMATION</strong></span></p></div>
+                  <div style="font-size:12px;line-height:14px;color:#164632;{{ font_family_css }}text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 18px; line-height: 21px; letter-spacing: .15em;"><strong>CUSTOMER INFORMATION</strong></span></p></div>
 
                   <!-- TABLE -->
 
@@ -295,15 +298,15 @@
                       <td style="width: 50%; padding-right: 15px; vertical-align: top;">
 
                         <!-- SHIPPING ADDRESS  -->
-                        <div style="font-size:12px;line-height:14px;color:#555555;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px"><span style="color: rgb(171, 82, 50); font-size: 14px; line-height: 16px;"><strong>Shipping Address</strong></span></p></div>
-                        <div style="font-size:12px;line-height:14px;color:#595959;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px"><span style="font-size: 12px; line-height: 14px;">{{ shipping_address | format_address }}</span></p></div>
+                        <div style="font-size:12px;line-height:14px;color:#555555;{{ font_family_css }}text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px"><span style="color: rgb(171, 82, 50); font-size: 14px; line-height: 16px;"><strong>Shipping Address</strong></span></p></div>
+                        <div style="font-size:12px;line-height:14px;color:#595959;{{ font_family_css }}text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px"><span style="font-size: 12px; line-height: 14px;">{{ shipping_address | format_address }}</span></p></div>
                       </td>
                       <td style="width: 50%; padding-left: 35px; vertical-align: top;">
 
                         <!-- BILLING ADDRESS -->
-                        <div style="font-size:12px;line-height:14px;color:#555555;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px"><span style="color: rgb(171, 82, 50); font-size: 14px; line-height: 16px;"><strong>Billing Address</strong></span></p></div>
+                        <div style="font-size:12px;line-height:14px;color:#555555;{{ font_family_css }}text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px"><span style="color: rgb(171, 82, 50); font-size: 14px; line-height: 16px;"><strong>Billing Address</strong></span></p></div>
 
-                        <div style="font-size:12px;line-height:14px;color:#595959;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px"><span style="font-size: 12px; line-height: 14px;">{{ billing_address | format_address }}</span></p></div>
+                        <div style="font-size:12px;line-height:14px;color:#595959;{{ font_family_css }}text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px"><span style="font-size: 12px; line-height: 14px;">{{ billing_address | format_address }}</span></p></div>
 
                       </td>
                     </tr>
@@ -312,18 +315,18 @@
 
                         <!-- SHIPPING METHOD -->
 
-                        <div style="font-size:12px;line-height:14px;color:#555555;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px"><span style="color: rgb(171, 82, 50); font-size: 14px; line-height: 16px;"><strong>Shipping Method</strong></span></p></div>
+                        <div style="font-size:12px;line-height:14px;color:#555555;{{ font_family_css }}text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px"><span style="color: rgb(171, 82, 50); font-size: 14px; line-height: 16px;"><strong>Shipping Method</strong></span></p></div>
 
-                        <div style="font-size:12px;line-height:14px;color:#595959;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px"><span style="font-size: 12px; line-height: 14px;">{{ shipping_method.title }}<br></span></p></div>
+                        <div style="font-size:12px;line-height:14px;color:#595959;{{ font_family_css }}text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px"><span style="font-size: 12px; line-height: 14px;">{{ shipping_method.title }}<br></span></p></div>
 
                       </td>
                       <td style="width: 50%; padding-left: 35px; vertical-align: top;">
 
                         <!-- PAYMENT METHOD -->
 
-                        <div style="font-size:12px;line-height:14px;color:#555555;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px"><span style="color: rgb(171, 82, 50); font-size: 14px; line-height: 16px;"><strong>Payment Method<br></strong></span></p></div>
+                        <div style="font-size:12px;line-height:14px;color:#555555;{{ font_family_css }}text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px"><span style="color: rgb(171, 82, 50); font-size: 14px; line-height: 16px;"><strong>Payment Method<br></strong></span></p></div>
 
-                        <div style="font-size:12px;line-height:14px;color:#595959;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;">
+                        <div style="font-size:12px;line-height:14px;color:#595959;{{ font_family_css }}text-align:left;">
 
                           {% for transaction in transactions %}
                             {% if transaction.status == "success" or transaction.status == "pending" %}
@@ -408,8 +411,8 @@
               <tr>
                 <td>
 
-                  <div style="color:#798d85;line-height:120%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
-                    <div style="font-size:12px;line-height:14px;color:#798d85;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 12px; line-height: 14px;"><a style="color:#798d85;text-decoration: none;" title="Contact Us" href="{{ shop.url }}/pages/contact-us{{ shop_url_email_params }}" target="_blank" rel="noopener">CONTACT US</a>&#160;&#160;&#160;&#160; <a style="color:#798d85;text-decoration: none;" title="Contact Us" href="tel:+44 808 281 9536" target="_blank" rel="noopener">+44 808 281 9536</a><br></span></p></div>
+                  <div style="color:#798d85;line-height:120%;{{ font_family_css }} padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
+                    <div style="font-size:12px;line-height:14px;color:#798d85;{{ font_family_css }}text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 12px; line-height: 14px;"><a style="color:#798d85;text-decoration: none;" title="Contact Us" href="{{ shop.url }}/pages/contact-us{{ full_email_template_params }}" target="_blank" rel="noopener">CONTACT US</a>&#160;&#160;&#160;&#160; <a style="color:#798d85;text-decoration: none;" title="Contact Us" href="tel:+44 808 281 9536" target="_blank" rel="noopener">+44 808 281 9536</a><br></span></p></div>
                   </div>
 
                 </td>
@@ -446,8 +449,8 @@
               <tr>
                 <td>
 
-                  <div style="color:#798d85;line-height:120%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
-                    <div style="font-size:12px;line-height:14px;color:#798d85;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 12px; line-height: 14px;"><a style="color:#798d85;text-decoration: none;" href="{{ shop.url }}/pages/terms-conditions{{ shop_url_email_params }}" target="_blank" rel="noopener">Terms &amp; <span style="line-height: 14px; font-size: 12px;">Conditions</span></a> | <a style="color:#798d85;text-decoration: none;" href="https://www.honeywell.com/privacy-statement{{ shop_url_email_params }}" target="_blank" rel="noopener">Privacy Policy</a></span><span style="font-size: 12px; line-height: 14px;"><br></span></p></div>
+                  <div style="color:#798d85;line-height:120%;{{ font_family_css }} padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
+                    <div style="font-size:12px;line-height:14px;color:#798d85;{{ font_family_css }}text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 12px; line-height: 14px;"><a style="color:#798d85;text-decoration: none;" href="{{ shop.url }}/pages/terms-conditions{{ full_email_template_params }}" target="_blank" rel="noopener">Terms &amp; <span style="line-height: 14px; font-size: 12px;">Conditions</span></a> | <a style="color:#798d85;text-decoration: none;" href="https://www.honeywell.com/privacy-statement{{ full_email_template_params }}" target="_blank" rel="noopener">Privacy Policy</a></span><br></p></div>
                   </div>
 
                 </td>

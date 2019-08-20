@@ -2027,11 +2027,11 @@ $(document).ready(function() {
     }
 
     $.cookie('mailing_list_delay_popup', 'expires_in_days', { expires: expireInDays, path: '/' });
-
+    var mobile_hide_div_length = $(".mobile-disable").length;
     $.fancybox({
       href: "#subscribe--popup",
       tpl: {
-        wrap : '<div class="fancybox-wrap" tabIndex="-1" id="subscribe--popup-wrapper"><div class="fancybox-skin"><div class="fancybox-outer"><div class="fancybox-inner"></div></div></div></div>',
+        wrap : '<div class="fancybox-wrap '+ ((mobile_hide_div_length == 1 )?'mobile-disable':'') +' " tabIndex="-1" id="subscribe--popup-wrapper"><div class="fancybox-skin"><div class="fancybox-outer"><div class="fancybox-inner"></div></div></div></div>',
       },
       helpers: {
         overlay: null
@@ -3237,3 +3237,38 @@ function debounce(fn, wait, immediate) {
         });
       });
   } 
+// update review & rating when review count is zero
+// call this event when product is load on front
+window.total_display_product = 0;
+window.display_product = false;
+$(document).on('DOMSubtreeModified', "#product-loop", function() {
+  var html = '<div class="standalone-bottomline"> ' + 
+                        '<div class="yotpo-bottomline pull-left  star-clickable">'+
+                            '<span class="yotpo-stars">'+
+                                '<span class="yotpo-icon yotpo-icon-empty-star rating-star pull-left"></span>' + 
+                                '<span class="yotpo-icon yotpo-icon-empty-star rating-star pull-left"></span>' + 
+                                '<span class="yotpo-icon yotpo-icon-empty-star rating-star pull-left"></span>' + 
+                                '<span class="yotpo-icon yotpo-icon-empty-star rating-star pull-left"></span>' + 
+                                '<span class="yotpo-icon yotpo-icon-empty-star rating-star pull-left"></span>' + 
+                                '<span class="sr-only" tabindex="0">0 star rating</span>'+
+                            '</span>'+
+                            '<a class="text-m">0</a>'+ 
+                            '<div class="yotpo-clr"></div>'+
+                        '</div>'+
+                        '<div class="yotpo-clr"></div>'+
+                    '</div>';
+  if(window.total_display_product == $('.yotpo-display-wrapper').length && window.display_product){
+    window.display_product = false;
+    $('.yotpo-display-wrapper').each(function (index, value) {
+      var length = $(this).find('.yotpo-stars').length;
+      if(length == 0){
+          $(this).html(html);
+      }
+    });
+    $("#product-loop .bottomLine .text-m").each(function(index,value){
+      var rhtml = $(this).html().replace(' Reviews','').replace(' Review','');
+      $(this).html(rhtml);
+    });
+    window.total_display_product = 0;
+  }
+}); 

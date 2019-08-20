@@ -31,7 +31,7 @@
   @include mq('tablet-and-up') {
     display: none;
   }
-  
+
   &:after {
     position: absolute;
     content: '';
@@ -45,14 +45,14 @@
     background: -moz-linear-gradient(top, #d9d9d9 0%, #ffffff 100%);
     background: -webkit-linear-gradient(top, #d9d9d9 0%,#ffffff 100%);
     background: linear-gradient(to bottom, #d9d9d9 0%,#ffffff 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d9d9d9', endColorstr='#ffffff',GradientType=0 );    
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d9d9d9', endColorstr='#ffffff',GradientType=0 );
   }
 
   .mobile-header--top {
     @include flexbox;
     @include justify-content(space-between);
     @include align-items(center);
-  }  
+  }
 
   .product-title {
     color: $color--dark-green;
@@ -168,7 +168,7 @@
       color: {{ settings.sale_color }}
     }
     .was {
-      color: $color--dark-green;      
+      color: $color--dark-green;
     }
   }
 }
@@ -180,6 +180,16 @@
     padding-top: 0;
     border-top: none;
     border-bottom: none;
+  }
+  .desc {
+    .share-icons a {
+      color: $color--dark-green-1;
+      // color: #164732;
+
+      &:hover{
+        color: $color--dark-gray-2;
+      }
+    }
   }
 }
 
@@ -216,13 +226,13 @@
       line-height: 30px / 16px * 1em;
       text-align: left;
     }
-  
+
     li {
       position: relative;
       padding-left: 20px;
       text-align: left;
       list-style: none;
-  
+
       &:before {
         content: '';
         position: absolute;
@@ -234,7 +244,7 @@
         background-color: $color--orange-1;
       }
     }
-  } 
+  }
 }
 
 
@@ -370,7 +380,7 @@
       line-height: 30px / 16px * 1em;
       text-align: left;
     }
-  } 
+  }
 
   li {
     position: relative;
@@ -444,7 +454,7 @@
   }
 }
 
-#product-description--mobile-dropdown {  
+#product-description--mobile-dropdown {
   @include mq('phone') {
     display: none;
   }
@@ -458,7 +468,7 @@
   }
   .rte > p {
     display: none;
-  }  
+  }
 }
 #product-description--mobile-dropdown-trigger {
   width: 100%;
@@ -495,9 +505,9 @@
       display: inline;
     }
     svg {
-      transform: rotate(180deg);    
+      transform: rotate(180deg);
     }
-  } 
+  }
 }
 
 /* Product Campaign Video
@@ -527,7 +537,7 @@
     .was {
       color: $color--dark-green;
     }
-  }  
+  }
 }
 
 // Promo template addons
@@ -990,7 +1000,7 @@ $width-unit: ( 25 / 24 ) * 1%;
                           @include fontSize( 18px );
                       }
                   }
-              }                   
+              }
           }
       }
       &.slider{
@@ -1123,3 +1133,24 @@ $width-unit: ( 25 / 24 ) * 1%;
 div#related.bottom-related {
     margin-top: 0px !important;
 }
+.yotpo-bottomline.star-clickable {
+    margin: 0px auto !important;
+    width: 100%;
+    text-align: center !important;
+
+    .yotpo-stars {
+        display: inline-block;
+        vertical-align: text-top;
+    }
+
+    .text-m {
+        font-size: 1rem !important;
+        font-family: $sans;
+        flex: auto;
+        margin-left: 10px;
+        display: inline-block;
+        line-height: 20px;
+        width: auto;
+    }
+} 
+
