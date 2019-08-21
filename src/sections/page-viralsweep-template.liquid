@@ -1,9 +1,28 @@
-{% comment %}
+{% comment %}VIRALSWEEP TEST TEMPLATE PAGE :: PDM-827 {% endcomment %}
 <div id="page" class="desktop-12 tablet-6 mobile-3" data-section-id="{{ section.id }}">
   <h1>{{ page.title }}</h1>
   {{ page.content }}
+
+  {%- if section.settings.enable_viralsweep == true and section.settings.vs_campaign_id != blank -%}
+    <div class="viralsweep-container">
+      <p style="color: red;">This is a test of the viralsweep section settings</p>
+      <p>{{ section.settings.enable_viralsweep }}</p>
+      <p>{{ section.settings.vs_campaign_id }}</p>
+
+      {% comment %} <div id="vsscript_55272_868316"></div> {% endcomment %}
+      {% comment %} <script async="" type="text/javascript" src="https://app.viralsweep.com/vsa-widget-3155df-55272.js?sid=55272_868316"></script> {% endcomment %}
+    </div>
+  {% comment %}
+    // VIRALSWEEP TEST TEMPLATE PAGE :: PDM-827
+    // if viralsweep_campaign_id is equal to (or contains a de value)
+      // then render the de specific JavaScript include file
+    // else
+      // render the regular en JavaScript include file
+
+  {% endcomment %}
+  {%- endif -%}
 </div>
-{% endcomment %}
+
 
 {% schema %}
   {
@@ -19,7 +38,21 @@
         "label":  "Enable full page ViralSweep page",
         "info":   "This setting enables or disables the overall full page ViralSweep page template.",
         "default": false
-      }
+      },
+	  {
+
+        "type": "text",
+        "id": "vs_campaign_id",
+        "label": "Enter ViralSweep campaign ID",
+        "default": "#sweepstakes #promotion-35656"
+	  },
+	  {
+
+        "type": "text",
+        "id": "vs_campaign_id_en",
+        "label": "Enter ViralSweep campaign ID",
+        "default": "#sweepstakes #promotion-35656"
+	  }
     ]
   }
 {% endschema %}
