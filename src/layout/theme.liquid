@@ -53,8 +53,8 @@
   {% comment %}
     NOTE : Remove the .min on react to get better error messaging
   {% endcomment %}
-  <script src="{{ 'react.min.js' | asset_url }}"></script>
-  <script src="{{ 'react-dom.min.js' | asset_url }}"></script>
+  {% comment %} <script src="{{ 'react.min.js' | asset_url }}"></script>
+  <script src="{{ 'react-dom.min.js' | asset_url }}"></script> {% endcomment %}
   <script src="{{ 'jquery-2.2.4.min.js' | asset_url }}"></script>
   <script src="{{ 'eventemitter3.min.js' | asset_url }}"></script>
   <script src="{{ 'jquery.validate.min.js' | asset_url }}"></script>
