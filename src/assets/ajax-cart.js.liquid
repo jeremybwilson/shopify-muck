@@ -57,6 +57,7 @@ ShopifyAPI.updateCartNote = function(note, callback) {
     }
   };
   jQuery.ajax(params);
+
 };
 
 ShopifyAPI.onError = function(XMLHttpRequest, textStatus) {
@@ -243,6 +244,7 @@ var ajaxCart = (function(module, $) {
 
     // Take over the add to cart form submit action if ajax enabled
     if (!settings.disableAjaxCart && $addToCart.length) {
+
       formOverride();
     }
   }
@@ -531,7 +533,38 @@ var ajaxCart = (function(module, $) {
     }
 
     $cartContainer.append(template(data));
+
     cartCallback(cart);
+
+    // Nosto cart tags
+
+    var $nostoCartTags = $(".nosto_cart");
+
+    $nostoCartTags.empty();
+
+    // For each item, append Nosto tag properties
+    $.each(cart.items, function(index, cartItem) {
+
+      var product_id = cartItem.product_id;
+      var sku_id = cartItem.sku;
+      var quantity = cartItem.quantity;
+      var name = cartItem.title;
+      var unit_price = cartItem.price;
+
+      $nostoCartTags.append('<div class="line_item">'
+          +'<span class="product_id">' + product_id + '</span>' 
+          +'<span class="sku_id">' + sku_id + '</span>' 
+          +'<span class="quantity">' + quantity + '</span>' 
+          +'<span class="name">' + name + '</span>' 
+          +'<span class="unit_price">' + unit_price + '</span>' 
+          +'</div>');
+
+      setTimeout(function() {
+        nostojs(function(api) {
+          api.loadRecommendations();
+        });
+      }, 50);
+    });
   };
 
   cartCallback = function(cart) {
@@ -542,6 +575,7 @@ var ajaxCart = (function(module, $) {
     if ( cart.attributes && typeof( cart.attributes.domain_locale ) === 'undefined' ) {
       setDomainLocaleAttribute();
     }
+
   };
 
   adjustCart = function () {
