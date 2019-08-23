@@ -6,23 +6,36 @@
   {%- if section.settings.enable_viralsweep == true and section.settings.vs_campaign_id != blank -%}
     <div class="viralsweep-container">
       <p style="color: red;">This is a test of the viralsweep section settings</p>
-      <p>{{ section.settings.enable_viralsweep }}</p>
-      <p>{{ section.settings.vs_campaign_id }}</p>
 
       {% comment %} <div id="vsscript_55272_868316"></div> {% endcomment %}
       {% comment %} <script async="" type="text/javascript" src="https://app.viralsweep.com/vsa-widget-3155df-55272.js?sid=55272_868316"></script> {% endcomment %}
-    </div>
-  {% comment %}
-    // VIRALSWEEP TEST TEMPLATE PAGE :: PDM-827
-    // if viralsweep_campaign_id is equal to (or contains a de value)
-      // then render the de specific JavaScript include file
-    // else
-      // render the regular en JavaScript include file
+      {% capture campaign_id %}{{ section.settings.vs_campaign_id }}{% endcapture %}
+      {% capture campaign_domain %}{{ section.settings.campaign_domain }}{% endcapture %}
+      {%- if campaign_id != blank -%}
+        <p>{{ section.settings.enable_viralsweep }}</p>
+        <p>campaign_id: {{ campaign_id }}</p>
+        <p>campaign_domain: {{ campaign_domain }}</p>
 
-  {% endcomment %}
+        <div id="vsscript_{{ campaign_id }}"></div>
+        {% comment %} <div id="vsscript_55272_868316"></div> {% endcomment %}
+        {% comment %} <script async="" type="text/javascript" src="https://app.viralsweep.com/vsa-widget-3155df-55272.js?sid=55272_868316"></script> {% endcomment %}
+        <script async="" type="text/javascript">
+          // Check to see which domain we are currently on
+          var domainLocale = window.theme.Utils.domainCookie();
+          console.log(`Here is the domainLocale cookie value: ${domainLocale}`);
+        </script>
+        {% comment %}
+          // VIRALSWEEP TEST TEMPLATE PAGE :: PDM-827
+          // if campaign_domain is equal to (or contains a de value)
+            // then render the de specific JavaScript include file
+          // else
+            // render the regular en JavaScript include file
+
+        {% endcomment %}
+      {%- endif -%}
+    </div>
   {%- endif -%}
 </div>
-
 
 {% schema %}
   {
@@ -30,7 +43,7 @@
     "settings": [
       {
         "type": "header",
-        "content": "Background"
+        "content": "ViralSweep Campaign"
       },
       {
         "type":   "checkbox",
@@ -39,20 +52,39 @@
         "info":   "This setting enables or disables the overall full page ViralSweep page template.",
         "default": false
       },
-	  {
-
-        "type": "text",
-        "id": "vs_campaign_id",
-        "label": "Enter ViralSweep campaign ID",
-        "default": "#sweepstakes #promotion-35656"
-	  },
-	  {
-
-        "type": "text",
-        "id": "vs_campaign_id_en",
-        "label": "Enter ViralSweep campaign ID",
-        "default": "#sweepstakes #promotion-35656"
-	  }
+      {
+        "type": "header",
+        "content": "ViralSweep Campaign Info"
+      },
+      {
+        "type":   "select",
+        "id":     "campaign_domain",
+        "label":  "Campaign Domain",
+        "info":   "Leave set to EN unless you need DE for German content",
+        "options": [
+          {
+            "label": "EN",
+            "value": "en"
+          },
+          {
+            "label": "DE",
+            "value": "de"
+          }
+        ],
+        "default": "en"
+      },
+      {
+          "type": "text",
+          "id": "vs_campaign_id",
+          "label": "Enter ViralSweep campaign ID",
+          "default": "55272_888313"
+      },
+      {
+          "type": "text",
+          "id": "vs_campaign_id_val2",
+          "label": "Enter ViralSweep campaign ID",
+          "default": "#sweepstakes #promotion-35656"
+      }
     ]
   }
 {% endschema %}
