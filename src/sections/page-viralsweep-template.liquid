@@ -29,37 +29,38 @@
       {% comment %} :: if campaign domain is not equal to en {% endcomment %}
       {%- if campaign_domain != 'en' -%}
         {% comment %} then build non-EN specific campaign div and JS file {% endcomment %}
-        <div id="vsscript_{{ campaign_id_other }}"></div>
-        <script async="" type="text/javascript">
+        <script type="text/javascript">
         // Check to see which domain we are currently on
         var domainLocale = window.theme.Utils.domainCookie();
-
-        var script = document.createElement('script');
-        var vsscript_id = document.querySelector("[id^='vsscript_']");
-        console.log(vsscript_id);
-
-        // script.src = "//app.viralsweep.com/vsa-widget-3155df-{{ campaign_id_vals[0] }}.js?sid={{ campaign_id_other }}";
-        // document.head.appendChild(script);
-
-campaign_
         console.log(`Here is the domainLocale cookie value: ${domainLocale}`);
+
+        if (domainLocale != 'com' || domainLocale != 'uk') { // if the domain is anything other than .com, then embed ViralSweep  non-EN campaign include
+          var script = document.createElement('script');
+          var vsScriptId = document.querySelector("[id^='vsscript_']");
+          script.src = "//app.viralsweep.com/vsa-widget-3155df-{{ campaign_id_vals[0] }}.js?sid={{ campaign_id_other }}";
+          vsScriptId.parentNode.insertAfter( script, vsScriptId );
+          // document.script.appendChild(vsScriptId);
+        }
         </script>
+        <div id="vsscript_{{ campaign_id_other }}"></div>
       {%- else -%}
       {% comment %} :: else the campaign domain must be defaulted to en {% endcomment %}
         {% comment %} then build EN specific campaign div and JS file {% endcomment %}
-        <div id="vsscript_{{ campaign_id }}"></div>
-        <script async="" type="text/javascript">
+        <script type="text/javascript">
         // Check to see which domain we are currently on
         var domainLocale = window.theme.Utils.domainCookie();
         console.log(`Here is the domainLocale cookie value: ${domainLocale}`);
 
-        var script = document.createElement('script');
-        var vsscript_id = document.querySelector("[id^='vsscript_']");
-        console.log(vsscript_id);
+        if (domainLocale == 'com' || domainLocale == 'uk') { // if the domain is .com, then embed ViralSweep EN campaign include
+          var script = document.createElement('script');
+          var vsScriptId = document.querySelector("[id^='vsscript_']");
+          script.src = "//app.viralsweep.com/vsa-widget-3155df-{{ campaign_id_vals[0] }}.js?sid={{ campaign_id }}";
+          vsScriptId.parentNode.insertAfter( script, vsScriptId );
+          // document.script.appendChild(vsScriptId);
+        }
 
-        // script.src = "//app.viralsweep.com/vsa-widget-3155df-{{ campaign_id_vals[0] }}.js?sid={{ campaign_id }}";
-        // document.head.appendChild(script);
         </script>
+        <div id="vsscript_{{ campaign_id }}"></div>
       {%- endif -%}
 
       {% comment %} <div id="vsscript_55272_868316"></div> {% endcomment %}
