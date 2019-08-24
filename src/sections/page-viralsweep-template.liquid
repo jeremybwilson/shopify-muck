@@ -36,7 +36,8 @@
 
         if (domainLocale == 'de' || domainLocale == 'fr') { // if the domain is .de, then embed ViralSweep  non-EN campaign include
           var script = document.createElement('script');
-          var vsScriptId = document.querySelector("[id^='vsscript_']");
+          // var vsScriptId = document.querySelector("[id^='vsscript_']");
+          var vsScriptId = document.getElementById( 'vsscript_{% section.settings.campaign_id %}' );
           script.async = "";
           script.src = "//app.viralsweep.com/vsa-widget-3155df-{{ campaign_id_vals[0] }}.js?sid={{ campaign_id_other }}";
           vsScriptId.parentNode.insertAfter( script, vsScriptId );
@@ -54,7 +55,8 @@
 
         if (domainLocale == 'com' || domainLocale == 'uk') { // if the domain is .com, then embed ViralSweep EN campaign include
           var script = document.createElement('script');
-          var vsScriptId = document.querySelector("[id^='vsscript_']");
+          // var vsScriptId = document.querySelector("[id^='vsscript_']");
+          var vsScriptId = document.getElementById( 'vsscript_{% section.settings.campaign_id %}' );
           script.async = "";
           script.src = "//app.viralsweep.com/vsa-widget-3155df-{{ campaign_id_vals[0] }}.js?sid={{ campaign_id }}";
           vsScriptId.parentNode.insertAfter( script, vsScriptId );
