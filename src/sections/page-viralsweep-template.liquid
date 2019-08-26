@@ -14,7 +14,7 @@
     {%- endif -%}
     {% comment %} {% capture campaign_id_vals %}{{ campaign_id | split: "_" }}{% endcapture %} {% endcomment %}
     <div class="viralsweep-container">
-      <p style="color: red;">This is a test of the viralsweep section settings</p>
+      {% comment %} <p style="color: red;">This is a test of the viralsweep section settings</p>
       <p>campaign_id: {{ campaign_id }}</p>
       <p>campaign_id_other: {{ campaign_id_other }}</p>
       <p>campaign_val_part1: {{ campaign_id_vals[0] }}</p>
@@ -23,60 +23,53 @@
         <p>campaign_domain: {{ campaign_domain }}</p>
       {%- elsif campaign_domain == 'de' %}
         <p>campaign_domain: {{ campaign_domain }}</p>
-      {%- endif -%}
+      {%- endif -%} {% endcomment %}
 
-
-      {% comment %} :: if campaign domain is not equal to en {% endcomment %}
-      {%- if campaign_domain != 'en' -%}
-        {% comment %} then build non-EN specific campaign div and JS file {% endcomment %}
         <script type="text/javascript">
-        // Check to see which domain we are currently on
-        var domainLocale = window.theme.Utils.domainCookie();
-        console.log(`Here is the domainLocale cookie value: ${domainLocale}`);
+        window.theme.viralSweepData = {};         // Default to an empty object so we are certain this will exist
+        var data = window.theme.viralSweepData;   // Shorthand to make it easier to extend props
+        data.domainLocale = window.theme.Utils.domainCookie();  // Store our domain
 
-        if (domainLocale == 'de' || domainLocale == 'fr') { // if the domain is .de, then embed ViralSweep  non-EN campaign include
-          var script = document.createElement('script');
-          // var vsScriptId = document.querySelector("[id^='vsscript_']");
-          var vsScriptId = document.getElementById( 'vsscript_{% section.settings.campaign_id %}' );
-          script.async = "";
-          script.src = "//app.viralsweep.com/vsa-widget-3155df-{{ campaign_id_vals[0] }}.js?sid={{ campaign_id_other }}";
-          vsScriptId.parentNode.insertAfter( script, vsScriptId );
-          // document.script.appendChild(vsScriptId);
-        }
+        // LANGUAGE DEFAULT : English data supplied by default, if TLD (top level domain) = "com" or "uk"
+        {% assign scriptId = 'vsscript_{{ campaign_id }}' %}
+
+        if( /com|uk/i.test( data.domainLocale ) ){
+          data.vsScriptId = {{ scriptId }};
+          data.vsScriptUrl = '//app.viralsweep.com/vsa-widget-3155df-{{ campaign_id_vals[0] }}.js?sid={{ campaign_id }}';
+        };
         </script>
-        <div id="vsscript_{{ campaign_id_other }}"></div>
-      {%- else -%}
-      {% comment %} :: else the campaign domain must be defaulted to en {% endcomment %}
-        {% comment %} then build EN specific campaign div and JS file {% endcomment %}
+
+        {% comment %} LANGUAGE : Is Campaign Domain NOT english? {% endcomment %}
+        {%- if campaign_domain != 'en' -%}
+          {% comment %} then build non-EN specific campaign div and JS file {% endcomment %}
+          {% assign scriptId ='vsscript_{{ campaign_id_other }}' %}
+
+          {% comment %} DATA : Build Non-EN Specific script URL info {% endcomment %}
+          <script type="text/javascript">
+          var data = window.theme.viralSweepData
+          // Check to see which domain we are currently on
+          if ( /de|fr/i.test( data.domainLocale ) ) { // if the domain is .de, then embed ViralSweep  non-EN campaign include
+            data.vsScriptId = {{ scriptId }};
+            data.vsScriptUrl = '//app.viralsweep.com/vsa-widget-3155df-{{ campaign_id_vals[0] }}.js?sid={{ campaign_id_other }}';
+          }
+          </script>
+        {%- endif -%}
+
         <script type="text/javascript">
-        // Check to see which domain we are currently on
-        var domainLocale = window.theme.Utils.domainCookie();
-        console.log(`Here is the domainLocale cookie value: ${domainLocale}`);
+          var data = window.theme.viralSweepData;
 
-        if (domainLocale == 'com' || domainLocale == 'uk') { // if the domain is .com, then embed ViralSweep EN campaign include
-          var script = document.createElement('script');
-          // var vsScriptId = document.querySelector("[id^='vsscript_']");
-          var vsScriptId = document.getElementById( 'vsscript_{% section.settings.campaign_id %}' );
-          script.async = "";
-          script.src = "//app.viralsweep.com/vsa-widget-3155df-{{ campaign_id_vals[0] }}.js?sid={{ campaign_id }}";
-          vsScriptId.parentNode.insertAfter( script, vsScriptId );
-          // document.script.appendChild(vsScriptId);
-        }
+          // ADD SCRIPT : We know as long as those two datapoints, we can generate the widget
+          if (data.scriptId && data.vsScriptUrl) {
 
+            // NODE : What element to put our script after
+            var widgetNode = document.getElementById( data.vsScriptId );
+
+            var script = document.createElement('script');
+            script.async = "";
+            script.src = data.vsScriptUrl;
+            vsScriptId.parentNode.insertAfter( script, widgetNode );
+          }
         </script>
-        <div id="vsscript_{{ campaign_id }}"></div>
-      {%- endif -%}
-
-      {% comment %} <div id="vsscript_55272_868316"></div> {% endcomment %}
-      {% comment %} <script async="" type="text/javascript" src="https://app.viralsweep.com/vsa-widget-3155df-55272.js?sid=55272_868316"></script> {% endcomment %}
-
-      {% comment %}
-        // VIRALSWEEP TEST TEMPLATE PAGE :: PDM-827
-        // if campaign_domain is equal to (or contains a de value)
-          // then render the de specific JavaScript include file
-        // else
-          // render the regular en JavaScript include file
-      {% endcomment %}
     </div><!-- /.viralsweep-container -->
   {%- endif -%}
 </div>

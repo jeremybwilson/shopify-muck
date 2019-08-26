@@ -14,17 +14,6 @@
     {%- endif -%}
     {% comment %} {% capture campaign_id_vals %}{{ campaign_id | split: "_" }}{% endcapture %} {% endcomment %}
     <div class="viralsweep-container">
-      <p style="color: red;">This is a test of the viralsweep section settings</p>
-      <p>campaign_id: {{ campaign_id }}</p>
-      <p>campaign_id_other: {{ campaign_id_other }}</p>
-      <p>campaign_val_part1: {{ campaign_id_vals[0] }}</p>
-      <p>campaign_val_part2: {{ campaign_id_vals[1] }}</p>
-      {%- if campaign_domain == 'en' %}
-        <p>campaign_domain: {{ campaign_domain }}</p>
-      {%- elsif campaign_domain == 'de' %}
-        <p>campaign_domain: {{ campaign_domain }}</p>
-      {%- endif -%}
-
       {% comment %} INIT DATA : Store Our Initial Data for Domain / Stub object for Later Usage {% endcomment %}
       <script>
         window.theme.viralsweepData = {};         // Default to an empty object so we are certain this will exist
@@ -39,13 +28,12 @@
         }
       </script>
 
-
       {% comment %} LANGUAGE : Is Campaign Domain NOT english? {% endcomment %}
       {%- if campaign_domain != 'en' -%}
         {% assign scriptId = 'vsscript_{{ campaign_id_other }}' %}
 
         {% comment %} DATA : Build Non-EN Specific script URL info {% endcomment %}
-        <script type="text/javascript">
+        <script>
           var data = window.theme.viralsweepData;
           if ( /de|fr/i.test( data.domainLocale ) ) { // if the domain is .de, then embed ViralSweep  non-EN campaign include
             data.vsScriptId = '{{ scriptId }}';
@@ -54,7 +42,6 @@
         </script>
       {%- endif -%}
 
-
       {% comment %} VIRAL SWEEP WIDGET : Div that the script will generate the widget into {% endcomment %}
       <div id="{{ scriptId }}"></div>
 
@@ -62,8 +49,8 @@
       <script type="text/javascript">
         var data = window.theme.viralsweepData;
 
-        // ADD SCRIPT : We know as long as those two datapoints, we can genreate the widget
-        if ( data.vsScriptId && data.vsScriptUrl ) { 
+        // ADD SCRIPT : We know as long as those two datapoints, we can generate the widget
+        if ( data.vsScriptId && data.vsScriptUrl ) {
 
           // NODE : What element to put our script after
           var widgetNode = document.getElementById( data.vsScriptId );
