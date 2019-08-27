@@ -872,6 +872,13 @@
           "currency_symbol": "&#36;"
         }
       },
+      "page-viralsweep-template": {
+        "type": "page-viralsweep-template",
+        "settings": {
+          "enable_viralsweep": true,
+          "vs_campaign_id": "#sweepstakes #promotion-35656"
+        }
+      },
       "collection-banner": {
         "type": "collection-banner",
         "blocks": {
