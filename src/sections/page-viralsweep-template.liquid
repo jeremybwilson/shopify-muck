@@ -20,8 +20,6 @@
       data.domainLocale = window.theme.Utils.domainCookie();  // Store our domain
 
       // LANGUAGE DEFAULT : English data supplied by default, if TLD (top level domain) = "com" or "uk"
-      // {% assign scriptId = 'vsscript_{{ campaign_id }}' %}
-      // {% capture scriptId %}vsscript_{{ campaign_id }}{% endcapture %}
       if ( /com|uk/i.test( data.domainLocale ) ) {
         data.vsScriptId = '{{ scriptId }}';
         data.vsScriptUrl = '//app.viralsweep.com/vsa-widget-3155df-{{ campaign_id_vals[0] }}.js?sid={{ campaign_id }}';
@@ -30,14 +28,12 @@
 
       {% comment %} LANGUAGE : Is Campaign Domain NOT english? {% endcomment %}
       {%- if campaign_domain != 'en' -%}
-        {% comment %} then build non-EN specific campaign div and JS file {% endcomment %}
-        {% comment %} {% assign scriptId ='vsscript_{{ campaign_id_other }}' %} {% endcomment %}
 
         {% comment %} DATA : Build Non-EN Specific script URL info {% endcomment %}
         <script type="text/javascript">
         var data = window.theme.viralSweepData
         // Check to see which domain we are currently on
-        if ( /de|fr/i.test( data.domainLocale ) ) { // if the domain is .de, then embed ViralSweep  non-EN campaign include
+        if ( /de|fr/i.test( data.domainLocale ) ) { // if the domain is .de or fr-ca, then embed ViralSweep  non-EN campaign include
           data.vsScriptId = '{{ scriptId }}';
           data.vsScriptUrl = '//app.viralsweep.com/vsa-widget-3155df-{{ campaign_id_vals[0] }}.js?sid={{ campaign_id_other }}';
         }
@@ -68,7 +64,7 @@
           var script = document.createElement('script');
           script.async = "";
           script.src = data.vsScriptUrl;
-          // vsScriptId.parentNode.insertAfter( script, widgetNode );  // keeps returning this error:  Uncaught ReferenceError: vsScriptId is not defined
+          // widgetNode.parentNode.insertAfter( script, widgetNode );
           script.appendAfter(widgetNode);
         }
       </script>
