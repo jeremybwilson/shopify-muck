@@ -5,7 +5,6 @@
   {%- if section.settings.enable_viralsweep == true and section.settings.campaign_id != blank or section.settings.campaign_id_other != blank -%}
     {% capture campaign_id %}{{ section.settings.campaign_id }}{% endcapture %}
     {% capture campaign_id_other %}{{ section.settings.campaign_id_other }}{% endcapture %}
-    {% capture campaign_domain %}{{ section.settings.campaign_domain }}{% endcapture %}
     {% assign campaign_id_vals = campaign_id | split: "_" %}
     {% capture script_id_en %}vsscript_{{ campaign_id }}{% endcapture %}
     {% assign campaign_id_vals_other = campaign_id_other | split: "_" %}
@@ -26,19 +25,6 @@
         data.vsScriptUrl = '//app.viralsweep.com/vsa-widget-3155df-{{ campaign_id_vals_other[0] }}.js?sid={{ campaign_id_other }}';
       };
       </script>
-
-      {% comment %} LANGUAGE : Is Campaign Domain NOT english? {% endcomment %}
-      {%- if campaign_domain != 'en' -%}
-        {% comment %} DATA : Build Non-EN Specific script URL info {% endcomment %}
-        {% comment %} <script type="text/javascript">
-        var data = window.theme.viralSweepData
-        // Check to see which domain we are currently on
-        if ( /de|fr/i.test( data.domainLocale )  ) { // if the domain is .de or fr-ca, then embed ViralSweep  non-EN campaign include
-          data.vsScriptId = '{{ scriptId }}';
-          data.vsScriptUrl = '//app.viralsweep.com/vsa-widget-3155df-{{ campaign_id_vals[0] }}.js?sid={{ campaign_id_other }}';
-        }
-        </script> {% endcomment %}
-      {%- endif -%}
 
       {% comment %} VIRAL SWEEP WIDGET : Div that the script will generate the widget into {% endcomment %}
       <div id="{{ scriptId }}"></div>
