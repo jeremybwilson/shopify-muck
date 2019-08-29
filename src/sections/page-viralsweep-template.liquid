@@ -33,7 +33,7 @@
         <script type="text/javascript">
         var data = window.theme.viralSweepData
         // Check to see which domain we are currently on
-        if ( /de|fr/i.test( data.domainLocale ) ) { // if the domain is .de or fr-ca, then embed ViralSweep  non-EN campaign include
+        if ( /de|fr/i.test( data.domainLocale )  ) { // if the domain is .de or fr-ca, then embed ViralSweep  non-EN campaign include
           data.vsScriptId = '{{ scriptId }}';
           data.vsScriptUrl = '//app.viralsweep.com/vsa-widget-3155df-{{ campaign_id_vals[0] }}.js?sid={{ campaign_id_other }}';
         }

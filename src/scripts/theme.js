@@ -856,6 +856,10 @@ theme.Utils = (function () {
           domainLocale = domainPrefix;  // Will return the domain prefix, eg. fr or www
           $.cookie('domain_suffix_value', domainLocale, { expires: 180, path: '/' });
 
+          if(domainPrefix == 'fr'){
+            domainLocale = 'fr';  // if domain prefix is equal to 'fr', then assign value manually
+            $.cookie('domain_suffix_value', domainLocale, { expires: 180, path: '/' });
+          }
         } else {                        // checking the prefix value for .COM or .EU sites
           domainLocale = domainSuffix;  // Will return the domain suffix, eg. .com, .eu
           $.cookie('domain_suffix_value', domainLocale, { expires: 180, path: '/' });
