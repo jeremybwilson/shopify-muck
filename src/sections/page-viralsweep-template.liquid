@@ -20,7 +20,7 @@
       data.domainLocale = window.theme.Utils.domainCookie();  // Store our domain
 
       // LANGUAGE DEFAULT : English data supplied by default, if TLD (top level domain) = "com" or "uk"
-      if ( /com|uk|eu|ca/i.test( data.domainLocale ) ) {
+      if ( /com|uk|eu/i.test( data.domainLocale ) ) {
         data.vsScriptId = '{{ scriptId }}';
         data.vsScriptUrl = '//app.viralsweep.com/vsa-widget-3155df-{{ campaign_id_vals[0] }}.js?sid={{ campaign_id }}';
       };
