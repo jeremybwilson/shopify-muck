@@ -27,7 +27,8 @@
       </script>
 
       {% comment %} VIRAL SWEEP WIDGET : Div that the script will generate the widget into {% endcomment %}
-      <div id="{{ scriptId }}"></div>
+      {%- if campaign_id != blank -%}<div id="{{ script_id_en }}"></div>{%- endif -%}
+      {%- if campaign_id_other != blank -%}<div id="{{ script_id_other }}"></div>{%- endif -%}
 
       <script type="text/javascript">
         var data = window.theme.viralSweepData;
