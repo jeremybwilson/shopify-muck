@@ -1,11 +1,11 @@
 {% comment %} SIZE CHART {% endcomment %}
 {% assign is_eu_or_uk = false %}
-{% assign is_ca = false %}
+{% assign is_ca_or_usa = false %}
 {% if settings.international_store_version == 'UK' or settings.international_store_version == 'EU' %}
   {% assign is_eu_or_uk = true %}
 {% endif %}
-{% if settings.international_store_version == 'CA'%}
-  {% assign is_ca = true %}
+{% if settings.international_store_version == 'CA' or settings.international_store_version == 'US'%}
+  {% assign is_ca_or_usa = true %}
 {% endif %}
 
 {% for tag in product.tags %}
@@ -20,11 +20,11 @@
       {% when 'babies' %}
         {% assign size_chart_type = 'babies' %}
       {% when 'neos_non_insulated' %}
-        {% if is_ca %}
+        {% if is_ca_or_usa %}
           {% assign size_chart_type = 'neos_non_insulated' %}
         {% endif %}
       {% when 'neos_insulated' %}
-        {% if is_ca %}
+        {% if is_ca_or_usa %}
           {% assign size_chart_type = 'neos_insulated' %}
         {% endif %}
       {% when 'men' %}
