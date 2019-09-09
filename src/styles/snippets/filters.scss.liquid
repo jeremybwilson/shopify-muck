@@ -57,13 +57,17 @@ $filterBorder: 1px solid {{ settings.filter_divider_color }};
         }
 
         .bc-sf-filter-option-block {
-            position: relative; // So the giant menu will align with items, comment out to make full width menus
+            position: static; // So the giant menu will align with items, comment out to make full width menus
             margin-bottom: 0; 
             padding-top: 3px; // So line is cleanly centered horizontally
 
             // FILTER : WRAPPER : Padding Wrapper, didn't think we needed to go ham with nesting :p
             .bc-sf-filter-block-content-inner {
                 padding: 30px 15px 15px;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                flex-direction: row-reverse;
             }
 
             // FILTER : TITLE : Single filter title dropdown parent
@@ -116,17 +120,33 @@ $filterBorder: 1px solid {{ settings.filter_divider_color }};
             .bc-sf-filter-block-content {
                 background: $filterBg;
                 border: none;
-                width: 190px;
+                width: 100%;
+                top:66px !important;
 
                 // CLEAR : Hide the in-filter list clear button, desktop has exposed list of filters already
                 .bc-sf-filter-clear {
-                    display: none;
+                    background-color: #aa5131;
+                    padding: 10px 0px;
+                    text-align: center;
+                    text-decoration: none;
+                    font-weight: 700;
+                    line-height: 1.5em;
+                    letter-spacing: .05em;
+                    font-size: 1rem;
+                    width: 15%;
+                    display: inline-block;
+                    margin: 0 15px 30px;
+                    outline: none;
+                    color: #fefffe;
+                    float: left;
                 }
 
                 // APPLY : Button to apply selected filters in a list
                 .bc-sf-filter-select-button {
                     @include h6;
-                    width: 100%;
+                    width: 15%;
+                    display: inline-block;
+                    margin: 0 0 30px;
                     outline: none;
                     color: $filterBtnMainText;
                     background: $filterBtnMainBg; // Reverse it so the button matches convention
@@ -134,12 +154,14 @@ $filterBorder: 1px solid {{ settings.filter_divider_color }};
 
                 // LIST : The actual list itself
                 ul.bc-sf-filter-option-multiple-list {
+                    width:100%;
+                    padding-left: 0;
+                    margin: 15px 45px;
 
                     // FILTER : OPTION : Parent list item for individual item in filter options
                     li {
-                        display: block; // one item per row
-                        width: 100%; // Default: 30% in inital styles
-                        margin-bottom: 15px;
+                        width: 25%; // Default: 30% in inital styles
+                        margin: 0 0 30px 0;
 
                         // FILTER : OPTION : link wrapper around the 3 spans of data 
                         a {
