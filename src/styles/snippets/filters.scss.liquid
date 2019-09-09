@@ -66,8 +66,8 @@ $filterBorder: 1px solid {{ settings.filter_divider_color }};
                 padding: 30px 15px 15px;
                 display: flex;
                 flex-wrap: wrap;
-                justify-content: center;
-                flex-direction: row-reverse;
+                @include justify-content( center );
+                @include flex-direction( row-reverse );
             }
 
             // FILTER : TITLE : Single filter title dropdown parent
@@ -125,11 +125,11 @@ $filterBorder: 1px solid {{ settings.filter_divider_color }};
 
                 // CLEAR : Hide the in-filter list clear button, desktop has exposed list of filters already
                 .bc-sf-filter-clear {
-                    background-color: #aa5131;
+                    background-color: $color--orange-1;
                     padding: 10px 0px;
                     text-align: center;
                     text-decoration: none;
-                    font-weight: 700;
+                    font-weight: $font-weight--bold;
                     line-height: 1.5em;
                     letter-spacing: .05em;
                     font-size: 1rem;
@@ -137,7 +137,7 @@ $filterBorder: 1px solid {{ settings.filter_divider_color }};
                     display: inline-block;
                     margin: 0 15px 30px;
                     outline: none;
-                    color: #fefffe;
+                    color: $color--white;
                     float: left;
                 }
 
@@ -189,6 +189,18 @@ $filterBorder: 1px solid {{ settings.filter_divider_color }};
 
     // APPLIED FILTER LIST : List of applied filters that below the filter set options
     .bc-sf-filter-selection-wrapper {
+        @include mq( 'tablet' ) {
+            bottom: 16px;
+            top: unset;
+            width: 43%;
+            left: 20px;
+        }
+        @include mq( 'phone' ) {
+            bottom: 16px;
+            top: unset;
+            width: 43%;
+            left: 20px;
+        }
         @include flexbox;
         @include align-items( center );
         position: absolute;
@@ -230,6 +242,12 @@ $filterBorder: 1px solid {{ settings.filter_divider_color }};
 
         // CLEAR ALL : Button to clear all applied filters on desktop
         .bc-sf-filter-clear-all {
+            @include mq( 'tablet' ) {
+                position: static;
+            }
+            @include mq( 'phone' ) {
+                position: static;
+            }
             @include h6;
             @include fontSize( 16px );
             position: absolute;
@@ -515,6 +533,16 @@ $filterBorder: 1px solid {{ settings.filter_divider_color }};
 
         // SET : TITLE : Title block for a filter set of options
         .bc-sf-filter-block-title {
+            @include mq( 'tablet' ) {
+                position: static !important;
+                width: 100% !important;
+                padding: 0 !important;
+            }
+            @include mq( 'phone' ) {
+                position: static !important;
+                width: 100% !important;
+                padding: 0 !important;
+            }
             
             // TITLE : Title text + click object is actually attached to this oof..
             h3 {
