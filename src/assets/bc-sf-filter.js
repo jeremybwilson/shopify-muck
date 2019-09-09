@@ -6,6 +6,13 @@ var bcSfFilterSettings = {
         loadProductFirst: true,
         refineByHorizontalPosition: 'top',
         paginationType: "default", // PDM-216 this will work if we have "default" pagination
+    	  // enable review rating by tag
+      	enableReviewRatingByTag: true,
+				// rating filter option id
+        reviewRatingByTagFilterOptionId: ['pf_t_review_rating', 'pf_t_review_rating_list'],
+				// rating tag prefix
+        reviewRatingByTagTagPrefix: 'rating:',
+      	extraSortingList: 'extra-sort1-ascending|extra-sort1-descending',
     },
     selector: {
         products: '#product-loop'
@@ -381,7 +388,11 @@ BCSfFilter.prototype.buildExtrasProductList = function(data) {
     
     // THE ONE IN THEME.JS SEEMS TO ACTUALLY DO SOMETHING, 
     // NOT SURE WHAT THIS IS DOING AS NOTHING BROKE COMMENTING IT OUT..
-    
+    // if (typeof Yotpo !== 'undefined') {
+    //     var api = new Yotpo.API(yotpo);
+    //     api.refreshWidgets();
+    // }
+
     // if ($(window).width() >= 769) {
     //     $('.prod-container').hover(function(){ 
     //         $(this).children('.product-modal').show();
@@ -511,6 +522,194 @@ BCSfFilter.prototype.buildAdditionalElements = function(data, eventType) {
 // Build Default layout
 function buildDefaultLink(a,b){var c=window.location.href.split("?")[0];return c+="?"+a+"="+b}BCSfFilter.prototype.buildDefaultElements=function(a){if(bcSfFilterConfig.general.hasOwnProperty("collection_count")&&jQ("#bc-sf-filter-bottom-pagination").length>0){var b=bcSfFilterConfig.general.collection_count,c=parseInt(this.queryParams.page),d=Math.ceil(b/this.queryParams.limit);if(1==d)return jQ(this.selector.pagination).html(""),!1;if("default"==this.getSettingValue("general.paginationType")){var e=bcSfFilterTemplate.paginateHtml,f="";f=c>1?bcSfFilterTemplate.hasOwnProperty("previousActiveHtml")?bcSfFilterTemplate.previousActiveHtml:bcSfFilterTemplate.previousHtml:bcSfFilterTemplate.hasOwnProperty("previousDisabledHtml")?bcSfFilterTemplate.previousDisabledHtml:"",f=f.replace(/{{itemUrl}}/g,buildDefaultLink("page",c-1)),e=e.replace(/{{previous}}/g,f);var g="";g=c<d?bcSfFilterTemplate.hasOwnProperty("nextActiveHtml")?bcSfFilterTemplate.nextActiveHtml:bcSfFilterTemplate.nextHtml:bcSfFilterTemplate.hasOwnProperty("nextDisabledHtml")?bcSfFilterTemplate.nextDisabledHtml:"",g=g.replace(/{{itemUrl}}/g,buildDefaultLink("page",c+1)),e=e.replace(/{{next}}/g,g);for(var h=[],i=c-1;i>c-3&&i>0;i--)h.unshift(i);c-4>0&&h.unshift("..."),c-4>=0&&h.unshift(1),h.push(c);for(var j=[],k=c+1;k<c+3&&k<=d;k++)j.push(k);c+3<d&&j.push("..."),c+3<=d&&j.push(d);for(var l="",m=h.concat(j),n=0;n<m.length;n++)"..."==m[n]?l+=bcSfFilterTemplate.pageItemRemainHtml:l+=m[n]==c?bcSfFilterTemplate.pageItemSelectedHtml:bcSfFilterTemplate.pageItemHtml,l=l.replace(/{{itemTitle}}/g,m[n]),l=l.replace(/{{itemUrl}}/g,buildDefaultLink("page",m[n]));e=e.replace(/{{pageItems}}/g,l),jQ(this.selector.pagination).html(e)}}if(bcSfFilterTemplate.hasOwnProperty("sortingHtml")&&jQ(this.selector.topSorting).length>0){jQ(this.selector.topSorting).html("");var o=this.getSortingList();if(o){var p="";for(var q in o)p+='<option value="'+q+'">'+o[q]+"</option>";var r=bcSfFilterTemplate.sortingHtml.replace(/{{sortingItems}}/g,p);jQ(this.selector.topSorting).html(r);var s=void 0!==this.queryParams.sort_by?this.queryParams.sort_by:this.defaultSorting;jQ(this.selector.topSorting+" select").val(s),jQ(this.selector.topSorting+" select").change(function(a){window.location.href=buildDefaultLink("sort_by",jQ(this).val())})}}};
 
+// Display Type : List
+// Select Type  : Single
+BCSfFilter.prototype.buildFilterOptionSingleList = function(data, filterTreeId) {
+  var self = this;
+  // Sort values
+  if (data.hasOwnProperty('values') && (data.valueType == 'all' || this.getSettingValue('general.sortManualValues') || (data.valueType != 'all' && data.sortManualValues))) data.values = this.sortFilterOptionValue(data);
+  // Build content
+  var itemsContent = '';
+  var fOType = data.filterType,
+    fODisplayType = data.displayType,
+    fOSelectType = data.selectType,
+    fOId = data.filterOptionId,
+    fOLabel = data.label;
+
+  self.buildFilterOptionTagReviewRatingData(data, fOId);
+
+  // Display Collection "All"
+  if (data.filterType == 'collection' && data.activeCollectionAll) {
+    var checkExistCollection = this.findIndexArray('all', data.values, 'handle');
+    if (checkExistCollection == -1) {
+      var collectionAll = {
+        doc_count: null,
+        handle: "all",
+        key: 0,
+        label: this.getSettingValue('label.collectionAll'),
+        tags: null
+      };
+      data.values.unshift(collectionAll);
+    }
+  }
+  // Loop through each option values
+  for (var k in data.values) {
+    itemsContent += this.buildFilterOptionSingleListData(fOType, fOId, fOLabel, fODisplayType, fOSelectType, data['values'][k], data);
+  }
+  // Get Template & Append to Filter Tree
+  if (itemsContent != '') {
+    var html = this.getTemplate('filterOptionSingleList');
+    html = html.replace(/{{itemList}}/g, itemsContent);
+    this.buildFilterOption(html, data, filterTreeId);
+  }
+};
+
+// Display Type : List
+// Select Type  : Multiple
+BCSfFilter.prototype.buildFilterOptionMultipleList = function(data, filterTreeId) {
+  var self = this;
+  // Sort values
+  if (data.hasOwnProperty('values') && (data.valueType == 'all' || this.getSettingValue('general.sortManualValues') || (data.valueType != 'all' && data.sortManualValues))) data.values = this.sortFilterOptionValue(data);
+  // Reverse order values array of Percent Sale
+
+  // Build content
+  var itemsContent = '';
+  var fOType = data.filterType,
+    fOId = data.filterOptionId,
+    fOLabel = data.label,
+    fODisplayType = data.displayType,
+    fOSelectType = data.selectType;
+
+  self.buildFilterOptionTagReviewRatingData(data, fOId);
+
+  var valuesArr = data['values'];
+  if (data.filterType == 'percent_sale') valuesArr = [].concat(data.values).reverse();
+
+
+  for (var k = 0; k < valuesArr.length; k++) {
+    itemsContent += this.buildFilterOptionMultipleListData(fOType, fOId, fOLabel, fODisplayType, fOSelectType, valuesArr[k], data);
+  }
+
+
+  // Get Template & Append to Filter Tree
+  if (itemsContent != '') {
+    var html = this.getTemplate('filterOptionMultipleList');
+    html = html.replace(/{{itemList}}/g, itemsContent);
+    this.buildFilterOption(html, data, filterTreeId);
+  }
+};
+
+// Build Filter Option item in general
+BCSfFilter.prototype.buildFilterOptionItem = function(html, iLabel, iValue, fOType, fOId, fOLabel, fODisplayType, fOSelectType, fOItemValue, fOData) {
+  var self = this;
+  var keepValuesStatic = fOData.hasOwnProperty('keepValuesStatic') ? fOData.keepValuesStatic : false;
+
+  // Get Title which is only text and doesn't contain "product count"
+  if (fOType == 'review_ratings' && this.getSettingValue('general.ratingSelectionStyle') == 'text') {
+    var title = this.getReviewRatingsLabel(fOItemValue.from);
+  } else {
+    var title = this.customizeFilterOptionLabel(iLabel, fOData.prefix, fOType);
+  }
+
+  // Get product number
+  if (keepValuesStatic === true) var productNumber = null;
+  else var productNumber = fOItemValue.hasOwnProperty('doc_count') ? fOItemValue.doc_count : 0;
+
+  var itemLabel = this.buildFilterOptionLabel(iLabel, productNumber, fOData);
+  if (self.isFilterOptionTagReviewRating(fOId)) {
+    itemLabel = self.buildFilterOptionTagReviewRatingLabel(iValue, productNumber, fOData);
+  }
+
+  // Build main attributes
+  html = html.replace(/{{itemLabel}}/g, itemLabel);
+  html = html.replace(/{{itemLink}}/g, this.buildFilterOptionLink(fOId, iValue, fOType, fODisplayType, fOSelectType, keepValuesStatic));
+  html = html.replace(/{{itemValue}}/g, encodeURIParamValue(iValue));
+  html = html.replace(/{{itemTitle}}/g, title);
+  html = html.replace(/{{itemFunc}}/g, "onInteractWithFilterOptionValue(event, this, '" + fOType + "', '" + fODisplayType + "', '" + fOSelectType + "', '" + keepValuesStatic + "')");
+  // Check if item is selected or not
+  html = this.checkFilterOptionSelected(fOId, iValue, fOType, fODisplayType) ? html.replace(/{{itemSelected}}/g, 'selected') : html.replace(/{{itemSelected}}/g, '');
+  // Add additional attributes
+  var htmlElement = jQ(html);
+  htmlElement.children().attr({
+    'data-id': fOId,
+    'data-value': fOType == 'collection' ? encodeURIParamValue(iValue.split(':')[0]) : encodeURIParamValue(iValue),
+    'data-parent-label': fOLabel,
+    'data-title': title,
+    'data-count': productNumber
+  });
+  // Add nofollow to all filter option links to increase SEO
+  if (this.getSettingValue('general.enableSeo') && fOType != 'collection') {
+    htmlElement.children().attr('rel', 'nofollow');
+  }
+  // Build Collection scope (for only Collection type)
+  if (fOType == 'collection') htmlElement.children().attr('data-collection-scope', fOItemValue.key);
+  return jQ(htmlElement)[0].outerHTML;
+};
+
+// Build Filter option Label
+BCSfFilter.prototype.buildFilterOptionTagReviewRatingLabel = function(iValue, productNumber, fOData) {
+  var self = this;
+  // Customize label
+
+  var ratingValue = parseInt(iValue.replace(self.getSettingValue('general.reviewRatingByTagTagPrefix'), '').trim());
+  var label = '';
+  label = self.buildRatingStars(ratingValue);
+
+  // Build Labels
+  var itemLabelHtml = this.getTemplate('filterOptionLabel').replace(/{{itemValue}}/g, label);
+
+  if (this.getSettingValue('general.showFilterOptionCount') && fOData.displayType != 'box') {
+    if (fOData.keepValuesStatic !== true && productNumber !== null && ((productNumber > 0 && this.getSettingValue('general.showOutOfStockOption') == false) || this.getSettingValue('general.showOutOfStockOption') == true)) {
+      return itemLabelHtml.replace(/{{itemAmount}}/g, '(' + productNumber + ')');
+    }
+  }
+  return itemLabelHtml.replace(/{{itemAmount}}/g, '');
+};
+
+BCSfFilter.prototype.buildFilterOptionTagReviewRatingData = function(data, fOId) {
+  var self = this;
+  // Customize Rating
+  if (self.isFilterOptionTagReviewRating(fOId)) {
+
+    var arrRatingList = [0, 1, 2, 3, 4, 5];
+    var arrAvailableRatingData = data.values.map(function(value) {
+      return value.key.replace(self.getSettingValue('general.reviewRatingByTagTagPrefix'), '').trim();
+    });
+
+    function differenceOf2Arrays(array1, array2) {
+      var temp = [];
+      array1 = array1.toString().split(',').map(Number);
+      array2 = array2.toString().split(',').map(Number);
+
+      for (var i in array1) {
+        if (array2.indexOf(array1[i]) === -1) temp.push(array1[i]);
+      }
+      for (i in array2) {
+        if (array1.indexOf(array2[i]) === -1) temp.push(array2[i]);
+      }
+      return temp.sort((a, b) => a - b);
+    }
+
+    var unavailableRatingData = differenceOf2Arrays(arrRatingList, arrAvailableRatingData);
+
+    if (typeof unavailableRatingData != 'undefined' && unavailableRatingData.length > 0) {
+      unavailableRatingData.map(function(rating) {
+        var newValue = {
+          key: self.getSettingValue('general.reviewRatingByTagTagPrefix') + rating,
+          doc_count: 0
+        };
+        data.values.push(newValue);
+      });
+    }
+
+    data.values = self.sortFilterOptionValue(data);
+  }
+
+};
+
+BCSfFilter.prototype.isFilterOptionTagReviewRating = function(fOId) {
+  return this.getSettingValue('general.reviewRatingByTagFilterOptionId').indexOf(fOId) != -1 && this.getSettingValue('general.enableReviewRatingByTag') == true;
+};
 
 // Customize data to suit the data of Shopify API
 BCSfFilter.prototype.prepareProductData = function(data) {
