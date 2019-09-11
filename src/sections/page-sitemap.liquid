@@ -5,7 +5,11 @@
   <ul class="child">
     {% for child_link in link.links %}  
     {% if child_link.title != '-'%}
+    {% if child_link.url != '/'%}
     <li><a href= "{{ child_link.url }}">{{ child_link.title }}</a>
+    {% else %}
+     <li><span>{{ child_link.title }}</span>
+    {% endif %}
     {% endif %}
     {% if child_link.links != blank %}
       <ul class="grandchild">
@@ -27,7 +31,11 @@
 
 <ul class="parent">
 {% for link in linklists.footer.links %}
+{% if link.url != '/'%}
 <li><a href="{{ link.url }}">{{ link.title }}</a>
+{% else %}
+ <li><span>{{ link.title }}</span>
+{% endif %}
 {% if link.links != blank %}
   <ul class="child">
     {% for child_link in link.links %}  

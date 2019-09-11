@@ -15,29 +15,42 @@ ul.parent >li ul.child ul.grandchild {
     list-style: circle;
 }
 
+.child>li >span {
+    font-weight: $font-weight--bold;
+}
+
 ul.parent a:hover {
-    color: #ab5232;
+    color: $color--orange-1;
 }
 ul.grandchild >li >a {
-    color: #595959;
+    color: $color--gray-1;
 }
 ul.parent>li >a {
-    font-weight: 700;
+    font-weight: $font-weight--bold;
     line-height: 1.5em;
     letter-spacing: .25em;
-    font-size: 16px;
-    font-size: 1rem;
+    @include fontSize(16px);    
     height: 100%;
     text-decoration: none;
     text-transform: uppercase;
-    color: #164732;
+    color: $color--dark-green-1;
+}
+ul.parent>li >span {
+    font-weight: $font-weight--bold;
+    line-height: 1.5em;
+    letter-spacing: .25em;
+    @include fontSize(16px);
+    height: 100%;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: $color--dark-green-1;
 }
 ul.child {
-    font-size: 14px;
+    @include fontSize(14px);
     line-height: 1.7;
 }
 .child > li {
-    color: #9b492b;
+    color: $color--orange-2;
 }
 @include mq('phone'){
     ul.parent {
