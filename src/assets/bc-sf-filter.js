@@ -786,3 +786,93 @@ BCSfFilter.prototype.prepareProductData = function(data) {
     }
     return data;
 };
+
+/*
+* Name: sortLodashLikeFunc
+* @param: data - Array-object (mixed) required
+* @param: sortBy - string (key of object) required
+* @param: isAsc - Boolean (true is asc, false is desc) optional
+* return value: sorted Array-object
+* */
+var sortLodashLikeFunc = function (data, sortBy, isAsc) {
+    var dataMap = {};
+    var dataArr = [];
+    var newData = [];
+
+    if (data && data.length) {
+        data.forEach(function (d) {
+            // check if there is review_count property
+            if (d[sortBy]) {
+                if (dataMap[d[sortBy]]) {
+                    dataMap[d[sortBy]].push(d);
+                } else {
+                    dataMap[d[sortBy]] = [d];
+                    dataArr.push(d[sortBy]);
+                }
+            } else {
+                if (dataMap[0]) {
+                    dataMap[0].push(d);
+                } else {
+                    dataMap[0] = [d];
+                    dataArr.push(0);
+                }
+            }
+        });
+    }
+
+    dataArr.sort(function(a, b) {
+        if (isAsc) {
+            return a-b;
+        }
+        return b-a;
+    });
+
+    dataArr.forEach(function (value) {
+        newData = newData.concat(dataMap[value]);
+    });
+
+    return newData;
+};
+
+function getUrlParameter(name) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    var results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+}
+
+// sorting products got from server by review data
+var sortProductsByReviews = function(products, isAsc) {
+    var sortedByRating = sortLodashLikeFunc(products, 'review_ratings', isAsc);
+    return sortLodashLikeFunc(sortedByRating, 'review_count', isAsc);
+};
+
+BCSfFilter.prototype.buildAll = function(a, b, c) {
+
+    if (a && a.products && a.products.length) {
+        // sorting products by rating and review counts
+        if (getUrlParameter('sort') === 'extra-sort1-descending') {
+            a.products = sortProductsByReviews(a.products, false);
+        } else if (getUrlParameter('sort') === 'extra-sort1-ascending') {
+            a.products = sortProductsByReviews(a.products, true);
+        }
+    }
+
+    var d = this.selector.pagination,
+        e = a.total_product;
+    if (!0 === b && a.hasOwnProperty("filter") &&
+        (
+            this.buildFilterTree(a.filter.options),
+            this.getSettingValue("general.showRefineBy") && this.buildFilterSelection(a),
+                this.buildFilterTreeMobile(),
+                this.buildFilterTreeMobileButton(a), this.buildAdditionalFilterEvent()
+        ), e > 0
+    ) {
+        this.buildProductList(a.products, c);
+        var f = this.getSettingValue("general.paginationType");
+        "default" == f ? this.buildPagination(e) : (jQ(d).empty(), "load_more" == f && this.buildLoadMoreButton(e)), this.buildToolbar(), this.buildToolbarEvent(a), jQ(this.selector.filterWrapper).show();
+        var g = this.selector.topNotification;
+        jQ(g).length > 0 && jQ(g).empty()
+    }
+    jQ(this.selector.products).removeAttr("data-bc-sort"), jQ(d).show(), this.buildAdditionalElements(a, c), this.buildScrollToTop(), "collection" == c && this.buildPageInfo(a), this.isSearchPage() && (this.buildSearchResultHeader(a), this.buildSearchResultNumber(a)), this.buildRobotsMetaTag(a), this.selectFilter = !1
+};
