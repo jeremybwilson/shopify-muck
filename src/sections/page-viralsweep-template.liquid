@@ -1,0 +1,95 @@
+{% comment %}VIRALSWEEP TEST TEMPLATE PAGE :: PDM-827 {% endcomment %}
+<div id="page" class="desktop-12 tablet-6 mobile-3" data-section-id="{{ section.id }}">
+  {{ page.content }}
+
+  {%- if section.settings.enable_viralsweep == true and section.settings.campaign_id != blank or section.settings.campaign_id_other != blank -%}
+    {% capture campaign_id %}{{ section.settings.campaign_id }}{% endcapture %}
+    {% capture campaign_id_other %}{{ section.settings.campaign_id_other }}{% endcapture %}
+    {% assign campaign_id_vals = campaign_id | split: "_" %}
+    {% capture script_id_en %}vsscript_{{ campaign_id }}{% endcapture %}
+    {% assign campaign_id_vals_other = campaign_id_other | split: "_" %}
+    {% capture script_id_other %}vsscript_{{ campaign_id_other }}{% endcapture %}
+
+      <script type="text/javascript">
+      window.theme.viralSweepData = {};         // Default to an empty object so we are certain this will exist
+      var data = window.theme.viralSweepData;   // Shorthand to make it easier to extend props
+      data.domainLocale = window.theme.Utils.domainCookie();  // Store our domain
+
+      // LANGUAGE DEFAULT : English data supplied by default, if TLD (top level domain) = "com" or "uk"
+      if ( /com|uk|eu/i.test( data.domainLocale ) ) {
+        data.vsScriptId = '{{ script_id_en }}';
+        data.vsScriptUrl = '//app.viralsweep.com/vsa-widget-3155df-{{ campaign_id_vals[0] }}.js?sid={{ campaign_id }}';
+      } else {
+        // handle script tag for non-EN stores (locales)
+        data.vsScriptId = '{{ script_id_other }}';
+        data.vsScriptUrl = '//app.viralsweep.com/vsa-widget-3155df-{{ campaign_id_vals_other[0] }}.js?sid={{ campaign_id_other }}';
+      };
+      </script>
+
+      {% comment %} VIRAL SWEEP WIDGET : Div that the script will generate the widget into {% endcomment %}
+      {%- if campaign_id != blank -%}<div id="{{ script_id_en }}"></div>{%- endif -%}
+      {%- if campaign_id_other != blank -%}<div id="{{ script_id_other }}"></div>{%- endif -%}
+
+      <script type="text/javascript">
+        var data = window.theme.viralSweepData;
+
+        // ADD SCRIPT : We know as long as those two datapoints, we can generate the widget
+        if (data.vsScriptId && data.vsScriptUrl) {
+
+          // PROTOTYPE: Add Element BEFORE neighboring element
+          Element.prototype.appendBefore = function(element){
+            element.parentNode.insertBefore(this, element)
+          }
+          // PROTOTYPE: Add Element AFTER neighboring element
+          Element.prototype.appendAfter = function(element){
+            element.parentNode.insertBefore(this, element.nextSibling)
+          }
+
+          // NODE : What element to put our script after
+          var widgetNode = document.getElementById( data.vsScriptId );
+
+          var script = document.createElement('script');
+          script.async = "";
+          script.src = data.vsScriptUrl;
+          // widgetNode.parentNode.insertAfter( script, widgetNode );
+          script.appendAfter(widgetNode);
+        }
+      </script>
+    </div><!-- /.viralsweep-container -->
+  {%- endif -%}
+</div>
+
+{% schema %}
+  {
+    "name": "ViralSweep Settings",
+    "settings": [
+      {
+        "type": "header",
+        "content": "ViralSweep Campaign"
+      },
+      {
+        "type":   "checkbox",
+        "id":     "enable_viralsweep",
+        "label":  "Enable full page ViralSweep page",
+        "info":   "This setting enables or disables the overall full page ViralSweep page template.",
+        "default": false
+      },
+      {
+        "type": "header",
+        "content": "ViralSweep Campaign Info"
+      },
+      {
+          "type": "text",
+          "id": "campaign_id",
+          "label": "Enter ViralSweep campaign ID for EN domain",
+          "default": "55270_XXXXXX"
+      },
+      {
+          "type": "text",
+          "id": "campaign_id_other",
+          "label": "Enter ViralSweep campaign ID for non-EN domain",
+          "default": "55270_XXXXXX"
+      }
+    ]
+  }
+{% endschema %}

@@ -36,6 +36,7 @@ var bcSfFilterTemplate = {
                                         '{{itemVendor}}' +
                                         '<h3 class="product-title">{{itemTitle}}</h3>' +
                                     '</a>' +
+                                    '<div class="yotpo bottomLine" data-product-id="{{itemProductId}}"></div>'+
                                     '<div class="product-price-wrap">{{itemPrice}}</div>' +
                                 '</div>' +
                                 '{{itemQuickview}}' +
@@ -186,8 +187,9 @@ BCSfFilter.prototype.buildProductGridItem = function(data, index, totalProduct) 
         
         itemPriceHtml += '</div>';
     }
-    itemHtml = itemHtml.replace(/{{itemPrice}}/g, itemPriceHtml);
-
+    // PDM-868 : Patch for mobile Safari regex bug
+    var itemPriceRegEx = new RegExp( '{{itemPrice}}', 'g'); 
+    itemHtml = itemHtml.replace(itemPriceRegEx, function(match) { return itemPriceHtml }); 
 
     // QUICK VIEW : Add quickview template and setup for fancybox usage
     var itemQuickviewHtml = '';
@@ -277,6 +279,9 @@ BCSfFilter.prototype.buildProductGridItem = function(data, index, totalProduct) 
     itemHtml = itemHtml.replace(/{{itemUrl}}/g, this.buildProductItemUrl(data));
     itemHtml = itemHtml.replace(/{{itemCollection}}/g, data.collections[0].title);
 
+    // RENDER : Return out our built template!
+    window.total_display_product = window.total_display_product+1;
+  
     var collection_total_product = parseInt($("#all_products_count").val());
      if($(".product_grid_promo").length > 0){
          var current_html = "";
@@ -304,10 +309,16 @@ BCSfFilter.prototype.buildProductGridItem = function(data, index, totalProduct) 
         }
         return itemHtml;
     }
+    return itemHtml;
 }
 
 // Build Pagination
 BCSfFilter.prototype.buildPagination = function(totalProduct) {
+    if (typeof yotpo !== 'undefined') {
+        //check yopto is enable or not
+        yotpo.initWidgets();
+        window.display_product = true;
+    }
     // Get page info
     var currentPage = parseInt(this.queryParams.page);
     var totalPage = Math.ceil(totalProduct / this.queryParams.limit);

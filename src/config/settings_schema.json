@@ -1056,6 +1056,21 @@
     "name": "Newsletter",
     "settings": [
       {
+        "type": "header",
+        "content": "Mobile settings"
+      },
+      {
+        "type": "checkbox",
+        "id": "mobile_newletter_popup_disable",
+        "label": "Disable Mobile Viewport Mailing List Popup",
+        "default": false,
+        "info": "Check box to disable newsletter signup modal on mobile only."
+      },
+      {
+        "type": "header",
+        "content": "All other settings"
+      },
+      {
         "type": "checkbox",
         "id": "popup",
         "label": "Show Join Mailing List Popup"
@@ -1281,11 +1296,22 @@
     "settings": [
       {
         "type": "header",
-        "content": "Address Autofill Integration Settings (Auto fill the city and state in the address fields)."
+        "content": "Address Autofill Integration Settings."
+      },
+      {
+        "type": "paragraph",
+        "content": "(You may choose only one of the two options below)."
       },
       {
         "type": "checkbox",
         "id": "address_autofill_enable_flag",
+        "label": "Enable city and state autofill based on zip integration for this store",
+        "default": false,
+        "info": "Check the box to enable. A unique key value MUST also be provided."
+      },
+      {
+        "type": "checkbox",
+        "id": "full_address_autofill_enable_flag",
         "label": "Enable address autofill integration for this store",
         "default": false,
         "info": "Check the box to enable. A unique key value MUST also be provided."

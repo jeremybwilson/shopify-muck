@@ -139,7 +139,11 @@ require( 'es6-object-assign/auto' ); //812 bytes, pretty safe and small :D
 
     Drawer.prototype.init = function () {
       $(this.config.open).on('click', $.proxy(this.open, this));
-      this.$drawer.find(this.config.close).on('click', $.proxy(this.close, this));
+      this.$drawer.find(this.config.close).on('click', $.proxy(function () {
+        $('.PageOverlay').removeClass('active');
+        this.close();
+        return false;
+      }, this));
     };
 
     Drawer.prototype.open = function (evt) {
@@ -195,6 +199,7 @@ require( 'es6-object-assign/auto' ); //812 bytes, pretty safe and small :D
       });
 
       this.$nodes.page.on('click.drawer', $.proxy(function () {
+        $('.PageOverlay').removeClass('active');
         this.close();
         return false;
       }, this));
@@ -851,6 +856,10 @@ theme.Utils = (function () {
           domainLocale = domainPrefix;  // Will return the domain prefix, eg. fr or www
           $.cookie('domain_suffix_value', domainLocale, { expires: 180, path: '/' });
 
+          if(domainPrefix == 'fr'){
+            domainLocale = 'fr';  // if domain prefix is equal to 'fr', then assign value manually
+            $.cookie('domain_suffix_value', domainLocale, { expires: 180, path: '/' });
+          }
         } else {                        // checking the prefix value for .COM or .EU sites
           domainLocale = domainSuffix;  // Will return the domain suffix, eg. .com, .eu
           $.cookie('domain_suffix_value', domainLocale, { expires: 180, path: '/' });
@@ -2022,11 +2031,11 @@ $(document).ready(function() {
     }
 
     $.cookie('mailing_list_delay_popup', 'expires_in_days', { expires: expireInDays, path: '/' });
-
+    var mobile_hide_div_length = $(".mobile-disable").length;
     $.fancybox({
       href: "#subscribe--popup",
       tpl: {
-        wrap : '<div class="fancybox-wrap" tabIndex="-1" id="subscribe--popup-wrapper"><div class="fancybox-skin"><div class="fancybox-outer"><div class="fancybox-inner"></div></div></div></div>',
+        wrap : '<div class="fancybox-wrap '+ ((mobile_hide_div_length == 1 )?'mobile-disable':'') +' " tabIndex="-1" id="subscribe--popup-wrapper"><div class="fancybox-skin"><div class="fancybox-outer"><div class="fancybox-inner"></div></div></div></div>',
       },
       helpers: {
         overlay: null
@@ -2058,22 +2067,43 @@ theme.ProductForm = function (context, events) {
     return false;
   }
 
-  var optionSelectors = new Shopify.OptionSelectors("product-select-" + product.id, {
+  new Shopify.OptionSelectors("product-select-" + product.id, {
     product: product,
     onVariantSelected: function(variant, selector) {
 
-      $('.variant-inventory-one-unit').html("");
-      if(inv_qty[ variant.id ] == 1){
-        $('.variant-inventory-one-unit').html($('.variant-inventory-one-unit').attr("data-callout"));
-      }
-
       if ( !variant ) {
-        events.trigger("variantunavailable");
+        var mainOption = $(selector.selectors[0].element).val()
+        var option = $(selector.variantIdField).find('option').filter(function () {
+          return $(this).text().indexOf(mainOption) !== -1
+        })[0]
+
+        if (option) {
+          var $option = $(option)
+          var optionValue = $option.val()
+          var correspondingVariant = selector.product.variants.filter(function (variant) {
+            return variant.id.toString() === optionValue.toString()
+          })[0]
+
+          events.trigger("variantunavailable", correspondingVariant);
+
+          if (correspondingVariant.featured_image) {
+            events.trigger('variantchange:image', correspondingVariant.featured_image.id);
+          }
+        } else {
+          events.trigger("variantunavailable");
+        }
+
+        events.trigger("variantchange", correspondingVariant);
         return;
       }
 
       if ( product.variants.length == 1 ) {
         return;
+      }
+
+      $('.variant-inventory-one-unit').html("");
+        if(inv_qty[ variant.id ] == 1){
+          $('.variant-inventory-one-unit').html($('.variant-inventory-one-unit').attr("data-callout"));
       }
 
       events.trigger("variantchange", variant);
@@ -2087,26 +2117,6 @@ theme.ProductForm = function (context, events) {
     },
     enableHistoryState: config.enable_history
   });
-
-  (function initializeVariants() {
-    // Select active variant to ensure variant ID matches the URL
-    // optionSelectors.selectVariantFromDropdown({ propStateCall: true });
-
-    // Set availability to only cross out option1 if all corresponding variants are unavailable
-    var variants = product.variants.slice(0)
-    var availableOption1 = product.variants.reduce((acc, cur) => {
-      if (cur.available && acc.indexOf(cur.option1 === -1)) {
-        var option = theme.Utils.handleize(cur.option1);
-        acc.push(option);
-      }
-
-      return acc;
-    }, [])
-
-    // availableOption1.forEach(option => {
-    //   $(`[data-swatch-value=${option}]`).removeClass('soldout');
-    // });
-  })();
 
   (function single_option_selectors() {
     // function for the dropdowns
@@ -3231,3 +3241,38 @@ function debounce(fn, wait, immediate) {
         });
       });
   } 
+// update review & rating when review count is zero
+// call this event when product is load on front
+window.total_display_product = 0;
+window.display_product = false;
+$(document).on('DOMSubtreeModified', "#product-loop", function() {
+  var html = '<div class="standalone-bottomline"> ' + 
+                        '<div class="yotpo-bottomline pull-left  star-clickable">'+
+                            '<span class="yotpo-stars">'+
+                                '<span class="yotpo-icon yotpo-icon-empty-star rating-star pull-left"></span>' + 
+                                '<span class="yotpo-icon yotpo-icon-empty-star rating-star pull-left"></span>' + 
+                                '<span class="yotpo-icon yotpo-icon-empty-star rating-star pull-left"></span>' + 
+                                '<span class="yotpo-icon yotpo-icon-empty-star rating-star pull-left"></span>' + 
+                                '<span class="yotpo-icon yotpo-icon-empty-star rating-star pull-left"></span>' + 
+                                '<span class="sr-only" tabindex="0">0 star rating</span>'+
+                            '</span>'+
+                            '<a class="text-m">0</a>'+ 
+                            '<div class="yotpo-clr"></div>'+
+                        '</div>'+
+                        '<div class="yotpo-clr"></div>'+
+                    '</div>';
+  if(window.total_display_product == $('.yotpo-display-wrapper').length && window.display_product){
+    window.display_product = false;
+    $('.yotpo-display-wrapper').each(function (index, value) {
+      var length = $(this).find('.yotpo-stars').length;
+      if(length == 0){
+          $(this).html(html);
+      }
+    });
+    $("#product-loop .bottomLine .text-m").each(function(index,value){
+      var rhtml = $(this).html().replace(' Reviews','').replace(' Review','');
+      $(this).html(rhtml);
+    });
+    window.total_display_product = 0;
+  }
+}); 

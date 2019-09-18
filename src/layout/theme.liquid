@@ -23,7 +23,7 @@
   {% include 'head-meta-robots' %}
   <meta name="format-detection" content="telephone=no">
   {% comment %} canonical link is found in the head-meta-robots {% endcomment %}
-  
+
   <meta name="viewport" content="width=device-width, initial-scale=1"> <!--maximum-scale=1, user-scalable=no-->
 
   {% if settings.international_store_version == 'UK' %}
@@ -130,6 +130,7 @@
   {% include 'timber-cart' %}
 
   <div class="shifter-page{% if settings.ajax_cart_method == 'drawer' %} is-moved-by-drawer{% endif %}" id="PageContainer">
+    <div class="PageOverlay"></div>
     <div class="page-wrap">
 
       {% section 'header' %}
@@ -152,6 +153,7 @@
         <div class="category-banner has--category-banner"></div>
 
       {% endcomment %}
+
       {% if template contains 'collection' %}
         {% if collection.description contains 'has--category-banner' %}
           <div class="collection-banner">
