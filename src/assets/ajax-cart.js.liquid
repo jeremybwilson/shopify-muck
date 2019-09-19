@@ -34,6 +34,9 @@ function attributeToString(attribute) {
 /*============================================================================
   API Functions
 ==============================================================================*/
+Shopify.onCartUpdate = function(cart){
+  // alert('There are now ' + cart.item_count + ' items in the cart.');
+}
 ShopifyAPI.onCartUpdate = function(cart) {
   // alert('There are now ' + cart.item_count + ' items in the cart.');
 };
