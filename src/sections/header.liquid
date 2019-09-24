@@ -29,8 +29,11 @@
 
       {% comment %} ..:: NAV : BRAND LOGO ::.. {% endcomment %}
       <div id="nav-logo">
-          <a href="/">
+          <a href="/" aria-label="Header Logo">
             {% include 'svg-icon-header-logo' %}
+            {% if template == "index" %}
+              <h1 class="header-h1">{{ shop.name }}</h1>
+            {% endif %}
           </a>
       </div>
       <div id="nav-logo-backing"></div>
@@ -64,9 +67,9 @@
           {% if shop.customer_accounts_enabled %}
             <li class="nav-item nav-account">
               {% if customer %}
-                <a href="/account">{% include 'svg-icon-account' %}</a>
+                <a aria-label="Account" href="/account">{% include 'svg-icon-account' %}</a>
               {% else %}
-                <a href="/account/login">{% include 'svg-icon-account' %}</a>
+                <a aria-label="Login" href="/account/login">{% include 'svg-icon-account' %}</a>
               {% endif %}
             </li>
           {% endif %}
@@ -74,7 +77,7 @@
 
           {% comment %} ..:: CART ::.. {% endcomment %}
           <li class="nav-item nav-cart">
-            <a href="/cart" {% if settings.ajax_cart_method == 'drawer' %} class="site-header__cart-toggle js-drawer-open-right" aria-controls="CartDrawer" aria-expanded="false" {% endif %}>
+            <a aria-label="Cart" href="/cart" {% if settings.ajax_cart_method == 'drawer' %} class="site-header__cart-toggle js-drawer-open-right" aria-controls="CartDrawer" aria-expanded="false" {% endif %}>
               
               {% if section.settings.cart_icon == 'cart' %}
                 {% include 'svg-icon-cart' %}
@@ -101,7 +104,7 @@
     {% if section.settings.full_width_header %}</div>{% endif %}
   </header>
 
-  
+
 
 
 
@@ -145,6 +148,30 @@
     #nav-bar-wrapper.isStuck #nav-menu-mobile {
         height: calc( 100vh - 50px ); /* nav bar = 50px */
     }
+
+    {% if section.settings.logo_center %}
+      @media screen and (min-width: 1220px) {
+        #nav-bar-wrapper #nav-logo, #nav-bar-wrapper #nav-logo-backing {
+          left: 50% !important;
+        }
+        #nav-bar-wrapper #nav-menu-desktop #nav-menu-desktop-list-1,
+        #nav-bar-wrapper #nav-menu-desktop #nav-menu-desktop-list {
+          display: inline-block !important;
+          padding: 0 !important;
+        }
+      }
+
+      @media screen and (min-width: 1024px) {
+        #nav-bar-wrapper #nav-logo, #nav-bar-wrapper #nav-logo-backing {
+          left: 50% !important;
+        }
+        #nav-bar-wrapper #nav-menu-desktop #nav-menu-desktop-list-1,
+        #nav-bar-wrapper #nav-menu-desktop #nav-menu-desktop-list {
+          display: inline-block !important;
+          padding: 0 !important;
+        }
+      }
+    {% endif %}
   </style>
 </div>
 
@@ -275,6 +302,11 @@
           }
         ]
       },
+      {
+        "type": "checkbox",
+        "id": "logo_center",
+        "label": "Logo Center"
+      },
 
 
       {
@@ -336,10 +368,15 @@
       {
         "type": "link_list",
         "id": "main_nav",
-        "label": "Menu",
-        "default":"main-menu"
+        "label": "Main(Left) Menu",
+        "default": "main-menu"
       },
-     {
+      {
+        "type": "link_list",
+        "id": "right_nav",
+        "label": "Right Menu"
+      },
+      {
         "type": "checkbox",
         "id": "nav_center",
         "label": "Center align navigation"

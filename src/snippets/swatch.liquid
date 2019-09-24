@@ -10,7 +10,11 @@
     <h5>{{ option.name }}</h5>
     
     {% comment %} Currently Selected Option {% endcomment %}
-    <h6 class="current-option">{{ current_variant[current_option] }}</h6>
+    <h6 class="current-option">
+    {% if option_name != "size" %}
+      {{ current_variant[current_option] }}
+    {% endif %}
+    </h6>
 
     {% if option_name contains 'size' and template != 'product.quick' %}
       <a href="#size-chart--popup" class="fancybox size-chart--trigger">Size Chart</a>
@@ -62,7 +66,7 @@
       {% endif %}
 
       {% capture radio_button %}
-        <input type="radio" id="{{ id }}" name="{{ option_name }}" value="{{ value | escape }}" data-position="{{ option.position }}" {{ checked }} />
+        <input type="radio" id="{{ id }}" name="{{ option_name }}" value="{{ value | escape }}" data-position="{{ option.position }}" {% if option_name != 'size' %} {{ checked }} {% endif %}{% if option_name == 'size' %} {% unless available %} disabled="" {% endunless %} {% endif %} />
       {% endcapture %}
 
       {% capture sold_out_image %}
@@ -99,7 +103,7 @@
           {{ radio_button }}
 
           <label for="{{ id }}" style="background-color: {{ css_color }}; {% if settings.use_swatch_images or section.settings.use_swatch_images %}background-image: url({{ image_url }}){% endif %}">
-            {{ sold_out_image }}
+            {% comment %} {{ sold_out_image }} {% endcomment %}
           </label>
         </div>
       {% endcapture %}

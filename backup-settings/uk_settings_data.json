@@ -67,10 +67,10 @@
     "nav_dropdown_color": "#ffffff",
     "dropdown_hover_background_color": "#282828",
     "dropdown_hover_link_color": "#ffffff",
-    "directional_background": "#000000",
-    "directional_hover_background": "#ffffff",
+    "directional_background": "#164732",
+    "directional_hover_background": "#ab5232",
     "directional_color": "#ffffff",
-    "directional_hover_color": "#000000",
+    "directional_hover_color": "#ffffff",
     "swatch_color": "#000000",
     "swatch_background": "#ffffff",
     "swatch_border": "#000000",
@@ -113,11 +113,11 @@
     "details_align": "center",
     "secondary_images_hover": "image_flip",
     "cart_notes_enable": false,
+    "checkout_shipping_callout_enable": false,
+    "pobox_callout_enable": false,
     "ajax_cart_method": "drawer",
     "ajax_cart_remove_text": "This will remove the item from your cart. Continue?",
     "ajax_cart_low_stock_text": "This item does not have enough stock to add to your cart.",
-    "discount_modal_enable": false,
-    "discount_modal_config": "eyJjb29raWVFeHBpcmVJbkRheXMiOjYwLCJjdXJyZW5jeVN5bWJvbCI6IqMiLCJ0aHJlc2hvbGREaXNjb3VudHMiOlt7ImRpc2NvdW50SWQiOjEsImRpc3BsYXlOYW1lIjoiQ2FyZCBXYWxsZXQiLCJnaWZ0SWQiOjIwNDc1Mzg3MTgzMjE3LCJncmFudFR5cGUiOiJhbGwiLCJpbnZlbnRvcnlJZCI6MjA0NzUzODcxODMyMTcsIm1pblNwZW5kIjoxMDAsInByb2R1Y3RIYW5kbGUiOiJjYXJkLXdhbGxldCJ9XX0=",
     "twittername": "",
     "facebook_url": "//www.facebook.com/muckbootco/",
     "pinterest_url": "",
@@ -126,6 +126,9 @@
     "googleplus_url": "",
     "instagram_id": "muckbootco",
     "gtm_container_id": "GTM-PLSPRWC",
+    "google_optimize_antiflicker_enabled": false,
+    "google_optimize_antiflicker_amount": 2000,
+    "nosto_id": "6854541425",
     "sizmek_company_id": "6795",
     "sizmek_version_num": "9",
     "sizmek_pixel_cart_start": "20769103",
@@ -134,19 +137,27 @@
     "email_image": "",
     "email_popup_title": "Sign-Up & Get 10% Off Your First Order!<small>*</small>",
     "email_popup_text": "*Excludes Sale Items",
-    "email_popup_input_placeholder": "Enter Your Email Address",
+    "email_popup_input_placeholder": "Enter Email Address",
     "email_popup_bottom_text": "<p>By providing your email address, you agree to our <a target=\"_blank\" href=\"https://www.honeywell.com/privacy-statement\">Privacy Policy</a> &amp; <a href=\"/pages/terms-conditions\" target=\"_blank\">Terms of Service</a>.</p>",
     "email_popup_error": "Please enter a valid e-mail address",
     "email_popup_success": "<p>You have successfully joined our newsletter</p>",
     "cookie_banner_mobile_text": "<p>We use cookies.</p>",
     "cookie_banner_mobile_button": "http://www.honeywell.com/privacy-statement",
     "cookie_banner_mobile_button_text": "More Info",
+    "cookie_banner_expire": 180,
     "cookie_banner_desktop_text": "<p>This site uses cookies to simplify and improve your usage and experience of this website. Cookies are small text files stored on the device you are using to access this website. If you ignore this message and continue without changing your browser settings, we will assume that you are consenting to our use of cookies. For further information on our use of cookies, please see our <a href=\"https://www.honeywell.com/privacy-statement\" target=\"_blank\">Privacy Statement</a></p>",
     "cookie_banner_accept_button_text": "Accept",
     "show_multiple_currencies": false,
     "currency_format": "money_with_currency_format",
     "supported_currencies": "INR GBP CAD USD AUD EUR JPY",
     "default_currency": "USD",
+    "show_cc_callout": false,
+    "cc_callout": "2-digit year only",
+    "display_discount_msg": true,
+    "discount_code": "EASTERGOLDH26F,EASTERGOLD1ZDG,EASTERGOLD3QFV,EASTERGOLD933F,EASTERGOLDZHH8,EASTERGOLD39N4,EASTERGOLDATXSB,EASTERGOLDD04J,EASTER636842,EASTER391759,EASTER072890,EASTER429452,EASTER563223,EASTER617335,EASTER674481,EASTER535625,EASTER505164,EASTER955300,BNKM8GAE963H,Warranty Codes UKWarranty - 100% Off,Warranty Codes WTY19 - 15% Off,Warranty Promo Codes,GDWILLPJ50,WARRANTY101,WARRANTY100,GDWILLADRIAN2340,EDSZR2P9BNZV,SMY1W2VRJMKY,MUCKCL19,MUCKBULLSHED19,GDWILL50KO,GDWILL20CHORE,UKHWEXECNZPH,UKHWEXECEKG7,UKHWEXECCPMB,UKHWEXECD24Y,UKHWEXECGX4Z,UKHWEXECPEA0,UKHWEXEC7EXK,UKHWEXECSQG9,UKHWEXEC0YE0,Goodwill UK Codes 75% Off,Goodwill UK Codes 50% Off,Goodwill UK Codes 25% Off,Goodwill Codes 10% Off,GSWILL10-,GDWILL50SR,FIRST10REPLACEMENT,Customer Service Goodwill Promo Codes - 25% Off,GDWILL52,SOCIAL10,52OFF,SOCIAL19,GDWILL25U,GDWILLSARA50,GDWILLES25,50% Off Customer Service Goodwill Codes,GDWILL50123,GDWILLAD50,RMB100,PCMB100,PC100MB,100MBPC,100PCMB,MB100PC,LUCKNAM19,ALLADALE19,BULL19,CL19,CAREYS19,LORD19,NARE19,FOCUSHNQ6A,FOCUSYBPEQ,FOCUSQS4OL,FOCUS3WVMH,FOCUSMELDS,FOCUSPWEXU,FOCUSKXVTK,FOCUSWVXCQ,FOCUSBLGJ6,FOCUS9MMTY,FOCUSNZYJR,FOCUSJN3TR,FOCUSKC2M7,FOCUSEB623,FOCUSB8E2W,FOCUSRNUKY,FOCUSEP8MW,FOCUSIFDYV,FOCUSSHXBR,FOCUSETIVO,FOCUS8U96L,FOCUSB3BTW,FOCUSWW4GI,FOCUSYUBQP,FOCUSKW9Y4,FOCUSBYE8Q,FOCUSCPUEA,FOCUS2XZDR,FOCUS5JPB4,FOCUSY8PMU,FOCUSGSXJG,FOCUSAL44T,FOCUSDJJJC,FOCUSCQJW3,FOCUSNDMVS,FOCUSS7RBG,FOCUSQAUGP,FOCUSUPKRF,FOCUSYU6FZ,FOCUSKZMAM,FOCUSGUQXN,FOCUSQRNJF,FOCUSVLMBR,FOCUSR2WHP,FOCUSUUZ8Z,FOCUSDGHNA,FOCUSGCBFG,FOCUSSF9HT,FOCUSNFW5Y,FOCUSHD38E,FOCUSLK3K4,FOCUSMQTQV,FOCUSRET8T,FOCUSPVS5R,FOCUSPCWNL,FOCUSFDPVZ,FOCUSGVCZD,FOCUSRK2TH,FOCUSRMZX2,FOCUSWK9MQ,FOCUS2TTC2,FOCUS3QVOO,FOCUSRUGIH,FOCUSKBFFM,FOCUSIVEDF,FOCUSB9SBD,FOCUSY8N4P,FOCUSW5BMS,FOCUSTB6HJ,FOCUST43E2,FOCUSH6BRR,FOCUSLFYTC,FOCUSF6EX7,FOCUSQXXVC,FOCUSWYZU9,FOCUSX8GRG,FOCUS5HKC3,FOCUSJIJFX,FOCUSPYV6Y,FOCUSGGXUX,FOCUS7ZPUJ,FOCUSZFQVE,FOCUSGVK4Y,FOCUSXDLIT,FOCUSSECBB,FOCUSMAPEE,FOCUSAGV4V,FOCUSHBMJS,FOCUS5HHIA,FOCUSQZQC2,FOCUSDZ3D2,FOCUSXVKQG,FOCUSUNABF,FOCUSQ9BCS,FOCUSSFAYP,FOCUSV7YCK,FOCUS6YDFV,FOCUSPP96T,FOCUS6CU9H,FOCUSTP6GN,SPONSORSP19,SAMPLE19,RHSWISLEY19,PRESSEVE19,PHOTOT19,MUCKSTAFF19,MUCKGIFT19,MONTHLYSEED19,FOCUSGRP19,DISTRIB19,MUCKEXTRAWIN19,MUCKEXTRASUM19,MUCKPRIM19,MUCKEASTHUNT19,TATTON19,RESERVE19,PORT19,MUCKHUW19,MUCKGROW19,MUCKGH19,MUCKCREW19,MANDARIN19,MALVERN19,KATEWOODY19,HAMPTON19,FISH19,FEAST19,DOGFESTBR19,DOGFESTTP19,DOGFESTKH19,CHELSEA19,CHATSWORTH19,BURGHLEY19,BADMINTON19,HWNOV50,EMILYBOND18,RHSWISLEY18,HONEEU1,FF25,MUCKGOODW50,MUCKGOODW40,MUCKGOODW35,MUCKGOODW30,MUCKGOODW25,MUCKGOODW20,MUCKGOODW15,MUCKGOODW10,MUCKGROUP40,MUCKGROUP30,MUCKGROUP25,MUCKGROUP20,MUCKGROUP15,MUCKGROUP10,YORK18,WILDERNESS18,TATTON18,SNOWBOMBING18,RESERVE18,PORT18,NYETIMBER18,MUCKHUW18,MUCKGROW18,MUCKGH18,MUCKCREW18,MANDARIN18,MALVERN18,KATEWOODY,HWSEPT50,HAMPTON18,FISH18,FIRST10,FEAST18,CHELSEA18,CHATSWORTH18,BURGHLEY18,BLENHEIM18,BBC18,BADMINTON18,ARCTICICE18,ARCTIC18,SPONSORSP18,SAMPLE18,PRESSEVE18,PHOTOT18,MUCKSTAFF18,MUCKGIFT18,MONTHLYSEED18,FOCUSGRP18,DISTRIB18,MB30,MB20,MB100,MUCKBOOTSFLY,MUCKVAL19,MBSURVEY19",
+    "discount_msg": "BUY ONE GET ONE FREE,BUY ONE GET ONE FREE,BUY ONE GET ONE FREE,BUY ONE GET ONE FREE,BUY ONE GET ONE FREE,BUY ONE GET ONE FREE,BUY ONE GET ONE FREE,BUY ONE GET ONE FREE,BUY ONE GET ONE FREE,30% OFF - EGG HUNT PROMOTION,30% OFF - EGG HUNT PROMOTION,30% OFF - EGG HUNT PROMOTION,BUY ONE GET ONE FREE,30% OFF - EGG HUNT PROMOTION,30% OFF - EGG HUNT PROMOTION,BUY ONE GET ONE FREE,30% OFF - EGG HUNT PROMOTION,15% OFF - EGG HUNT PROMOTION,£50 OFF - GOODWILL,100% OFF - WARRANTY,15% OFF - WARRANTY,100% OFF - WARRANTY,£50 OFF - GOODWILL,100% OFF - WARRANTY,100% OFF - WARRANTY,£23 OFF - GOODWILL,100% OFF,100% OFF,20% OFF - HOTEL PARTNERSHIP DISCOUNT,20% OFF - HOTEL PARTNERSHIP DISCOUNT,50% OFF - GOODWILL,25% OFF - GOODWILL,100% OFF - HONEYWELL EXEC DISCOUNT,100% OFF - HONEYWELL EXEC DISCOUNT,100% OFF - HONEYWELL EXEC DISCOUNT,100% OFF - HONEYWELL EXEC DISCOUNT,100% OFF - HONEYWELL EXEC DISCOUNT,100% OFF - HONEYWELL EXEC DISCOUNT,100% OFF - HONEYWELL EXEC DISCOUNT,100% OFF - HONEYWELL EXEC DISCOUNT,100% OFF - HONEYWELL EXEC DISCOUNT,75% OFF - GOODWILL,50% OFF - GOODWILL,25% OFF - GOODWILL,10% OFF - GOODWILL,10% OFF - GOODWILL,50% OFF - GOODWILL,10% OFF - WARRANTY,25% OFF - GOODWILL,£52 OFF - GOODWILL,10% OFF - SOCIAL DISCOUNT,£52 OFF - GOODWILL,10% OFF - SOCIAL DISCOUNT,25% OFF - GOODWILL,50% OFF - GOODWILL,25% OFF - GOODWILL,50% OFF - GOODWILL,50% OFF - GOODWILL,50% OFF - GOODWILL,100% OFF - WARRANTY,100% OFF - WARRANTY,100% OFF - WARRANTY,100% OFF - WARRANTY,100% OFF - WARRANTY,100% OFF - WARRANTY,20% OFF - HOTEL PARTNERSHIP DISCOUNT,20% OFF - HOTEL PARTNERSHIP DISCOUNT,20% OFF - HOTEL PARTNERSHIP DISCOUNT,20% OFF - HOTEL PARTNERSHIP DISCOUNT,20% OFF - HOTEL PARTNERSHIP DISCOUNT,20% OFF - HOTEL PARTNERSHIP DISCOUNT,20% OFF - HOTEL PARTNERSHIP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT MARKETING SPONSORSHIP DISCOUNT,100% OFF - MUCK BOOT SAMPLE DISCOUNT,30% OFF - RHS WISLEY STAFF DISCOUNT,100% OFF - MUCK BOOT MARKETING PRESS DISCOUNT,100% OFF - MUCK BOOT PHOTOSHOOT,100% OFF - MUCK BOOT STAFF DISCOUNT,100% OFF - MUCK BOOT MARKETING GIFTING DISCOUNT,100% OFF - MUCK BOOT MARKETING SEEDING DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT DISTRIBUTOR DISCOUNT,20% OFF,20% OFF,10% OFF - MUCK PRIME DISCOUNT,20% OFF,10% OFF - RHS TATTON DISCOUNT,20% OFF - HOTEL PARTNERSHIP DISCOUNT,10% OFF - PORT ELIOT DISCOUNT,20% OFF - HONEYWELL STAFF DISCOUNT,20% OFF - GROW YOUR OWN MAGAZINE DISCOUNT,20% OFF - GOOD HOUSEKEEPING DISCOUNT,40% OFF - MUCK BOOT STAFF DISCOUNT,20% OFF - HOTEL PARTNERSHIP DISCOUNT,10% OFF - RHS MALVERN DISCOUNT,20% OFF - KATE & WOODY DISCOUNT,10% OFF - RHS HAMPTON COURT DISCOUNT,20% OFF - HOTEL PARTNERSHIP DISCOUNT,10% OFF - BIG FEASTIVAL DISCOUNT,10% OFF - DOG FESTIVAL DISCOUNT,10% OFF - DOG FESTIVAL DISCOUNT,10% OFF - DOG FESTIVAL DISCOUNT,10% OFF - RHS CHELSEA DISCOUNT,10% OFF - RHS CHATSWORTH DISCOUNT,10% OFF - BURGHLEY HORSE TRIALS DISCOUNT,10% OFF - BADMINTON HORSE TRIALS DISCOUNT,50% OFF - HONEYWELL STAFF DISCOUNT,20% OFF - EMILY BOND DISCOUNT,30% OFF - RHS WISLEY STAFF DISCOUNT,40% OFF - HONEYWELL STAFF DISCOUNT,25% OFF - FRIENDS & FAMILY DISCOUNT,50% OFF - GOODWILL,40% OFF - GOODWILL,35% OFF - GOODWILL,30% OFF - GOODWILL,25% OFF - GOODWILL,20% OFF - GOODWILL,15% OFF - GOODWILL,10% OFF - GOODWILL,40% OFF - MUCK BOOT GROUP DISCOUNT,30% OFF - MUCK BOOT GROUP DISCOUNT,25% OFF - MUCK BOOT GROUP DISCOUNT,20% OFF - MUCK BOOT GROUP DISCOUNT,15% OFF - MUCK BOOT GROUP DISCOUNT,10% OFF - MUCK BOOT GROUP DISCOUNT,30% OFF - GREAT YORKSHIRE SHOW DISCOUNT,30% OFF - WILDERNESS DISCOUNT,25% OFF - RHS TATTON DISCOUNT,30% OFF - SNOWBOMBING DISCOUNT,20% OFF - HOTEL PARTNERSHIP DISCOUNT,30% OFF - PORT ELIOT DISCOUNT,40% OFF - NYE TIMBER DISCOUNT,25% OFF - HONEYWELL STAFF DISCOUNT,20% OFF - GROW YOUR OWN MAGAZINE DISCOUNT,20% OFF - GOOD HOUSEKEEPING DISCOUNT,40% OFF - MUCK BOOT STAFF DISCOUNT,20% OFF - HOTEL PARTNERSHIP DISCOUNT,25% OFF - RHS MALVERN DISCOUNT,30% OFF - KATE & WOODY DISCOUNT,50% OFF - HONEYWELL STAFF DISCOUNT,25% OFF - RHS HAMPTON COURT DISCOUNT,20% OFF - HOTEL PARTNERSHIP DISCOUNT,10% OFF - EMAIL SIGN-UP DISCOUNT,30% OFF - BIG FEASTIVAL DISCOUNT,25% OFF - RHS CHELSEA DISCOUNT,25% OFF - RHS CHATSWORTH DISCOUNT,30% OFF - BURGHLEY HORSE TRIALS DISCOUNT,30% OFF - BLENHEIM PALACE DISCOUNT,30% OFF - BBC COUNTRYFILE DISCOUNT,30% OFF - BADMINTON HORSE TRIALS DISCOUNT,20% OFF - ARCTIC ICE DISCOUNT,15% OFF - ARCTIC ICE DISCOUNT,100% OFF - MUCK BOOT MARKETING SPONSORSHIP DISCOUNT,100% OFF - MUCK BOOT SAMPLE DISCOUNT,100% OFF - MUCK BOOT MARKETING PRESS DISCOUNT,100% OFF - MUCK BOOT PHOTOSHOOT,100% OFF - MUCK BOOT STAFF DISCOUNT,100% OFF - MUCK BOOT MARKETING GIFTING DISCOUNT,100% OFF - MUCK BOOT MARKETING SEEDING DISCOUNT,100% OFF - MUCK BOOT FOCUS GROUP DISCOUNT,100% OFF - MUCK BOOT DISTRIBUTOR DISCOUNT,30% OFF - GOODWILL,20% OFF - GOODWILL,100% OFF - WARRANTY,20% OFF - FLYER DISCOUNT,15% OFF - VALENTINES DISCOUNT,10% OFF - SURVEY DISCOUNT",
+    "yotpo_enable_flag": true,
+    "yotpo_key_value": "SJ3umxB5zHmOe8xkHO8JF7h1LiltwUxEW5jD9nLl",
     "checkout_header_image": "",
     "checkout_logo_image": "shopify://shop_images/checkout-logo.png",
     "checkout_logo_position": "center",
@@ -161,6 +172,8 @@
     "checkout_accent_color": "#164632",
     "checkout_button_color": "#ab5232",
     "checkout_error_color": "#ff6d6d",
+    "discount_modal_enable": true,
+    "discount_modal_config": "eyJjb29raWVFeHBpcmVJbkRheXMiOjYwLCJjdXJyZW5jeVN5bWJvbCI6IiZwb3VuZDsiLCJ0aHJlc2hvbGREaXNjb3VudHMiOlt7ImRpc2NvdW50SWQiOjEsImRpc3BsYXlOYW1lIjoiU2lsayBTY2FyZiIsImdpZnRJZCI6MjA5NTMzNzk1Njk3NzcsImdyYW50VHlwZSI6ImFsbCIsImludmVudG9yeUlkIjoyMDk1MzM3OTU2OTc3NywibWluU3BlbmQiOjEwMCwicHJvZHVjdEhhbmRsZSI6InNpbGstc2NhcmYifV19",
     "international_store_version": "UK",
     "cart_links": "#000000",
     "cart_links_hover": "#000000",
@@ -196,6 +209,9 @@
     "tablet-image-height": "",
     "mobile-image-height": "",
     "mailchimp": "",
+    "zendesk-key": "50d6a4be-16df-4a3f-a159-fb0635ad46c8",
+    "delivery_country_codes": "GB",
+    "billing_country_codes": "DE,GB,IE,NL,FR,BE,AT,FI,PL,IT,DK,CZ,EE,SE,ES,SK,RO,HU,GR,SI,LT,PT,BG,LU",
     "sections": {
       "header": {
         "type": "header",
@@ -204,7 +220,7 @@
             "type": "mega_menu",
             "settings": {
               "menu_item": "Women",
-              "nav_image": "shopify://shop_images/nav-megamenu-1.jpg",
+              "nav_image": "shopify://shop_images/womens_dropdown_image_2.jpg",
               "nav_promo_link": "shopify://collections/women"
             }
           },
@@ -212,7 +228,7 @@
             "type": "mega_menu",
             "settings": {
               "menu_item": "Men",
-              "nav_image": "shopify://shop_images/nav-megamenu-2.jpg",
+              "nav_image": "shopify://shop_images/mens_dropdown_image_2.jpg",
               "nav_promo_link": "shopify://collections/men"
             }
           },
@@ -220,7 +236,7 @@
             "type": "mega_menu",
             "settings": {
               "menu_item": "Kids",
-              "nav_image": "shopify://shop_images/nav-megamenu-3.jpg",
+              "nav_image": "shopify://shop_images/kids_dropdown_image_3.jpg",
               "nav_promo_link": "shopify://collections/kids"
             }
           },
@@ -245,18 +261,20 @@
           "num_of_promo_banners": "2",
           "announcement_text_one": "<div class=\"bold\">FREE DELIVERY & RETURNS ON ALL ORDERS</div>",
           "announcement_link_one": "shopify://pages/delivery-and-returns",
-          "announcement_text_two": "<div class=\"bold\">DISCOVER OUR NEW ARRIVALS</div>",
+          "announcement_text_two": "<div class=\"bold\">FREE MUCK BOOT BAG on orders over £100</div>",
           "announcement_link_two": "shopify://collections/new-arrivals",
           "announcement_height": 60,
           "announcement_swap_rate": 5,
           "logo_size": 24,
           "logo_transform": "uppercase",
           "logo_weight": "bold",
-          "cart_icon": "cart",
+          "logo_center": false,
+          "cart_icon": "bag",
           "show_site_picker": true,
-          "site_picker_manifest": "UK|United Kingdom|https://www.muckbootcompany.co.uk,US|United States|https://muckbootcompany.com,EU|European Union|https://www.muckbootcompany.eu",
+          "site_picker_manifest": "UK|United Kingdom|https://www.muckbootcompany.co.uk,US|United States|https://muckbootcompany.com,EU|European Union|https://www.muckbootcompany.eu,CA-EN|Canada EN|https://www.muckbootcompany.ca,CA-FR|Canada FR|https://fr.muckbootcompany.ca",
           "show_search": true,
           "main_nav": "main-menu",
+          "right_nav": "",
           "nav_center": true,
           "nav_height": 60,
           "linklist_breakpoint": 10
@@ -284,7 +302,7 @@
           "visit_brand_image_one": "shopify://shop_images/visit-brand-image-1.png",
           "visit_brand_link_two": "",
           "visit_brand_image_two": "",
-          "visit_brand_link_three": "http://www.howardleight.com",
+          "visit_brand_link_three": "https://www.howardleightshootingsports.com/",
           "visit_brand_image_three": "shopify://shop_images/visit-brand-image-3.png",
           "trust_icon_image_one": "",
           "trust_icon_image_two": "",
@@ -321,7 +339,7 @@
           "thumbnails": "left",
           "zoom_image_position": "zoom_over_main",
           "related_products": "none",
-          "free_shipping_header_text": "Free Shipping & Returns",
+          "free_shipping_header_text": "Free Delivery & Returns",
           "free_shipping_text": "<p>FREE Delivery &amp; FREE Returns for all orders. Orders placed before 3pm Monday to Friday will dispatch next working day. For additional information, visit our <a href=\"/pages/delivery-and-returns\" title=\"Delivery and Returns\">Delivery page.</a></p>",
           "show_social": false,
           "size_chart_page": "size-chart"
@@ -387,81 +405,41 @@
       "1535728526385": {
         "type": "slideshow",
         "blocks": {
-          "1550466223122": {
+          "1555903546550": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/new-arrivals.jpg",
-              "mobile_image": "shopify://shop_images/new-arrivals-mobile.jpg",
-              "heading": "Discover Our New Arrivals",
-              "subheading": "",
-              "cta_one_link": "https://www.muckbootcompany.co.uk/collections/new-arrivals/audience_women",
+              "image": "shopify://shop_images/free-muck-boot-bag-desktop-uk.jpg",
+              "mobile_image": "shopify://shop_images/free-muck-boot-bag-desktop-uk-mobile.jpg",
+              "heading": "FREE MUCK BOOT BAG*",
+              "subheading": "<p style=\"font-size: 14px;\">*On orders over £100 whilst stocks last. T&Cs apply.</p>",
+              "cta_one_link": "shopify://collections/women",
               "cta_one_button_text": "SHOP WOMEN'S",
-              "cta_two_link": "https://www.muckbootcompany.co.uk/collections/new-arrivals/audience_men",
+              "cta_two_link": "shopify://collections/men",
               "cta_two_button_text": "SHOP MEN'S",
               "caption_color_scheme": "white",
               "custom_slide_main_color": "#ffffff",
               "custom_slide_alt_color": "#164732",
               "caption_horizontal": "left",
               "caption_vertical": 50,
-              "caption_background": "rgba(0,0,0,0)",
-              "caption_opacity": "1.0"
-            }
-          },
-          "1544666970903": {
-            "type": "image",
-            "settings": {
-              "image": "shopify://shop_images/waterproof-boots-for-the-family.jpg",
-              "mobile_image": "shopify://shop_images/waterproof-boots-for-the-family-mobile.jpg",
-              "heading": "WATERPROOF <br>BOOTS FOR THE<br> FAMILY",
-              "subheading": "",
-              "cta_one_link": "https://www.muckbootcompany.co.uk/collections/waterproof-boots?_=pf&pf_t_gender=audience_women",
-              "cta_one_button_text": "SHOP WOMEN'S",
-              "cta_two_link": "https://www.muckbootcompany.co.uk/collections/waterproof-boots?_=pf&pf_t_gender=audience_men",
-              "cta_two_button_text": "SHOP MEN'S",
-              "caption_color_scheme": "white",
-              "custom_slide_main_color": "#ffffff",
-              "custom_slide_alt_color": "#164732",
-              "caption_horizontal": "left",
-              "caption_vertical": 40,
-              "caption_background": "rgba(0,0,0,0)",
-              "caption_opacity": "0.1"
+              "caption_background": "#000000",
+              "caption_opacity": "0.3"
             }
           },
           "1551675343628": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/kids-collection.jpg",
-              "mobile_image": "shopify://shop_images/kids-collection-mobile.jpg",
-              "heading": "Designed With Little Loves in Mind",
+              "image": "shopify://shop_images/best-in-gardening-shop-hp.jpg",
+              "mobile_image": "shopify://shop_images/best-in-gardening-shop-hp-mobile.jpg",
+              "heading": "THE BEST IN GARDENING",
               "subheading": "",
-              "cta_one_link": "shopify://collections/kids",
-              "cta_one_button_text": "Shop Now",
-              "cta_two_link": "",
-              "cta_two_button_text": "Add a button",
+              "cta_one_link": "/collections/garden/audience_women",
+              "cta_one_button_text": "SHOP WOMENS",
+              "cta_two_link": "/collections/garden/audience_men",
+              "cta_two_button_text": "SHOP MENS",
               "caption_color_scheme": "white",
               "custom_slide_main_color": "#ffffff",
               "custom_slide_alt_color": "#164732",
-              "caption_horizontal": "left",
-              "caption_vertical": 50,
-              "caption_background": "rgba(0,0,0,0)",
-              "caption_opacity": "0.1"
-            }
-          },
-          "1551675459784": {
-            "type": "image",
-            "settings": {
-              "image": "shopify://shop_images/dog-walking-boots.jpg",
-              "mobile_image": "shopify://shop_images/dog-walking-boots-mobile.jpg",
-              "heading": "Dog Walking Boots",
-              "subheading": "",
-              "cta_one_link": "https://www.muckbootcompany.co.uk/collections/dog-walking/audience_women",
-              "cta_one_button_text": "Shop Women's",
-              "cta_two_link": "https://www.muckbootcompany.co.uk/collections/dog-walking/audience_men",
-              "cta_two_button_text": "Shop Men's",
-              "caption_color_scheme": "white",
-              "custom_slide_main_color": "#ffffff",
-              "custom_slide_alt_color": "#164732",
-              "caption_horizontal": "left",
+              "caption_horizontal": "center",
               "caption_vertical": 50,
               "caption_background": "rgba(0,0,0,0)",
               "caption_opacity": "0.1"
@@ -469,10 +447,8 @@
           }
         },
         "block_order": [
-          "1550466223122",
-          "1551675459784",
-          "1551675343628",
-          "1544666970903"
+          "1555903546550",
+          "1551675343628"
         ],
         "settings": {
           "full_width": true,
@@ -482,6 +458,18 @@
       "1536068961071": {
         "type": "columns-carousel",
         "blocks": {
+          "1554175430451": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/Carousel_480x1028.jpg",
+              "mobile_image": "shopify://shop_images/Carousel_640x1000_mobile.jpg",
+              "heading": "Warm Weather",
+              "svg_icon": "<svg class=\"icon icon-dog-walking\" mlns=\"http://www.w3.org/2000/svg\" width=\"32.874\" height=\"31.937\" viewbox=\"0 0 32.874 31.937\">\n\n  <path id=\"sun\" fill=\"#ffffff\" d=\"M4310.27,1181.58a9.045,9.045,0,1,1,9.07-9.04A9.069,9.069,0,0,1,4310.27,1181.58Zm0-16.33a7.285,7.285,0,1,0,7.31,7.29A7.309,7.309,0,0,0,4310.27,1165.25Zm0,23.73h0a0.877,0.877,0,0,1-.74-0.4l-1.15-1.79a2.848,2.848,0,0,0-3.62-.97l-1.89.98a0.884,0.884,0,0,1-1.29-.74l-0.1-2.12a2.754,2.754,0,0,0-2.64-2.64l-2.13-.1a0.892,0.892,0,0,1-.72-0.44,0.866,0.866,0,0,1-.02-0.84l0.97-1.89a2.749,2.749,0,0,0-.97-3.61l-1.79-1.15a0.875,0.875,0,0,1,0-1.47l1.79-1.15h0a2.749,2.749,0,0,0,.97-3.61l-0.97-1.89a0.866,0.866,0,0,1,.02-0.84,0.892,0.892,0,0,1,.72-0.44l2.13-.1a2.747,2.747,0,0,0,2.64-2.64l0.1-2.12a0.892,0.892,0,0,1,.44-0.72,0.913,0.913,0,0,1,.85-0.02l1.89,0.98a2.782,2.782,0,0,0,3.62-.97l1.15-1.79a0.918,0.918,0,0,1,1.48,0l1.15,1.79a2.782,2.782,0,0,0,3.62.97l1.89-.98a0.913,0.913,0,0,1,.85.02,0.892,0.892,0,0,1,.44.72l0.1,2.12a2.763,2.763,0,0,0,2.65,2.64l2.12,0.1a0.877,0.877,0,0,1,.72.44,0.859,0.859,0,0,1,.02.85l-0.97,1.88a2.759,2.759,0,0,0,.97,3.61l1.79,1.15a0.875,0.875,0,0,1,0,1.47l-1.79,1.15a2.759,2.759,0,0,0-.97,3.61l0.97,1.89a0.841,0.841,0,0,1-.02.84,0.877,0.877,0,0,1-.72.44l-2.12.1a2.771,2.771,0,0,0-2.65,2.64l-0.1,2.12a0.884,0.884,0,0,1-1.29.74l-1.89-.97a2.768,2.768,0,0,0-3.62.96l-1.15,1.79A0.877,0.877,0,0,1,4310.27,1188.98Zm-4.22-5.23a4.517,4.517,0,0,1,3.81,2.09l0.41,0.64,0.41-.64a4.545,4.545,0,0,1,5.91-1.58l0.67,0.35,0.04-.75a4.521,4.521,0,0,1,4.32-4.32l0.76-.03-0.35-.67a4.519,4.519,0,0,1,1.58-5.9l0.64-.4-0.63-.41a4.5,4.5,0,0,1-1.59-5.89l0.35-.68-0.76-.03a4.52,4.52,0,0,1-4.32-4.31l-0.04-.76-0.67.35a4.532,4.532,0,0,1-5.91-1.58l-0.41-.64-0.41.64a4.529,4.529,0,0,1-5.91,1.58l-0.67-.35-0.03.76a4.536,4.536,0,0,1-4.33,4.31l-0.76.03,0.35,0.68a4.507,4.507,0,0,1-1.58,5.89l-0.64.41,0.64,0.4a4.51,4.51,0,0,1,1.58,5.89l-0.35.68,0.76,0.03a4.536,4.536,0,0,1,4.33,4.31l0.03,0.76,0.67-.35A4.648,4.648,0,0,1,4306.05,1183.75Z\" transform=\"translate(-4293.78 -1156.12)\"></path>\n</svg>",
+              "png_icon": "",
+              "link": "shopify://collections/warm-weather",
+              "cta_text": "Shop Now"
+            }
+          },
           "1536068961071-1": {
             "type": "image",
             "settings": {
@@ -530,18 +518,6 @@
               "cta_text": "Shop Now"
             }
           },
-          "1536068961071-0": {
-            "type": "image",
-            "settings": {
-              "image": "shopify://shop_images/home-column-carousel-desktop-slide-1.jpg",
-              "mobile_image": "shopify://shop_images/home-column-carousel-mobile-slide-1.jpg",
-              "heading": "Cold Weather",
-              "svg_icon": "<svg class=\"icon icon-cold-weather\" xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 25.31 27.82\"><path fill=\"#ffffff\" d=\"M25.29,16.41a.68.68,0,0,0-.65-.5.47.47,0,0,0-.17,0l-4.76,1.27L14,13.91l5.72-3.3,4.76,1.27a.67.67,0,1,0,.34-1.29l-3.46-.93,3.11-1.79a.71.71,0,0,0,.31-.41A.7.7,0,0,0,24.7,7a.69.69,0,0,0-.91-.24L20.68,8.5,21.61,5a.67.67,0,0,0-.47-.82.68.68,0,0,0-.82.47L19,9.45l-5.72,3.3V6.14L16.8,2.67a.68.68,0,0,0,0-.95.68.68,0,0,0-.94,0L13.32,4.25V.67A.67.67,0,1,0,12,.67V4.25L9.45,1.72a.68.68,0,0,0-.94,0,.63.63,0,0,0-.2.47.67.67,0,0,0,.2.48L12,6.14v6.61L6.26,9.45,5,4.69A.67.67,0,1,0,3.7,5L4.63,8.5,1.52,6.71A.69.69,0,0,0,.61,7a.7.7,0,0,0-.07.51.71.71,0,0,0,.31.41L4,9.66.5,10.59a.67.67,0,1,0,.34,1.29L5.6,10.61l5.72,3.3L5.6,17.21.84,15.94a.69.69,0,0,0-.82.47.7.7,0,0,0,.07.51.68.68,0,0,0,.41.31L4,18.16.85,20a.67.67,0,0,0-.24.91.62.62,0,0,0,.41.31.62.62,0,0,0,.5-.06l3.11-1.79L3.7,22.78A.67.67,0,1,0,5,23.12l1.27-4.75L12,15.07v6.6L8.51,25.15a.66.66,0,0,0,0,1,.68.68,0,0,0,.94,0L12,23.57v3.58a.67.67,0,1,0,1.33,0V23.57l2.54,2.53a.68.68,0,0,0,.94,0,.66.66,0,0,0,0-1l-3.48-3.48v-6.6L19,18.37l1.28,4.75a.67.67,0,1,0,1.29-.34l-.93-3.46,3.11,1.79a.62.62,0,0,0,.5.06.62.62,0,0,0,.41-.31.67.67,0,0,0-.24-.91l-3.11-1.79,3.46-.93a.68.68,0,0,0,.41-.31A.7.7,0,0,0,25.29,16.41Z\"></path></svg>",
-              "png_icon": "",
-              "link": "shopify://collections/cold-weather",
-              "cta_text": "Shop Now"
-            }
-          },
           "1536068961071-5": {
             "type": "image",
             "settings": {
@@ -553,15 +529,28 @@
               "link": "shopify://collections/horse-stable",
               "cta_text": "Shop Now"
             }
+          },
+          "1536068961071-0": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/home-column-carousel-desktop-slide-1.jpg",
+              "mobile_image": "shopify://shop_images/home-column-carousel-mobile-slide-1.jpg",
+              "heading": "Cold Weather",
+              "svg_icon": "<svg class=\"icon icon-cold-weather\" xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 25.31 27.82\"><path fill=\"#ffffff\" d=\"M25.29,16.41a.68.68,0,0,0-.65-.5.47.47,0,0,0-.17,0l-4.76,1.27L14,13.91l5.72-3.3,4.76,1.27a.67.67,0,1,0,.34-1.29l-3.46-.93,3.11-1.79a.71.71,0,0,0,.31-.41A.7.7,0,0,0,24.7,7a.69.69,0,0,0-.91-.24L20.68,8.5,21.61,5a.67.67,0,0,0-.47-.82.68.68,0,0,0-.82.47L19,9.45l-5.72,3.3V6.14L16.8,2.67a.68.68,0,0,0,0-.95.68.68,0,0,0-.94,0L13.32,4.25V.67A.67.67,0,1,0,12,.67V4.25L9.45,1.72a.68.68,0,0,0-.94,0,.63.63,0,0,0-.2.47.67.67,0,0,0,.2.48L12,6.14v6.61L6.26,9.45,5,4.69A.67.67,0,1,0,3.7,5L4.63,8.5,1.52,6.71A.69.69,0,0,0,.61,7a.7.7,0,0,0-.07.51.71.71,0,0,0,.31.41L4,9.66.5,10.59a.67.67,0,1,0,.34,1.29L5.6,10.61l5.72,3.3L5.6,17.21.84,15.94a.69.69,0,0,0-.82.47.7.7,0,0,0,.07.51.68.68,0,0,0,.41.31L4,18.16.85,20a.67.67,0,0,0-.24.91.62.62,0,0,0,.41.31.62.62,0,0,0,.5-.06l3.11-1.79L3.7,22.78A.67.67,0,1,0,5,23.12l1.27-4.75L12,15.07v6.6L8.51,25.15a.66.66,0,0,0,0,1,.68.68,0,0,0,.94,0L12,23.57v3.58a.67.67,0,1,0,1.33,0V23.57l2.54,2.53a.68.68,0,0,0,.94,0,.66.66,0,0,0,0-1l-3.48-3.48v-6.6L19,18.37l1.28,4.75a.67.67,0,1,0,1.29-.34l-.93-3.46,3.11,1.79a.62.62,0,0,0,.5.06.62.62,0,0,0,.41-.31.67.67,0,0,0-.24-.91l-3.11-1.79,3.46-.93a.68.68,0,0,0,.41-.31A.7.7,0,0,0,25.29,16.41Z\"></path></svg>",
+              "png_icon": "",
+              "link": "shopify://collections/cold-weather",
+              "cta_text": "Shop Now"
+            }
           }
         },
         "block_order": [
+          "1554175430451",
           "1536068961071-1",
           "1536068961071-3",
           "1536068961071-2",
           "1536068961071-4",
-          "1536068961071-0",
-          "1536068961071-5"
+          "1536068961071-5",
+          "1536068961071-0"
         ],
         "settings": {}
       },
@@ -571,23 +560,23 @@
           "1536251685211-1": {
             "type": "text_block",
             "settings": {
-              "image": "shopify://shop_images/TB_2_-_D.jpg",
-              "mobile_image": "shopify://shop_images/TB_2_-_M.jpg",
-              "link": "https://www.muckbootcompany.co.uk/collections/outdoor-activity",
-              "heading_text": "Unpredictable weather",
-              "text": "<p>Prepare for sunny spells and sudden downpours with our 100% waterproof boots.</p>",
+              "image": "shopify://shop_images/rhs-endorsed-desktop.jpg",
+              "mobile_image": "shopify://shop_images/rhs-endorsed-mobile.jpg",
+              "link": "https://www.muckbootcompany.co.uk/collections/muckster",
+              "heading_text": "RHS ENDORSED",
+              "text": "<p>Proud to be the only gardening footwear endorsed by the Royal Horticultural Society</p>",
               "cta_text": "Shop Now"
             }
           },
           "1536251685211-0": {
             "type": "text_block",
             "settings": {
-              "image": "shopify://shop_images/TB_1_-_D.jpg",
-              "mobile_image": "shopify://shop_images/TB_1_-_M.jpg",
-              "link": "https://www.muckbootcompany.co.uk/collections/dog-walking",
-              "heading_text": "Dog Walking Boots",
-              "text": "<p>Possibly the most comfortable wellies you'll walk the dog in.</p>",
-              "cta_text": "Shop Now"
+              "image": "shopify://shop_images/national-pet-day.jpg",
+              "mobile_image": "shopify://shop_images/national-pet-day-mobile.jpg",
+              "link": "shopify://collections/dog-walking",
+              "heading_text": "DOG WALKING BOOTS",
+              "text": "<p>Designed to keep you comfortable and supported during those muddy dog walks</p>",
+              "cta_text": "SHOP DOG WALKING BOOTS"
             }
           }
         },
@@ -644,8 +633,8 @@
       "1536353642475": {
         "type": "featured-collection",
         "settings": {
-          "heading": "NEW ARRIVALS",
-          "homepage_collection": "new-arrivals",
+          "heading": "GARDENING BOOTS",
+          "homepage_collection": "garden",
           "homepage_product_limit": 8,
           "homepage_product_display": "carousel",
           "products_per_row": 4
@@ -665,7 +654,7 @@
           "1537319921572": {
             "type": "image_picker",
             "settings": {
-              "image_picker_block": "shopify://shop_images/about-image-1.png",
+              "image_picker_block": "shopify://shop_images/IMG_4714.jpeg",
               "image_offset": "-4%",
               "block_order": "1"
             }
@@ -697,7 +686,7 @@
           "1537482252402": {
             "type": "image_picker",
             "settings": {
-              "image_picker_block": "shopify://shop_images/about-image-3.jpg",
+              "image_picker_block": "shopify://shop_images/Women_s-Liberty-Rubber-Ankle-Boots-Navy-Floral-Print-1.jpg",
               "image_offset": "",
               "block_order": "5"
             }
@@ -861,7 +850,7 @@
             "type": "html",
             "settings": {
               "title": "How Do I check My Order Status?",
-              "answer": "<p>If you are a registered customer, you can access your order history by logging into your account using the credentials you used to create your account. You will find the “My Account” link located at the top of each page. Once you have accessed your account, you can click on the “Track Order” link for order status. If you are not a registered user, you can contact Customer Service at 855-377-BOOT (2668) by submitting an email via the Contact Us section on our site <a href=\"/pages/contact-us\"> here</a>. Customer Service hours are 7am to 11pm (PST/PDT) Monday through Friday.</p>",
+              "answer": "<p>If you are a registered customer, you can access your order history by logging into your account using the credentials you used to create your account. You will find the “My Account” link located at the top of each page. Once you have accessed your account, you can click on the “Track Order” link for order status. If you are not a registered user, you can contact Customer Service at +44 808-281-9536, or by submitting an email via the Contact Us section on our site <a href=\"/pages/contact-us\"> here</a>. Customer Service hours are 9am to 5pm (GMT/GMT+1) Monday through Friday.</p>",
               "anchor": "orderstatus"
             }
           },
@@ -869,7 +858,7 @@
             "type": "html",
             "settings": {
               "title": "Do you offer discounts for bulk orders?",
-              "answer": "<p>Need Mucks for the whole crew? The Original Muck Boot Company® is happy to offer bulk discounts on large orders of boots and shoes. Discounts are currently available via phone orders only, please call our customer care center at 1-855-377-2668 for complete details.</p>",
+              "answer": "<p>Need Mucks for the whole crew? The Original Muck Boot Company® is happy to offer bulk discounts on large orders of boots and shoes. Discounts are currently available via phone orders only, please call our customer care center at +44 808-281-9536 for complete details.</p>",
               "anchor": "bulkdiscount"
             }
           }
@@ -912,6 +901,58 @@
           "link": "",
           "button_text_color": "#fff",
           "button_color": "#000"
+        }
+      },
+      "page-contest-template": {
+        "type": "page-contest-template",
+        "settings": {
+          "image": "shopify://shop_images/The_Bull_Shed_Main.jpg",
+          "heading": "Your Chance to Win a Two Nights Stay in The Bull Shed Barn",
+          "text": "<p>Add some descriptive text to your Blog page.</p>"
+        }
+      },
+      "page-contest-success-banner": {
+        "type": "page-contest-success-banner",
+        "settings": {
+          "image": "shopify://shop_images/Success_Page_Image.jpg",
+          "heading": "Thank you!",
+          "text": "<p>Add some descriptive text to your Blog page.</p>"
+        }
+      },
+      "page-returns-gate-template": {
+        "type": "page-returns-gate-template",
+        "settings": {
+          "button_url": "/a/returns",
+          "checkbox_text": "I accept and agree to the online return policy.",
+          "submit_text": "Submit A Return",
+          "error_text": "Please agree to the online return policy by checking the checkbox"
+        }
+      },
+      "gift-with-purchase": {
+        "type": "gift-with-purchase",
+        "blocks": {
+          "1556741658202": {
+            "type": "discount_object",
+            "settings": {
+              "display_name": "Boot Bag",
+              "min_spend": 100,
+              "time_start": "20 May 2019 00:01 GMT+0",
+              "time_end": "3 Jun 2019 00:01 GMT+0",
+              "grant_type": "all",
+              "auto_add_to_cart": true,
+              "gift_id": "21560091410545",
+              "inventory_id": "21560091410545",
+              "product_handle": "free-muck-boot-bag"
+            }
+          }
+        },
+        "block_order": [
+          "1556741658202"
+        ],
+        "settings": {
+          "discount_modal_enable": true,
+          "cookie_expire_in_days": 60,
+          "currency_symbol": "&pound;"
         }
       }
     },

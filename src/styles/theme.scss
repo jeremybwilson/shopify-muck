@@ -19,6 +19,7 @@
 @import url('./sections/twin-promos.scss.liquid');
 @import url('./sections/slideshow.scss.liquid');
 @import url('./sections/columns-carousel.scss.liquid');
+@import url('./sections/top-banner.scss.liquid');
 @import url('./sections/instagram-feed.scss.liquid');
 @import url('./sections/collection.scss.liquid');
 @import url('./sections/product-template.scss.liquid');
@@ -31,6 +32,9 @@
 @import url('./sections/search.scss.liquid');
 @import url('./sections/blog-template.scss.liquid');
 @import url('./sections/article-template.scss.liquid');
+@import url('./sections/page-contest-template.scss.liquid');
+@import url('./sections/page-about-20th.scss.liquid');
+@import url('./sections/page-sitemap.scss.liquid');
 
 /*================ Snippets ================*/
 @import url('./snippets/cookie-banner.scss.liquid');
@@ -38,6 +42,12 @@
 @import url('./snippets/product-carousel.scss.liquid');
 @import url('./snippets/collection-seo-block.scss.liquid');
 @import url('./snippets/size-chart.scss.liquid');
+@import url('./snippets/contest-form.scss.liquid');
+@import url('./snippets/nosto-element.scss.liquid');
+@import url('./snippets/yotpo-style.scss.liquid');
+
+/*================ Templates ================*/
+@import url('./templates/page-contest-success.scss.liquid');
 
 /*============= ReactComponents ============*/
 @import url('./react-components/react-swatches.scss.liquid');
@@ -49,4 +59,6 @@
 @import url('./vendor/slick.scss.liquid');
 @import url('./vendor/fancybox.scss.liquid');
 @import url('./vendor/owlcarousel.scss.liquid');
+@import url('./vendor/store-locator.scss.liquid');
 @import url('./vendor/shogun.scss.liquid');
+

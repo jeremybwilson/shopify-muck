@@ -24,7 +24,7 @@
 
   {% endcomment %}
 
-  {% if settings.international_store_version == 'US' %}
+  {% if settings.yotpo_enable_flag == true and settings.international_store_version != blank %}
     {% comment %} REVIEWS - STAR RATING {% endcomment %}
     {% include 'yotpo-product-snippet' %}
   {% endif %}
@@ -51,7 +51,7 @@
       <span class="money">{{ price }}</span>
     </span>
   </div>
-  
+
   {% endif %}
 
   <div class="clear"></div>
@@ -60,7 +60,7 @@
 
   {% comment %}
 
-  SWATCHES 
+  SWATCHES
   -------------------
 
   CONDITION #1 - If there are more than one set of product options (Color AND Size). This condition also renders the different variants under said options (Red S, Blue L).
@@ -81,7 +81,7 @@
     </div><!-- .select -->
     {% if section.settings.product_variants == 'swatches' %}
 
-      {% comment %} Option Loop 
+      {% comment %} Option Loop
 
       This is the first of 3 sets of loops that determine the render of the product swatches. See 'swatch.liquid' for the other two.
 
@@ -113,7 +113,7 @@
     </div><!-- .select -->
     {% if section.settings.product_variants == 'swatches' %}
 
-      {% comment %} Option Loop 
+      {% comment %} Option Loop
 
       This is the first of 3 sets of loops that determine the render of the product swatches. See 'swatch.liquid' for the other two.
 
@@ -162,9 +162,39 @@
     </div><div class="clear"></div>
   {% endif %}
 
-  <a class="link" href="#" id="BIS_trigger">Is your size out of stock?</a>
+  {% assign has_unavailable = false %}
+
+  {% for variant in product.variants %}
+    {% unless variant.available %}
+      {% assign has_unavailable = true %}
+      {% break %}
+    {% endunless %}
+  {% endfor %}
+
+  {% if has_unavailable %}
+     <a class="link" href="#" id="BIS_trigger">Is your size out of stock?</a>
+
+     <script type="text/javascript">
+      // Check to see which domain we are currently on
+      var domainLocale = window.theme.Utils.domainCookie();
+
+      // BUILD : Append the 'hide' class if we are on DE
+      if(domainLocale == 'de'){
+        var bisLink = document.querySelector('#BIS_trigger');
+        bisLink = bisLink.classList.add("hide");
+      }
+    </script>
+  {% endif %}
 
   {% if product.available %}
+    <script>
+      var inv_qty = {};
+      {% for var in product.variants %}
+        inv_qty[{{- var.id -}}] = {{ var.inventory_quantity | default: 0 }};
+      {% endfor %}
+    </script>
+    <span class="variant-size-select-error"></span>
+    <span class="variant-inventory-one-unit" data-callout="{{ 'products.product.one_unit_left' | t }}"></span>
     <div id="product-add">
       {% if section.settings.show_quantity %}
       <div class="quanity-select">

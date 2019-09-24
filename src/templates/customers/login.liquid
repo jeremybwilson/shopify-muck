@@ -7,7 +7,7 @@
   </div>
 
   <!-- Left Side -->
-  
+
   <div id="template" class="desktop-5 mobile-3">
 
     <!-- Guest Checkout login -->
@@ -21,7 +21,7 @@
         {% endform %}
       </div>
     </div>
-    {% endif %}		
+    {% endif %}
 
       <div class="clear"></div>
 
@@ -34,7 +34,7 @@
       <div class="template_header">
         <h2>{{ 'customer.login.title' | t }}</h2>
       </div>
-      
+
       {% form 'customer_login' %}
       {{ form.errors | default_errors }}
 
@@ -42,7 +42,7 @@
         <label for="customer_email" class="login">{{ 'customer.login.email' | t }}</label>
         <input type="email" value="" name="customer[email]" id="customer_email" class="large" size="30" />
       </div>
-      
+
       {% if form.password_needed %}
 
       <div id="login_password" class="clearfix large_form">
@@ -52,13 +52,14 @@
           <a href="#" onclick="showRecoverPasswordForm();return false;">{{ 'customer.login.forgot_password' | t }}</a>
         </div>
       </div>
-      
+
       {% endif %}
-      
+
       <div class="action_bottom">
         <input class="secondary button" type="submit" value="{{ 'customer.login.sign_in' | t }}" />
       </div>
-      
+      <input type="hidden" class="customer_tags" name="customer[tags]" value />
+
       {% endform %}
     </div>
 
@@ -72,31 +73,32 @@
         <h2>{{ 'customer.recover_password.title' | t }}</h2>
         <p class="note">{{ 'customer.recover_password.subtext' | t }}</p>
       </div>
-      
+
       {% form 'recover_customer_password' %}
-      
+
       {{ form.errors | default_errors }}
-      
+
       <div id="recover_email" class="clearfix large_form">
         <label for="email" class="large">{{ 'customer.recover_password.email' | t }}</label>
         <input type="email" value="" size="30" name="email" id="recover-email" class="large" />
       </div>
-      
+
       <div class="action_bottom">
         <input class="secondary button" type="submit" value="{{ 'customer.recover_password.submit' | t }}" />
         <span class="note"><a href="#" onclick="hideRecoverPasswordForm();return false;">{{ 'customer.recover_password.cancel' | t }}</a></span>
       </div>
-      
+      <input type="hidden" class="customer_tags" name="customer[tags]" value />
+
       {% endform %}
     </div>
-      
+
   </div>
 
-  <!-- End Left Side -->  
+  <!-- End Left Side -->
 
 
-  <!-- End Password Recovery -->    
-  <!-- Create Account -->    
+  <!-- End Password Recovery -->
+  <!-- Create Account -->
 
 
   <!-- Create Customer -->
@@ -133,11 +135,12 @@
     <div class="action_bottom">
       <input class="secondary button" type="submit" value="{{ 'customer.register.submit' | t }}"/>
     </div>
+      <input type="hidden" class="customer_tags" name="customer[tags]" value />
     {% endform %}
   </div>
 
 
-  <!-- End Create Account -->     
+  <!-- End Create Account -->
 
 
 </div>
@@ -154,6 +157,16 @@
   }
 
   if (window.location.hash == '#recover') { showRecoverPasswordForm() }
+
+  var customerTagInputs = document.querySelectorAll(".customer_tags");
+  var domainLocale = window.theme.Utils.domainCookie();
+
+  if( domainLocale ){
+    customerTagInputs.forEach( function(e) {
+      e.setAttribute("value", domainLocale);
+    });
+  }
+
 </script>
 
 

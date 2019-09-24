@@ -2,9 +2,10 @@
 <!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
 <!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
 <!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!--><html lang="en" class="no-js"> <!--<![endif]-->
+<html lang="en" class="no-js">
 <head>
   <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
   <!-- Add any tracking or verification meta content below this line -->
   <!-- Facebook or Google Analytics tracking should be placed in your Online store > Preferences and not your theme -->
@@ -18,8 +19,12 @@
   {% if page_description %}
   <meta name="description" content="{{ page_description | escape }}" />
   {% endif %}
-  <link rel="canonical" href="{{ canonical_url }}" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  {% include 'head-meta-robots' %}
+  <meta name="format-detection" content="telephone=no">
+  {% comment %} canonical link is found in the head-meta-robots {% endcomment %}
+
+  <meta name="viewport" content="width=device-width, initial-scale=1"> <!--maximum-scale=1, user-scalable=no-->
 
   {% if settings.international_store_version == 'UK' %}
     <!-- gs.uk--> <meta name="google-site-verification" content="Q_rdvBTmaaMZxNvPtwzObfp70UECW9MkmG2U6ldc5a8" />
@@ -30,11 +35,11 @@
 
   <!-- CSS
 ================================================== -->
-  {{ 'stylesheet.css' | asset_url | stylesheet_tag }}
-  {{ 'font-awesome.css' | asset_url | stylesheet_tag }}
-  {{ 'queries.css' | asset_url | stylesheet_tag }}
+  <link href="{{ 'stylesheet.css' | asset_url }}" rel="stylesheet" type="text/css" media="all" />
+  <link href="{{ 'font-awesome.css' | asset_url }}" rel="stylesheet" type="text/css" media="all" />
+  <link href="{{ 'queries.css' | asset_url }}" rel="stylesheet" type="text/css" media="all" />
   {{ 'theme.scss.css' | asset_url | stylesheet_tag }}
-  {{ 'bc-sf-filter.scss.css' | asset_url | stylesheet_tag }} {% comment %} Filter App Styling {% endcomment %}
+  <link href="{{ 'bc-sf-filter.scss.css' | asset_url }}" rel="stylesheet" type="text/css" media="all" /> {% comment %} Filter App Styling {% endcomment %}
 
 
   <!-- Typography
@@ -48,10 +53,11 @@
   {% comment %}
     NOTE : Remove the .min on react to get better error messaging
   {% endcomment %}
-  {{ 'react.min.js' | asset_url | script_tag }}
-  {{ 'react-dom.min.js' | asset_url | script_tag }}
-  {{ 'jquery-2.2.4.min.js' | asset_url | script_tag }}
-  {{ "eventemitter3.min.js" | asset_url | script_tag }}
+  <script src="{{ 'react.min.js' | asset_url }}"></script>
+  <script src="{{ 'react-dom.min.js' | asset_url }}"></script>
+  <script src="{{ 'jquery-2.2.4.min.js' | asset_url }}"></script>
+  <script src="{{ 'eventemitter3.min.js' | asset_url }}"></script>
+  <script src="{{ 'jquery.validate.min.js' | asset_url }}"></script>
 
   {%- if settings.show_multiple_currencies -%}
     {% include 'currencies' %}
@@ -60,20 +66,20 @@
   {% comment %}
     NOTE : For some reason the slick code breaks pre-processing (I think browserify) when pasted into theme.js. I've added it here for now until we figure out what the issue is.
   {% endcomment %}
-  {{ 'slick.min.js' | asset_url | script_tag }}
+  <script src="{{ 'slick.min.js' | asset_url }}"></script>
   {{ 'theme.js' | asset_url | script_tag }}
-  {{ 'option_selection.js' | shopify_asset_url | script_tag }}
-  {{ 'jquery.fs.shifter.js' | asset_url | script_tag }}
+  <script src="{{ 'option_selection.js' | shopify_asset_url }}"></script>
+  <script src="{{ 'jquery.fs.shifter.js' | asset_url }}"></script>
   {% if template contains 'index' %}
-    {{ 'instafeed.js' | asset_url | script_tag }}
-	{% endif %}
+    <script src="{{ 'instafeed.js' | asset_url }}"></script>
+  {% endif %}
 
-  <!-- Zendesk -->
-  <script src='//d3c3cq33003psk.cloudfront.net/opentag-73170-muckbootproduction.js' async defer></script>
+  <!--PDM-216-->
+  <script src='{{ 'jquery.waypoints.min.js' | asset_url }}' async defer></script>
 
   {% include 'script-google-tag-head' %}
 
-  {% if settings.international_store_version == 'US' %}
+  {% if settings.yotpo_enable_flag == true and settings.international_store_version != blank %}
     <!-- Yotpo Main Script -->
     {% include 'yotpo-main-script' %}
   {% endif %}
@@ -85,31 +91,52 @@
   {% endif %}
 
   {% if template contains 'customers' %}
-  {{ "shopify_common.js" | shopify_asset_url | script_tag }}
-  {{ "customer_area.js"  | shopify_asset_url | script_tag }}
+  <script src="{{ 'shopify_common.js' | shopify_asset_url }}"></script>
+  <script src="{{ 'customer_area.js' | shopify_asset_url }}"></script>
   {% endif %}
 
   {{ content_for_header }}
 
+ <!--  {% if settings.nosto_id != blank %}
+    {% include 'nosto-script' %}
+  {% endif %} -->
+
+  {% if settings.nosto_id != blank %}
+    <script type="text/javascript">
+    // Check to see which domain we are currently on
+    var domainLocale = window.theme.Utils.domainCookie();
+
+    if (domainLocale != 'de' || domainLocale != 'fr') { // if the domain is anything other than DE or FR, then embed Nosto
+        var script = document.createElement('script');
+        script.src = "//connect.nosto.com/include/shopify-{{ settings.nosto_id }}";
+        document.head.appendChild(script);
+    }
+    </script>
+  {% endif %}
+
+  {% if settings.international_store_version == 'EU' %}
+    <!-- To avoid having additional server to handle this redirect from non www to www, we are using javascript to handle this -->
+     <script>if(location.hostname.startsWith("muckbootcompany.")){window.location = document.URL.replace("//muckbootcompany","//www.muckbootcompany");}</script>
+  {% endif %}
+
+  {% comment %} Yottaa Rapid CTRL {% endcomment %}
+  {% if settings.yottaa_key != blank %}
+    {% include 'yottaa-script' %}
+  {% endif %}
 </head>
 
-<body class="gridlock shifter {% if template contains 'product' %}product{% elsif template contains 'collection' %}collection{% else %}{{ template }}{% endif %}">
+<body class="gridlock shifter {% if template contains 'product' %}product{% elsif template contains 'collection' %}collection{% else %}{{ template }}{% endif %}{% if template == 'product.promo' %} product-promo{% endif %}{% if template == 'page.about-20th' %} our-story-body{% endif %}">
   {% include 'script-google-tag-body' %}
   {% include 'timber-cart' %}
 
   <div class="shifter-page{% if settings.ajax_cart_method == 'drawer' %} is-moved-by-drawer{% endif %}" id="PageContainer">
+    <div class="PageOverlay"></div>
     <div class="page-wrap">
 
       {% section 'header' %}
       <div class="clear"></div>
 
-      {% comment %}
-        REACT : EXAMPLE #1
-        <div id="example-global-react" data-info-passed-to-react='{ "name": "greg" }'></div>
-      {% endcomment %}
-      
-      {% comment %} :: COLLECTION - Banner Image :: 
-
+      {% comment %} :: COLLECTION - Banner Image ::
         Notes:
         ------
         To activate a collection banner, you'll need the following images uploaded to the "Files" section:
@@ -119,7 +146,7 @@
         To display the banners, enter the following HTML in the collection description:
         <div class="category-banner has--category-banner banner--only"></div>
 
-        IMPORTANT: 
+        IMPORTANT:
         ----------
         If the description ONLY contains the Category Banner code above, then you need to include the classname "banner--only".
         Otherwise, enter the code below if you have other content (such as the SEO footer text)
@@ -135,9 +162,16 @@
         {% endif %}
       {% endif %}
 
+      {% comment %} :: Collection Banner Functionality :: {% endcomment %}
+      {% if template contains 'collection' %}
+        {% section 'collection-banner' %}
+      {% endif %}
+
 
       {% comment %} :: HOME / BLOG / LIST-COLLECTIONS - No Wrapper or Breadcrumbs :: {% endcomment %}
-      {% if template == 'index' or template contains 'blog' or template contains 'list-collections' or template contains 'article' %}
+      {% if template == 'index' or template contains 'blog' or
+        template contains 'list-collections' or template contains 'article' or
+        template == 'page.contest' or template == 'page.contest-success' %}
         {{ content_for_layout }}
 
 
@@ -153,7 +187,7 @@
 
         {% comment %} :: PAGE CONTENT :: {% endcomment %}
         {% comment %} Note : PRODUCT DETAILS has breadcrumbs but custom wrappers {% endcomment %}
-        <div id="content" {% if template !='product' %}class="row"{% endif %} />
+        <div id="content" {% unless template contains 'product' or template contains 'page.about-20th' %}class="row"{% endunless %} />
           {{ content_for_layout }}
         </div>
 
@@ -166,11 +200,11 @@
           {% endif %}
         {% endif %}
 
-      {% endif %} 
+      {% endif %}
       {% comment %} :: End of 'ALL OTHER PAGES' IF block :: {% endcomment %}
     </div>  <!-- close the page-wrap class -->
 
-    
+    {% section 'gift-with-purchase' %}
     {% section 'newsletter' %}
     {% section 'footer' %}
   </div> <!-- close the shifter-page class -->
@@ -180,10 +214,8 @@
   ================================================== -->
   {% include 'cookie-banner' %}
   {% include 'popup' %}
-  {% include 'react-discounts' %}
 
-
-  <a href="#" class="scrollup"><i class="icon-chevron-up icon-2x"></i></a>
+  <a aria-label="Scroll up" href="#" class="scrollup"><i class="icon-chevron-up icon-2x"></i></a>
 
   <!-- Begin Recently Viewed Products -->
   <script type="text/javascript" charset="utf-8">
@@ -194,8 +226,8 @@
     }
     //]]>``
   </script>
-  {{ '//ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js' | script_tag }}
-  {{ 'jquery.products.min.js' | asset_url | script_tag }}
+  <script src="{{ '//ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js' }}"></script>
+  <script src="{{ 'jquery.products.min.js' | asset_url }}"></script>
 
   {% if template contains 'product' %}
   <script type="text/javascript" charset="utf-8">
@@ -218,7 +250,7 @@
   {% endif %}
 
   {% if settings.ajax_cart_method == 'drawer' %}
-    {{ 'handlebars.min.js' | asset_url | script_tag }}
+    <script src="{{ 'handlebars.min.js' | asset_url }}"></script>
     {% include 'ajax-cart-template' %}
     {{ 'ajax-cart.js' | asset_url | script_tag }}
     <script>
@@ -253,9 +285,9 @@
   {% include 'ajax-article-comment-support' %}
 
   <!-- Responsive Images -->
-  {{ 'ls.rias.min.js' | asset_url | script_tag }}
-  {{ 'ls.bgset.min.js' | asset_url | script_tag }}
-  {{ 'lazysizes.min.js' | asset_url | script_tag }}
+  <script src="{{ 'ls.rias.min.js' | asset_url }}"></script>
+  <script src="{{ 'ls.bgset.min.js' | asset_url }}"></script>
+  <script src="{{ 'lazysizes.min.js' | asset_url }}"></script>
 
   <script>
       document.documentElement.className = document.documentElement.className.replace("no-js","js");
@@ -271,8 +303,55 @@
 
   <script>Shopify.money_format = "{{ shop.money_format }}";</script>
 
-<!-- Criteo tags -->
-  {% include 'criteo-tracking' %}
+  {%  unless template == 'index' %}
+    {% if settings.zendesk-key != blank %}
+      <!-- run the zenDeskWidgetandScript function -->
+      <!-- Start of muckbootcompany Zendesk Widget script -->
+
+      <script type="text/javascript">
+      // Check to see which domain we are currently on
+      var domainLocale = window.theme.Utils.domainCookie();
+
+      // BUILD : Append zendesk + widget config if we aren't on german tld
+      if(domainLocale != 'de'){ // if the domain is anything other than DE, then embed ZenDesk
+        var script = document.createElement('script');
+        script.onload = function () {
+        };
+        script.src = "https://static.zdassets.com/ekr/snippet.js?key={{ settings.zendesk-key }}";
+        script.id = "ze-snippet";
+        document.head.appendChild(script);
+
+      // CONFIG : Zendesk Widget Config
+        window.zESettings = {
+          webWidget: {
+            authenticate: {
+              jwt: '{{ settings.zendesk-key }}'
+            },
+            contactOptions: {
+              enabled: true,
+              contactButton: { '*': 'Contact Button' },
+              chatLabelOnline: { '*': 'Live Chat' },
+              chatLabelOffline: { '*': 'Chat is unavailable' },
+              contactFormLabel: { '*': 'Email Us' }
+            },
+            launcher: {
+              chatLabel: { '*': 'Help' }
+            },
+            contactForm: {
+              title: { '*': 'Email Us' }
+            }
+          }
+        };
+      }
+      </script>
+    {% endif %}
+  {% endunless %}
+  {% if settings.nosto_id != blank %}
+    {% include 'nosto-tagging' %}
+  {% endif %}
+
+  {% comment %} STRUCTURED DATA {% endcomment %}
+  {% include 'script-structured-data' %}
 
 </body>
 </html>

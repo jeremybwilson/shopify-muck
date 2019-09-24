@@ -1,0 +1,315 @@
+
+{% capture notification_template_name %}order_refund{% endcapture %}
+{% capture full_email_template_params %}?utm_source=tran&utm_medium=email&utm_campaign={{ notification_template_name }}{% endcapture %}
+
+{% capture shop_custom_name %}The Original Muck Boot Company&reg;{% endcapture %}
+
+{% capture email_body %}Your order has been refunded<br>Total amount refunded: <strong style="color:#ab5232">{{ amount | money_with_currency }}</strong>{% endcapture %}
+
+{% capture visit_our_store_text %}VISIT OUR STORE{% endcapture %}
+{% capture return_label_text %}Print return label{% endcapture %}
+{% capture return_label_ready %}Your return label is ready{% endcapture %}
+{% capture return_label_instructions %}<ol>
+  <li class="return-label__instruction-step">Pack the items you're returning.</li>
+  <li class="return-label__instruction-step">Print your return label and attach it to the package. Cover any existing shipping labels.</li>
+  <li class="return-label__instruction-step">Give the package to the carrier identified on the label.</li>
+</ol>{% endcapture %}
+{% capture disclaimer_subtext %}<p class="disclaimer__subtext">If you have any questions, reply to this email or contact us at <a href="mailto:{{ shop.email }}">{{ shop.email }}</a></p>{% endcapture %}
+{% capture privacy_policy_text %}Privacy Policy{% endcapture %}
+
+{% comment %}
+
+// wrap in some logic to alternate between English strings above
+// an German strings below
+
+{% if store_name or store_locale == 'something' %}
+  {% capture shop_locale %}EN{% endcapture %}
+{% else %}
+  {% capture shop_locale %}DE{% endcapture %}
+{% endif %}
+
+{% if shop_locale == 'DE' %}
+
+  {% capture visit_our_store_text %}BESUCHEN SIE UNSEREN STORE{% endcapture %}
+  {% capture return_label_text %}Etikett für die Rücksendung drucken{% endcapture %}
+  {% capture return_label_ready %}Das Etikett für Ihre Rücksendung ist bereit{% endcapture %}
+  {% capture return_label_instructions %}<ol>
+    <li class="return-label__instruction-step">Verpacken Sie die Artikel der Rücksendung.</li>
+    <li class="return-label__instruction-step">Drucken Sie das Etikett für Ihre Rücksendung und kleben Sie es auf das Paket. Überkleben Sie alle anderen vorhandenen Versandetiketten.</li>
+    <li class="return-label__instruction-step">Geben Sie die Rücksendung bei dem Versandunternehmen ab, das auf dem Etikett genannt ist.</li>
+  </ol>{% endcapture %}
+  {% capture disclaimer_subtext %}<p class="disclaimer__subtext">Bei Fragen kontaktieren Sie uns bitte per Antwort auf diese E-Mail oder unter <a href="mailto:{{ shop.email }}">{{ shop.email }}</a></p>{% endcapture %}
+  {% capture privacy_policy_text %}Datenschutzbestimmungen{% endcapture %}
+{% endif %}
+
+{% endcomment %}
+
+{% comment %}
+  // wrap the this block in EN locale check logic
+  // or just feed it the dynamic string values from above?
+{% endcomment %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <title>{{ email_title }}</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" type="text/css" href="/assets/notifications/styles.css">
+  <style>
+    .button__cell { background: {{ shop.email_accent_color }}; }
+    a, a:hover, a:active, a:visited { color: {{ shop.email_accent_color }}; }
+  </style>
+</head>
+
+  <body>
+    <table class="body">
+      <tr>
+        <td>
+          <table class="header row">
+            <tr>
+              <td class="header__cell">
+                <center>
+
+                  <table class="container">
+                    <tr>
+                      <td>
+
+                        <table class="row">
+                          <tr>
+                            <td class="shop-name__cell">
+                            {%- if shop.email_logo_url %}
+                              <img src="{{shop.email_logo_url}}" alt="{{ shop_custom_name }}" width="{{ shop.email_logo_width }}">
+                            {%- elsif shop_custom_name %}
+                              <h1 class="shop-name__text">
+                                <a href="{{shop.url}}" title="{{ shop_custom_name }}">{{ shop_custom_name }}</a>
+                              </h1>
+                            {%- else %}
+                              <h1 class="shop-name__text">
+                                <a href="{{shop.url}}" title="{{ shop_custom_name }}">{{ shop.name }}</a>
+                              </h1>
+                            {%- endif %}
+                            </td>
+                            <td class="order-number__cell">
+                              <span class="order-number__text">
+                                Order {{ order.name }}
+                              </span>
+                            </td>
+                          </tr>
+                        </table>
+
+                      </td>
+                    </tr>
+                  </table>
+                </center>
+              </td>
+            </tr>
+          </table>
+          <table class="row content">
+            <tr>
+              <td class="content__cell">
+                <center>
+                  <table class="container">
+                    <tr>
+                      <td>
+
+                      <h2>{{ return_label_ready }}</h2>
+                      <table class="row actions">
+                        <tr>
+                          <td class="actions__cell">
+                            <table class="button main-action-cell">
+                              <tr>
+                                <td class="button__cell"><a href="{{ return_label.public_file_url }}" class="button__text">{{ return_label_text }}</a></td>
+                              </tr>
+                            </table>
+                            {% if shop.url %}
+                          <table class="link secondary-action-cell">
+                            <tr>
+                              <td class="link__cell">or <a href="{{ shop.url }}">Visit our store</a></td>
+                            </tr>
+                          </table>
+                      {% endif %}
+                        </td>
+                      </tr>
+                    </table>
+                    </td>
+                  </tr>
+                </table>
+              </center>
+            </td>
+          </tr>
+        </table>
+          <table class="row section">
+            <tr>
+              <td class="section__cell">
+                <center>
+                  <table class="container">
+                    <tr>
+                      <td>
+                        <h3>Instructions</h3>
+                      </td>
+                    </tr>
+                  </table>
+                  <table class="container">
+                    <tr>
+                      <td>{{ return_label_instructions }}</td>
+                    </tr>
+                  </table>
+                </center>
+              </td>
+            </tr>
+          </table>
+          <table class="row footer">
+            <tr>
+              <td class="footer__cell">
+                <center>
+                  <table class="container">
+                    <tr>
+                      <td>{{ disclaimer_subtext }}</td>
+                    </tr>
+                  </table>
+                </center>
+              </td>
+            </tr>
+          </table>
+          <img src="{{ 'notifications/spacer.png' | shopify_asset_url }}" class="spacer" height="1" />
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
+
+{% comment %}
+// wrap in some logic to alternate between English strings above
+// and German strings below
+{% endcomment %}
+
+{% comment %}
+
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+  <title>{{ email_title }}</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" type="text/css" href="/assets/notifications/styles.css">
+  <style>
+    .button__cell { background: {{ shop.email_accent_color }}; }
+    a, a:hover, a:active, a:visited { color: {{ shop.email_accent_color }}; }
+  </style>
+</head>
+
+  <body>
+    <table class="body">
+      <tr>
+        <td>
+          <table class="header row">
+            <tr>
+              <td class="header__cell">
+                <center>
+
+                  <table class="container">
+                    <tr>
+                      <td>
+
+                        <table class="row">
+                          <tr>
+                            <td class="shop-name__cell">
+                            {%- if shop.email_logo_url %}
+                              <img src="{{shop.email_logo_url}}" alt="{{ shop_custom_name }}" width="{{ shop.email_logo_width }}">
+                            {%- elsif shop_custom_name %}
+                              <h1 class="shop-name__text">
+                                <a href="{{shop.url}}" title=" {{ shop_custom_name }} ">{{ shop_custom_name }}</a>
+                              </h1>
+                            {%- else %}
+                              <h1 class="shop-name__text">
+                                <a href="{{shop.url}}" title=" {{ shop_custom_name }} ">{{ shop.name }}</a>
+                              </h1>
+                            {%- endif %}
+                            </td>
+                            <td class="order-number__cell">
+                              <span class="order-number__text"> Bestellung {{ order.name }}</span>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                </center>
+              </td>
+            </tr>
+          </table>
+          <table class="row content">
+            <tr>
+              <td class="content__cell">
+                <center>
+                  <table class="container">
+                    <tr>
+                      <td>
+                      <h2>{{ return_label_ready }}</h2>
+                      <table class="row actions">
+                        <tr>
+                          <td class="actions__cell">
+                            <table class="button main-action-cell">
+                              <tr>
+                                <td class="button__cell"><a href="{{ return_label.public_file_url }}" class="button__text">{{ return_label_text}}</a></td>
+                              </tr>
+                            </table>
+                          {% if shop.url %}
+                            <table class="link secondary-action-cell">
+                              <tr>
+                                <td class="link__cell">oder <a href="{{ shop.url }}">besuchen Sie unseren Store</a></td>
+                              </tr>
+                            </table>
+                          {% endif %}
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </center>
+            </td>
+          </tr>
+        </table>
+        <table class="row section">
+          <tr>
+            <td class="section__cell">
+              <center>
+                <table class="container">
+                  <tr>
+                    <td>
+                      <h3>Anleitung</h3>
+                    </td>
+                  </tr>
+                </table>
+                <table class="container">
+                  <tr>
+                    <td>{{ return_label_instructions }}</td>
+                  </tr>
+                </table>
+              </center>
+            </td>
+          </tr>
+        </table>
+        <table class="row footer">
+          <tr>
+            <td class="footer__cell">
+              <center>
+                <table class="container">
+                  <tr>
+                    <td>{{ disclaimer_subtext }}</td>
+                  </tr>
+                </table>
+              </center>
+            </td>
+          </tr>
+        </table>
+        <img src="{{ 'notifications/spacer.png' | shopify_asset_url }}" class="spacer" height="1"/>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
+
+{% endcomment %}

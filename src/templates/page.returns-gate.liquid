@@ -1,0 +1,21 @@
+<div id="subpage">
+  <div class="left-nav">
+      {% include 'sidenav' %}
+  </div>
+
+  <div class="page-content-field">
+
+  {% comment %} Check for shortcode {% endcomment %}
+  {% if page.content contains "[[returns_gate_code]]" %}
+
+    {% section 'page-returns-gate-template' %}
+
+  {% else %}
+
+    {% comment %} No Shortcode? No problem {% endcomment %}
+
+    {{ page.content }}
+
+  {% endif %}
+  </div>
+</div>

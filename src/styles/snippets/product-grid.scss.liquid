@@ -21,7 +21,25 @@ $loadMoreBgHover: {{ settings.collection_load_more_bg_hover }};
     left: 50%;
     transform: translateX( -50% );
     max-width: 99vw; // Prevent breaking viewport bounds
+    display:flex;
+    flex-wrap:wrap;
 
+    .full-height-promo{
+        .prod-container{
+            height:100%;
+          
+          .reveal{
+              display:table;
+          }
+              
+          img{
+            object-fit: cover;
+            display: table-cell;
+            height: 100%;
+            width: 100%;
+          }
+        }
+    }
     // IMAGE : Product Image containment and layers
     .prod-container {
         position: relative;
@@ -62,7 +80,8 @@ $loadMoreBgHover: {{ settings.collection_load_more_bg_hover }};
     }
 
     // QUICKVIEW BUTTON : Button to show the quickview
-    .product-index {
+    .product-index {     
+
         .product-modal {
             @include h7;
             @include fontSize( 16px );
@@ -81,7 +100,7 @@ $loadMoreBgHover: {{ settings.collection_load_more_bg_hover }};
             }
         }
     }
-    
+
 
     // TITLE : Wrapper around product title
     .product-title-wrap {
@@ -123,6 +142,17 @@ $loadMoreBgHover: {{ settings.collection_load_more_bg_hover }};
     }
 }
 
+// PROMO PRODUCTS : Wrapper around price block
+
+.product-index {
+    &.promo-product-only {
+        .product-title-wrap,
+        .product-price-wrap {
+            display: none;
+        }
+    }
+}
+
 .bc-sf-filter-load-more-button {
     @include h6;
     @include fontSize( 16px );
@@ -130,11 +160,17 @@ $loadMoreBgHover: {{ settings.collection_load_more_bg_hover }};
     color: $loadMoreTextColor;
     background: $loadMoreBg;
     border: none;
-    padding: 20px 70px;
+    padding: 20px 50px;
     transition: background 0.25s ease-in-out;
 
     &:hover {
         background: $loadMoreBgHover;
         color: $loadMoreTextColor;
     }
+
+    @include mq('tablet-and-up'){
+      padding: 20px 70px;
+    }
 }
+
+

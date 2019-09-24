@@ -67,9 +67,29 @@
 			}
 
 			#thumbnail-gallery {
+				margin-bottom: 69px;
+				height: 253px;
+				overflow:hidden;
+				position: relative;
+				padding-top: 15px;
+				max-width: 250px !important;
+
+				.slick-list{
+					min-height: 220px !important;
+					max-height: 220px !important;
+                    overflow:hidden;
+				}
+				
 				.bx-viewport {
 					height: 311px !important; // fancybox is an inline style nazi...
 				}
+                
+				.slick-track {height: 288px !important;}
+
+				.slick-arrow.slick-next{ margin-top: 0px !important;} 
+				.slick-arrow.slick-prev{ top: -5px;}
+				.thumbnail-slider.slick-initialized.slick-slider.slick-vertical {position: unset;}
+
 			}
 		}
 
@@ -83,7 +103,7 @@
 				padding: 0;
 				border: none;
 
-				h1 {
+				h2 {
 					@include h6;
 					@include fontSize( 26px );
 					font-weight: $font-weight--black;
@@ -112,9 +132,18 @@
 						// Size : "Youth 6" or "Wide 6"
 						.swatch-element.long-label label {
 							width: 97px; //So half sizes = whole size boxes
+							display: inline-table;
 						}
 					}
 				}
+
+				
+				// BACK IN STOCK
+				
+				#BIS_trigger {
+					display: none;
+				}
+
 
 				// "View Full Details" Link
 				a.full-click {

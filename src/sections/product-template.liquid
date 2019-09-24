@@ -1,14 +1,28 @@
+<script type="text/javascript">
+  // global variable
+  window.variant_size_select_error = "{{ settings.variant_size_select_error }}";
+</script>
 {% assign current_variant = product.selected_or_first_available_variant %}
-
-<div itemscope itemtype="http://schema.org/Product"
+{% comment %}{- Select first available variant if current variant is unavailable -}{% endcomment %}
+{% unless current_variant.available %}
+  {% assign current_variant = product.first_available_variant %}
+{% endunless %}
+{% assign tag_exist = false %}
+{% assign anniversary_tag_exist = false %}
+{% for tag in product.tags %}
+  {% if tag == settings.bis_hide_tag %}
+    {% assign tag_exist = true %}
+  {% endif %}
+  {% if tag == settings.anniversary_tag %}
+    {% assign anniversary_tag_exist = true %}
+  {% endif %}
+{% endfor %}
+<div
   id="product-{{ product.id }}"
   class="product-page product-template"
   data-product-id="{{ product.id }}"
   data-section-id="{{ section.id }}"
   data-section-type="product-section">
-
-  <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
-  <meta itemprop="image" content="{{ product.featured_image.src | img_url: '800x' }}">
 
   {% unless template == 'product.quick' %}
 
@@ -23,7 +37,7 @@
     {% comment %}
 
       MOBILE PRODUCT PHOTOS
-      -----------------------------  
+      -----------------------------
     {% endcomment %}
 
     <div id="mobile-product-photos" class="owl-carousel mobile-3">
@@ -47,13 +61,16 @@
     <a class="mobile-product-carousel--next">
       {% include 'svg-icon-caret-right' %}
     </a>
+    {%- if anniversary_tag_exist == true -%}
+      {% include'social-sharing',share_title: product.title, share_permalink: product.url, share_image: product %}
+    {%- endif -%}
 
   </div><!-- .mobile-product-photos--wrapper -->
 
   <div class="row product-details--top">
 
     <div id="product-photos" class="{% if section.settings.related_products == 'right' %}desktop-5{% else %}desktop-6{% endif %} tablet-3 mobile-hide" data-product-gallery>
-      
+
       {% comment %} :: ITEM BADGE :: {% endcomment %}
       {% include 'react-item-badge' %}
 
@@ -63,11 +80,13 @@
         {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
         {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
       {%- endif -%}
+      {%- if anniversary_tag_exist == true -%}
+        {% include'social-sharing',share_title: product.title, share_permalink: product.url, share_image: product %}
+      {%- endif -%}
     </div>
 
     <div id="product-right" class="{% if section.settings.related_products == 'right' %}desktop-7{% else %}desktop-6{% endif %}">
-
-      <div id="product-description" {% if section.settings.related_products == 'right' %}class="desktop-10 tablet-6 mobile-3"{% endif %}>
+      <div id="product-description" class="{% if section.settings.related_products == 'right' %}desktop-10 tablet-6 mobile-3 {% endif %} {% if tag_exist %} hide_bis {% endif %}">
         {% if collection and section.settings.product_nav %}
           <div class="product-navigation">
             {% if collection.previous_product %}
@@ -83,22 +102,21 @@
           <h2>{{ product.vendor }}</h2>
         {% endif %}
 
-        <h1 itemprop="name">
-          {{ product.title }}
-        </h1>
-        
+        {% if template != 'product.quick' %}
+          <h1>{{ product.title }}</h1>
+        {% else %}
+          <h2>{{ product.title }}</h2>
+        {% endif %}
+
         {% comment %}
           REACT EXAMPLE #2:
-              Here, we use our snippet to include the DOM Node we'll need to render our 
+              Here, we use our snippet to include the DOM Node we'll need to render our
               react-swatches component setup in theme.js's theme.product block.
 
               {% include 'component-react-swatches' %}
         {% endcomment %}
 
-
-        <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-          <meta itemprop="priceCurrency" content="{{ shop.currency }}">
-          <link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
+        <div>
           {% capture product_form_config %}
             { "money_format": {{ shop.money_format | json }},
               "enable_history": true,
@@ -116,7 +134,7 @@
             {% comment %}
 
               FREE SHIPPING & RETURNS
-              -----------------------------  
+              -----------------------------
 
             {% endcomment %}
 
@@ -150,6 +168,44 @@
           </div>
         {% endif %}
       {% endunless %}
+      {% if template != 'product.quick' and section.settings.video_url != "" and anniversary_tag_exist == true %}
+        <div class="sidebr-video">
+          {% comment %} 20th Anniversary Video Thumbnail Optional Upload {% endcomment %}
+          {%- if section.settings.anniv_thumbnail_img != blank -%}
+            {%- assign thumbnail_img_url = section.settings.anniv_thumbnail_img | img_url: '500x' -%}
+            <img src="{{ thumbnail_img_url }}" class="sidebr-video-img" />
+          {%- else -%}
+            <img src="{{ 'video-screen-2.jpg'| file_url }}" class="sidebr-video-img" />
+          {%- endif -%}
+          <a href="#headerPopup" id="headerVideoLink" target="_blank" class="vid-ply-btn btn btn-outline-danger popup-modal"><span>Play</span></a>
+        </div>
+        <div id="headerPopup" class="mfp-hide embed-responsive embed-responsive-21by9">
+          <video id="BgVideo_1" controls="true">
+            <source src="{{ section.settings.video_url }}" type="video/mp4">
+            Your browser does not support HTML5 video.
+          </video>
+        </div>
+        <script src="{{ 'jquery.magnific-popup.js' | asset_url }}"></script>
+        <script>
+          $( document ).ready(function() {
+            $('#headerVideoLink').magnificPopup({
+              type:'inline',
+              midClick: true, // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
+              mainClass: 'mfg-addvideo',
+              callbacks: {
+                open: function() {
+                  // Start Video when popup open
+                  $('.embed-responsive').find('video').get(0).play();
+                },
+                close: function() {
+                  // Will pause the video when popup is closed
+                  $('.embed-responsive').find('video').get(0).pause();
+                }
+              }
+            });
+          });
+        </script>
+      {% endif %}
     </div>
 
   </div><!-- .row -->
@@ -157,7 +213,7 @@
   {% comment %} BIG GREEN DESCRIPTION {% endcomment %}
 
   <div class="clear"></div>
-  
+
   {% unless template == 'product.quick' %}
     <div class="product-description--area">
       <div class="row">
@@ -178,9 +234,9 @@
           {% comment %}
 
             PRODUCT SPECS (BULLETS)
-            -----------------------------  
+            -----------------------------
           {% endcomment %}
-          
+
           <div class="product-description--specs">
 
             <div class="rte">
@@ -191,7 +247,7 @@
               </ul>
 
             </div><!-- .rte -->
-            
+
           </div><!-- .--specs -->
 
 
@@ -203,15 +259,65 @@
 
       </div><!-- .row -->
     </div>
-  {% endunless %}    
+  {% endunless %}
 
   <div class="clear"></div>
+  {% if template != 'product.quick' and anniversary_tag_exist == true %}
+    <div id="anniversary-content">
+      {{ pages.pdp-anniversary.content }}
+    </div>
+  {% endif %}
+
+  {% for block in section.blocks %}
+    {% for tag in product.tags %}
+      {% if tag == block.settings.what_goes_tag_name %}
+        <section class="shopify-section no-padding what-goes-to">
+          <div class="index-section">
+            <div class="row">
+                <div class="combo-text beige-bg col-40">
+                  <h2 class="combo-ttl">what goes into our product</h2>
+                </div>
+                <div class="combo-img col-60">
+                  <div class="desktop">
+                    {% if block.settings.what_goes_image_redirect_url %}
+                      <a href="{{ block.settings.what_goes_image_redirect_url}}" target="_blank">
+                    {% endif %}
+                      <img class="desktop" src="{{ block.settings.what_goes_desktop_image | img_url: '800x' }}" />
+                    {% if block.settings.what_goes_image_redirect_url %}
+                      </a>
+                    {% endif %}
+                    </div>
+                  <!-- ./desktop -->
+                  <div class="mobile">
+                      {% if block.settings.what_goes_image_redirect_url %}
+                        <a href="{{ block.settings.what_goes_image_redirect_url }}" target="_blank">
+                      {% endif %}
+                      <img class="mobile" src="{{ block.settings.what_goes_mobile_image | img_url: '400x' }}" />
+                      {% if block.settings.what_goes_image_redirect_url %}
+                        </a>
+                      {% endif %}
+                      {% if block.settings.what_goes_show_mobile_description %}
+                        {{ block.settings.what_goes_mobile_description }}
+                      {% endif %}
+                  </div>
+                  <!-- ./mobile -->
+                </div>
+            </div>
+          </div>
+        </section>
+      {% endif%}
+    {% endfor %}
+  {% endfor %}
   {% unless template == 'product.quick' %}
     {% comment %} BOTTOM CONTENT {% endcomment %}
 
     {% if section.settings.related_products == 'bottom' %}
       <div id="related" class="bottom-related">
-        {% include 'related-products' %}
+        {% if settings.nosto_id != blank %}
+          {% include 'nosto-element' with 'productpage-nosto-1' %}
+          {% include 'nosto-element' with 'productpage-nosto-2' %}
+        {% endif %}
+
       </div>
       <div class="clear"></div>
     {% endif %}
@@ -226,19 +332,34 @@
 
     {% comment %} REVIEWS {% endcomment %}
 
-    {% if settings.international_store_version == 'US' %}
-      <h2 class="yotpo-header">Reviews</h2>
-      <div class="yotpo-summary-snippet">
-      {% include 'yotpo-product-snippet' %}</div>
-      {% include 'yotpo-product-summary' %}
+    {% if settings.yotpo_enable_flag == true and settings.international_store_version != blank %}
+      <div style="display: none">
+        <h2 class="yotpo-header">Reviews</h2>
+        <div class="yotpo-summary-snippet">
+        {% include 'yotpo-product-snippet' %}
+        </div>
+      </div>
 
-    {% endif %}      
+      <div class="yotpo-default-widget">
+        {% include 'yotpo-product-summary' %}
+      </div>
 
-    {% comment %} RECENTLY VIEWED {% endcomment %}
+      {% include 'yotpo-product-snippet-custom-design' %}
 
-    {% include 'recently-viewed' %}
-    
+      {% if product.metafields.yotpo.reviews_count and product.metafields.yotpo.reviews_count != "0" %}
+        <div class="row yotpo-aggregate-rating-text">
+          <div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+          <span itemprop="itemReviewed">{{ product.title }}</span>
+          has a rating of <span itemprop="ratingValue">{{ product.metafields.yotpo.reviews_average }}</span> stars
+          based on <span itemprop="ratingCount">{{ product.metafields.yotpo.reviews_count }}</span> reviews.
+          </div>
+        </div>
+      {% endif %}
+
+    {% endif %}
+
   {% endunless %}
+
 </div>
 
 {% include 'product-size-chart' %}
@@ -333,7 +454,7 @@
         "type": "checkbox",
         "id": "product_nav",
         "label": "Show next / previous product"
-      },      
+      },
       {
         "type": "checkbox",
         "id": "vendor",
@@ -471,7 +592,7 @@
       {
         "type": "header",
         "content": "Free Shipping Accordion"
-      },      
+      },
       {
         "type": "text",
         "id": "free_shipping_header_text",
@@ -497,7 +618,67 @@
         "type": "page",
         "id": "size_chart_page",
         "label": "Size Chart Page"
+      },
+      {
+        "type": "url",
+        "id": "video_url",
+        "label": "Video URL for 20th Anniversary"
+      },
+      {
+        "type": "image_picker",
+        "id": "anniv_thumbnail_img",
+        "label": "Image Thumbnail for 20th Anniversary"
+      }
+    ],
+    "blocks": [
+      {
+        "name": "PDP content section",
+        "type": "what-goes-into-product",
+        "settings": [
+
+          {
+            "type": "text",
+            "id": "what_goes_tag_name",
+            "label": "Tag"
+          },
+          {
+            "type": "image_picker",
+            "id": "what_goes_desktop_image",
+            "label": "Desktop Image"
+          },
+          {
+            "type": "image_picker",
+            "id": "what_goes_mobile_image",
+            "label": "Mobile Image"
+          },
+          {
+            "type": "url",
+            "id": "what_goes_image_redirect_url",
+            "label": "Image Redirect URL"
+          },
+          {
+            "type": "html",
+            "id": "what_goes_mobile_description",
+            "label": "Mobiled Description"
+          },
+          {
+            "type": "checkbox",
+            "id": "what_goes_show_mobile_description",
+            "label": "Show Mobile Description",
+            "default": true
+          }
+        ]
       }
     ]
   }
 {% endschema %}
+{% if template == 'product.quick' %}
+  <script>
+    $('.swatch.size input:checked').each(function(){
+        $(this).prop('checked',false);
+    });
+    $('.add.AddtoCart').attr('type','button');
+    $('.add.AddtoCart').addClass('disable');
+    $(".variant-size-select-error").html('Please select a size');
+  </script>
+{% endif %}

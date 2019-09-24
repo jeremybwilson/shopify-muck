@@ -1,7 +1,12 @@
-{% if fulfillment.item_count == item_count %} 
+{% capture notification_template_name %}shipment_delivered{% endcapture %}
+{% capture full_email_template_params %}?utm_source=tran&utm_medium=email&utm_campaign={{ notification_template_name }}{% endcapture %}
+{% capture font_family_css %}font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;{% endcapture %}
+
+{% capture shop_custom_name %}The Original Muck Boot Company&reg;{% endcapture %}
+{% if fulfillment.item_count == item_count %}
   {% capture email_title %}Your order has been delivered{% endcapture %}
   {% capture email_body %}Your order has been delivered. Track your shipment to see the delivery status.{% endcapture %}
-{% elsif fulfillment.item_count > 1 %} 
+{% elsif fulfillment.item_count > 1 %}
   {% if fulfillment_status == 'fulfilled' %}
     {% capture email_title %}The last items in your order has been delivered{% endcapture %}
     {% capture email_body %}The last items in your order has been delivered. Track your shipment to see the delivery status.{% endcapture %}
@@ -9,7 +14,7 @@
     {% capture email_title %}Some items in your order have been delivered{% endcapture %}
     {% capture email_body %}Some items in your order have been delivered. Track your shipment to see the delivery status.{% endcapture %}
   {% endif %}
-{% else %} 
+{% else %}
   {% if fulfillment_status == 'fulfilled' %}
     {% capture email_title %}The last item in your order has been delivered{% endcapture %}
     {% capture email_body %}The last item in your order has been delivered. Track your shipment to see the delivery status.{% endcapture %}
@@ -19,14 +24,13 @@
   {% endif %}
 {% endif %}
 
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
   <title>{{ email_title }}</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width">
-  
+
 </head>
 <body>
 
@@ -35,8 +39,8 @@
     <td style="text-align: center" align="center">
       <!-- LAYOUT -->
 
-      <table class="main-layout" style="width: 500px; background-color: #ffffff; margin: 20px auto; border-collapse: collapse;">
-          
+      <table class="main-layout" style="width: 500px; min-width: 500px; max-width: 500px; background-color: #ffffff; margin: 20px auto; border-collapse: collapse;">
+
         <!-- HEADER -->
 
         <tr>
@@ -44,8 +48,8 @@
 
             <!-- LOGO  -->
 
-            <a href="{{ shop.url }}?utm_source=tran&utm_medium=email&utm_campaign=shipment_delivered" target="_blank">
-              <img class="center fixedwidth" align="center" border="0" src="https://cdn.shopify.com/s/files/1/0032/6480/7010/files/muck-logo.png?5524665369218808649" alt="The Original Muck Boot Company" title="The Original Muck Boot Company" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;width: 100%;max-width: 90px" width="90">
+            <a href="{{ shop.url }}{{ full_email_template_params }}" title="{{ shop_custom_name }}" target="_blank">
+              <img class="center fixedwidth" align="center" border="0" src="https://cdn.shopify.com/s/files/1/0032/6480/7010/files/muck-logo.png?5524665369218808649" alt="{{ shop_custom_name }}" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;width: 100%;max-width: 90px" width="90">
             </a>
 
           </td>
@@ -54,7 +58,7 @@
         <!-- BODY -->
 
         <tr>
-          <td>
+          <td style="padding: 0">
 
             <table class="body-layout" style="width: 100%; border-collapse: collapse;">
 
@@ -63,42 +67,42 @@
               <tr>
                 <td style="background-color: #164632; padding: 20px;">
 
-                  <div style="border: solid 6px #2e5947; padding: 60px 20px 50px">
+                  <div style=" padding: 60px 20px 50px">
 
 
                     <!-- ORDER # -->
 
-                    <div style="color:#ffffff;line-height:120%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 0px;">  
-                      <div style="font-size:16px;line-height:19px;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;color:#ffffff;text-align:left;"><p style="margin: 0;font-size: 16px;line-height: 19px;text-align: center"><span style="font-size: 12px; line-height: 14px;">ORDER {{ order_name }}</span></p></div> 
+                    <div style="color:#ffffff;line-height:120%;{{ font_family_css }} padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 0px;">
+                      <div style="font-size:16px;line-height:19px;{{ font_family_css }}color:#ffffff;text-align:left;"><p style="margin: 0;font-size: 16px;line-height: 19px;text-align: center">ORDER {{ order_name }}</p></div>
                     </div>
 
                     <!-- HEADLINE -->
 
-                    <div style="color:#ffffff;line-height:120%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;"> 
-                      <div style="font-size:12px;line-height:14px;font-family:inherit;color:#ffffff;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><strong><span style="font-size: 28px; line-height: 33px; letter-spacing: .15em; text-transform: uppercase;">{{ email_title }}</span></p></div>  
+                    <div style="color:#ffffff;line-height:120%;{{ font_family_css }} padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
+                      <div style="font-size:12px;line-height:14px;font-family:inherit;color:#ffffff;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><strong><span style="font-size: 28px; line-height: 33px; letter-spacing: .15em; text-transform: uppercase;">{{ email_title }}</span></p></div>
                     </div>
 
                     <!-- COPY -->
 
-                    <div style="color:#ffffff;line-height:180%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;"> 
-                      <div style="font-size:14px;line-height:25px;font-family:inherit;color:#ffffff;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 25px;text-align: center">{{ email_body }}</p></div> 
-                    </div>             
+                    <div style="color:#ffffff;line-height:180%;{{ font_family_css }} padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
+                      <div style="font-size:14px;line-height:25px;font-family:inherit;color:#ffffff;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 25px;text-align: center">{{ email_body }}</p></div>
+                    </div>
 
                     <!-- BUTTON -->
 
                     <div align="center" class="button-container center " style="padding-right: 10px; padding-left: 10px; padding-top:10px; padding-bottom:10px;">
-                      <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top:10px; padding-bottom:10px;" align="center"><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{ order_status_url }}&utm_source=tran&utm_medium=email&utm_campaign=shipment_delivered" style="height:31pt; v-text-anchor:middle; width:121pt;" arcsize="0%" strokecolor="#ab5232" fillcolor="#ab5232"><w:anchorlock/><v:textbox inset="0,0,0,0"><center style="color:#ffffff; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; font-size:16px;"><![endif]-->
-                        <a href="{{ order_status_url }}&utm_source=tran&utm_medium=email&utm_campaign=shipment_delivered" target="_blank" style="display: block;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #ffffff; background-color: #ab5232; border-radius: 0px; -webkit-border-radius: 0px; -moz-border-radius: 0px; max-width: 162px; width: 132px;width: auto; border-top: 0px solid transparent; border-right: 0px solid transparent; border-bottom: 0px solid transparent; border-left: 0px solid transparent; padding-top: 5px; padding-right: 15px; padding-bottom: 5px; padding-left: 15px; font-family: 'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;mso-border-alt: none">
-                          <span style="font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;font-size:16px;line-height:32px;"><span style="font-size: 12px; line-height: 24px; letter-spacing: .125em;"><strong>VIEW YOUR ORDER</strong></span></span>
+                      <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top:10px; padding-bottom:10px;" align="center"><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{ order_status_url }}{{ full_email_template_params }}" style="height:31pt; v-text-anchor:middle; width:121pt;" arcsize="0%" strokecolor="#ab5232" fillcolor="#ab5232"><w:anchorlock/><v:textbox inset="0,0,0,0"><center style="color:#ffffff; {{ font_family_css }} font-size:16px;"><![endif]-->
+                        <a href="{{ order_status_url }}{{ full_email_template_params }}" target="_blank" style="display: block;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #ffffff; background-color: #ab5232; border-radius: 0px; -webkit-border-radius: 0px; -moz-border-radius: 0px; max-width: 162px; width: 132px;width: auto; border-top: 0px solid transparent; border-right: 0px solid transparent; border-bottom: 0px solid transparent; border-left: 0px solid transparent; padding-top: 5px; padding-right: 15px; padding-bottom: 5px; padding-left: 15px; font-family: 'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;mso-border-alt: none">
+                          <span style="{{ font_family_css }}font-size:16px;line-height:32px;"><span style="font-size: 12px; line-height: 24px; letter-spacing: .125em;"><strong>VIEW YOUR ORDER</strong></span></span>
                         </a>
                       <!--[if mso]></center></v:textbox></v:roundrect></td></tr></table><![endif]-->
-                    </div>    
-                    
-                    <!-- LINK -->               
+                    </div>
 
-                    <div style="color:#ffffff;line-height:120%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;"> 
-                      <div style="font-size:12px;line-height:14px;color:#ffffff;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 12px; line-height: 14px; letter-spacing: .125em;"><a style="color:#ffffff;text-decoration: none;" title="Visit Live Site" href="{{ shop.url }}?utm_source=tran&utm_medium=email&utm_campaign=shipment_delivered?utm_source=tran&utm_medium=email&utm_campaign=shipment_delivered" target="_blank" rel="noopener">VISIT OUR STORE</a></span></p></div> 
-                    </div>                    
+                    <!-- LINK -->
+
+                    <div style="color:#ffffff;line-height:120%;{{ font_family_css }} padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
+                      <div style="font-size:12px;line-height:14px;color:#ffffff;{{ font_family_css }}text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 12px; line-height: 14px; letter-spacing: .125em;"><a style="color:#ffffff;text-decoration: none;" title="Visit Live Site" href="{{ shop.url }}{{ full_email_template_params }}" target="_blank" rel="noopener">VISIT OUR STORE</a></span></p></div>
+                    </div>
 
 
 
@@ -114,13 +118,13 @@
 
                   <!-- TITLE -->
 
-                  <div style="color:#164632;line-height:120%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;"> 
-                    <div style="font-size:12px;line-height:14px;color:#164632;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center;"><span style="font-size: 18px; line-height: 21px; letter-spacing: .15em;"><strong>ITEMS IN THIS SHIPMENT</strong></span></p></div> 
+                  <div style="color:#164632;line-height:120%;{{ font_family_css }} padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
+                    <div style="font-size:12px;line-height:14px;color:#164632;{{ font_family_css }}text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center;"><span style="font-size: 18px; line-height: 21px; letter-spacing: .15em;"><strong>ITEMS IN THIS DELIVERY</strong></span></p></div>
                   </div>
 
                   <!-- TABLE -->
 
-                  <!-- 
+                  <!--
                   PRODUCT ITEM
                   -->
 
@@ -145,18 +149,18 @@
                           {% assign line_display = line.quantity  %}
                         {% endif %}
 
-                        <span style="font-weight: bold; font-size: 14px; color: #164632; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;" class="order-list__item-title">{{ line_title }} × {{ line_display }}</span>
+                        <span style="font-weight: bold; font-size: 14px; color: #164632; {{ font_family_css }}" class="order-list__item-title">{{ line_title }} × {{ line_display }}</span>
 
                         {% if line.variant.title != 'Default Title' %}
-                          <br/><span style="color: #164632; font-size: 14px; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;" class="order-list__item-variant">{{ line.variant.title }}</span>
+                          <br/><span style="color: #164632; font-size: 14px; {{ font_family_css }}" class="order-list__item-variant">{{ line.variant.title }}</span>
                         {% endif %}
 
                         {% if line.refunded_quantity > 0 %}
-                          <br/><span style="color: #164632; font-size: 14px; font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;" class="order-list__item-refunded">Refunded</span>
+                          <br/><span style="color: #164632; font-size: 14px; {{ font_family_css }}" class="order-list__item-refunded">Refunded</span>
                         {% endif %}
                       </td>
                     </tr>{% endfor %}
-                  </table> 
+                  </table>
 
                 </td>
               </tr>
@@ -219,8 +223,8 @@
               <tr>
                 <td>
 
-                  <div style="color:#798d85;line-height:120%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;"> 
-                    <div style="font-size:12px;line-height:14px;color:#798d85;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 12px; line-height: 14px;"><a style="color:#798d85;text-decoration: none;" title="Contact Us" href="https://www.muckbootcompany.com/pages/contact-us?utm_source=tran&utm_medium=email&utm_campaign=shipment_delivered" target="_blank" rel="noopener">CONTACT US</a>&#160;&#160;&#160;&#160; <a style="color:#798d85;text-decoration: none;" title="Contact Us" href="tel:18553772668" target="_blank" rel="noopener">855-377-BOOT (2668)</a><br></span></p></div>  
+                  <div style="color:#798d85;line-height:120%;{{ font_family_css }} padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
+                    <div style="font-size:12px;line-height:14px;color:#798d85;{{ font_family_css }}text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 12px; line-height: 14px;"><a style="color:#798d85;text-decoration: none;" title="Contact Us" href="{{ shop.url }}/pages/contact-us{{ full_email_template_params }}" target="_blank" rel="noopener">CONTACT US</a>&#160;&#160;&#160;&#160; <a style="color:#798d85;text-decoration: none;" title="Contact Us" href="tel:+44 808 281 9536" target="_blank" rel="noopener">+44 808 281 9536</a><br></span></p></div>
                   </div>
 
                 </td>
@@ -257,8 +261,8 @@
               <tr>
                 <td>
 
-                  <div style="color:#798d85;line-height:120%;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;"> 
-                    <div style="font-size:12px;line-height:14px;color:#798d85;font-family:'Gotham', 'Montserrat', 'Futura', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 12px; line-height: 14px;"><a style="color:#798d85;text-decoration: none;" href="https://www.muckbootcompany.com/pages/terms-conditions?utm_source=tran&utm_medium=email&utm_campaign=shipment_delivered" target="_blank" rel="noopener">Terms &amp; <span style="line-height: 14px; font-size: 12px;">Conditions</span></a> | <a style="color:#798d85;text-decoration: none;" href="https://www.muckbootcompany.com/pages/privacy-policy?utm_source=tran&utm_medium=email&utm_campaign=shipment_delivered" target="_blank" rel="noopener">Privacy Policy</a></span><span style="font-size: 12px; line-height: 14px;"><br></span></p></div>  
+                  <div style="color:#798d85;line-height:120%;{{ font_family_css }} padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
+                    <div style="font-size:12px;line-height:14px;color:#798d85;{{ font_family_css }}text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 12px; line-height: 14px;"><a style="color:#798d85;text-decoration: none;" href="{{ shop.url }}/pages/terms-conditions{{ full_email_template_params }}" target="_blank" rel="noopener">Terms &amp; <span style="line-height: 14px; font-size: 12px;">Conditions</span></a> | <a style="color:#798d85;text-decoration: none;" href="https://www.honeywell.com/privacy-statement" target="_blank" rel="noopener">Privacy Policy</a></span></p></div>
                   </div>
 
                 </td>

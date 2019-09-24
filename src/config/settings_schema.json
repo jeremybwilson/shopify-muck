@@ -21,7 +21,6 @@
   {
     "name": "Colors",
     "settings": [
-
       {
         "type": "header",
         "content": "Announcement Header"
@@ -44,8 +43,6 @@
         "label": "Announcement BG - #2",
         "default": "#073322"
       },
-
-
       {
         "type": "header",
         "content": "Navigation Header"
@@ -98,8 +95,6 @@
         "label": "Social icons hover",
         "default": "#000000"
       },
-
-
       {
         "type": "header",
         "content": "General"
@@ -218,9 +213,6 @@
         "label": "Badge Text Color",
         "default": "#FEFFFE"
       },
-
-
-
       {
         "type": "header",
         "content": "Collection + Filters"
@@ -327,8 +319,6 @@
         "label": "Load More Button BG on Hover",
         "default": "#9b492b"
       },
-
-
       {
         "type": "header",
         "content": "Modals + Fancybox"
@@ -352,8 +342,6 @@
         "label": "Modal Close Hover Color",
         "default": "#9B492B"
       },
-
-
       {
         "type": "header",
         "content": "Gift w/ Purchase Modal"
@@ -400,8 +388,6 @@
         "label": "Secondary button Text",
         "default": "#fefffe"
       },
-
-
       {
         "type": "header",
         "content": "Navigation"
@@ -483,8 +469,6 @@
         "label": "Text hover",
         "default": "#000000"
       },
-
-
       {
         "type": "header",
         "content": "Product variant swatches"
@@ -525,8 +509,6 @@
         "label": "Swatch selected border",
         "default": "#000000"
       },
-
-
       {
         "type": "header",
         "content": "Product icons"
@@ -579,8 +561,6 @@
         "label": "Social share hover",
         "default": "#000000"
       },
-
-
       {
         "type": "header",
         "content": "Footer"
@@ -635,14 +615,14 @@
         "content": "Sizes"
       },
       {
-        "type":      "range",
-        "id":        "announcement_text_size",
-        "min":       12,
-        "max":       24,
-        "step":      1,
-        "unit":      "px",
-        "label":     "Announcement Promo Text",
-        "default":   18
+        "type": "range",
+        "id": "announcement_text_size",
+        "min": 12,
+        "max": 24,
+        "step": 1,
+        "unit": "px",
+        "label": "Announcement Promo Text",
+        "default": 18
       },
       {
         "type": "range",
@@ -818,10 +798,10 @@
       },
       {
         "type": "checkbox",
-        "default" : true,
+        "default": true,
         "id": "enable_nav_name_styling",
         "label": "Stylize Key Nav Items",
-        "info" : "(Adds bold/color-selection to nav items like 'Sale' in the menu)"
+        "info": "(Adds bold/color-selection to nav items like 'Sale' in the menu)"
       }
     ]
   },
@@ -901,6 +881,11 @@
       },
       {
         "type": "checkbox",
+        "id": "checkout_shipping_callout_enable",
+        "label": "Enable Shipping Calculated at Checkout callout"
+      },
+      {
+        "type": "checkbox",
         "id": "pobox_callout_enable",
         "label": "Enable PO Box callout"
       },
@@ -930,25 +915,7 @@
         "id": "ajax_cart_low_stock_text",
         "label": "Low stock alert text",
         "default": "This item does not have enough stock to add to your cart."
-      },
-      {
-        "type": "header",
-        "content": "Gift w/ Purchase Modal"
-      },
-      {
-        "type": "checkbox",
-        "default" : false,
-        "id": "discount_modal_enable",
-        "label": "Enable Gift with Purchase Modal",
-        "info" : "(Powers the 'Spend X, Pick Free Gift' component)"
-      },
-      {
-        "type": "text",
-        "id": "discount_modal_config",
-        "label": "Discount Config",
-        "info": "(stringify config object, then base64)",
-        "default": "eyJjb29raWVFeHBpcmVJbkRheXMiOjYwLCJ0aHJlc2hvbGREaXNjb3VudHMiOltdfQ=="
-      } 
+      }
     ]
   },
   {
@@ -1011,8 +978,35 @@
         "label": "Container ID",
         "info": "Add the container ID (GTM-XXXXXXX) associated with the Google Tag Manager Account."
       },
-
-
+      {
+        "type": "header",
+        "content": "Google Optimize"
+      },
+      {
+        "type": "checkbox",
+        "id": "google_optimize_antiflicker_enabled",
+        "label": "Enable Google Optimize - Antiflicker Code"
+      },      
+      {
+        "type": "range",
+        "id": "google_optimize_antiflicker_amount",
+        "min": 0,
+        "max": 9000,
+        "step": 500,
+        "unit": "ms",
+        "label": "Delay amount",
+        "info": "(in milliseconds)",
+        "default": 2000
+      },      
+      {
+        "type": "header",
+        "content": "Nosto"
+      },
+      {
+        "type": "text",
+        "id": "nosto_id",
+        "label": "ID"
+      },
       {
         "type": "header",
         "content": "Sizmek Tracking Info"
@@ -1022,14 +1016,14 @@
         "id": "sizmek_company_id",
         "label": "Sizmek - Company ID",
         "info": "Sizmek company ID (EX: 6795), copied from sizmek dashboard"
-      }, 
+      },
       {
         "type": "text",
         "id": "sizmek_version_num",
         "label": "Sizmek - Version Number",
         "info": "EX: 9",
         "default": "9"
-      }, 
+      },
       {
         "type": "text",
         "id": "sizmek_pixel_cart_start",
@@ -1045,13 +1039,37 @@
         "id": "criteo_account_number",
         "label": "Criteo Account Number",
         "info": "Enter a 5 digit number."
+      },
+      {
+        "type": "header",
+        "content": "Yottaa Rapid CTRL"
+      },
+      {
+        "type": "text",
+        "id": "yottaa_key",
+        "label": "Yottaa Key",
+        "info": "Enter a key for Rapid."
       }
-
     ]
   },
   {
     "name": "Newsletter",
     "settings": [
+      {
+        "type": "header",
+        "content": "Mobile settings"
+      },
+      {
+        "type": "checkbox",
+        "id": "mobile_newletter_popup_disable",
+        "label": "Disable Mobile Viewport Mailing List Popup",
+        "default": false,
+        "info": "Check box to disable newsletter signup modal on mobile only."
+      },
+      {
+        "type": "header",
+        "content": "All other settings"
+      },
       {
         "type": "checkbox",
         "id": "popup",
@@ -1080,14 +1098,14 @@
         "id": "email_popup_input_placeholder",
         "label": "Email popup placeholder text",
         "default": "Enter Your Email Address"
-      },      
+      },
       {
         "type": "html",
         "id": "email_popup_bottom_text",
         "label": "Fine print",
         "default": "<p>By providing your email address, you agree to our <a href=\"https://www.honeywell.com/privacy-statement\">Privacy Policy</a> & <a href=\"/pages/terms-and-conditions\">Terms of Service</a>.</p>"
       },
-      { 
+      {
         "type": "text",
         "id": "email_popup_error",
         "label": "Error Text",
@@ -1128,6 +1146,16 @@
         "id": "cookie_banner_mobile_button_text",
         "label": "Mobile - privacy policy button text",
         "default": "More Info"
+      },
+      {
+        "type": "range",
+        "id": "cookie_banner_expire",
+        "min": 5,
+        "max": 365,
+        "step": 5,
+        "unit": "Day",
+        "label": "Expires in days",
+        "default": 180
       },
       {
         "type": "header",
@@ -1189,6 +1217,111 @@
         "id": "default_currency",
         "label": "Default currency",
         "default": "USD"
+      }
+    ]
+  },
+  {
+    "name": "Checkout callout",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_cc_callout",
+        "label": "Enable CC callout",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "cc_callout",
+        "label": "Callout text",
+        "default": "Please only include 2 digits for the year"
+      }
+    ]
+  },
+  {  
+    "name": "Discount code callout executed in checkout [Plus]",  
+    "settings": [ 
+      { 
+        "type": "header",  
+        "content": "Enable discount custom message." 
+      },  
+      { 
+        "type": "paragraph",  
+        "content": "Set a discount code and their related custom message." 
+      },  
+      { 
+        "type": "checkbox",  
+        "id": "display_discount_msg", 
+        "label": "Show discount code custom message on checkout.", 
+        "default": true 
+      },
+      { 
+        "type": "textarea",  
+        "id": "discount_code", 
+        "label": "Employee discount code",
+        "info": "Multiple code separate by comma (,)"
+      },
+      { 
+        "type": "textarea",  
+        "id": "discount_msg", 
+        "label": "Custom message",
+        "info": "Multiple code message separate by comma (,)"
+      } 
+    ]
+  },
+  {
+    "name": "YOTPO",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Yotpo Integration Settings"
+      },
+      {
+        "type": "checkbox",
+        "id": "yotpo_enable_flag",
+        "label": "Enable yotpo integration for this store",
+        "default": false,
+        "info": "Check the box to enable.  A unique key value MUST also be provided."
+      },
+      {
+        "type": "text",
+        "id": "yotpo_key_value",
+        "label": "Unique key value",
+        "default": "gzejKiOGN46xeB5iurqalrS7dI7zEUIMZ9OCF4MM",
+        "info": "Insert a unique Yotpo key value here.  Enable checkbox above must also be checked."
+      }
+    ]
+  },
+  {
+    "name": "Address Autofill",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Address Autofill Integration Settings."
+      },
+      {
+        "type": "paragraph",
+        "content": "(You may choose only one of the two options below)."
+      },
+      {
+        "type": "checkbox",
+        "id": "address_autofill_enable_flag",
+        "label": "Enable city and state autofill based on zip integration for this store",
+        "default": false,
+        "info": "Check the box to enable. A unique key value MUST also be provided."
+      },
+      {
+        "type": "checkbox",
+        "id": "full_address_autofill_enable_flag",
+        "label": "Enable address autofill integration for this store",
+        "default": false,
+        "info": "Check the box to enable. A unique key value MUST also be provided."
+      },
+      {
+        "type": "text",
+        "id": "googlegeo_key_value",
+        "label": "Unique key value",
+        "default": "AIzaSyDV4sR_-Dnp_C4TXJnn1vAce2l1A2t-5eY",
+        "info": "Insert a unique Geocoding API key value here.  Enable checkbox above must also be checked."
       }
     ]
   }

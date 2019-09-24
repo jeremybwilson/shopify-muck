@@ -1,10 +1,13 @@
 // Override Settings : Note, custom object cant' be overriden and rquires direct modification
+window.collection_count = 0;
+window.promo_grid_add_count = 0;    
 var bcSfFilterSettings = {
     general: {
        limit: bcSfFilterConfig.custom.products_per_page,
         // Optional
         loadProductFirst: true,
-        refineByHorizontalPosition: 'top'
+        refineByHorizontalPosition: 'top',
+        paginationType: "default", // PDM-216 this will work if we have "default" pagination
     },
     selector: {
         products: '#product-loop'
@@ -15,7 +18,7 @@ var bcSfFilterSettings = {
 var bcSfFilterTemplate = {
 
     // Grid Template
-    'productGridItemHtml':  '<div id="{{itemProductId}}" class="product-index {{itemGridWidthClass}}" data-alpha="{{itemTitle}}" data-price="{{itemPriceAttr}}">' +
+    'productGridItemHtml':  '<div class="product-index {{itemGridWidthClass}} product-impression" id="{{itemProductId}}" data-alpha="{{itemTitle}}" data-category="{{itemCollection}}" data-list="{{itemCollection}}" data-position="1" data-price2="{{itemPriceOnly}}" data-price="{{itemPriceAttr}}">' +
                                 '<div class="prod-container">' +
                                     '{{itemBadge}}' +
                                     '<div class="prod-image">' +
@@ -33,6 +36,7 @@ var bcSfFilterTemplate = {
                                         '{{itemVendor}}' +
                                         '<h3 class="product-title">{{itemTitle}}</h3>' +
                                     '</a>' +
+                                    '<div class="yotpo bottomLine" data-product-id="{{itemProductId}}"></div>'+
                                     '<div class="product-price-wrap">{{itemPrice}}</div>' +
                                 '</div>' +
                                 '{{itemQuickview}}' +
@@ -50,7 +54,7 @@ var bcSfFilterTemplate = {
     'paginateHtml': '<span class="count"></span>{{previous}}{{pageItems}}{{next}}',
   
     // Sorting Template
-    'sortingHtml': '<h4 class="sort-label">' + bcSfFilterConfig.label.sorting + '</h4><select class="styled-select">{{sortingItems}}</select>',
+    'sortingHtml': '<h4 class="sort-label">' + bcSfFilterConfig.label.sorting + '</h4><select aria-label="Sort By" class="styled-select">{{sortingItems}}</select>',
 
     // Apply Btn Template (Mobile) : Filter constructor not exposed, so func binding close not available, hence this sad click..
     'mobileApplyBtnHtml': '<button class="mobile-apply-button" onClick="$(\'#bc-sf-filter-tree-mobile-button\').click()">Apply</button>'
@@ -183,8 +187,9 @@ BCSfFilter.prototype.buildProductGridItem = function(data, index, totalProduct) 
         
         itemPriceHtml += '</div>';
     }
-    itemHtml = itemHtml.replace(/{{itemPrice}}/g, itemPriceHtml);
-
+    // PDM-868 : Patch for mobile Safari regex bug
+    var itemPriceRegEx = new RegExp( '{{itemPrice}}', 'g'); 
+    itemHtml = itemHtml.replace(itemPriceRegEx, function(match) { return itemPriceHtml }); 
 
     // QUICK VIEW : Add quickview template and setup for fancybox usage
     var itemQuickviewHtml = '';
@@ -248,22 +253,72 @@ BCSfFilter.prototype.buildProductGridItem = function(data, index, totalProduct) 
         }
     }
     itemHtml = itemHtml.replace(/{{itemSwatch}}/g, itemSwatchHtml);
-  
+
+    // ADD SPECIAL CLASSES
+
+    var itemSpecialClass = '';
+
+    if ( data.tags ) {
+        var productPromoOnly = data.tags.filter(function (tag) {
+            return tag === 'promo_product_only'
+        }).length
+
+        if ( productPromoOnly ) {
+            itemSpecialClass = 'promo-product-only';
+            
+        }
+    }
+    itemHtml = itemHtml.replace(/{{itemSpecialClass}}/g, itemSpecialClass);
 
     // INFO : Add main attributes for product data
     itemHtml = itemHtml.replace(/{{itemPriceAttr}}/g, data.price_min);
+    itemHtml = itemHtml.replace(/{{itemPriceOnly}}/g, this.formatMoney(data.price_min, this.moneyFormat));
     itemHtml = itemHtml.replace(/{{itemId}}/g, data.id);
     itemHtml = itemHtml.replace(/{{itemTitle}}/g, data.title);
     itemHtml = itemHtml.replace(/{{itemHandle}}/g, data.handle);
     itemHtml = itemHtml.replace(/{{itemUrl}}/g, this.buildProductItemUrl(data));
-
+    itemHtml = itemHtml.replace(/{{itemCollection}}/g, data.collections[0].title);
 
     // RENDER : Return out our built template!
+    window.total_display_product = window.total_display_product+1;
+  
+    var collection_total_product = parseInt($("#all_products_count").val());
+     if($(".product_grid_promo").length > 0){
+         var current_html = "";
+            $(".product_grid_promo").each(function() {
+            if(
+                ($( this ).length > 0 && (index + collection_count + promo_grid_add_count)  == $( this ).data('position')) || 
+                (($( this ).length > 0 && collection_count == 0 &&  index == totalProduct &&  $( this ).data('position') >= collection_total_product) )
+            ){
+                promo_grid_add_count++;
+                $( this ).show();
+                $( this ).removeClass('product_grid_promo ');
+                $( this ).addClass(itemGridWidthClass);
+                var promo_html =  $( this ).parents('div:first').html();
+                $( this ).remove();
+                current_html += promo_html;
+            }
+        });
+        if( index == totalProduct){
+            collection_count += totalProduct;
+        }
+        return current_html + itemHtml;
+    }else{
+        if( index == totalProduct){
+            collection_count += totalProduct;
+        }
+        return itemHtml;
+    }
     return itemHtml;
 }
 
 // Build Pagination
 BCSfFilter.prototype.buildPagination = function(totalProduct) {
+    if (typeof yotpo !== 'undefined') {
+        //check yopto is enable or not
+        yotpo.initWidgets();
+        window.display_product = true;
+    }
     // Get page info
     var currentPage = parseInt(this.queryParams.page);
     var totalPage = Math.ceil(totalProduct / this.queryParams.limit);
@@ -376,6 +431,14 @@ BCSfFilter.prototype.buildExtrasProductList = function(data) {
 
 // Build Additional Elements
 BCSfFilter.prototype.buildAdditionalElements = function(data, eventType) {
+
+    // PDM-216
+    var currentPage = parseInt(this.queryParams.page);
+    var position = (((currentPage - 1)*9)+1);
+    $('.product-impression').each(function () {
+        $(this).attr('data-position', position);
+        position++;
+    });
 
     var ui = {
         filterHeaderText: '.bc-sf-filter-block-title span', // Text for filter headers, appending the count here

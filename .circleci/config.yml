@@ -84,13 +84,14 @@ jobs:
               theme_id: "live"
               store: muckboot-usa.myshopify.com
               ignore_files:
+                - settings_data.json
                 - theme.shogun.landing.liquid
                 - page.shogun.default.liquid 
                 - page.shogun.landing.liquid
                 - product.shogun.custom.liquid
                 - shogun-head.liquid
                 - shogun-products.liquid 
-                - settings_data.json' > ./config.yml
+                - en.default.json' > ./config.yml
       - run:
           name: Deploy
           command: slate deploy -e production
@@ -112,7 +113,8 @@ jobs:
               theme_id: "live"
               store: muckboot-uk.myshopify.com
               ignore_files:
-                - settings_data.json' > ./config.yml
+                - settings_data.json
+                - en.default.json' > ./config.yml
       - run:
           name: Deploy
           command: slate deploy -e production
@@ -134,7 +136,8 @@ jobs:
               theme_id: "live"
               store: muckboot-eu.myshopify.com
               ignore_files:
-                - settings_data.json' > ./config.yml
+                - settings_data.json
+                - en.default.json' > ./config.yml
       - run:
           name: Deploy
           command: slate deploy -e production
@@ -156,7 +159,8 @@ jobs:
               theme_id: "live"
               store: muckboot-ca.myshopify.com
               ignore_files:
-                - settings_data.json' > ./config.yml
+                - settings_data.json
+                - en.default.json' > ./config.yml
       - run:
           name: Deploy
           command: slate deploy -e production

@@ -32,7 +32,6 @@
 }
 
 // Product Item
-
 .ajaxcart__product {
   p {
     color: $color--dark-green;
@@ -57,6 +56,11 @@
     background: $color--dark-green;
     color: $color--white;
   }
+}
+
+// GWP - Prevent Clicks on Gift Items so we don't end up on 404 page for that hidden product
+.no-click {
+  pointer-events: none !important;
 }
 
 .ajaxcart__product.is-loading {

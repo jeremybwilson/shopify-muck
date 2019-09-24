@@ -19,12 +19,12 @@ $navBarDesktopHeight: 80px;
 
 #header-section {
     position: relative;
-    margin-top: 0 !important; //The sticky nav plugin adds margin to the parent but isn't necessary, this prevents it. 
+    margin-top: 0 !important; //The sticky nav plugin adds margin to the parent but isn't necessary, this prevents it.
 }
 
 
 
-/* SNIPPET : Header-Announcement-Bar 
+/* SNIPPET : Header-Announcement-Bar
  *           (Promos bar on top of nav bar)
  * ---------------------------------------------- */
  @import url('../snippets/header-announcement-bar.scss.liquid');
@@ -44,7 +44,7 @@ $navBarDesktopHeight: 80px;
 
     // SHADOW : When stick nav is active
     &.isStuck {
-        box-shadow: $navBoxShadow; 
+        box-shadow: $navBoxShadow;
 
         #nav-logo-backing {
             box-shadow: $navBoxShadow;
@@ -54,9 +54,9 @@ $navBarDesktopHeight: 80px;
     @include mq( 'lap-and-up' ){
         height: $navBarDesktopHeight;
     }
-    
+
     /* NAV BG :
-     * 
+     *
      * Why? Because it lets use use rotated, box-shadows on logo
      * to make a mobile sticky nav with a nice minor box shadow
      * ---------------------------------------------- */
@@ -141,6 +141,12 @@ $navBarDesktopHeight: 80px;
         background: {{ settings.header_background }};
         z-index: $zIndexBackingShadow; // -1, Relative to #nav-bar-wrapper, so its -1 on inner layer of nav-bar.
     }
+    .header-h1 { // SEO H1 for Home page
+        pointer-events: none;
+        position: fixed;
+        top: -9999em;
+        left: -9999em;
+    }
 
 
     /*  NAV : ACCOUNT + CART + SEARCH + SITE PICKER (Right Elements)
@@ -213,6 +219,7 @@ $navBarDesktopHeight: 80px;
                 top: 50%;
 
                 ul.sites-picker {
+                    display: none;
                     width: 65px;
                     height: 35px;
                     list-style: none;
@@ -235,7 +242,7 @@ $navBarDesktopHeight: 80px;
                         background: {{ settings.header_background }};
                         transition: background 0.25s ease-in-out;
 
-                        // BORDER : Border on all but first (till hovered) and last 
+                        // BORDER : Border on all but first (till hovered) and last
                         &:not(:last-child) { border-bottom: $navMinorBorder; }
                         &:first-child {
                             border: none;
@@ -248,8 +255,8 @@ $navBarDesktopHeight: 80px;
                         &:hover {
                             background: $color--dark-green-1;
 
-                            .site-name  { 
-                                color: {{ settings.header_background }}; //Use bg color when swapping 
+                            .site-name  {
+                                color: {{ settings.header_background }}; //Use bg color when swapping
                                 background: $color--dark-green-1;
                             }
                             .site-arrow { opacity: 0; }
@@ -280,7 +287,7 @@ $navBarDesktopHeight: 80px;
                             z-index: 5;
                             transition: opacity 0.25s ease-in-out;
 
-                            svg {    
+                            svg {
                                 position: absolute;
                                 height: 100%;
                                 width: 100%;
@@ -295,37 +302,43 @@ $navBarDesktopHeight: 80px;
 
             // ACCOUNT : User account item
             .nav-account {
-                width: 46px;
-                
-                &:hover {
-                    .icon-account {
-                        fill: {{ settings.nav_links_hover }};
-                    }
-                }
+              width: 46px;
 
+              &:hover {
                 .icon-account {
-                    transition: fill 0.35s ease-in-out;
-                    fill: {{ settings.nav_links }};
+                  fill: {{ settings.nav_links_hover }};
                 }
+              }
+
+              .icon-account {
+                transition: fill 0.35s ease-in-out;
+                fill: {{ settings.nav_links }};
+              }
             }
 
 
-            // CART 
+            // CART
             .nav-cart {
-                color: {{ settings.nav_links }}; //Legacy font-icon support for "bag" font icon
+                color: {{ settings.nav_links }}; // Legacy font-icon support for "bag" font icon
 
                 &:hover {
-                    .fa-shopping-bag { color: {{ settings.nav_links_hover }}; }
-                    .icon-cart  { fill:  {{ settings.nav_links_hover }}; }
-                    .cart-count { color: {{ settings.nav_links_hover }}; }
+                  .fa-shopping-bag { color: {{ settings.nav_links_hover }}; }
+                  .icon-cart  { fill:  {{ settings.nav_links_hover }}; }
+                  .cart-count { color: {{ settings.nav_links_hover }}; }
+                  .icon-shopping-bag { fill: {{ settings.nav_links_hover }}; }
                 }
 
                 i.fa, // Support bag font-icon for now..
                 .icon-cart {
-                    margin-right: 8px; // Space icon from cart #
-                    fill: {{ settings.nav_links }};
-                    color: {{ settings.nav_links }}; //For "Bag" insteaed of Cart icon (font icon)
-                    transition: fill 0.35s ease-in-out;
+                  margin-right: 8px; // Space icon from cart #
+                  fill: {{ settings.nav_links }};
+                  color: {{ settings.nav_links }}; //For "Bag" insteaed of Cart icon (font icon)
+                  transition: fill 0.35s ease-in-out;
+                }
+
+                .icon-shopping-bag { // Support bag svg icon for now
+                  transition: fill 0.35s ease-in-out;
+                  fill: {{ settings.nav_links }};
                 }
 
                 .cart-count {
@@ -365,13 +378,13 @@ $navBarDesktopHeight: 80px;
             padding-right: 23px;
             outline: none;
         }
-        
+
         .nav-search-input{
                 height: 30px;
                 line-height: 30px;
                 padding: 0 10px;
                 text-indent: 0;
-                margin-bottom: 0;             
+                margin-bottom: 0;
                 border-radius: 0;
                 background: transparent;
                 color: $color--dark-green;
@@ -379,9 +392,9 @@ $navBarDesktopHeight: 80px;
                 padding: 0 0 0 5px;
                 font-size: 12px;
                 font-family: $sans;
-                
+
         }
-        
+
          .nav-search-input::-webkit-input-placeholder { color: $color--dark-green;}
          .nav-search-input::-moz-placeholder { color: $color--dark-green;}
          .nav-search-input:-ms-input-placeholder { color: $color--dark-green;}
@@ -439,14 +452,14 @@ $navBarDesktopHeight: 80px;
             transition: all 0.25s ease-in-out;
 
             &.one   { top: 0; }
-            &.two   { 
-                top: 50%;  
-                transform: translateY( -50% ) 
+            &.two   {
+                top: 50%;
+                transform: translateY( -50% )
             }
-            &.three { 
+            &.three {
                 width: 70%;
-                top: 100%; 
-                transform: translateY( -50% ) 
+                top: 100%;
+                transform: translateY( -50% )
             }
         }
     }
@@ -478,6 +491,7 @@ $navBarDesktopHeight: 80px;
         position: relative;
         height: 100%;
 
+        #nav-menu-desktop-list-1,
         #nav-menu-desktop-list {
             @include inline-flex;
             @include justify-content( space-between );
@@ -536,12 +550,12 @@ $navBarDesktopHeight: 80px;
                 //    justify-content: flex-end;
                 //}
 
-                .nav-category-header { //Center the nav link item vertically 
+                .nav-category-header { //Center the nav link item vertically
                     @include inline-flex;
                     @include align-items( center );
                     @include fontSize( 14px );
                     text-align:center;
-                    letter-spacing: 0.18em; 
+                    letter-spacing: 0.18em;
                     padding-top: 3px; // make up size for 3px bottom border on links
                     border-bottom: 3px solid transparent;
 
@@ -580,10 +594,11 @@ $navBarDesktopHeight: 80px;
                 background: -webkit-linear-gradient(top, #f8f7f8 0%,{{ settings.header_background }} 12%);
                 background: linear-gradient(to bottom, #f8f7f8 0%,{{ settings.header_background }} 12%);
                 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f8f7f8', endColorstr='{{ settings.header_background }}',GradientType=0 );
-            
+
                 .mega-container {
                     width: 100%;
                     height: 100%;
+                    min-height: 510px;
                     left: 0px;
                     padding-left: 180px;
                     position: relative;
@@ -615,15 +630,17 @@ $navBarDesktopHeight: 80px;
                         @include align-items( center );
                         position: relative;
                         width: 320px;
+                        padding: 20px;
 
                         a {
-                            top: 0;
-                            right: 0;
-                            width: 100%;
-                            height: 100%;
+                            top: 20px;
+                            right: 20px;
+                            width: calc(100% - 40px);
+                            height: calc(100% - 40px);
                             position: absolute;
                             background-repeat: no-repeat;
                             background-size: cover;
+                            background-position: center;
                         }
                     }
 
@@ -632,7 +649,7 @@ $navBarDesktopHeight: 80px;
                         height: 26px;
                     }
 
-                    a { 
+                    a {
                         text-decoration: none;
                     }
 
@@ -646,8 +663,8 @@ $navBarDesktopHeight: 80px;
 
                             // TRAINGLE : CLOSED : Downward arrow in css
                             &:after {
-                                width: 0; 
-                                height: 0; 
+                                width: 0;
+                                height: 0;
                                 position: absolute;
                                 top: 50%;
                                 transform: translateY( -50% );
@@ -657,7 +674,7 @@ $navBarDesktopHeight: 80px;
                                 border-bottom: 4px solid transparent;
                                 border-left: 8px solid {{ settings.nav_links_hover }};
                             }
-                        }  
+                        }
 
 
                         // SUB-NAV : Regular Links to sub-collection divisions
@@ -698,7 +715,7 @@ $navBarDesktopHeight: 80px;
 
 
 
-    /*  NAV : MOBILE NAV MENU STYLES 
+    /*  NAV : MOBILE NAV MENU STYLES
      *   (would have combined them, but its all already setup in theme)
      * ---------------------------------------------- */
     $navMobileMenuGutter: 35px;
@@ -737,7 +754,7 @@ $navBarDesktopHeight: 80px;
             width: 100%;
             left: 50%;
             transform: translateX( -50% );
-            margin-bottom: 20px; 
+            margin-bottom: 20px;
             padding: 0 $navMobileMenuGutter;
 
             input {
@@ -755,9 +772,9 @@ $navBarDesktopHeight: 80px;
             padding: 0 2px 60px; //Aligns the titles to the left edge matching search underline
             @include fontSize( 16px );
 
-            li { 
+            li {
                 position: relative;
-                border-bottom: none; 
+                border-bottom: none;
             }
 
             a {
@@ -773,7 +790,7 @@ $navBarDesktopHeight: 80px;
                 letter-spacing: 4px;
                 padding-left: 35px;
 
-                a { 
+                a {
                     color: $color--dark-green-2;
                     padding: 0;
                 }
@@ -783,8 +800,8 @@ $navBarDesktopHeight: 80px;
             .accordion-sub-header {
                 // TRAINGLE : CLOSED : Downward arrow in css
                 &:after {
-                    width: 0; 
-                    height: 0; 
+                    width: 0;
+                    height: 0;
                     position: absolute;
                     top: 50%;
                     transform: translateY( -50% );
@@ -850,8 +867,8 @@ $navBarDesktopHeight: 80px;
 
                             // TRAINGLE : CLOSED : Rightward Arrow
                             &:after {
-                                width: 0; 
-                                height: 0; 
+                                width: 0;
+                                height: 0;
                                 position: absolute;
                                 top: 50%;
                                 transform: translateY( -50% );
@@ -911,8 +928,8 @@ $navBarDesktopHeight: 80px;
                     &:first-child {
                         // TRAINGLE : CLOSED : Rightward Arrow
                         &:after {
-                            width: 0; 
-                            height: 0; 
+                            width: 0;
+                            height: 0;
                             position: absolute;
                             top: 50%;
                             transform: translateY( -50% );
@@ -934,7 +951,7 @@ $navBarDesktopHeight: 80px;
                     .inner-center {
                         @include flexbox;
                         @include align-items( center );
-                        width: 230px;
+                        width: 250px;
                         height: 100%;
                         text-decoration: none;
 
@@ -976,4 +993,10 @@ $navBarDesktopHeight: 80px;
 
 .shifter {
     overflow-x: hidden;
+}
+.view_all_class{
+    text-decoration: none;
+    color: #164732;
+    font-weight: 500;
+    height:60px!important;
 }
