@@ -57,6 +57,12 @@ jobs:
               theme_id: "live"
               store: muckboot-dev.myshopify.com
               ignore_files:
+                - theme.shogun.landing.liquid
+                - page.shogun.default.liquid 
+                - page.shogun.landing.liquid
+                - product.shogun.custom.liquid
+                - shogun-head.liquid
+                - shogun-products.liquid 
                 # - settings_data.json #Commented out to keep dev sync with repo changes' > ./config.yml
       - run:
           name: Deploy
@@ -78,6 +84,12 @@ jobs:
               theme_id: "live"
               store: muckboot-usa.myshopify.com
               ignore_files:
+                - theme.shogun.landing.liquid
+                - page.shogun.default.liquid 
+                - page.shogun.landing.liquid
+                - product.shogun.custom.liquid
+                - shogun-head.liquid
+                - shogun-products.liquid 
                 - settings_data.json' > ./config.yml
       - run:
           name: Deploy
