@@ -16,8 +16,14 @@ $seoTextColor: {{ settings.collection_seo_footer_text }};
     padding: 50px 0;
 
     @include mq( 'lap-and-up' ) {
-        padding: 100px 0;
+        padding: 50px 40px;
     }
+    @include mq( 'tablet' ) {
+        padding: 40px 40px;
+    }
+    @include mq( 'phone' ) {
+       padding: 30px 30px;
+    }    
 
     // CONTENT : Box that holds each content block (above x below button fold)
     .collection-seo-content {
