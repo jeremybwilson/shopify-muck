@@ -12,7 +12,7 @@ var bcSfFilterSettings = {
         reviewRatingByTagFilterOptionId: ['pf_t_review_rating', 'pf_t_review_rating_list'],
 				// rating tag prefix
         reviewRatingByTagTagPrefix: 'rating:',
-      	extraSortingList: 'extra-sort1-ascending|extra-sort1-descending',
+      	extraSortingList: 'extra-sort1-descending',
     },
     selector: {
         products: '#product-loop'
@@ -372,7 +372,11 @@ BCSfFilter.prototype.buildFilterSorting = function() {
             // Build content 
             var sortingItemsHtml = '';
             for (var k in sortingArr) {
-                sortingItemsHtml += '<option value="' + k +'">' + sortingArr[k] + '</option>';
+                if (k === 'extra-sort1-descending') {
+                    sortingItemsHtml += '<option value="' + k +'">Top Rate</option>';
+                } else {
+                    sortingItemsHtml += '<option value="' + k +'">' + sortingArr[k] + '</option>';
+                }
             }
             var html = bcSfFilterTemplate.sortingHtml.replace(/{{sortingItems}}/g, sortingItemsHtml);
             jQ(this.selector.topSorting).html(html);
