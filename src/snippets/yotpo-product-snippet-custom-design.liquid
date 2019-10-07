@@ -300,6 +300,16 @@
       reviewItem +=        '</div>';
       reviewItem +=        '<p class="yotpo-custom__revyotpo-custom__linkiew-item--body-content">' + review.content || 'This product is very good.';
       reviewItem +=        '</p>';
+      if(review.hasOwnProperty("images_data")){
+        if(review.images_data.length > 0){
+          reviewItem +=        '<div class="yotpo-review-images-wrapper">';
+            var images = review.images_data;
+            images.forEach(function(item){
+              reviewItem +=        '<img img alt="" class="image-review" src="' + item.thumb_url +'" data-image-id="" src="" style="transition: opacity 1s ease 0s; opacity: 1;">';
+            });
+          reviewItem +=        '</div>';
+        }
+      }
       reviewItem +=        '<div class="yotpo-custom__review-item--body-vote">';
       reviewItem +=          '<div class="yotpo-custom__review-item--body-vote-text">Was this Review Helpful?</div>';
       reviewItem +=          '<div class="yotpo-custom__review-item--body-vote-btn" data-type="up">';
