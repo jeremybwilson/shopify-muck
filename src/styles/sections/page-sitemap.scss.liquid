@@ -1,0 +1,62 @@
+ul.parent {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+ul.parent >li {
+    min-width: 25%;
+    margin-bottom:2%;
+    list-style: none;
+}
+
+ul.parent >li ul.child ul.grandchild {
+    padding-left: 25px;    
+    list-style: circle;
+}
+
+.child>li >span {
+    font-weight: $font-weight--bold;
+}
+
+ul.parent a:hover {
+    color: $color--orange-1;
+}
+ul.grandchild >li >a {
+    color: $color--gray-1;
+}
+ul.parent>li >a {
+    font-weight: $font-weight--bold;
+    line-height: 1.5em;
+    letter-spacing: .25em;
+    @include fontSize(16px);    
+    height: 100%;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: $color--dark-green-1;
+}
+ul.parent>li >span {
+    font-weight: $font-weight--bold;
+    line-height: 1.5em;
+    letter-spacing: .25em;
+    @include fontSize(16px);
+    height: 100%;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: $color--dark-green-1;
+}
+ul.child {
+    @include fontSize(14px);
+    line-height: 1.7;
+}
+.child > li {
+    color: $color--orange-2;
+}
+@include mq('phone'){
+    ul.parent {
+      margin: 0px 20px;
+    }
+    ul.parent >li {
+      margin-bottom:5%;
+    }    
+}
