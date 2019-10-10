@@ -27,11 +27,12 @@
         }
       }
       jQuery('#sort-by')
-      .val('{{ collection.sort_by | default: collection.default_sort_by  }}')
-           .bind('change', function() {
-        Shopify.queryParams.sort_by = jQuery(this).val();
-        location.search = jQuery.param(Shopify.queryParams);
-      });
+        .val('{{ collection.sort_by | default: collection.default_sort_by  }}')
+        .bind('change', function() {
+          Shopify.queryParams.sort_by = jQuery(this).val();
+          location.search = jQuery.param(Shopify.queryParams);
+        });
+
       $(document).on('shopify:section:load', function(event) {
         jQuery('#sort-by')
         .val('{{ collection.sort_by | default: collection.default_sort_by  }}')
