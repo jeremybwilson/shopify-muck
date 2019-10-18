@@ -67,7 +67,7 @@
       } else if (window.Checkout && window.Checkout.$) {
         jquery = window.Checkout.$;
       }
-      jquery(document).on('page:load', function() {
+      jquery(document).on('page:load page:change', function() { 
         var delivery_country_string = '{{ settings.delivery_country_codes }}';
         var delivery_country_defult = '{{ settings.delivery_country_defult }}';
         var billing_country_string = '{{ settings.billing_country_codes }}';
