@@ -72,7 +72,6 @@
         var delivery_country_defult = '{{ settings.delivery_country_defult }}';
         var billing_country_string = '{{ settings.billing_country_codes }}';
         var billing_country_default = '{{ settings.billing_country_defult }}';
-        $('.step[data-step="contact_information"] [data-address-field="country"]').insertAfter($('.step[data-step="contact_information"] [data-address-field="last_name"]'));  
         if (delivery_country_string != '') {
           remove_coutry_from_dropdown(delivery_country_string,'checkout_shipping_address_country');
           if (delivery_country_defult != '') {
@@ -91,6 +90,18 @@
             jquery("#checkout_billing_address_country").prepend("<option selected='selected' disabled='disabled'>"+jquery("label[for='checkout_billing_address_country']").html()+"</option>");
           }
         }
+        jQuery('.step[data-step="contact_information"] [data-address-field="country"]')
+        .removeClass('field--half field--third')
+        .css('width','100%')
+        .insertBefore(jQuery('.step[data-step="contact_information"] [data-address-field="address1"]'));
+        jQuery(document).on('change','#checkout_shipping_address_country',function(){
+          if(jQuery('.step[data-step="contact_information"] [data-address-field="address1"] + [data-address-field="country"]').length == 0){
+            jQuery('.step[data-step="contact_information"] [data-address-field="country"]')
+            .removeClass('field--half field--third')
+            .css('width','100%')
+            .insertBefore(jQuery('.step[data-step="contact_information"] [data-address-field="address1"]'));
+          }
+        })
       });
       function remove_coutry_from_dropdown(country_string,select_id)
       {
