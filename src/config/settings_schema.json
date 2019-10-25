@@ -1035,6 +1035,11 @@
         "content": "Criteo Tracking"
       },
       {
+        "type": "checkbox",
+        "id": "enable_criteo_tracking",
+        "label": "Enable Criteo Tracking"
+      },          
+      {
         "type": "text",
         "id": "criteo_account_number",
         "label": "Criteo Account Number",
