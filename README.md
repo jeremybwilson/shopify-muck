@@ -2,7 +2,7 @@
 Theme repo for the Muck Boot Shopify store. This theme features the ability to use react components as well as ES6, and was built using the Fashionopolism theme as a base!
 
 
-# How Do I Turn This On?
+# How Do I Turn This On?   
 
 For the initial setup, you'll want Node.js installed globally on your machine as well as the old slate tool v0.14 (not v1.x). To simplify this you can run the command below to bootstrap the project for you. 
 
