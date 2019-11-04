@@ -35,7 +35,14 @@
                         {% comment %} :: SUB-NAV MENU LINKS :: {% endcomment %}
                         <ul class="footer-sub-nav">
                           {% for sub_link in link.links %}
-                            <li>{{ sub_link.title | link_to: sub_link.url }}</li>
+                            {% assign linkname = sub_link.title | handleize %}
+                            {% if linkname == 'privacy-policy' %}
+                              <li><a href="{{sub_link.url}}" target="_blank" title="{{sub_link.title}}">
+                                {{sub_link.title}}
+                              </a></li>
+                            {% else %}
+                              <li>{{ sub_link.title | link_to: sub_link.url }}</li>
+                            {% endif %}
                           {% endfor %}
                         </ul>
 

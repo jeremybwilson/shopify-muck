@@ -1116,8 +1116,10 @@ theme.Newsletter = (function() {
     const ui = {
            formId: $( '#footer-newsletter' ),
           textbox: $( '#email' ),
+          checkbox: $( '#input-checkbox' ),
            submit: $( '#button-footer-newsletter-submit' ),
          errorMsg: $( '#newsletter-error-response'),
+         errortermsMsg: $( '#newsletter-error-terms-response'),
        successMsg: $( '#newsletter-success-response')
     };
 
@@ -1144,14 +1146,21 @@ theme.Newsletter = (function() {
         // validation code
 
         let validEmail = regexEmail.test(ui.textbox.val());
+        let isAcceptTerms = ui.checkbox.prop('checked');
 
-        if(!validEmail) {
-
-          // error state
-
-          ui.formId.addClass('has-error');
-          ui.errorMsg.fadeIn();
-
+        if(!validEmail || !isAcceptTerms) {
+          if(!validEmail) {
+            ui.formId.addClass('has-error');
+            ui.errorMsg.fadeIn();
+          } else {
+            ui.errorMsg.fadeOut();
+          }
+          if(!isAcceptTerms) {
+            ui.formId.addClass('has-terms-error');
+            ui.errortermsMsg.fadeIn();
+          } else {
+            ui.errortermsMsg.fadeOut();
+          }
         } else {
 
           // success state

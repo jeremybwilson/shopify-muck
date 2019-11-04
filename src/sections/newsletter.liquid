@@ -15,22 +15,30 @@
       </header>
 
       <form id="footer-newsletter"> 
-        <input class="form-control" type="email" id="email" name="email" placeholder="{{ section.settings.newsletter_placeholder }}" aria-label="Email address" aria-required="true" autocorrect="off" autocapitalize="off">
-        <label id="button-footer-newsletter-submit" for="footer-newsletter-submit">
-          <input id="footer-newsletter-submit" type="submit" value="Subscribe">
-          {% include 'svg-icon-caret-right-submit' %}
+        <div class="form-wrapper">
+          <input class="form-control" type="email" id="email" name="email" placeholder="{{ section.settings.newsletter_placeholder }}" aria-label="Email address" aria-required="true" autocorrect="off" autocapitalize="off">
+          <label id="button-footer-newsletter-submit" for="footer-newsletter-submit">
+            <input id="footer-newsletter-submit" type="submit" value="Subscribe">
+            {% include 'svg-icon-caret-right-submit' %}
+          </label>
+        </div>
+        <label class="custom-checkbox">
+          <span id="share-info-line">{{ section.settings.info_line }}</span>
+          <input type="checkbox" class="input-checkbox" id="input-checkbox">
+          <span class="checkmark"></span>
         </label>
       </form>
       <div id="newsletter-form--response">
         <span id="newsletter-error-response" style="display:none;">{{ section.settings.newsletter_error }}</span>
+        <span id="newsletter-error-terms-response" style="display:none;">{{ section.settings.newsletter_terms_error }}</span>
         <span id="newsletter-success-response" style="display:none;">
         {{ section.settings.newsletter_success }}</span>
       </div>      
 
     </div><!-- .newsletter-inner -->
-     <div class="share-info">
+     {% comment %}<div class="share-info">
        <span id="share-info-line">{{ section.settings.info_line }}</span>
-      </div>
+      </div>{% endcomment %}
   </div><!-- .newsletter-wrapper -->
 
   <div class="social-wrapper">
@@ -76,6 +84,12 @@
       "id": "newsletter_error",
       "label": "Error Text",
       "default": "Please enter a valid e-mail address"
+    },
+    {
+      "type": "html",
+      "id": "newsletter_terms_error",
+      "label": "Terms error text",
+      "default": "<p>Please agree to Honeywell’s Terms & Conditions and Privacy Policy</p>"
     },
     {
       "type": "richtext",
