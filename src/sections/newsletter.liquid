@@ -1,3 +1,4 @@
+{% assign ISV = settings.international_store_version %}
 <div id="newsletter-social" class="newsletter-{{ section.id }}" data-section-id="{{ section.id }}" 
   data-section-type="newsletter-social">
   
@@ -15,6 +16,7 @@
       </header>
 
       <form id="footer-newsletter"> 
+        {% if ISV == 'UK' %}
         <div class="form-wrapper">
           <input class="form-control" type="email" id="email" name="email" placeholder="{{ section.settings.newsletter_placeholder }}" aria-label="Email address" aria-required="true" autocorrect="off" autocapitalize="off">
           <label id="button-footer-newsletter-submit" for="footer-newsletter-submit">
@@ -27,14 +29,16 @@
           <input type="checkbox" class="input-checkbox" />
           <span class="checkmark"></span>
         </label>
+        {% endif %}
       </form>
+      {% if ISV == 'UK' %}
       <div id="newsletter-form--response">
         <span id="newsletter-error-response" style="display:none;">{{ section.settings.newsletter_error }}</span>
         <span id="newsletter-error-terms-response" style="display:none;">{{ settings.newsletter_terms_error }}</span>
         <span id="newsletter-success-response" style="display:none;">
         {{ section.settings.newsletter_success }}</span>
       </div>      
-
+      {% endif %}
     </div><!-- .newsletter-inner -->
      {% comment %}<div class="share-info">
        <span id="share-info-line">{{ section.settings.info_line }}</span>

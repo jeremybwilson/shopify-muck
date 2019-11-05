@@ -1,3 +1,4 @@
+{% assign ISV = settings.international_store_version %}
 <div id="customer-wrapper" class="desktop-12 mobile-3">
 
   <div id="account-msg">
@@ -131,13 +132,16 @@
       <input type="password" value="" name="customer[password]" id="password" class="large password" size="30" />
     </div>
 
+    {% if ISV == 'UK' or ISV == 'EU' or ISV == 'DE' %}
     <label class="custom-checkbox">
       <span class="share-info-line">{{ settings.info_line }}</span>
       <input type="checkbox" class="input-checkbox">
       <span class="checkmark"></span>
     </label>
+    {% endif %}
+    {% if ISV == 'UK' or ISV == 'EU' or ISV == 'DE' %}
     <div class="error-terms-msg">{{ settings.newsletter_terms_error }}</div>
-
+    {% endif %}
     <div class="action_bottom">
       <input class="secondary button" type="submit" value="{{ 'customer.register.submit' | t }}"/>
     </div>

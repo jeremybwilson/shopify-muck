@@ -1,3 +1,4 @@
+{% assign ISV = settings.international_store_version %}
 <!DOCTYPE html>
 <html lang="{{ locale }}" dir="{{ direction }}" class="{{ checkout_html_classes }}">
   <head>
@@ -14,10 +15,11 @@
     {{ content_for_header }}
 
     {{ checkout_stylesheets }}
-    <link href="{{ 'checkout-style.scss.css' | asset_url }}" rel="stylesheet" type="text/css" media="all" />
+    {% if ISV == 'UK' %}
+      <link href="{{ 'checkout-style.scss.css' | asset_url }}" rel="stylesheet" type="text/css" media="all" />
+    {% endif %}
     {{ checkout_scripts }}
     {% include 'script-google-tag-head' %}
-    {% include 'checkout-style' %}
   </head>
   <body>
     {{ skip_to_content_link }}
@@ -62,10 +64,12 @@
     {% include 'checkout-address-autofill' %}
     <!---PDM-222-->
     {% include 'script-google-tag-body' %}
-    <div class="checkbox-custom-data">
-      <div class="share-info-line">{{ settings.info_line }}</div>
-      <div class="error-terms-msg">{{ settings.newsletter_terms_error }}</div>
-    </div>
+    {% if ISV == 'UK' %}
+      <div class="checkbox-custom-data">
+        <div class="share-info-line">{{ settings.info_line }}</div>
+        <div class="error-terms-msg">{{ settings.newsletter_terms_error }}</div>
+      </div>
+    {% endif %}
     <script>
       var jquery = null;
       if (window.jQuery) {
@@ -78,7 +82,9 @@
         var delivery_country_defult = '{{ settings.delivery_country_defult }}';
         var billing_country_string = '{{ settings.billing_country_codes }}';
         var billing_country_default = '{{ settings.billing_country_defult }}';
+        {% if ISV == 'UK' %}
         tcCheckbox();
+        {% endif %}
         if (delivery_country_string != '') {
           remove_coutry_from_dropdown(delivery_country_string,'checkout_shipping_address_country');
           if (delivery_country_defult != '') {
@@ -104,6 +110,7 @@
       /*============================================================================
         T&C checkbox
       ==============================================================================*/
+      {% if ISV == 'UK' %}
       function tcCheckbox(){
         if(Shopify.Checkout.step == 'payment_method'){
             jquery('body').addClass('payment--section');
@@ -150,6 +157,7 @@
             });
         }
       }
+      {% endif %}
       function remove_coutry_from_dropdown(country_string,select_id)
       {
         var countries_arr= country_string.split(',');

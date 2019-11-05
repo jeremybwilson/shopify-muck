@@ -1,3 +1,4 @@
+{% assign ISV = settings.international_store_version %}
 <div class="footer-section" data-section-id="{{ section.id }}" data-section-type="footer-section">
   <footer class="site-footer">
     
@@ -34,6 +35,7 @@
 
                         {% comment %} :: SUB-NAV MENU LINKS :: {% endcomment %}
                         <ul class="footer-sub-nav">
+                          {% if ISV == 'UK' or ISV == 'EU' or ISV == 'DE' %}
                           {% for sub_link in link.links %}
                             {% assign linkname = sub_link.title | handleize %}
                             {% if linkname == 'privacy-policy' %}
@@ -44,8 +46,8 @@
                               <li>{{ sub_link.title | link_to: sub_link.url }}</li>
                             {% endif %}
                           {% endfor %}
+                          {% endif %}
                         </ul>
-
                       </li>
 
                     {% comment %} :: ELSE, REGULAR SINGLE LINK :: {% endcomment %}
