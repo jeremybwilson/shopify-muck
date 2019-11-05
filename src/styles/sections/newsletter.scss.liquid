@@ -8,9 +8,6 @@
   @include flexbox;
   @include flex-direction(column);
 
-  @include mq('phone') {
-    line-height: initial !important;  
-  }
   @include mq('tablet-and-up') {
   	@include flex-direction(row);
   }
@@ -26,8 +23,6 @@
   #share-info-line p {
     color: $color--white;
     text-transform: none;
-    @include fontSize(12px);
-    text-align:left;
   }
   #share-info-line p a {
       color: $color--white;
@@ -42,10 +37,6 @@
     width: 100%;
     max-width: 325px;  
     margin: 0 auto;
-    .input-checkbox{
-      display:block;
-      text-align:center;
-    }
   }
   header {
     padding-top: 0;
@@ -82,20 +73,6 @@
       margin-bottom: 0;
       font-size: inherit;
     }
-  }
-  form {
-    .form-wrapper {
-      @include flexbox;
-      @include justify-content(space-between);
-      position: relative;
-      margin-bottom: 12px;
-      background: $color--white; 
-      border: solid 1px transparent;
-      transition: border .3s ease;
-    }
-  }
-  form.has-error .form-wrapper {
-    border: solid 1px $color--error;
   }
   input[type="email"] {
     box-sizing: border-box;
@@ -172,18 +149,6 @@
     #newsletter-error-response {
       @include h7;
     }  
-    #newsletter-error-terms-response{
-      p{
-        color:#ffffff;
-        font-weight: $font-weight--medium;
-        margin-top:10px;
-        letter-spacing: .025em;
-        a{
-          color:#ffffff;
-          text-decoration: underline;
-        }
-      }
-    }
     #newsletter-success-response {
       text-transform: none;
 
@@ -275,6 +240,53 @@
   @include mq('tablet-and-up'){
     display: block;
   }
+}
+
+
+/* New PDM-1144 changes code */
+.hascheckbox {
+  #newsletter-social {
+    @include mq('phone') {
+      line-height: initial !important;  
+    }
+  }
+  #share-info-line p {
+    @include fontSize(12px);
+    text-align:left;
+  }
+  .newsletter-inner {
+    .input-checkbox{
+      display:block;
+      text-align:center;
+    }
+  }
+  form {
+    .form-wrapper {
+      @include flexbox;
+      @include justify-content(space-between);
+      position: relative;
+      margin-bottom: 12px;
+      background: $color--white; 
+      border: solid 1px transparent;
+      transition: border .3s ease;
+    }
+  }
+  form.has-error .form-wrapper {
+    border: solid 1px $color--error;
+  }
+  #newsletter-error-terms-response{
+    p{
+      color:#ffffff;
+      font-weight: $font-weight--medium;
+      margin-top:10px;
+      letter-spacing: .025em;
+      a{
+        color:#ffffff;
+        text-decoration: underline;
+      }
+    }
+  }
+
 }
 // custom checkbox code start
 /* Customize the label (the container) */

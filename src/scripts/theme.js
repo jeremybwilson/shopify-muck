@@ -1146,10 +1146,10 @@ theme.Newsletter = (function() {
         // validation code
 
         let validEmail = regexEmail.test(ui.textbox.val());
-        let hasCheckbox = false;
+        var hasCheckbox = false;
         if(ui.checkbox){
           hasCheckbox = true;
-          let isAcceptTerms = ui.checkbox.prop('checked');
+          var isAcceptTerms = ui.checkbox.prop('checked');
         }
         if(!validEmail || (hasCheckbox && !isAcceptTerms)) {
           if(!validEmail) {

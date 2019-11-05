@@ -1,5 +1,9 @@
 {% assign ISV = settings.international_store_version %}
-<div id="newsletter-social" class="newsletter-{{ section.id }}" data-section-id="{{ section.id }}" 
+{% assign hasCheckbox = false %}
+{% if ISV == 'UK' or ISV == 'EU' or ISV == 'DE' %}
+  {% assign hasCheckbox = true %}
+{% endif %}
+<div id="newsletter-social" class="newsletter-{{ section.id }} {% if hasCheckbox %}hascheckbox{% endif %}" data-section-id="{{ section.id }}" 
   data-section-type="newsletter-social">
   
   <div class="newsletter-wrapper">
@@ -23,7 +27,7 @@
             {% include 'svg-icon-caret-right-submit' %}
           </label>
         </div>
-        {% if ISV == 'UK' or ISV == 'EU' ISV == 'DE' %}
+        {% if hasCheckbox %}
           <label class="custom-checkbox">
             <span id="share-info-line">{{ settings.info_line }}</span>
             <input type="checkbox" class="input-checkbox" />
@@ -33,7 +37,7 @@
       </form>
       <div id="newsletter-form--response">
         <span id="newsletter-error-response" style="display:none;">{{ section.settings.newsletter_error }}</span>
-        {% if ISV == 'UK' or ISV == 'EU' ISV == 'DE' %}
+        {% if hasCheckbox%}
           <span id="newsletter-error-terms-response" style="display:none;">{{ settings.newsletter_terms_error }}</span>
         {% endif %}
         <span id="newsletter-success-response" style="display:none;">{{ section.settings.newsletter_success }}</span>
