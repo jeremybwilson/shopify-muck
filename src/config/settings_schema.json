@@ -1125,6 +1125,26 @@
     ]
   },
   {
+    "name": "T&C checkbox",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Mobile settings"
+      },
+      {
+        "type": "html",
+        "id": "info_line",
+        "label": "Info message"
+      },
+      {
+        "type": "html",
+        "id": "newsletter_terms_error",
+        "label": "Terms error text",
+        "default": "<p>Please agree to Honeywell’s Terms & Conditions and Privacy Policy</p>"
+      }
+    ]
+  },
+  {
     "name": "GDPR",
     "settings": [
       {
@@ -1175,7 +1195,13 @@
       {
         "type": "text",
         "id": "cookie_banner_accept_button_text",
-        "label": "Accept button text",
+        "label": "Accept button text mobile",
+        "default": "Accept"
+      },
+      {
+        "type": "text",
+        "id": "cookie_banner_accept_button_text_desktop",
+        "label": "Accept button text desktop",
         "default": "Accept"
       }
     ]

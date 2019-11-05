@@ -1116,7 +1116,7 @@ theme.Newsletter = (function() {
     const ui = {
            formId: $( '#footer-newsletter' ),
           textbox: $( '#email' ),
-          checkbox: $( '#input-checkbox' ),
+          checkbox: $( '#footer-newsletter .input-checkbox' ),
            submit: $( '#button-footer-newsletter-submit' ),
          errorMsg: $( '#newsletter-error-response'),
          errortermsMsg: $( '#newsletter-error-terms-response'),
@@ -3058,7 +3058,23 @@ theme.Collection = (function() {
   return Collection;
 })();
 
-
+/*============================================================================
+  T&C checkbox
+==============================================================================*/
+theme.tcCheckbox = function(){
+  $(document).on('click','form .custom-checkbox ~ [type=submit],form .custom-checkbox ~ div [type=submit]',function(e){
+    e.preventDefault();
+    const $form = $(this).closest('form');
+    const isTermsAccept = $form.find('.custom-checkbox input').prop('checked');
+    if(isTermsAccept){
+      $form.find('.error-terms-msg').fadeOut();
+      $form.submit();
+    } else {
+      $form.addClass('has-terms-error').find('.error-terms-msg').fadeIn();
+      return false;
+    }
+  })
+}
 
 /*============================================================================
   Search template
@@ -3159,6 +3175,7 @@ function debounce(fn, wait, immediate) {
     };
   }
   $(document).ready(function() {
+    theme.tcCheckbox();
     if(window.location.hash){
       var haskey = window.location.hash.substr(1);
       if(haskey != "" && haskey != undefined && $("#" + haskey).length > 0){

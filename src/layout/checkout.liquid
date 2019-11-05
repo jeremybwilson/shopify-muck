@@ -14,8 +14,10 @@
     {{ content_for_header }}
 
     {{ checkout_stylesheets }}
+    <link href="{{ 'checkout-style.scss.css' | asset_url }}" rel="stylesheet" type="text/css" media="all" />
     {{ checkout_scripts }}
     {% include 'script-google-tag-head' %}
+    {% include 'checkout-style' %}
   </head>
   <body>
     {{ skip_to_content_link }}
@@ -60,6 +62,10 @@
     {% include 'checkout-address-autofill' %}
     <!---PDM-222-->
     {% include 'script-google-tag-body' %}
+    <div class="checkbox-custom-data">
+      <div class="share-info-line">{{ settings.info_line }}</div>
+      <div class="error-terms-msg">{{ settings.newsletter_terms_error }}</div>
+    </div>
     <script>
       var jquery = null;
       if (window.jQuery) {
@@ -67,12 +73,12 @@
       } else if (window.Checkout && window.Checkout.$) {
         jquery = window.Checkout.$;
       }
-      jquery(document).on('page:load', function() {
+      jquery(document).on('page:load page:change', function() {
         var delivery_country_string = '{{ settings.delivery_country_codes }}';
         var delivery_country_defult = '{{ settings.delivery_country_defult }}';
         var billing_country_string = '{{ settings.billing_country_codes }}';
         var billing_country_default = '{{ settings.billing_country_defult }}';
-
+        tcCheckbox();
         if (delivery_country_string != '') {
           remove_coutry_from_dropdown(delivery_country_string,'checkout_shipping_address_country');
           if (delivery_country_defult != '') {
@@ -91,7 +97,59 @@
             jquery("#checkout_billing_address_country").prepend("<option selected='selected' disabled='disabled'>"+jquery("label[for='checkout_billing_address_country']").html()+"</option>");
           }
         }
+
+        //------- T&C Checkbox -----
+        //jquery()
       });
+      /*============================================================================
+        T&C checkbox
+      ==============================================================================*/
+      function tcCheckbox(){
+        if(Shopify.Checkout.step == 'payment_method'){
+            jquery('body').addClass('payment--section');
+            var $parent = jQuery('.section--remember-me');
+            var cloneSelector = $parent.find('.section__content .content-box').first();
+            var fakeSbmitBtnSlctr = $('.step__footer[data-step-footer] [data-trekkie-id="complete_order_button"]').first();
+            var fakeSbmitBtn = fakeSbmitBtnSlctr.clone();
+            fakeSbmitBtnSlctr.addClass('hide--me');
+            $(fakeSbmitBtn).removeAttr('data-trekkie-id').addClass('btn--submit');
+            $(fakeSbmitBtn).insertAfter(fakeSbmitBtnSlctr)
+            var custCheckbox = cloneSelector.clone();
+            $(custCheckbox).addClass('cust-check');
+            $(custCheckbox).find('[data-remember-me-phone]').remove();
+            $(custCheckbox).find('[type="hidden"]').remove();
+            var labelText = jQuery('.checkbox-custom-data .share-info-line').html();
+            var errorText = jQuery('.checkbox-custom-data .error-terms-msg').html();
+            $parent.append('<div class="error-terms-msg">'+errorText+'</div>');
+            $(custCheckbox).find('label').attr('for','shop_terms').html(labelText);
+            $(custCheckbox).find('.input-checkbox').removeAttr('data-backup data-remember-me-opt-in aria-controls');
+            $(custCheckbox).find('.input-checkbox').attr({
+              'id':'shop_terms', 'name':'shopterms'
+            })
+            $(custCheckbox).insertAfter(cloneSelector);
+            $(document).on('change','.step[data-step="payment_method"] #shop_terms',function(e){
+                if($(this).is(':checked')){
+                  $(this).closest('form').find('.error-terms-msg').fadeOut();
+                  $('.btn--submit').hide().siblings('.step__footer__continue-btn').show();
+                } else {
+                  $(this).closest('form').find('.error-terms-msg').fadeIn();
+                  $('.btn--submit').show().siblings('.step__footer__continue-btn').hide();
+                }
+            })
+            $(document).on('click','.step[data-step="payment_method"] .btn--submit',function(e){
+              e.preventDefault();
+              const $form = $(this).closest('form');
+              const isTermsAccept = $form.find('#shop_terms').prop('checked');
+              if(isTermsAccept){
+                $form.find('.error-terms-msg').fadeOut();
+                $(this).hide().siblings('.step__footer__continue-btn').show();
+              } else {
+                $form.addClass('has-terms-error').find('.error-terms-msg').fadeIn();
+                return false;
+              }
+            });
+        }
+      }
       function remove_coutry_from_dropdown(country_string,select_id)
       {
         var countries_arr= country_string.split(',');

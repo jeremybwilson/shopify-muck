@@ -111,5 +111,29 @@
         line-height: 55px;  
       }
     }
+    .mobile_btn{
+      display:none;
+      @include mq('phone') {
+        display:block;
+      }
+      @include mq('tablet') {
+        display:block;
+      }
+      @include mq('lap') {
+        display:block;
+      }
+    }
+    .desktop_btn{
+      display:none;
+      @include mq('desk-and-up') {
+        display:block;
+        width: 100%;
+        line-height: 22px;
+        height: auto;
+        padding:15px;
+        @include fontSize(12px);
+        letter-spacing: 1.5px;
+      }
+    }
   }
 }
