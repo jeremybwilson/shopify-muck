@@ -15,7 +15,7 @@
     {{ content_for_header }}
 
     {{ checkout_stylesheets }}
-    {% if ISV == 'UK' %}
+    {% if ISV == 'UK' or ISV == 'EU' %}
       <link href="{{ 'checkout-style.scss.css' | asset_url }}" rel="stylesheet" type="text/css" media="all" />
     {% endif %}
     {{ checkout_scripts }}
@@ -82,7 +82,7 @@
         var delivery_country_defult = '{{ settings.delivery_country_defult }}';
         var billing_country_string = '{{ settings.billing_country_codes }}';
         var billing_country_default = '{{ settings.billing_country_defult }}';
-        {% if ISV == 'UK' %}
+        {% if ISV == 'UK' or ISV == 'EU' %}
         tcCheckbox();
         {% endif %}
         if (delivery_country_string != '') {
@@ -110,7 +110,7 @@
       /*============================================================================
         T&C checkbox
       ==============================================================================*/
-      {% if ISV == 'UK' %}
+      {% if ISV == 'UK' or ISV == 'EU' %}
       function tcCheckbox(){
         if(Shopify.Checkout.step == 'payment_method'){
             jquery('body').addClass('payment--section');
