@@ -36,16 +36,20 @@
                         {% comment %} :: SUB-NAV MENU LINKS :: {% endcomment %}
                         <ul class="footer-sub-nav">
                           {% if ISV == 'UK' or ISV == 'EU' or ISV == 'DE' %}
-                          {% for sub_link in link.links %}
-                            {% assign linkname = sub_link.title | handleize %}
-                            {% if linkname == 'privacy-policy' %}
-                              <li><a href="{{sub_link.url}}" target="_blank" title="{{sub_link.title}}">
-                                {{sub_link.title}}
-                              </a></li>
-                            {% else %}
-                              <li>{{ sub_link.title | link_to: sub_link.url }}</li>
-                            {% endif %}
-                          {% endfor %}
+                            {% for sub_link in link.links %}
+                              {% assign linkname = sub_link.title | handleize %}
+                              {% if linkname == 'privacy-policy' %}
+                                <li><a href="{{sub_link.url}}" target="_blank" title="{{sub_link.title}}">
+                                  {{sub_link.title}}
+                                </a></li>
+                              {% else %}
+                                <li>{{ sub_link.title | link_to: sub_link.url }}</li>
+                              {% endif %}
+                            {% endfor %}
+                          {% else %}
+                              {% for sub_link in link.links %}
+                                  <li>{{ sub_link.title | link_to: sub_link.url }}</li>
+                              {% endfor %}
                           {% endif %}
                         </ul>
                       </li>

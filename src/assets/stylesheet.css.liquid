@@ -5107,7 +5107,8 @@ iframe {
     color:#164732;
 }
 /*PDM-415 END */
-{% if settings.international_store_version == 'UK' %}
+{% assign ISV = settings.international_store_version %}
+{% if ISV == 'UK' or ISV == 'EU' %}
   #create-customer .error-terms-msg p {
     color: #e20a0a;
     text-align: center;

@@ -1,4 +1,8 @@
 {% assign ISV = settings.international_store_version %}
+{% assign addCode = false %}
+{% if ISV == 'UK' or ISV == 'EU' or ISV == 'DE' %}
+  {% assign addCode = true %}
+{% endif %}
 <div style="display:none">
   <div id="cookie-banner--popup" data-gdpr-expire="{{ settings.cookie_banner_expire }}">
     <div class="row">
@@ -10,20 +14,19 @@
           <div class="desktop-text">{{ settings.cookie_banner_desktop_text }}</div><!-- .desktop-text -->
 
         </div><!-- .text-container -->
-        {% if ISV == 'UK' or ISV == 'EU' or ISV == 'DE' %}  
         <div class="buttons">
           <a class="button more-info" href="{{ settings.cookie_banner_mobile_button }}" target="_blank">
             {{ settings.cookie_banner_mobile_button_text }}
           </a>
-          <a class="button button-close mobile_btn">
+          <a class="button button-close {% if addCode %}mobile_btn{% endif %}">
             {{ settings.cookie_banner_accept_button_text }}
           </a>
-          <a class="button button-close desktop_btn">
-            {{ settings.cookie_banner_accept_button_text_desktop }}
-          </a>
+          {% if addCode %}
+            <a class="button button-close desktop_btn">
+              {{ settings.cookie_banner_accept_button_text_desktop }}
+            </a>
+          {% endif %}
         </div><!-- .buttons -->
-        {% endif %}
-
       </div><!-- #cookie-banner--popup--inner -->
     </div><!--.row-->
   </div><!--#cookie-banner--popup-->

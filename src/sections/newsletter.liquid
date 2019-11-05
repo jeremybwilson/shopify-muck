@@ -16,7 +16,6 @@
       </header>
 
       <form id="footer-newsletter"> 
-        {% if ISV == 'UK' or ISV == 'EU' ISV == 'DE' %}
         <div class="form-wrapper">
           <input class="form-control" type="email" id="email" name="email" placeholder="{{ section.settings.newsletter_placeholder }}" aria-label="Email address" aria-required="true" autocorrect="off" autocapitalize="off">
           <label id="button-footer-newsletter-submit" for="footer-newsletter-submit">
@@ -24,21 +23,21 @@
             {% include 'svg-icon-caret-right-submit' %}
           </label>
         </div>
-        <label class="custom-checkbox">
-          <span id="share-info-line">{{ settings.info_line }}</span>
-          <input type="checkbox" class="input-checkbox" />
-          <span class="checkmark"></span>
-        </label>
+        {% if ISV == 'UK' or ISV == 'EU' ISV == 'DE' %}
+          <label class="custom-checkbox">
+            <span id="share-info-line">{{ settings.info_line }}</span>
+            <input type="checkbox" class="input-checkbox" />
+            <span class="checkmark"></span>
+          </label>
         {% endif %}
       </form>
-      {% if ISV == 'UK' or ISV == 'EU' ISV == 'DE' %}
       <div id="newsletter-form--response">
         <span id="newsletter-error-response" style="display:none;">{{ section.settings.newsletter_error }}</span>
-        <span id="newsletter-error-terms-response" style="display:none;">{{ settings.newsletter_terms_error }}</span>
-        <span id="newsletter-success-response" style="display:none;">
-        {{ section.settings.newsletter_success }}</span>
+        {% if ISV == 'UK' or ISV == 'EU' ISV == 'DE' %}
+          <span id="newsletter-error-terms-response" style="display:none;">{{ settings.newsletter_terms_error }}</span>
+        {% endif %}
+        <span id="newsletter-success-response" style="display:none;">{{ section.settings.newsletter_success }}</span>
       </div>      
-      {% endif %}
     </div><!-- .newsletter-inner -->
      {% comment %}<div class="share-info">
        <span id="share-info-line">{{ section.settings.info_line }}</span>

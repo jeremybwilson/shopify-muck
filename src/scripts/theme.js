@@ -1146,20 +1146,25 @@ theme.Newsletter = (function() {
         // validation code
 
         let validEmail = regexEmail.test(ui.textbox.val());
-        let isAcceptTerms = ui.checkbox.prop('checked');
-
-        if(!validEmail || !isAcceptTerms) {
+        let hasCheckbox = false;
+        if(ui.checkbox){
+          hasCheckbox = true;
+          let isAcceptTerms = ui.checkbox.prop('checked');
+        }
+        if(!validEmail || (hasCheckbox && !isAcceptTerms)) {
           if(!validEmail) {
             ui.formId.addClass('has-error');
             ui.errorMsg.fadeIn();
           } else {
             ui.errorMsg.fadeOut();
           }
-          if(!isAcceptTerms) {
-            ui.formId.addClass('has-terms-error');
-            ui.errortermsMsg.fadeIn();
-          } else {
-            ui.errortermsMsg.fadeOut();
+          if(hasCheckbox){
+            if(!isAcceptTerms) {
+              ui.formId.addClass('has-terms-error');
+              ui.errortermsMsg.fadeIn();
+            } else {
+              ui.errortermsMsg.fadeOut();
+            }
           }
         } else {
 

@@ -64,7 +64,7 @@
     {% include 'checkout-address-autofill' %}
     <!---PDM-222-->
     {% include 'script-google-tag-body' %}
-    {% if ISV == 'UK' %}
+    {% if ISV == 'UK' or ISV == 'EU' %}
       <div class="checkbox-custom-data">
         <div class="share-info-line">{{ settings.info_line }}</div>
         <div class="error-terms-msg">{{ settings.newsletter_terms_error }}</div>
@@ -83,7 +83,7 @@
         var billing_country_string = '{{ settings.billing_country_codes }}';
         var billing_country_default = '{{ settings.billing_country_defult }}';
         {% if ISV == 'UK' or ISV == 'EU' %}
-        tcCheckbox();
+          tcCheckbox();
         {% endif %}
         if (delivery_country_string != '') {
           remove_coutry_from_dropdown(delivery_country_string,'checkout_shipping_address_country');
@@ -107,10 +107,8 @@
         //------- T&C Checkbox -----
         //jquery()
       });
-      /*============================================================================
-        T&C checkbox
-      ==============================================================================*/
       {% if ISV == 'UK' or ISV == 'EU' %}
+      /*---T&C checkbox--*/
       function tcCheckbox(){
         if(Shopify.Checkout.step == 'payment_method'){
             jquery('body').addClass('payment--section');
