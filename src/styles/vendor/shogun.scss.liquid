@@ -17,27 +17,6 @@
 		margin: 0;
 	}
 
-	//tools 
-
-	.margin-center {
-		margin: 0 auto;
-	}
-
-	.mobile-asset {
-		display: none;
-
-		@include mq("phone") {
-			display: block;
-		}
-	}
-
-	.desktop-asset {
-		display: block;
-		
-		@include mq("phone") {
-			display: none;
-		}
-	}
 
 	// elements 
 
@@ -65,8 +44,7 @@
 	.shogun-heading-component {
 
 		h1 {
-			@include fontSize(30px);
-			color: $color--dark-green-2 !important;
+			// @include fontSize(30px);
 			font-weight: $font-weight--bold;
 			text-transform: uppercase;
 			letter-spacing: .25em;
@@ -76,8 +54,7 @@
 		}
 
 		h2 {
-	      color: $color--dark-green-2 !important;
-	      @include fontSize(20px);
+	      // @include fontSize(20px);
 	      font-weight: $font-weight--bold;
 	      text-transform: uppercase;
 	      letter-spacing: .1em;
@@ -86,8 +63,7 @@
 		}
 
 		h3 {
-	      color: $color--dark-green-2 !important;
-	      @include fontSize(20px);
+	      // @include fontSize(20px);
 	      font-weight: $font-weight--bold;
 	      text-transform: uppercase;
 	      letter-spacing: .1em;
@@ -99,7 +75,7 @@
 
 	.shg-rich-text {
 		p {
-		    @include fontSize(16px);
+		    // @include fontSize(16px);
 		    line-height: 26px / 16px * 1em;
 		    margin: 0;
 		}
@@ -180,9 +156,4 @@
 
 	}
 
-	.sub-hero {
-		img {
-			margin: 15px 0;
-		}
-	}
 }
