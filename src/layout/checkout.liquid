@@ -1,3 +1,4 @@
+{% assign ISV = settings.international_store_version %}
 <!DOCTYPE html>
 <html lang="{{ locale }}" dir="{{ direction }}" class="{{ checkout_html_classes }}">
   <head>
@@ -16,6 +17,11 @@
     {{ checkout_stylesheets }}
     {{ checkout_scripts }}
     {% include 'script-google-tag-head' %}
+    {% if ISV == 'UK' or ISV == 'CA' %}
+      <style type="text/css">
+        .step[data-step="contact_information"] .field[data-address-field="country"]{display: none;}
+      </style>
+    {% endif %}
   </head>
   <body>
     {{ skip_to_content_link }}
@@ -67,7 +73,7 @@
       } else if (window.Checkout && window.Checkout.$) {
         jquery = window.Checkout.$;
       }
-      {% if settings.international_store_version == 'EU' %}
+      {% if ISV == 'EU' %}
         function moveCountryField(){
           jQuery('.step[data-step="contact_information"] [data-address-field="country"]')
           .removeClass('field--half field--third')
@@ -75,7 +81,12 @@
           .insertBefore(jQuery('.step[data-step="contact_information"] [data-address-field="address1"]'));
         }
       {% endif %}
-      jquery(document).on('page:load page:change', function() { 
+      jquery(document).on('page:load page:change', function() {
+        {% if ISV == 'UK' or ISV == 'CA' %}
+          //--------Add class field-half to city and state as we hide country field for UK and CA
+          jquery('.step[data-step="contact_information"] .field[data-address-field="province"]').addClass('field--half');
+          jquery('.step[data-step="contact_information"] .field[data-address-field="zip"]').addClass('field--half');
+        {% endif %}
         var delivery_country_string = '{{ settings.delivery_country_codes }}';
         var delivery_country_defult = '{{ settings.delivery_country_defult }}';
         var billing_country_string = '{{ settings.billing_country_codes }}';
@@ -98,7 +109,7 @@
             jquery("#checkout_billing_address_country").prepend("<option selected='selected' disabled='disabled'>"+jquery("label[for='checkout_billing_address_country']").html()+"</option>");
           }
         }
-        {% if settings.international_store_version == 'EU' %}
+        {% if ISV == 'EU' %}
           moveCountryField();
           jQuery(document).on('change','#checkout_shipping_address_country',function(){
             if(jQuery('.step[data-step="contact_information"] [data-address-field="address1"] + [data-address-field="country"]').length == 0){
