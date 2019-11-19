@@ -91,7 +91,7 @@
         }
       {% endif %}
       jquery(document).on('page:load page:change', function() {
-        {% if ISV == 'UK' or ISV == 'CA' %}
+        {% if ISV == 'CA' %}
           //--------Add class field-half to city and state as we hide country field for UK and CA
           jquery('.step[data-step="contact_information"] .field[data-address-field="province"]').addClass('field--half');
           jquery('.step[data-step="contact_information"] .field[data-address-field="zip"]').addClass('field--half');
@@ -135,7 +135,11 @@
             }
           })
         {% endif %}
+        {% if ISV == 'UK' %}
+          $('.field[data-address-field="country"] select[data-trekkie-id="shipping_country_field"]').val('United Kingdom').trigger('change');
+        {% endif %}
       });
+
       {% if ISV == 'UK' or ISV == 'EU' %}
       /*---T&C checkbox--*/
       function tcCheckbox(){
@@ -185,6 +189,11 @@
         }
       }
       {% endif %}
+      window.onload = function(){
+        {% if ISV == 'UK' %}
+          $('.field[data-address-field="country"] select[data-trekkie-id="shipping_country_field"]').val('United Kingdom').trigger('change');
+        {% endif %}
+      }
       function remove_coutry_from_dropdown(country_string,select_id)
       {
         var countries_arr= country_string.split(',');
