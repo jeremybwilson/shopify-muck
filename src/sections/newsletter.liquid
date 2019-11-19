@@ -1,6 +1,6 @@
 {% assign ISV = settings.international_store_version %}
 {% assign hasCheckbox = false %}
-{% if ISV == 'UK' or ISV == 'EU' or ISV == 'DE' %}
+{% if ISV == 'UK' or ISV == 'EU' %}
   {% assign hasCheckbox = true %}
 {% endif %}
 <div id="newsletter-social" class="newsletter-{{ section.id }} {% if hasCheckbox %}hascheckbox{% endif %}" data-section-id="{{ section.id }}" 

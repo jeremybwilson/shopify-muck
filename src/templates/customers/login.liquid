@@ -1,9 +1,15 @@
 {% assign ISV = settings.international_store_version %}
+{% assign hasAccess = false %}
+{% if ISV == 'UK' or ISV == 'EU' or ISV == 'DE' %}
+  {% assign hasAccess = true %}
+{% endif %}
 <div id="customer-wrapper" class="desktop-12 mobile-3">
 
   <div id="account-msg">
     <h3>Sign in to your account</h3>
-    <p>Our brand new site is live. Please create a new account to explore this experience</p>
+    {% unless hasAccess %}
+      <p>Our brand new site is live. Please create a new account to explore this experience</p>
+    {% endunless %}
     <hr />
   </div>
 
@@ -132,14 +138,10 @@
       <input type="password" value="" name="customer[password]" id="password" class="large password" size="30" />
     </div>
 
-    {% if ISV == 'UK' or ISV == 'EU' or ISV == 'DE' %}
-      <label class="custom-checkbox">
-        <span class="share-info-line">{{ settings.info_line }}</span>
-        <input type="checkbox" class="input-checkbox">
-        <span class="checkmark"></span>
-      </label>
-      <div class="error-terms-msg">{{ settings.newsletter_terms_error }}</div>
+    {% if hasAccess %}
+      {% include 'tc-checkbox' %}
     {% endif %}
+    
     <div class="action_bottom">
       <input class="secondary button" type="submit" value="{{ 'customer.register.submit' | t }}"/>
     </div>

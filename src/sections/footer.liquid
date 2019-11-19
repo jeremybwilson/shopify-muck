@@ -1,4 +1,8 @@
 {% assign ISV = settings.international_store_version %}
+{% assign hasNewTab = false %}
+{% if ISV == 'UK' or ISV == 'EU' or ISV == 'DE' %}
+  {% assign hasNewTab = true %}
+{% endif %}
 <div class="footer-section" data-section-id="{{ section.id }}" data-section-type="footer-section">
   <footer class="site-footer">
     
@@ -35,10 +39,10 @@
 
                         {% comment %} :: SUB-NAV MENU LINKS :: {% endcomment %}
                         <ul class="footer-sub-nav">
-                          {% if ISV == 'UK' or ISV == 'EU' or ISV == 'DE' %}
+                          {% if hasNewTab %}
                             {% for sub_link in link.links %}
-                              {% assign linkname = sub_link.title | handleize %}
-                              {% if linkname == 'privacy-policy' %}
+                              {% assign linkhandle = sub_link.handle | handleize %}
+                              {% if linkhandle contains 'privacy-policy' or linkhandle contains 'privacy-statement' %}
                                 <li><a href="{{sub_link.url}}" target="_blank" title="{{sub_link.title}}">
                                   {{sub_link.title}}
                                 </a></li>

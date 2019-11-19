@@ -1,3 +1,8 @@
+{% assign ISV = settings.international_store_version %}
+{% assign hasAccess = false %}
+{% if ISV == 'UK' or ISV == 'EU' or ISV == 'DE' %}
+  {% assign hasAccess = true %}
+{% endif %}
 <div id="customer-wrapper" class="desktop-12 mobile-3">
 
   <!-- Left Side -->
@@ -105,6 +110,9 @@
       <input type="password" value="" name="customer[password]" id="password" class="large password" size="30" />
     </div>
 
+    {% if hasAccess %}
+      {% include 'tc-checkbox' %}
+    {% endif %}
 
     <div class="action_bottom">
       <input class="secondary button" type="submit" value="{{ 'customer.register.submit' | t }}"/>
