@@ -120,12 +120,26 @@
         {% if ISV == 'UK' %}
           $('.field[data-address-field="country"] select[data-trekkie-id="shipping_country_field"]').val('United Kingdom').trigger('change');
         {% endif %}
+        {% if ISV == 'EU' or ISV == 'UK' %}
+          changeShippingTextToFreeIFZero();
+        {% endif %}
       });
       window.onload = function(){
         {% if ISV == 'UK' %}
           $('.field[data-address-field="country"] select[data-trekkie-id="shipping_country_field"]').val('United Kingdom').trigger('change');
         {% endif %}
       }
+      {% if ISV == 'EU' or ISV == 'UK' %}
+      function changeShippingTextToFreeIFZero(){
+        var shippingCost = parseInt('{{checkout.shipping_price}}');
+        if(shippingCost !== undefined && shippingCost !== null && shippingCost == 0){
+          var $shippingTextElem = $('#order-summary .total-line--shipping span[data-checkout-total-shipping-target]');
+          if($shippingTextElem && $shippingTextElem.length){
+            $shippingTextElem.text('FREE');
+          }
+        }
+      }
+      {% endif %}
       function remove_coutry_from_dropdown(country_string,select_id)
       {
         var countries_arr= country_string.split(',');
