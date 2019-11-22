@@ -51,13 +51,13 @@
         
       {% when 'sale' %}
         {% assign size_chart_type = 'all' %}
-    {% if ISV == 'UK' %}
-      {% when 'kids socks' %}
-        {% assign size_chart_type = 'kids-socks' %}
-    {% endif %}
+
       {% else %}
         {% assign size_chart_type = 'all' %}
     {% endcase %}
+    {% if ISV == 'UK' and size_chart == 'kids socks' %}
+        {% assign size_chart_type = 'kids-socks' %}
+    {% endif %}
   {% endif %}
 {% endfor %}
 
