@@ -1329,5 +1329,20 @@
         "info": "Insert a unique Geocoding API key value here.  Enable checkbox above must also be checked."
       }
     ]
+  },
+  {
+    "name": "Custom Checkout",
+    "settings": [
+      {
+        "type":"header",
+        "content":"Shipping Price"
+      },
+      {
+        "type":"checkbox",
+        "id":"show_shipping_price",
+        "label":"Show shipping price",
+        "default":true
+      }
+    ]
   }
 ]
