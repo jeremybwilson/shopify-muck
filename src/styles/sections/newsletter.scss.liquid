@@ -8,15 +8,11 @@
   @include flexbox;
   @include flex-direction(column);
 
-  @include mq('phone') {
-    line-height: initial !important; //*  
-  }
   @include mq('tablet-and-up') {
   	@include flex-direction(row);
   }
 }
 
-// newsletter
 
 .newsletter-wrapper {
   background: $color--orange-1;
@@ -24,11 +20,11 @@
   text-align: center;
   padding: 44px 25px 43px;
 
-  .share-info #share-info-line p {
+  #share-info-line p {
     color: $color--white;
     text-transform: none;
   }
-  .share-info #share-info-line p a {
+  #share-info-line p a {
       color: $color--white;
       font-weight: $font-weight--bold;
       text-decoration: underline;
@@ -77,18 +73,6 @@
       margin-bottom: 0;
       font-size: inherit;
     }
-  }
-  form {
-    @include flexbox;
-    @include justify-content(space-between);
-    position: relative;
-    margin-bottom: 12px;
-    background: $color--white; 
-    border: solid 1px transparent;
-    transition: border .3s ease;
-  }
-  form.has-error {
-    border: solid 1px $color--error;
   }
   input[type="email"] {
     box-sizing: border-box;
@@ -255,5 +239,121 @@
 
   @include mq('tablet-and-up'){
     display: block;
+  }
+}
+
+
+/* New PDM-1144 changes code */
+.hascheckbox {
+  #newsletter-social {
+    @include mq('phone') {
+      line-height: initial !important;  
+    }
+  }
+  #share-info-line p {
+    @include fontSize(12px);
+    text-align:left;
+  }
+  .newsletter-inner {
+    .input-checkbox{
+      display:block;
+      text-align:center;
+    }
+  }
+  form {
+    .form-wrapper {
+      @include flexbox;
+      @include justify-content(space-between);
+      position: relative;
+      margin-bottom: 12px;
+      background: $color--white; 
+      border: solid 1px transparent;
+      transition: border .3s ease;
+    }
+  }
+  form.has-error .form-wrapper {
+    border: solid 1px $color--error;
+  }
+  #newsletter-error-terms-response{
+    p{
+      color:#ffffff;
+      font-weight: $font-weight--medium;
+      margin-top:10px;
+      letter-spacing: .025em;
+      a{
+        color:#ffffff;
+        text-decoration: underline;
+      }
+    }
+  }
+
+}
+// custom checkbox code start
+/* Customize the label (the container) */
+.custom-checkbox {
+  display: block;
+  position: relative;
+  padding-left: 25px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  p, span {
+    line-height: normal;
+    line-height:1.5;
+    @include fontSize(12px);
+  }
+  /* Hide the browser's default checkbox */
+  input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  /* Create a custom checkbox */
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 15px;
+    width: 15px;
+    background-color: #eee;
+    border:1px solid #b7b5b5;
+  }
+  /* When the checkbox is checked, add a blue background */
+  input:checked ~ .checkmark {
+    background-color: #164632;
+  }
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  /* Show the checkmark when checked */
+  input:checked ~ .checkmark:after {
+    display: block;
+  }
+  /* Style the checkmark/indicator */
+  .checkmark:after {
+    left: 4px;
+    top: 1px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+}
+form {
+  .error-terms-msg {
+    display: none;
+    color: red;
   }
 }

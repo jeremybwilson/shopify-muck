@@ -1125,6 +1125,27 @@
     ]
   },
   {
+    "name": "T&C checkbox",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Mobile settings"
+      },
+      {
+        "type": "html",
+        "id": "info_line",
+        "label": "Info message",
+        "default": "<p>I Agree and consent to Honeywell’s <br><a href='https://www.muckbootcompany.co.uk/pages/terms-conditions' target='_blank'>Terms &amp; Conditions</a> and have read and understood Honeywell’s <a href='https://www.honeywell.com/en-us/privacy-statement' target='_blank'>Privacy Statement</a></p>"
+      },
+      {
+        "type": "html",
+        "id": "newsletter_terms_error",
+        "label": "Terms error text",
+        "default": "<p>Please agree to Honeywell’s <a href='https://www.muckbootcompany.co.uk/pages/terms-conditions' target='_blank'>Terms &amp; Conditions</a> and <a href='https://www.honeywell.com/en-us/privacy-statement' target='_blank'>Privacy Statement</a></p>"
+      }
+    ]
+  },
+  {
     "name": "GDPR",
     "settings": [
       {
@@ -1175,8 +1196,14 @@
       {
         "type": "text",
         "id": "cookie_banner_accept_button_text",
-        "label": "Accept button text",
+        "label": "Accept button text mobile",
         "default": "Accept"
+      },
+      {
+        "type": "text",
+        "id": "cookie_banner_accept_button_text_desktop",
+        "label": "Accept button text desktop",
+        "default": "Click here to not show this message again"
       }
     ]
   },
